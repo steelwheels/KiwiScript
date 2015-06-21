@@ -44,8 +44,8 @@
 		0589A26A1B34E13600965796 /* KiwiEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0589A26E1B34E13600965796 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		0589A26F1B34E13600965796 /* KiwiEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiEngine.h; sourceTree = "<group>"; };
-		05C1C4001B35B5CA007D681F /* jsx */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = jsx; sourceTree = BUILT_PRODUCTS_DIR; };
-		05C1C4021B35B5CA007D681F /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = main.swift; path = ../Application/jsx/main.swift; sourceTree = SOURCE_ROOT; };
+		05C1C4001B35B5CA007D681F /* jsexec */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = jsexec; sourceTree = BUILT_PRODUCTS_DIR; };
+		05C1C4021B35B5CA007D681F /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = main.swift; path = ../Application/jsexec/main.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				0589A26A1B34E13600965796 /* KiwiEngine.framework */,
-				05C1C4001B35B5CA007D681F /* jsx */,
+				05C1C4001B35B5CA007D681F /* jsexec */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -105,19 +105,19 @@
 		05C1C3F41B35B48A007D681F /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				05C1C3F51B35B516007D681F /* jsx */,
+				05C1C3F51B35B516007D681F /* jsexec */,
 			);
 			name = Application;
 			path = ../Application;
 			sourceTree = SOURCE_ROOT;
 		};
-		05C1C3F51B35B516007D681F /* jsx */ = {
+		05C1C3F51B35B516007D681F /* jsexec */ = {
 			isa = PBXGroup;
 			children = (
 				05C1C4021B35B5CA007D681F /* main.swift */,
 			);
-			name = jsx;
-			path = ../Application/jsx;
+			name = jsexec;
+			path = ../Application/jsexec;
 			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
@@ -170,9 +170,9 @@
 			productReference = 0589A26A1B34E13600965796 /* KiwiEngine.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		05C1C3FF1B35B5CA007D681F /* jsx */ = {
+		05C1C3FF1B35B5CA007D681F /* jsexec */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 05C1C4041B35B5CA007D681F /* Build configuration list for PBXNativeTarget "jsx" */;
+			buildConfigurationList = 05C1C4041B35B5CA007D681F /* Build configuration list for PBXNativeTarget "jsexec" */;
 			buildPhases = (
 				05C1C3FC1B35B5CA007D681F /* Sources */,
 				05C1C3FD1B35B5CA007D681F /* Frameworks */,
@@ -183,9 +183,9 @@
 			dependencies = (
 				05C1C4081B35B5D4007D681F /* PBXTargetDependency */,
 			);
-			name = jsx;
+			name = jsexec;
 			productName = jsx;
-			productReference = 05C1C4001B35B5CA007D681F /* jsx */;
+			productReference = 05C1C4001B35B5CA007D681F /* jsexec */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -222,7 +222,7 @@
 			targets = (
 				0589A2691B34E13600965796 /* KiwiEngine */,
 				05C1C3F61B35B547007D681F /* Install */,
-				05C1C3FF1B35B5CA007D681F /* jsx */,
+				05C1C3FF1B35B5CA007D681F /* jsexec */,
 			);
 		};
 /* End PBXProject section */
@@ -460,7 +460,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		05C1C4041B35B5CA007D681F /* Build configuration list for PBXNativeTarget "jsx" */ = {
+		05C1C4041B35B5CA007D681F /* Build configuration list for PBXNativeTarget "jsexec" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				05C1C4051B35B5CA007D681F /* Debug */,
