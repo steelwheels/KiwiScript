@@ -8,5 +8,9 @@ This software is distributed under [GNU LESSER GENERAL PUBLIC LICENSE Version 2.
 
 # Contents
 This repository contains following frameworks and application.
+## Frameworks
 * `KiwiEngine` : JavaScript engine
 * `KiwiStdlib` : Standard library for the JavaScript program
+
+## Applications
+* `JSRunner`  : The application to execute JavaScript

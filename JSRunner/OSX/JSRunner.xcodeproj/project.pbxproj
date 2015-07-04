@@ -1,0 +1,365 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0589A7501B445012003FE874 /* JSRConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 0589A74B1B445012003FE874 /* JSRConfig.m */; };
+		0589A7511B445012003FE874 /* JSRMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 0589A74D1B445012003FE874 /* JSRMain.m */; };
+		0589A7521B445012003FE874 /* JSROptionAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0589A74F1B445012003FE874 /* JSROptionAnalyzer.m */; };
+		0589A7551B445043003FE874 /* Cobalt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0589A7541B445043003FE874 /* Cobalt.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		05A67F831B4803E3001170F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 051256061B444EAB00F6871B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0512560D1B444EAB00F6871B;
+			remoteInfo = JSRunner;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0512560C1B444EAB00F6871B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0512560E1B444EAB00F6871B /* jsrunner */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = jsrunner; sourceTree = BUILT_PRODUCTS_DIR; };
+		0589A74A1B445012003FE874 /* JSRConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSRConfig.h; sourceTree = "<group>"; };
+		0589A74B1B445012003FE874 /* JSRConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSRConfig.m; sourceTree = "<group>"; };
+		0589A74C1B445012003FE874 /* JSRForwarders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSRForwarders.h; sourceTree = "<group>"; };
+		0589A74D1B445012003FE874 /* JSRMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSRMain.m; sourceTree = "<group>"; };
+		0589A74E1B445012003FE874 /* JSROptionAnalyzer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSROptionAnalyzer.h; sourceTree = "<group>"; };
+		0589A74F1B445012003FE874 /* JSROptionAnalyzer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSROptionAnalyzer.m; sourceTree = "<group>"; };
+		0589A7541B445043003FE874 /* Cobalt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cobalt.framework; path = ../../../../Library/Frameworks/Cobalt.framework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0512560B1B444EAB00F6871B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0589A7551B445043003FE874 /* Cobalt.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		051256051B444EAB00F6871B = {
+			isa = PBXGroup;
+			children = (
+				051256101B444EAB00F6871B /* Source */,
+				0512560F1B444EAB00F6871B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0512560F1B444EAB00F6871B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0512560E1B444EAB00F6871B /* jsrunner */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		051256101B444EAB00F6871B /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				0589A74A1B445012003FE874 /* JSRConfig.h */,
+				0589A74B1B445012003FE874 /* JSRConfig.m */,
+				0589A74C1B445012003FE874 /* JSRForwarders.h */,
+				0589A74D1B445012003FE874 /* JSRMain.m */,
+				0589A74E1B445012003FE874 /* JSROptionAnalyzer.h */,
+				0589A74F1B445012003FE874 /* JSROptionAnalyzer.m */,
+				0589A7531B445025003FE874 /* Frameworks */,
+			);
+			name = Source;
+			path = ../Source;
+			sourceTree = SOURCE_ROOT;
+		};
+		0589A7531B445025003FE874 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0589A7541B445043003FE874 /* Cobalt.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		05A67F7F1B4803DA001170F1 /* Install */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f ../../Script/install_osx.mk";
+			buildConfigurationList = 05A67F821B4803DA001170F1 /* Build configuration list for PBXLegacyTarget "Install" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+				05A67F841B4803E3001170F1 /* PBXTargetDependency */,
+			);
+			name = Install;
+			passBuildSettingsInEnvironment = 1;
+			productName = Install;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXNativeTarget section */
+		0512560D1B444EAB00F6871B /* JSRunner */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 051256151B444EAB00F6871B /* Build configuration list for PBXNativeTarget "JSRunner" */;
+			buildPhases = (
+				0512560A1B444EAB00F6871B /* Sources */,
+				0512560B1B444EAB00F6871B /* Frameworks */,
+				0512560C1B444EAB00F6871B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JSRunner;
+			productName = JSRunner;
+			productReference = 0512560E1B444EAB00F6871B /* jsrunner */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		051256061B444EAB00F6871B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = "Steel Wheels Project";
+				TargetAttributes = {
+					0512560D1B444EAB00F6871B = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					05A67F7F1B4803DA001170F1 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+				};
+			};
+			buildConfigurationList = 051256091B444EAB00F6871B /* Build configuration list for PBXProject "JSRunner" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 051256051B444EAB00F6871B;
+			productRefGroup = 0512560F1B444EAB00F6871B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0512560D1B444EAB00F6871B /* JSRunner */,
+				05A67F7F1B4803DA001170F1 /* Install */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0512560A1B444EAB00F6871B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0589A7521B445012003FE874 /* JSROptionAnalyzer.m in Sources */,
+				0589A7511B445012003FE874 /* JSRMain.m in Sources */,
+				0589A7501B445012003FE874 /* JSRConfig.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		05A67F841B4803E3001170F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0512560D1B444EAB00F6871B /* JSRunner */;
+			targetProxy = 05A67F831B4803E3001170F1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		051256131B444EAB00F6871B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		051256141B444EAB00F6871B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		051256161B444EAB00F6871B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				INSTALL_PATH = "$(HOME)/Tools/bin";
+				OTHER_CFLAGS = (
+					"-W",
+					"-Wall",
+				);
+				PRODUCT_NAME = jsrunner;
+			};
+			name = Debug;
+		};
+		051256171B444EAB00F6871B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				INSTALL_PATH = "$(HOME)/Tools/bin";
+				OTHER_CFLAGS = (
+					"-W",
+					"-Wall",
+				);
+				PRODUCT_NAME = jsrunner;
+			};
+			name = Release;
+		};
+		05A67F801B4803DA001170F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUGGING_SYMBOLS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		05A67F811B4803DA001170F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		051256091B444EAB00F6871B /* Build configuration list for PBXProject "JSRunner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				051256131B444EAB00F6871B /* Debug */,
+				051256141B444EAB00F6871B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		051256151B444EAB00F6871B /* Build configuration list for PBXNativeTarget "JSRunner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				051256161B444EAB00F6871B /* Debug */,
+				051256171B444EAB00F6871B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05A67F821B4803DA001170F1 /* Build configuration list for PBXLegacyTarget "Install" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05A67F801B4803DA001170F1 /* Debug */,
+				05A67F811B4803DA001170F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 051256061B444EAB00F6871B /* Project object */;
+}

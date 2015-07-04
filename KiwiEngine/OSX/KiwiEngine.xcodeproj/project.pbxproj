@@ -13,15 +13,9 @@
 		0546D1471B3DA3E30066891A /* KEPreference.h in Headers */ = {isa = PBXBuildFile; fileRef = 0546D1451B3DA3E30066891A /* KEPreference.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0546D1481B3DA3E30066891A /* KEPreference.m in Sources */ = {isa = PBXBuildFile; fileRef = 0546D1461B3DA3E30066891A /* KEPreference.m */; };
 		0579F1C71B3B199000F19E98 /* KEEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 0579F1C51B3B199000F19E98 /* KEEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		057E4DD51B3DB3C50043D34B /* JSRConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 057E4DD41B3DB3C50043D34B /* JSRConfig.m */; };
-		057E4DDC1B3DB6FD0043D34B /* JSROptionAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = 057E4DDB1B3DB6FD0043D34B /* JSROptionAnalyzer.m */; };
 		059758651B40314700686E0E /* KEContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 059758631B40314700686E0E /* KEContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		059758661B40314700686E0E /* KEContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 059758641B40314700686E0E /* KEContext.m */; };
 		059758681B40361900686E0E /* KEForwarders.h in Headers */ = {isa = PBXBuildFile; fileRef = 059758671B40361900686E0E /* KEForwarders.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		059A48A31B3DAA31004B472E /* JSRMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 059A48A21B3DAA31004B472E /* JSRMain.m */; };
-		05EB51DA1B3DAAF700A65385 /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05EB51D91B3DAAF700A65385 /* KiwiEngine.framework */; };
-		05EB51DC1B3DAB2900A65385 /* Coconut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05EB51DB1B3DAB2900A65385 /* Coconut.framework */; };
-		05F380481B3DBA0F007B4F4E /* Cobalt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05F380471B3DBA0F007B4F4E /* Cobalt.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,26 +26,7 @@
 			remoteGlobalIDString = 0515FF1E1B3B0AC400C7B6FD;
 			remoteInfo = KiwiEngine;
 		};
-		059A48A71B3DAA42004B472E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0515FF161B3B0AC400C7B6FD /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0546D1491B3DA5300066891A;
-			remoteInfo = Install;
-		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		059A489E1B3DAA31004B472E /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0515FF1F1B3B0AC400C7B6FD /* KiwiEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,19 +38,9 @@
 		0546D14F1B3DA54C0066891A /* install_osx.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = install_osx.mk; path = ../../Script/install_osx.mk; sourceTree = "<group>"; };
 		0579F1C51B3B199000F19E98 /* KEEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KEEngine.h; sourceTree = "<group>"; };
 		0579F1C61B3B199000F19E98 /* KEEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KEEngine.m; sourceTree = "<group>"; };
-		057E4DD31B3DB3C50043D34B /* JSRConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSRConfig.h; sourceTree = "<group>"; };
-		057E4DD41B3DB3C50043D34B /* JSRConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSRConfig.m; sourceTree = "<group>"; };
-		057E4DDA1B3DB6FD0043D34B /* JSROptionAnalyzer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSROptionAnalyzer.h; sourceTree = "<group>"; };
-		057E4DDB1B3DB6FD0043D34B /* JSROptionAnalyzer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSROptionAnalyzer.m; sourceTree = "<group>"; };
-		057E4DDD1B3DB7560043D34B /* JSRForwarders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSRForwarders.h; sourceTree = "<group>"; };
 		059758631B40314700686E0E /* KEContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KEContext.h; sourceTree = "<group>"; };
 		059758641B40314700686E0E /* KEContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KEContext.m; sourceTree = "<group>"; };
 		059758671B40361900686E0E /* KEForwarders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KEForwarders.h; sourceTree = "<group>"; };
-		059A48A01B3DAA31004B472E /* JSRunner */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = JSRunner; sourceTree = BUILT_PRODUCTS_DIR; };
-		059A48A21B3DAA31004B472E /* JSRMain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSRMain.m; sourceTree = "<group>"; };
-		05EB51D91B3DAAF700A65385 /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../../Library/Frameworks/KiwiEngine.framework; sourceTree = "<group>"; };
-		05EB51DB1B3DAB2900A65385 /* Coconut.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Coconut.framework; path = ../../../../../Library/Frameworks/Coconut.framework; sourceTree = "<group>"; };
-		05F380471B3DBA0F007B4F4E /* Cobalt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cobalt.framework; path = ../../../../../Library/Frameworks/Cobalt.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,16 +52,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		059A489D1B3DAA31004B472E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				05EB51DC1B3DAB2900A65385 /* Coconut.framework in Frameworks */,
-				05EB51DA1B3DAAF700A65385 /* KiwiEngine.framework in Frameworks */,
-				05F380481B3DBA0F007B4F4E /* Cobalt.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -104,7 +59,6 @@
 			isa = PBXGroup;
 			children = (
 				0515FF211B3B0AC400C7B6FD /* Source */,
-				0546D1501B3DA9540066891A /* Application */,
 				0515FF201B3B0AC400C7B6FD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -113,7 +67,6 @@
 			isa = PBXGroup;
 			children = (
 				0515FF1F1B3B0AC400C7B6FD /* KiwiEngine.framework */,
-				059A48A01B3DAA31004B472E /* JSRunner */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -144,32 +97,6 @@
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
-		};
-		0546D1501B3DA9540066891A /* Application */ = {
-			isa = PBXGroup;
-			children = (
-				059A48A11B3DAA31004B472E /* JSRunner */,
-			);
-			name = Application;
-			path = ../Application;
-			sourceTree = SOURCE_ROOT;
-		};
-		059A48A11B3DAA31004B472E /* JSRunner */ = {
-			isa = PBXGroup;
-			children = (
-				059A48A21B3DAA31004B472E /* JSRMain.m */,
-				057E4DDD1B3DB7560043D34B /* JSRForwarders.h */,
-				057E4DD31B3DB3C50043D34B /* JSRConfig.h */,
-				057E4DD41B3DB3C50043D34B /* JSRConfig.m */,
-				057E4DDA1B3DB6FD0043D34B /* JSROptionAnalyzer.h */,
-				057E4DDB1B3DB6FD0043D34B /* JSROptionAnalyzer.m */,
-				05EB51DB1B3DAB2900A65385 /* Coconut.framework */,
-				05EB51D91B3DAAF700A65385 /* KiwiEngine.framework */,
-				05F380471B3DBA0F007B4F4E /* Cobalt.framework */,
-			);
-			name = JSRunner;
-			path = ../Application/JSRunner;
-			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -225,24 +152,6 @@
 			productReference = 0515FF1F1B3B0AC400C7B6FD /* KiwiEngine.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		059A489F1B3DAA31004B472E /* JSRunner */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 059A48A41B3DAA31004B472E /* Build configuration list for PBXNativeTarget "JSRunner" */;
-			buildPhases = (
-				059A489C1B3DAA31004B472E /* Sources */,
-				059A489D1B3DAA31004B472E /* Frameworks */,
-				059A489E1B3DAA31004B472E /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				059A48A81B3DAA42004B472E /* PBXTargetDependency */,
-			);
-			name = JSRunner;
-			productName = JSRunner;
-			productReference = 059A48A01B3DAA31004B472E /* JSRunner */;
-			productType = "com.apple.product-type.tool";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -257,9 +166,6 @@
 						CreatedOnToolsVersion = 6.3.2;
 					};
 					0546D1491B3DA5300066891A = {
-						CreatedOnToolsVersion = 7.0;
-					};
-					059A489F1B3DAA31004B472E = {
 						CreatedOnToolsVersion = 7.0;
 					};
 				};
@@ -278,7 +184,6 @@
 			targets = (
 				0515FF1E1B3B0AC400C7B6FD /* KiwiEngine */,
 				0546D1491B3DA5300066891A /* Install */,
-				059A489F1B3DAA31004B472E /* JSRunner */,
 			);
 		};
 /* End PBXProject section */
@@ -304,16 +209,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		059A489C1B3DAA31004B472E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				057E4DDC1B3DB6FD0043D34B /* JSROptionAnalyzer.m in Sources */,
-				059A48A31B3DAA31004B472E /* JSRMain.m in Sources */,
-				057E4DD51B3DB3C50043D34B /* JSRConfig.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -321,11 +216,6 @@
 			isa = PBXTargetDependency;
 			target = 0515FF1E1B3B0AC400C7B6FD /* KiwiEngine */;
 			targetProxy = 0546D14D1B3DA53B0066891A /* PBXContainerItemProxy */;
-		};
-		059A48A81B3DAA42004B472E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0546D1491B3DA5300066891A /* Install */;
-			targetProxy = 059A48A71B3DAA42004B472E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -495,29 +385,6 @@
 			};
 			name = Release;
 		};
-		059A48A51B3DAA31004B472E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Frameworks",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		059A48A61B3DAA31004B472E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Frameworks",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -544,15 +411,6 @@
 			buildConfigurations = (
 				0546D14B1B3DA5300066891A /* Debug */,
 				0546D14C1B3DA5300066891A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		059A48A41B3DAA31004B472E /* Build configuration list for PBXNativeTarget "JSRunner" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				059A48A51B3DAA31004B472E /* Debug */,
-				059A48A61B3DAA31004B472E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
