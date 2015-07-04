@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0516BFEA1B48079C006FA49B /* Cobalt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0516BFE91B48079C006FA49B /* Cobalt.framework */; };
 		0589A7501B445012003FE874 /* JSRConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 0589A74B1B445012003FE874 /* JSRConfig.m */; };
 		0589A7511B445012003FE874 /* JSRMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 0589A74D1B445012003FE874 /* JSRMain.m */; };
 		0589A7521B445012003FE874 /* JSROptionAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0589A74F1B445012003FE874 /* JSROptionAnalyzer.m */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		0512560E1B444EAB00F6871B /* jsrunner */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = jsrunner; sourceTree = BUILT_PRODUCTS_DIR; };
+		0516BFE91B48079C006FA49B /* Cobalt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cobalt.framework; path = ../../../../Library/Frameworks/Cobalt.framework; sourceTree = "<group>"; };
 		0589A74A1B445012003FE874 /* JSRConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSRConfig.h; sourceTree = "<group>"; };
 		0589A74B1B445012003FE874 /* JSRConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSRConfig.m; sourceTree = "<group>"; };
 		0589A74C1B445012003FE874 /* JSRForwarders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSRForwarders.h; sourceTree = "<group>"; };
@@ -52,6 +54,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0589A7551B445043003FE874 /* Cobalt.framework in Frameworks */,
+				0516BFEA1B48079C006FA49B /* Cobalt.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +95,7 @@
 		0589A7531B445025003FE874 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0516BFE91B48079C006FA49B /* Cobalt.framework */,
 				0589A7541B445043003FE874 /* Cobalt.framework */,
 			);
 			name = Frameworks;
@@ -358,6 +362,7 @@
 				05A67F811B4803DA001170F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
