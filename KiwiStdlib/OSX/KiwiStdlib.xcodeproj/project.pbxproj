@@ -54,7 +54,7 @@
 		05D649CF1B42E89400440DB9 /* UnitTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitTest.h; sourceTree = "<group>"; };
 		05D649D11B42EA5400440DB9 /* UTConsole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTConsole.m; sourceTree = "<group>"; };
 		05DE1CC91B41A4EC00BF62BB /* KiwiStdlib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiStdlib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		05DE1CCD1B41A4EC00BF62BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05DE1CCD1B41A4EC00BF62BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		05DE1CCE1B41A4EC00BF62BB /* KiwiStdlib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiStdlib.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
