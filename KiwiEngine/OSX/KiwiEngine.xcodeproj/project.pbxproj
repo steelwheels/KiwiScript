@@ -12,10 +12,13 @@
 		0546D1441B3D9B420066891A /* Coconut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0546D1431B3D9B420066891A /* Coconut.framework */; };
 		0546D1471B3DA3E30066891A /* KEPreference.h in Headers */ = {isa = PBXBuildFile; fileRef = 0546D1451B3DA3E30066891A /* KEPreference.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0546D1481B3DA3E30066891A /* KEPreference.m in Sources */ = {isa = PBXBuildFile; fileRef = 0546D1461B3DA3E30066891A /* KEPreference.m */; };
+		054D2E431B489948005CBE5C /* UTEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 054D2E421B489948005CBE5C /* UTEngine.m */; };
+		054D2E451B4899BA005CBE5C /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 054D2E441B4899BA005CBE5C /* KiwiEngine.framework */; };
 		0579F1C71B3B199000F19E98 /* KEEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 0579F1C51B3B199000F19E98 /* KEEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		059758651B40314700686E0E /* KEContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 059758631B40314700686E0E /* KEContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		059758661B40314700686E0E /* KEContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 059758641B40314700686E0E /* KEContext.m */; };
 		059758681B40361900686E0E /* KEForwarders.h in Headers */ = {isa = PBXBuildFile; fileRef = 059758671B40361900686E0E /* KEForwarders.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		059A58231B488EE10027DD47 /* UnitTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 059A58221B488EE10027DD47 /* UnitTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,7 +29,26 @@
 			remoteGlobalIDString = 0515FF1E1B3B0AC400C7B6FD;
 			remoteInfo = KiwiEngine;
 		};
+		059A58271B488EF60027DD47 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0515FF161B3B0AC400C7B6FD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0546D1491B3DA5300066891A;
+			remoteInfo = Install;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		059A581E1B488EE10027DD47 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0515FF1F1B3B0AC400C7B6FD /* KiwiEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -36,11 +58,16 @@
 		0546D1451B3DA3E30066891A /* KEPreference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KEPreference.h; sourceTree = "<group>"; };
 		0546D1461B3DA3E30066891A /* KEPreference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KEPreference.m; sourceTree = "<group>"; };
 		0546D14F1B3DA54C0066891A /* install_osx.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = install_osx.mk; path = ../../Script/install_osx.mk; sourceTree = "<group>"; };
+		054D2E401B489864005CBE5C /* UnitTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitTest.h; sourceTree = "<group>"; };
+		054D2E421B489948005CBE5C /* UTEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTEngine.m; sourceTree = "<group>"; };
+		054D2E441B4899BA005CBE5C /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../Library/Frameworks/KiwiEngine.framework; sourceTree = "<group>"; };
 		0579F1C51B3B199000F19E98 /* KEEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KEEngine.h; sourceTree = "<group>"; };
 		0579F1C61B3B199000F19E98 /* KEEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KEEngine.m; sourceTree = "<group>"; };
 		059758631B40314700686E0E /* KEContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KEContext.h; sourceTree = "<group>"; };
 		059758641B40314700686E0E /* KEContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KEContext.m; sourceTree = "<group>"; };
 		059758671B40361900686E0E /* KEForwarders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KEForwarders.h; sourceTree = "<group>"; };
+		059A58201B488EE10027DD47 /* UnitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		059A58221B488EE10027DD47 /* UnitTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnitTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +79,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		059A581D1B488EE10027DD47 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				054D2E451B4899BA005CBE5C /* KiwiEngine.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -59,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				0515FF211B3B0AC400C7B6FD /* Source */,
+				059A58211B488EE10027DD47 /* UnitTest */,
 				0515FF201B3B0AC400C7B6FD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -67,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				0515FF1F1B3B0AC400C7B6FD /* KiwiEngine.framework */,
+				059A58201B488EE10027DD47 /* UnitTest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -97,6 +134,18 @@
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
+		};
+		059A58211B488EE10027DD47 /* UnitTest */ = {
+			isa = PBXGroup;
+			children = (
+				054D2E441B4899BA005CBE5C /* KiwiEngine.framework */,
+				054D2E401B489864005CBE5C /* UnitTest.h */,
+				059A58221B488EE10027DD47 /* UnitTest.m */,
+				054D2E421B489948005CBE5C /* UTEngine.m */,
+			);
+			name = UnitTest;
+			path = ../UnitTest;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -152,6 +201,24 @@
 			productReference = 0515FF1F1B3B0AC400C7B6FD /* KiwiEngine.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		059A581F1B488EE10027DD47 /* UnitTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 059A58261B488EE10027DD47 /* Build configuration list for PBXNativeTarget "UnitTest" */;
+			buildPhases = (
+				059A581C1B488EE10027DD47 /* Sources */,
+				059A581D1B488EE10027DD47 /* Frameworks */,
+				059A581E1B488EE10027DD47 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				059A58281B488EF60027DD47 /* PBXTargetDependency */,
+			);
+			name = UnitTest;
+			productName = UnitTest;
+			productReference = 059A58201B488EE10027DD47 /* UnitTest */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -166,6 +233,9 @@
 						CreatedOnToolsVersion = 6.3.2;
 					};
 					0546D1491B3DA5300066891A = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					059A581F1B488EE10027DD47 = {
 						CreatedOnToolsVersion = 7.0;
 					};
 				};
@@ -184,6 +254,7 @@
 			targets = (
 				0515FF1E1B3B0AC400C7B6FD /* KiwiEngine */,
 				0546D1491B3DA5300066891A /* Install */,
+				059A581F1B488EE10027DD47 /* UnitTest */,
 			);
 		};
 /* End PBXProject section */
@@ -209,6 +280,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		059A581C1B488EE10027DD47 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				054D2E431B489948005CBE5C /* UTEngine.m in Sources */,
+				059A58231B488EE10027DD47 /* UnitTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -216,6 +296,11 @@
 			isa = PBXTargetDependency;
 			target = 0515FF1E1B3B0AC400C7B6FD /* KiwiEngine */;
 			targetProxy = 0546D14D1B3DA53B0066891A /* PBXContainerItemProxy */;
+		};
+		059A58281B488EF60027DD47 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0546D1491B3DA5300066891A /* Install */;
+			targetProxy = 059A58271B488EF60027DD47 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -385,6 +470,41 @@
 			};
 			name = Release;
 		};
+		059A58241B488EE10027DD47 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				OTHER_CFLAGS = (
+					"-W",
+					"-Wall",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		059A58251B488EE10027DD47 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				OTHER_CFLAGS = (
+					"-W",
+					"-Wall",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -411,6 +531,15 @@
 			buildConfigurations = (
 				0546D14B1B3DA5300066891A /* Debug */,
 				0546D14C1B3DA5300066891A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		059A58261B488EE10027DD47 /* Build configuration list for PBXNativeTarget "UnitTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				059A58241B488EE10027DD47 /* Debug */,
+				059A58251B488EE10027DD47 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -16,6 +16,7 @@
 
 - (instancetype) init ;
 
+- (JSValue *) executeInString: (NSString *) str errors: (NSArray **) array ;
 - (JSValue *) executeInURL: (NSURL *) url errors: (NSArray **) errors ;
 - (JSValue *) executeInURLs: (NSArray *) urls errors: (NSArray **) errors ;
 
