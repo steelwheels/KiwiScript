@@ -35,6 +35,13 @@ errorCount(KEContext * context)
 	return self ;
 }
 
+- (void) clearContext
+{
+	/* Overwrite the current context by new one */
+	javaScriptContext = [[KEContext alloc] initWithVirtualMachine: virtualMachine] ;
+	[self setupContext] ;
+}
+
 - (void) setupContext
 {
 	[javaScriptContext setExceptionHandler:^(JSContext *context, JSValue *value) {
@@ -42,6 +49,20 @@ errorCount(KEContext * context)
 		KEContext * kcontext = (KEContext *) context ;
 		[kcontext addErrorMessage: [value description]] ;
 	}];
+}
+
+- (JSValue *) executeInString: (NSString *) program errors: (NSArray **) errors
+{
+	JSValue * result = [javaScriptContext evaluateScript: program] ;
+	if(result != nil){
+		if(errorCount(javaScriptContext) > 0){
+			result = nil ;
+		}
+	} else {
+		[javaScriptContext addErrorMessage: @"No return value"] ;
+	}
+	*errors = [javaScriptContext copyRuntimeErrors] ;
+	return result ;
 }
 
 - (JSValue *) executeInURL: (NSURL *) url errors: (NSArray **) errors
@@ -72,22 +93,23 @@ errorCount(KEContext * context)
 	if([loaderrs count] == 0){
 		return [self executeInString: program errors: errors] ;
 	} else {
-		*errors = loaderrs ;
+		*errors = [NSArray arrayWithArray: loaderrs] ;
 		return nil ;
 	}
 }
 
-- (JSValue *) executeInString: (NSString *) program errors: (NSArray **) errors
+- (JSValue *) callFunc: (NSString *) funcname withArguments: (NSArray *) argv errors: (NSArray **) errors
 {
-	JSValue * result = [javaScriptContext evaluateScript: program] ;
-	if(result != nil){
-		if(errorCount(javaScriptContext) > 0){
-			result = nil ;
-		}
+	JSValue * funcref = [javaScriptContext objectForKeyedSubscript: funcname] ;
+	JSValue * result ;
+	if(funcref){
+		result = [funcref callWithArguments: argv] ;
 	} else {
-		[javaScriptContext addErrorMessage: @"No return value"] ;
+		NSString * errmsg = [NSString stringWithFormat: @"Function \"%@\" is not found", funcname] ;
+		[javaScriptContext addErrorMessage: errmsg] ;
+		result = nil ;
 	}
-	*errors = javaScriptContext.runtimeErrors ;
+	*errors = [javaScriptContext copyRuntimeErrors] ;
 	return result ;
 }
 

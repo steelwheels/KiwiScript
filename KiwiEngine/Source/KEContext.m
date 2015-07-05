@@ -44,4 +44,14 @@
 	[self.runtimeErrors addObject: newerror] ;
 }
 
+- (NSArray *) copyRuntimeErrors
+{
+	NSArray * srcarray ;
+	if((srcarray = self.runtimeErrors) != nil){
+		return [NSArray arrayWithArray: srcarray] ;
+	} else {
+		return nil ;
+	}
+}
+
 @end

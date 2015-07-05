@@ -16,5 +16,6 @@
 - (instancetype) initWithVirtualMachine: (JSVirtualMachine *) vm ;
 
 - (void) addErrorMessage: (NSString *) message ;
+- (NSArray *) copyRuntimeErrors ;
 
 @end

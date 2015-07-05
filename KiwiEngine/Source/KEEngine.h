@@ -15,9 +15,12 @@
 }
 
 - (instancetype) init ;
+- (void) clearContext ;
 
-- (JSValue *) executeInString: (NSString *) str errors: (NSArray **) array ;
+- (JSValue *) executeInString: (NSString *) str errors: (NSArray **) errors ;
 - (JSValue *) executeInURL: (NSURL *) url errors: (NSArray **) errors ;
 - (JSValue *) executeInURLs: (NSArray *) urls errors: (NSArray **) errors ;
+
+- (JSValue *) callFunc: (NSString *) funcname withArguments: (NSArray *) argv errors: (NSArray **) errors ;
 
 @end
