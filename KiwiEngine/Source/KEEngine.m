@@ -51,6 +51,26 @@ errorCount(KEContext * context)
 	}];
 }
 
+- (void) extendByNumber: (NSNumber *) number asName: (NSString *) name
+{
+	javaScriptContext[name] = number ;
+}
+
+- (void) extendByString: (NSString *) str asName: (NSString *) name
+{
+	javaScriptContext[name] = str ;
+}
+
+- (void) extendByArray: (NSArray *) array asName: (NSString *) name
+{
+	javaScriptContext[name] = array ;
+}
+
+- (void) extendByClass: (id <JSExport>) obj asName: (NSString *) name
+{
+	javaScriptContext[name] = obj ;
+}
+
 - (JSValue *) executeInString: (NSString *) program errors: (NSArray **) errors
 {
 	JSValue * result = [javaScriptContext evaluateScript: program] ;

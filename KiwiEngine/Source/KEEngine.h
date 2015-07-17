@@ -17,6 +17,11 @@
 - (instancetype) init ;
 - (void) clearContext ;
 
+- (void) extendByNumber: (NSNumber *) number asName: (NSString *) name ;
+- (void) extendByString: (NSString *) str asName: (NSString *) name ;
+- (void) extendByArray: (NSArray *) array asName: (NSString *) name ;
+- (void) extendByClass: (id <JSExport>) obj asName: (NSString *) name ;
+
 - (JSValue *) executeInString: (NSString *) str errors: (NSArray **) errors ;
 - (JSValue *) executeInURL: (NSURL *) url errors: (NSArray **) errors ;
 - (JSValue *) executeInURLs: (NSArray *) urls errors: (NSArray **) errors ;
