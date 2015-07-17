@@ -10,13 +10,17 @@
 #import <Cobalt/Cobalt.h>
 
 enum {
-	OPTION_VERBOSE
+	OPTION_VERBOSE,
+	OPTION_ARGUMENTS
 } ;
 
 static const struct CBOptionDefinition s_optdefs[] = {
-	{OPTION_VERBOSE,	'v',	"verbose",	CNNilValue,	NULL,	"set verbose mode on"},
+	{OPTION_VERBOSE,	'v',	"verbose",	CNNilValue,	NULL,				"set verbose mode on"},
+	{OPTION_ARGUMENTS,	'\0',	"args",		CNStringValue,	"argumens for JavaScript ",	"define arguments"},
 	CBEndOfOptionDefinition
 } ;
+
+static NSArray * makeArgumentArray(NSString * src) ;
 
 @implementation JSROptionAnalyzer
 
@@ -40,6 +44,12 @@ static const struct CBOptionDefinition s_optdefs[] = {
 	if((opt = [cmdline searchOptionById: OPTION_VERBOSE]) != nil){
 		config.doVerbose = YES ;
 	}
+	if((opt = [cmdline searchOptionById: OPTION_ARGUMENTS]) != nil){
+		CNValue * argval = [opt optionValue] ;
+		assert(argval.type == CNStringValue) ;
+		NSString * argstr = [argval stringValue] ;
+		config.arguments = makeArgumentArray(argstr) ;
+	}
 	
 	/* get arguments */
 	const struct CNListItem * item = [cmdline firstArgument] ;
@@ -59,3 +69,13 @@ static const struct CBOptionDefinition s_optdefs[] = {
 }
 
 @end
+
+static NSArray *
+makeArgumentArray(NSString * src)
+{
+	NSArray *components = [src componentsSeparatedByCharactersInSet:
+			       [NSCharacterSet characterSetWithCharactersInString:@"	"]];
+	return [components filteredArrayUsingPredicate:
+		[NSPredicate predicateWithFormat:@"self != \"\""]];
+}
+

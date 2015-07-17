@@ -12,7 +12,9 @@ UTConsole(void)
 {
 	JSContext * context = [[JSContext alloc] init] ;
 	BOOL	    result  = NO ;
-	KCAddConsoleLib(context) ;
+
+	context[@"console"] = [[KCConsoleLib alloc] init] ;
+	
 	JSValue * retval = [context evaluateScript:@"console.puts(\"Hello JavaScript\")"];
 	if(retval && [retval isNumber]){
 		NSNumber * num    = [retval toNumber] ;

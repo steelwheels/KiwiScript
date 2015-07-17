@@ -15,9 +15,4 @@
 
 @end
 
-static inline void
-KCAddConsoleLib(JSContext * context)
-{
-	context[@"console"] = [[KCConsoleLib alloc] init] ;
-}
 

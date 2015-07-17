@@ -11,7 +11,7 @@
 		0589A7501B445012003FE874 /* JSRConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 0589A74B1B445012003FE874 /* JSRConfig.m */; };
 		0589A7511B445012003FE874 /* JSRMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 0589A74D1B445012003FE874 /* JSRMain.m */; };
 		0589A7521B445012003FE874 /* JSROptionAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0589A74F1B445012003FE874 /* JSROptionAnalyzer.m */; };
-		0589A7551B445043003FE874 /* Cobalt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0589A7541B445043003FE874 /* Cobalt.framework */; };
+		05F78CA51B5956A9000EAE4F /* KiwiStdlib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05F78CA41B5956A9000EAE4F /* KiwiStdlib.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -21,6 +21,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 0512560D1B444EAB00F6871B;
 			remoteInfo = JSRunner;
+		};
+		05F78CA01B594F10000EAE4F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 051256061B444EAB00F6871B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05A67F7F1B4803DA001170F1;
+			remoteInfo = Install;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -45,7 +52,8 @@
 		0589A74D1B445012003FE874 /* JSRMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSRMain.m; sourceTree = "<group>"; };
 		0589A74E1B445012003FE874 /* JSROptionAnalyzer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSROptionAnalyzer.h; sourceTree = "<group>"; };
 		0589A74F1B445012003FE874 /* JSROptionAnalyzer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSROptionAnalyzer.m; sourceTree = "<group>"; };
-		0589A7541B445043003FE874 /* Cobalt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cobalt.framework; path = ../../../../Library/Frameworks/Cobalt.framework; sourceTree = "<group>"; };
+		05F78CA31B5950FC000EAE4F /* unit-test.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "unit-test.mk"; path = "../UnitTest/unit-test.mk"; sourceTree = SOURCE_ROOT; };
+		05F78CA41B5956A9000EAE4F /* KiwiStdlib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KiwiStdlib.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0589A7551B445043003FE874 /* Cobalt.framework in Frameworks */,
+				05F78CA51B5956A9000EAE4F /* KiwiStdlib.framework in Frameworks */,
 				0516BFEA1B48079C006FA49B /* Cobalt.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -65,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				051256101B444EAB00F6871B /* Source */,
+				05F78CA21B59502F000EAE4F /* UnitTest */,
 				0512560F1B444EAB00F6871B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -95,10 +104,18 @@
 		0589A7531B445025003FE874 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				05F78CA41B5956A9000EAE4F /* KiwiStdlib.framework */,
 				0516BFE91B48079C006FA49B /* Cobalt.framework */,
-				0589A7541B445043003FE874 /* Cobalt.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		05F78CA21B59502F000EAE4F /* UnitTest */ = {
+			isa = PBXGroup;
+			children = (
+				05F78CA31B5950FC000EAE4F /* unit-test.mk */,
+			);
+			name = UnitTest;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,6 +135,21 @@
 			name = Install;
 			passBuildSettingsInEnvironment = 1;
 			productName = Install;
+		};
+		05F78C9C1B594DA4000EAE4F /* UnitTest */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f ../UnitTest/unit-test.mk";
+			buildConfigurationList = 05F78C9F1B594DA4000EAE4F /* Build configuration list for PBXLegacyTarget "UnitTest" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+				05F78CA11B594F10000EAE4F /* PBXTargetDependency */,
+			);
+			name = UnitTest;
+			passBuildSettingsInEnvironment = 1;
+			productName = UnitTest;
 		};
 /* End PBXLegacyTarget section */
 
@@ -154,6 +186,9 @@
 					05A67F7F1B4803DA001170F1 = {
 						CreatedOnToolsVersion = 6.4;
 					};
+					05F78C9C1B594DA4000EAE4F = {
+						CreatedOnToolsVersion = 6.4;
+					};
 				};
 			};
 			buildConfigurationList = 051256091B444EAB00F6871B /* Build configuration list for PBXProject "JSRunner" */;
@@ -170,6 +205,7 @@
 			targets = (
 				0512560D1B444EAB00F6871B /* JSRunner */,
 				05A67F7F1B4803DA001170F1 /* Install */,
+				05F78C9C1B594DA4000EAE4F /* UnitTest */,
 			);
 		};
 /* End PBXProject section */
@@ -192,6 +228,11 @@
 			isa = PBXTargetDependency;
 			target = 0512560D1B444EAB00F6871B /* JSRunner */;
 			targetProxy = 05A67F831B4803E3001170F1 /* PBXContainerItemProxy */;
+		};
+		05F78CA11B594F10000EAE4F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05A67F7F1B4803DA001170F1 /* Install */;
+			targetProxy = 05F78CA01B594F10000EAE4F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -279,6 +320,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Frameworks",
+					/Users/tomoo/Project/KiwiScript/JSRunner/Source,
 				);
 				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -297,6 +339,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Frameworks",
+					/Users/tomoo/Project/KiwiScript/JSRunner/Source,
 				);
 				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -334,6 +377,31 @@
 			};
 			name = Release;
 		};
+		05F78C9D1B594DA4000EAE4F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUGGING_SYMBOLS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		05F78C9E1B594DA4000EAE4F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -363,6 +431,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		05F78C9F1B594DA4000EAE4F /* Build configuration list for PBXLegacyTarget "UnitTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05F78C9D1B594DA4000EAE4F /* Debug */,
+				05F78C9E1B594DA4000EAE4F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

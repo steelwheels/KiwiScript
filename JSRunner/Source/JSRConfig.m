@@ -9,11 +9,12 @@
 
 @implementation JSRConfig
 
-@synthesize doVerbose ;
+@synthesize doVerbose, arguments ;
 
 - (instancetype) init
 {
 	if((self = [super init]) != nil){
+		self.arguments		= [NSArray arrayWithObjects: nil] ;
 		self.doVerbose		= NO ;
 		inputURLs = [[NSMutableArray alloc] initWithCapacity: 8] ;
 	}

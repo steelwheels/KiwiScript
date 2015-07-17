@@ -13,6 +13,7 @@
 	NSMutableArray *		inputURLs ;
 }
 
+@property (assign, nonatomic) NSArray *		arguments ;
 @property (assign, nonatomic) BOOL		doVerbose ;
 
 - (instancetype) init ;
