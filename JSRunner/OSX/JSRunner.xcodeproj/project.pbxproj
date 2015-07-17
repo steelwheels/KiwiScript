@@ -53,7 +53,7 @@
 		0589A74E1B445012003FE874 /* JSROptionAnalyzer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSROptionAnalyzer.h; sourceTree = "<group>"; };
 		0589A74F1B445012003FE874 /* JSROptionAnalyzer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSROptionAnalyzer.m; sourceTree = "<group>"; };
 		05F78CA31B5950FC000EAE4F /* unit-test.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "unit-test.mk"; path = "../UnitTest/unit-test.mk"; sourceTree = SOURCE_ROOT; };
-		05F78CA41B5956A9000EAE4F /* KiwiStdlib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KiwiStdlib.framework; sourceTree = "<group>"; };
+		05F78CA41B5956A9000EAE4F /* KiwiStdlib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiStdlib.framework; path = ../../../../Library/Frameworks/KiwiStdlib.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -439,6 +439,7 @@
 				05F78C9E1B594DA4000EAE4F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

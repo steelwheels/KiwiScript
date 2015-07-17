@@ -14,7 +14,7 @@
 - (instancetype) init
 {
 	if((self = [super init]) != nil){
-		self.arguments		= [NSArray arrayWithObjects: nil] ;
+		self.arguments		= nil ;
 		self.doVerbose		= NO ;
 		inputURLs = [[NSMutableArray alloc] initWithCapacity: 8] ;
 	}
