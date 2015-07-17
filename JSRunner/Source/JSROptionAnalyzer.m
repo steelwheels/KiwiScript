@@ -74,7 +74,7 @@ static NSArray *
 makeArgumentArray(NSString * src)
 {
 	NSArray *components = [src componentsSeparatedByCharactersInSet:
-			       [NSCharacterSet characterSetWithCharactersInString:@"	"]];
+			       [NSCharacterSet characterSetWithCharactersInString:@" \t"]];
 	return [components filteredArrayUsingPredicate:
 		[NSPredicate predicateWithFormat:@"self != \"\""]];
 }

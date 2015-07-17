@@ -21,7 +21,7 @@ logfile: dummy
 compare: dummy
 	diff $(UNIT_TEST_LOG) $(UNIT_TEST_OK_LOG)
 
-programs: p0 p1
+programs: p0 p1 p2
 
 p0: $(TEST_DIR)/Sample/sample-0.js
 	echo "***** sample-0.js" | tee -a $(UNIT_TEST_LOG)
@@ -30,5 +30,9 @@ p0: $(TEST_DIR)/Sample/sample-0.js
 p1: $(TEST_DIR)/Sample/console-0.js
 	echo "***** console-0.js" | tee -a $(UNIT_TEST_LOG)
 	$(JSRUNNER) $<  | tee -a $(UNIT_TEST_LOG)
+
+p2: $(TEST_DIR)/Sample/arguments-0.js
+	echo "***** arguments-0.js" | tee -a $(UNIT_TEST_LOG)
+	$(JSRUNNER) --args "a b c" $< | tee -a $(UNIT_TEST_LOG)
 
 dummy:
