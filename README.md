@@ -1,5 +1,6 @@
 # About KiwiScript
-Repository of applications and frameworks to implement/support KiwiScript
+Repository of applications and frameworks to implement/support JavaScript
+runtime for iOS and Mac OS X.
 
 # Copyright
 Copyright (C) 2015 [Steel Wheels Project](https://sites.google.com/site/steelwheelsproject/).
@@ -14,3 +15,8 @@ This repository contains following frameworks and application.
 
 ## Applications
 * `JSRunner`  : The application to execute JavaScript
+
+# Manual
+## JSRunner
+### Command line options
+* -v : Display verbose message of the interpreter
