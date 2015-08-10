@@ -1,9 +1,10 @@
-/**
- * @file	KEEngine.h
- * @brief	Extend KEEngine class
- * @par Copyright
- *   Copyright (C) 2015 Steel Wheels Project
- */
+//
+//  KiwiEngine.h
+//  KiwiEngine
+//
+//  Created by Tomoo Hamada on 2015/08/10.
+//  Copyright (c) 2015年 Steel Wheels Project. All rights reserved.
+//
 
 #import <Cocoa/Cocoa.h>
 
@@ -14,8 +15,5 @@ FOUNDATION_EXPORT double KiwiEngineVersionNumber;
 FOUNDATION_EXPORT const unsigned char KiwiEngineVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <KiwiEngine/PublicHeader.h>
-#import "KEContext.h"
-#import "KEEngine.h"
-#import "KEPreference.h"
 
 
