@@ -10,23 +10,69 @@
 		051F91061B78720A00D13E2B /* KLConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051F91051B78720A00D13E2B /* KLConsole.swift */; };
 		051F91081B78809D00D13E2B /* KLGUIConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051F91071B78809D00D13E2B /* KLGUIConsole.swift */; };
 		051F910A1B78810200D13E2B /* KCConsoleView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051F91091B78810200D13E2B /* KCConsoleView.framework */; };
+		05BEED211B78C69A000397AF /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05BEED201B78C69A000397AF /* KiwiEngine.framework */; };
+		05BEED321B78C850000397AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BEED311B78C850000397AF /* AppDelegate.swift */; };
+		05BEED341B78C850000397AF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BEED331B78C850000397AF /* ViewController.swift */; };
+		05BEED361B78C850000397AF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05BEED351B78C850000397AF /* Images.xcassets */; };
+		05BEED391B78C850000397AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05BEED371B78C850000397AF /* Main.storyboard */; };
+		05BEED4E1B78CA06000397AF /* KCConsoleView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05BEED4D1B78CA06000397AF /* KCConsoleView.framework */; };
+		05BEED501B78CA17000397AF /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05BEED4F1B78CA17000397AF /* KiwiEngine.framework */; };
+		05BEED521B78CA9C000397AF /* KLConsole.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05BEED511B78CA9C000397AF /* KLConsole.framework */; };
 		05F40CDD1B786FF400F0ECC9 /* KLConsole.h in Headers */ = {isa = PBXBuildFile; fileRef = 05F40CDC1B786FF400F0ECC9 /* KLConsole.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		05BEED271B78C795000397AF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05F40CCE1B786FF400F0ECC9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05F40CD61B786FF400F0ECC9;
+			remoteInfo = KLConsole;
+		};
+		05BEED531B78CAE3000397AF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05F40CCE1B786FF400F0ECC9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05BEED231B78C78D000397AF;
+			remoteInfo = Install;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		051F91051B78720A00D13E2B /* KLConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLConsole.swift; sourceTree = "<group>"; };
 		051F91071B78809D00D13E2B /* KLGUIConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLGUIConsole.swift; sourceTree = "<group>"; };
 		051F91091B78810200D13E2B /* KCConsoleView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KCConsoleView.framework; path = ../../../../../Library/Frameworks/KCConsoleView.framework; sourceTree = "<group>"; };
+		05BEED201B78C69A000397AF /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../../Library/Frameworks/KiwiEngine.framework; sourceTree = "<group>"; };
+		05BEED2D1B78C850000397AF /* UnitTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnitTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		05BEED301B78C850000397AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05BEED311B78C850000397AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		05BEED331B78C850000397AF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		05BEED351B78C850000397AF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		05BEED381B78C850000397AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		05BEED4D1B78CA06000397AF /* KCConsoleView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KCConsoleView.framework; path = ../../../../../../Library/Frameworks/KCConsoleView.framework; sourceTree = "<group>"; };
+		05BEED4F1B78CA17000397AF /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../../../Library/Frameworks/KiwiEngine.framework; sourceTree = "<group>"; };
+		05BEED511B78CA9C000397AF /* KLConsole.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KLConsole.framework; path = ../../../../../../Library/Frameworks/KLConsole.framework; sourceTree = "<group>"; };
 		05F40CD71B786FF400F0ECC9 /* KLConsole.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KLConsole.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05F40CDB1B786FF400F0ECC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		05F40CDC1B786FF400F0ECC9 /* KLConsole.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KLConsole.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		05BEED2A1B78C850000397AF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05BEED521B78CA9C000397AF /* KLConsole.framework in Frameworks */,
+				05BEED501B78CA17000397AF /* KiwiEngine.framework in Frameworks */,
+				05BEED4E1B78CA06000397AF /* KCConsoleView.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05F40CD31B786FF400F0ECC9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05BEED211B78C69A000397AF /* KiwiEngine.framework in Frameworks */,
 				051F910A1B78810200D13E2B /* KCConsoleView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -34,10 +80,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05BEED2E1B78C850000397AF /* OSX */ = {
+			isa = PBXGroup;
+			children = (
+				05BEED311B78C850000397AF /* AppDelegate.swift */,
+				05BEED331B78C850000397AF /* ViewController.swift */,
+				05BEED351B78C850000397AF /* Images.xcassets */,
+				05BEED371B78C850000397AF /* Main.storyboard */,
+				05BEED2F1B78C850000397AF /* Supporting Files */,
+			);
+			path = OSX;
+			sourceTree = "<group>";
+		};
+		05BEED2F1B78C850000397AF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				05BEED511B78CA9C000397AF /* KLConsole.framework */,
+				05BEED4F1B78CA17000397AF /* KiwiEngine.framework */,
+				05BEED4D1B78CA06000397AF /* KCConsoleView.framework */,
+				05BEED301B78C850000397AF /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		05BEED4C1B78C878000397AF /* UnitTest */ = {
+			isa = PBXGroup;
+			children = (
+				05BEED2E1B78C850000397AF /* OSX */,
+			);
+			name = UnitTest;
+			path = ../UnitTest;
+			sourceTree = SOURCE_ROOT;
+		};
 		05F40CCD1B786FF400F0ECC9 = {
 			isa = PBXGroup;
 			children = (
 				05F40CD91B786FF400F0ECC9 /* Source */,
+				05BEED4C1B78C878000397AF /* UnitTest */,
 				05F40CD81B786FF400F0ECC9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -46,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				05F40CD71B786FF400F0ECC9 /* KLConsole.framework */,
+				05BEED2D1B78C850000397AF /* UnitTest.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -65,6 +145,7 @@
 		05F40CDA1B786FF400F0ECC9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				05BEED201B78C69A000397AF /* KiwiEngine.framework */,
 				051F91091B78810200D13E2B /* KCConsoleView.framework */,
 				05F40CDB1B786FF400F0ECC9 /* Info.plist */,
 			);
@@ -84,7 +165,43 @@
 		};
 /* End PBXHeadersBuildPhase section */
 
+/* Begin PBXLegacyTarget section */
+		05BEED231B78C78D000397AF /* Install */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f ../../../Script/install_osx.mk";
+			buildConfigurationList = 05BEED241B78C78D000397AF /* Build configuration list for PBXLegacyTarget "Install" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+				05BEED281B78C795000397AF /* PBXTargetDependency */,
+			);
+			name = Install;
+			passBuildSettingsInEnvironment = 1;
+			productName = Install;
+		};
+/* End PBXLegacyTarget section */
+
 /* Begin PBXNativeTarget section */
+		05BEED2C1B78C850000397AF /* UnitTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05BEED461B78C850000397AF /* Build configuration list for PBXNativeTarget "UnitTest" */;
+			buildPhases = (
+				05BEED291B78C850000397AF /* Sources */,
+				05BEED2A1B78C850000397AF /* Frameworks */,
+				05BEED2B1B78C850000397AF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				05BEED541B78CAE3000397AF /* PBXTargetDependency */,
+			);
+			name = UnitTest;
+			productName = UnitTest;
+			productReference = 05BEED2D1B78C850000397AF /* UnitTest.app */;
+			productType = "com.apple.product-type.application";
+		};
 		05F40CD61B786FF400F0ECC9 /* KLConsole */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05F40CED1B786FF400F0ECC9 /* Build configuration list for PBXNativeTarget "KLConsole" */;
@@ -112,6 +229,12 @@
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Steel Wheels Project";
 				TargetAttributes = {
+					05BEED231B78C78D000397AF = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					05BEED2C1B78C850000397AF = {
+						CreatedOnToolsVersion = 6.4;
+					};
 					05F40CD61B786FF400F0ECC9 = {
 						CreatedOnToolsVersion = 6.4;
 					};
@@ -123,6 +246,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 05F40CCD1B786FF400F0ECC9;
 			productRefGroup = 05F40CD81B786FF400F0ECC9 /* Products */;
@@ -130,11 +254,22 @@
 			projectRoot = "";
 			targets = (
 				05F40CD61B786FF400F0ECC9 /* KLConsole */,
+				05BEED231B78C78D000397AF /* Install */,
+				05BEED2C1B78C850000397AF /* UnitTest */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		05BEED2B1B78C850000397AF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05BEED361B78C850000397AF /* Images.xcassets in Resources */,
+				05BEED391B78C850000397AF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05F40CD51B786FF400F0ECC9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -145,6 +280,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		05BEED291B78C850000397AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05BEED341B78C850000397AF /* ViewController.swift in Sources */,
+				05BEED321B78C850000397AF /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05F40CD21B786FF400F0ECC9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -156,7 +300,94 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		05BEED281B78C795000397AF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05F40CD61B786FF400F0ECC9 /* KLConsole */;
+			targetProxy = 05BEED271B78C795000397AF /* PBXContainerItemProxy */;
+		};
+		05BEED541B78CAE3000397AF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05BEED231B78C78D000397AF /* Install */;
+			targetProxy = 05BEED531B78CAE3000397AF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		05BEED371B78C850000397AF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05BEED381B78C850000397AF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		05BEED251B78C78D000397AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUGGING_SYMBOLS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		05BEED261B78C78D000397AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		05BEED471B78C850000397AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ../UnitTest/OSX/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		05BEED481B78C850000397AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
+				INFOPLIST_FILE = ../UnitTest/OSX/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		05F40CEB1B786FF400F0ECC9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -250,6 +481,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Frameworks",
@@ -257,10 +489,10 @@
 				FRAMEWORK_VERSION = A;
 				GCC_OPTIMIZATION_LEVEL = 2;
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Debug;
@@ -274,6 +506,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Frameworks",
@@ -281,10 +514,10 @@
 				FRAMEWORK_VERSION = A;
 				GCC_OPTIMIZATION_LEVEL = 2;
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
@@ -292,6 +525,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		05BEED241B78C78D000397AF /* Build configuration list for PBXLegacyTarget "Install" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05BEED251B78C78D000397AF /* Debug */,
+				05BEED261B78C78D000397AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		05BEED461B78C850000397AF /* Build configuration list for PBXNativeTarget "UnitTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05BEED471B78C850000397AF /* Debug */,
+				05BEED481B78C850000397AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		05F40CD11B786FF400F0ECC9 /* Build configuration list for PBXProject "KLConsole" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

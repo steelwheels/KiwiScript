@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  UTKiwiEngine
+//  UnitTest
 //
 //  Created by Tomoo Hamada on 2015/08/10.
 //  Copyright (c) 2015年 Steel Wheels Project. All rights reserved.
@@ -8,36 +8,34 @@
 
 import Cocoa
 import KiwiEngine
+import KCConsoleView
+import KLConsole
 
 class ViewController: NSViewController {
 
-	@IBOutlet weak var textField: NSTextField!
+	var kiwiEngine : KEEngine! = nil
+	
+	@IBOutlet weak var consoleView: KCConsoleView!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
 		// Do any additional setup after loading the view.
-		let engine : KEEngine = KEEngine()
-		let result = engine.evaluate("1+2")
-		if let retval = result.value {
-			putString("OK \(retval.description)")
-		} else {
-			putString("Error \(result.errors.count)")
-		}
+		kiwiEngine = KEEngine()
+		let console = KLGUIConsole(view: consoleView)
+		console.addToEngine(kiwiEngine)
 		
-		var error = NSError.parseError("parse error") ;
-		NSLog(error.toString())
+		let result = kiwiEngine.evaluate("console.puts(\"Hello, World !!\")")
+		if let value = result.value {
+			NSLog("Result : \(value.description)")
+		} else {
+			console.putErrors(result.errors)
+		}
 	}
 
 	override var representedObject: AnyObject? {
 		didSet {
 		// Update the view, if already loaded.
-		}
-	}
-	
-	internal func putString(str : String){
-		if let field = textField {
-			field.stringValue = str
 		}
 	}
 }

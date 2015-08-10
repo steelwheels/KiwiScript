@@ -30,7 +30,7 @@ public class KEContext : JSContext
 	}
 	
 	func addErrorMessage(message : NSString){
-		let error = KEError.parseError(message) ;
+		let error = NSError.parseError(message) ;
 		mRuntimeErrors.append(error)
 	}
 }

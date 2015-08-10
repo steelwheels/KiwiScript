@@ -9,17 +9,17 @@ import Foundation
 import JavaScriptCore
 import KCConsoleView
 
-class KLGUIConsole : KLConsole
+public class KLGUIConsole : KLConsole
 {
 	var consoleView : KCConsoleView
 	
-	init(view : KCConsoleView){
+	public init(view : KCConsoleView){
 		consoleView = view
 		super.init()
 	}
 	
-	override func putJSValue(str : JSValue){
-		consoleView.appendText(str.description)
+	override public func puts(str: String){
+		consoleView.appendText(str)
 	}
 }
 
