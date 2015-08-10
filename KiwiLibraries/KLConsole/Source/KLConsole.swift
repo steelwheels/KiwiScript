@@ -9,7 +9,7 @@ import Foundation
 import JavaScriptCore
 import KiwiEngine
 
-protocol KLConsoleProtocol : JSExport
+@objc protocol KLConsoleProtocol : JSExport
 {
 	func puts(str : String) ;
 }

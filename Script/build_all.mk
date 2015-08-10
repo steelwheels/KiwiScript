@@ -2,22 +2,19 @@
 # build_all.mk
 #
 
-all: stdlib engine jsrunner
+all: KiwiEngine KiwiLibraries
 
-stdlib : dummy
-	(cd KiwiStdlib/OSX ; \
-	 export PROJECT_NAME="KiwiStdlib" ; \
-	 make -f ../../Script/install_osx.mk)
+KiwiLibraries : KLConsole
 
-engine : dummy
+KiwiEngine : dummy
 	(cd KiwiEngine/OSX ; \
 	 export PROJECT_NAME="KiwiEngine" ; \
 	 make -f ../../Script/install_osx.mk)
 
-jsrunner : dummy
-	(cd JSRunner/OSX ; \
-	 export PROJECT_NAME="JSRunner" ; \
-	 make -f ../../Script/install_osx.mk)
+KLConsole : dummy
+	(cd KiwiLibraries/KLConsole/OSX ; \
+	 export PROJECT_NAME="KLConsole" ; \
+	 make -f ../../../Script/install_osx.mk)
 
 dummy:
 

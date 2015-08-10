@@ -23,13 +23,22 @@ class ViewController: NSViewController {
 		// Do any additional setup after loading the view.
 		kiwiEngine = KEEngine()
 		let console = KLGUIConsole(view: consoleView)
-		console.addToEngine(kiwiEngine)
-		
-		let result = kiwiEngine.evaluate("console.puts(\"Hello, World !!\")")
-		if let value = result.value {
-			NSLog("Result : \(value.description)")
+
+		kiwiEngine.addGlobalNumber("num", value: NSNumber(double: 1.23))
+		let result0 = kiwiEngine.evaluate("num + 1.0")
+		if let value0 = result0.value {
+			console.puts("Result : \(value0.description)\n")
 		} else {
-			console.putErrors(result.errors)
+			console.putErrors(result0.errors)
+		}
+		
+		console.addToEngine(kiwiEngine)
+		let result1 = kiwiEngine.evaluate("console.puts(\"Hello, World !!\\n\")")
+		//let result1 = kiwiEngine.evaluate("console")
+		if let value1 = result1.value {
+			console.puts("Result : \(value1.description)\n")
+		} else {
+			console.putErrors(result1.errors)
 		}
 	}
 
