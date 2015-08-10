@@ -13,7 +13,7 @@ public class KEEngine : NSObject
 	internal var	virtualMachine    : JSVirtualMachine
 	internal var	javaScriptContext : KEContext
 
-	override init() {
+	public override init() {
 		virtualMachine = JSVirtualMachine()
 		javaScriptContext = KEContext(virtualMachine: virtualMachine)
 		super.init()
@@ -53,47 +53,25 @@ public class KEEngine : NSObject
 		javaScriptContext.setObject(value, forKeyedSubscript:name)
 	}
 	
-	public func evaluate(script : String) -> (errors: Array<NSError>?, value: JSValue?){
+	public func evaluate(script : String) -> (errors: Array<NSError>, value: JSValue?){
 		let retval = javaScriptContext.evaluateScript(script)
 		let errcnt = javaScriptContext.runtimeErrors().count ;
 		if(errcnt == 0){
-			return (nil, retval)
+			return (javaScriptContext.runtimeErrors(), retval)
 		} else {
 			return (javaScriptContext.runtimeErrors(), nil) ;
 		}
 	}
 	
-	public func call(funcname : String, arguments: Array<AnyObject>) -> (errors: Array<NSError>?, value: JSValue?){
+	public func call(funcname : String, arguments: Array<AnyObject>) -> (errors: Array<NSError>, value: JSValue?){
 		let jsfunc : JSValue = javaScriptContext.objectForKeyedSubscript(funcname)
 		let retval = jsfunc.callWithArguments(arguments)
 		let errcnt = javaScriptContext.runtimeErrors().count ;
 		if(errcnt == 0){
-			return (nil, retval)
+			return (javaScriptContext.runtimeErrors(), retval)
 		} else {
 			return (javaScriptContext.runtimeErrors(), nil) ;
 		}
 	}
 }
 
-/*
-
-
-@implementation KEEngine
-
-	- (JSValue *) callFunc: (NSString *) funcname withArguments: (NSArray *) argv errors: (NSArray **) errors
-{
-	JSValue * funcref = [javaScriptContext objectForKeyedSubscript: funcname] ;
-	JSValue * result ;
-	if(funcref){
-		result = [funcref callWithArguments: argv] ;
-	} else {
-		NSString * errmsg = [NSString stringWithFormat: @"Function \"%@\" is not found", funcname] ;
-		[javaScriptContext addErrorMessage: errmsg] ;
-		result = nil ;
-	}
-	*errors = [javaScriptContext copyRuntimeErrors] ;
-	return result ;
-}
-
-@end
-*/

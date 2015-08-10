@@ -7,16 +7,13 @@ Copyright (C) 2015 [Steel Wheels Project](https://sites.google.com/site/steelwhe
 
 This software is distributed under [GNU LESSER GENERAL PUBLIC LICENSE Version 2.1](https://www.gnu.org/licenses/lgpl-2.1-standalone.html).
 
+# Target
+* OS: Mac OS X 10.10 or later
+* Development Tool: Xcode v6.4 or later
+
+# Required software
+
 # Contents
 This repository contains following frameworks and application.
 ## Frameworks
 * `KiwiEngine` : JavaScript engine
-* `KiwiStdlib` : Standard library for the JavaScript program
-
-## Applications
-* `JSRunner`  : The application to execute JavaScript
-
-# Manual
-## JSRunner
-### Command line options
-* -v : Display verbose message of the interpreter

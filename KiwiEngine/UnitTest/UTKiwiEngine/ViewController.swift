@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import KiwiEngine
 
 class ViewController: NSViewController {
 
@@ -16,8 +17,13 @@ class ViewController: NSViewController {
 		super.viewDidLoad()
 
 		// Do any additional setup after loading the view.
-		putString("HOO")
-		
+		let engine : KEEngine = KEEngine()
+		let result = engine.evaluate("1+2")
+		if let retval = result.value {
+			putString("OK \(retval.description)")
+		} else {
+			putString("Error \(result.errors.count)")
+		}
 	}
 
 	override var representedObject: AnyObject? {
