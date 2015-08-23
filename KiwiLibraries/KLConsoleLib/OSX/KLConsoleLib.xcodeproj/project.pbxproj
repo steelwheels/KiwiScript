@@ -8,12 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		0537A9181B87878B009CC040 /* KLConsoleLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 0537A9171B87878B009CC040 /* KLConsoleLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		05A756B81B89A7310052C5AC /* KLStdLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A756B71B89A7310052C5AC /* KLStdLib.framework */; };
+		05D6DFF61B87895000EE838D /* KLConsoleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D6DFF51B87895000EE838D /* KLConsoleOutput.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0537A9121B87878B009CC040 /* KLConsoleLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KLConsoleLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0537A9161B87878B009CC040 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		0537A9171B87878B009CC040 /* KLConsoleLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KLConsoleLib.h; sourceTree = "<group>"; };
+		05A756B71B89A7310052C5AC /* KLStdLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KLStdLib.framework; path = ../../../../../Library/Frameworks/KLStdLib.framework; sourceTree = "<group>"; };
+		05D6DFF51B87895000EE838D /* KLConsoleOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLConsoleOutput.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -21,6 +25,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05A756B81B89A7310052C5AC /* KLStdLib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -31,6 +36,7 @@
 			isa = PBXGroup;
 			children = (
 				0537A9141B87878B009CC040 /* Source */,
+				05FD2A4A1B89FB4800D10E5E /* UnitTest */,
 				0537A9131B87878B009CC040 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -47,6 +53,7 @@
 			isa = PBXGroup;
 			children = (
 				0537A9171B87878B009CC040 /* KLConsoleLib.h */,
+				05D6DFF51B87895000EE838D /* KLConsoleOutput.swift */,
 				0537A9151B87878B009CC040 /* Supporting Files */,
 			);
 			name = Source;
@@ -56,9 +63,17 @@
 		0537A9151B87878B009CC040 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				05A756B71B89A7310052C5AC /* KLStdLib.framework */,
 				0537A9161B87878B009CC040 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		05FD2A4A1B89FB4800D10E5E /* UnitTest */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = UnitTest;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +154,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05D6DFF61B87895000EE838D /* KLConsoleOutput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +253,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -254,6 +274,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";

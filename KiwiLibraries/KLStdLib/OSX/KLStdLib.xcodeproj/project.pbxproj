@@ -9,13 +9,25 @@
 /* Begin PBXBuildFile section */
 		050172D71B877A99007CB6D9 /* KLStdLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 050172D61B877A99007CB6D9 /* KLStdLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0537A9071B877D0A009CC040 /* KLOutputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0537A9061B877D0A009CC040 /* KLOutputStream.swift */; };
+		05A756BA1B89A85B0052C5AC /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A756B91B89A85B0052C5AC /* KiwiEngine.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		05121B5D1B8789E600C2A871 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 050172C81B877A99007CB6D9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 050172D01B877A99007CB6D9;
+			remoteInfo = KLStdLib;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		050172D11B877A99007CB6D9 /* KLStdLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KLStdLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		050172D51B877A99007CB6D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		050172D61B877A99007CB6D9 /* KLStdLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KLStdLib.h; sourceTree = "<group>"; };
 		0537A9061B877D0A009CC040 /* KLOutputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLOutputStream.swift; sourceTree = "<group>"; };
+		05A756B91B89A85B0052C5AC /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../../Library/Frameworks/KiwiEngine.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -23,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05A756BA1B89A85B0052C5AC /* KiwiEngine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -33,6 +46,7 @@
 			isa = PBXGroup;
 			children = (
 				050172D31B877A99007CB6D9 /* Source */,
+				05A756C81B89F1960052C5AC /* UnitTest */,
 				050172D21B877A99007CB6D9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,10 +73,19 @@
 		050172D41B877A99007CB6D9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				05A756B91B89A85B0052C5AC /* KiwiEngine.framework */,
 				050172D51B877A99007CB6D9 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
+		};
+		05A756C81B89F1960052C5AC /* UnitTest */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = UnitTest;
+			path = ../UnitTest;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -76,6 +99,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
+
+/* Begin PBXLegacyTarget section */
+		05121B591B8789DE00C2A871 /* Install */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f ../../../Script/install_osx.mk";
+			buildConfigurationList = 05121B5C1B8789DE00C2A871 /* Build configuration list for PBXLegacyTarget "Install" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+				05121B5E1B8789E600C2A871 /* PBXTargetDependency */,
+			);
+			name = Install;
+			passBuildSettingsInEnvironment = 1;
+			productName = Install;
+		};
+/* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
 		050172D01B877A99007CB6D9 /* KLStdLib */ = {
@@ -108,6 +149,9 @@
 					050172D01B877A99007CB6D9 = {
 						CreatedOnToolsVersion = 6.4;
 					};
+					05121B591B8789DE00C2A871 = {
+						CreatedOnToolsVersion = 6.4;
+					};
 				};
 			};
 			buildConfigurationList = 050172CB1B877A99007CB6D9 /* Build configuration list for PBXProject "KLStdLib" */;
@@ -123,6 +167,7 @@
 			projectRoot = "";
 			targets = (
 				050172D01B877A99007CB6D9 /* KLStdLib */,
+				05121B591B8789DE00C2A871 /* Install */,
 			);
 		};
 /* End PBXProject section */
@@ -147,6 +192,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		05121B5E1B8789E600C2A871 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 050172D01B877A99007CB6D9 /* KLStdLib */;
+			targetProxy = 05121B5D1B8789E600C2A871 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		050172E51B877A99007CB6D9 /* Debug */ = {
@@ -242,6 +295,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_OPTIMIZATION_LEVEL = 2;
 				INFOPLIST_FILE = Info.plist;
@@ -262,6 +319,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_OPTIMIZATION_LEVEL = 2;
 				INFOPLIST_FILE = Info.plist;
@@ -270,6 +331,31 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		05121B5A1B8789DE00C2A871 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUGGING_SYMBOLS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		05121B5B1B8789DE00C2A871 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -290,6 +376,15 @@
 			buildConfigurations = (
 				050172E81B877A99007CB6D9 /* Debug */,
 				050172E91B877A99007CB6D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05121B5C1B8789DE00C2A871 /* Build configuration list for PBXLegacyTarget "Install" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05121B5A1B8789DE00C2A871 /* Debug */,
+				05121B5B1B8789DE00C2A871 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
