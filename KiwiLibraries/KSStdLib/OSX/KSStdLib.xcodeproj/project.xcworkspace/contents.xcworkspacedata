@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:KLStdLib.xcodeproj">
+      location = "self:/Users/tomoo/Project/KiwiScript/KiwiLibraries/KLStdLib/OSX/KSStdLib.xcodeproj">
    </FileRef>
 </Workspace>
