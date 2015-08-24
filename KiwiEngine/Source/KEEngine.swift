@@ -1,9 +1,9 @@
 /**
-* @file		KEEngine.swift
-* @brief	Extend KEEngine class
-* @par Copyright
-*   Copyright (C) 2015 Steel Wheels Project
-*/
+ * @file	KEEngine.swift
+ * @brief	Extend KEEngine class
+ * @par Copyright
+ *   Copyright (C) 2015 Steel Wheels Project
+ */
 
 import Foundation
 import JavaScriptCore
