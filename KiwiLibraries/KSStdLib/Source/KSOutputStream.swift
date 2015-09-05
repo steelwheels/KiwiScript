@@ -1,9 +1,9 @@
 /**
-* @file	KLOutputStream.swift
-* @brief	Extend KLConsole class
-* @par Copyright
-*   Copyright (C) 2015 Steel Wheels Project
-*/
+ * @file	KLOutputStream.swift
+ * @brief	Extend KLConsole class
+ * @par Copyright
+ *   Copyright (C) 2015 Steel Wheels Project
+ */
 
 import Cocoa
 import JavaScriptCore

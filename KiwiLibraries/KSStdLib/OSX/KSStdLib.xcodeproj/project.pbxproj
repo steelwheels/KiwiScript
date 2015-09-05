@@ -8,8 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		050172D71B877A99007CB6D9 /* KSStdLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 050172D61B877A99007CB6D9 /* KSStdLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		050CE5171B94BAE3002D5CE2 /* UTJsonEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050CE5161B94BAE3002D5CE2 /* UTJsonEncoder.swift */; };
+		05323AFA1B8FD9F200336D7D /* UTValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05323AF91B8FD9F200336D7D /* UTValue.swift */; };
+		05323AFB1B8FE13500336D7D /* KSValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F674EA1B8CAE3300B391D1 /* KSValue.swift */; };
 		0537A9071B877D0A009CC040 /* KSOutputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0537A9061B877D0A009CC040 /* KSOutputStream.swift */; };
+		056709BF1B90738500CD8C0A /* KSJsonEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056709BE1B90738500CD8C0A /* KSJsonEncoder.swift */; };
+		0588C8C31B91FF24003CB104 /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0588C8C21B91FF23003CB104 /* Canary.framework */; };
 		05A756BA1B89A85B0052C5AC /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A756B91B89A85B0052C5AC /* KiwiEngine.framework */; };
+		05EC0A881B8FD83C0053BA1C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EC0A871B8FD83C0053BA1C /* main.swift */; };
+		05F674E91B8CAD4500B391D1 /* KSValueVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F674E81B8CAD4500B391D1 /* KSValueVisitor.swift */; };
+		05F674EB1B8CAE3300B391D1 /* KSValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F674EA1B8CAE3300B391D1 /* KSValue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -20,14 +28,41 @@
 			remoteGlobalIDString = 050172D01B877A99007CB6D9;
 			remoteInfo = KLStdLib;
 		};
+		05323AF71B8FD89400336D7D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 050172C81B877A99007CB6D9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05121B591B8789DE00C2A871;
+			remoteInfo = Install;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		05EC0A831B8FD83C0053BA1C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		050172D11B877A99007CB6D9 /* KSStdLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KSStdLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		050172D51B877A99007CB6D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		050172D61B877A99007CB6D9 /* KSStdLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSStdLib.h; sourceTree = "<group>"; };
+		050CE5161B94BAE3002D5CE2 /* UTJsonEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTJsonEncoder.swift; sourceTree = "<group>"; };
+		05323AF91B8FD9F200336D7D /* UTValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTValue.swift; sourceTree = "<group>"; };
 		0537A9061B877D0A009CC040 /* KSOutputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSOutputStream.swift; sourceTree = "<group>"; };
+		056709BE1B90738500CD8C0A /* KSJsonEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSJsonEncoder.swift; sourceTree = "<group>"; };
+		0588C8C21B91FF23003CB104 /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../../../Library/Frameworks/Canary.framework; sourceTree = "<group>"; };
 		05A756B91B89A85B0052C5AC /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../../Library/Frameworks/KiwiEngine.framework; sourceTree = "<group>"; };
+		05EC0A851B8FD83C0053BA1C /* UnitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		05EC0A871B8FD83C0053BA1C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		05F674E81B8CAD4500B391D1 /* KSValueVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSValueVisitor.swift; sourceTree = "<group>"; };
+		05F674EA1B8CAE3300B391D1 /* KSValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSValue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,7 +70,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0588C8C31B91FF24003CB104 /* Canary.framework in Frameworks */,
 				05A756BA1B89A85B0052C5AC /* KiwiEngine.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05EC0A821B8FD83C0053BA1C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				050172D11B877A99007CB6D9 /* KSStdLib.framework */,
+				05EC0A851B8FD83C0053BA1C /* UnitTest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -64,6 +108,9 @@
 			children = (
 				050172D61B877A99007CB6D9 /* KSStdLib.h */,
 				0537A9061B877D0A009CC040 /* KSOutputStream.swift */,
+				05F674E81B8CAD4500B391D1 /* KSValueVisitor.swift */,
+				056709BE1B90738500CD8C0A /* KSJsonEncoder.swift */,
+				05F674EA1B8CAE3300B391D1 /* KSValue.swift */,
 				050172D41B877A99007CB6D9 /* Supporting Files */,
 			);
 			name = Source;
@@ -73,6 +120,7 @@
 		050172D41B877A99007CB6D9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0588C8C21B91FF23003CB104 /* Canary.framework */,
 				05A756B91B89A85B0052C5AC /* KiwiEngine.framework */,
 				050172D51B877A99007CB6D9 /* Info.plist */,
 			);
@@ -82,10 +130,21 @@
 		05A756C81B89F1960052C5AC /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
+				05EC0A861B8FD83C0053BA1C /* UnitTest */,
 			);
 			name = UnitTest;
 			path = ../UnitTest;
 			sourceTree = SOURCE_ROOT;
+		};
+		05EC0A861B8FD83C0053BA1C /* UnitTest */ = {
+			isa = PBXGroup;
+			children = (
+				05EC0A871B8FD83C0053BA1C /* main.swift */,
+				05323AF91B8FD9F200336D7D /* UTValue.swift */,
+				050CE5161B94BAE3002D5CE2 /* UTJsonEncoder.swift */,
+			);
+			path = UnitTest;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -137,19 +196,42 @@
 			productReference = 050172D11B877A99007CB6D9 /* KSStdLib.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		05EC0A841B8FD83C0053BA1C /* UnitTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05EC0A891B8FD83C0053BA1C /* Build configuration list for PBXNativeTarget "UnitTest" */;
+			buildPhases = (
+				05EC0A811B8FD83C0053BA1C /* Sources */,
+				05EC0A821B8FD83C0053BA1C /* Frameworks */,
+				05EC0A831B8FD83C0053BA1C /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				05323AF81B8FD89400336D7D /* PBXTargetDependency */,
+			);
+			name = UnitTest;
+			productName = UnitTest;
+			productReference = 05EC0A851B8FD83C0053BA1C /* UnitTest */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		050172C81B877A99007CB6D9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Steel Wheels Project";
 				TargetAttributes = {
 					050172D01B877A99007CB6D9 = {
 						CreatedOnToolsVersion = 6.4;
 					};
 					05121B591B8789DE00C2A871 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					05EC0A841B8FD83C0053BA1C = {
 						CreatedOnToolsVersion = 6.4;
 					};
 				};
@@ -160,6 +242,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 050172C71B877A99007CB6D9;
 			productRefGroup = 050172D21B877A99007CB6D9 /* Products */;
@@ -168,6 +251,7 @@
 			targets = (
 				050172D01B877A99007CB6D9 /* KSStdLib */,
 				05121B591B8789DE00C2A871 /* Install */,
+				05EC0A841B8FD83C0053BA1C /* UnitTest */,
 			);
 		};
 /* End PBXProject section */
@@ -187,7 +271,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05F674E91B8CAD4500B391D1 /* KSValueVisitor.swift in Sources */,
 				0537A9071B877D0A009CC040 /* KSOutputStream.swift in Sources */,
+				056709BF1B90738500CD8C0A /* KSJsonEncoder.swift in Sources */,
+				05F674EB1B8CAE3300B391D1 /* KSValue.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05EC0A811B8FD83C0053BA1C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05323AFA1B8FD9F200336D7D /* UTValue.swift in Sources */,
+				05EC0A881B8FD83C0053BA1C /* main.swift in Sources */,
+				05323AFB1B8FE13500336D7D /* KSValue.swift in Sources */,
+				050CE5171B94BAE3002D5CE2 /* UTJsonEncoder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +296,11 @@
 			isa = PBXTargetDependency;
 			target = 050172D01B877A99007CB6D9 /* KSStdLib */;
 			targetProxy = 05121B5D1B8789E600C2A871 /* PBXContainerItemProxy */;
+		};
+		05323AF81B8FD89400336D7D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05121B591B8789DE00C2A871 /* Install */;
+			targetProxy = 05323AF71B8FD89400336D7D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -223,6 +326,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -304,6 +408,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = KSStdLib;
 				SKIP_INSTALL = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -328,6 +433,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = KSStdLib;
 				SKIP_INSTALL = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -359,6 +465,28 @@
 			};
 			name = Release;
 		};
+		05EC0A8A1B8FD83C0053BA1C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				LD_RUNPATH_SEARCH_PATHS = "$(HOME)/Library/Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		05EC0A8B1B8FD83C0053BA1C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
+				LD_RUNPATH_SEARCH_PATHS = "$(HOME)/Library/Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -385,6 +513,15 @@
 			buildConfigurations = (
 				05121B5A1B8789DE00C2A871 /* Debug */,
 				05121B5B1B8789DE00C2A871 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05EC0A891B8FD83C0053BA1C /* Build configuration list for PBXNativeTarget "UnitTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05EC0A8A1B8FD83C0053BA1C /* Debug */,
+				05EC0A8B1B8FD83C0053BA1C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
