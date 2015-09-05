@@ -25,7 +25,7 @@ class ViewController: NSViewController {
 			putString("Error \(result.errors.count)")
 		}
 		
-		var error = NSError.parseError("parse error") ;
+		let error = NSError.parseError("parse error") ;
 		NSLog(error.toString())
 	}
 
