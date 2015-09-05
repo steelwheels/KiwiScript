@@ -21,7 +21,7 @@ func testKSValue() -> Bool {
 }
 
 func testKinds(){
-	print("* Print kind strings")
+	print("** Print kind strings")
 	testKind("char  ", kind: KSValueKind.BooleanValue)
 	testKind("number", kind: KSValueKind.NumberValue)
 }

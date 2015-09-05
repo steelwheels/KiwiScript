@@ -10,13 +10,16 @@ import Foundation
 
 var result = true
 
-func test(title : String, flag : Bool){
-	print("**** \(title) : \(flag)") ;
+func test(flag : Bool){
+	print("RESULT : \(flag)")
 	result = result && flag
 }
 
-test("KSValue", flag: testKSValue())
-test("KSJsonEncoder", flag: testJsonEncoder())
+print("* KSValue")
+test(testKSValue())
+	
+print("* KSJsonEncoder")
+test(testJsonEncoder())
 
 print("**** SUMMARY\nTOTAL RESULT: ", terminator: "")
 if result {
