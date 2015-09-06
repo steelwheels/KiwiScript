@@ -7,56 +7,39 @@
 
 import Foundation
 import JavaScriptCore
+import Canary
 
-public class KSValueVisitorInfo : NSObject {
-	
-}
-
-public class KSValueVisitor : NSObject {
-	public func visitUndefinedValue(info : KSValueVisitorInfo){
-	}
-	public func visitNilValue(info : KSValueVisitorInfo){
-	}
-	public func visitBooleanValue(value : Bool, info : KSValueVisitorInfo){
-	}
-	public func visitNumberValue(value : NSNumber, info : KSValueVisitorInfo){
-	}
-	public func visitStringValue(value : String, info : KSValueVisitorInfo){
-	}
-	public func visitDateValue(value : NSDate, info : KSValueVisitorInfo){
-	}
-	public func visitArrayValue(value : NSArray, info : KSValueVisitorInfo){
-	}
-	public func visitDictionaryValue(value : NSDictionary, info : KSValueVisitorInfo){
-	}
-	public func visitObjectValue(value : NSObject, info : KSValueVisitorInfo){
-	}
-	
-	public func accept(value : JSValue, visitor : KSValueVisitor, info : KSValueVisitorInfo){
+public class KSValueVisitor : CNObjectVisitor {
+	public func acceptValue(value : JSValue){
 		switch KSValue.kindOfValue(value) {
 		case .UndefinedValue:
-			visitor.visitUndefinedValue(info)
+			visitUndefinedValue(value)
 		case .NilValue:
-			visitor.visitNilValue(info) ;
+			visitNilValue(value) ;
 		case .BooleanValue:
-			visitor.visitBooleanValue(value.toBool(), info: info) ;
+			visitBooleanValue(value.toBool()) ;
 		case .NumberValue:
-			visitor.visitNumberValue(value.toNumber(), info: info) ;
+			visitNumberObject(value.toNumber()) ;
 		case .StringValue:
-			visitor.visitStringValue(value.toString(), info: info) ;
+			visitStringObject(value.toString()) ;
 		case .DateValue:
-			visitor.visitDateValue(value.toDate(), info: info) ;
+			visitDateObject(value.toDate()) ;
 		case .ArrayValue:
-			visitor.visitArrayValue(value.toArray(), info: info) ;
+			visitArrayObject(value.toArray()) ;
 		case .DictionaryValue:
-			visitor.visitDictionaryValue(value.toDictionary(), info: info) ;
+			visitDictionaryObject(value.toDictionary()) ;
 		case .ObjectValue:
 			if let obj : NSObject = value.toObject() as? NSObject {
-				visitor.visitObjectValue(obj, info: info) ;
+				visitUnknownObject(obj) ;
 			} else {
-				NSLog("Unknown object: \(value)")
+				fatalError("Unknown object: \(value)")
 			}
 		}
 	}
+	
+	public func visitUndefinedValue(value : JSValue){		}
+	public func visitNilValue(value : JSValue){			}
+	public func visitBooleanValue(value : Bool){			}
 }
+
 

@@ -9,18 +9,13 @@ import Foundation
 import JavaScriptCore
 import Canary
 
-public class KSJsonEncoderInfo : KSValueVisitorInfo {
-	public var resultString = ""
-}
-
 public class KSJsonEncoder : KSValueVisitor
 {
 	let textBuffer		= CNTextBuffer()
 	var resultString	= ""
 
 	public func encode(value : JSValue) -> CNTextBuffer {
-		let info = KSJsonEncoderInfo()
-		accept(value, visitor:self, info: info)
+		acceptValue(value)
 		flush()
 		return textBuffer
 	}
@@ -34,72 +29,94 @@ public class KSJsonEncoder : KSValueVisitor
 		
 	}
 	
-	public override func visitUndefinedValue(info : KSValueVisitorInfo){
+	public override func visitUndefinedValue(value : JSValue){
 		resultString += "undefined"
 	}
 	
-	public override func visitNilValue(info : KSValueVisitorInfo){
+	public override func visitNilValue(value : JSValue){
 		resultString += "nil"
 	}
 	
-	public override func visitBooleanValue(value : Bool, info : KSValueVisitorInfo){
+	public override func visitBooleanValue(value : Bool){
 		resultString += "\(value)"
 	}
 	
-	public override func visitNumberValue(value : NSNumber, info : KSValueVisitorInfo){
-		resultString += "\(value)"
+	public override func visitNumberObject(number : NSNumber){
+		resultString += "\(number)"
 	}
 	
-	public override func visitStringValue(value : String, info : KSValueVisitorInfo) {
-		resultString += "\"\(value)\""
+	public override func visitStringObject(string : NSString){
+		resultString += "\(string)"
 	}
 	
-	public override func visitDateValue(value : NSDate, info : KSValueVisitorInfo){
-		resultString += "\(value)"
+	public override func visitDateObject(date : NSDate){
+		resultString += "\(date)"
 	}
 	
-	public override func visitArrayValue(value : NSArray, info : KSValueVisitorInfo){
-		var arraystr = "["
-		var is1st = true
-		for elm in value {
-			if let elmval = elm as? JSValue {
-				if is1st {
-					is1st = false
-				} else {
-					arraystr += resultString + ", "
-				}
-				accept(elmval, visitor:self, info: info)
-			} else {
-				fatalError("JSValue expected")
-			}
-		}
-		resultString = arraystr + "]"
-	}
-	
-	public override func visitDictionaryValue(value : NSDictionary, info : KSValueVisitorInfo){
-		resultString = resultString + " {"
-		flush()
+	public override func visitDictionaryObject(dict : NSDictionary){
+		var dictstring = resultString + "["
+		resultString = ""
 		
+		var is1st = true
 		textBuffer.incrementIndent()
-		for (key, data) in value {
-			var membstr = ""
-			if let keyval = key as? JSValue {
-				membstr += keyval.description
+		for (key, value) in dict {
+			if is1st {
+				is1st = false
 			} else {
-				fatalError("JSValue expected")
+				dictstring += ", "
 			}
-			membstr += ":"
-			if let dataval = data as? JSValue {
-				membstr += dataval.description
+			if let keyobj = key as? NSObject {
+				acceptObject(keyobj)
+				dictstring += resultString
+				resultString = ""
 			} else {
-				fatalError("JSValue expected")
+				fatalError("Unknown key of dictionary: \(key)")
 			}
-			textBuffer.append(membstr)
-			textBuffer.newline()
+
+			dictstring += ":"
+			
+			if let valobj = value as? NSObject {
+				acceptObject(valobj)
+				dictstring += resultString
+				resultString = ""
+			} else {
+				fatalError("Unknown value of dictionary: \(value)")
+			}
 		}
 		textBuffer.decrementIndent()
 		
-		resultString = "}"
+		dictstring += "]"
+		resultString = dictstring
+	}
+	
+	public override func visitArrayObject(arr : NSArray){
+		var arrstring = resultString + "["
+		resultString = ""
+		
+		var is1st = true
+		textBuffer.incrementIndent()
+		for elm in arr {
+			if is1st {
+				is1st = false
+			} else {
+				arrstring += ", "
+			}
+			if let elmobj = elm as? NSObject {
+				acceptObject(elmobj)
+				arrstring += resultString
+				resultString = ""
+			} else {
+				fatalError("Not object: \"\(elm)\"")
+			}
+		}
+		textBuffer.decrementIndent()
+
+		arrstring += "]"
+		resultString = arrstring
+	}
+	
+	public override func visitUnknownObject(obj : NSObject){
+		resultString = "unknown"
 	}
 }
 

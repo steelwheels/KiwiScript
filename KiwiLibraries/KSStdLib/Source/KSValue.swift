@@ -61,12 +61,12 @@ public class KSValue : NSObject
 		} else if value.isString {
 			result = KSValueKind.StringValue
 		} else if value.isObject {
-			if let _ = value.toDate() {
-				result = KSValueKind.DateValue
-			} else if let _ = value.toArray() {
-				result = KSValueKind.ArrayValue
-			} else if let _ = value.toDictionary() {
+			if let _ = value.toObjectOfClass(NSDictionary) {
 				result = KSValueKind.DictionaryValue
+			} else if let _ = value.toObjectOfClass(NSArray){
+				result = KSValueKind.ArrayValue
+			} else if let _ = value.toObjectOfClass(NSDate){
+				result = KSValueKind.DateValue
 			} else {
 				result = KSValueKind.ObjectValue
 			}

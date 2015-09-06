@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		050172D71B877A99007CB6D9 /* KSStdLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 050172D61B877A99007CB6D9 /* KSStdLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		050CE5171B94BAE3002D5CE2 /* UTJsonEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050CE5161B94BAE3002D5CE2 /* UTJsonEncoder.swift */; };
+		0525DC191B9C576E009479F5 /* UnitTestExe in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05EC0A851B8FD83C0053BA1C /* UnitTestExe */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		0525DC1C1B9C578B009479F5 /* Canary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0525DC1B1B9C578B009479F5 /* Canary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0525DC1E1B9C579F009479F5 /* KSStdLib.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0525DC1D1B9C579F009479F5 /* KSStdLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05323AFA1B8FD9F200336D7D /* UTValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05323AF91B8FD9F200336D7D /* UTValue.swift */; };
 		05323AFB1B8FE13500336D7D /* KSValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F674EA1B8CAE3300B391D1 /* KSValue.swift */; };
 		0537A9071B877D0A009CC040 /* KSOutputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0537A9061B877D0A009CC040 /* KSOutputStream.swift */; };
@@ -31,6 +34,13 @@
 			remoteGlobalIDString = 050172D01B877A99007CB6D9;
 			remoteInfo = KLStdLib;
 		};
+		0525DC161B9C56F8009479F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 050172C81B877A99007CB6D9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05EC0A841B8FD83C0053BA1C;
+			remoteInfo = UnitTestExe;
+		};
 		05323AF71B8FD89400336D7D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 050172C81B877A99007CB6D9 /* Project object */;
@@ -41,6 +51,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		0525DC181B9C5763009479F5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				0525DC191B9C576E009479F5 /* UnitTestExe in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0525DC1A1B9C5773009479F5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0525DC1E1B9C579F009479F5 /* KSStdLib.framework in CopyFiles */,
+				0525DC1C1B9C578B009479F5 /* Canary.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05EC0A831B8FD83C0053BA1C /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -57,6 +88,10 @@
 		050172D51B877A99007CB6D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		050172D61B877A99007CB6D9 /* KSStdLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSStdLib.h; sourceTree = "<group>"; };
 		050CE5161B94BAE3002D5CE2 /* UTJsonEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTJsonEncoder.swift; sourceTree = "<group>"; };
+		0525DC101B9C56E8009479F5 /* UnitTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		0525DC121B9C56E8009479F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0525DC1B1B9C578B009479F5 /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../../../../Library/Frameworks/Canary.framework; sourceTree = "<group>"; };
+		0525DC1D1B9C579F009479F5 /* KSStdLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KSStdLib.framework; path = ../../../../../../Library/Frameworks/KSStdLib.framework; sourceTree = "<group>"; };
 		05323AF91B8FD9F200336D7D /* UTValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTValue.swift; sourceTree = "<group>"; };
 		0537A9061B877D0A009CC040 /* KSOutputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSOutputStream.swift; sourceTree = "<group>"; };
 		056709BE1B90738500CD8C0A /* KSJsonEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSJsonEncoder.swift; sourceTree = "<group>"; };
@@ -76,6 +111,13 @@
 			files = (
 				057C204F1B9C554A00D4382D /* KiwiEngine.framework in Frameworks */,
 				057C204D1B9C54FD00D4382D /* Canary.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0525DC0D1B9C56E8009479F5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +148,7 @@
 			children = (
 				050172D11B877A99007CB6D9 /* KSStdLib.framework */,
 				05EC0A851B8FD83C0053BA1C /* UnitTestExe */,
+				0525DC101B9C56E8009479F5 /* UnitTest.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -134,9 +177,20 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		0525DC111B9C56E8009479F5 /* Bundle */ = {
+			isa = PBXGroup;
+			children = (
+				0525DC121B9C56E8009479F5 /* Info.plist */,
+				0525DC1D1B9C579F009479F5 /* KSStdLib.framework */,
+				0525DC1B1B9C578B009479F5 /* Canary.framework */,
+			);
+			path = Bundle;
+			sourceTree = "<group>";
+		};
 		05A756C81B89F1960052C5AC /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
+				0525DC111B9C56E8009479F5 /* Bundle */,
 				05EC0A861B8FD83C0053BA1C /* Source */,
 			);
 			name = UnitTest;
@@ -204,6 +258,26 @@
 			productReference = 050172D11B877A99007CB6D9 /* KSStdLib.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		0525DC0F1B9C56E8009479F5 /* UnitTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0525DC151B9C56E8009479F5 /* Build configuration list for PBXNativeTarget "UnitTest" */;
+			buildPhases = (
+				0525DC0C1B9C56E8009479F5 /* Sources */,
+				0525DC0D1B9C56E8009479F5 /* Frameworks */,
+				0525DC0E1B9C56E8009479F5 /* Resources */,
+				0525DC181B9C5763009479F5 /* CopyFiles */,
+				0525DC1A1B9C5773009479F5 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0525DC171B9C56F8009479F5 /* PBXTargetDependency */,
+			);
+			name = UnitTest;
+			productName = UnitTest;
+			productReference = 0525DC101B9C56E8009479F5 /* UnitTest.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
 		05EC0A841B8FD83C0053BA1C /* UnitTestExe */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05EC0A891B8FD83C0053BA1C /* Build configuration list for PBXNativeTarget "UnitTestExe" */;
@@ -239,6 +313,9 @@
 					05121B591B8789DE00C2A871 = {
 						CreatedOnToolsVersion = 6.4;
 					};
+					0525DC0F1B9C56E8009479F5 = {
+						CreatedOnToolsVersion = 7.0;
+					};
 					05EC0A841B8FD83C0053BA1C = {
 						CreatedOnToolsVersion = 6.4;
 					};
@@ -260,12 +337,20 @@
 				050172D01B877A99007CB6D9 /* KSStdLib */,
 				05121B591B8789DE00C2A871 /* Install */,
 				05EC0A841B8FD83C0053BA1C /* UnitTestExe */,
+				0525DC0F1B9C56E8009479F5 /* UnitTest */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		050172CF1B877A99007CB6D9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0525DC0E1B9C56E8009479F5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -283,6 +368,13 @@
 				0537A9071B877D0A009CC040 /* KSOutputStream.swift in Sources */,
 				056709BF1B90738500CD8C0A /* KSJsonEncoder.swift in Sources */,
 				05F674EB1B8CAE3300B391D1 /* KSValue.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0525DC0C1B9C56E8009479F5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +396,11 @@
 			isa = PBXTargetDependency;
 			target = 050172D01B877A99007CB6D9 /* KSStdLib */;
 			targetProxy = 05121B5D1B8789E600C2A871 /* PBXContainerItemProxy */;
+		};
+		0525DC171B9C56F8009479F5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05EC0A841B8FD83C0053BA1C /* UnitTestExe */;
+			targetProxy = 0525DC161B9C56F8009479F5 /* PBXContainerItemProxy */;
 		};
 		05323AF81B8FD89400336D7D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -473,6 +570,32 @@
 			};
 			name = Release;
 		};
+		0525DC131B9C56E8009479F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = ../UnitTest/Bundle/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UnitTest";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		0525DC141B9C56E8009479F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = ../UnitTest/Bundle/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UnitTest";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
 		05EC0A8A1B8FD83C0053BA1C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -529,6 +652,15 @@
 			buildConfigurations = (
 				05121B5A1B8789DE00C2A871 /* Debug */,
 				05121B5B1B8789DE00C2A871 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0525DC151B9C56E8009479F5 /* Build configuration list for PBXNativeTarget "UnitTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0525DC131B9C56E8009479F5 /* Debug */,
+				0525DC141B9C56E8009479F5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
