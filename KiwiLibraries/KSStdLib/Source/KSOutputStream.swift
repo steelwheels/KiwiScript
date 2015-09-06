@@ -9,12 +9,7 @@ import Cocoa
 import JavaScriptCore
 import KiwiEngine
 
-@objc protocol KSOutputStreamProtocol : JSExport
-{
-	func put(val : JSValue) ;
-}
-
-public class KSOutputStream: NSObject, KSOutputStreamProtocol
+public class KSOutputStream: NSObject
 {
 	public func addToEngine(engine : KEEngine) {
 		engine.addGlobalObject("console", value: self)

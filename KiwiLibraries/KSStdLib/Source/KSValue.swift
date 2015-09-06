@@ -7,6 +7,7 @@
 
 import Foundation
 import JavaScriptCore
+import Canary
 
 public enum KSValueKind {
 	case UndefinedValue
