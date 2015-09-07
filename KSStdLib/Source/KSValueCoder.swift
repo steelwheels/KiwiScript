@@ -1,0 +1,43 @@
+/**
+ * @file	KSValueCoder.swift
+ * @brief	Define KSValueCoder class
+ * @par Copyright
+ *   Copyright (C) 2015 Steel Wheels Project
+ */
+
+import Foundation
+
+public class KSValueCoder
+{
+	private class func decodeCGFloat(dict : Dictionary<String, AnyObject>, key: String) -> CGFloat {
+		var result : CGFloat = 0.0
+		if let value = dict[key] as? CGFloat {
+			result = value
+		} else {
+			NSLog("No \"\(key)\" property in \(dict)")
+		}
+		return result
+	}
+	
+	public class func encodePoint(point : CGPoint) -> Dictionary<String, AnyObject> {
+		let dict : Dictionary<String, AnyObject> = ["x":point.x, "y":point.y]
+		return dict
+	}
+	
+	public class func decodePoint(dict : Dictionary<String, AnyObject>) -> CGPoint {
+		let x = decodeCGFloat(dict, key: "x")
+		let y = decodeCGFloat(dict, key: "y")
+		return CGPoint(x: x, y: y)
+	}
+	
+	public class func encodeSize(size : CGSize) -> Dictionary<String, AnyObject> {
+		let dict : Dictionary<String, AnyObject> = ["width":size.width, "height":size.height]
+		return dict
+	}
+	
+	public class func decodeSize(dict : Dictionary<String, AnyObject>) -> CGSize {
+		let width  = decodeCGFloat(dict, key: "width")
+		let height = decodeCGFloat(dict, key: "height")
+		return CGSize(width: width, height: height)
+	}
+}
