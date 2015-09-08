@@ -39,10 +39,10 @@
 		05266A5C1B8A003200D98C93 /* KSControlLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KSControlLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05266A601B8A003200D98C93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		05266A611B8A003200D98C93 /* KSControlLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSControlLib.h; sourceTree = "<group>"; };
-		0534C3FA1B8B7297002063D1 /* KCConsoleView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KCConsoleView.framework; path = ../../../../../Library/Frameworks/KCConsoleView.framework; sourceTree = "<group>"; };
+		0534C3FA1B8B7297002063D1 /* KCConsoleView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KCConsoleView.framework; path = /Users/tomoo/Library/Frameworks/KCConsoleView.framework; sourceTree = "<absolute>"; };
 		0534C3FC1B8B7653002063D1 /* KSConsoleStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSConsoleStream.swift; sourceTree = "<group>"; };
-		0534C3FE1B8B76EC002063D1 /* KSStdLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KSStdLib.framework; path = ../../../../../Library/Frameworks/KSStdLib.framework; sourceTree = "<group>"; };
-		0534C4001B8B818A002063D1 /* KSControlLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KSControlLib.framework; path = ../../../../../../Library/Frameworks/KSControlLib.framework; sourceTree = "<group>"; };
+		0534C3FE1B8B76EC002063D1 /* KSStdLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KSStdLib.framework; path = /Users/tomoo/Library/Frameworks/KSStdLib.framework; sourceTree = "<absolute>"; };
+		0534C4001B8B818A002063D1 /* KSControlLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KSControlLib.framework; path = /Users/tomoo/Library/Frameworks/KSControlLib.framework; sourceTree = "<absolute>"; };
 		05DDF74F1B8B719E00F3CA27 /* UTConsole.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTConsole.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05DDF7521B8B719E00F3CA27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05DDF7531B8B719E00F3CA27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -157,7 +157,7 @@
 /* Begin PBXLegacyTarget section */
 		05DDF7441B8B710B00F3CA27 /* Install */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "-f ../../../Script/install_osx.mk";
+			buildArgumentsString = "-f ../../Script/install_osx.mk";
 			buildConfigurationList = 05DDF7451B8B710B00F3CA27 /* Build configuration list for PBXLegacyTarget "Install" */;
 			buildPhases = (
 			);
