@@ -10,7 +10,7 @@ import JavaScriptCore
 
 public class KSValueCoder
 {
-	private class func decodeCGFloat(dict : Dictionary<NSObject, AnyObject>, key: String) -> CGFloat {
+	public class func decodeFloat(dict : Dictionary<NSObject, AnyObject>, key: String) -> CGFloat {
 		var result : CGFloat = 0.0
 		if let value = dict[key] as? CGFloat {
 			result = value
@@ -26,8 +26,8 @@ public class KSValueCoder
 	}
 	
 	public class func decodePoint(dict : Dictionary<NSObject, AnyObject>) -> CGPoint {
-		let x = decodeCGFloat(dict, key: "x")
-		let y = decodeCGFloat(dict, key: "y")
+		let x = decodeFloat(dict, key: "x")
+		let y = decodeFloat(dict, key: "y")
 		return CGPoint(x: x, y: y)
 	}
 	
@@ -37,8 +37,8 @@ public class KSValueCoder
 	}
 	
 	public class func decodeSize(dict : Dictionary<NSObject, AnyObject>) -> CGSize {
-		let width  = decodeCGFloat(dict, key: "width")
-		let height = decodeCGFloat(dict, key: "height")
+		let width  = decodeFloat(dict, key: "width")
+		let height = decodeFloat(dict, key: "height")
 		return CGSize(width: width, height: height)
 	}
 }
