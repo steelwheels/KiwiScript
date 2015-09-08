@@ -10,7 +10,7 @@ import Foundation
 import KSStdLib
 import JavaScriptCore
 
-func testJsonEncoder() -> Bool
+public func testJsonEncoder() -> Bool
 {
 	let context = JSContext()
 	
@@ -39,7 +39,7 @@ func testJsonEncoder() -> Bool
 	return true
 }
 
-func decodeValue(value : JSValue)
+public func decodeValue(value : JSValue)
 {
 	let encoder = KSJsonEncoder() ;
 	let textbuf = encoder.encode(value)

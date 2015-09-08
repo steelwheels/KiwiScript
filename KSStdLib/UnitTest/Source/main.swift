@@ -17,9 +17,12 @@ func test(flag : Bool){
 
 print("* KSValue")
 test(testKSValue())
-	
+
 print("* KSJsonEncoder")
 test(testJsonEncoder())
+
+print("* KSValueCoder")
+test(testValueCoder())
 
 print("**** SUMMARY\nTOTAL RESULT: ", terminator: "")
 if result {
