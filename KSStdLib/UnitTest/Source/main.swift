@@ -15,6 +15,11 @@ func test(flag : Bool){
 	result = result && flag
 }
 
+func printTitle(title : String)
+{
+	
+}
+
 print("* KSValue")
 test(testKSValue())
 

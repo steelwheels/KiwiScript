@@ -103,8 +103,8 @@
 		057C20521B9C55C000D4382D /* KSStdLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KSStdLib.framework; path = /Users/tomoo/Library/Frameworks/KSStdLib.framework; sourceTree = "<absolute>"; };
 		057FEFC21B9F27EF00C9CCFA /* UTValueCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTValueCoder.swift; sourceTree = "<group>"; };
 		0595FC461B9DFB9D003D53D4 /* KSValueCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSValueCoder.swift; sourceTree = "<group>"; };
-		0595FC4B1B9E020D003D53D4 /* KSStdLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KSStdLib.framework; path = ../../../../Library/Frameworks/KSStdLib.framework; sourceTree = "<group>"; };
-		0595FC4D1B9E021F003D53D4 /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../../Library/Frameworks/Canary.framework; sourceTree = "<group>"; };
+		0595FC4B1B9E020D003D53D4 /* KSStdLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KSStdLib.framework; path = ../../../../../Library/Frameworks/KSStdLib.framework; sourceTree = "<group>"; };
+		0595FC4D1B9E021F003D53D4 /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../../../Library/Frameworks/Canary.framework; sourceTree = "<group>"; };
 		05EC0A851B8FD83C0053BA1C /* UnitTestExe */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTestExe; sourceTree = BUILT_PRODUCTS_DIR; };
 		05EC0A871B8FD83C0053BA1C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		05F674E81B8CAD4500B391D1 /* KSValueVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSValueVisitor.swift; sourceTree = "<group>"; };
@@ -145,8 +145,6 @@
 		050172C71B877A99007CB6D9 = {
 			isa = PBXGroup;
 			children = (
-				0595FC4D1B9E021F003D53D4 /* Canary.framework */,
-				0595FC4B1B9E020D003D53D4 /* KSStdLib.framework */,
 				050172D31B877A99007CB6D9 /* Source */,
 				05A756C81B89F1960052C5AC /* UnitTest */,
 				050172D21B877A99007CB6D9 /* Products */,
@@ -191,9 +189,9 @@
 		0525DC111B9C56E8009479F5 /* Bundle */ = {
 			isa = PBXGroup;
 			children = (
+				0595FC4D1B9E021F003D53D4 /* Canary.framework */,
+				0595FC4B1B9E020D003D53D4 /* KSStdLib.framework */,
 				0525DC121B9C56E8009479F5 /* Info.plist */,
-				056953921B9C898A00A59739 /* KSStdLib.framework */,
-				056953901B9C897300A59739 /* Canary.framework */,
 			);
 			path = Bundle;
 			sourceTree = "<group>";
@@ -211,6 +209,8 @@
 		05EC0A861B8FD83C0053BA1C /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				056953921B9C898A00A59739 /* KSStdLib.framework */,
+				056953901B9C897300A59739 /* Canary.framework */,
 				057C20521B9C55C000D4382D /* KSStdLib.framework */,
 				05EC0A871B8FD83C0053BA1C /* main.swift */,
 				05323AF91B8FD9F200336D7D /* UTValue.swift */,

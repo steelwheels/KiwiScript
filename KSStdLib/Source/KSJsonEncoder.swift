@@ -54,65 +54,53 @@ public class KSJsonEncoder : KSValueVisitor
 	}
 	
 	public override func visitDictionaryObject(dict : NSDictionary){
-		var dictstring = resultString + "["
-		resultString = ""
+		resultString += "{"
+		flush()
 		
-		var is1st = true
 		textBuffer.incrementIndent()
 		for (key, value) in dict {
-			if is1st {
-				is1st = false
-			} else {
-				dictstring += ", "
-			}
 			if let keyobj = key as? NSObject {
 				acceptObject(keyobj)
-				dictstring += resultString
-				resultString = ""
 			} else {
 				fatalError("Unknown key of dictionary: \(key)")
 			}
 
-			dictstring += ":"
+			resultString += " : "
 			
 			if let valobj = value as? NSObject {
 				acceptObject(valobj)
-				dictstring += resultString
-				resultString = ""
 			} else {
 				fatalError("Unknown value of dictionary: \(value)")
 			}
+			
+			flush()
 		}
 		textBuffer.decrementIndent()
-		
-		dictstring += "]"
-		resultString = dictstring
+
+		resultString = "}"
+		flush()
 	}
 	
 	public override func visitArrayObject(arr : NSArray){
-		var arrstring = resultString + "["
-		resultString = ""
-		
+		resultString += "["
+
 		var is1st = true
 		textBuffer.incrementIndent()
 		for elm in arr {
 			if is1st {
 				is1st = false
 			} else {
-				arrstring += ", "
+				resultString += ", "
 			}
 			if let elmobj = elm as? NSObject {
 				acceptObject(elmobj)
-				arrstring += resultString
-				resultString = ""
 			} else {
 				fatalError("Not object: \"\(elm)\"")
 			}
 		}
 		textBuffer.decrementIndent()
 
-		arrstring += "]"
-		resultString = arrstring
+		resultString += "]"
 	}
 	
 	public override func visitUnknownObject(obj : NSObject){
