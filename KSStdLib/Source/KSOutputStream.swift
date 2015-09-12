@@ -7,14 +7,9 @@
 
 import Cocoa
 import JavaScriptCore
-import KiwiEngine
 
 public class KSOutputStream: NSObject
-{
-	public func addToEngine(engine : KEEngine) {
-		engine.addGlobalObject("console", value: self)
-	}
-	
+{	
 	public func putErrors(errors: Array<NSError>){
 		var message : String = ""
 		for error : NSError in errors {

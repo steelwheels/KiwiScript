@@ -10,18 +10,23 @@ import JavaScriptCore
 
 public class KSValueCoder
 {
+	public class func encodeFloat(key : String, val : CGFloat) -> Dictionary<String, AnyObject> {
+		let dict : Dictionary<String, AnyObject> = [key: Double(val)] ;
+		return dict
+	}
+
 	public class func decodeFloat(dict : Dictionary<NSObject, AnyObject>, key: String) -> CGFloat {
-		var result : CGFloat = 0.0
-		if let value = dict[key] as? CGFloat {
-			result = value
+		var result : Double = 0.0
+		if let value = dict[key] as? NSNumber {
+			result = value.doubleValue
 		} else {
 			NSLog("No \"\(key)\" property in \(dict)")
 		}
-		return result
+		return CGFloat(result)
 	}
 	
 	public class func encodePoint(point : CGPoint) -> Dictionary<String, AnyObject> {
-		let dict : Dictionary<String, AnyObject> = ["x":point.x, "y":point.y]
+		let dict : Dictionary<String, AnyObject> = ["x": Double(point.x), "y":Double(point.y)]
 		return dict
 	}
 	
@@ -32,7 +37,7 @@ public class KSValueCoder
 	}
 	
 	public class func encodeSize(size : CGSize) -> Dictionary<String, AnyObject> {
-		let dict : Dictionary<String, AnyObject> = ["width":size.width, "height":size.height]
+		let dict : Dictionary<String, AnyObject> = ["width":Double(size.width), "height":Double(size.height)]
 		return dict
 	}
 	

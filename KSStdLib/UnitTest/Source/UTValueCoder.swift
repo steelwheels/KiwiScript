@@ -16,8 +16,26 @@ private func makeJSValue(dict : Dictionary<NSObject, AnyObject>, context : JSCon
 
 func testValueCoder() -> Bool
 {
+	let result = testDirectCoding()
+	return result
+}
+
+private func testDirectCoding() -> Bool
+{
 	var result  = true
 	let context = JSContext()
+	
+	/* CGFloat */
+	let floatdata : CGFloat = 10.1
+	let floatval = makeJSValue(KSValueCoder.encodeFloat("key", val: floatdata), context: context)
+	decodeValue(floatval)
+	let revfloat = KSValueCoder.decodeFloat(floatval.toDictionary(), key: "key")
+	if revfloat == floatdata {
+		print(" Enc/Dec CGFloat ... OK")
+	} else {
+		print(" Enc/Dec CGFloat ... NG")
+		result = false
+	}
 	
 	/* CGPoint */
 	let point = CGPoint(x:123.0, y:456.7)

@@ -8,6 +8,7 @@
 
 import Foundation
 import JavaScriptCore
+import KSStdLib
 
 func testKSValue() -> Bool {
 	testKinds()
@@ -32,7 +33,7 @@ func testKind(title: String, kind : KSValueKind){
 }
 
 func parseNumber(title: String, val : JSValue){
-	let kind = KSValue.kindOfValue(val)
+	let kind = val.kind()
 	let kindstr = kind.toString()
 	print("\(title): \(val.description) : \(kindstr)")
 }
