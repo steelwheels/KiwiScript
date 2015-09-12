@@ -7,11 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0501674E1B78473D00B15C80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0501674D1B78473D00B15C80 /* AppDelegate.swift */; };
-		050167501B78473D00B15C80 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0501674F1B78473D00B15C80 /* ViewController.swift */; };
-		050167521B78473D00B15C80 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 050167511B78473D00B15C80 /* Images.xcassets */; };
-		050167551B78473D00B15C80 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 050167531B78473D00B15C80 /* Main.storyboard */; };
-		0542DD791B7847BF0010B856 /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0542DD781B7847BF0010B856 /* KiwiEngine.framework */; };
 		054536C61B78021500FE978C /* KiwiEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 054536C51B78021500FE978C /* KiwiEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		057F881F1B78031B0029AB4F /* KEContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F881E1B78031B0029AB4F /* KEContext.swift */; };
 		057F88231B780B4A0029AB4F /* KEEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F88221B780B4A0029AB4F /* KEEngine.swift */; };
@@ -37,12 +32,6 @@
 
 /* Begin PBXFileReference section */
 		050167491B78473D00B15C80 /* UTKiwiEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTKiwiEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0501674C1B78473D00B15C80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0501674D1B78473D00B15C80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0501674F1B78473D00B15C80 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		050167511B78473D00B15C80 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		050167541B78473D00B15C80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		0542DD781B7847BF0010B856 /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../../Library/Frameworks/KiwiEngine.framework; sourceTree = "<group>"; };
 		054536C01B78021500FE978C /* KiwiEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		054536C41B78021500FE978C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		054536C51B78021500FE978C /* KiwiEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiEngine.h; sourceTree = SOURCE_ROOT; };
@@ -56,7 +45,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0542DD791B7847BF0010B856 /* KiwiEngine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,29 +62,15 @@
 		050167441B78471900B15C80 /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
-				0501674A1B78473D00B15C80 /* UTKiwiEngine */,
+				0508102F1BA414EA00124406 /* Supporting Files */,
 			);
 			name = UnitTest;
 			path = ../UnitTest;
 			sourceTree = SOURCE_ROOT;
 		};
-		0501674A1B78473D00B15C80 /* UTKiwiEngine */ = {
+		0508102F1BA414EA00124406 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				0501674D1B78473D00B15C80 /* AppDelegate.swift */,
-				0501674F1B78473D00B15C80 /* ViewController.swift */,
-				050167511B78473D00B15C80 /* Images.xcassets */,
-				050167531B78473D00B15C80 /* Main.storyboard */,
-				0501674B1B78473D00B15C80 /* Supporting Files */,
-			);
-			path = UTKiwiEngine;
-			sourceTree = "<group>";
-		};
-		0501674B1B78473D00B15C80 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				0542DD781B7847BF0010B856 /* KiwiEngine.framework */,
-				0501674C1B78473D00B15C80 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -254,8 +228,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				050167521B78473D00B15C80 /* Images.xcassets in Resources */,
-				050167551B78473D00B15C80 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,8 +245,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				050167501B78473D00B15C80 /* ViewController.swift in Sources */,
-				0501674E1B78473D00B15C80 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,17 +271,6 @@
 			targetProxy = 05DCE61B1B78430D005E9D53 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		050167531B78473D00B15C80 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				050167541B78473D00B15C80 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		050167631B78473D00B15C80 /* Debug */ = {
