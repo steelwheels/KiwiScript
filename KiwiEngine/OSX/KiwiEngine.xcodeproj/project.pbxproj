@@ -12,6 +12,7 @@
 		0507B1791BA41BC00048D325 /* KSStdLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0507B1781BA41BC00048D325 /* KSStdLib.framework */; settings = {ASSET_TAGS = (); }; };
 		0507B1871BA41DB90048D325 /* UnitTestExec in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058B53231BA41A6C009522DF /* UnitTestExec */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		054536C61B78021500FE978C /* KiwiEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 054536C51B78021500FE978C /* KiwiEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		057A3DD11BA4585E004271B8 /* UTStdLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057A3DD01BA4585E004271B8 /* UTStdLib.swift */; settings = {ASSET_TAGS = (); }; };
 		057F881F1B78031B0029AB4F /* KEContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F881E1B78031B0029AB4F /* KEContext.swift */; };
 		057F88231B780B4A0029AB4F /* KEEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F88221B780B4A0029AB4F /* KEEngine.swift */; };
 		058B53261BA41A6C009522DF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058B53251BA41A6C009522DF /* main.swift */; };
@@ -85,10 +86,10 @@
 		0507B1761BA41B9A0048D325 /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../Library/Frameworks/KiwiEngine.framework; sourceTree = "<group>"; };
 		0507B1781BA41BC00048D325 /* KSStdLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KSStdLib.framework; path = ../../../../Library/Frameworks/KSStdLib.framework; sourceTree = "<group>"; };
 		0507B17E1BA41D850048D325 /* UnitTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		0507B1801BA41D850048D325 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		054536C01B78021500FE978C /* KiwiEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		054536C41B78021500FE978C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		054536C51B78021500FE978C /* KiwiEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiEngine.h; sourceTree = SOURCE_ROOT; };
+		057A3DD01BA4585E004271B8 /* UTStdLib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTStdLib.swift; sourceTree = "<group>"; };
 		057F881E1B78031B0029AB4F /* KEContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEContext.swift; sourceTree = "<group>"; };
 		057F88221B780B4A0029AB4F /* KEEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEEngine.swift; sourceTree = "<group>"; };
 		058B53231BA41A6C009522DF /* UnitTestExec */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTestExec; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,14 +141,6 @@
 			path = ../UnitTest;
 			sourceTree = SOURCE_ROOT;
 		};
-		0507B17F1BA41D850048D325 /* UnitTest */ = {
-			isa = PBXGroup;
-			children = (
-				0507B1801BA41D850048D325 /* Info.plist */,
-			);
-			path = UnitTest;
-			sourceTree = "<group>";
-		};
 		0508102F1BA414EA00124406 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,7 +156,6 @@
 			children = (
 				054536C21B78021500FE978C /* Source */,
 				050167441B78471900B15C80 /* UnitTest */,
-				0507B17F1BA41D850048D325 /* UnitTest */,
 				054536C11B78021500FE978C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -203,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				058B53251BA41A6C009522DF /* main.swift */,
+				057A3DD01BA4585E004271B8 /* UTStdLib.swift */,
 			);
 			path = UnitTestExec;
 			sourceTree = "<group>";
@@ -390,6 +383,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				057A3DD11BA4585E004271B8 /* UTStdLib.swift in Sources */,
 				058B53261BA41A6C009522DF /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

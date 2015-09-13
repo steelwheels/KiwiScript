@@ -1,12 +1,22 @@
-//
-//  main.swift
-//  UnitTest
-//
-//  Created by Tomoo Hamada on 2015/09/12.
-//  Copyright © 2015年 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file		main.swift
+ * @brief	Main function for unit test
+ * @par Copyright
+ *   Copyright (C) 2015 Steel Wheels Project
+ */
 
 import Foundation
 
-print("Hello, World!")
+func test(funcname : String, result : Bool)
+{
+	if(result){
+		print("\(funcname) : OK")
+	} else {
+		print("\(funcname) : NG")
+	}
+}
+
+test("testUTStdLib", result: testUTStdLib())
+
+
 

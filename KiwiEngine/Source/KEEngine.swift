@@ -10,24 +10,28 @@ import JavaScriptCore
 
 public class KEEngine : NSObject
 {
-	internal var	virtualMachine    : JSVirtualMachine
-	internal var	javaScriptContext : KEContext
+	internal var	virtualMachine	: JSVirtualMachine
+	internal var	mContext	: KEContext
 
 	public override init() {
 		virtualMachine = JSVirtualMachine()
-		javaScriptContext = KEContext(virtualMachine: virtualMachine)
+		mContext = KEContext(virtualMachine: virtualMachine)
 		super.init()
 		setupContext()
+	}
+
+	public func context() -> KEContext {
+		return mContext
 	}
 	
 	public func clearContext() {
 		virtualMachine = JSVirtualMachine()
-		javaScriptContext = KEContext(virtualMachine: virtualMachine)
+		mContext = KEContext(virtualMachine: virtualMachine)
 		setupContext()
 	}
 	
 	private func setupContext() {
-		javaScriptContext.exceptionHandler = { context, exception in
+		mContext.exceptionHandler = { context, exception in
 			if let jscont = context as? KEContext {
 				jscont.addErrorMessage(exception.description) ;
 				return
@@ -37,40 +41,28 @@ public class KEEngine : NSObject
 
 	}
 	
-	public func addGlobalNumber(name: NSString, value: NSNumber){
-		javaScriptContext.setObject(value, forKeyedSubscript:name)
-	}
-	
-	public func addGlobalString(name: NSString, value: NSString){
-		javaScriptContext.setObject(value, forKeyedSubscript:name)
-	}
-	
-	public func addGlobalArray(name: NSString, value: NSArray){
-		javaScriptContext.setObject(value, forKeyedSubscript:name)
-	}
-	
 	public func addGlobalObject(name: NSString, value: NSObject){
-		javaScriptContext.setObject(value, forKeyedSubscript:name)
+		mContext.setObject(value, forKeyedSubscript:name)
 	}
-	
-	public func evaluate(script : String) -> (errors: Array<NSError>, value: JSValue?){
-		let retval = javaScriptContext.evaluateScript(script)
-		let errcnt = javaScriptContext.runtimeErrors().count ;
+		
+	public func runScript(script : String) -> (result: JSValue?, errors: Array<NSError>){
+		let retval = mContext.evaluateScript(script)
+		let errcnt = mContext.runtimeErrors().count ;
 		if(errcnt == 0){
-			return (javaScriptContext.runtimeErrors(), retval)
+			return (retval, mContext.runtimeErrors())
 		} else {
-			return (javaScriptContext.runtimeErrors(), nil) ;
+			return (nil, mContext.runtimeErrors()) ;
 		}
 	}
 	
-	public func call(funcname : String, arguments: Array<AnyObject>) -> (errors: Array<NSError>, value: JSValue?){
-		let jsfunc : JSValue = javaScriptContext.objectForKeyedSubscript(funcname)
+	public func callFunction(funcname : String, arguments: Array<AnyObject>) -> (result: JSValue?, errors: Array<NSError>){
+		let jsfunc : JSValue = mContext.objectForKeyedSubscript(funcname)
 		let retval = jsfunc.callWithArguments(arguments)
-		let errcnt = javaScriptContext.runtimeErrors().count ;
+		let errcnt = mContext.runtimeErrors().count ;
 		if(errcnt == 0){
-			return (javaScriptContext.runtimeErrors(), retval)
+			return (retval, mContext.runtimeErrors())
 		} else {
-			return (javaScriptContext.runtimeErrors(), nil) ;
+			return (nil, mContext.runtimeErrors()) ;
 		}
 	}
 }
