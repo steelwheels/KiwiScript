@@ -1,9 +1,9 @@
 /**
-* @file		KSValueExtension.swift
-* @brief	Extend JSValue class
-* @par Copyright
-*   Copyright (C) 2015 Steel Wheels Project
-*/
+ * @file	KSValueExtension.swift
+ * @brief	Extend JSValue class
+ * @par Copyright
+ *   Copyright (C) 2015 Steel Wheels Project
+ */
 
 import Foundation
 import JavaScriptCore

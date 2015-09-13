@@ -22,14 +22,14 @@ public class KSValueCoder
 		}
 	}
 
-	public class func floatToDictionary(key : String, val : CGFloat) -> Dictionary<String, AnyObject> {
-		let dict : Dictionary<String, AnyObject> = [key: Double(val)] ;
+	public class func doubleToDictionary(key : String, val : Double) -> Dictionary<String, AnyObject> {
+		let dict : Dictionary<String, AnyObject> = [key: val] ;
 		return dict
 	}
 
-	public class func dictionaryToFloat(dict : Dictionary<String, AnyObject>, key : String) -> CGFloat? {
-		if let val = dict[key] as? Float {
-			return CGFloat(val)
+	public class func dictionaryToDouble(dict : Dictionary<String, AnyObject>, key : String) -> Double? {
+		if let val = dict[key] as? Double {
+			return val
 		} else {
 			return nil
 		}
@@ -37,14 +37,14 @@ public class KSValueCoder
 
 	public class func dictionaryToPoint(dict : Dictionary<String, AnyObject>) -> CGPoint? {
 		var xvalid = false
-		var xvalue = CGFloat(0.0)
+		var xvalue = Double(0.0)
 		var yvalid = true
-		var yvalue = CGFloat(0.0)
-		if let xv = dictionaryToFloat(dict, key: "x") {
+		var yvalue = Double(0.0)
+		if let xv = dictionaryToDouble(dict, key: "x") {
 			xvalid = true
 			xvalue = xv
 		}
-		if let yv = dictionaryToFloat(dict, key: "y"){
+		if let yv = dictionaryToDouble(dict, key: "y"){
 			yvalid = true
 			yvalue = yv
 		}
@@ -53,27 +53,27 @@ public class KSValueCoder
 
 	public class func dictionaryToSize(dict : Dictionary<String, AnyObject>) -> CGSize? {
 		var hvalid = false
-		var hvalue = CGFloat(0.0)
+		var hvalue = Double(0.0)
 		var vvalid = true
-		var vvalue = CGFloat(0.0)
-		if let hv = dictionaryToFloat(dict, key: "width") {
+		var vvalue = Double(0.0)
+		if let hv = dictionaryToDouble(dict, key: "width") {
 			hvalid = true
 			hvalue = hv
 		}
-		if let vv = dictionaryToFloat(dict, key: "height"){
+		if let vv = dictionaryToDouble(dict, key: "height"){
 			vvalid = true
 			vvalue = vv
 		}
 		return hvalid && vvalid ? CGSize(width: hvalue, height: vvalue) : nil
 	}
 
-	public class func encodeFloat(key : String, val : CGFloat, context : JSContext) -> JSValue {
-		return dictionaryToValue(floatToDictionary(key, val: val), context: context)
+	public class func encodeDouble(key : String, val : Double, context : JSContext) -> JSValue {
+		return dictionaryToValue(doubleToDictionary(key, val: val), context: context)
 	}
 
-	public class func decodeFloat(value : JSValue, key: String) -> CGFloat? {
+	public class func decodeDouble(value : JSValue, key: String) -> Double? {
 		if let dict = valueToDictionary(value) {
-			return dictionaryToFloat(dict, key: key)
+			return dictionaryToDouble(dict, key: key)
 		}
 		return nil ;
 	}

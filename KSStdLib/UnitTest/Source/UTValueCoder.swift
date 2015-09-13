@@ -26,10 +26,10 @@ private func testDirectCoding() -> Bool
 	let context = JSContext()
 	
 	/* CGFloat */
-	let floatdata : CGFloat = 10.1
-	let floatval = KSValueCoder.encodeFloat("key", val: floatdata, context: context)
+	let floatdata : Double = 10.1
+	let floatval = KSValueCoder.encodeDouble("key", val: floatdata, context: context)
 	decodeValue(floatval)
-	if let revfloat = KSValueCoder.decodeFloat(floatval, key: "key") {
+	if let revfloat = KSValueCoder.decodeDouble(floatval, key: "key") {
 		if revfloat == 10.1 {
 			print(" Enc/Dec CGFloat ... OK")
 		} else {
