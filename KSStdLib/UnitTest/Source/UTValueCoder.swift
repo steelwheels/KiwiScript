@@ -27,37 +27,49 @@ private func testDirectCoding() -> Bool
 	
 	/* CGFloat */
 	let floatdata : CGFloat = 10.1
-	let floatval = makeJSValue(KSValueCoder.encodeFloat("key", val: floatdata), context: context)
+	let floatval = KSValueCoder.encodeFloat("key", val: floatdata, context: context)
 	decodeValue(floatval)
-	let revfloat = KSValueCoder.decodeFloat(floatval.toDictionary(), key: "key")
-	if revfloat == floatdata {
-		print(" Enc/Dec CGFloat ... OK")
+	if let revfloat = KSValueCoder.decodeFloat(floatval, key: "key") {
+		if revfloat == 10.1 {
+			print(" Enc/Dec CGFloat ... OK")
+		} else {
+			print(" Enc/Dec CGFloat ... NG (\(revfloat))")
+			result = false
+		}
 	} else {
-		print(" Enc/Dec CGFloat ... NG")
+		print(" Enc/Dec CGFloat ... NG (nil)")
 		result = false
 	}
 	
 	/* CGPoint */
 	let point = CGPoint(x:123.0, y:456.7)
-	let pointval = makeJSValue(KSValueCoder.encodePoint(point), context: context)
+	let pointval = KSValueCoder.encodePoint(point, context: context)
 	decodeValue(pointval)
-	let revpoint = KSValueCoder.decodePoint(pointval.toDictionary())
-	if revpoint.x == 123.0 && revpoint.y == 456.7 {
-		print(" Enc/Dec CGPoint ... OK")
+	if let revpoint = KSValueCoder.decodePoint(pointval){
+		if revpoint.x == 123.0 && revpoint.y == 456.7 {
+			print(" Enc/Dec CGPoint ... OK")
+		} else {
+			print(" Enc/Dec CGPoint ... NG (\(revpoint))")
+			result = false
+		}
 	} else {
-		print(" Enc/Dec CGPoint ... NG")
+		print(" Enc/Dec CGPoint ... NG (nil)")
 		result = false
 	}
 
 	/* CGSize */
 	let size = CGSize(width: 10.1, height: 20.2)
-	let sizeval = makeJSValue(KSValueCoder.encodeSize(size), context: context)
+	let sizeval = KSValueCoder.encodeSize(size, context: context)
 	decodeValue(sizeval)
-	let revsize = KSValueCoder.decodeSize(sizeval.toDictionary())
-	if revsize.width == 10.1 && revsize.height == 20.2 {
-		print(" Enc/Dec CGSize ... OK")
+	if let revsize = KSValueCoder.decodeSize(sizeval) {
+		if revsize.width == 10.1 && revsize.height == 20.2 {
+			print(" Enc/Dec CGSize ... OK")
+		} else {
+			print(" Enc/Dec CGSize ... NG (\(revsize))")
+			result = false
+		}
 	} else {
-		print(" Enc/Dec CGSize ... NG")
+		print(" Enc/Dec CGSize ... NG (nil)")
 		result = false
 	}
 	return result
