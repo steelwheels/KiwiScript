@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0556B7081BA5C91500C3EF1B /* Canary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0556B7071BA5C91500C3EF1B /* Canary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0556B70A1BA5C92900C3EF1B /* KiwiEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0556B7091BA5C92900C3EF1B /* KiwiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0556B70C1BA5C93900C3EF1B /* KSStdLib.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0556B70B1BA5C93900C3EF1B /* KSStdLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0556B70E1BA5CC5F00C3EF1B /* JSRunnerExec in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0556B70D1BA5CC5F00C3EF1B /* JSRunnerExec */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		05A90DE91BA5AAB400B09B4D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A90DE81BA5AAB400B09B4D /* main.swift */; };
 		05A90DF11BA5AB4500B09B4D /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A90DF01BA5AB4500B09B4D /* Canary.framework */; };
 		05A90DF31BA5AB6300B09B4D /* KSStdLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A90DF21BA5AB6300B09B4D /* KSStdLib.framework */; };
@@ -21,9 +25,38 @@
 			remoteGlobalIDString = 05A90DE41BA5AAB400B09B4D;
 			remoteInfo = JSRunnerExec;
 		};
+		05D7BE551BA71F2500D941F3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05A90DDD1BA5AAB400B09B4D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 050493771BA5AD1B00CAEAEF;
+			remoteInfo = JSRunner;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		0556B7041BA5C8E400C3EF1B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				0556B70E1BA5CC5F00C3EF1B /* JSRunnerExec in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0556B7061BA5C8F800C3EF1B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0556B70C1BA5C93900C3EF1B /* KSStdLib.framework in CopyFiles */,
+				0556B70A1BA5C92900C3EF1B /* KiwiEngine.framework in CopyFiles */,
+				0556B7081BA5C91500C3EF1B /* Canary.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05A90DE31BA5AAB400B09B4D /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -38,6 +71,10 @@
 /* Begin PBXFileReference section */
 		050493781BA5AD1B00CAEAEF /* JSRunner.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JSRunner.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		0504937A1BA5AD1B00CAEAEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
+		0556B7071BA5C91500C3EF1B /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = /Users/tomoo/Library/Frameworks/Canary.framework; sourceTree = "<absolute>"; };
+		0556B7091BA5C92900C3EF1B /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = /Users/tomoo/Library/Frameworks/KiwiEngine.framework; sourceTree = "<absolute>"; };
+		0556B70B1BA5C93900C3EF1B /* KSStdLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KSStdLib.framework; path = /Users/tomoo/Library/Frameworks/KSStdLib.framework; sourceTree = "<absolute>"; };
+		0556B70D1BA5CC5F00C3EF1B /* JSRunnerExec */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = JSRunnerExec; path = "../../../../build/DerivedData/JSRunner-amtfiqvuiwtlbnghaewbewimzdpi/Build/Products/Debug/JSRunnerExec"; sourceTree = "<group>"; };
 		05A90DE51BA5AAB400B09B4D /* JSRunnerExec */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = JSRunnerExec; sourceTree = BUILT_PRODUCTS_DIR; };
 		05A90DE81BA5AAB400B09B4D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		05A90DF01BA5AB4500B09B4D /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../../Library/Frameworks/Canary.framework; sourceTree = "<group>"; };
@@ -70,6 +107,9 @@
 			isa = PBXGroup;
 			children = (
 				0504937A1BA5AD1B00CAEAEF /* Info.plist */,
+				0556B70B1BA5C93900C3EF1B /* KSStdLib.framework */,
+				0556B7091BA5C92900C3EF1B /* KiwiEngine.framework */,
+				0556B7071BA5C91500C3EF1B /* Canary.framework */,
 			);
 			path = JSRunner;
 			sourceTree = "<group>";
@@ -80,6 +120,7 @@
 				05A90DE71BA5AAB400B09B4D /* Source */,
 				050493791BA5AD1B00CAEAEF /* JSRunner */,
 				05A90DE61BA5AAB400B09B4D /* Products */,
+				0556B70D1BA5CC5F00C3EF1B /* JSRunnerExec */,
 			);
 			sourceTree = "<group>";
 		};
@@ -114,6 +155,24 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXLegacyTarget section */
+		05D7BE511BA71F1B00D941F3 /* Install */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f ../../Script/install_osx.mk";
+			buildConfigurationList = 05D7BE541BA71F1B00D941F3 /* Build configuration list for PBXLegacyTarget "Install" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+				05D7BE561BA71F2500D941F3 /* PBXTargetDependency */,
+			);
+			name = Install;
+			passBuildSettingsInEnvironment = 1;
+			productName = Install;
+		};
+/* End PBXLegacyTarget section */
+
 /* Begin PBXNativeTarget section */
 		050493771BA5AD1B00CAEAEF /* JSRunner */ = {
 			isa = PBXNativeTarget;
@@ -122,6 +181,8 @@
 				050493741BA5AD1B00CAEAEF /* Sources */,
 				050493751BA5AD1B00CAEAEF /* Frameworks */,
 				050493761BA5AD1B00CAEAEF /* Resources */,
+				0556B7041BA5C8E400C3EF1B /* CopyFiles */,
+				0556B7061BA5C8F800C3EF1B /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -167,6 +228,9 @@
 					05A90DE41BA5AAB400B09B4D = {
 						CreatedOnToolsVersion = 6.4;
 					};
+					05D7BE511BA71F1B00D941F3 = {
+						CreatedOnToolsVersion = 7.0;
+					};
 				};
 			};
 			buildConfigurationList = 05A90DE01BA5AAB400B09B4D /* Build configuration list for PBXProject "JSRunner" */;
@@ -183,6 +247,7 @@
 			targets = (
 				05A90DE41BA5AAB400B09B4D /* JSRunnerExec */,
 				050493771BA5AD1B00CAEAEF /* JSRunner */,
+				05D7BE511BA71F1B00D941F3 /* Install */,
 			);
 		};
 /* End PBXProject section */
@@ -221,6 +286,11 @@
 			target = 05A90DE41BA5AAB400B09B4D /* JSRunnerExec */;
 			targetProxy = 0504937E1BA5AD4C00CAEAEF /* PBXContainerItemProxy */;
 		};
+		05D7BE561BA71F2500D941F3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 050493771BA5AD1B00CAEAEF /* JSRunner */;
+			targetProxy = 05D7BE551BA71F2500D941F3 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -228,12 +298,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_TESTABILITY = YES;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				INSTALL_PATH = "$(HOME)/Tools/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.JSRunner";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
@@ -242,11 +315,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				INSTALL_PATH = "$(HOME)/Tools/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.JSRunner";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
@@ -336,6 +411,7 @@
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Frameworks",
 				);
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/..//Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -347,6 +423,31 @@
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Frameworks",
 				);
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/..//Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		05D7BE521BA71F1B00D941F3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		05D7BE531BA71F1B00D941F3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -380,6 +481,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		05D7BE541BA71F1B00D941F3 /* Build configuration list for PBXLegacyTarget "Install" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05D7BE521BA71F1B00D941F3 /* Debug */,
+				05D7BE531BA71F1B00D941F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
