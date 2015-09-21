@@ -8,11 +8,9 @@
 
 import Foundation
 import JavaScriptCore
+import Canary
 import KSStdLib
 
-private func makeJSValue(dict : Dictionary<NSObject, AnyObject>, context : JSContext) -> JSValue {
-	return JSValue(object: dict, inContext: context)
-}
 
 func testValueCoder() -> Bool
 {
@@ -22,55 +20,65 @@ func testValueCoder() -> Bool
 
 private func testDirectCoding() -> Bool
 {
-	var result  = true
+	var result = true
 	let context = JSContext()
 	
-	/* CGFloat */
-	let floatdata : Double = 10.1
-	let floatval = KSValueCoder.encodeDouble("key", val: floatdata, context: context)
-	decodeValue(floatval)
-	if let revfloat = KSValueCoder.decodeDouble(floatval, key: "key") {
-		if revfloat == 10.1 {
-			print(" Enc/Dec CGFloat ... OK")
+	let point = CGPointMake(1.2, 3.4)
+	let ptval = KSEncodePoint(point)
+	let ptjsv = JSValue(object: ptval, inContext: context)
+	dumpValue(ptjsv)
+	if let revpt = KSDecodePoint(ptval) {
+		if revpt.x == point.x && revpt.y == point.y {
+			print("OK ... Encode/Decode CGPoint are succeeded")
 		} else {
-			print(" Enc/Dec CGFloat ... NG (\(revfloat))")
+			print("Error: invalid value \(ptval)")
 			result = false
 		}
 	} else {
-		print(" Enc/Dec CGFloat ... NG (nil)")
+		print("Error: can not decode \(ptval)")
 		result = false
 	}
 	
-	/* CGPoint */
-	let point = CGPoint(x:123.0, y:456.7)
-	let pointval = KSValueCoder.encodePoint(point, context: context)
-	decodeValue(pointval)
-	if let revpoint = KSValueCoder.decodePoint(pointval){
-		if revpoint.x == 123.0 && revpoint.y == 456.7 {
-			print(" Enc/Dec CGPoint ... OK")
+	let size = CGSizeMake(4.5, 5.6)
+	let szval = KSEncodeSize(size)
+	let szjsv = JSValue(object: szval, inContext: context)
+	dumpValue(szjsv)
+	if let revsz = KSDecodeSize(szval) {
+		if revsz.width == size.width && revsz.height == size.height {
+			print("OK ... Encode/Decode CGSize are succeeded")
 		} else {
-			print(" Enc/Dec CGPoint ... NG (\(revpoint))")
+			print("Error: invalid value \(szval)")
 			result = false
 		}
 	} else {
-		print(" Enc/Dec CGPoint ... NG (nil)")
+		print("Error: can not decode \(szval)")
 		result = false
 	}
-
-	/* CGSize */
-	let size = CGSize(width: 10.1, height: 20.2)
-	let sizeval = KSValueCoder.encodeSize(size, context: context)
-	decodeValue(sizeval)
-	if let revsize = KSValueCoder.decodeSize(sizeval) {
-		if revsize.width == 10.1 && revsize.height == 20.2 {
-			print(" Enc/Dec CGSize ... OK")
+	
+	var dict : [String:AnyObject] = ["key":"value"]
+	let dictelm : [Int] = [1,2,3,4]
+	KSAddMember(&dict, key: "a", value: Double(10.0))
+	KSAddMember(&dict, key: "b", value: dictelm)
+	let dictsv = JSValue(object: dict, inContext: context)
+	dumpValue(dictsv)
+	if let elmval : NSNumber = KSGetMember(dict, key: "a") {
+		if elmval.doubleValue == 10.0 {
+			print("OK ... Get/set member are succeeded")
 		} else {
-			print(" Enc/Dec CGSize ... NG (\(revsize))")
+			print("Error: invalid value \(elmval)")
 			result = false
 		}
 	} else {
-		print(" Enc/Dec CGSize ... NG (nil)")
+		print("Error: can not decode \(dict)")
 		result = false
 	}
+	
 	return result
+}
+
+private func dumpValue(value : JSValue)
+{
+	let encoder = KSJsonEncoder()
+	let buf = encoder.encode(value)
+	buf.dump()
 }

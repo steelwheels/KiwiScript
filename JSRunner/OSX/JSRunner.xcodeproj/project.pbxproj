@@ -8,10 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		052780741BA8649700A57197 /* JSRunnerExec in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05ED598D1BA8635000F34271 /* JSRunnerExec */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		052780771BA865A800A57197 /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 052780761BA865A800A57197 /* Canary.framework */; settings = {ASSET_TAGS = (); }; };
+		052780791BA8662B00A57197 /* Canary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 052780761BA865A800A57197 /* Canary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05ED59901BA8635000F34271 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ED598F1BA8635000F34271 /* main.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0527807E1BA8673300A57197 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05BAB3CA1BA862D600D3891F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05BAB3D11BA862D700D3891F;
+			remoteInfo = JSRunner;
+		};
 		05ED59941BA8635C00F34271 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 05BAB3CA1BA862D600D3891F /* Project object */;
@@ -32,6 +41,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		052780781BA8661600A57197 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				052780791BA8662B00A57197 /* Canary.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05ED598B1BA8635000F34271 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -44,6 +63,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		052780761BA865A800A57197 /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../../Library/Frameworks/Canary.framework; sourceTree = "<group>"; };
 		05BAB3D21BA862D700D3891F /* JSRunner.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JSRunner.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		05BAB3D51BA862D700D3891F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05ED598D1BA8635000F34271 /* JSRunnerExec */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = JSRunnerExec; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,12 +82,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				052780771BA865A800A57197 /* Canary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		052780751BA8659000A57197 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				052780761BA865A800A57197 /* Canary.framework */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		05BAB3C91BA862D600D3891F = {
 			isa = PBXGroup;
 			children = (
@@ -99,12 +128,31 @@
 			isa = PBXGroup;
 			children = (
 				05ED598F1BA8635000F34271 /* main.swift */,
+				052780751BA8659000A57197 /* Supporting Files */,
 			);
 			name = Source;
 			path = ../Source;
 			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		0527807A1BA8672A00A57197 /* Install */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f ../../Script/install_osx.mk";
+			buildConfigurationList = 0527807B1BA8672A00A57197 /* Build configuration list for PBXLegacyTarget "Install" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+				0527807F1BA8673300A57197 /* PBXTargetDependency */,
+			);
+			name = Install;
+			passBuildSettingsInEnvironment = 1;
+			productName = Install;
+		};
+/* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
 		05BAB3D11BA862D700D3891F /* JSRunner */ = {
@@ -115,6 +163,7 @@
 				05BAB3CF1BA862D700D3891F /* Frameworks */,
 				05BAB3D01BA862D700D3891F /* Resources */,
 				052780731BA8648D00A57197 /* CopyFiles */,
+				052780781BA8661600A57197 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -152,6 +201,9 @@
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Steel Wheels Project";
 				TargetAttributes = {
+					0527807A1BA8672A00A57197 = {
+						CreatedOnToolsVersion = 7.0;
+					};
 					05BAB3D11BA862D700D3891F = {
 						CreatedOnToolsVersion = 7.0;
 					};
@@ -174,6 +226,7 @@
 			targets = (
 				05ED598C1BA8635000F34271 /* JSRunnerExec */,
 				05BAB3D11BA862D700D3891F /* JSRunner */,
+				0527807A1BA8672A00A57197 /* Install */,
 			);
 		};
 /* End PBXProject section */
@@ -207,6 +260,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		0527807F1BA8673300A57197 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05BAB3D11BA862D700D3891F /* JSRunner */;
+			targetProxy = 0527807E1BA8673300A57197 /* PBXContainerItemProxy */;
+		};
 		05ED59951BA8635C00F34271 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 05ED598C1BA8635000F34271 /* JSRunnerExec */;
@@ -215,6 +273,29 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		0527807C1BA8672A00A57197 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		0527807D1BA8672A00A57197 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		05BAB3D61BA862D700D3891F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -296,11 +377,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.JSRunner";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
@@ -309,11 +391,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.JSRunner";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
@@ -321,8 +404,14 @@
 		05ED59921BA8635000F34271 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/JSRunner.bundle/Cont";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
+				INSTALL_PATH = "$(HOME)/Tools/bin";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/JSRunner.bundle/Contents/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -330,14 +419,28 @@
 		05ED59931BA8635000F34271 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
+				INSTALL_PATH = "$(HOME)/Tools/bin";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0527807B1BA8672A00A57197 /* Build configuration list for PBXLegacyTarget "Install" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0527807C1BA8672A00A57197 /* Debug */,
+				0527807D1BA8672A00A57197 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		05BAB3CD1BA862D700D3891F /* Build configuration list for PBXProject "JSRunner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
