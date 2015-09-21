@@ -1,16 +1,16 @@
 /**
-* @file		UTStdLib.swift
-* @brief	Unit test for KSStdLib framework
-* @par Copyright
-*   Copyright (C) 2015 Steel Wheels Project
-*/
+ * @file	UTStdLib.swift
+ * @brief	Unit test for KSStdLib framework
+ * @par Copyright
+ *   Copyright (C) 2015 Steel Wheels Project
+ */
 
 import Foundation
 import KiwiEngine
 import KSStdLib
 import JavaScriptCore
 
-func testUTStdLib() -> Bool
+func testStdLib() -> Bool
 {
 	var result  = true
 	

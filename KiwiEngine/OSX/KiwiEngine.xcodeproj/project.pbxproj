@@ -12,6 +12,7 @@
 		0507B1791BA41BC00048D325 /* KSStdLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0507B1781BA41BC00048D325 /* KSStdLib.framework */; settings = {ASSET_TAGS = (); }; };
 		0507B1871BA41DB90048D325 /* UnitTestExec in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058B53231BA41A6C009522DF /* UnitTestExec */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		054536C61B78021500FE978C /* KiwiEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 054536C51B78021500FE978C /* KiwiEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		054637F21BB05FE400DEE12F /* UTError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054637F01BB05F4500DEE12F /* UTError.swift */; settings = {ASSET_TAGS = (); }; };
 		057A3DD11BA4585E004271B8 /* UTStdLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057A3DD01BA4585E004271B8 /* UTStdLib.swift */; settings = {ASSET_TAGS = (); }; };
 		057F881F1B78031B0029AB4F /* KEContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F881E1B78031B0029AB4F /* KEContext.swift */; };
 		057F88231B780B4A0029AB4F /* KEEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F88221B780B4A0029AB4F /* KEEngine.swift */; };
@@ -89,6 +90,7 @@
 		054536C01B78021500FE978C /* KiwiEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		054536C41B78021500FE978C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		054536C51B78021500FE978C /* KiwiEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiEngine.h; sourceTree = SOURCE_ROOT; };
+		054637F01BB05F4500DEE12F /* UTError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTError.swift; sourceTree = "<group>"; };
 		057A3DD01BA4585E004271B8 /* UTStdLib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTStdLib.swift; sourceTree = "<group>"; };
 		057F881E1B78031B0029AB4F /* KEContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEContext.swift; sourceTree = "<group>"; };
 		057F88221B780B4A0029AB4F /* KEEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEEngine.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 			children = (
 				058B53251BA41A6C009522DF /* main.swift */,
 				057A3DD01BA4585E004271B8 /* UTStdLib.swift */,
+				054637F01BB05F4500DEE12F /* UTError.swift */,
 			);
 			path = UnitTestExec;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				054637F21BB05FE400DEE12F /* UTError.swift in Sources */,
 				057A3DD11BA4585E004271B8 /* UTStdLib.swift in Sources */,
 				058B53261BA41A6C009522DF /* main.swift in Sources */,
 			);

@@ -16,7 +16,8 @@ func test(funcname : String, result : Bool)
 	}
 }
 
-test("testUTStdLib", result: testUTStdLib())
+test("testStdLib", result: testStdLib())
+test("testError", result: testError())
 
 
 
