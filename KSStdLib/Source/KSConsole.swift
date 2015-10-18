@@ -7,12 +7,23 @@
 
 import Foundation
 import JavaScriptCore
+import Canary
 
 @objc protocol KSConsoleOperating : JSExport {
 	func put(value : JSValue)
 }
 
-@objc public class KSConsole : NSObject, KSConsoleOperating {
+@objc public class KSConsole : NSObject, KSConsoleOperating
+{
+	var mConsole : CNConsole
+	var mDumper  : CNTextDumper
+	
+	public init(console : CNConsole){
+		mConsole = console
+		mDumper  = CNTextDumper()
+		super.init()
+	}
+	
 	public class func rootObjectName() -> String {
 		return "console"
 	}
@@ -24,7 +35,7 @@ import JavaScriptCore
 	
 	public func put(value : JSValue){
 		let encoder = KSJsonEncoder()
-		let buf = encoder.encode(value)
-		buf.dump()
+		let text    = encoder.encode(value)
+		mDumper.dumpToConsole(mConsole, text: text)
 	}
 }

@@ -23,6 +23,9 @@ func printTitle(title : String)
 print("* KSValue")
 test(testKSValue())
 
+print("* KSValueType")
+test(testKSValueType())
+
 print("* KSJsonEncoder")
 test(testJsonEncoder())
 

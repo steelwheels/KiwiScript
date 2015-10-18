@@ -9,102 +9,46 @@ import Foundation
 import JavaScriptCore
 import Canary
 
-public class KSJsonEncoder : KSValueVisitor
+public class KSJsonEncoder : CNJSONEncoder
 {
-	let textBuffer		= CNTextBuffer()
-	var resultString	= ""
-
-	public func encode(value : JSValue) -> CNTextBuffer {
-		acceptValue(value)
-		flush()
-		return textBuffer
-	}
-	
-	private func flush(){
-		if resultString.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 0{
-			textBuffer.append(resultString)
-			textBuffer.newline()
-			resultString = ""
-		}
-		
-	}
-	
-	public override func visitUndefinedValue(value : JSValue){
-		resultString += "undefined"
-	}
-	
-	public override func visitNilValue(value : JSValue){
-		resultString += "nil"
-	}
-	
-	public override func visitBooleanValue(value : Bool){
-		resultString += "\(value)"
-	}
-	
-	public override func visitNumberObject(number : NSNumber){
-		resultString += "\(number)"
-	}
-	
-	public override func visitStringObject(string : NSString){
-		resultString += "\(string)"
-	}
-	
-	public override func visitDateObject(date : NSDate){
-		resultString += "\(date)"
-	}
-	
-	public override func visitDictionaryObject(dict : NSDictionary){
-		resultString += "{"
-		flush()
-		
-		textBuffer.incrementIndent()
-		for (key, value) in dict {
-			if let keyobj = key as? NSObject {
-				acceptObject(keyobj)
+	public func encodeValue(value : JSValue) -> CNTextElement {
+		switch value.kind() {
+		case .UndefinedValue:
+			visitUndefinedValue(value)
+		case .NilValue:
+			visitNilValue(value) ;
+		case .BooleanValue:
+			visitBooleanValue(value.toBool()) ;
+		case .NumberValue:
+			visitNumberObject(value.toNumber()) ;
+		case .StringValue:
+			visitStringObject(value.toString()) ;
+		case .DateValue:
+			visitDateObject(value.toDate()) ;
+		case .ArrayValue:
+			visitArrayObject(value.toArray()) ;
+		case .DictionaryValue:
+			visitDictionaryObject(value.toDictionary()) ;
+		case .ObjectValue:
+			if let obj : NSObject = value.toObject() as? NSObject {
+				super.encode(obj)
 			} else {
-				fatalError("Unknown key of dictionary: \(key)")
-			}
-
-			resultString += " : "
-			
-			if let valobj = value as? NSObject {
-				acceptObject(valobj)
-			} else {
-				fatalError("Unknown value of dictionary: \(value)")
-			}
-			
-			flush()
-		}
-		textBuffer.decrementIndent()
-
-		resultString = "}"
-		flush()
-	}
-	
-	public override func visitArrayObject(arr : NSArray){
-		resultString += "["
-
-		var is1st = true
-		textBuffer.incrementIndent()
-		for elm in arr {
-			if is1st {
-				is1st = false
-			} else {
-				resultString += ", "
-			}
-			if let elmobj = elm as? NSObject {
-				acceptObject(elmobj)
-			} else {
-				fatalError("Not object: \"\(elm)\"")
+				fatalError("Unknown object: \(value)")
 			}
 		}
-		textBuffer.decrementIndent()
-
-		resultString += "]"
+		return result() ;
 	}
 	
-	public override func visitUnknownObject(obj : NSObject){
-		resultString = "unknown"
+	public func visitUndefinedValue(value : JSValue){
+		visitStringObject("undefined")
+	}
+	
+	public func visitNilValue(value : JSValue){
+		visitStringObject("nil")
+	}
+	
+	public func visitBooleanValue(value : Bool){
+		visitStringObject(value ? "true" : "false")
 	}
 }
 

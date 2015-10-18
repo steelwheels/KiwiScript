@@ -7,41 +7,49 @@
 //
 
 import Foundation
-import KSStdLib
 import JavaScriptCore
+import Canary
+import KSStdLib
 
 public func testJsonEncoder() -> Bool
 {
+	let console = CNTextConsole()
 	let context = JSContext()
 	
 	print("** Bool Object -> ", terminator:"")
 	let val0 = JSValue(bool: true, inContext: context)
-	decodeValue(val0)
+	decodeValue(console, value: val0)
 	
 	print("** Double Object -> ", terminator:"")
 	let val1 = JSValue(double: 1.23, inContext: context)
-	decodeValue(val1)
+	decodeValue(console, value: val1)
 	
 	print("** String Object -> ", terminator:"")
 	let var2 = JSValue(object: NSString(UTF8String: "Hello, World"), inContext: context)
-	decodeValue(var2)
+	decodeValue(console, value: var2)
 	
 	print("** Dictionary Object -> ", terminator:"")
 	let dict0 : NSDictionary = ["a":123, "b":234] ;
 	let var3 = JSValue(object: dict0, inContext: context)
-	decodeValue(var3)
+	decodeValue(console, value: var3)
 	
 	print("** Array object -> ", terminator:"")
 	let arr0 : NSArray = [1, 2, 3, 4]
 	let var4 = JSValue(object: arr0, inContext: context)
-	decodeValue(var4)
+	decodeValue(console, value: var4)
+	
+	print("** Combination object -> ", terminator:"")
+	let dict1 : NSDictionary = ["i0":dict0, "i1":arr0]
+	let var5 = JSValue(object: dict1, inContext: context)
+	decodeValue(console, value: var5)
 	
 	return true
 }
 
-public func decodeValue(value : JSValue)
+public func decodeValue(console : CNConsole, value : JSValue)
 {
 	let encoder = KSJsonEncoder() ;
-	let textbuf = encoder.encode(value)
-	textbuf.dump()
+	let textbuf = encoder.encodeValue(value)
+	let dumper  = CNTextDumper()
+	dumper.dumpToConsole(console, text: textbuf)
 }

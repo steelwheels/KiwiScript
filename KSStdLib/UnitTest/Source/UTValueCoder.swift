@@ -20,13 +20,14 @@ func testValueCoder() -> Bool
 
 private func testDirectCoding() -> Bool
 {
-	var result = true
+	var result  = true
+	let console = CNTextConsole()
 	let context = JSContext()
 	
 	let point = CGPointMake(1.2, 3.4)
 	let ptval = KSEncodePoint(point)
 	let ptjsv = JSValue(object: ptval, inContext: context)
-	dumpValue(ptjsv)
+	dumpValue(console, value: ptjsv)
 	if let revpt = KSDecodePoint(ptval) {
 		if revpt.x == point.x && revpt.y == point.y {
 			print("OK ... Encode/Decode CGPoint are succeeded")
@@ -42,7 +43,7 @@ private func testDirectCoding() -> Bool
 	let size = CGSizeMake(4.5, 5.6)
 	let szval = KSEncodeSize(size)
 	let szjsv = JSValue(object: szval, inContext: context)
-	dumpValue(szjsv)
+	dumpValue(console, value: szjsv)
 	if let revsz = KSDecodeSize(szval) {
 		if revsz.width == size.width && revsz.height == size.height {
 			print("OK ... Encode/Decode CGSize are succeeded")
@@ -60,7 +61,7 @@ private func testDirectCoding() -> Bool
 	KSAddMember(&dict, key: "a", value: Double(10.0))
 	KSAddMember(&dict, key: "b", value: dictelm)
 	let dictsv = JSValue(object: dict, inContext: context)
-	dumpValue(dictsv)
+	dumpValue(console, value: dictsv)
 	if let elmval : NSNumber = KSGetMember(dict, key: "a") {
 		if elmval.doubleValue == 10.0 {
 			print("OK ... Get/set member are succeeded")
@@ -76,9 +77,10 @@ private func testDirectCoding() -> Bool
 	return result
 }
 
-private func dumpValue(value : JSValue)
+private func dumpValue(console : CNConsole, value : JSValue)
 {
 	let encoder = KSJsonEncoder()
 	let buf = encoder.encode(value)
-	buf.dump()
+	let dumper = CNTextDumper()
+	dumper.dumpToConsole(console, text: buf)
 }

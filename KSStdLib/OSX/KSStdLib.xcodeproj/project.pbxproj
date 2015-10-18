@@ -11,19 +11,19 @@
 		050CE5171B94BAE3002D5CE2 /* UTJsonEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050CE5161B94BAE3002D5CE2 /* UTJsonEncoder.swift */; };
 		05323AFA1B8FD9F200336D7D /* UTValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05323AF91B8FD9F200336D7D /* UTValue.swift */; };
 		056709BF1B90738500CD8C0A /* KSJsonEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056709BE1B90738500CD8C0A /* KSJsonEncoder.swift */; };
-		0569538F1B9C895C00A59739 /* UnitTestExe in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05EC0A851B8FD83C0053BA1C /* UnitTestExe */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		057C204D1B9C54FD00D4382D /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057C204C1B9C54FD00D4382D /* Canary.framework */; settings = {ASSET_TAGS = (); }; };
-		057C20511B9C559800D4382D /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057C204C1B9C54FD00D4382D /* Canary.framework */; settings = {ASSET_TAGS = (); }; };
-		057FEFC31B9F27EF00C9CCFA /* UTValueCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057FEFC21B9F27EF00C9CCFA /* UTValueCoder.swift */; settings = {ASSET_TAGS = (); }; };
-		0595FC491B9E014D003D53D4 /* KSStdLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056953921B9C898A00A59739 /* KSStdLib.framework */; settings = {ASSET_TAGS = (); }; };
-		0595FC4A1B9E0151003D53D4 /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056953901B9C897300A59739 /* Canary.framework */; settings = {ASSET_TAGS = (); }; };
+		0569538F1B9C895C00A59739 /* UnitTestExec in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05EC0A851B8FD83C0053BA1C /* UnitTestExec */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		057C204D1B9C54FD00D4382D /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057C204C1B9C54FD00D4382D /* Canary.framework */; };
+		057C20511B9C559800D4382D /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057C204C1B9C54FD00D4382D /* Canary.framework */; };
+		057FEFC31B9F27EF00C9CCFA /* UTValueCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057FEFC21B9F27EF00C9CCFA /* UTValueCoder.swift */; };
+		058895EC1BCEBF2B0091E8A7 /* UTValueType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058895EB1BCEBF2B0091E8A7 /* UTValueType.swift */; };
+		0595FC491B9E014D003D53D4 /* KSStdLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056953921B9C898A00A59739 /* KSStdLib.framework */; };
 		0595FC4C1B9E020D003D53D4 /* KSStdLib.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0595FC4B1B9E020D003D53D4 /* KSStdLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0595FC4E1B9E021F003D53D4 /* Canary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0595FC4D1B9E021F003D53D4 /* Canary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		05C03E761BA56CC700D70098 /* KSConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C03E751BA56CC700D70098 /* KSConsole.swift */; settings = {ASSET_TAGS = (); }; };
-		05C03E781BA56FBE00D70098 /* KSStdLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C03E771BA56FBE00D70098 /* KSStdLib.swift */; settings = {ASSET_TAGS = (); }; };
-		05DA9F881BA3E3920027EA25 /* KSValueExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DA9F871BA3E3920027EA25 /* KSValueExtension.swift */; settings = {ASSET_TAGS = (); }; };
+		05C03E761BA56CC700D70098 /* KSConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C03E751BA56CC700D70098 /* KSConsole.swift */; };
+		05C03E781BA56FBE00D70098 /* KSStdLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C03E771BA56FBE00D70098 /* KSStdLib.swift */; };
+		05DA9F881BA3E3920027EA25 /* KSValueExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DA9F871BA3E3920027EA25 /* KSValueExtension.swift */; };
 		05EC0A881B8FD83C0053BA1C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EC0A871B8FD83C0053BA1C /* main.swift */; };
-		05F63DA61BAC802800498E71 /* KSValueCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F63DA51BAC802800498E71 /* KSValueCoder.swift */; settings = {ASSET_TAGS = (); }; };
+		05F63DA61BAC802800498E71 /* KSValueCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F63DA51BAC802800498E71 /* KSValueCoder.swift */; };
 		05F674E91B8CAD4500B391D1 /* KSValueVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F674E81B8CAD4500B391D1 /* KSValueVisitor.swift */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +49,13 @@
 			remoteGlobalIDString = 05121B591B8789DE00C2A871;
 			remoteInfo = Install;
 		};
+		056736AD1BCEAA39007BFF95 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 050172C81B877A99007CB6D9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0525DC0F1B9C56E8009479F5;
+			remoteInfo = UnitTest;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -58,7 +65,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
-				0569538F1B9C895C00A59739 /* UnitTestExe in CopyFiles */,
+				0569538F1B9C895C00A59739 /* UnitTestExec in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,12 +104,13 @@
 		056953921B9C898A00A59739 /* KSStdLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KSStdLib.framework; path = /Users/tomoo/Library/Frameworks/KSStdLib.framework; sourceTree = "<absolute>"; };
 		057C204C1B9C54FD00D4382D /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = /Users/tomoo/Library/Frameworks/Canary.framework; sourceTree = "<absolute>"; };
 		057FEFC21B9F27EF00C9CCFA /* UTValueCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTValueCoder.swift; sourceTree = "<group>"; };
+		058895EB1BCEBF2B0091E8A7 /* UTValueType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTValueType.swift; sourceTree = "<group>"; };
 		0595FC4B1B9E020D003D53D4 /* KSStdLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KSStdLib.framework; path = ../../../../../Library/Frameworks/KSStdLib.framework; sourceTree = "<group>"; };
 		0595FC4D1B9E021F003D53D4 /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../../../Library/Frameworks/Canary.framework; sourceTree = "<group>"; };
 		05C03E751BA56CC700D70098 /* KSConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSConsole.swift; sourceTree = "<group>"; };
 		05C03E771BA56FBE00D70098 /* KSStdLib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSStdLib.swift; sourceTree = "<group>"; };
 		05DA9F871BA3E3920027EA25 /* KSValueExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSValueExtension.swift; sourceTree = "<group>"; };
-		05EC0A851B8FD83C0053BA1C /* UnitTestExe */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTestExe; sourceTree = BUILT_PRODUCTS_DIR; };
+		05EC0A851B8FD83C0053BA1C /* UnitTestExec */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTestExec; sourceTree = BUILT_PRODUCTS_DIR; };
 		05EC0A871B8FD83C0053BA1C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		05F63DA51BAC802800498E71 /* KSValueCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSValueCoder.swift; sourceTree = "<group>"; };
 		05F674E81B8CAD4500B391D1 /* KSValueVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSValueVisitor.swift; sourceTree = "<group>"; };
@@ -130,7 +138,6 @@
 			files = (
 				0595FC491B9E014D003D53D4 /* KSStdLib.framework in Frameworks */,
 				057C20511B9C559800D4382D /* Canary.framework in Frameworks */,
-				0595FC4A1B9E0151003D53D4 /* Canary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,7 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				050172D11B877A99007CB6D9 /* KSStdLib.framework */,
-				05EC0A851B8FD83C0053BA1C /* UnitTestExe */,
+				05EC0A851B8FD83C0053BA1C /* UnitTestExec */,
 				0525DC101B9C56E8009479F5 /* UnitTest.bundle */,
 			);
 			name = Products;
@@ -208,6 +215,7 @@
 				056953901B9C897300A59739 /* Canary.framework */,
 				05EC0A871B8FD83C0053BA1C /* main.swift */,
 				05323AF91B8FD9F200336D7D /* UTValue.swift */,
+				058895EB1BCEBF2B0091E8A7 /* UTValueType.swift */,
 				050CE5161B94BAE3002D5CE2 /* UTJsonEncoder.swift */,
 				057FEFC21B9F27EF00C9CCFA /* UTValueCoder.swift */,
 			);
@@ -242,6 +250,21 @@
 			name = Install;
 			passBuildSettingsInEnvironment = 1;
 			productName = Install;
+		};
+		056736A91BCEAA2E007BFF95 /* Check */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f check.mk";
+			buildConfigurationList = 056736AC1BCEAA2E007BFF95 /* Build configuration list for PBXLegacyTarget "Check" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+				056736AE1BCEAA39007BFF95 /* PBXTargetDependency */,
+			);
+			name = Check;
+			passBuildSettingsInEnvironment = 1;
+			productName = Check;
 		};
 /* End PBXLegacyTarget section */
 
@@ -284,9 +307,9 @@
 			productReference = 0525DC101B9C56E8009479F5 /* UnitTest.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
-		05EC0A841B8FD83C0053BA1C /* UnitTestExe */ = {
+		05EC0A841B8FD83C0053BA1C /* UnitTestExec */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 05EC0A891B8FD83C0053BA1C /* Build configuration list for PBXNativeTarget "UnitTestExe" */;
+			buildConfigurationList = 05EC0A891B8FD83C0053BA1C /* Build configuration list for PBXNativeTarget "UnitTestExec" */;
 			buildPhases = (
 				05EC0A811B8FD83C0053BA1C /* Sources */,
 				05EC0A821B8FD83C0053BA1C /* Frameworks */,
@@ -297,9 +320,9 @@
 			dependencies = (
 				05323AF81B8FD89400336D7D /* PBXTargetDependency */,
 			);
-			name = UnitTestExe;
+			name = UnitTestExec;
 			productName = UnitTest;
-			productReference = 05EC0A851B8FD83C0053BA1C /* UnitTestExe */;
+			productReference = 05EC0A851B8FD83C0053BA1C /* UnitTestExec */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -310,7 +333,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Steel Wheels Project";
 				TargetAttributes = {
 					050172D01B877A99007CB6D9 = {
@@ -321,6 +344,9 @@
 					};
 					0525DC0F1B9C56E8009479F5 = {
 						CreatedOnToolsVersion = 7.0;
+					};
+					056736A91BCEAA2E007BFF95 = {
+						CreatedOnToolsVersion = 7.1;
 					};
 					05EC0A841B8FD83C0053BA1C = {
 						CreatedOnToolsVersion = 6.4;
@@ -342,8 +368,9 @@
 			targets = (
 				050172D01B877A99007CB6D9 /* KSStdLib */,
 				05121B591B8789DE00C2A871 /* Install */,
-				05EC0A841B8FD83C0053BA1C /* UnitTestExe */,
+				05EC0A841B8FD83C0053BA1C /* UnitTestExec */,
 				0525DC0F1B9C56E8009479F5 /* UnitTest */,
+				056736A91BCEAA2E007BFF95 /* Check */,
 			);
 		};
 /* End PBXProject section */
@@ -392,6 +419,7 @@
 			files = (
 				05323AFA1B8FD9F200336D7D /* UTValue.swift in Sources */,
 				05EC0A881B8FD83C0053BA1C /* main.swift in Sources */,
+				058895EC1BCEBF2B0091E8A7 /* UTValueType.swift in Sources */,
 				057FEFC31B9F27EF00C9CCFA /* UTValueCoder.swift in Sources */,
 				050CE5171B94BAE3002D5CE2 /* UTJsonEncoder.swift in Sources */,
 			);
@@ -407,13 +435,18 @@
 		};
 		0525DC171B9C56F8009479F5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 05EC0A841B8FD83C0053BA1C /* UnitTestExe */;
+			target = 05EC0A841B8FD83C0053BA1C /* UnitTestExec */;
 			targetProxy = 0525DC161B9C56F8009479F5 /* PBXContainerItemProxy */;
 		};
 		05323AF81B8FD89400336D7D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 05121B591B8789DE00C2A871 /* Install */;
 			targetProxy = 05323AF71B8FD89400336D7D /* PBXContainerItemProxy */;
+		};
+		056736AE1BCEAA39007BFF95 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0525DC0F1B9C56E8009479F5 /* UnitTest */;
+			targetProxy = 056736AD1BCEAA39007BFF95 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -606,6 +639,29 @@
 			};
 			name = Release;
 		};
+		056736AA1BCEAA2E007BFF95 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		056736AB1BCEAA2E007BFF95 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		05EC0A8A1B8FD83C0053BA1C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -675,7 +731,16 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		05EC0A891B8FD83C0053BA1C /* Build configuration list for PBXNativeTarget "UnitTestExe" */ = {
+		056736AC1BCEAA2E007BFF95 /* Build configuration list for PBXLegacyTarget "Check" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				056736AA1BCEAA2E007BFF95 /* Debug */,
+				056736AB1BCEAA2E007BFF95 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05EC0A891B8FD83C0053BA1C /* Build configuration list for PBXNativeTarget "UnitTestExec" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				05EC0A8A1B8FD83C0053BA1C /* Debug */,

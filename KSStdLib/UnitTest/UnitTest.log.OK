@@ -1,0 +1,38 @@
+* KSValue
+** Print kind strings
+char   -> Boolean
+number -> Number
+int32: 123 : Number
+UInt32: 123 : Number
+double: 123.4 : Number
+RESULT : true
+* KSValueType
+*** var var0 = 1
+1
+*** var var1 = 1.23
+1.23
+*** var var2 = ["A" , "B" , "C" , 123 , 456 , true , false];
+[A, B, C, 123, 456, 1, 0]
+RESULT : true
+* KSJsonEncoder
+** Bool Object -> true
+** Double Object -> 1.23
+** String Object -> Hello, World
+** Dictionary Object -> [b:234, a:123]
+** Array object -> [1, 2, 3, 4]
+** Combination object -> [
+  i0:[b:234, a:123]
+  , 
+  i1:[1, 2, 3, 4]
+]
+RESULT : true
+* KSValueCoder
+<unknown>
+OK ... Encode/Decode CGPoint are succeeded
+<unknown>
+OK ... Encode/Decode CGSize are succeeded
+<unknown>
+OK ... Get/set member are succeeded
+RESULT : true
+**** SUMMARY
+TOTAL RESULT: OK
