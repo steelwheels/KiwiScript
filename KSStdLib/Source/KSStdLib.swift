@@ -7,9 +7,11 @@
 
 import Foundation
 import JavaScriptCore
+import Canary
 
-public func KSSetupStdLib(context : JSContext)
+public func KSSetupStdLib(context : JSContext, console : CNConsole)
 {
-	KSConsole.register(context)
+	let consolelib = KSConsole(console: console)
+	consolelib.registerToContext(context)
 }
 

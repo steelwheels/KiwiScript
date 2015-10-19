@@ -32,6 +32,9 @@ test(testJsonEncoder())
 print("* KSValueCoder")
 test(testValueCoder())
 
+print("* UTConsole")
+test(testConsole())
+
 print("**** SUMMARY\nTOTAL RESULT: ", terminator: "")
 if result {
 	print("OK")

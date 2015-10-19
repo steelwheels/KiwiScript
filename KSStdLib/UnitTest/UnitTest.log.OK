@@ -34,5 +34,8 @@ OK ... Encode/Decode CGSize are succeeded
 <unknown>
 OK ... Get/set member are succeeded
 RESULT : true
+* UTConsole
+Hello, world!!
+RESULT : true
 **** SUMMARY
 TOTAL RESULT: OK

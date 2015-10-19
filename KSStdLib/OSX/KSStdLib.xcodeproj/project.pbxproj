@@ -16,6 +16,7 @@
 		057C20511B9C559800D4382D /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057C204C1B9C54FD00D4382D /* Canary.framework */; };
 		057FEFC31B9F27EF00C9CCFA /* UTValueCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057FEFC21B9F27EF00C9CCFA /* UTValueCoder.swift */; };
 		058895EC1BCEBF2B0091E8A7 /* UTValueType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058895EB1BCEBF2B0091E8A7 /* UTValueType.swift */; };
+		058DCE021BD5482100917A40 /* UTConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058DCE011BD5482100917A40 /* UTConsole.swift */; settings = {ASSET_TAGS = (); }; };
 		0595FC491B9E014D003D53D4 /* KSStdLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056953921B9C898A00A59739 /* KSStdLib.framework */; };
 		0595FC4C1B9E020D003D53D4 /* KSStdLib.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0595FC4B1B9E020D003D53D4 /* KSStdLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0595FC4E1B9E021F003D53D4 /* Canary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0595FC4D1B9E021F003D53D4 /* Canary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -105,6 +106,7 @@
 		057C204C1B9C54FD00D4382D /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = /Users/tomoo/Library/Frameworks/Canary.framework; sourceTree = "<absolute>"; };
 		057FEFC21B9F27EF00C9CCFA /* UTValueCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTValueCoder.swift; sourceTree = "<group>"; };
 		058895EB1BCEBF2B0091E8A7 /* UTValueType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTValueType.swift; sourceTree = "<group>"; };
+		058DCE011BD5482100917A40 /* UTConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTConsole.swift; sourceTree = "<group>"; };
 		0595FC4B1B9E020D003D53D4 /* KSStdLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KSStdLib.framework; path = ../../../../../Library/Frameworks/KSStdLib.framework; sourceTree = "<group>"; };
 		0595FC4D1B9E021F003D53D4 /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../../../Library/Frameworks/Canary.framework; sourceTree = "<group>"; };
 		05C03E751BA56CC700D70098 /* KSConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSConsole.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				058895EB1BCEBF2B0091E8A7 /* UTValueType.swift */,
 				050CE5161B94BAE3002D5CE2 /* UTJsonEncoder.swift */,
 				057FEFC21B9F27EF00C9CCFA /* UTValueCoder.swift */,
+				058DCE011BD5482100917A40 /* UTConsole.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				05EC0A881B8FD83C0053BA1C /* main.swift in Sources */,
 				058895EC1BCEBF2B0091E8A7 /* UTValueType.swift in Sources */,
 				057FEFC31B9F27EF00C9CCFA /* UTValueCoder.swift in Sources */,
+				058DCE021BD5482100917A40 /* UTConsole.swift in Sources */,
 				050CE5171B94BAE3002D5CE2 /* UTJsonEncoder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

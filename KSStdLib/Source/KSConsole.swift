@@ -28,14 +28,13 @@ import Canary
 		return "console"
 	}
 	
-	public class func register(context : JSContext){
-		context.setObject(KSConsole.self, forKeyedSubscript: rootObjectName())
-
+	public func registerToContext(context : JSContext){
+		context.setObject(self, forKeyedSubscript: KSConsole.rootObjectName())
 	}
 	
 	public func put(value : JSValue){
 		let encoder = KSJsonEncoder()
-		let text    = encoder.encode(value)
+		let text    = encoder.encodeValue(value)
 		mDumper.dumpToConsole(mConsole, text: text)
 	}
 }

@@ -2,19 +2,17 @@
 # build_all.mk
 #
 
-all: KiwiEngine KiwiLibraries
-
-KiwiLibraries : KLConsole
+all: KiwiEngine KSStdLib
 
 KiwiEngine : dummy
 	(cd KiwiEngine/OSX ; \
 	 export PROJECT_NAME="KiwiEngine" ; \
 	 make -f ../../Script/install_osx.mk)
 
-KLConsole : dummy
-	(cd KiwiLibraries/KLConsole/OSX ; \
-	 export PROJECT_NAME="KLConsole" ; \
-	 make -f ../../../Script/install_osx.mk)
+KSStdLib : dummy
+	(cd KSStdLib/OSX ; \
+	 export PROJECT_NAME="KSStdLib" ; \
+	 make -f ../../Script/install_osx.mk)
 
 dummy:
 
