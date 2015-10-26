@@ -13,5 +13,8 @@ public func KSSetupStdLib(context : JSContext, console : CNConsole)
 {
 	let consolelib = KSConsole(console: console)
 	consolelib.registerToContext(context)
+	
+	let mathlib = KSMath(context: context)
+	mathlib.registerToContext(context)
 }
 
