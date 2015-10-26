@@ -37,5 +37,10 @@ RESULT : true
 * UTConsole
 Hello, world!!
 RESULT : true
+* UTMath
+PI = 3.141592653589793
+sin(PI/2) = 1
+cos(PI/2) = 6.123233995736766e-17
+RESULT : true
 **** SUMMARY
 TOTAL RESULT: OK
