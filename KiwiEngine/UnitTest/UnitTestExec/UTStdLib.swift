@@ -9,19 +9,21 @@ import Foundation
 import KiwiEngine
 import KSStdLib
 import JavaScriptCore
+import Canary
 
 func testStdLib() -> Bool
 {
 	var result  = true
 	
 	let engine  = KEEngine()
+	let console = CNTextConsole()
 	
-	result = result && testPoint(engine)
+	result = result && testPoint(engine, console: console)
 	
 	return result
 }
 
-private func testPoint(engine : KEEngine) -> Bool
+private func testPoint(engine : KEEngine, console : CNConsole) -> Bool
 {
 	var summary = true
 	
@@ -37,7 +39,7 @@ private func testPoint(engine : KEEngine) -> Bool
 	let srcargs = [srcpt0, srcpt1]
 	let summary0 = callFunction("call incPoint func", engine: engine, funcname: "incPoint", arguments: srcargs)
 	if summary0 {
-		dumpValue(srcpt0)
+		dumpValue(console, value: srcpt0)
 	}
 	summary = summary && summary0
 
@@ -72,11 +74,11 @@ private func callFunction(title: String, engine: KEEngine, funcname: String, arg
 	return summary
 }
 
-private func dumpValue(value : JSValue)
+private func dumpValue(console : CNConsole, value : JSValue)
 {
-	let encoder = KSJsonEncoder()
-	let buf = encoder.encode(value)
-	buf.dump()
+	let serializer = KSValueSerializer()
+	let valstr     = serializer.serializeValue(value)
+	console.printMultiLineString(valstr)
 }
 
 private func dumpErrors(errors : Array<NSError>)

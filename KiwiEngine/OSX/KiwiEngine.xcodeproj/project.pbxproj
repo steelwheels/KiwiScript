@@ -7,21 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0507B1751BA41B860048D325 /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0507B1731BA41B860048D325 /* Canary.framework */; settings = {ASSET_TAGS = (); }; };
-		0507B1771BA41B9A0048D325 /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0507B1761BA41B9A0048D325 /* KiwiEngine.framework */; settings = {ASSET_TAGS = (); }; };
-		0507B1791BA41BC00048D325 /* KSStdLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0507B1781BA41BC00048D325 /* KSStdLib.framework */; settings = {ASSET_TAGS = (); }; };
+		0507B1751BA41B860048D325 /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0507B1731BA41B860048D325 /* Canary.framework */; };
+		0507B1771BA41B9A0048D325 /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0507B1761BA41B9A0048D325 /* KiwiEngine.framework */; };
+		0507B1791BA41BC00048D325 /* KSStdLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0507B1781BA41BC00048D325 /* KSStdLib.framework */; };
 		0507B1871BA41DB90048D325 /* UnitTestExec in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058B53231BA41A6C009522DF /* UnitTestExec */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		054536C61B78021500FE978C /* KiwiEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 054536C51B78021500FE978C /* KiwiEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		054637F21BB05FE400DEE12F /* UTError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054637F01BB05F4500DEE12F /* UTError.swift */; settings = {ASSET_TAGS = (); }; };
-		057A3DD11BA4585E004271B8 /* UTStdLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057A3DD01BA4585E004271B8 /* UTStdLib.swift */; settings = {ASSET_TAGS = (); }; };
+		054637F21BB05FE400DEE12F /* UTError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054637F01BB05F4500DEE12F /* UTError.swift */; };
+		057A3DD11BA4585E004271B8 /* UTStdLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057A3DD01BA4585E004271B8 /* UTStdLib.swift */; };
 		057F881F1B78031B0029AB4F /* KEContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F881E1B78031B0029AB4F /* KEContext.swift */; };
 		057F88231B780B4A0029AB4F /* KEEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F88221B780B4A0029AB4F /* KEEngine.swift */; };
 		058B53261BA41A6C009522DF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058B53251BA41A6C009522DF /* main.swift */; };
-		05CF6D771BA41EF000BD9D91 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05CF6D761BA41EF000BD9D91 /* Info.plist */; settings = {ASSET_TAGS = (); }; };
 		05CF6D791BA41F6100BD9D91 /* KSStdLib.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05CF6D781BA41F6100BD9D91 /* KSStdLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05CF6D7B1BA41F9700BD9D91 /* KiwiEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05CF6D7A1BA41F9700BD9D91 /* KiwiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05CF6D7D1BA41FCF00BD9D91 /* Canary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05CF6D7C1BA41FCF00BD9D91 /* Canary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		05DA9F861BA3E2AE0027EA25 /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DA9F851BA3E2AE0027EA25 /* Canary.framework */; settings = {ASSET_TAGS = (); }; };
+		05DA9F861BA3E2AE0027EA25 /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DA9F851BA3E2AE0027EA25 /* Canary.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +37,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 05DCE6171B784305005E9D53;
 			remoteInfo = Install;
+		};
+		05B40EEB1BE5A41500AA8525 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 054536B71B78021500FE978C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0507B17D1BA41D850048D325;
+			remoteInfo = UnitTest;
 		};
 		05DCE61B1B78430D005E9D53 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -96,6 +102,7 @@
 		057F88221B780B4A0029AB4F /* KEEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEEngine.swift; sourceTree = "<group>"; };
 		058B53231BA41A6C009522DF /* UnitTestExec */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTestExec; sourceTree = BUILT_PRODUCTS_DIR; };
 		058B53251BA41A6C009522DF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		05B40EED1BE5A4AE00AA8525 /* check.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = check.mk; sourceTree = SOURCE_ROOT; };
 		05CF6D761BA41EF000BD9D91 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05CF6D781BA41F6100BD9D91 /* KSStdLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KSStdLib.framework; path = /Users/tomoo/Library/Frameworks/KSStdLib.framework; sourceTree = "<absolute>"; };
 		05CF6D7A1BA41F9700BD9D91 /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = /Users/tomoo/Library/Frameworks/KiwiEngine.framework; sourceTree = "<absolute>"; };
@@ -196,6 +203,7 @@
 		058B53241BA41A6C009522DF /* UnitTestExec */ = {
 			isa = PBXGroup;
 			children = (
+				05B40EED1BE5A4AE00AA8525 /* check.mk */,
 				058B53251BA41A6C009522DF /* main.swift */,
 				057A3DD01BA4585E004271B8 /* UTStdLib.swift */,
 				054637F01BB05F4500DEE12F /* UTError.swift */,
@@ -228,6 +236,21 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXLegacyTarget section */
+		05B40EE71BE5A40800AA8525 /* Check */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f check.mk";
+			buildConfigurationList = 05B40EE81BE5A40800AA8525 /* Build configuration list for PBXLegacyTarget "Check" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+				05B40EEC1BE5A41500AA8525 /* PBXTargetDependency */,
+			);
+			name = Check;
+			passBuildSettingsInEnvironment = 1;
+			productName = Check;
+		};
 		05DCE6171B784305005E9D53 /* Install */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = "-f ../../Script/install_osx.mk";
@@ -309,7 +332,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Steel Wheels Project";
 				TargetAttributes = {
 					0507B17D1BA41D850048D325 = {
@@ -320,6 +343,9 @@
 					};
 					058B53221BA41A6C009522DF = {
 						CreatedOnToolsVersion = 7.0;
+					};
+					05B40EE71BE5A40800AA8525 = {
+						CreatedOnToolsVersion = 7.1;
 					};
 					05DCE6171B784305005E9D53 = {
 						CreatedOnToolsVersion = 6.4;
@@ -343,6 +369,7 @@
 				05DCE6171B784305005E9D53 /* Install */,
 				058B53221BA41A6C009522DF /* UnitTestExec */,
 				0507B17D1BA41D850048D325 /* UnitTest */,
+				05B40EE71BE5A40800AA8525 /* Check */,
 			);
 		};
 /* End PBXProject section */
@@ -352,7 +379,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05CF6D771BA41EF000BD9D91 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +430,11 @@
 			isa = PBXTargetDependency;
 			target = 05DCE6171B784305005E9D53 /* Install */;
 			targetProxy = 058B532A1BA41A79009522DF /* PBXContainerItemProxy */;
+		};
+		05B40EEC1BE5A41500AA8525 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0507B17D1BA41D850048D325 /* UnitTest */;
+			targetProxy = 05B40EEB1BE5A41500AA8525 /* PBXContainerItemProxy */;
 		};
 		05DCE61C1B78430D005E9D53 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -605,6 +636,29 @@
 			};
 			name = Release;
 		};
+		05B40EE91BE5A40800AA8525 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		05B40EEA1BE5A40800AA8525 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		05DCE6181B784305005E9D53 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -668,6 +722,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		05B40EE81BE5A40800AA8525 /* Build configuration list for PBXLegacyTarget "Check" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05B40EE91BE5A40800AA8525 /* Debug */,
+				05B40EEA1BE5A40800AA8525 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		05DCE61A1B784305005E9D53 /* Build configuration list for PBXLegacyTarget "Install" */ = {
 			isa = XCConfigurationList;
