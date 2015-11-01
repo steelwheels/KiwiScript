@@ -79,8 +79,7 @@ private func testDirectCoding() -> Bool
 
 private func dumpValue(console : CNConsole, value : JSValue)
 {
-	let encoder = KSJsonEncoder()
-	let buf = encoder.encode(value)
-	let dumper = CNTextDumper()
-	dumper.dumpToConsole(console, text: buf)
+	let serializer = KSValueSerializer()
+	let valstr     = serializer.serializeValue(value)
+	console.printMultiLineString(valstr)
 }

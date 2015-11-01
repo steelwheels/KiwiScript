@@ -16,11 +16,9 @@ import Canary
 @objc public class KSConsole : NSObject, KSConsoleOperating
 {
 	var mConsole : CNConsole
-	var mDumper  : CNTextDumper
 	
 	public init(console : CNConsole){
 		mConsole = console
-		mDumper  = CNTextDumper()
 		super.init()
 	}
 	
@@ -33,8 +31,8 @@ import Canary
 	}
 	
 	public func put(value : JSValue){
-		let encoder = KSJsonEncoder()
-		let text    = encoder.encodeValue(value)
-		mDumper.dumpToConsole(mConsole, text: text)
+		let serializer = KSValueSerializer()
+		let valstr     = serializer.serializeValue(value)
+		mConsole.printMultiLineString(valstr)
 	}
 }

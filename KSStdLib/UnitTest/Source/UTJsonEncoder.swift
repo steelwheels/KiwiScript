@@ -48,8 +48,7 @@ public func testJsonEncoder() -> Bool
 
 public func decodeValue(console : CNConsole, value : JSValue)
 {
-	let encoder = KSJsonEncoder() ;
-	let textbuf = encoder.encodeValue(value)
-	let dumper  = CNTextDumper()
-	dumper.dumpToConsole(console, text: textbuf)
+	let serializer = KSValueSerializer()
+	let valstr     = serializer.serializeValue(value)
+	console.printMultiLineString(valstr)
 }
