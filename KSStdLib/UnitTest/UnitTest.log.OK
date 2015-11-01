@@ -36,29 +36,6 @@ RESULT : true
   ]
 }
 RESULT : true
-* KSValueCoder
-{
-  "y" : 3.4,
-  "x" : 1.2
-}
-OK ... Encode/Decode CGPoint are succeeded
-{
-  "width" : 4.5,
-  "height" : 5.6
-}
-OK ... Encode/Decode CGSize are succeeded
-{
-  "b" : [
-    1,
-    2,
-    3,
-    4
-  ],
-  "key" : "value",
-  "a" : 10
-}
-OK ... Get/set member are succeeded
-RESULT : true
 * UTConsole
 Hello, world!!
 RESULT : true

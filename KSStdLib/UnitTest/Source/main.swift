@@ -29,9 +29,6 @@ test(testKSValueType())
 print("* KSJsonEncoder")
 test(testJsonEncoder())
 
-print("* KSValueCoder")
-test(testValueCoder())
-
 print("* UTConsole")
 test(testConsole())
 
