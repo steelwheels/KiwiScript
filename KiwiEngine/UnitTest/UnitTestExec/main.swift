@@ -7,17 +7,27 @@
 
 import Foundation
 
-func test(funcname : String, result : Bool)
+var summary = true
+
+func test(funcname:String, result:Bool) -> Bool
 {
 	if(result){
 		print("\(funcname) : OK")
 	} else {
 		print("\(funcname) : NG")
 	}
+	return result
 }
 
-test("testStdLib", result: testStdLib())
-test("testError", result: testError())
+summary = test("testStdLib", result: testStdLib()) && summary
+summary = test("testError", result: testError()) && summary
+summary = test("testObject", result: testObject()) && summary
+
+if summary {
+	print("SUMMARY: OK")
+} else {
+	print("SUMMARY: NG")
+}
 
 
 

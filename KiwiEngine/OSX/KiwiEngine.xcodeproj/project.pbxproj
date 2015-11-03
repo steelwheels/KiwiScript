@@ -11,6 +11,7 @@
 		0507B1771BA41B9A0048D325 /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0507B1761BA41B9A0048D325 /* KiwiEngine.framework */; };
 		0507B1791BA41BC00048D325 /* KSStdLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0507B1781BA41BC00048D325 /* KSStdLib.framework */; };
 		0507B1871BA41DB90048D325 /* UnitTestExec in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058B53231BA41A6C009522DF /* UnitTestExec */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		052B0F7A1BE8A3A400E3BFEE /* UTObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B0F781BE8A33400E3BFEE /* UTObject.swift */; };
 		054536C61B78021500FE978C /* KiwiEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 054536C51B78021500FE978C /* KiwiEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		054637F21BB05FE400DEE12F /* UTError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054637F01BB05F4500DEE12F /* UTError.swift */; };
 		057A3DD11BA4585E004271B8 /* UTStdLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057A3DD01BA4585E004271B8 /* UTStdLib.swift */; };
@@ -93,6 +94,7 @@
 		0507B1761BA41B9A0048D325 /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../Library/Frameworks/KiwiEngine.framework; sourceTree = "<group>"; };
 		0507B1781BA41BC00048D325 /* KSStdLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KSStdLib.framework; path = ../../../../Library/Frameworks/KSStdLib.framework; sourceTree = "<group>"; };
 		0507B17E1BA41D850048D325 /* UnitTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		052B0F781BE8A33400E3BFEE /* UTObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTObject.swift; sourceTree = "<group>"; };
 		054536C01B78021500FE978C /* KiwiEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		054536C41B78021500FE978C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		054536C51B78021500FE978C /* KiwiEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiEngine.h; sourceTree = SOURCE_ROOT; };
@@ -207,6 +209,7 @@
 				058B53251BA41A6C009522DF /* main.swift */,
 				057A3DD01BA4585E004271B8 /* UTStdLib.swift */,
 				054637F01BB05F4500DEE12F /* UTError.swift */,
+				052B0F781BE8A33400E3BFEE /* UTObject.swift */,
 			);
 			path = UnitTestExec;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				054637F21BB05FE400DEE12F /* UTError.swift in Sources */,
+				052B0F7A1BE8A3A400E3BFEE /* UTObject.swift in Sources */,
 				057A3DD11BA4585E004271B8 /* UTStdLib.swift in Sources */,
 				058B53261BA41A6C009522DF /* main.swift in Sources */,
 			);
@@ -730,6 +734,7 @@
 				05B40EEA1BE5A40800AA8525 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		05DCE61A1B784305005E9D53 /* Build configuration list for PBXLegacyTarget "Install" */ = {
 			isa = XCConfigurationList;

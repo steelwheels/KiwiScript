@@ -63,13 +63,17 @@ private func runScript(title : String, engine : KEEngine, script : String) -> Bo
 private func callFunction(title: String, engine: KEEngine, funcname: String, arguments: Array<AnyObject>) -> Bool
 {
 	var summary = true
-	let (result, errors) = engine.callFunction(funcname, arguments: arguments)
-	if let resval = result {
-		print("\(title) -> \(resval)")
-	} else {
+	let (resultp, errorsp) = engine.callFunction(funcname, arguments: arguments)
+	if let errors = errorsp {
 		print("\(title) -> NG")
 		dumpErrors(errors)
 		summary = false
+	} else {
+		if let result = resultp {
+			print("\(title) -> \(result)")
+		} else {
+			fatalError("Can not happen")
+		}
 	}
 	return summary
 }

@@ -11,3 +11,7 @@ ERROR: [Error] SyntaxError: Unexpected end of script
 ERROR: [Error] SyntaxError: Unexpected end of script
 ERROR: [Error] SyntaxError: Unexpected identifier 'hoge'. Expected a ';' following a return statement.
 testError : OK
+RunScriot -> OK (undefined)
+RESULT: newangle = 2.3
+testObject : OK
+SUMMARY: OK

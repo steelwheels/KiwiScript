@@ -41,10 +41,6 @@ public class KEEngine : NSObject
 
 	}
 	
-	public func addGlobalObject(name: NSString, value: NSObject){
-		mContext.setObject(value, forKeyedSubscript:name)
-	}
-	
 	public func runScript(script : String) -> (result: JSValue?, errors: Array<NSError>){
 		let retval = mContext.evaluateScript(script)
 		let errcnt = mContext.runtimeErrors().count ;
@@ -55,12 +51,12 @@ public class KEEngine : NSObject
 		}
 	}
 	
-	public func callFunction(funcname : String, arguments: Array<AnyObject>) -> (result: JSValue?, errors: Array<NSError>){
+	public func callFunction(funcname : String, arguments: Array<AnyObject>) -> (result: JSValue?, errors: Array<NSError>?){
 		let jsfunc : JSValue = mContext.objectForKeyedSubscript(funcname)
 		let retval = jsfunc.callWithArguments(arguments)
 		let errcnt = mContext.runtimeErrors().count ;
 		if(errcnt == 0){
-			return (retval, mContext.runtimeErrors())
+			return (retval, nil)
 		} else {
 			return (nil, mContext.runtimeErrors()) ;
 		}
