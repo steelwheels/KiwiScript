@@ -49,13 +49,17 @@ private func testPoint(engine : KEEngine, console : CNConsole) -> Bool
 private func runScript(title : String, engine : KEEngine, script : String) -> Bool
 {
 	var summary = true
-	let (result, errors) = engine.runScript(script)
-	if let resval = result {
-		print("\(title) -> \(resval)")
-	} else {
+	let (resultp, errorsp) = engine.runScript(script)
+	if let errors = errorsp {
 		print("\(title) -> NG")
 		dumpErrors(errors)
 		summary = false
+	} else {
+		if let result = resultp {
+			print("\(title) -> \(result)")
+		} else {
+			fatalError("can not happen")
+		}
 	}
 	return summary
 }

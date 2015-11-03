@@ -61,13 +61,17 @@ public func testObject() -> Bool
 
 private func runScript(engine : KEEngine, script : String)
 {
-	let (result, errors) = engine.runScript(script)
-	if let resval = result {
-		print("RunScriot -> OK (\(resval))")
-	} else {
+	let (resultp, errorsp) = engine.runScript(script)
+	if let errors = errorsp {
 		print("RunScript -> NG")
 		for error in errors {
 			print("\(error.toString()) ")
+		}
+	} else {
+		if let result = resultp {
+			print("RunScriot -> OK (\(result))")
+		} else {
+			fatalError("can not happen")
 		}
 	}
 }

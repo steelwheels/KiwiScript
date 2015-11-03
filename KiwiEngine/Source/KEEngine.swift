@@ -41,13 +41,15 @@ public class KEEngine : NSObject
 
 	}
 	
-	public func runScript(script : String) -> (result: JSValue?, errors: Array<NSError>){
+	public func runScript(script : String) -> (result: JSValue?, errors: Array<NSError>?){
 		let retval = mContext.evaluateScript(script)
 		let errcnt = mContext.runtimeErrors().count ;
 		if(errcnt == 0){
-			return (retval, mContext.runtimeErrors())
+			return (retval, nil)
 		} else {
-			return (nil, mContext.runtimeErrors()) ;
+			let errors = mContext.runtimeErrors()
+			mContext.clearRuntimeErrors()
+			return (nil, errors)
 		}
 	}
 	
@@ -58,7 +60,9 @@ public class KEEngine : NSObject
 		if(errcnt == 0){
 			return (retval, nil)
 		} else {
-			return (nil, mContext.runtimeErrors()) ;
+			let errors = mContext.runtimeErrors()
+			mContext.clearRuntimeErrors()
+			return (nil, errors)
 		}
 	}
 }

@@ -28,14 +28,18 @@ public func testError() -> Bool
 private func testScript(engine : KEEngine, script : String) -> Bool
 {
 	var testResult = false
-	let (result, errors) = engine.runScript(script)
-	if let resval = result {
-		print("RESULT: \(resval)")
-		testResult = true
-	} else {
+	let (resultp, errorsp) = engine.runScript(script)
+	if let errors = errorsp {
 		for error in errors {
 			let str = error.toString()
 			print("ERROR: \(str)")
+		}
+	} else {
+		if let result = resultp {
+			print("RESULT: \(result)")
+			testResult = true
+		} else {
+			fatalError("can not happen")
 		}
 	}
 	return testResult
