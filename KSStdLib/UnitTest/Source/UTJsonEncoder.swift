@@ -50,5 +50,6 @@ public func decodeValue(console : CNConsole, value : JSValue)
 {
 	let serializer = KSValueSerializer()
 	let valstr     = serializer.serializeValue(value)
-	console.printMultiLineString(valstr)
+	let lines      = valstr.componentsSeparatedByString("\n")
+	console.printLines(lines)
 }

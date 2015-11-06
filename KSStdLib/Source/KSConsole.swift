@@ -33,6 +33,7 @@ import Canary
 	public func put(value : JSValue){
 		let serializer = KSValueSerializer()
 		let valstr     = serializer.serializeValue(value)
-		mConsole.printMultiLineString(valstr)
+		let lines      = valstr.componentsSeparatedByString("\n")
+		mConsole.printLines(lines)
 	}
 }
