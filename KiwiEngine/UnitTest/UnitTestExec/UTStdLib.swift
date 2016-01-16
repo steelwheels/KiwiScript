@@ -86,7 +86,7 @@ private func dumpValue(console : CNConsole, value : JSValue)
 {
 	let serializer = KSValueSerializer()
 	let valstr     = serializer.serializeValue(value)
-	console.printMultiLineString(valstr)
+	console.printLine(valstr)
 }
 
 private func dumpErrors(errors : Array<NSError>)

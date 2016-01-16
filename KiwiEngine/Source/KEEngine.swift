@@ -20,27 +20,33 @@ public class KEEngine : NSObject
 		setupContext()
 	}
 
+	public init(vm : JSVirtualMachine) {
+		virtualMachine = vm
+		mContext = KEContext(virtualMachine: vm)
+		super.init()
+		setupContext()
+	}
+
 	public func context() -> KEContext {
 		return mContext
 	}
-	
+
 	public func clearContext() {
 		virtualMachine = JSVirtualMachine()
 		mContext = KEContext(virtualMachine: virtualMachine)
 		setupContext()
 	}
-	
+
 	private func setupContext() {
-		mContext.exceptionHandler = { context, exception in
-			if let jscont = context as? KEContext {
-				jscont.addErrorMessage(exception.description) ;
+		mContext.exceptionHandler = { contextp, exception in
+			if let context = contextp as? KEContext {
+				context.addErrorMessage(exception.description) ;
 				return
 			}
 			NSLog("Internal error \(exception)")
 		}
-
 	}
-	
+
 	public func runScript(script : String) -> (result: JSValue?, errors: Array<NSError>?){
 		let retval = mContext.evaluateScript(script)
 		let errcnt = mContext.runtimeErrors().count ;
@@ -52,7 +58,7 @@ public class KEEngine : NSObject
 			return (nil, errors)
 		}
 	}
-	
+
 	public func callFunction(funcname : String, arguments: Array<AnyObject>) -> (result: JSValue?, errors: Array<NSError>?){
 		let jsfunc : JSValue = mContext.objectForKeyedSubscript(funcname)
 		let retval = jsfunc.callWithArguments(arguments)
