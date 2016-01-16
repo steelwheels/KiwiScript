@@ -15,34 +15,59 @@ RESULT : true
 [A, B, C, 123, 456, 1, 0]
 RESULT : true
 * KSJsonEncoder
-** Bool Object -> true
-** Double Object -> 1.23
-** String Object -> Hello, World
-** Dictionary Object -> {
-  "b" : 234,
-  "a" : 123
+** Bool Object -> {
+  "value" : true
 }
-** Array object -> [1, 2, 3, 4]
-** Combination object -> {
-  "i0" : {
+** Double Object -> {
+  "value" : 1.23
+}
+** String Object -> {
+  "value" : "Hello, World"
+}
+** Dictionary Object -> {
+  "value" : {
     "a" : 123,
     "b" : 234
-  },
-  "i1" : [
+  }
+}
+** Array object -> {
+  "value" : [
     1,
     2,
     3,
     4
   ]
 }
+** Combination object -> {
+  "value" : {
+    "i1" : [
+      1,
+      2,
+      3,
+      4
+    ],
+    "i0" : {
+      "a" : 123,
+      "b" : 234
+    }
+  }
+}
 RESULT : true
 * UTConsole
-Hello, world!!
+{
+  "value" : "Hello, world!!"
+}
 RESULT : true
 * UTMath
-PI = 3.141592653589793
-sin(PI/2) = 1
-cos(PI/2) = 6.123233995736766e-17
+{
+  "value" : "PI = 3.141592653589793"
+}
+{
+  "value" : "sin(PI\/2) = 1"
+}
+{
+  "value" : "cos(PI\/2) = 6.123233995736766e-17"
+}
 RESULT : true
 **** SUMMARY
 TOTAL RESULT: OK

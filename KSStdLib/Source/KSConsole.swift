@@ -31,9 +31,15 @@ import Canary
 	}
 	
 	public func put(value : JSValue){
-		let serializer = KSValueSerializer()
-		let valstr     = serializer.serializeValue(value)
-		let lines      = valstr.componentsSeparatedByString("\n")
-		mConsole.printLines(lines)
+		let encval = KSValueCoder.encode(value)
+		let (encstr, encerr) = CNJSONFile.serializeToString(encval)
+		if let error = encerr {
+			let errmsg = error.toString()
+			mConsole.printLine(errmsg)
+		} else if let str = encstr {
+			mConsole.printLine(str)
+		} else {
+			fatalError("Invalid return value")
+		}
 	}
 }

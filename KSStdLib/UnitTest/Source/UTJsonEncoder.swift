@@ -48,8 +48,15 @@ public func testJsonEncoder() -> Bool
 
 public func decodeValue(console : CNConsole, value : JSValue)
 {
-	let serializer = KSValueSerializer()
-	let valstr     = serializer.serializeValue(value)
-	let lines      = valstr.componentsSeparatedByString("\n")
-	console.printLines(lines)
+	let encdict = KSValueCoder.encode(value)
+	let (encstr, encerr)  = CNJSONFile.serializeToString(encdict)
+	if let error = encerr {
+		let errmsg = "[Error] " + error.toString()
+		console.printLine(errmsg)
+	} else if let str = encstr {
+		let lines = str.componentsSeparatedByString("\n")
+		console.printLines(lines)
+	} else {
+		fatalError("Can not happen")
+	}
 }

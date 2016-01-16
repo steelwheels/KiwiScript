@@ -11,7 +11,7 @@ import Canary
 
 public class KSValueVisitor : CNObjectVisitor {
 	public func acceptValue(value : JSValue){
-		switch value.kind() {
+		switch value.kind {
 		case .UndefinedValue:
 			visitUndefinedValue(value)
 		case .NilValue:

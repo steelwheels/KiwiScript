@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		050172D71B877A99007CB6D9 /* KSStdLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 050172D61B877A99007CB6D9 /* KSStdLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		050CE5171B94BAE3002D5CE2 /* UTJsonEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050CE5161B94BAE3002D5CE2 /* UTJsonEncoder.swift */; };
+		052487CE1C4A6FAE00CB628B /* KSValueDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052487CD1C4A6FAE00CB628B /* KSValueDescription.swift */; };
 		05323AFA1B8FD9F200336D7D /* UTValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05323AF91B8FD9F200336D7D /* UTValue.swift */; };
 		054BFD2C1BDE835B00B52A54 /* UTMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054BFD2B1BDE835B00B52A54 /* UTMath.swift */; };
 		054E934A1BDD262E00FFB0AE /* KSMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054E93491BDD262E00FFB0AE /* KSMath.swift */; };
@@ -23,7 +24,7 @@
 		05C03E761BA56CC700D70098 /* KSConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C03E751BA56CC700D70098 /* KSConsole.swift */; };
 		05C03E781BA56FBE00D70098 /* KSStdLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C03E771BA56FBE00D70098 /* KSStdLib.swift */; };
 		05DA9F881BA3E3920027EA25 /* KSValueExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DA9F871BA3E3920027EA25 /* KSValueExtension.swift */; };
-		05EA8BC71BE4D58200B8631A /* KSValueSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EA8BC61BE4D58200B8631A /* KSValueSerializer.swift */; };
+		05EA8BC71BE4D58200B8631A /* KSValueCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EA8BC61BE4D58200B8631A /* KSValueCoder.swift */; };
 		05EC0A881B8FD83C0053BA1C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EC0A871B8FD83C0053BA1C /* main.swift */; };
 		05F674E91B8CAD4500B391D1 /* KSValueVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F674E81B8CAD4500B391D1 /* KSValueVisitor.swift */; };
 /* End PBXBuildFile section */
@@ -97,6 +98,7 @@
 		050172D51B877A99007CB6D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		050172D61B877A99007CB6D9 /* KSStdLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSStdLib.h; sourceTree = "<group>"; };
 		050CE5161B94BAE3002D5CE2 /* UTJsonEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTJsonEncoder.swift; sourceTree = "<group>"; };
+		052487CD1C4A6FAE00CB628B /* KSValueDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSValueDescription.swift; sourceTree = "<group>"; };
 		0525DC101B9C56E8009479F5 /* UnitTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		0525DC121B9C56E8009479F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05323AF91B8FD9F200336D7D /* UTValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTValue.swift; sourceTree = "<group>"; };
@@ -112,7 +114,7 @@
 		05C03E751BA56CC700D70098 /* KSConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSConsole.swift; sourceTree = "<group>"; };
 		05C03E771BA56FBE00D70098 /* KSStdLib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSStdLib.swift; sourceTree = "<group>"; };
 		05DA9F871BA3E3920027EA25 /* KSValueExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSValueExtension.swift; sourceTree = "<group>"; };
-		05EA8BC61BE4D58200B8631A /* KSValueSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSValueSerializer.swift; sourceTree = "<group>"; };
+		05EA8BC61BE4D58200B8631A /* KSValueCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSValueCoder.swift; sourceTree = "<group>"; };
 		05EC0A851B8FD83C0053BA1C /* UnitTestExec */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTestExec; sourceTree = BUILT_PRODUCTS_DIR; };
 		05EC0A871B8FD83C0053BA1C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		05F674E81B8CAD4500B391D1 /* KSValueVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSValueVisitor.swift; sourceTree = "<group>"; };
@@ -174,7 +176,8 @@
 				054E93491BDD262E00FFB0AE /* KSMath.swift */,
 				05DA9F871BA3E3920027EA25 /* KSValueExtension.swift */,
 				05F674E81B8CAD4500B391D1 /* KSValueVisitor.swift */,
-				05EA8BC61BE4D58200B8631A /* KSValueSerializer.swift */,
+				052487CD1C4A6FAE00CB628B /* KSValueDescription.swift */,
+				05EA8BC61BE4D58200B8631A /* KSValueCoder.swift */,
 				050172D41B877A99007CB6D9 /* Supporting Files */,
 			);
 			name = Source;
@@ -401,9 +404,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				05F674E91B8CAD4500B391D1 /* KSValueVisitor.swift in Sources */,
-				05EA8BC71BE4D58200B8631A /* KSValueSerializer.swift in Sources */,
+				05EA8BC71BE4D58200B8631A /* KSValueCoder.swift in Sources */,
 				054E934A1BDD262E00FFB0AE /* KSMath.swift in Sources */,
 				05C03E761BA56CC700D70098 /* KSConsole.swift in Sources */,
+				052487CE1C4A6FAE00CB628B /* KSValueDescription.swift in Sources */,
 				05C03E781BA56FBE00D70098 /* KSStdLib.swift in Sources */,
 				05DA9F881BA3E3920027EA25 /* KSValueExtension.swift in Sources */,
 			);
@@ -558,6 +562,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = KSStdLib;
 				SKIP_INSTALL = NO;
@@ -583,6 +588,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = KSStdLib;
 				SKIP_INSTALL = NO;
@@ -679,6 +685,7 @@
 					"$(inherited)",
 				);
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @executable_path/../Frameworks @executable_path/UnitTest.bundle/Contents/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -692,6 +699,7 @@
 					"$(USER_LIBRARY_DIR)/Frameworks",
 				);
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @executable_path/../Frameworks @executable_path/UnitTest.bundle/Contents/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

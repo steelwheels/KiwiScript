@@ -47,30 +47,32 @@ public enum KSValueKind {
 
 public extension JSValue
 {
-	public func kind() -> KSValueKind {
-		var result = KSValueKind.UndefinedValue
-		if self.isUndefined {
-			result = KSValueKind.UndefinedValue
-		} else if self.isNull {
-			result = KSValueKind.NilValue
-		} else if self.isBoolean {
-			result = KSValueKind.BooleanValue
-		} else if self.isNumber {
-			result = KSValueKind.NumberValue
-		} else if self.isString {
-			result = KSValueKind.StringValue
-		} else if self.isObject {
-			if let _ = self.toObjectOfClass(NSDictionary) {
-				result = KSValueKind.DictionaryValue
-			} else if let _ = self.toObjectOfClass(NSArray){
-				result = KSValueKind.ArrayValue
-			} else if let _ = self.toObjectOfClass(NSDate){
-				result = KSValueKind.DateValue
-			} else {
-				result = KSValueKind.ObjectValue
+	public var kind : KSValueKind {
+		get {
+			var result = KSValueKind.UndefinedValue
+			if self.isUndefined {
+				result = KSValueKind.UndefinedValue
+			} else if self.isNull {
+				result = KSValueKind.NilValue
+			} else if self.isBoolean {
+				result = KSValueKind.BooleanValue
+			} else if self.isNumber {
+				result = KSValueKind.NumberValue
+			} else if self.isString {
+				result = KSValueKind.StringValue
+			} else if self.isObject {
+				if let _ = self.toObjectOfClass(NSDictionary) {
+					result = KSValueKind.DictionaryValue
+				} else if let _ = self.toObjectOfClass(NSArray){
+					result = KSValueKind.ArrayValue
+				} else if let _ = self.toObjectOfClass(NSDate){
+					result = KSValueKind.DateValue
+				} else {
+					result = KSValueKind.ObjectValue
+				}
 			}
+			return result
 		}
-		return result
 	}
 }
 

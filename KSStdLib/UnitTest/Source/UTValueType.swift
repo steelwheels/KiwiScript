@@ -29,10 +29,8 @@ internal func executeScript(console : CNConsole, context: JSContext, name: Strin
 {
 	context.evaluateScript(code)
 	if let retval : JSValue = context.objectForKeyedSubscript(name) {
-		let serializer = KSValueSerializer()
-		let valstr     = serializer.serializeValue(retval)
-		let lines      = valstr.componentsSeparatedByString("\n")
-		console.printLines(lines)
+		let line = KSValueDescription.description(retval)
+		console.printLine(line)
 	} else {
 		print("11")
 	}

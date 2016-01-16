@@ -33,7 +33,7 @@ func testKind(title: String, kind : KSValueKind){
 }
 
 func parseNumber(title: String, val : JSValue){
-	let kind = val.kind()
+	let kind = val.kind
 	let kindstr = kind.toString()
 	print("\(title): \(val.description) : \(kindstr)")
 }
