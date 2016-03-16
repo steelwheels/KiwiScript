@@ -54,20 +54,12 @@ RESULT : true
 }
 RESULT : true
 * UTConsole
-{
-  "value" : "Hello, world!!"
-}
+Hello, world!!
 RESULT : true
 * UTMath
-{
-  "value" : "PI = 3.141592653589793"
-}
-{
-  "value" : "sin(PI\/2) = 1"
-}
-{
-  "value" : "cos(PI\/2) = 6.123233995736766e-17"
-}
+PI = 3.141592653589793
+sin(PI/2) = 1
+cos(PI/2) = 6.123233995736766e-17
 RESULT : true
 **** SUMMARY
 TOTAL RESULT: OK

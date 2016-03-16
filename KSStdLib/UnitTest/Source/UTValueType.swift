@@ -30,7 +30,7 @@ internal func executeScript(console : CNConsole, context: JSContext, name: Strin
 	context.evaluateScript(code)
 	if let retval : JSValue = context.objectForKeyedSubscript(name) {
 		let line = KSValueDescription.description(retval)
-		console.printLine(line)
+		console.print(text: CNConsoleText(string: line))
 	} else {
 		print("11")
 	}

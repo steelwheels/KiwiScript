@@ -52,10 +52,10 @@ public func decodeValue(console : CNConsole, value : JSValue)
 	let (encstr, encerr)  = CNJSONFile.serializeToString(encdict)
 	if let error = encerr {
 		let errmsg = "[Error] " + error.toString()
-		console.printLine(errmsg)
+		console.print(text: CNConsoleText(string: errmsg))
 	} else if let str = encstr {
 		let lines = str.componentsSeparatedByString("\n")
-		console.printLines(lines)
+		console.print(text: CNConsoleText(strings: lines))
 	} else {
 		fatalError("Can not happen")
 	}
