@@ -1,14 +1,16 @@
 add incPoint func -> undefined
 call incPoint func -> undefined
 {
-  "y" : 2.2,
-  "x" : 1.1
+  "value" : {
+    "x" : 1.1,
+    "y" : 2.2
+  }
 }
 testStdLib : OK
 *** Script1
-ERROR: [Error] SyntaxError: Unexpected end of script
+ERROR: SyntaxError: Unexpected end of script
 *** Script2
-ERROR: [Error] SyntaxError: Unexpected identifier 'hoge'. Expected a ';' following a return statement.
+ERROR: SyntaxError: Unexpected identifier 'hoge'. Expected a ';' following a return statement.
 testError : OK
 RunScriot -> OK (undefined)
 RESULT: newangle = 2.3

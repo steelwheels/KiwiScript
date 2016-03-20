@@ -13,13 +13,15 @@ public class KEContext : JSContext
 {
 	private var mRuntimeErrors : Array<NSError> = [] ;
 	
-	public override init!(){
-		let vm = JSVirtualMachine()
-		super.init(virtualMachine: vm) ;
-	}
-	
-	public override init!(virtualMachine: JSVirtualMachine!) {
+	public override init(virtualMachine: JSVirtualMachine!) {
 		super.init(virtualMachine: virtualMachine)
+		self.exceptionHandler = { contextp, exception in
+			if let context = contextp as? KEContext {
+				context.addErrorMessage(exception.description) ;
+				return
+			}
+			NSLog("Internal error \(exception)")
+		}
 	}
 	
 	public func runtimeErrors() -> Array<NSError> {

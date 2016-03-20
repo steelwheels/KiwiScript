@@ -11,18 +11,19 @@ import KiwiEngine
 
 public func testObject() -> Bool
 {
-	let engine = KEEngine()
+	let vm = JSVirtualMachine()
+	let context = KEContext(virtualMachine: vm)
 	let newobj = UTObjectBridge()
-	let objval = engine.context().allocateObjectValue(newobj)
+	let objval = context.allocateObjectValue(newobj)
 	
 	let script =   "function test(object){"
 		     + "  var tmp ;"
 		     + "  tmp = object.angle() + 1.1 ;"
 		     + "  object.setAngle(tmp); "
 		     + "}"
-	runScript(engine, script: script)
+	runScript(context, script: script)
 	
-	let (_, errorsp) = engine.callFunction("test", arguments: [objval])
+	let (_, errorsp) = KEEngine.callFunction(context, functionName: "test", arguments: [objval])
 	if let errors = errorsp {
 		print("Failed to call function")
 		for error in errors {
@@ -59,9 +60,9 @@ public func testObject() -> Bool
 	}
 }
 
-private func runScript(engine : KEEngine, script : String)
+private func runScript(context: KEContext, script : String)
 {
-	let (resultp, errorsp) = engine.runScript(script)
+	let (resultp, errorsp) = KEEngine.runScript(context, script: script)
 	if let errors = errorsp {
 		print("RunScript -> NG")
 		for error in errors {

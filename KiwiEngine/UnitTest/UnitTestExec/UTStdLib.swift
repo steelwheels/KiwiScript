@@ -14,16 +14,17 @@ import Canary
 func testStdLib() -> Bool
 {
 	var result  = true
-	
-	let engine  = KEEngine()
 	let console = CNTextConsole()
 	
-	result = result && testPoint(engine, console: console)
+	let vm       = JSVirtualMachine()
+	let context0 = KEContext(virtualMachine: vm)
+	
+	result = result && testPoint(context0, console: console)
 	
 	return result
 }
 
-private func testPoint(engine : KEEngine, console : CNConsole) -> Bool
+private func testPoint(context : KEContext, console : CNConsole) -> Bool
 {
 	var summary = true
 	
@@ -32,12 +33,12 @@ private func testPoint(engine : KEEngine, console : CNConsole) -> Bool
 			+ " p0.x = p0.x + p1.x ; "
 			+ " p0.y = p0.y + p1.y ; "
 			+ "} ;"
-	summary = summary && runScript("add incPoint func", engine: engine, script: addptfunc)
+	summary = summary && runScript(context, title: "add incPoint func", script: addptfunc)
 	
-	let srcpt0  = JSValue(point: CGPoint(x:0.1, y:0.2), inContext: engine.context())
-	let srcpt1  = JSValue(point: CGPoint(x:1.0, y:2.0), inContext: engine.context())
+	let srcpt0  = JSValue(point: CGPoint(x:0.1, y:0.2), inContext: context)
+	let srcpt1  = JSValue(point: CGPoint(x:1.0, y:2.0), inContext: context)
 	let srcargs = [srcpt0, srcpt1]
-	let summary0 = callFunction("call incPoint func", engine: engine, funcname: "incPoint", arguments: srcargs)
+	let summary0 = callFunction("call incPoint func", context: context, funcionName: "incPoint", arguments: srcargs)
 	if summary0 {
 		dumpValue(console, value: srcpt0)
 	}
@@ -46,10 +47,10 @@ private func testPoint(engine : KEEngine, console : CNConsole) -> Bool
 	return summary
 }
 
-private func runScript(title : String, engine : KEEngine, script : String) -> Bool
+private func runScript(context : KEContext, title : String, script : String) -> Bool
 {
 	var summary = true
-	let (resultp, errorsp) = engine.runScript(script)
+	let (resultp, errorsp) = KEEngine.runScript(context, script: script)
 	if let errors = errorsp {
 		print("\(title) -> NG")
 		dumpErrors(errors)
@@ -64,10 +65,10 @@ private func runScript(title : String, engine : KEEngine, script : String) -> Bo
 	return summary
 }
 
-private func callFunction(title: String, engine: KEEngine, funcname: String, arguments: Array<AnyObject>) -> Bool
+private func callFunction(title: String, context: KEContext, funcionName funcname: String, arguments: Array<AnyObject>) -> Bool
 {
 	var summary = true
-	let (resultp, errorsp) = engine.callFunction(funcname, arguments: arguments)
+	let (resultp, errorsp) = KEEngine.callFunction(context, functionName: funcname, arguments: arguments)
 	if let errors = errorsp {
 		print("\(title) -> NG")
 		dumpErrors(errors)
@@ -84,9 +85,17 @@ private func callFunction(title: String, engine: KEEngine, funcname: String, arg
 
 private func dumpValue(console : CNConsole, value : JSValue)
 {
-	let serializer = KSValueSerializer()
-	let valstr     = serializer.serializeValue(value)
-	console.printLine(valstr)
+	let encdict = KSValueCoder.encode(value)
+	let (encstr, encerr)  = CNJSONFile.serializeToString(encdict)
+	if let error = encerr {
+		let errmsg = "[Error] " + error.toString()
+		console.print(text: CNConsoleText(string: errmsg))
+	} else if let str = encstr {
+		let lines = str.componentsSeparatedByString("\n")
+		console.print(text: CNConsoleText(strings: lines))
+	} else {
+		fatalError("Can not happen")
+	}
 }
 
 private func dumpErrors(errors : Array<NSError>)
