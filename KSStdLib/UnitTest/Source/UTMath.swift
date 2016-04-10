@@ -15,13 +15,8 @@ public func testMath() -> Bool
 {
 	let context = JSContext()
 	KSStdLib.setup(context)
-	if let console = KSStdLib.console(context) {
-		console.addOutput(CNTextConsole())
-	} else {
-		print("No console object")
-		return false
-	}
-	
+	KSStdLib.setConsole(context, console: CNTextConsole())
+
 	context.exceptionHandler = { context, exception in
 		print("JavaScript Error: \(exception)")
 	}

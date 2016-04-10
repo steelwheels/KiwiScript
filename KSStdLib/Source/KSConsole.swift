@@ -15,10 +15,9 @@ import Canary
 
 @objc public class KSConsole : NSObject, KSConsoleOperating
 {
-	var mConsole : CNRedirectConsole
+	public var mConsole : CNConsole? = nil
 	
-	public init(console : CNRedirectConsole){
-		mConsole = console
+	public override init(){
 		super.init()
 	}
 	
@@ -30,7 +29,15 @@ import Canary
 		context.setObject(self, forKeyedSubscript: KSConsole.rootObjectName())
 	}
 	
-	public class func consoleInContext(context: JSContext) -> CNRedirectConsole? {
+	public class func setToContext(context: JSContext, console newcons: CNConsole){
+		if let jsvalue = context.objectForKeyedSubscript(KSConsole.rootObjectName()) {
+			if let console = jsvalue.toObject() as? KSConsole {
+				console.mConsole = newcons
+			}
+		}
+	}
+	
+	public class func getFromContext(context: JSContext) -> CNConsole? {
 		if let jsvalue = context.objectForKeyedSubscript(KSConsole.rootObjectName()) {
 			if let console = jsvalue.toObject() as? KSConsole {
 				return console.mConsole
@@ -40,7 +47,9 @@ import Canary
 	}
 	
 	public func put(value : JSValue){
-		let valstr  = KSValueDescription.description(value)
-		mConsole.print(string: valstr)
+		if let console = mConsole {
+			let valstr  = KSValueDescription.description(value)
+			console.print(string: valstr)
+		}
 	}
 }

@@ -11,16 +11,19 @@ import Canary
 
 public class KSStdLib {
 	public class func setup(context: JSContext){
-		let console    = CNRedirectConsole()
-		let consolelib = KSConsole(console: console)
+		let consolelib = KSConsole()
 		consolelib.registerToContext(context)
 		
 		let mathlib = KSMath(context: context)
 		mathlib.registerToContext(context)
 	}
 	
-	public class func console(context: JSContext) -> CNRedirectConsole? {
-		return KSConsole.consoleInContext(context)
+	public class func console(context: JSContext) -> CNConsole? {
+		return KSConsole.getFromContext(context)
+	}
+	
+	public class func setConsole(context: JSContext, console: CNConsole){
+		KSConsole.setToContext(context, console: console)
 	}
 }
 
