@@ -14,8 +14,10 @@ import Canary
 public func testConsole() -> Bool
 {
 	let context = JSContext()
-	let console = CNTextConsole()
+	
+	let console = CNRedirectConsole()
 	KSSetupStdLib(context, console: console)
+	console.addOutput(CNTextConsole())
 	
 	context.exceptionHandler = { context, exception in
 		print("JavaScript Error: \(exception)")

@@ -9,7 +9,7 @@ import Foundation
 import JavaScriptCore
 import Canary
 
-public func KSSetupStdLib(context : JSContext, console : CNConsole)
+public func KSSetupStdLib(context : JSContext, console : CNRedirectConsole)
 {
 	let consolelib = KSConsole(console: console)
 	consolelib.registerToContext(context)
@@ -17,4 +17,10 @@ public func KSSetupStdLib(context : JSContext, console : CNConsole)
 	let mathlib = KSMath(context: context)
 	mathlib.registerToContext(context)
 }
+
+public func KSConsoleOfStdLib(context: JSContext) -> CNRedirectConsole?
+{
+	return KSConsole.consoleInContext(context)
+}
+
 
