@@ -17,12 +17,8 @@ public class KSStdLib {
 		let mathlib = KSMath(context: context)
 		mathlib.registerToContext(context)
 	}
-	
-	public class func console(context: JSContext) -> CNConsole? {
-		return KSConsole.getFromContext(context)
-	}
-	
-	public class func setConsole(context: JSContext, console: CNConsole){
+
+	public class func setupRuntime(context: JSContext, console: CNConsole){
 		KSConsole.setToContext(context, console: console)
 	}
 }

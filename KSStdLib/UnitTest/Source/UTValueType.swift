@@ -25,7 +25,7 @@ public func testKSValueType() -> Bool {
 	return true
 }
 
-internal func executeScript(console : CNConsole, context: JSContext, name: String, code: String)
+private func executeScript(console : CNConsole, context: JSContext, name: String, code: String)
 {
 	context.evaluateScript(code)
 	if let retval : JSValue = context.objectForKeyedSubscript(name) {

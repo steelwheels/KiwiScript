@@ -35,6 +35,9 @@ test(testConsole())
 print("* UTMath")
 test(testMath())
 
+print("* Model")
+test(testModel())
+
 print("**** SUMMARY\nTOTAL RESULT: ", terminator: "")
 if result {
 	print("OK")
