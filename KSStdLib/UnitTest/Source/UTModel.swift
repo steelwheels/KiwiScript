@@ -14,69 +14,61 @@ import KCGraphics
 @objc protocol UTModelProtocol : JSExport {
 	var position: KSPoint { get }
 	var velocity: KSVelocity { get }
+	var size:     KSSize { set get }
 }
 
 @objc public class UTModel: NSObject, UTModelProtocol
 {
-	private var mPosition: KSPoint
-	private var mVelocity: KSVelocity
+	private var mPosition	: KSPoint
+	private var mVelocity	: KSVelocity
+	private var mSize	: KSSize
 	
-	private var mPositionValue:	CGPoint
-	private var mVelocityValue:	KCVelocity
-	
+	private var mPositionValue: CGPoint
+	private var mVelocityValue: CNVelocity
+	private var mSizeValue:	    CGSize
+
 	public override init(){
 		mPosition	= KSPoint()
 		mVelocity	= KSVelocity()
+		mSize		= KSSize()
 		mPositionValue	= CGPointMake(0.0, 0.0)
-		mVelocityValue	= KCVelocity(v:0.0, angle:0.0)
-		
+		mVelocityValue	= CNVelocity(v: 0.0, angle: 0.0)
+		mSizeValue	= CGSizeMake(10.0, 10.0)
 		super.init()
 		
-		mPosition.getXCallback = { () -> Double in
-			let x = Double(self.mPositionValue.x)
-			print("* mPosition.getXCallback -> \(x)")
-			return x
-		}
-		mPosition.getYCallback = { () -> Double in
-			let y = Double(self.mPositionValue.y)
-			print("* mPosition.getYCallback -> \(y)")
-			return y
-		}
+		mPosition.setX = { (value: CGFloat) -> Void in self.mPositionValue.x = value }
+		mPosition.getX = { () -> CGFloat in return self.mPositionValue.x }
+		mPosition.setY = { (value: CGFloat) -> Void in self.mPositionValue.y = value }
+		mPosition.getY = { () -> CGFloat in return self.mPositionValue.y }
 		
-		mVelocity.getVCallback = { () -> Double in
-			let v = Double(self.mVelocityValue.v)
-			print("* Velocity.getVCallback -> \(v)")
-			return v
-		}
-		mVelocity.setVCallback = { (value: Double) -> Void in
-			print("* mVelocity.setVCallback <- \(value)")
-			self.mVelocityValue = KCVelocity(v: CGFloat(value), angle: self.mVelocityValue.angle)
-		}
-		mVelocity.getAngleCallback = { () -> Double in
-			let a = Double(self.mVelocityValue.angle)
-			print("* mVelocity.getAngleCallback -> \(a)")
-			return a
-		}
-		mVelocity.setAngleCallback = { (value: Double) -> Void in
-			print("* Velocity.setAngleCallback <- \(value)")
-			self.mVelocityValue = KCVelocity(v: self.mVelocityValue.v, angle: CGFloat(value))
-		}
+		mVelocity.setV = { (value: CGFloat) -> Void in self.mVelocityValue.v = value }
+		mVelocity.getV = { () -> CGFloat in return self.mVelocityValue.v }
+		mVelocity.setAngle = { (value: CGFloat) -> Void in self.mVelocityValue.angle = value }
+		mVelocity.getAngle = { () -> CGFloat in return self.mVelocityValue.angle }
+		
+		mSize.setWidth =  { (value: CGFloat) -> Void in self.mSizeValue.width = value }
+		mSize.getWidth  = { () -> CGFloat in return self.mSizeValue.width }
+		mSize.setHeight = { (value: CGFloat) -> Void in self.mSizeValue.height = value }
+		mSize.getHeight = { () -> CGFloat in return self.mSizeValue.height }
 	}
 	
 	var position: KSPoint {
-		get {
-			return mPosition
-		}
+		get {	return mPosition	}
+		set(newval) { mPosition = newval }
 	}
 	
 	var velocity: KSVelocity {
-		get {
-			return mVelocity
-		}
+		get { return mVelocity }
+		set(newval) { mVelocity = newval }
+	}
+	
+	var size: KSSize {
+		get { return mSize }
+		set(newval) { mSize = newval }
 	}
 	
 	public func dump() {
-		print("{model \(mPositionValue.description), \(mVelocityValue.shortDescription)")
+		print("{model \(mPositionValue.description), \(mVelocityValue.shortDescription), \(mSizeValue.description)")
 	}
 }
 
@@ -94,7 +86,12 @@ func testModel() -> Bool
 	let model = UTModel()
 	context.setObject(model, forKeyedSubscript: "model")
 	
-	executeScript(console, context: context, name:"n0", code:"model.velocity.v = 10.0 ; n0=1")
+	executeScript(console, context: context, name:"n0", code:"model.position.x = 10.0 ; n0=1")
+	executeScript(console, context: context, name:"n0", code:"model.position.y = 20.0 ; n0=2")
+	executeScript(console, context: context, name:"n0", code:"model.velocity.v = 30.0 ; n0=3")
+	executeScript(console, context: context, name:"n0", code:"model.velocity.angle = 3.14 ; n0=4")
+	executeScript(console, context: context, name:"n0", code:"model.velocity.angle = 3.14 ; n0=4")
+	executeScript(console, context: context, name:"n0", code:"model.size.width = model.size.width + 10.0 ; n0=4")
 	
 	model.dump()
 	return true

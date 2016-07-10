@@ -6,6 +6,7 @@
  */
 
 import Foundation
+import CoreGraphics
 import JavaScriptCore
 
 @objc protocol KSPointProtorol : JSExport {
@@ -15,33 +16,34 @@ import JavaScriptCore
 
 @objc public class KSPoint: NSObject, KSPointProtorol
 {
-	public var setXCallback: ((value: Double) -> Void)? = nil
-	public var setYCallback: ((value: Double) -> Void)? = nil
-	public var getXCallback: (() -> Double)? = nil
-	public var getYCallback: (() -> Double)? = nil
+	public var setX: ((value: CGFloat) -> Void)?	= nil
+	public var getX: (() -> CGFloat)?		= nil
+	public var setY: ((value: CGFloat) -> Void)?	= nil
+	public var getY: (() -> CGFloat)?		= nil
 	
-	var x: Double {
+	public var x: Double {
 		get {
-			if let callback = getXCallback {
-				return callback()
+			if let getfunc = getX {
+				return Double(getfunc())
 			} else {
 				return 0.0
 			}
 		}
-		set(newval){
-			setXCallback?(value: newval)
+		set(newval) {
+			setX?(value: CGFloat(newval))
 		}
 	}
-	var y: Double {
+	
+	public var y: Double {
 		get {
-			if let callback = getYCallback {
-				return callback()
+			if let getfunc = getY {
+				return Double(getfunc())
 			} else {
 				return 0.0
 			}
 		}
-		set(newval){
-			setYCallback?(value: newval)
+		set(newval) {
+			setY?(value: CGFloat(newval))
 		}
 	}
 }

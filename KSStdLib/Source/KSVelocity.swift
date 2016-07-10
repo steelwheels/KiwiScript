@@ -6,7 +6,9 @@
  */
 
 import Foundation
+import CoreGraphics
 import JavaScriptCore
+import Canary
 
 @objc protocol KSVelocityProtorol : JSExport {
 	var v     : Double { get set }
@@ -15,33 +17,34 @@ import JavaScriptCore
 
 @objc public class KSVelocity: NSObject, KSVelocityProtorol
 {
-	public var setVCallback: ((value: Double) -> Void)? = nil
-	public var setAngleCallback: ((value: Double) -> Void)? = nil
-	public var getVCallback: (() -> Double)? = nil
-	public var getAngleCallback: (() -> Double)? = nil
+	public var getV:	(() -> CGFloat)?		= nil
+	public var setV:	((newval: CGFloat) -> Void)?	= nil
+	public var getAngle:	(() -> CGFloat)?		= nil
+	public var setAngle:	((newval: CGFloat) -> Void)?	= nil
 	
-	var v: Double {
+	public var v: Double {
 		get {
-			if let callback = getVCallback {
-				return callback()
+			if let getfunc = getV {
+				return Double(getfunc())
 			} else {
 				return 0.0
 			}
 		}
-		set(newval){
-			setVCallback?(value: newval)
+		set(newval) {
+			setV?(newval: CGFloat(newval))
 		}
 	}
-	var angle: Double {
+	
+	public var angle: Double {
 		get {
-			if let callback = getAngleCallback {
-				return callback()
+			if let getfunc = getAngle {
+				return Double(getfunc())
 			} else {
 				return 0.0
 			}
 		}
-		set(newval){
-			setAngleCallback?(value: newval)
+		set(newval) {
+			setAngle?(newval: CGFloat(newval))
 		}
 	}
 }
