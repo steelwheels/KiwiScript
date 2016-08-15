@@ -18,32 +18,32 @@ public class KSValueDescription : KSValueVisitor
 		return converter.valueString
 	}
 	
-	public override func visitUndefinedValue(value : JSValue){
+	public override func visit(undefinedValue value : JSValue){
 		valueString = "undefined"
 	}
-	public override func visitNilValue(value : JSValue){
+	public override func visit(nilValue value : JSValue){
 		valueString = "nil"
 	}
-	public override func visitBooleanValue(value : Bool){
+	public override func visit(booleanValue value : Bool){
 		if value {
 			valueString = "true"
 		} else {
 			valueString = "false"
 		}
 	}
-	public override func visitNumberObject(number : NSNumber) {
-		valueString = number.stringValue
+	public override func visit(number n: NSNumber) {
+		valueString = n.stringValue
 	}
-	public override func visitStringObject(string : NSString) {
-		valueString = string as String
+	public override func visit(string s: NSString) {
+		valueString = s as String
 	}
-	public override func visitDateObject(date : NSDate) {
-		valueString = date.description
+	public override func visit(date d: NSDate) {
+		valueString = d.description
 	}
-	public override func visitDictionaryObject(dict : NSDictionary)	{
+	public override func visit(dictionary d: NSDictionary)	{
 		var curstr = "["
 		var is1st  = true
-		for key in dict.allKeys {
+		for key in d.allKeys {
 			if is1st {
 				is1st  = false
 			} else {
@@ -51,7 +51,7 @@ public class KSValueDescription : KSValueVisitor
 			}
 			acceptElement(key)
 			curstr = curstr + valueString + ":"
-			if let val = dict.objectForKey(key) {
+			if let val = d.objectForKey(key) {
 				acceptElement(val)
 				curstr = curstr + valueString
 			} else {
@@ -61,10 +61,10 @@ public class KSValueDescription : KSValueVisitor
 		valueString = curstr + "]"
 	}
 	
-	public override func visitArrayObject(arr : NSArray) {
+	public override func visit(array a: NSArray) {
 		var curstr = "["
 		var is1st  = true
-		for elm in arr {
+		for elm in a {
 			if is1st {
 				is1st  = false
 			} else {
@@ -76,7 +76,7 @@ public class KSValueDescription : KSValueVisitor
 		valueString = curstr + "]"
 	}
 	
-	public override func visitUnknownObject(obj : NSObject)	{
+	public override func visit(object o: NSObject)	{
 		valueString = "unknown"
 	}
 	

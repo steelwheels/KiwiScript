@@ -13,33 +13,33 @@ public class KSValueVisitor : CNObjectVisitor {
 	public func acceptValue(value : JSValue){
 		switch value.kind {
 		case .UndefinedValue:
-			visitUndefinedValue(value)
+			visit(undefinedValue: value)
 		case .NilValue:
-			visitNilValue(value) ;
+			visit(nilValue: value) ;
 		case .BooleanValue:
-			visitBooleanValue(value.toBool()) ;
+			visit(booleanValue: value.toBool()) ;
 		case .NumberValue:
-			visitNumberObject(value.toNumber()) ;
+			visit(number: value.toNumber()) ;
 		case .StringValue:
-			visitStringObject(value.toString()) ;
+			visit(string: value.toString()) ;
 		case .DateValue:
-			visitDateObject(value.toDate()) ;
+			visit(date: value.toDate()) ;
 		case .ArrayValue:
-			visitArrayObject(value.toArray()) ;
+			visit(array: value.toArray()) ;
 		case .DictionaryValue:
-			visitDictionaryObject(value.toDictionary()) ;
+			visit(dictionary: value.toDictionary()) ;
 		case .ObjectValue:
 			if let obj : NSObject = value.toObject() as? NSObject {
-				visitUnknownObject(obj) ;
+				visit(object: obj) ;
 			} else {
 				fatalError("Unknown object: \(value)")
 			}
 		}
 	}
 	
-	public func visitUndefinedValue(value : JSValue){		}
-	public func visitNilValue(value : JSValue){			}
-	public func visitBooleanValue(value : Bool){			}
+	public func visit(undefinedValue value : JSValue){		}
+	public func visit(nilValue value : JSValue){			}
+	public func visit(booleanValue value : Bool){			}
 }
 
 
