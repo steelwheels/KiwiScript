@@ -10,16 +10,16 @@ import JavaScriptCore
 import Canary
 
 public class KSStdLib {
-	public class func setup(context: JSContext){
+	public class func setup(context ctxt: JSContext){
 		let consolelib = KSConsole()
-		consolelib.registerToContext(context)
+		consolelib.registerToContext(context: ctxt)
 		
-		let mathlib = KSMath(context: context)
-		mathlib.registerToContext(context)
+		let mathlib = KSMath(context: ctxt)
+		mathlib.registerToContext(context: ctxt)
 	}
 
-	public class func setupRuntime(context: JSContext, console: CNConsole){
-		KSConsole.setToContext(context, console: console)
+	public class func setupRuntime(context ctxt: JSContext, console cons: CNConsole){
+		KSConsole.setToContext(context: ctxt, console: cons)
 	}
 }
 

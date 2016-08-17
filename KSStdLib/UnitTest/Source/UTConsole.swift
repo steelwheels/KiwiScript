@@ -15,8 +15,8 @@ public func testConsole() -> Bool
 {
 	let context = JSContext()
 	
-	KSStdLib.setup(context)
-	KSStdLib.setupRuntime(context, console: CNTextConsole())
+	KSStdLib.setup(context: context)
+	KSStdLib.setupRuntime(context: context, console: CNTextConsole())
 	
 	context.exceptionHandler = { context, exception in
 		print("JavaScript Error: \(exception)")

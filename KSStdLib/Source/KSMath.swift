@@ -22,8 +22,8 @@ import Darwin
 {
 	private var mContext : JSContext
 	
-	public init(context : JSContext){
-		mContext = context
+	public init(context ctxt: JSContext){
+		mContext = ctxt
 		super.init()
 	}
 	
@@ -31,8 +31,8 @@ import Darwin
 		return "Math"
 	}
 	
-	public func registerToContext(context : JSContext){
-		context.setObject(self, forKeyedSubscript: KSMath.rootObjectName())
+	public func registerToContext(context ctxt: JSContext){
+		ctxt.setObject(self, forKeyedSubscript: KSMath.rootObjectName())
 	}
 
 	var PI : Double {

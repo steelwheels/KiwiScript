@@ -12,9 +12,9 @@ public class KSValueDescription : KSValueVisitor
 {
 	public var valueString : String = ""
 	
-	public class func description(value : JSValue) -> String {
+	public class func description(value val: JSValue) -> String {
 		let converter = KSValueDescription()
-		converter.acceptValue(value)
+		converter.acceptValue(val)
 		return converter.valueString
 	}
 	
@@ -49,10 +49,10 @@ public class KSValueDescription : KSValueVisitor
 			} else {
 				curstr = curstr + ", "
 			}
-			acceptElement(key)
+			acceptElement(element: key)
 			curstr = curstr + valueString + ":"
 			if let val = d.objectForKey(key) {
-				acceptElement(val)
+				acceptElement(element: val)
 				curstr = curstr + valueString
 			} else {
 				fatalError("Can not happen")
@@ -70,7 +70,7 @@ public class KSValueDescription : KSValueVisitor
 			} else {
 				curstr = curstr + ", "
 			}
-			acceptElement(elm)
+			acceptElement(element: elm)
 			curstr = curstr + valueString
 		}
 		valueString = curstr + "]"
@@ -80,7 +80,7 @@ public class KSValueDescription : KSValueVisitor
 		valueString = "unknown"
 	}
 	
-	private func acceptElement(src : AnyObject) {
+	private func acceptElement(element src : AnyObject) {
 		if let elmval = src as? JSValue {
 			acceptValue(elmval)
 		} else if let elmobj = src as? NSObject {

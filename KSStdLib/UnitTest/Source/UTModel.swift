@@ -76,8 +76,8 @@ func testModel() -> Bool
 {
 	let console = CNTextConsole()
 	let context = JSContext()
-	KSStdLib.setup(context)
-	KSStdLib.setupRuntime(context, console: console)
+	KSStdLib.setup(context: context)
+	KSStdLib.setupRuntime(context: context, console: console)
 	
 	context.exceptionHandler = { context, exception in
 		print("JavaScript Error: \(exception)")
@@ -101,7 +101,7 @@ private func executeScript(console : CNConsole, context: JSContext, name: String
 {
 	context.evaluateScript(code)
 	if let retval : JSValue = context.objectForKeyedSubscript(name) {
-		let line = KSValueDescription.description(retval)
+		let line = KSValueDescription.description(value: retval)
 		console.print(text: CNConsoleText(string: line))
 		return true
 	} else {

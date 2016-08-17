@@ -48,8 +48,8 @@ public func testJsonEncoder() -> Bool
 
 public func decodeValue(console : CNConsole, value : JSValue)
 {
-	let encdict = KSValueCoder.encode(value)
-	let (encstr, encerr)  = CNJSONFile.serializeToString(encdict)
+	let encdict = KSValueCoder.encode(value: value)
+	let (encstr, encerr)  = CNJSONFile.serialize(dictionary: encdict)
 	if let error = encerr {
 		let errmsg = "[Error] " + error.toString()
 		console.print(text: CNConsoleText(string: errmsg))

@@ -10,7 +10,7 @@ import JavaScriptCore
 import Canary
 
 @objc protocol KSConsoleOperating : JSExport {
-	func put(value : JSValue)
+	func put(value val: JSValue)
 }
 
 @objc public class KSConsole : NSObject, KSConsoleOperating
@@ -25,20 +25,20 @@ import Canary
 		return "console"
 	}
 	
-	public func registerToContext(context : JSContext){
-		context.setObject(self, forKeyedSubscript: KSConsole.rootObjectName())
+	public func registerToContext(context ctxt: JSContext){
+		ctxt.setObject(self, forKeyedSubscript: KSConsole.rootObjectName())
 	}
 	
-	public class func setToContext(context: JSContext, console newcons: CNConsole){
-		if let jsvalue = context.objectForKeyedSubscript(KSConsole.rootObjectName()) {
+	public class func setToContext(context ctxt: JSContext, console cons: CNConsole){
+		if let jsvalue = ctxt.objectForKeyedSubscript(KSConsole.rootObjectName()) {
 			if let console = jsvalue.toObject() as? KSConsole {
-				console.mConsole = newcons
+				console.mConsole = cons
 			}
 		}
 	}
 	
-	public class func getFromContext(context: JSContext) -> CNConsole? {
-		if let jsvalue = context.objectForKeyedSubscript(KSConsole.rootObjectName()) {
+	public class func getFromContext(context ctxt: JSContext) -> CNConsole? {
+		if let jsvalue = ctxt.objectForKeyedSubscript(KSConsole.rootObjectName()) {
 			if let console = jsvalue.toObject() as? KSConsole {
 				return console.mConsole
 			}
@@ -46,9 +46,9 @@ import Canary
 		return nil
 	}
 	
-	public func put(value : JSValue){
+	public func put(value val: JSValue){
 		if let console = mConsole {
-			let valstr  = KSValueDescription.description(value)
+			let valstr  = KSValueDescription.description(value: val)
 			console.print(string: valstr)
 		}
 	}
