@@ -14,7 +14,7 @@ public func testObject() -> Bool
 	let vm = JSVirtualMachine()
 	let context = KEContext(virtualMachine: vm)
 	let newobj = UTObjectBridge()
-	let objval = context.allocateObjectValue(newobj)
+	let objval = context.allocateObjectValue(object: newobj)
 	
 	let script =   "function test(object){"
 		     + "  var tmp ;"

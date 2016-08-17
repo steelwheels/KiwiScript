@@ -17,7 +17,7 @@ public class KEContext : JSContext
 		super.init(virtualMachine: virtualMachine)
 		self.exceptionHandler = { contextp, exception in
 			if let context = contextp as? KEContext {
-				context.addErrorMessage(exception.description) ;
+				context.addErrorMessage(message: exception.description) ;
 				return
 			}
 			NSLog("Internal error \(exception)")
@@ -32,17 +32,17 @@ public class KEContext : JSContext
 		mRuntimeErrors = []
 	}
 	
-	public func addErrorMessage(message : NSString){
-		let error = NSError.parseError(message: message) ;
+	public func addErrorMessage(message msg : NSString){
+		let error = NSError.parseError(message: msg) ;
 		mRuntimeErrors.append(error)
 	}
 
-	public func addGlobalObject(name: NSString, value: NSObject){
-		self.setObject(value, forKeyedSubscript:name)
+	public func addGlobalObject(name n: NSString, object o: NSObject){
+		self.setObject(o, forKeyedSubscript:n)
 	}
 	
-	public func allocateObjectValue(value : NSObject) -> JSValue {
-		 return JSValue(object: value, inContext: self)
+	public func allocateObjectValue(object o: NSObject) -> JSValue {
+		 return JSValue(object: o, inContext: self)
 	}
 }
 
