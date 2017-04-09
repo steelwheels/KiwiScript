@@ -1,9 +1,9 @@
 /**
-* @file		KSSize.swift
-* @brief	Extension of CGSize for JavaScriptCore
-* @par Copyright
-*   Copyright (C) 2016 Steel Wheels Project
-*/
+ * @file		KSSize.swift
+ * @brief	Extension of CGSize for JavaScriptCore
+ * @par Copyright
+ *   Copyright (C) 2016 Steel Wheels Project
+ */
 
 import Foundation
 import CoreGraphics
@@ -16,9 +16,9 @@ import JavaScriptCore
 
 @objc public class KSSize: NSObject, KSSizeProtorol
 {
-	public var setWidth:  ((value: CGFloat) -> Void)?	= nil
+	public var setWidth:  ((_: CGFloat) -> Void)?	= nil
 	public var getWidth:  (() -> CGFloat)?			= nil
-	public var setHeight: ((value: CGFloat) -> Void)?	= nil
+	public var setHeight: ((_: CGFloat) -> Void)?	= nil
 	public var getHeight: (() -> CGFloat)?			= nil
 
 	public var width: Double {
@@ -30,7 +30,7 @@ import JavaScriptCore
 			}
 		}
 		set(newval) {
-			setWidth?(value: CGFloat(newval))
+			setWidth?(CGFloat(newval))
 		}
 	}
 
@@ -43,7 +43,7 @@ import JavaScriptCore
 			}
 		}
 		set(newval) {
-			setHeight?(value: CGFloat(newval))
+			setHeight?(CGFloat(newval))
 		}
 	}
 }

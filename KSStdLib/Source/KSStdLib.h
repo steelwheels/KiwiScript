@@ -1,10 +1,9 @@
-//
-//  KSStdLib.h
-//  KSStdLib
-//
-//  Created by Tomoo Hamada on 2015/08/22.
-//  Copyright (c) 2015年 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	KSStdLib.h
+ * @brief	Briedge header for KiwiStdlib
+ * @par Copyright
+ *	Copyright (C) 2017 Steel Wheels Project
+ */
 
 #import <Cocoa/Cocoa.h>
 

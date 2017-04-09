@@ -13,14 +13,24 @@ public class KEContext : JSContext
 {
 	private var mRuntimeErrors : Array<NSError> = [] ;
 	
-	public override init(virtualMachine: JSVirtualMachine!) {
-		super.init(virtualMachine: virtualMachine)
-		self.exceptionHandler = { contextp, exception in
+	public override init(virtualMachine vm: JSVirtualMachine!) {
+		super.init(virtualMachine: vm)
+		self.exceptionHandler = { (contextp, exception) in
 			if let context = contextp as? KEContext {
-				context.addErrorMessage(message: exception.description) ;
+				var msg: String
+				if let e = exception {
+					msg = e.description
+				} else {
+					msg = "Unknown exception"
+				}
+				context.addErrorMessage(message: msg) ;
 				return
 			}
-			NSLog("Internal error \(exception)")
+			var desc: String = ""
+			if let e = exception {
+				desc = e.description
+			}
+			NSLog("Internal error \(desc)")
 		}
 	}
 	
@@ -32,7 +42,7 @@ public class KEContext : JSContext
 		mRuntimeErrors = []
 	}
 	
-	public func addErrorMessage(message msg : NSString){
+	public func addErrorMessage(message msg : String){
 		let error = NSError.parseError(message: msg) ;
 		mRuntimeErrors.append(error)
 	}
@@ -42,7 +52,7 @@ public class KEContext : JSContext
 	}
 	
 	public func allocateObjectValue(object o: NSObject) -> JSValue {
-		 return JSValue(object: o, inContext: self)
+		 return JSValue(object: o, in: self)
 	}
 }
 

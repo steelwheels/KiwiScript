@@ -1,10 +1,9 @@
-//
-//  UTConsole.swift
-//  KSStdLib
-//
-//  Created by Tomoo Hamada on 2015/10/20.
-//  Copyright © 2015年 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	UTConsole.swift
+ * @brief	Unit test for console
+ * @par Copyright
+ *   Copyright (C) 2017 Steel Wheels Project
+ */
 
 import Foundation
 import JavaScriptCore
@@ -13,16 +12,24 @@ import Canary
 
 public func testConsole() -> Bool
 {
-	let context = JSContext()
+	if let context = JSContext() {
+		KSStdLib.setup(context: context)
+		KSStdLib.setupRuntime(context: context, console: CNTextConsole())
 	
-	KSStdLib.setup(context: context)
-	KSStdLib.setupRuntime(context: context, console: CNTextConsole())
+		context.exceptionHandler = { (context, exception) in
+			var desc: String
+			if let e = exception {
+				desc = e.toString()
+			} else {
+				desc = "nil"
+			}
+			print("JavaScript Error: \(desc)")
+		}
 	
-	context.exceptionHandler = { context, exception in
-		print("JavaScript Error: \(exception)")
+		context.evaluateScript("console.put(\"Hello, world!!\");")
+		return true
+	} else {
+		print("[Error] Can not allocate JSContext")
+		return false
 	}
-	
-	context.evaluateScript("console.put(\"Hello, world!!\");")
-	
-	return true
 }

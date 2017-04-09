@@ -1,10 +1,9 @@
-//
-//  KiwiEngine.h
-//  KiwiEngine
-//
-//  Created by Tomoo Hamada on 2015/08/10.
-//  Copyright (c) 2015年 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	KiwiEngine.h
+ * @brief	Briedge header for KiwiENgine
+ * @par Copyright
+ *	Copyright (C) 2017 Steel Wheels Project
+ */
 
 #import <Cocoa/Cocoa.h>
 

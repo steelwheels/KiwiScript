@@ -1,10 +1,9 @@
-//
-//  UTValue.swift
-//  KSStdLib
-//
-//  Created by Tomoo Hamada on 2015/08/28.
-//  Copyright (c) 2015年 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	UTValue.swift
+ * @brief	Unit test for KSValue
+ * @par Copyright
+ *   Copyright (C) 2017 Steel Wheels Project
+ */
 
 import Foundation
 import JavaScriptCore
@@ -14,17 +13,17 @@ func testKSValue() -> Bool {
 	testKinds()
 	
 	let context = JSContext()
-	parseNumber("int32", val: JSValue(int32: 123, inContext: context))
-	parseNumber("UInt32", val: JSValue(UInt32: 123, inContext: context))
-	parseNumber("double", val: JSValue(double: 123.4, inContext: context))
+	parseNumber(title: "int32 ",  value: JSValue(int32: 123, in: context))
+	parseNumber(title: "UInt32", value: JSValue(uInt32: 123, in: context))
+	parseNumber(title: "double", value: JSValue(double: 123.4, in: context))
 	
 	return true ;
 }
 
 func testKinds(){
 	print("** Print kind strings")
-	testKind("char  ", kind: KSValueKind.BooleanValue)
-	testKind("number", kind: KSValueKind.NumberValue)
+	testKind(title: "char  ", kind: KSValueKind.BooleanValue)
+	testKind(title: "number", kind: KSValueKind.NumberValue)
 }
 
 func testKind(title: String, kind : KSValueKind){
@@ -32,8 +31,8 @@ func testKind(title: String, kind : KSValueKind){
 	print("\(title) -> \(kindstr)")
 }
 
-func parseNumber(title: String, val : JSValue){
+func parseNumber(title tl: String, value val: JSValue){
 	let kind = val.kind
 	let kindstr = kind.toString()
-	print("\(title): \(val.description) : \(kindstr)")
+	print("\(tl): \(val.description) : \(kindstr)")
 }

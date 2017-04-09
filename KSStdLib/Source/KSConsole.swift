@@ -10,7 +10,7 @@ import JavaScriptCore
 import Canary
 
 @objc protocol KSConsoleOperating : JSExport {
-	func put(value val: JSValue)
+	func put(_ value: JSValue)
 }
 
 @objc public class KSConsole : NSObject, KSConsoleOperating
@@ -21,7 +21,7 @@ import Canary
 		super.init()
 	}
 	
-	public class func rootObjectName() -> String {
+	public class func rootObjectName() -> NSString {
 		return "console"
 	}
 	
@@ -46,7 +46,7 @@ import Canary
 		return nil
 	}
 	
-	public func put(value val: JSValue){
+	public func put(_ val: JSValue){
 		if let console = mConsole {
 			let valstr  = KSValueDescription.description(value: val)
 			console.print(string: valstr)

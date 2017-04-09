@@ -21,9 +21,9 @@ public func testObject() -> Bool
 		     + "  tmp = object.angle() + 1.1 ;"
 		     + "  object.setAngle(tmp); "
 		     + "}"
-	runScript(context, script: script)
+	runScript(context: context, script: script)
 	
-	let (_, errorsp) = KEEngine.callFunction(context, functionName: "test", arguments: [objval])
+	let (_, errorsp) = KEEngine.callFunction(context: context, functionName: "test", arguments: [objval])
 	if let errors = errorsp {
 		print("Failed to call function")
 		for error in errors {
@@ -39,7 +39,7 @@ public func testObject() -> Bool
 
 @objc protocol UTObjectBridging : JSExport {
 	func angle() -> Double
-	func setAngle(value : Double)
+	func setAngle(_ value : Double)
 }
 
 @objc public class UTObjectBridge : NSObject, UTObjectBridging
@@ -55,14 +55,14 @@ public func testObject() -> Bool
 		return mAngle
 	}
 	
-	public func setAngle(value: Double) {
+	public func setAngle(_ value: Double) {
 		mAngle = value
 	}
 }
 
 private func runScript(context: KEContext, script : String)
 {
-	let (resultp, errorsp) = KEEngine.runScript(context, script: script)
+	let (resultp, errorsp) = KEEngine.runScript(context: context, script: script)
 	if let errors = errorsp {
 		print("RunScript -> NG")
 		for error in errors {

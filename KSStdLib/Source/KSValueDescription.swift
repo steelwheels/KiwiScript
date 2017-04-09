@@ -14,7 +14,7 @@ public class KSValueDescription : KSValueVisitor
 	
 	public class func description(value val: JSValue) -> String {
 		let converter = KSValueDescription()
-		converter.acceptValue(val)
+		converter.acceptValue(value: val)
 		return converter.valueString
 	}
 	
@@ -34,34 +34,29 @@ public class KSValueDescription : KSValueVisitor
 	public override func visit(number n: NSNumber) {
 		valueString = n.stringValue
 	}
-	public override func visit(string s: NSString) {
+	public override func visit(string s: String) {
 		valueString = s as String
 	}
-	public override func visit(date d: NSDate) {
+	public override func visit(date d: Date) {
 		valueString = d.description
 	}
-	public override func visit(dictionary d: NSDictionary)	{
+	public override func visit(dictionary d: [String:AnyObject])	{
 		var curstr = "["
 		var is1st  = true
-		for key in d.allKeys {
+		for (key, value) in d {
 			if is1st {
 				is1st  = false
 			} else {
 				curstr = curstr + ", "
 			}
-			acceptElement(element: key)
-			curstr = curstr + valueString + ":"
-			if let val = d.objectForKey(key) {
-				acceptElement(element: val)
-				curstr = curstr + valueString
-			} else {
-				fatalError("Can not happen")
-			}
+			curstr = curstr + key + ":"
+			acceptElement(element: value)
+			curstr = curstr + valueString
 		}
 		valueString = curstr + "]"
 	}
 	
-	public override func visit(array a: NSArray) {
+	public override func visit(array a: [AnyObject]) {
 		var curstr = "["
 		var is1st  = true
 		for elm in a {
@@ -76,15 +71,15 @@ public class KSValueDescription : KSValueVisitor
 		valueString = curstr + "]"
 	}
 	
-	public override func visit(object o: NSObject)	{
+	public override func visit(object o: AnyObject)	{
 		valueString = "unknown"
 	}
 	
 	private func acceptElement(element src : AnyObject) {
 		if let elmval = src as? JSValue {
-			acceptValue(elmval)
+			acceptValue(value: elmval)
 		} else if let elmobj = src as? NSObject {
-			acceptObject(elmobj)
+			acceptObject(object: elmobj)
 		} else {
 			fatalError("Unknown object")
 		}

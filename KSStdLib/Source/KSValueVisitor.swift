@@ -25,9 +25,20 @@ public class KSValueVisitor : CNObjectVisitor {
 		case .DateValue:
 			visit(date: value.toDate()) ;
 		case .ArrayValue:
-			visit(array: value.toArray()) ;
+			visit(array: value.toArray() as [AnyObject]) ;
 		case .DictionaryValue:
-			visit(dictionary: value.toDictionary()) ;
+			if let dict0 = value.toDictionary() {
+				var newdict:[String:AnyObject] = [:]
+				for (key, value) in dict0 {
+					if let keystr = key as? String {
+						let valobj = value as AnyObject
+						newdict[keystr] = valobj
+					} else {
+						fatalError("Not string key")
+					}
+				}
+				visit(dictionary: newdict)
+			}
 		case .ObjectValue:
 			if let obj : NSObject = value.toObject() as? NSObject {
 				visit(object: obj) ;

@@ -23,7 +23,7 @@ public class KSValueCoder
 			result = decodeValue(value: content, inContext: context)
 		} else {
 			NSLog("Failed to decode value")
-			result = JSValue(bool: false, inContext: context)
+			result = JSValue(bool: false, in: context)
 		}
 		return result
 	}
@@ -36,19 +36,44 @@ public class KSValueCoder
 		case .NilValue:
 			result = NSNull()
 		case .BooleanValue:
-			result = val.toBool()
+			let v = val.toBool()
+			result = NSNumber(value: v)
 		case .NumberValue:
 			result = val.toNumber()
 		case .StringValue:
-			result = val.toString()
+			if let v = val.toString() {
+				result = NSString(string: v)
+			} else {
+				result = NSString(string: "")
+			}
 		case .DateValue:
-			result = val.toDate()
+			if let v = val.toDate() {
+				result = v as NSDate
+			} else {
+				result = NSDate(timeIntervalSinceNow: 0)
+			}
 		case .ArrayValue:
-			result = val.toArray()
+			let arr = NSMutableArray(capacity: 8)
+			for elm in val.toArray() {
+				arr.add(elm as AnyObject)
+			}
+			result = arr
 		case .DictionaryValue:
-			result = val.toDictionary()
+			let dict = NSMutableDictionary(capacity: 8)
+			for (k, v) in val.toDictionary() {
+				if let key = k as? NSString {
+					dict.setObject(v, forKey: key)
+				} else {
+					fatalError("Invalid key type")
+				}
+			}
+			result = dict
 		case .ObjectValue:
-			result = val.toObject()
+			if let obj = val.toObject() as? NSObject {
+				result = obj
+			} else {
+				fatalError("Invalid object type")
+			}
 		}
 		return result
 	}
@@ -56,21 +81,21 @@ public class KSValueCoder
 	private class func decodeValue(value val: AnyObject, inContext context: JSContext) -> JSValue {
 		var result : JSValue
 		if let _ = val as? NSNull {
-			result = JSValue(nullInContext: context)
+			result = JSValue(nullIn: context)
 		} else if let boolval = val as? Bool {
-			result = JSValue(bool: boolval, inContext: context)
+			result = JSValue(bool: boolval, in: context)
 		} else if let numval = val as? NSNumber {
-			result = JSValue(double: numval.doubleValue, inContext: context)
+			result = JSValue(double: numval.doubleValue, in: context)
 		} else if let strval = val as? NSString {
-			result = JSValue(object: strval, inContext: context)
+			result = JSValue(object: strval, in: context)
 		} else if let dataval = val as? NSDate {
-			result = JSValue(object: dataval, inContext: context)
+			result = JSValue(object: dataval, in: context)
 		} else if let arrval = val as? Array<AnyObject> {
-			result = JSValue(object: NSArray(array: arrval), inContext: context)
+			result = JSValue(object: NSArray(array: arrval), in: context)
 		} else if let dictval = val as? Dictionary<String, AnyObject> {
-			result = JSValue(object: NSDictionary(dictionary: dictval), inContext: context)
+			result = JSValue(object: NSDictionary(dictionary: dictval), in: context)
 		} else if let objval = val as? NSObject {
-			result = JSValue(object: objval, inContext: context)
+			result = JSValue(object: objval, in: context)
 		} else {
 			fatalError("Unknown kind of object: \(val)")
 		}

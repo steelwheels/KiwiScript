@@ -51,24 +51,24 @@ public extension JSValue
 		get {
 			var result = KSValueKind.UndefinedValue
 			if self.isUndefined {
-				result = KSValueKind.UndefinedValue
+				result = .UndefinedValue
 			} else if self.isNull {
-				result = KSValueKind.NilValue
+				result = .NilValue
 			} else if self.isBoolean {
-				result = KSValueKind.BooleanValue
+				result = .BooleanValue
 			} else if self.isNumber {
-				result = KSValueKind.NumberValue
+				result = .NumberValue
 			} else if self.isString {
-				result = KSValueKind.StringValue
+				result = .StringValue
 			} else if self.isObject {
-				if let _ = self.toObjectOfClass(NSDictionary) {
-					result = KSValueKind.DictionaryValue
-				} else if let _ = self.toObjectOfClass(NSArray){
-					result = KSValueKind.ArrayValue
-				} else if let _ = self.toObjectOfClass(NSDate){
-					result = KSValueKind.DateValue
+				if let _ = self.toDictionary() {
+					result = .DictionaryValue
+				} else if let _ = self.toArray() {
+					result = .ArrayValue
+				} else if let _ = self.toDate() {
+					result = .DateValue
 				} else {
-					result = KSValueKind.ObjectValue
+					result = .ObjectValue
 				}
 			}
 			return result

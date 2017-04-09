@@ -12,10 +12,10 @@ import Darwin
 @objc protocol KSMathOperating : JSExport {
 	var PI : Double { get }
 	
-	func sin(src: JSValue) -> JSValue
-	func cos(src: JSValue) -> JSValue
-	func tan(src: JSValue) -> JSValue
-	func atan(src: JSValue) -> JSValue
+	func sin(_: JSValue) -> JSValue
+	func cos(_: JSValue) -> JSValue
+	func tan(_: JSValue) -> JSValue
+	func atan(_: JSValue) -> JSValue
 }
 
 @objc public class KSMath : NSObject, KSMathOperating
@@ -27,7 +27,7 @@ import Darwin
 		super.init()
 	}
 	
-	public class func rootObjectName() -> String {
+	public class func rootObjectName() -> NSString {
 		return "Math"
 	}
 	
@@ -36,30 +36,30 @@ import Darwin
 	}
 
 	var PI : Double {
-		get { return M_PI}
+		get { return Double.pi}
 	}
 	
-	func sin(src: JSValue) -> JSValue {
+	func sin(_ src: JSValue) -> JSValue {
 		let val = src.toDouble()
 		let result = Darwin.sin(val)
-		return JSValue(double: result, inContext: mContext)
+		return JSValue(double: result, in: mContext)
 	}
 	
-	func cos(src: JSValue) -> JSValue {
+	func cos(_ src: JSValue) -> JSValue {
 		let val = src.toDouble()
 		let result = Darwin.cos(val)
-		return JSValue(double: result, inContext: mContext)
+		return JSValue(double: result, in: mContext)
 	}
 	
-	func tan(src: JSValue) -> JSValue {
+	func tan(_ src: JSValue) -> JSValue {
 		let val = src.toDouble()
 		let result = Darwin.tan(val)
-		return JSValue(double: result, inContext: mContext)
+		return JSValue(double: result, in: mContext)
 	}
 	
-	func atan(src: JSValue) -> JSValue {
+	func atan(_ src: JSValue) -> JSValue {
 		let val = src.toDouble()
 		let result = Darwin.atan(val)
-		return JSValue(double: result, inContext: mContext)
+		return JSValue(double: result, in: mContext)
 	}
 }

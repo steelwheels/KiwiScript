@@ -16,9 +16,9 @@ import JavaScriptCore
 
 @objc public class KSPoint: NSObject, KSPointProtorol
 {
-	public var setX: ((value: CGFloat) -> Void)?	= nil
+	public var setX: ((_: CGFloat) -> Void)?	= nil
 	public var getX: (() -> CGFloat)?		= nil
-	public var setY: ((value: CGFloat) -> Void)?	= nil
+	public var setY: ((_: CGFloat) -> Void)?	= nil
 	public var getY: (() -> CGFloat)?		= nil
 	
 	public var x: Double {
@@ -30,7 +30,7 @@ import JavaScriptCore
 			}
 		}
 		set(newval) {
-			setX?(value: CGFloat(newval))
+			setX?(CGFloat(newval))
 		}
 	}
 	
@@ -43,7 +43,7 @@ import JavaScriptCore
 			}
 		}
 		set(newval) {
-			setY?(value: CGFloat(newval))
+			setY?(CGFloat(newval))
 		}
 	}
 }

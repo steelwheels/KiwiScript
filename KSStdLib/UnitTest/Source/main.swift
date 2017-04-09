@@ -1,16 +1,15 @@
-//
-//  main.swift
-//  UnitTest
-//
-//  Created by Tomoo Hamada on 2015/08/28.
-//  Copyright (c) 2015年 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	main.swift
+ * @brief	Main function for unit test
+ * @par Copyright
+ *	Copyright (C) 2017 Steel Wheels Project
+ */
 
 import Foundation
 
 var result = true
 
-func test(flag : Bool){
+func test(_ flag : Bool){
 	print("RESULT : \(flag)")
 	result = result && flag
 }
@@ -35,8 +34,8 @@ test(testConsole())
 print("* UTMath")
 test(testMath())
 
-print("* Model")
-test(testModel())
+print("* UTState")
+test(testState())
 
 print("**** SUMMARY\nTOTAL RESULT: ", terminator: "")
 if result {

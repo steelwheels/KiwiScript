@@ -9,19 +9,19 @@ import Foundation
 
 var summary = true
 
-func test(funcname:String, result:Bool) -> Bool
+func test(funcName fn:String, result res:Bool) -> Bool
 {
-	if(result){
-		print("\(funcname) : OK")
+	if(res){
+		print("\(fn) : OK")
 	} else {
-		print("\(funcname) : NG")
+		print("\(fn) : NG")
 	}
-	return result
+	return res
 }
 
-summary = test("testStdLib", result: testStdLib()) && summary
-summary = test("testError", result: testError()) && summary
-summary = test("testObject", result: testObject()) && summary
+summary = test(funcName: "testStdLib", result: testStdLib()) && summary
+summary = test(funcName: "testError", result: testError()) && summary
+summary = test(funcName: "testObject", result: testObject()) && summary
 
 if summary {
 	print("SUMMARY: OK")

@@ -1,10 +1,9 @@
-//
-//  main.swift
-//  JSRunnerExec
-//
-//  Created by Tomoo Hamada on 2015/09/15.
-//  Copyright © 2015年 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	main.swift
+ * @brief	Main function of JSRunner
+ * @par Copyright
+ *	Copyright (C) 2017 Steel Wheels Project
+ */
 
 import Foundation
 

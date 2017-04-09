@@ -1,10 +1,9 @@
-//
-//  UTJsonEncoder.swift
-//  KSStdLib
-//
-//  Created by Tomoo Hamada on 2015/09/01.
-//  Copyright (c) 2015年 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	UTJsonCoder.swift
+ * @brief	Unit test for coder
+ * @par Copyright
+ *   Copyright (C) 2017 Steel Wheels Project
+ */
 
 import Foundation
 import JavaScriptCore
@@ -14,49 +13,56 @@ import KSStdLib
 public func testJsonEncoder() -> Bool
 {
 	let console = CNTextConsole()
-	let context = JSContext()
+	if let context = JSContext() {
+		print("** Bool Object -> ", terminator:"")
+		let val0 = JSValue(bool: true, in: context)
+		decodeValue(console: console, value: val0)
 	
-	print("** Bool Object -> ", terminator:"")
-	let val0 = JSValue(bool: true, inContext: context)
-	decodeValue(console, value: val0)
+		print("** Double Object -> ", terminator:"")
+		let val1 = JSValue(double: 1.23, in: context)
+		decodeValue(console: console, value: val1)
 	
-	print("** Double Object -> ", terminator:"")
-	let val1 = JSValue(double: 1.23, inContext: context)
-	decodeValue(console, value: val1)
+		print("** String Object -> ", terminator:"")
+		let var2 = JSValue(object: NSString(utf8String: "Hello, World"), in: context)
+		decodeValue(console: console, value: var2)
 	
-	print("** String Object -> ", terminator:"")
-	let var2 = JSValue(object: NSString(UTF8String: "Hello, World"), inContext: context)
-	decodeValue(console, value: var2)
+		print("** Dictionary Object -> ", terminator:"")
+		let dict0 : NSDictionary = ["a":123, "b":234] ;
+		let var3 = JSValue(object: dict0, in: context)
+		decodeValue(console: console, value: var3)
 	
-	print("** Dictionary Object -> ", terminator:"")
-	let dict0 : NSDictionary = ["a":123, "b":234] ;
-	let var3 = JSValue(object: dict0, inContext: context)
-	decodeValue(console, value: var3)
+		print("** Array object -> ", terminator:"")
+		let arr0 : NSArray = [1, 2, 3, 4]
+		let var4 = JSValue(object: arr0, in: context)
+		decodeValue(console: console, value: var4)
 	
-	print("** Array object -> ", terminator:"")
-	let arr0 : NSArray = [1, 2, 3, 4]
-	let var4 = JSValue(object: arr0, inContext: context)
-	decodeValue(console, value: var4)
+		print("** Combination object -> ", terminator:"")
+		let dict1 : NSDictionary = ["i0":dict0, "i1":arr0]
+		let var5 = JSValue(object: dict1, in: context)
+		decodeValue(console: console, value: var5)
 	
-	print("** Combination object -> ", terminator:"")
-	let dict1 : NSDictionary = ["i0":dict0, "i1":arr0]
-	let var5 = JSValue(object: dict1, inContext: context)
-	decodeValue(console, value: var5)
-	
-	return true
+		return true
+	} else {
+		print("[Error] Can not allocate JSContext")
+		return false
+	}
 }
 
-public func decodeValue(console : CNConsole, value : JSValue)
+public func decodeValue(console cons: CNConsole, value val: JSValue?)
 {
-	let encdict = KSValueCoder.encode(value: value)
-	let (encstr, encerr)  = CNJSONFile.serialize(dictionary: encdict)
-	if let error = encerr {
-		let errmsg = "[Error] " + error.toString()
-		console.print(text: CNConsoleText(string: errmsg))
-	} else if let str = encstr {
-		let lines = str.componentsSeparatedByString("\n")
-		console.print(text: CNConsoleText(strings: lines))
+	if let v = val {
+		let encdict = KSValueCoder.encode(value: v)
+		let (encstr, encerr)  = CNJSONFile.serialize(dictionary: encdict)
+		if let error = encerr {
+			let errmsg = "[Error] " + error.toString()
+			cons.print(text: CNConsoleText(string: errmsg))
+		} else if let str = encstr {
+			let lines = str.components(separatedBy: "\n")
+			cons.print(text: CNConsoleText(strings: lines))
+		} else {
+			fatalError("Can not happen (1)")
+		}
 	} else {
-		fatalError("Can not happen")
+		fatalError("Can not happen (2)")
 	}
 }

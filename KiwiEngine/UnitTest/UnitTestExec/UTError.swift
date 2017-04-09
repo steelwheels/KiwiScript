@@ -18,19 +18,19 @@ public func testError() -> Bool
 	
 	print("*** Script1")
 	let script1 = "function hoge" ;
-	result = testScript(context, script: script1) && result
+	result = testScript(context: context, script: script1) && result
 	
 	print("*** Script2")
 	let script2 = "function hoge(a, b){ return a hoge; }" ;
-	result = testScript(context, script: script2) && result
+	result = testScript(context: context, script: script2) && result
 	
 	return true
 }
 
-private func testScript(context: KEContext, script : String) -> Bool
+private func testScript(context ctxt: KEContext, script scr: String) -> Bool
 {
 	var testResult = false
-	let (resultp, errorsp) = KEEngine.runScript(context, script: script)
+	let (resultp, errorsp) = KEEngine.runScript(context: ctxt, script: scr)
 	if let errors = errorsp {
 		for error in errors {
 			let str = error.toString()
