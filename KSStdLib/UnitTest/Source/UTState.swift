@@ -16,49 +16,42 @@ import Canary
 	var height: Double { get set }
 }
 
-@objc class UTState: NSObject, UTStateProtocol
+/* Must be public for accessed in JavaScriptCore */
+@objc class UTState: KSState, UTStateProtocol
 {
+	public static let Width	 = NSString(string: "width")
+	public static let Height = NSString(string: "height")
 
-	/// Dictionary: Key: String, Value: CNValueObject
-	private var mDictionary : NSMutableDictionary
-
-	public static let Width:  NSString	= "width"
-	public static let Height: NSString	= "height"
-
-	public init(context ctxt: JSContext){
-		mDictionary = NSMutableDictionary(capacity: 8)
-		mDictionary.setObject(CNValueObject(value: .DoubleValue(value: 12.3)), forKey: UTState.Width)
-		mDictionary.setObject(CNValueObject(value: .DoubleValue(value: 23.4)), forKey: UTState.Height)
+	public init(){
+		let initvals: Array<KSStateInitialValue> = [
+			KSStateInitialValue(key: UTState.Width,  value: .DoubleValue(value: 12.3)),
+			KSStateInitialValue(key: UTState.Height, value: .DoubleValue(value: 23.4))
+		]
+		super.init(initialValues: initvals)
 	}
 
-	public func setObserver(observer obs: NSObject){
-		let keys: Array<String> = [String(UTState.Width), String(UTState.Height)]
-		for key in keys {
-			mDictionary.addObserver(obs, forKeyPath: key, options: .new, context: nil)
+	public var width: Double {
+		get {
+			print("*** get width ***")
+			let val = member(forKey: UTState.Width)
+			return val.doubleValue
+		}
+		set(v){
+			print("*** set width ***")
+			let val = CNValue.DoubleValue(value: v)
+			setMember(value: val, forKey: UTState.Width)
 		}
 	}
 
-	var width: Double {
-		get { return getValueObject(forKey: UTState.Width).value.doubleValue }
-		set(val) { setValueObject(value: CNValueObject(value: .DoubleValue(value: val)), forKey: UTState.Width) }
-	}
-
-	var height: Double {
-		get { return getValueObject(forKey: UTState.Height).value.doubleValue }
-		set(val) { setValueObject(value: CNValueObject(value: .DoubleValue(value: val)), forKey: UTState.Height) }
-	}
-
-	private func getValueObject(forKey key: NSString) -> CNValueObject {
-		if let o = mDictionary.object(forKey: key) {
-			if let v = o as? CNValueObject {
-				return v
-			}
+	public var height: Double {
+		get {
+			let val = member(forKey: UTState.Height)
+			return val.doubleValue
 		}
-		fatalError("No objrct")
-	}
-
-	private func setValueObject(value val: CNValueObject, forKey key: NSString) {
-		mDictionary.setObject(val, forKey: key)
+		set(v){
+			let val = CNValue.DoubleValue(value: v)
+			setMember(value: val, forKey: UTState.Height)
+		}
 	}
 }
 
@@ -86,7 +79,7 @@ public func testState() -> Bool
 		KSStdLib.setupRuntime(context: context, console: CNTextConsole())
 		
 		let observer0 = UTObject()
-		let state0    = UTState(context: context)
+		let state0    = UTState()
 		state0.setObserver(observer: observer0)
 
 		Swift.print("state0.width = 100.0")
@@ -105,35 +98,7 @@ public func testState() -> Bool
 
 		print("[evalateScript]")
 		context.evaluateScript("state.width += 1.0 ; console.put(\"inJs = \" + state.width) ; ")
-		
 		return true
-		
-		/*
-		state0.setIntegerValue(name: "var0", value: 123)
-		state0.setIntegerValue(name: "var0", value: 234)
-
-
-
-
-
-
-
-		let inval = state0.integerValue(name: "var0")
-		print("inValue = \(inval)")
-
-		var result = false
-		if let state1 = context.objectForKeyedSubscript(NSString(string: "state0")) {
-			if let dict1 = state1.toDictionary() {
-				if let num = dict1["var0"] as? NSNumber {
-					let outval = num.intValue
-					print("outValue = \(outval)")
-					result = (inval+1 == outval)
-				}
-			}
-		}
-
-		return result
-*/
 	} else {
 		print("[Error] Can not allocate JSContext")
 		return false

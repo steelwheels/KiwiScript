@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		050172D71B877A99007CB6D9 /* KSStdLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 050172D61B877A99007CB6D9 /* KSStdLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		050CE5171B94BAE3002D5CE2 /* UTJsonEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050CE5161B94BAE3002D5CE2 /* UTJsonEncoder.swift */; };
+		05242CA81E9BCF3F00A87E30 /* KSState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05242CA71E9BCF3F00A87E30 /* KSState.swift */; };
 		052487CE1C4A6FAE00CB628B /* KSValueDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052487CD1C4A6FAE00CB628B /* KSValueDescription.swift */; };
 		05323AFA1B8FD9F200336D7D /* UTValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05323AF91B8FD9F200336D7D /* UTValue.swift */; };
 		05371E511D2C01F5004CCED9 /* KSPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05371E501D2C01F5004CCED9 /* KSPoint.swift */; };
@@ -101,6 +102,7 @@
 		050172D51B877A99007CB6D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		050172D61B877A99007CB6D9 /* KSStdLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSStdLib.h; sourceTree = "<group>"; };
 		050CE5161B94BAE3002D5CE2 /* UTJsonEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTJsonEncoder.swift; sourceTree = "<group>"; };
+		05242CA71E9BCF3F00A87E30 /* KSState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSState.swift; sourceTree = "<group>"; };
 		052487CD1C4A6FAE00CB628B /* KSValueDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSValueDescription.swift; sourceTree = "<group>"; };
 		0525DC101B9C56E8009479F5 /* UnitTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		0525DC121B9C56E8009479F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 			children = (
 				050172D61B877A99007CB6D9 /* KSStdLib.h */,
 				05C03E771BA56FBE00D70098 /* KSStdLib.swift */,
+				05242CA71E9BCF3F00A87E30 /* KSState.swift */,
 				05C03E751BA56CC700D70098 /* KSConsole.swift */,
 				054E93491BDD262E00FFB0AE /* KSMath.swift */,
 				05DA9F871BA3E3920027EA25 /* KSValueExtension.swift */,
@@ -418,6 +421,7 @@
 				05F674E91B8CAD4500B391D1 /* KSValueVisitor.swift in Sources */,
 				05EA8BC71BE4D58200B8631A /* KSValueCoder.swift in Sources */,
 				057FFFC61D324409008E511D /* KSSize.swift in Sources */,
+				05242CA81E9BCF3F00A87E30 /* KSState.swift in Sources */,
 				054E934A1BDD262E00FFB0AE /* KSMath.swift in Sources */,
 				05C03E761BA56CC700D70098 /* KSConsole.swift in Sources */,
 				052487CE1C4A6FAE00CB628B /* KSValueDescription.swift in Sources */,
