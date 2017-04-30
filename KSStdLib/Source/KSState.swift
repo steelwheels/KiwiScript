@@ -17,16 +17,25 @@ public struct KSStateInitialValue {
 	}
 }
 
+public class KCValueObject
+{
+	public var value: CNValue
+
+	public init(value val: CNValue){
+		value = val
+	}
+}
+
 @objc open class KSState: NSObject
 {
 	/// Dictionary: Key: String, Value: CNValueObject
-	private var mDictionary : NSMutableDictionary
+	private var mDictionary : NSMutableDictionary = NSMutableDictionary(capacity: 16)
 
-	public init(initialValues initvals: Array<KSStateInitialValue>){
-		mDictionary = NSMutableDictionary(capacity: 16)
+
+	public func setInitialValues(initialValues initvals: Array<KSStateInitialValue>){
 		for initval in initvals {
 			let key   = initval.key
-			let value = CNValueObject(value: initval.value)
+			let value = KCValueObject(value: initval.value)
 			mDictionary.setObject(value, forKey: key)
 		}
 	}
@@ -44,7 +53,7 @@ public struct KSStateInitialValue {
 
 	public func member(forKey key: NSString) -> CNValue {
 		if let o = mDictionary.object(forKey: key) {
-			if let v = o as? CNValueObject {
+			if let v = o as? KCValueObject {
 				return v.value
 			}
 		}
@@ -52,7 +61,7 @@ public struct KSStateInitialValue {
 	}
 
 	public func setMember(value val: CNValue, forKey key: NSString) {
-		let valobj = CNValueObject(value: val)
+		let valobj = KCValueObject(value: val)
 		mDictionary.setObject(valobj, forKey: key)
 	}
 }

@@ -1,18 +1,31 @@
 #
-# build_all.mk
+#
 #
 
-all: KiwiEngine KSStdLib
+osx_dir		= OSX
+ios_dir		= iOS
+script_dir	= ../Script
+env_file	= xcode_sets.env
 
-KiwiEngine : dummy
-	(cd KiwiEngine/OSX ; \
-	 export PROJECT_NAME="KiwiEngine" ; \
-	 make -f ../../Script/install_osx.mk)
+all: osx ios
 
-KSStdLib : dummy
-	(cd KSStdLib/OSX ; \
-	 export PROJECT_NAME="KSStdLib" ; \
-	 make -f ../../Script/install_osx.mk)
+osx: dummy
+	(cd $(osx_dir) \
+	 && bash ../$(script_dir)/export_env.sh $(env_file) \
+	 && source ${env_file} \
+	 && echo "PROJECT_NAME=$$PROJECT_NAME" \
+	 && make -f ../$(script_dir)/install_osx.mk \
+	 && rm $(env_file) \
+	)
+
+ios: dummy
+	(cd $(ios_dir) \
+	 && bash ../$(script_dir)/export_env.sh $(env_file) \
+	 && source ${env_file} \
+	 && echo "PROJECT_NAME=$$PROJECT_NAME" \
+	 && make -f ../$(script_dir)/install_ios.mk \
+	 && rm $(env_file) \
+	)
 
 dummy:
 

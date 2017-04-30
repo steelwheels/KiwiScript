@@ -2,7 +2,7 @@
 ** Print kind strings
 char   -> Boolean
 number -> Number
-int32: 123 : Number
+int32 : 123 : Number
 UInt32: 123 : Number
 double: 123.4 : Number
 RESULT : true
@@ -12,7 +12,7 @@ RESULT : true
 *** var var1 = 1.23
 1.23
 *** var var2 = ["A" , "B" , "C" , 123 , 456 , true , false];
-[A, B, C, 123, 456, 1, 0]
+[2:C, 1:B, 6:0, 4:456, 3:123, 0:A, 5:1]
 RESULT : true
 * KSJsonEncoder
 ** Bool Object -> {
@@ -31,25 +31,25 @@ RESULT : true
   }
 }
 ** Array object -> {
-  "value" : [
-    1,
-    2,
-    3,
-    4
-  ]
+  "value" : {
+    "3" : 4,
+    "0" : 1,
+    "1" : 2,
+    "2" : 3
+  }
 }
 ** Combination object -> {
   "value" : {
+    "i0" : {
+      "a" : 123,
+      "b" : 234
+    },
     "i1" : [
       1,
       2,
       3,
       4
-    ],
-    "i0" : {
-      "a" : 123,
-      "b" : 234
-    }
+    ]
   }
 }
 RESULT : true
@@ -60,6 +60,18 @@ RESULT : true
 PI = 3.141592653589793
 sin(PI/2) = 1
 cos(PI/2) = 6.123233995736766e-17
+RESULT : true
+* UTState
+[setup]
+state0.width = 100.0
+[UTState] set width: 100.0
+observeValue: key=width, value=100.0
+[evalateScript]
+[UTState] get width : 100.0
+[UTState] set width: 101.0
+observeValue: key=width, value=101.0
+[UTState] get width : 101.0
+inJs = 101
 RESULT : true
 **** SUMMARY
 TOTAL RESULT: OK

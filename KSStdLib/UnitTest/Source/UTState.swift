@@ -22,23 +22,24 @@ import Canary
 	public static let Width	 = NSString(string: "width")
 	public static let Height = NSString(string: "height")
 
-	public init(){
+	public override init(){
+		super.init()
 		let initvals: Array<KSStateInitialValue> = [
 			KSStateInitialValue(key: UTState.Width,  value: .DoubleValue(value: 12.3)),
 			KSStateInitialValue(key: UTState.Height, value: .DoubleValue(value: 23.4))
 		]
-		super.init(initialValues: initvals)
+		setInitialValues(initialValues: initvals)
 	}
 
 	public var width: Double {
 		get {
-			print("*** get width ***")
 			let val = member(forKey: UTState.Width)
+			print("[UTState] get width : \(val.doubleValue)")
 			return val.doubleValue
 		}
 		set(v){
-			print("*** set width ***")
 			let val = CNValue.DoubleValue(value: v)
+			print("[UTState] set width: \(val.doubleValue)")
 			setMember(value: val, forKey: UTState.Width)
 		}
 	}
@@ -61,7 +62,7 @@ private class UTObject: NSObject
 		if let key = keyPath {
 			var val: String = "?"
 			if let dict = change {
-				if let newval = dict[NSKeyValueChangeKey.newKey] as? CNValueObject {
+				if let newval = dict[NSKeyValueChangeKey.newKey] as? KCValueObject {
 					val = newval.value.description
 				}
 			}
@@ -75,6 +76,7 @@ private class UTObject: NSObject
 public func testState() -> Bool
 {
 	if let context = JSContext() {
+		print("[setup]")
 		KSStdLib.setup(context: context)
 		KSStdLib.setupRuntime(context: context, console: CNTextConsole())
 		
