@@ -17,26 +17,30 @@ public struct KSStateInitialValue {
 	}
 }
 
-public class KCValueObject
-{
-	public var value: CNValue
-
-	public init(value val: CNValue){
-		value = val
-	}
-}
-
 @objc open class KSState: NSObject
 {
-	/// Dictionary: Key: String, Value: CNValueObject
-	private var mDictionary : NSMutableDictionary = NSMutableDictionary(capacity: 16)
+	public enum KSStateError {
+		case NoError
+		case DifferentTypeError
+		case UnknownTypeError
 
+		public func description() -> String {
+			let result: String
+			switch self {
+			case .NoError:			result = ""
+			case .DifferentTypeError:	result = "The type of new value is different from current one"
+			case .UnknownTypeError:		result = "The current value type is NOT known"
+			}
+			return result
+		}
+	}
+
+	/// Dictionary: Key: String, Value: CNValue
+	private var mDictionary : NSMutableDictionary = NSMutableDictionary(capacity: 16)
 
 	public func setInitialValues(initialValues initvals: Array<KSStateInitialValue>){
 		for initval in initvals {
-			let key   = initval.key
-			let value = KCValueObject(value: initval.value)
-			mDictionary.setObject(value, forKey: key)
+			mDictionary.setObject(initval.value, forKey: initval.key)
 		}
 	}
 
@@ -51,18 +55,27 @@ public class KCValueObject
 		}
 	}
 
-	public func member(forKey key: NSString) -> CNValue {
-		if let o = mDictionary.object(forKey: key) {
-			if let v = o as? KCValueObject {
-				return v.value
+	public func member(forKey key: NSString) -> CNValue? {
+		if let obj = mDictionary.object(forKey: key) {
+			if let val = obj as? CNValue {
+				return val
 			}
 		}
-		fatalError("No object")
+		return nil
 	}
 
-	public func setMember(value val: CNValue, forKey key: NSString) {
-		let valobj = KCValueObject(value: val)
-		mDictionary.setObject(valobj, forKey: key)
+	public func setMember(value val: CNValue, forKey key: NSString) -> KSStateError {
+		if let curobj = mDictionary.object(forKey: key) {
+			if let curval = curobj as? CNValue {
+				if curval.type != val.type {
+					return .DifferentTypeError
+				}
+			} else {
+				return .UnknownTypeError
+			}
+		}
+		mDictionary.setObject(val, forKey: key)
+		return .NoError
 	}
 }
 

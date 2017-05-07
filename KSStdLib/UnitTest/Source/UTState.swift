@@ -25,33 +25,47 @@ import Canary
 	public override init(){
 		super.init()
 		let initvals: Array<KSStateInitialValue> = [
-			KSStateInitialValue(key: UTState.Width,  value: .DoubleValue(value: 12.3)),
-			KSStateInitialValue(key: UTState.Height, value: .DoubleValue(value: 23.4))
+			KSStateInitialValue(key: UTState.Width,  value: CNValue(doubleValue: 12.3)),
+			KSStateInitialValue(key: UTState.Height, value: CNValue(doubleValue: 23.4))
 		]
 		setInitialValues(initialValues: initvals)
 	}
 
 	public var width: Double {
 		get {
-			let val = member(forKey: UTState.Width)
-			print("[UTState] get width : \(val.doubleValue)")
-			return val.doubleValue
+			if let val = member(forKey: UTState.Width) {
+				print("[UTState] get width : \(val.doubleValue!)")
+				return val.doubleValue!
+			} else {
+				print("[UTState] get width : nil (Error)")
+				return 0.0
+			}
 		}
 		set(v){
-			let val = CNValue.DoubleValue(value: v)
-			print("[UTState] set width: \(val.doubleValue)")
-			setMember(value: val, forKey: UTState.Width)
+			let val = CNValue(doubleValue: v)
+			print("[UTState] set width: \(val.doubleValue!)")
+			let err = setMember(value: val, forKey: UTState.Width)
+			if err != .NoError {
+				print("[ERROR] \(err.description)")
+			}
 		}
 	}
 
 	public var height: Double {
 		get {
-			let val = member(forKey: UTState.Height)
-			return val.doubleValue
+			if let val = member(forKey: UTState.Height){
+				return val.doubleValue!
+			} else {
+				print("[UTState] get height : nil (Error)")
+				return 0.0
+			}
 		}
 		set(v){
-			let val = CNValue.DoubleValue(value: v)
-			setMember(value: val, forKey: UTState.Height)
+			let val = CNValue(doubleValue: v)
+			let err = setMember(value: val, forKey: UTState.Height)
+			if err != .NoError {
+				print("[ERROR] \(err.description)")
+			}
 		}
 	}
 }
@@ -62,8 +76,8 @@ private class UTObject: NSObject
 		if let key = keyPath {
 			var val: String = "?"
 			if let dict = change {
-				if let newval = dict[NSKeyValueChangeKey.newKey] as? KCValueObject {
-					val = newval.value.description
+				if let newval = dict[NSKeyValueChangeKey.newKey] as? CNValue {
+					val = newval.description
 				}
 			}
 			print("observeValue: key=\(key), value=\(val)")
