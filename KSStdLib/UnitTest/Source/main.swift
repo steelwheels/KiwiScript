@@ -34,8 +34,8 @@ test(testConsole())
 print("* UTMath")
 test(testMath())
 
-print("* UTState")
-test(testState())
+print("* UTPropertyTable")
+test(testPropertyTable())
 
 print("**** SUMMARY\nTOTAL RESULT: ", terminator: "")
 if result {
