@@ -61,17 +61,19 @@ PI = 3.141592653589793
 sin(PI/2) = 1
 cos(PI/2) = 6.123233995736766e-17
 RESULT : true
-* UTState
-[setup]
-state0.width = 100.0
-[UTState] set width: 100.0
-observeValue: key=width, value=100.0
-[evalateScript]
-[UTState] get width : 100.0
-[UTState] set width: 101.0
-observeValue: key=width, value=101.0
-[UTState] get width : 101.0
-inJs = 101
+* UTPropertyTable
+setTest: bool : ... OK
+getTest: bool ... OK
+setTest: int : ... OK
+getTest: int : ... OK(-1234)
+setTest: uint : ... OK
+getTest: uint : ... OK(2345)
+setTest: float : ... OK
+getTest: float : ... OK(1.234)
+setTest: double : ... OK
+getTest: double : ... OK(-1.234)
+setTest: string : ... OK
+getTest: string ... OK
 RESULT : true
 **** SUMMARY
 TOTAL RESULT: OK

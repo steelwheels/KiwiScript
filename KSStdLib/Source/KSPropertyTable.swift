@@ -24,14 +24,40 @@ public enum KSPropertyError: Error {
 
 public class KSPropertyTable
 {
-	private var mTable: NSMutableDictionary
+	private var mTable	: NSMutableDictionary
+	private var mObservers	: Array<NSObject>
 
 	public init(){
-		mTable = NSMutableDictionary(capacity: 16)
+		mTable     = NSMutableDictionary(capacity: 16)
+		mObservers = []
+	}
+
+	deinit {
+		for obs in mObservers {
+			let keys = mTable.allKeys
+			for key in keys {
+				if let keystr = key as? String {
+					mTable.removeObserver(obs, forKeyPath: keystr)
+				} else {
+					NSLog("Error: Invalid key object")
+				}
+			}
+		}
 	}
 
 	public var table: NSDictionary {
 		get { return mTable }
+	}
+
+	public func addObserver(observer obs: NSObject) {
+		let keys = mTable.allKeys
+		for key in keys {
+			if let keystr = key as? String {
+				mTable.addObserver(obs, forKeyPath: keystr, options: .new, context: nil)
+			} else {
+				NSLog("Error: Invalid key object")
+			}
+		}
 	}
 
 	public func setBooleanProperty(identifier ident: String, value val: Bool) -> KSPropertyError
