@@ -102,9 +102,9 @@ private func dumpValue(console : CNConsole, value : JSValue)
 	}
 }
 
-private func dumpErrors(errors : Array<NSError>)
+private func dumpErrors(errors : Array<String>)
 {
 	for error in errors {
-		print("\(error.toString())")
+		print("\(error)")
 	}
 }

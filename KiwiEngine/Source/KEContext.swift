@@ -11,7 +11,7 @@ import Canary
 
 public class KEContext : JSContext
 {
-	private var mRuntimeErrors : Array<NSError> = [] ;
+	private var mRuntimeErrors : Array<String> = [] ;
 	
 	public override init(virtualMachine vm: JSVirtualMachine!) {
 		super.init(virtualMachine: vm)
@@ -34,7 +34,7 @@ public class KEContext : JSContext
 		}
 	}
 	
-	public func runtimeErrors() -> Array<NSError> {
+	public func runtimeErrors() -> Array<String> {
 		return mRuntimeErrors ;
 	}
 	
@@ -43,8 +43,7 @@ public class KEContext : JSContext
 	}
 	
 	public func addErrorMessage(message msg : String){
-		let error = NSError.parseError(message: msg) ;
-		mRuntimeErrors.append(error)
+		mRuntimeErrors.append(msg)
 	}
 
 	public func addGlobalObject(name n: NSString, object o: NSObject){

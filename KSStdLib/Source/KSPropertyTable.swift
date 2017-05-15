@@ -49,14 +49,11 @@ public class KSPropertyTable
 		get { return mTable }
 	}
 
-	public func addObserver(observer obs: NSObject) {
-		let keys = mTable.allKeys
-		for key in keys {
-			if let keystr = key as? String {
-				mTable.addObserver(obs, forKeyPath: keystr, options: .new, context: nil)
-			} else {
-				NSLog("Error: Invalid key object")
-			}
+	public func addPropertyObserver(observer obs: NSObject, propertyNames names: Array<String>)
+	{
+		for key in names {
+			mTable.addObserver(obs, forKeyPath: key, options: .new, context: nil)
+			mObservers.append(obs)
 		}
 	}
 

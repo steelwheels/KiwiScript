@@ -10,7 +10,7 @@ import JavaScriptCore
 
 public class KEEngine : NSObject
 {
-	public class func runScript(context ctxt: KEContext, script scr: String) -> (result: JSValue?, errors: Array<NSError>?){
+	public class func runScript(context ctxt: KEContext, script scr: String) -> (result: JSValue?, errors: Array<String>?){
 		let retval = ctxt.evaluateScript(scr)
 		let errcnt = ctxt.runtimeErrors().count ;
 		if(errcnt == 0){
@@ -22,7 +22,7 @@ public class KEEngine : NSObject
 		}
 	}
 
-	public class func callFunction(context ctxt: KEContext, functionName funcname: String, arguments args: Array<AnyObject>) -> (result: JSValue?, errors: Array<NSError>?){
+	public class func callFunction(context ctxt: KEContext, functionName funcname: String, arguments args: Array<AnyObject>) -> (result: JSValue?, errors: Array<String>?){
 		let jsfunc : JSValue = ctxt.objectForKeyedSubscript(funcname)
 		let retval = jsfunc.call(withArguments: args)
 		let errcnt = ctxt.runtimeErrors().count ;

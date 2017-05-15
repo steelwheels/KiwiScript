@@ -27,7 +27,7 @@ public func testObject() -> Bool
 	if let errors = errorsp {
 		print("Failed to call function")
 		for error in errors {
-			print("\(error.toString())")
+			print("\(error)")
 		}
 		return false
 	}
@@ -66,7 +66,7 @@ private func runScript(context: KEContext, script : String)
 	if let errors = errorsp {
 		print("RunScript -> NG")
 		for error in errors {
-			print("\(error.toString()) ")
+			print("\(error) ")
 		}
 	} else {
 		if let result = resultp {

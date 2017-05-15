@@ -33,8 +33,7 @@ private func testScript(context ctxt: KEContext, script scr: String) -> Bool
 	let (resultp, errorsp) = KEEngine.runScript(context: ctxt, script: scr)
 	if let errors = errorsp {
 		for error in errors {
-			let str = error.toString()
-			print("ERROR: \(str)")
+			print("ERROR: \(error)")
 		}
 	} else {
 		if let result = resultp {
