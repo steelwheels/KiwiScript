@@ -5,84 +5,106 @@
  *   Copyright (C) 2016 Steel Wheels Project
  */
 
-import Foundation
+import Canary
 import JavaScriptCore
+import Foundation
 
-public class KSValueDescription : KSValueVisitor
+public func KSValueDescription(value val: JSValue) -> CNText {
+	let converter = KSValueDescriptor()
+	return converter.descriptor(of: val)
+}
+
+private class KSValueDescriptor: KSValueVisitor
 {
-	public var valueString : String = ""
-	
-	public class func description(value val: JSValue) -> String {
-		let converter = KSValueDescription()
-		converter.acceptValue(value: val)
-		return converter.valueString
+	private var mCurrentText:CNText = CNTextLine(string: "")
+
+	public func descriptor(of value: JSValue) -> CNText {
+		acceptValue(value: value)
+		return mCurrentText
 	}
-	
+
 	public override func visit(undefinedValue value : JSValue){
-		valueString = "undefined"
+		mCurrentText = CNTextLine(string: "undefined")
 	}
+
 	public override func visit(nilValue value : JSValue){
-		valueString = "nil"
+		mCurrentText = CNTextLine(string: "nil")
 	}
+
 	public override func visit(booleanValue value : Bool){
+		let str: String
 		if value {
-			valueString = "true"
+			str = "true"
 		} else {
-			valueString = "false"
+			str = "false"
 		}
+		mCurrentText = CNTextLine(string: str)
 	}
+
 	public override func visit(number n: NSNumber) {
-		valueString = n.stringValue
+		mCurrentText = CNTextLine(string: n.stringValue)
 	}
+
 	public override func visit(string s: String) {
-		valueString = s as String
+		mCurrentText = CNTextLine(string: s)
 	}
+
 	public override func visit(date d: Date) {
-		valueString = d.description
+		mCurrentText = CNTextLine(string: d.description)
 	}
-	public override func visit(dictionary d: [String:AnyObject])	{
-		var curstr = "["
-		var is1st  = true
-		for (key, value) in d {
+
+	public override func visit(dictionary d: [String:AnyObject])
+	{
+		let section = CNTextSection()
+		section.header = "["
+		section.footer = "]"
+		var is1st      = true
+		for (key, valobj) in d {
 			if is1st {
 				is1st  = false
 			} else {
-				curstr = curstr + ", "
+				section.append(string: ",")
 			}
-			curstr = curstr + key + ":"
-			acceptElement(element: value)
-			curstr = curstr + valueString
+			acceptObject(object: valobj)
+			addElement(section: section, line: "\(key):", element: mCurrentText)
 		}
-		valueString = curstr + "]"
+		mCurrentText = section
 	}
-	
-	public override func visit(array a: [AnyObject]) {
-		var curstr = "["
-		var is1st  = true
-		for elm in a {
+
+	public override func visit(array a: [AnyObject])
+	{
+		let section = CNTextSection()
+		section.header = "["
+		section.footer = "]"
+		var is1st      = true
+		for valobj in a {
 			if is1st {
 				is1st  = false
 			} else {
-				curstr = curstr + ", "
+				mCurrentText.append(string: ", ")
 			}
-			acceptElement(element: elm)
-			curstr = curstr + valueString
+			acceptObject(object: valobj)
+			addElement(section: section, line: "", element: mCurrentText)
 		}
-		valueString = curstr + "]"
+		mCurrentText = section
 	}
-	
-	public override func visit(object o: AnyObject)	{
-		valueString = "unknown"
-	}
-	
-	private func acceptElement(element src : AnyObject) {
-		if let elmval = src as? JSValue {
-			acceptValue(value: elmval)
-		} else if let elmobj = src as? NSObject {
-			acceptObject(object: elmobj)
+
+	private func addElement(section sect: CNTextSection, line ln: String, element txt: CNText){
+		if let sline = txt as? CNTextLine {
+			sect.append(string: ln + sline.string)
+		} else if let ssect = txt as? CNTextSection {
+			if ln.lengthOfBytes(using: .utf8) > 0 {
+				sect.append(string: ln)
+			}
+			sect.add(text: ssect)
 		} else {
 			fatalError("Unknown object")
 		}
+	}
+
+	public override func visit(object o: AnyObject)
+	{
+		mCurrentText = CNTextLine(string: "AnyObject")
 	}
 }
 

@@ -10,40 +10,39 @@ import JavaScriptCore
 import Canary
 import KSStdLib
 
-public func testJsonEncoder() -> Bool
+public func testJsonEncoder(console cons: CNConsole) -> Bool
 {
-	let console = CNTextConsole()
 	if let context = JSContext() {
-		print("** Bool Object -> ", terminator:"")
+		console.print(string: "** Bool Object -> ")
 		let val0 = JSValue(bool: true, in: context)
 		decodeValue(console: console, value: val0)
 	
-		print("** Double Object -> ", terminator:"")
+		console.print(string: "** Double Object -> ")
 		let val1 = JSValue(double: 1.23, in: context)
 		decodeValue(console: console, value: val1)
 	
-		print("** String Object -> ", terminator:"")
+		console.print(string: "** String Object -> ")
 		let var2 = JSValue(object: NSString(utf8String: "Hello, World"), in: context)
 		decodeValue(console: console, value: var2)
 	
-		print("** Dictionary Object -> ", terminator:"")
+		console.print(string: "** Dictionary Object -> ")
 		let dict0 : NSDictionary = ["a":123, "b":234] ;
 		let var3 = JSValue(object: dict0, in: context)
 		decodeValue(console: console, value: var3)
 	
-		print("** Array object -> ", terminator:"")
+		console.print(string: "** Array object -> ")
 		let arr0 : NSArray = [1, 2, 3, 4]
 		let var4 = JSValue(object: arr0, in: context)
 		decodeValue(console: console, value: var4)
 	
-		print("** Combination object -> ", terminator:"")
+		console.print(string: "** Combination object -> ")
 		let dict1 : NSDictionary = ["i0":dict0, "i1":arr0]
 		let var5 = JSValue(object: dict1, in: context)
 		decodeValue(console: console, value: var5)
 	
 		return true
 	} else {
-		print("[Error] Can not allocate JSContext")
+		console.print(string: "[Error] Can not allocate JSContext\n")
 		return false
 	}
 }
@@ -54,11 +53,10 @@ public func decodeValue(console cons: CNConsole, value val: JSValue?)
 		let encdict = KSValueCoder.encode(value: v)
 		let (encstr, encerr)  = CNJSONFile.serialize(dictionary: encdict)
 		if let error = encerr {
-			let errmsg = "[Error] " + error.toString()
-			cons.print(text: CNConsoleText(string: errmsg))
+			let errmsg = "[Error] " + error.toString() + "\n"
+			cons.print(string: errmsg)
 		} else if let str = encstr {
-			let lines = str.components(separatedBy: "\n")
-			cons.print(text: CNConsoleText(strings: lines))
+			cons.print(string: str+"\n")
 		} else {
 			fatalError("Can not happen (1)")
 		}

@@ -190,6 +190,20 @@ public class KSPropertyTable
 		return .NoError
 	}
 
+	public func setNumberProperty(identifier ident: String, value val: NSNumber)
+	{
+		mTable.setValue(val, forKey: ident)
+	}
+
+	public func numberProperty(identifier ident: String) -> NSNumber? {
+		if let num = mTable.value(forKey: ident) as? NSNumber {
+			return num
+		} else {
+			return nil
+		}
+
+	}
+	
 	public func setStringProperty(identifier ident: String, value val: NSString) -> KSPropertyError
 	{
 		if let curobj = mTable.value(forKey: ident) {

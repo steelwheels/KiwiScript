@@ -5,12 +5,14 @@
  *	Copyright (C) 2017 Steel Wheels Project
  */
 
+import Canary
 import Foundation
 
 var result = true
+let console = CNFileConsole(file: CNTextFile.stdout)
 
 func test(_ flag : Bool){
-	print("RESULT : \(flag)")
+	console.print(string: "RESULT : \(flag)\n")
 	result = result && flag
 }
 
@@ -19,28 +21,31 @@ func printTitle(title : String)
 	
 }
 
-print("* KSValue")
-test(testKSValue())
+console.print(string: "* KSValue\n")
+test(testKSValue(console: console))
 
-print("* KSValueType")
-test(testKSValueType())
+console.print(string: "* KSValueType\n")
+test(testKSValueType(console: console))
 
-print("* KSJsonEncoder")
-test(testJsonEncoder())
+console.print(string: "* KSJsonEncoder\n")
+test(testJsonEncoder(console: console))
 
-print("* UTConsole")
+console.print(string: "* UTConsole\n")
 test(testConsole())
 
-print("* UTMath")
+console.print(string: "* UTDebug\n")
+test(testDebug())
+
+console.print(string: "* UTMath\n")
 test(testMath())
 
-print("* UTPropertyTable")
-test(testPropertyTable())
+console.print(string: "* UTPropertyTable\n")
+test(testPropertyTable(console: console))
 
-print("**** SUMMARY\nTOTAL RESULT: ", terminator: "")
+console.print(string: "**** SUMMARY\nTOTAL RESULT: ")
 if result {
-	print("OK")
+	console.print(string: "OK")
 } else {
-	print("NG")
+	console.print(string: "NG")
 }
 

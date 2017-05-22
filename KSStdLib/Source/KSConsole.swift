@@ -5,9 +5,10 @@
  *   Copyright (C) 2015 Steel Wheels Project
  */
 
+import Canary
 import Foundation
 import JavaScriptCore
-import Canary
+
 
 @objc protocol KSConsoleOperating : JSExport {
 	func put(_ value: JSValue)
@@ -48,8 +49,8 @@ import Canary
 	
 	public func put(_ val: JSValue){
 		if let console = mConsole {
-			let valstr  = KSValueDescription.description(value: val)
-			console.print(string: valstr)
+			let text = KSValueDescription(value: val)
+			text.print(console: console)
 		}
 	}
 }
