@@ -15,9 +15,6 @@ public class KSStdLib
 	public class func setup(context ctxt: JSContext){
 		let consolelib = KSConsole()
 		consolelib.registerToContext(context: ctxt)
-
-		let debugger = KSDebug()
-		debugger.registerToContext(context: ctxt)
 		
 		let mathlib = KSMath(context: ctxt)
 		mathlib.registerToContext(context: ctxt)

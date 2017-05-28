@@ -1,86 +1,10 @@
-* KSValue
-** Print kind strings
-char   -> Boolean
-number -> Number
-int32 : 123 : Number
-UInt32: 123 : Number
-double: 123.4 : Number
-RESULT : true
-* KSValueType
-*** var var0 = 1
-1
-*** var var1 = 1.23
-1.23
-*** var var2 = ["A" , "B" , "C" , 123 , 456 , true , false];
-[
-  2:C,1:B,6:0,4:456,3:123,0:A,5:1
-]
-RESULT : true
-* KSJsonEncoder
-** Bool Object -> {
-  "value" : true
-}
-** Double Object -> {
-  "value" : 1.23
-}
-** String Object -> {
-  "value" : "Hello, World"
-}
-** Dictionary Object -> {
-  "value" : {
-    "a" : 123,
-    "b" : 234
-  }
-}
-** Array object -> {
-  "value" : {
-    "3" : 4,
-    "0" : 1,
-    "1" : 2,
-    "2" : 3
-  }
-}
-** Combination object -> {
-  "value" : {
-    "i0" : {
-      "a" : 123,
-      "b" : 234
-    },
-    "i1" : [
-      1,
-      2,
-      3,
-      4
-    ]
-  }
-}
-RESULT : true
 * UTConsole
 Hello, world!!
-RESULT : true
-* UTDebug
-[
-  b:,a:0
-]
 RESULT : true
 * UTMath
 PI = 3.141592653589793
 sin(PI/2) = 1
 cos(PI/2) = 6.123233995736766e-17
-RESULT : true
-* UTPropertyTable
-setTest: bool : ... OK
-getTest: bool ... OK
-setTest: int : ... OK
-getTest: int : ... OK(-1234)
-setTest: uint : ... OK
-getTest: uint : ... OK(2345)
-setTest: float : ... OK
-getTest: float : ... OK(1.234)
-setTest: double : ... OK
-getTest: double : ... OK(-1.234)
-setTest: string : ... OK
-getTest: string ... OK
 RESULT : true
 **** SUMMARY
 TOTAL RESULT: OK

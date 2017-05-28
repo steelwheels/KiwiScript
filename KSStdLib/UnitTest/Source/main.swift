@@ -21,26 +21,11 @@ func printTitle(title : String)
 	
 }
 
-console.print(string: "* KSValue\n")
-test(testKSValue(console: console))
-
-console.print(string: "* KSValueType\n")
-test(testKSValueType(console: console))
-
-console.print(string: "* KSJsonEncoder\n")
-test(testJsonEncoder(console: console))
-
 console.print(string: "* UTConsole\n")
 test(testConsole())
 
-console.print(string: "* UTDebug\n")
-test(testDebug())
-
 console.print(string: "* UTMath\n")
 test(testMath())
-
-console.print(string: "* UTPropertyTable\n")
-test(testPropertyTable(console: console))
 
 console.print(string: "**** SUMMARY\nTOTAL RESULT: ")
 if result {

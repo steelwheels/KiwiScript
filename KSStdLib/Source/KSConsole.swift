@@ -49,8 +49,7 @@ import JavaScriptCore
 	
 	public func put(_ val: JSValue){
 		if let console = mConsole {
-			let text = KSValueDescription(value: val)
-			text.print(console: console)
+			console.print(string: val.description + "\n")
 		}
 	}
 }
