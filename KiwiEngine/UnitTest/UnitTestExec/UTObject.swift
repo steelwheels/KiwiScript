@@ -1,15 +1,16 @@
 /**
-* @file		UTObject.swift
-* @brief	Unit test for KSStdLib framework
-* @par Copyright
-*   Copyright (C) 2015 Steel Wheels Project
-*/
+ * @file		UTObject.swift
+ * @brief	Unit test for KiwiEngine framework
+ * @par Copyright
+ *   Copyright (C) 2015 Steel Wheels Project
+ */
 
+import Canary
 import Foundation
 import JavaScriptCore
 import KiwiEngine
 
-public func testObject() -> Bool
+public func testObject(console cons: CNConsole) -> Bool
 {
 	let vm = JSVirtualMachine()
 	let context = KEContext(virtualMachine: vm)
@@ -21,18 +22,18 @@ public func testObject() -> Bool
 		     + "  tmp = object.angle() + 1.1 ;"
 		     + "  object.setAngle(tmp); "
 		     + "}"
-	runScript(context: context, script: script)
+	runScript(console: cons, context: context, script: script)
 	
 	let (_, errorsp) = KEEngine.callFunction(context: context, functionName: "test", arguments: [objval])
 	if let errors = errorsp {
-		print("Failed to call function")
+		console.print(string: "Failed to call function\n")
 		for error in errors {
-			print("\(error)")
+			console.print(string: "\(error)\n")
 		}
 		return false
 	}
 	
-	print("RESULT: newangle = \(newobj.angle())")
+	console.print(string: "RESULT: newangle = \(newobj.angle())\n")
 	
 	return true
 }
@@ -60,17 +61,17 @@ public func testObject() -> Bool
 	}
 }
 
-private func runScript(context: KEContext, script : String)
+private func runScript(console cons: CNConsole, context: KEContext, script : String)
 {
 	let (resultp, errorsp) = KEEngine.runScript(context: context, script: script)
 	if let errors = errorsp {
-		print("RunScript -> NG")
+		console.print(string: "RunScript -> NG\n")
 		for error in errors {
 			print("\(error) ")
 		}
 	} else {
 		if let result = resultp {
-			print("RunScriot -> OK (\(result))")
+			console.print(string: "RunScriot -> OK (\(result))\n")
 		} else {
 			fatalError("can not happen")
 		}

@@ -5,23 +5,25 @@
  *   Copyright (C) 2015 Steel Wheels Project
  */
 
+import Canary
 import Foundation
 
+let console = CNFileConsole(file: CNTextFile.stdout)
 var summary = true
 
 func test(funcName fn:String, result res:Bool) -> Bool
 {
 	if(res){
-		print("\(fn) : OK")
+		console.print(string: "\(fn) : OK\n")
 	} else {
-		print("\(fn) : NG")
+		console.print(string: "\(fn) : NG\n")
 	}
 	return res
 }
 
-summary = test(funcName: "testStdLib", result: testStdLib()) && summary
-summary = test(funcName: "testError", result: testError()) && summary
-summary = test(funcName: "testObject", result: testObject()) && summary
+summary = test(funcName: "testError", result: testError(console: console)) && summary
+summary = test(funcName: "testObject", result: testObject(console: console)) && summary
+summary = test(funcName: "testPropertyTable", result: testPropertyTable(console: console)) && summary
 
 if summary {
 	print("SUMMARY: OK")

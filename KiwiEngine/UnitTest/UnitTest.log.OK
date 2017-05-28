@@ -1,12 +1,3 @@
-add incPoint func -> undefined
-call incPoint func -> undefined
-{
-  "value" : {
-    "x" : 1.1,
-    "y" : 2.2
-  }
-}
-testStdLib : OK
 *** Script1
 ERROR: SyntaxError: Unexpected end of script
 *** Script2
@@ -15,4 +6,13 @@ testError : OK
 RunScriot -> OK (undefined)
 RESULT: newangle = 2.3
 testObject : OK
+ TEST: Bool : OK
+ TEST: Int : OK
+ TEST: UInt : OK
+ TEST: Double : OK
+ TEST: String : OK
+ TEST: Array : OK
+ TEST: Callback : callback = type=JSValue description="function () { return 1 + 2 ; }"
+OK function () { return 1 + 2 ; } 
+testPropertyTable : OK
 SUMMARY: OK

@@ -10,34 +10,34 @@ import KiwiEngine
 import Canary
 import JavaScriptCore
 
-public func testError() -> Bool
+public func testError(console cons: CNConsole) -> Bool
 {
 	var result = true
 	let vm = JSVirtualMachine()
 	let context = KEContext(virtualMachine: vm)
 	
-	print("*** Script1")
+	console.print(string: "*** Script1\n")
 	let script1 = "function hoge" ;
-	result = testScript(context: context, script: script1) && result
+	result = testScript(console: cons, context: context, script: script1) && result
 	
-	print("*** Script2")
+	console.print(string: "*** Script2\n")
 	let script2 = "function hoge(a, b){ return a hoge; }" ;
-	result = testScript(context: context, script: script2) && result
+	result = testScript(console: cons, context: context, script: script2) && result
 	
 	return true
 }
 
-private func testScript(context ctxt: KEContext, script scr: String) -> Bool
+private func testScript(console cons: CNConsole, context ctxt: KEContext, script scr: String) -> Bool
 {
 	var testResult = false
 	let (resultp, errorsp) = KEEngine.runScript(context: ctxt, script: scr)
 	if let errors = errorsp {
 		for error in errors {
-			print("ERROR: \(error)")
+			console.print(string: "ERROR: \(error)\n")
 		}
 	} else {
 		if let result = resultp {
-			print("RESULT: \(result)")
+			console.print(string: "RESULT: \(result)\n")
 			testResult = true
 		} else {
 			fatalError("can not happen")

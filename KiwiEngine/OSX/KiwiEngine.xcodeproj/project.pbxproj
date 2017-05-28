@@ -7,18 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		050422701ED5C02600183E4F /* KEPropertyTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504226F1ED5C02600183E4F /* KEPropertyTable.swift */; };
+		050422721ED5CEF300183E4F /* UTPropertyTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050422711ED5CEF300183E4F /* UTPropertyTable.swift */; };
 		0507B1751BA41B860048D325 /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0507B1731BA41B860048D325 /* Canary.framework */; };
 		0507B1771BA41B9A0048D325 /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0507B1761BA41B9A0048D325 /* KiwiEngine.framework */; };
-		0507B1791BA41BC00048D325 /* KSStdLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0507B1781BA41BC00048D325 /* KSStdLib.framework */; };
 		0507B1871BA41DB90048D325 /* UnitTestExec in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058B53231BA41A6C009522DF /* UnitTestExec */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		052B0F7A1BE8A3A400E3BFEE /* UTObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B0F781BE8A33400E3BFEE /* UTObject.swift */; };
 		054536C61B78021500FE978C /* KiwiEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 054536C51B78021500FE978C /* KiwiEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		054637F21BB05FE400DEE12F /* UTError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054637F01BB05F4500DEE12F /* UTError.swift */; };
-		057A3DD11BA4585E004271B8 /* UTStdLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057A3DD01BA4585E004271B8 /* UTStdLib.swift */; };
 		057F881F1B78031B0029AB4F /* KEContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F881E1B78031B0029AB4F /* KEContext.swift */; };
 		057F88231B780B4A0029AB4F /* KEEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F88221B780B4A0029AB4F /* KEEngine.swift */; };
 		058B53261BA41A6C009522DF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058B53251BA41A6C009522DF /* main.swift */; };
-		05CF6D791BA41F6100BD9D91 /* KSStdLib.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05CF6D781BA41F6100BD9D91 /* KSStdLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05CF6D7B1BA41F9700BD9D91 /* KiwiEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05CF6D7A1BA41F9700BD9D91 /* KiwiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05CF6D7D1BA41FCF00BD9D91 /* Canary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05CF6D7C1BA41FCF00BD9D91 /* Canary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05DA9F861BA3E2AE0027EA25 /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DA9F851BA3E2AE0027EA25 /* Canary.framework */; };
@@ -74,7 +73,6 @@
 			files = (
 				05CF6D7D1BA41FCF00BD9D91 /* Canary.framework in CopyFiles */,
 				05CF6D7B1BA41F9700BD9D91 /* KiwiEngine.framework in CopyFiles */,
-				05CF6D791BA41F6100BD9D91 /* KSStdLib.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,23 +88,22 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0504226F1ED5C02600183E4F /* KEPropertyTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEPropertyTable.swift; sourceTree = "<group>"; };
+		050422711ED5CEF300183E4F /* UTPropertyTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTPropertyTable.swift; sourceTree = "<group>"; };
 		0507B1731BA41B860048D325 /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../../Library/Frameworks/Canary.framework; sourceTree = "<group>"; };
 		0507B1761BA41B9A0048D325 /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../Library/Frameworks/KiwiEngine.framework; sourceTree = "<group>"; };
-		0507B1781BA41BC00048D325 /* KSStdLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KSStdLib.framework; path = ../../../../Library/Frameworks/KSStdLib.framework; sourceTree = "<group>"; };
 		0507B17E1BA41D850048D325 /* UnitTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		052B0F781BE8A33400E3BFEE /* UTObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTObject.swift; sourceTree = "<group>"; };
 		054536C01B78021500FE978C /* KiwiEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		054536C41B78021500FE978C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		054536C51B78021500FE978C /* KiwiEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiEngine.h; sourceTree = SOURCE_ROOT; };
 		054637F01BB05F4500DEE12F /* UTError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTError.swift; sourceTree = "<group>"; };
-		057A3DD01BA4585E004271B8 /* UTStdLib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTStdLib.swift; sourceTree = "<group>"; };
 		057F881E1B78031B0029AB4F /* KEContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEContext.swift; sourceTree = "<group>"; };
 		057F88221B780B4A0029AB4F /* KEEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEEngine.swift; sourceTree = "<group>"; };
 		058B53231BA41A6C009522DF /* UnitTestExec */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTestExec; sourceTree = BUILT_PRODUCTS_DIR; };
 		058B53251BA41A6C009522DF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		05B40EED1BE5A4AE00AA8525 /* check.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = check.mk; sourceTree = SOURCE_ROOT; };
 		05CF6D761BA41EF000BD9D91 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		05CF6D781BA41F6100BD9D91 /* KSStdLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KSStdLib.framework; path = /Users/tomoo/Library/Frameworks/KSStdLib.framework; sourceTree = "<absolute>"; };
 		05CF6D7A1BA41F9700BD9D91 /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = /Users/tomoo/Library/Frameworks/KiwiEngine.framework; sourceTree = "<absolute>"; };
 		05CF6D7C1BA41FCF00BD9D91 /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = /Users/tomoo/Library/Frameworks/Canary.framework; sourceTree = "<absolute>"; };
 		05DA9F851BA3E2AE0027EA25 /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../../Library/Frameworks/Canary.framework; sourceTree = "<group>"; };
@@ -132,7 +129,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0507B1791BA41BC00048D325 /* KSStdLib.framework in Frameworks */,
 				0507B1771BA41B9A0048D325 /* KiwiEngine.framework in Frameworks */,
 				0507B1751BA41B860048D325 /* Canary.framework in Frameworks */,
 			);
@@ -155,7 +151,6 @@
 		0508102F1BA414EA00124406 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				0507B1781BA41BC00048D325 /* KSStdLib.framework */,
 				0507B1761BA41B9A0048D325 /* KiwiEngine.framework */,
 				0507B1731BA41B860048D325 /* Canary.framework */,
 			);
@@ -187,6 +182,7 @@
 				054536C51B78021500FE978C /* KiwiEngine.h */,
 				057F881E1B78031B0029AB4F /* KEContext.swift */,
 				057F88221B780B4A0029AB4F /* KEEngine.swift */,
+				0504226F1ED5C02600183E4F /* KEPropertyTable.swift */,
 				054536C31B78021500FE978C /* Supporting Files */,
 			);
 			name = Source;
@@ -207,9 +203,9 @@
 			children = (
 				05B40EED1BE5A4AE00AA8525 /* check.mk */,
 				058B53251BA41A6C009522DF /* main.swift */,
-				057A3DD01BA4585E004271B8 /* UTStdLib.swift */,
 				054637F01BB05F4500DEE12F /* UTError.swift */,
 				052B0F781BE8A33400E3BFEE /* UTObject.swift */,
+				050422711ED5CEF300183E4F /* UTPropertyTable.swift */,
 			);
 			path = UnitTestExec;
 			sourceTree = "<group>";
@@ -219,7 +215,6 @@
 			children = (
 				05CF6D7C1BA41FCF00BD9D91 /* Canary.framework */,
 				05CF6D7A1BA41F9700BD9D91 /* KiwiEngine.framework */,
-				05CF6D781BA41F6100BD9D91 /* KSStdLib.framework */,
 				05CF6D761BA41EF000BD9D91 /* Info.plist */,
 			);
 			path = UnitTestBundle;
@@ -406,6 +401,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				050422701ED5C02600183E4F /* KEPropertyTable.swift in Sources */,
 				057F88231B780B4A0029AB4F /* KEEngine.swift in Sources */,
 				057F881F1B78031B0029AB4F /* KEContext.swift in Sources */,
 			);
@@ -417,7 +413,7 @@
 			files = (
 				054637F21BB05FE400DEE12F /* UTError.swift in Sources */,
 				052B0F7A1BE8A3A400E3BFEE /* UTObject.swift in Sources */,
-				057A3DD11BA4585E004271B8 /* UTStdLib.swift in Sources */,
+				050422721ED5CEF300183E4F /* UTPropertyTable.swift in Sources */,
 				058B53261BA41A6C009522DF /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

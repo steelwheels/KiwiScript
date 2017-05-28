@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		052251EC1EAB852F0021A8B5 /* KiwiEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 052251EA1EAB852F0021A8B5 /* KiwiEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		057340E41EDAF092006CB96E /* KEPropertyTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057340E31EDAF092006CB96E /* KEPropertyTable.swift */; };
 		05BF0BCA1EAC978D003C8DF3 /* KEContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BF0BC81EAC978D003C8DF3 /* KEContext.swift */; };
 		05BF0BCB1EAC978D003C8DF3 /* KEEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BF0BC91EAC978D003C8DF3 /* KEEngine.swift */; };
 		05BF0BCD1EAC97BC003C8DF3 /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05BF0BCC1EAC97BC003C8DF3 /* Canary.framework */; };
@@ -26,7 +27,8 @@
 /* Begin PBXFileReference section */
 		052251E71EAB852F0021A8B5 /* KiwiEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		052251EA1EAB852F0021A8B5 /* KiwiEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiEngine.h; sourceTree = "<group>"; };
-		052251EB1EAB852F0021A8B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
+		052251EB1EAB852F0021A8B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		057340E31EDAF092006CB96E /* KEPropertyTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEPropertyTable.swift; sourceTree = "<group>"; };
 		05BF0BC81EAC978D003C8DF3 /* KEContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEContext.swift; sourceTree = "<group>"; };
 		05BF0BC91EAC978D003C8DF3 /* KEEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEEngine.swift; sourceTree = "<group>"; };
 		05BF0BCC1EAC97BC003C8DF3 /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../../../local/Frameworks/Canary.framework; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 		0561B1141EAB8FDC00657EBC /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				057340E31EDAF092006CB96E /* KEPropertyTable.swift */,
 				052251EA1EAB852F0021A8B5 /* KiwiEngine.h */,
 				05BF0BC81EAC978D003C8DF3 /* KEContext.swift */,
 				05BF0BC91EAC978D003C8DF3 /* KEEngine.swift */,
@@ -188,6 +191,7 @@
 			files = (
 				05BF0BCA1EAC978D003C8DF3 /* KEContext.swift in Sources */,
 				05BF0BCB1EAC978D003C8DF3 /* KEEngine.swift in Sources */,
+				057340E41EDAF092006CB96E /* KEPropertyTable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,7 +237,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -249,7 +253,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -286,6 +291,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -296,6 +302,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -406,6 +413,7 @@
 				05BF0BD11EAC9857003C8DF3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
