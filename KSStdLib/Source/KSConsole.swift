@@ -16,9 +16,10 @@ import JavaScriptCore
 
 @objc public class KSConsole : NSObject, KSConsoleOperating
 {
-	public var mConsole : CNConsole? = nil
+	private var mConsole : CNConsole
 	
-	public override init(){
+	public init(console cons: CNConsole){
+		mConsole = cons
 		super.init()
 	}
 	
@@ -30,26 +31,7 @@ import JavaScriptCore
 		ctxt.setObject(self, forKeyedSubscript: KSConsole.rootObjectName())
 	}
 	
-	public class func setToContext(context ctxt: JSContext, console cons: CNConsole){
-		if let jsvalue = ctxt.objectForKeyedSubscript(KSConsole.rootObjectName()) {
-			if let console = jsvalue.toObject() as? KSConsole {
-				console.mConsole = cons
-			}
-		}
-	}
-	
-	public class func getFromContext(context ctxt: JSContext) -> CNConsole? {
-		if let jsvalue = ctxt.objectForKeyedSubscript(KSConsole.rootObjectName()) {
-			if let console = jsvalue.toObject() as? KSConsole {
-				return console.mConsole
-			}
-		}
-		return nil
-	}
-	
 	public func put(_ val: JSValue){
-		if let console = mConsole {
-			console.print(string: val.description + "\n")
-		}
+		mConsole.print(string: val.description + "\n")
 	}
 }

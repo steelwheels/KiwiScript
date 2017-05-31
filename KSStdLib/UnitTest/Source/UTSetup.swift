@@ -25,9 +25,8 @@ public class UTSetup
 				}
 				print("JavaScript Error: \(desc)")
 			}
-			KSStdLib.setup(context: context)
 			let console = CNFileConsole(file: CNTextFile.stdout)
-			KSStdLib.setupRuntime(context: context, console: console)
+			KSStdLib.setup(context: context, console: console)
 			return context
 		}
 		fatalError("Interval error")

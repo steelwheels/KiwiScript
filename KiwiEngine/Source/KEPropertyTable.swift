@@ -42,18 +42,7 @@ public class KEPropertyTable
 		}
 	}
 
-	public func setValue(identifier ident: String, any val: JSValue){
-		mTable.setValue(val, forKey: ident)
-	}
-
-	public func value(identifier ident: String) -> JSValue? {
-		if let val = mTable.value(forKey: ident) as? JSValue {
-			return val
-		}
-		return nil
-	}
-
-	public func setBooleanValue(identifier ident:String, bool val: Bool){
+	public func setBooleanValue(identifier ident:String, value val: Bool){
 		let obj = JSValue(bool: val, in: mContext)
 		mTable.setValue(obj, forKey: ident)
 	}
@@ -69,7 +58,7 @@ public class KEPropertyTable
 		return nil
 	}
 
-	public func setIntValue(identifier ident:String, int val: Int32){
+	public func setIntValue(identifier ident:String, value val: Int32){
 		let obj = JSValue(int32: val, in: mContext)
 		mTable.setValue(obj, forKey: ident)
 	}
@@ -85,7 +74,7 @@ public class KEPropertyTable
 		return nil
 	}
 
-	public func setUIntValue(identifier ident:String, uInt val: UInt32){
+	public func setUIntValue(identifier ident:String, value val: UInt32){
 		let obj = JSValue(uInt32: val, in: mContext)
 		mTable.setValue(obj, forKey: ident)
 	}
@@ -101,7 +90,7 @@ public class KEPropertyTable
 		return nil
 	}
 
-	public func setDoubleValue(identifier ident:String, double val: Double){
+	public func setDoubleValue(identifier ident:String, value val: Double){
 		let obj = JSValue(double: val, in: mContext)
 		mTable.setValue(obj, forKey: ident)
 	}
@@ -117,7 +106,7 @@ public class KEPropertyTable
 		return nil
 	}
 
-	public func setStringValue(identifier ident:String, string val: String){
+	public func setStringValue(identifier ident:String, value val: String){
 		let obj = JSValue(object: val, in: mContext)
 		mTable.setValue(obj, forKey: ident)
 	}
@@ -133,7 +122,7 @@ public class KEPropertyTable
 		return nil
 	}
 
-	public func setArrayValue(identifier ident:String, array val: Array<Any>){
+	public func setArrayValue(identifier ident:String, value val: Array<Any>){
 		let obj = JSValue(object: val, in: mContext)
 		mTable.setValue(obj, forKey: ident)
 	}
@@ -145,6 +134,17 @@ public class KEPropertyTable
 			} else {
 				NSLog("Invalid data type")
 			}
+		}
+		return nil
+	}
+
+	public func setCallback(identifier ident: String, function funcref: JSValue){
+		mTable.setValue(funcref, forKey: ident)
+	}
+
+	public func callback(identifier ident: String) -> JSValue? {
+		if let funcref = mTable.value(forKey: ident) as? JSValue {
+			return funcref
 		}
 		return nil
 	}

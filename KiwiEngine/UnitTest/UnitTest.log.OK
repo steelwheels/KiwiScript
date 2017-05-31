@@ -12,7 +12,6 @@ testObject : OK
  TEST: Double : OK
  TEST: String : OK
  TEST: Array : OK
- TEST: Callback : callback = type=JSValue description="function () { return 1 + 2 ; }"
-OK function () { return 1 + 2 ; } 
+ TEST: Callback : OK result = 3 
 testPropertyTable : OK
 SUMMARY: OK

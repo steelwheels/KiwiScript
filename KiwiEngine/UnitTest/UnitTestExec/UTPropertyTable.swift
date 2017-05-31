@@ -19,7 +19,7 @@ public func testPropertyTable(console cons: CNConsole) -> Bool
 	var result = true
 
 	console.print(string: " TEST: Bool : ")
-	table.setBooleanValue(identifier: "b0", bool: false)
+	table.setBooleanValue(identifier: "b0", value: false)
 	if let retval = table.booleanValue(identifier: "b0") {
 		if retval {
 			console.print(string: "Unexpected result\n")
@@ -33,7 +33,7 @@ public func testPropertyTable(console cons: CNConsole) -> Bool
 	}
 
 	console.print(string: " TEST: Int : ")
-	table.setIntValue(identifier: "i0", int: -1234)
+	table.setIntValue(identifier: "i0", value: -1234)
 	if let retval = table.intValue(identifier: "i0") {
 		if retval == -1234 {
 			console.print(string: "OK\n")
@@ -47,7 +47,7 @@ public func testPropertyTable(console cons: CNConsole) -> Bool
 	}
 
 	console.print(string: " TEST: UInt : ")
-	table.setUIntValue(identifier: "u0", uInt: 1234)
+	table.setUIntValue(identifier: "u0", value: 1234)
 	if let retval = table.uIntValue(identifier: "u0") {
 		if retval == 1234 {
 			console.print(string: "OK\n")
@@ -61,7 +61,7 @@ public func testPropertyTable(console cons: CNConsole) -> Bool
 	}
 
 	console.print(string: " TEST: Double : ")
-	table.setDoubleValue(identifier: "d0", double: 12.34)
+	table.setDoubleValue(identifier: "d0", value: 12.34)
 	if let retval = table.doubleValue(identifier: "d0") {
 		if retval == 12.34 {
 			console.print(string: "OK\n")
@@ -75,7 +75,7 @@ public func testPropertyTable(console cons: CNConsole) -> Bool
 	}
 
 	console.print(string: " TEST: String : ")
-	table.setStringValue(identifier: "s0", string: "hello")
+	table.setStringValue(identifier: "s0", value: "hello")
 	if let retval = table.stringValue(identifier: "s0") {
 		if retval == "hello" {
 			console.print(string: "OK\n")
@@ -91,7 +91,7 @@ public func testPropertyTable(console cons: CNConsole) -> Bool
 	console.print(string: " TEST: Array : ")
 	let elm0 = NSNumber(value: 0)
 	let elm1 = NSNumber(value: 1)
-	table.setArrayValue(identifier: "a0", array: [elm0, elm1])
+	table.setArrayValue(identifier: "a0", value: [elm0, elm1])
 	if let retval = table.arrayValue(identifier: "a0") {
 		let retval0 = retval[0] as! NSNumber
 		let retval1 = retval[1] as! NSNumber
@@ -110,12 +110,15 @@ public func testPropertyTable(console cons: CNConsole) -> Bool
 	let callback = "var callback = function() { return 1 + 2 ; }"
 	context.evaluateScript(callback)
 	if context.runtimeErrors().count == 0 {
-		if let retfunc = context.objectForKeyedSubscript("callback") {
-			let typename = NSStringFromClass(type(of: retfunc))
-			console.print(string: "callback = type=\(typename) description=\"\(retfunc)\"\n")
-			table.setValue(identifier: "callback", any: retfunc)
-			if let retval = table.value(identifier: "callback") {
-				console.print(string: "OK \(retval.description) \n")
+		if let funcref = context.objectForKeyedSubscript("callback") {
+			table.setCallback(identifier: "callback", function: funcref)
+			if let retval = table.callback(identifier: "callback") {
+				if let result = retval.call(withArguments: []) {
+					console.print(string: "OK result = \(result) \n")
+				} else {
+					console.print(string: "Failed to call function\n")
+					result = false
+				}
 			} else {
 				console.print(string: "No return value\n")
 				result = false
