@@ -1,6 +1,6 @@
 /**
- * @file	KEValue.swift
- * @brief	Function to operate JSValue
+ * @file	KEPropertyTable.swift
+ * @brief	Define KEPropertyTable
  * @par Copyright
  *   Copyright (C) 2017 Steel Wheels Project
  */

@@ -20,7 +20,10 @@
 		058B53261BA41A6C009522DF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058B53251BA41A6C009522DF /* main.swift */; };
 		05CF6D7B1BA41F9700BD9D91 /* KiwiEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05CF6D7A1BA41F9700BD9D91 /* KiwiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05CF6D7D1BA41FCF00BD9D91 /* Canary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05CF6D7C1BA41FCF00BD9D91 /* Canary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05D89FC61EFAB7110067F402 /* KEValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D89FC51EFAB7110067F402 /* KEValue.swift */; };
+		05D89FCA1EFAD4300067F402 /* KECoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D89FC91EFAD4300067F402 /* KECoder.swift */; };
 		05DA9F861BA3E2AE0027EA25 /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DA9F851BA3E2AE0027EA25 /* Canary.framework */; };
+		05E9BA3D1EFF12DA009E903C /* UTSerialize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E9BA3C1EFF12DA009E903C /* UTSerialize.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,7 +109,10 @@
 		05CF6D761BA41EF000BD9D91 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05CF6D7A1BA41F9700BD9D91 /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = /Users/tomoo/Library/Frameworks/KiwiEngine.framework; sourceTree = "<absolute>"; };
 		05CF6D7C1BA41FCF00BD9D91 /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = /Users/tomoo/Library/Frameworks/Canary.framework; sourceTree = "<absolute>"; };
+		05D89FC51EFAB7110067F402 /* KEValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEValue.swift; sourceTree = "<group>"; };
+		05D89FC91EFAD4300067F402 /* KECoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KECoder.swift; sourceTree = "<group>"; };
 		05DA9F851BA3E2AE0027EA25 /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../../Library/Frameworks/Canary.framework; sourceTree = "<group>"; };
+		05E9BA3C1EFF12DA009E903C /* UTSerialize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTSerialize.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +189,8 @@
 				057F881E1B78031B0029AB4F /* KEContext.swift */,
 				057F88221B780B4A0029AB4F /* KEEngine.swift */,
 				0504226F1ED5C02600183E4F /* KEPropertyTable.swift */,
+				05D89FC51EFAB7110067F402 /* KEValue.swift */,
+				05D89FC91EFAD4300067F402 /* KECoder.swift */,
 				054536C31B78021500FE978C /* Supporting Files */,
 			);
 			name = Source;
@@ -206,6 +214,7 @@
 				054637F01BB05F4500DEE12F /* UTError.swift */,
 				052B0F781BE8A33400E3BFEE /* UTObject.swift */,
 				050422711ED5CEF300183E4F /* UTPropertyTable.swift */,
+				05E9BA3C1EFF12DA009E903C /* UTSerialize.swift */,
 			);
 			path = UnitTestExec;
 			sourceTree = "<group>";
@@ -402,6 +411,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				050422701ED5C02600183E4F /* KEPropertyTable.swift in Sources */,
+				05D89FC61EFAB7110067F402 /* KEValue.swift in Sources */,
+				05D89FCA1EFAD4300067F402 /* KECoder.swift in Sources */,
 				057F88231B780B4A0029AB4F /* KEEngine.swift in Sources */,
 				057F881F1B78031B0029AB4F /* KEContext.swift in Sources */,
 			);
@@ -411,6 +422,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05E9BA3D1EFF12DA009E903C /* UTSerialize.swift in Sources */,
 				054637F21BB05FE400DEE12F /* UTError.swift in Sources */,
 				052B0F7A1BE8A3A400E3BFEE /* UTObject.swift in Sources */,
 				050422721ED5CEF300183E4F /* UTPropertyTable.swift in Sources */,
