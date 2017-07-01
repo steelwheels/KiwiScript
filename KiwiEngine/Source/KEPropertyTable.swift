@@ -9,143 +9,84 @@ import Canary
 import JavaScriptCore
 import Foundation
 
-public class KEPropertyTable
-{
-	private var mContext	: JSContext
-	private var mTable	: NSMutableDictionary
-	private var mObservers	: Array<NSObject>
+private typealias FunctionRef	= (Any) -> Void
 
-	public init(context ctxt: JSContext){
+@objc protocol KEPropertyExport: JSExport
+{
+	func set(_ name: String, _ value: JSValue)
+	func get(_ name: String) -> JSValue
+}
+
+@objc public class KEPropertyTable: NSObject, KEPropertyExport
+{
+	private var mContext:	KEContext
+	private var mObject:	JSValue
+	private var mTable:	NSMutableDictionary // Key:String, value:JSValue
+	private var mListeners:	Dictionary<String, KEListener>
+
+	public init(context ctxt: KEContext){
 		mContext   = ctxt
-		mTable     = NSMutableDictionary(capacity: 16)
-		mObservers = []
+		mTable     = NSMutableDictionary(capacity: 8)
+		mObject    = JSValue(object: mTable, in: ctxt)
+		mListeners = [:]
 	}
 
 	deinit {
-		for obs in mObservers {
-			let keys = mTable.allKeys
-			for key in keys {
-				if let keystr = key as? String {
-					mTable.removeObserver(obs, forKeyPath: keystr)
-				} else {
-					NSLog("Error: Invalid key object")
-				}
+		for prop in mListeners.keys {
+			if let obs = mListeners[prop] {
+				mTable.removeObserver(obs, forKeyPath: prop)
 			}
 		}
 	}
-	
-	public func addObserver(observer obs: NSObject, propertyNames names: Array<String>)
+
+	public func addListener(property prop: String, listener lsfunc: @escaping (Any) -> Void){
+		var listener: KEListener
+		if let lsfunc = mListeners[prop] {
+			listener = lsfunc
+		} else {
+			listener = KEListener()
+			mTable.addObserver(listener, forKeyPath: prop, options: [.new], context: nil)
+			mListeners[prop] = listener
+		}
+		listener.add(listener: lsfunc)
+	}
+
+	public func set(_ name: String, _ value: JSValue) {
+		mTable.setValue(value, forKey: name)
+	}
+
+	public func get(_ name: String) -> JSValue {
+		if let value = mTable.value(forKey: name) as? JSValue {
+			return value
+		} else {
+			return JSValue(undefinedIn: mContext)
+		}
+	}
+}
+
+private class KEListener: NSObject
+{
+	private var mListenerFuncs: Array<FunctionRef>
+
+	public override init(){
+		mListenerFuncs = []
+	}
+
+	public func add(listener lsfunc: @escaping (Any) -> Void)
 	{
-		for key in names {
-			mTable.addObserver(obs, forKeyPath: key, options: .new, context: nil)
-			mObservers.append(obs)
-		}
+		mListenerFuncs.append(lsfunc)
 	}
 
-	public func setBooleanValue(identifier ident:String, value val: Bool){
-		let obj = JSValue(bool: val, in: mContext)
-		mTable.setValue(obj, forKey: ident)
-	}
-
-	public func booleanValue(identifier ident: String) -> Bool? {
-		if let val = mTable.value(forKey: ident) as? JSValue {
-			if val.isBoolean {
-				return val.toBool()
-			} else {
-				NSLog("Invalid data type")
+	public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?)
+	{
+		if let path = keyPath, let obj = object as? NSObject {
+			if let val = obj.value(forKey: path) {
+				for cbfunc in mListenerFuncs {
+					cbfunc(val)
+				}
+				return
 			}
 		}
-		return nil
-	}
-
-	public func setIntValue(identifier ident:String, value val: Int32){
-		let obj = JSValue(int32: val, in: mContext)
-		mTable.setValue(obj, forKey: ident)
-	}
-
-	public func intValue(identifier ident: String) -> Int32? {
-		if let val = mTable.value(forKey: ident) as? JSValue {
-			if val.isNumber {
-				return val.toInt32()
-			} else {
-				NSLog("Invalid data type")
-			}
-		}
-		return nil
-	}
-
-	public func setUIntValue(identifier ident:String, value val: UInt32){
-		let obj = JSValue(uInt32: val, in: mContext)
-		mTable.setValue(obj, forKey: ident)
-	}
-
-	public func uIntValue(identifier ident: String) -> UInt32? {
-		if let val = mTable.value(forKey: ident) as? JSValue {
-			if val.isNumber {
-				return val.toUInt32()
-			} else {
-				NSLog("Invalid data type")
-			}
-		}
-		return nil
-	}
-
-	public func setDoubleValue(identifier ident:String, value val: Double){
-		let obj = JSValue(double: val, in: mContext)
-		mTable.setValue(obj, forKey: ident)
-	}
-
-	public func doubleValue(identifier ident: String) -> Double? {
-		if let val = mTable.value(forKey: ident) as? JSValue {
-			if val.isNumber {
-				return val.toDouble()
-			} else {
-				NSLog("Invalid data type")
-			}
-		}
-		return nil
-	}
-
-	public func setStringValue(identifier ident:String, value val: String){
-		let obj = JSValue(object: val, in: mContext)
-		mTable.setValue(obj, forKey: ident)
-	}
-
-	public func stringValue(identifier ident: String) -> String? {
-		if let val = mTable.value(forKey: ident) as? JSValue {
-			if val.isString {
-				return val.toString()
-			} else {
-				NSLog("Invalid data type")
-			}
-		}
-		return nil
-	}
-
-	public func setArrayValue(identifier ident:String, value val: Array<Any>){
-		let obj = JSValue(object: val, in: mContext)
-		mTable.setValue(obj, forKey: ident)
-	}
-
-	public func arrayValue(identifier ident: String) -> Array<Any>? {
-		if let val = mTable.value(forKey: ident) as? JSValue {
-			if val.isArray {
-				return val.toArray()
-			} else {
-				NSLog("Invalid data type")
-			}
-		}
-		return nil
-	}
-
-	public func setCallback(identifier ident: String, function funcref: JSValue){
-		mTable.setValue(funcref, forKey: ident)
-	}
-
-	public func callback(identifier ident: String) -> JSValue? {
-		if let funcref = mTable.value(forKey: ident) as? JSValue {
-			return funcref
-		}
-		return nil
+		NSLog("Could not get property")
 	}
 }

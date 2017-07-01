@@ -14,4 +14,23 @@ testObject : OK
  TEST: Array : OK
  TEST: Callback : OK result = 3 
 testPropertyTable : OK
+***** Scalar Boolean
+ -> Exec result: OK
+true
+***** Scalar Double
+ -> Exec result: OK
+1.23
+***** Array of strings
+ -> Exec result: OK
+["hello", "world"]
+***** Array of booleans
+ -> Exec result: OK
+[1, 0]
+**** Dictionary
+ -> Exec result: OK
+["height":11.3, "width":10.1]
+**** Dictionary(2)
+ -> Exec result: OK
+["height":"f", "width":"a"]
+testSerialize : OK
 SUMMARY: OK

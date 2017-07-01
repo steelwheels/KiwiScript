@@ -137,6 +137,7 @@ private class KEValueSerializer: KEValueVisitor
 				newline.append(string: ":")
 				newline.append(text: datatxt!)
 			}
+			newline.append(string: "]")
 			result = newline
 		} else if iskeyline {
 			let newsect = CNTextSection()
@@ -213,3 +214,104 @@ private class KEValueSerializer: KEValueVisitor
 		}
 	}
 }
+
+public func KESerializeType(value v: Any) -> String
+{
+	var result: String
+	let serializer = KETypeSerializer()
+	if let jsv = v as? JSValue {
+		serializer.accept(value: jsv)
+		let typestr = serializer.result
+		result = "JSValue<\(typestr)>"
+	} else if let num = v as? NSNumber {
+		serializer.accept(number: num)
+		let typestr = serializer.result
+		result = "NSNumber<\(typestr)>"
+	} else {
+		serializer.accept(any: v)
+		result = serializer.result
+	}
+	return result
+}
+
+private class KETypeSerializer: KEValueVisitor
+{
+	public var result: String  = ""
+
+	open override func visit(bool val: Bool){
+		result = "Bool"
+	}
+
+	open override func visit(character val: Character){
+		result = "Character"
+	}
+
+	open override func visit(int val: Int){
+		result = "Int"
+	}
+
+	open override func visit(uInt val: UInt){
+		result = "UInt"
+	}
+
+	open override func visit(float val: Float){
+		result = "Float"
+	}
+
+	open override func visit(double val: Double){
+		result = "Double"
+	}
+
+	open override func visit(string	val: String){
+		result = "String"
+	}
+
+	open override func visit(date val: Date){
+		result = "Date"
+	}
+
+	open override func visit(array val: Array<Any>)	{
+		if val.count > 0 {
+			let subtype = KESerializeType(value: val[0])
+			result = "Array<\(subtype)>"
+		} else {
+			result = "Array<>"
+		}
+	}
+
+	open override func visit(set val: Set<AnyHashable>){
+		if let elm = val.first {
+			let subtype = KESerializeType(value: elm)
+			result = "Set<\(subtype)>"
+		} else {
+			result = "Set<>"
+		}
+	}
+
+	open override func visit(dictionary val: Dictionary<AnyHashable, Any>){
+		if let key = val.keys.first {
+			let keytype = KESerializeType(value: key)
+			if let val = val[key] {
+				let valtype = KESerializeType(value: val)
+				result = "Dictionary<\(keytype), \(valtype)>"
+			} else {
+				result = "Dictionary<\(keytype), nil>"
+			}
+		} else {
+			result = "Dictionary<>"
+		}
+	}
+
+	open override func visit(any val: Any){
+		result = "Any"
+	}
+
+	open override func visitNull(){
+		result = "Null"
+	}
+
+	open override func visitUndefined(){
+		result = "Undefined"
+	}
+}
+

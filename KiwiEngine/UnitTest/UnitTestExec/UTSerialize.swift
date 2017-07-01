@@ -18,34 +18,49 @@ public func testSerialize(console cons: CNConsole) -> Bool
 
 	console.print(string: "***** Scalar Boolean\n")
 	let script0 = "v0 = true ;"
-	let result0 = execute(context: context, console: console, script: script0)
+	let result0 = UTExecute(context: context, console: console, script: script0)
+
+	console.print(string: "***** Scalar Int\n")
+	let scripti1 = "i1 = 123"
+	let resulti1 = UTExecute(context: context, console: console, script: scripti1)
 
 	console.print(string: "***** Scalar Double\n")
 	let script1 = "v1 = 1.23"
-	let result1 = execute(context: context, console: console, script: script1)
+	let result1 = UTExecute(context: context, console: console, script: script1)
 
 	console.print(string: "***** Array of strings\n")
 	let script2 = "v2 = [\"hello\", \"world\"] ;"
-	let result2 = execute(context: context, console: console, script: script2)
+	let result2 = UTExecute(context: context, console: console, script: script2)
+
+	console.print(string: "***** Array of booleans\n")
+	let script3 = "v3 = [true, false] ;"
+	let result3 = UTExecute(context: context, console: console, script: script3)
 
 	console.print(string: "**** Dictionary\n")
-	let script3 =   "v3 = new Object() ; "
-		      + "v3.width  = 10.1 ; "
-		      + "v3.height = 11.3 ; "
-		      + "v4 = v3 ; "
-	let result3 = execute(context: context, console: console, script: script3)
+	let scriptd1 =   "d1i = new Object() ; "
+		      + "d1i.width  = 10.1 ; "
+		      + "d1i.height = 11.3 ; "
+		      + "d1 = d1i ; "
+	let resultd1 = UTExecute(context: context, console: console, script: scriptd1)
 
 	console.print(string: "**** Dictionary(2)\n")
-	let script4 =   "v4 = new Object() ; "
-		      + "v4.width  = \"a\" ; "
-		      + "v4.height = \"f\" ; "
-		      + "v5 = v4 ; "
-	let result4 = execute(context: context, console: console, script: script4)
+	let scriptd2 =   "d2i = new Object() ; "
+		      + "d2i.width  = \"a\" ; "
+		      + "d2i.height = \"f\" ; "
+		      + "d2 = d2i ; "
+	let resultd2 = UTExecute(context: context, console: console, script: scriptd2)
 
-	return result0 && result1 && result2 && result3 && result4
+	console.print(string: "**** Dictionary(3)\n")
+	let scriptd3 =    "d3i = new Object() ; "
+		        + "d3i.ensble  = true ; "
+			+ "d3i.visible = false ; "
+			+ "d3 = d3i ; "
+	let resultd3 = UTExecute(context: context, console: console, script: scriptd3)
+
+	return result0 && result1 && resulti1 && result2 && result3 && resultd1 && resultd2 && resultd3
 }
 
-private func execute(context ctxt: KEContext, console cons: CNConsole, script scr: String) -> Bool
+public func UTExecute(context ctxt: KEContext, console cons: CNConsole, script scr: String) -> Bool
 {
 	let (retval, errors) = KEEngine.runScript(context: ctxt, script: scr)
 	if let errors = errors {
@@ -62,6 +77,9 @@ private func execute(context ctxt: KEContext, console cons: CNConsole, script sc
 
 private func serialize(value val: JSValue, console cons: CNConsole) -> Bool
 {
+	let type = KESerializeType(value: val)
+	console.print(string: "TYPE: \(type)\nDATA: ")
+
 	if let text = KESerializeValue(value: val) {
 		text.print(console: cons)
 		return true
