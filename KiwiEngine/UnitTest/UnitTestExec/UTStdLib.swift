@@ -15,12 +15,12 @@ func testStdLib(console cons: CNConsole) -> Bool
 {
 	var result  = true
 	let console = CNFileConsole(file: CNTextFile.stdout)
-	
+
 	let vm       = JSVirtualMachine()
 	let context0 = KEContext(virtualMachine: vm)
-	
+
 	result = result && testPoint(console: cons, context: context0, console: console)
-	
+
 	return result
 }
 
@@ -33,7 +33,7 @@ private func testPoint(console cons: CNConsole, context : KEContext, console : C
 			+ " p0.y = p0.y + p1.y ; "
 			+ "} ;"
 	summary = summary && runScript(console: cons, context: context, title: "add incPoint func", script: addptfunc)
-	
+
 	let srcpt0  = JSValue(point: CGPoint(x:0.1, y:0.2), in: context)
 	let srcpt1  = JSValue(point: CGPoint(x:1.0, y:2.0), in: context)
 	if let spt0 = srcpt0, let spt1 = srcpt1 {

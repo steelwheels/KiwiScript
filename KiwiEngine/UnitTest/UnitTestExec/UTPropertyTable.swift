@@ -44,7 +44,7 @@ public func testPropertyTable(console cons: CNConsole) -> Bool
 	if !UTExecute(context: context, console: cons, script: script0) {
 		result = false
 	}
-	
+
 	return result
 }
 

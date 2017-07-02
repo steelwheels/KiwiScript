@@ -20,14 +20,12 @@ private typealias FunctionRef	= (Any) -> Void
 @objc public class KEPropertyTable: NSObject, KEPropertyExport
 {
 	private var mContext:	KEContext
-	private var mObject:	JSValue
 	private var mTable:	NSMutableDictionary // Key:String, value:JSValue
 	private var mListeners:	Dictionary<String, KEListener>
 
 	public init(context ctxt: KEContext){
 		mContext   = ctxt
 		mTable     = NSMutableDictionary(capacity: 8)
-		mObject    = JSValue(object: mTable, in: ctxt)
 		mListeners = [:]
 	}
 

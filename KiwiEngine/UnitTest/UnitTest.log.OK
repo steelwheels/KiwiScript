@@ -6,31 +6,58 @@ testError : OK
 RunScriot -> OK (undefined)
 RESULT: newangle = 2.3
 testObject : OK
- TEST: Bool : OK
- TEST: Int : OK
- TEST: UInt : OK
- TEST: Double : OK
- TEST: String : OK
- TEST: Array : OK
- TEST: Callback : OK result = 3 
+* [type:bool, value:true] true -> true
+* [type:char, value:"c"] c -> "c"
+* [type:int, value:-1234] -1234 -> -1234.0
+* [type:uint, value:1234] 1234 -> 1234.0
+* [type:float, value:12.34] 12.34 -> 12.3400001525879
+* [type:double, value:-12.34] -12.34 -> -12.34
+* [type:string, value:"Hello, world"] "Hello,World" -> "Hello,World"
+* [type:date, value:Now] 1970-01-01 02:46:40 +0000 -> 1970-01-01 02:46:40 +0000
+* [type:array, value:[true]] [true] -> [1]
+* [type:array, value:["c"]] [c] -> ["c"]
+* [type:dict, value:[dict]] [a:[true]] -> ["a":[1]]
+testConverter : OK
+proprty : true -> true
+*** Add listner function
+* Listener: value false
+*** Call set() function
+* Listener: value true
+ -> Exec result: OK
+TYPE: JSValue<Undefined>
+DATA: undefined
 testPropertyTable : OK
 ***** Scalar Boolean
  -> Exec result: OK
-true
+TYPE: JSValue<Bool>
+DATA: true
+***** Scalar Int
+ -> Exec result: OK
+TYPE: JSValue<Double>
+DATA: 123.0
 ***** Scalar Double
  -> Exec result: OK
-1.23
+TYPE: JSValue<Double>
+DATA: 1.23
 ***** Array of strings
  -> Exec result: OK
-["hello", "world"]
+TYPE: JSValue<Array<String>>
+DATA: ["hello", "world"]
 ***** Array of booleans
  -> Exec result: OK
-[1, 0]
+TYPE: JSValue<Array<NSNumber<Int>>>
+DATA: [1, 0]
 **** Dictionary
  -> Exec result: OK
-["height":11.3, "width":10.1]
+TYPE: JSValue<Dictionary<String, NSNumber<Double>>>
+DATA: ["height":11.3, "width":10.1]
 **** Dictionary(2)
  -> Exec result: OK
-["height":"f", "width":"a"]
+TYPE: JSValue<Dictionary<String, String>>
+DATA: ["height":"f", "width":"a"]
+**** Dictionary(3)
+ -> Exec result: OK
+TYPE: JSValue<Dictionary<String, NSNumber<Int>>>
+DATA: ["visible":0, "ensble":1]
 testSerialize : OK
 SUMMARY: OK
