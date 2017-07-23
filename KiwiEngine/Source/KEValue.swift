@@ -51,6 +51,46 @@ extension JSValue
 			return result
 		}
 	}
+
+	public func cast(to type: CNValueType) -> JSValue?
+	{
+		var result: JSValue?
+		switch self.type {
+		case .Null, .Undefined:
+			result = nil
+		case .Boolean:
+			switch type {
+			case .BooleanType:
+				result = self
+			default:
+				result = nil
+			}
+		case .Number:
+			switch type {
+			case .BooleanType, .IntType, .UIntType, .FloatType, .DoubleType:
+				result = self
+			default:
+				result = nil
+			}
+		case .String:
+			switch type {
+			case .StringType:
+				result = self
+			default:
+				result = nil
+			}
+		case .Object:
+			break
+		case .Array:
+			break
+		case .Dictionary:
+			break
+		case .Date:
+			break
+
+		}
+		return result
+	}
 }
 
 open class KEValueVisitor: CNVisitor
@@ -104,6 +144,8 @@ public class KEValueConverter
 	public class func convert(source src: CNValue, context ctxt: KEContext) -> JSValue {
 		var result: JSValue
 		switch src.type {
+		case .VoidType:
+			result = JSValue(int32: Int32(0), in: ctxt)
 		case .BooleanType:
 			result = JSValue(bool: src.booleanValue!, in: ctxt)
 		case .CharacterType:
@@ -163,6 +205,8 @@ public class KEValueConverter
 	{
 		var result: NSObject
 		switch src.type {
+		case .VoidType:
+			result = NSNumber(integerLiteral: 0)
 		case .BooleanType:
 			let v = src.booleanValue!
 			result = NSNumber(booleanLiteral: v)

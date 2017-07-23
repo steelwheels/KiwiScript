@@ -60,6 +60,19 @@ private typealias FunctionRef	= (Any) -> Void
 			return JSValue(undefinedIn: mContext)
 		}
 	}
+
+	public func check(_ name: String) -> JSValue? {
+		return mTable.value(forKey: name) as? JSValue
+	}
+
+	public var propertyNames: Array<String> {
+		get {
+			if let keys = mTable.allKeys as? Array<String> {
+				return keys
+			}
+			fatalError("Invalid key types")
+		}
+	}
 }
 
 private class KEListener: NSObject
