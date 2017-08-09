@@ -10,6 +10,7 @@
 		052251EC1EAB852F0021A8B5 /* KiwiEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 052251EA1EAB852F0021A8B5 /* KiwiEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		053B49F61F0291D100B1BB7D /* KECoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053B49F51F0291D100B1BB7D /* KECoder.swift */; };
 		057340E41EDAF092006CB96E /* KEPropertyTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057340E31EDAF092006CB96E /* KEPropertyTable.swift */; };
+		05AE79EE1F3A1CA2006701D8 /* KEEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AE79ED1F3A1CA2006701D8 /* KEEnum.swift */; };
 		05BF0BCA1EAC978D003C8DF3 /* KEContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BF0BC81EAC978D003C8DF3 /* KEContext.swift */; };
 		05BF0BCB1EAC978D003C8DF3 /* KEEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BF0BC91EAC978D003C8DF3 /* KEEngine.swift */; };
 		05BF0BCD1EAC97BC003C8DF3 /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05BF0BCC1EAC97BC003C8DF3 /* Canary.framework */; };
@@ -32,6 +33,7 @@
 		052251EB1EAB852F0021A8B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		053B49F51F0291D100B1BB7D /* KECoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KECoder.swift; sourceTree = "<group>"; };
 		057340E31EDAF092006CB96E /* KEPropertyTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEPropertyTable.swift; sourceTree = "<group>"; };
+		05AE79ED1F3A1CA2006701D8 /* KEEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEEnum.swift; sourceTree = "<group>"; };
 		05BF0BC81EAC978D003C8DF3 /* KEContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEContext.swift; sourceTree = "<group>"; };
 		05BF0BC91EAC978D003C8DF3 /* KEEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEEngine.swift; sourceTree = "<group>"; };
 		05BF0BCC1EAC97BC003C8DF3 /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../../../local/Frameworks/Canary.framework; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				057340E31EDAF092006CB96E /* KEPropertyTable.swift */,
 				05D89FC71EFAB7320067F402 /* KEValue.swift */,
 				053B49F51F0291D100B1BB7D /* KECoder.swift */,
+				05AE79ED1F3A1CA2006701D8 /* KEEnum.swift */,
 			);
 			name = Source;
 			path = ../Source;
@@ -197,6 +200,7 @@
 			files = (
 				053B49F61F0291D100B1BB7D /* KECoder.swift in Sources */,
 				05BF0BCA1EAC978D003C8DF3 /* KEContext.swift in Sources */,
+				05AE79EE1F3A1CA2006701D8 /* KEEnum.swift in Sources */,
 				05D89FC81EFAB7320067F402 /* KEValue.swift in Sources */,
 				05BF0BCB1EAC978D003C8DF3 /* KEEngine.swift in Sources */,
 				057340E41EDAF092006CB96E /* KEPropertyTable.swift in Sources */,

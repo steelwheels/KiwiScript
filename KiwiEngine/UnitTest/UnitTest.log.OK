@@ -60,4 +60,17 @@ DATA: ["height":"f", "width":"a"]
 TYPE: JSValue<Dictionary<String, NSNumber<Int>>>
 DATA: ["visible":0, "ensble":1]
 testSerialize : OK
+var Week = {
+	Sun : 0,
+	Mon : 1,
+	Tue : 2,
+};
+search by Week -> var Week = {
+	Sun : 0,
+	Mon : 1,
+	Tue : 2,
+};
+search by Year -> No found
+search by Feb -> Found -> Month, 
+testEnum : OK
 SUMMARY: OK
