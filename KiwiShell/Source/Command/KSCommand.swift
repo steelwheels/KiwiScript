@@ -17,6 +17,29 @@ open class KSCommand
 		mCommandName	= nm
 	}
 
+	public class func callerScript(command name: String, parameters params: Dictionary<String, String>) -> String {
+		let header =   "var \(name)Command = {\n"
+			     + "  command: \"\(name)\",\n"
+			     + "  parameters: {\n"
+		let footer =   "  }\n"
+			     + "};\n"
+		var body:  String = ""
+		var is1st: Bool = false
+		for key in params.keys {
+			if is1st {
+				is1st = false
+			} else {
+				body  = body + ",\n"
+			}
+			if let value = params[key] {
+				body = body + "   \(key) : \"\(value)\""
+			} else {
+				NSLog("Internal error")
+			}
+		}
+		return header + footer
+	}
+
 	open func encodeParameters() -> Dictionary<String, String> {
 		let result: Dictionary<String, String> = [:]
 		return result
