@@ -7,17 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		05E056071F432D0900F3A2F8 /* KiwiShell.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E056061F432D0900F3A2F8 /* KiwiShell.h */; };
+		0532AE811F43D47900FDE12A /* KSCommandTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0532AE801F43D47900FDE12A /* KSCommandTable.swift */; };
+		0532AE831F43D54400FDE12A /* KSCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0532AE821F43D54400FDE12A /* KSCommand.swift */; };
+		0532AE891F43EFAD00FDE12A /* KSLsCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0532AE881F43EFAD00FDE12A /* KSLsCommand.swift */; };
+		0587BA461F43A706002A4B05 /* KiwiShell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0587BA441F43A706002A4B05 /* KiwiShell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		05B9F5AB1F43A887009AEEE7 /* KSShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B9F5AA1F43A887009AEEE7 /* KSShell.swift */; };
+		05B9F5AF1F43B392009AEEE7 /* KSPidValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B9F5AE1F43B391009AEEE7 /* KSPidValue.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		0532AE8E1F4411DD00FDE12A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0587BA381F43A706002A4B05 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0587BA401F43A706002A4B05;
+			remoteInfo = KiwiShell;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		0577E9931F43242600EB67A4 /* KiwiShell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiShell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0577E9971F43242600EB67A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		05E056061F432D0900F3A2F8 /* KiwiShell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KiwiShell.h; path = ../Source/KiwiShell.h; sourceTree = "<group>"; };
+		0532AE801F43D47900FDE12A /* KSCommandTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KSCommandTable.swift; path = Command/KSCommandTable.swift; sourceTree = "<group>"; };
+		0532AE821F43D54400FDE12A /* KSCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KSCommand.swift; path = Command/KSCommand.swift; sourceTree = "<group>"; };
+		0532AE881F43EFAD00FDE12A /* KSLsCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KSLsCommand.swift; path = Command/KSLsCommand.swift; sourceTree = "<group>"; };
+		0587BA411F43A706002A4B05 /* KiwiShell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiShell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0587BA441F43A706002A4B05 /* KiwiShell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiShell.h; sourceTree = "<group>"; };
+		0587BA451F43A706002A4B05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05B9F5AA1F43A887009AEEE7 /* KSShell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSShell.swift; sourceTree = "<group>"; };
+		05B9F5AE1F43B391009AEEE7 /* KSPidValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSPidValue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		0577E98F1F43242600EB67A4 /* Frameworks */ = {
+		0587BA3D1F43A706002A4B05 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -27,54 +47,101 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0577E9891F43242600EB67A4 = {
+		0532AE7F1F43D46500FDE12A /* Command */ = {
 			isa = PBXGroup;
 			children = (
-				0577E9951F43242600EB67A4 /* Source */,
-				0577E9941F43242600EB67A4 /* Products */,
+				0532AE801F43D47900FDE12A /* KSCommandTable.swift */,
+				0532AE821F43D54400FDE12A /* KSCommand.swift */,
+				0532AE881F43EFAD00FDE12A /* KSLsCommand.swift */,
+			);
+			name = Command;
+			sourceTree = "<group>";
+		};
+		0587BA371F43A706002A4B05 = {
+			isa = PBXGroup;
+			children = (
+				05B9F5A81F43A74C009AEEE7 /* Source */,
+				0587BA431F43A706002A4B05 /* KiwiShell */,
+				0587BA421F43A706002A4B05 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		0577E9941F43242600EB67A4 /* Products */ = {
+		0587BA421F43A706002A4B05 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0577E9931F43242600EB67A4 /* KiwiShell.framework */,
+				0587BA411F43A706002A4B05 /* KiwiShell.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0577E9951F43242600EB67A4 /* Source */ = {
+		0587BA431F43A706002A4B05 /* KiwiShell */ = {
 			isa = PBXGroup;
 			children = (
-				05E056061F432D0900F3A2F8 /* KiwiShell.h */,
-				0577E9971F43242600EB67A4 /* Info.plist */,
+				0587BA451F43A706002A4B05 /* Info.plist */,
+			);
+			path = KiwiShell;
+			sourceTree = "<group>";
+		};
+		05B9F5A81F43A74C009AEEE7 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				05B9F5A91F43A834009AEEE7 /* Application */,
+				0532AE7F1F43D46500FDE12A /* Command */,
+				0587BA441F43A706002A4B05 /* KiwiShell.h */,
 			);
 			name = Source;
-			path = KiwiShell;
+			path = ../Source;
+			sourceTree = SOURCE_ROOT;
+		};
+		05B9F5A91F43A834009AEEE7 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				05B9F5AA1F43A887009AEEE7 /* KSShell.swift */,
+				05B9F5AE1F43B391009AEEE7 /* KSPidValue.swift */,
+			);
+			path = Application;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		0577E9901F43242600EB67A4 /* Headers */ = {
+		0587BA3E1F43A706002A4B05 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05E056071F432D0900F3A2F8 /* KiwiShell.h in Headers */,
+				0587BA461F43A706002A4B05 /* KiwiShell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
-/* Begin PBXNativeTarget section */
-		0577E9921F43242600EB67A4 /* KiwiShell */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 0577E99B1F43242600EB67A4 /* Build configuration list for PBXNativeTarget "KiwiShell" */;
+/* Begin PBXLegacyTarget section */
+		0532AE8A1F4411D100FDE12A /* Install */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f ../../Script/install_osx.mk";
+			buildConfigurationList = 0532AE8B1F4411D100FDE12A /* Build configuration list for PBXLegacyTarget "Install" */;
 			buildPhases = (
-				0577E98E1F43242600EB67A4 /* Sources */,
-				0577E98F1F43242600EB67A4 /* Frameworks */,
-				0577E9901F43242600EB67A4 /* Headers */,
-				0577E9911F43242600EB67A4 /* Resources */,
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+				0532AE8F1F4411DD00FDE12A /* PBXTargetDependency */,
+			);
+			name = Install;
+			passBuildSettingsInEnvironment = 1;
+			productName = Install;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXNativeTarget section */
+		0587BA401F43A706002A4B05 /* KiwiShell */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0587BA491F43A706002A4B05 /* Build configuration list for PBXNativeTarget "KiwiShell" */;
+			buildPhases = (
+				0587BA3C1F43A706002A4B05 /* Sources */,
+				0587BA3D1F43A706002A4B05 /* Frameworks */,
+				0587BA3E1F43A706002A4B05 /* Headers */,
+				0587BA3F1F43A706002A4B05 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -82,44 +149,51 @@
 			);
 			name = KiwiShell;
 			productName = KiwiShell;
-			productReference = 0577E9931F43242600EB67A4 /* KiwiShell.framework */;
+			productReference = 0587BA411F43A706002A4B05 /* KiwiShell.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		0577E98A1F43242600EB67A4 /* Project object */ = {
+		0587BA381F43A706002A4B05 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Steel Wheels Project";
 				TargetAttributes = {
-					0577E9921F43242600EB67A4 = {
+					0532AE8A1F4411D100FDE12A = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = TR2DNF3P93;
 						ProvisioningStyle = Automatic;
 					};
+					0587BA401F43A706002A4B05 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = TR2DNF3P93;
+						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
-			buildConfigurationList = 0577E98D1F43242600EB67A4 /* Build configuration list for PBXProject "KiwiShell" */;
+			buildConfigurationList = 0587BA3B1F43A706002A4B05 /* Build configuration list for PBXProject "KiwiShell" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 0577E9891F43242600EB67A4;
-			productRefGroup = 0577E9941F43242600EB67A4 /* Products */;
+			mainGroup = 0587BA371F43A706002A4B05;
+			productRefGroup = 0587BA421F43A706002A4B05 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0577E9921F43242600EB67A4 /* KiwiShell */,
+				0587BA401F43A706002A4B05 /* KiwiShell */,
+				0532AE8A1F4411D100FDE12A /* Install */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		0577E9911F43242600EB67A4 /* Resources */ = {
+		0587BA3F1F43A706002A4B05 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -129,17 +203,55 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		0577E98E1F43242600EB67A4 /* Sources */ = {
+		0587BA3C1F43A706002A4B05 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0532AE811F43D47900FDE12A /* KSCommandTable.swift in Sources */,
+				05B9F5AB1F43A887009AEEE7 /* KSShell.swift in Sources */,
+				05B9F5AF1F43B392009AEEE7 /* KSPidValue.swift in Sources */,
+				0532AE831F43D54400FDE12A /* KSCommand.swift in Sources */,
+				0532AE891F43EFAD00FDE12A /* KSLsCommand.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		0532AE8F1F4411DD00FDE12A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0587BA401F43A706002A4B05 /* KiwiShell */;
+			targetProxy = 0532AE8E1F4411DD00FDE12A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
-		0577E9991F43242600EB67A4 /* Debug */ = {
+		0532AE8C1F4411D100FDE12A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		0532AE8D1F4411D100FDE12A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		0587BA471F43A706002A4B05 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -192,7 +304,7 @@
 			};
 			name = Debug;
 		};
-		0577E99A1F43242600EB67A4 /* Release */ = {
+		0587BA481F43A706002A4B05 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -237,9 +349,10 @@
 			};
 			name = Release;
 		};
-		0577E99C1F43242600EB67A4 /* Debug */ = {
+		0587BA4A1F43A706002A4B05 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -247,20 +360,28 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				FRAMEWORK_VERSION = A;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks $(USER_LIBRARY_DIR)/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.KiwiShell";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
-		0577E99D1F43242600EB67A4 /* Release */ = {
+		0587BA4B1F43A706002A4B05 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -268,13 +389,20 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				FRAMEWORK_VERSION = A;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks $(USER_LIBRARY_DIR)/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.KiwiShell";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -282,25 +410,34 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0577E98D1F43242600EB67A4 /* Build configuration list for PBXProject "KiwiShell" */ = {
+		0532AE8B1F4411D100FDE12A /* Build configuration list for PBXLegacyTarget "Install" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0577E9991F43242600EB67A4 /* Debug */,
-				0577E99A1F43242600EB67A4 /* Release */,
+				0532AE8C1F4411D100FDE12A /* Debug */,
+				0532AE8D1F4411D100FDE12A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0577E99B1F43242600EB67A4 /* Build configuration list for PBXNativeTarget "KiwiShell" */ = {
+		0587BA3B1F43A706002A4B05 /* Build configuration list for PBXProject "KiwiShell" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0577E99C1F43242600EB67A4 /* Debug */,
-				0577E99D1F43242600EB67A4 /* Release */,
+				0587BA471F43A706002A4B05 /* Debug */,
+				0587BA481F43A706002A4B05 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0587BA491F43A706002A4B05 /* Build configuration list for PBXNativeTarget "KiwiShell" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0587BA4A1F43A706002A4B05 /* Debug */,
+				0587BA4B1F43A706002A4B05 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 0577E98A1F43242600EB67A4 /* Project object */;
+	rootObject = 0587BA381F43A706002A4B05 /* Project object */;
 }
