@@ -57,7 +57,15 @@ public enum KSProcessStatus: Int32 {
 	}
 
 	private func execute(command cmd: KSCommand) -> JSValue {
-		let shell = CNShell(command: cmd.commandLineString())
+		let shell: CNShell
+		if let cmdstr = cmd.commandLineString(){
+			shell = CNShell(command: cmdstr)
+		} else {
+			let name = cmd.commandName
+			mStderr.print(string: "Can not execute the command: \(name)")
+			return JSValue(undefinedIn: mContext)
+		}
+
 		shell.outputHandler = {
 			(_ string: String) -> Void in
 			self.mStdout.print(string: string)

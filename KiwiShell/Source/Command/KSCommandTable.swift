@@ -48,6 +48,8 @@ public class KSCommandTable
 		switch nm {
 		case "ls":
 			result = KSLsCommand()
+		case "rsync":
+			result = KSRsyncCommand()
 		default:
 			NSLog("Unknown command name: \(nm)")
 			result = nil

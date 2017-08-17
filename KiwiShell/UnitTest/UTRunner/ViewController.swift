@@ -38,8 +38,14 @@ class ViewController: NSViewController
 		/* Set "shell" global variable */
 		context.setObject(mShell, forKeyedSubscript: NSString(string: "shell"))
 
-		let script0 = KSLsCommand.callerScript()
-		Swift.print("SCRIPT: \(script0)")
+		let script0: String
+		if let script = KSLsCommand.callerScript() {
+			Swift.print("SCRIPT: \(script)")
+			script0 = script
+		} else {
+			Swift.print("Error: Can not generate script: ls")
+			return
+		}
 
 		/* Compile the caller value */
 		let (_, errors0) = KEEngine.runScript(context: context, script: script0)

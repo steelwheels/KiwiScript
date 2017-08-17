@@ -41,11 +41,14 @@ open class KSCommand
 	}
 
 	open func encodeParameters() -> Dictionary<String, String> {
-		let result: Dictionary<String, String> = [:]
-		return result
+		fatalError("Must be override")
 	}
 
-	open func commandLineString() -> String {
+	open func decodeParameters(parameters params: Dictionary<String, String>) -> Bool {
+		fatalError("Must be override")
+	}
+
+	open func commandLineString() -> String? {
 		fatalError("Must be override")
 	}
 }

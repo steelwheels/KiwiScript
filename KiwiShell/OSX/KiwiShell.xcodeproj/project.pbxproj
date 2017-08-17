@@ -12,6 +12,7 @@
 		0532AE891F43EFAD00FDE12A /* KSLsCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0532AE881F43EFAD00FDE12A /* KSLsCommand.swift */; };
 		0587BA461F43A706002A4B05 /* KiwiShell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0587BA441F43A706002A4B05 /* KiwiShell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05B9F5AB1F43A887009AEEE7 /* KSShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B9F5AA1F43A887009AEEE7 /* KSShell.swift */; };
+		05CDAF111F45490E004721E2 /* KSRsyncCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CDAF101F45490E004721E2 /* KSRsyncCommand.swift */; };
 		05EDF57D1F44620F00F50D14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EDF57C1F44620F00F50D14 /* AppDelegate.swift */; };
 		05EDF57F1F44620F00F50D14 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EDF57E1F44620F00F50D14 /* ViewController.swift */; };
 		05EDF5811F44620F00F50D14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05EDF5801F44620F00F50D14 /* Assets.xcassets */; };
@@ -36,7 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		050DDA181F44630D00351110 /* UTRunner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = UTRunner.entitlements; path = ../../OSX/UTRunner.entitlements; sourceTree = "<group>"; };
+		050DDA181F44630D00351110 /* UTRunner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTRunner.entitlements; sourceTree = "<group>"; };
 		0532AE801F43D47900FDE12A /* KSCommandTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KSCommandTable.swift; path = Command/KSCommandTable.swift; sourceTree = "<group>"; };
 		0532AE821F43D54400FDE12A /* KSCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KSCommand.swift; path = Command/KSCommand.swift; sourceTree = "<group>"; };
 		0532AE881F43EFAD00FDE12A /* KSLsCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KSLsCommand.swift; path = Command/KSLsCommand.swift; sourceTree = "<group>"; };
@@ -44,6 +45,7 @@
 		0587BA441F43A706002A4B05 /* KiwiShell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiShell.h; sourceTree = "<group>"; };
 		0587BA451F43A706002A4B05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05B9F5AA1F43A887009AEEE7 /* KSShell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSShell.swift; sourceTree = "<group>"; };
+		05CDAF101F45490E004721E2 /* KSRsyncCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KSRsyncCommand.swift; path = Command/KSRsyncCommand.swift; sourceTree = "<group>"; };
 		05EDF57A1F44620F00F50D14 /* UTRunner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTRunner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05EDF57C1F44620F00F50D14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05EDF57E1F44620F00F50D14 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				0532AE801F43D47900FDE12A /* KSCommandTable.swift */,
 				0532AE821F43D54400FDE12A /* KSCommand.swift */,
 				0532AE881F43EFAD00FDE12A /* KSLsCommand.swift */,
+				05CDAF101F45490E004721E2 /* KSRsyncCommand.swift */,
 			);
 			name = Command;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 			files = (
 				0532AE811F43D47900FDE12A /* KSCommandTable.swift in Sources */,
 				05B9F5AB1F43A887009AEEE7 /* KSShell.swift in Sources */,
+				05CDAF111F45490E004721E2 /* KSRsyncCommand.swift in Sources */,
 				0532AE831F43D54400FDE12A /* KSCommand.swift in Sources */,
 				0532AE891F43EFAD00FDE12A /* KSLsCommand.swift in Sources */,
 			);
