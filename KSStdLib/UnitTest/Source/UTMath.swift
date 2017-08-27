@@ -13,9 +13,10 @@ import Canary
 public func testMath() -> Bool
 {
 	if let context = JSContext() {
-		let console = CNFileConsole(file: CNTextFile.stdout)
+		let outcons = CNFileConsole(file: CNTextFile.stdout)
+		let errcons = CNFileConsole(file: CNTextFile.stderr)
 
-		KSStdLib.setup(context: context, console: console)
+		KSStdLib.setup(context: context, stdout: outcons, stderr: errcons)
 
 		context.exceptionHandler = { (context, value) in
 			let desc: String
