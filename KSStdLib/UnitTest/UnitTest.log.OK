@@ -1,5 +1,7 @@
 * UTConsole
 Hello, world!!
+stdout: 1
+stderr: 2
 RESULT : true
 * UTMath
 PI = 3.141592653589793
