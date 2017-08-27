@@ -22,15 +22,29 @@ public class KSRsyncCommand: KSCommand
 		return KSCommand.callerScript(command: "rsync", parameters: [:])
 	}
 
-	open override func encodeParameters() -> Dictionary<String, String> {
-		hoge
+	open override func encodeParameters() -> Dictionary<String, String>? {
+		if let src = sourceDirectory, let dst = destinationDirectory {
+			return ["source":src.absoluteString, "destination":dst.absoluteString]
+		} else {
+			return nil
+		}
 	}
 
 	open override func decodeParameters(parameters params: Dictionary<String, String>) -> Bool {
-		return true
+		if let src = params["source"], let dst = params["destination"] {
+			sourceDirectory      = URL(string: src)
+			destinationDirectory = URL(string: dst)
+			return (sourceDirectory != nil) && (destinationDirectory != nil)
+		} else {
+			return false
+		}
 	}
 	
 	open override func commandLineString() -> String? {
-		return "/usr/bin/rsync"
+		if let src = sourceDirectory, let dst = destinationDirectory {
+			return "/usr/bin/rsync -auvE --delete \(src.absoluteString) \(dst.absoluteString)"
+		} else {
+			return nil
+		}
 	}
 }

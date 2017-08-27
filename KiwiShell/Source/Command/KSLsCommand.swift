@@ -17,7 +17,7 @@ public class KSLsCommand: KSCommand
 		return KSCommand.callerScript(command: "ls", parameters: [:])
 	}
 
-	open override func encodeParameters() -> Dictionary<String, String> {
+	open override func encodeParameters() -> Dictionary<String, String>? {
 		return [:]
 	}
 

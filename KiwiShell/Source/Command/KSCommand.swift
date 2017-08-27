@@ -40,7 +40,7 @@ open class KSCommand
 		return header + footer
 	}
 
-	open func encodeParameters() -> Dictionary<String, String> {
+	open func encodeParameters() -> Dictionary<String, String>? {
 		fatalError("Must be override")
 	}
 

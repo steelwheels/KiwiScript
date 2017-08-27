@@ -14,18 +14,21 @@ public class KSCommandTable
 	public class func encode(command cmd: KSCommand, context ctxt: KEContext) -> JSValue
 	{
 		let dict = NSMutableDictionary(capacity: 8)
-		let params = cmd.encodeParameters()
-		for key in params.keys {
-			if let val = params[key] {
-				dict.setValue(val, forKey: key)
-			} else {
-				NSLog("Can not happen")
+		if let params = cmd.encodeParameters() {
+			for key in params.keys {
+				if let val = params[key] {
+					dict.setValue(val, forKey: key)
+				} else {
+					NSLog("Can not happen")
+				}
 			}
+			let result = NSMutableDictionary(capacity: 4)
+			result.setValue(NSString(string: cmd.commandName), forKey: "command")
+			result.setValue(dict, forKey: "parameters")
+			return JSValue(object: result, in: ctxt)
+		} else {
+			return JSValue(undefinedIn: ctxt)
 		}
-		let result = NSMutableDictionary(capacity: 4)
-		result.setValue(NSString(string: cmd.commandName), forKey: "command")
-		result.setValue(dict, forKey: "parameters")
-		return JSValue(object: result, in: ctxt)
 	}
 
 	public class func decode(value val: JSValue) -> KSCommand?
