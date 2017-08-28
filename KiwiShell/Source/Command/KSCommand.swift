@@ -37,7 +37,10 @@ open class KSCommand
 				NSLog("Internal error")
 			}
 		}
-		return header + footer
+		if body != "" {
+			body += "\n"
+		}
+		return header + body + footer
 	}
 
 	open func encodeParameters() -> Dictionary<String, String>? {
