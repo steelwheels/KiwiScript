@@ -6,60 +6,24 @@ testError : OK
 RunScriot -> OK (undefined)
 RESULT: newangle = 2.3
 testObject : OK
-* [type:bool, value:true] true -> true
-* [type:char, value:"c"] c -> "c"
-* [type:int, value:-1234] -1234 -> -1234.0
-* [type:uint, value:1234] 1234 -> 1234.0
-* [type:float, value:12.34] 12.34 -> 12.3400001525879
-* [type:double, value:-12.34] -12.34 -> -12.34
-* [type:string, value:"Hello, world"] "Hello,World" -> "Hello,World"
-* [type:date, value:Now] 1970-01-01 02:46:40 +0000 -> 1970-01-01 02:46:40 +0000
-* [type:array, value:[true]] [true] -> [1]
-* [type:array, value:["c"]] [c] -> ["c"]
-* [type:dict, value:[dict]] [a:[true]] -> ["a":[1]]
-testConverter : OK
-proprty : true -> true
-*** Add listner function
-* Listener: value false
-*** Call set() function
-* Listener: value true
- -> Exec result: OK
-TYPE: JSValue<Undefined>
-DATA: undefined
+Listener: undefined = undefined
+Listener: null = null
+Listener: bool = true
+Listener: int32 = -1234
+Listener: uInt32 = 2345
+Listener: double = 1.234
+Listener: point = [object Object]
 testPropertyTable : OK
-***** Scalar Boolean
- -> Exec result: OK
-TYPE: JSValue<Bool>
-DATA: true
-***** Scalar Int
- -> Exec result: OK
-TYPE: JSValue<Double>
-DATA: 123.0
-***** Scalar Double
- -> Exec result: OK
-TYPE: JSValue<Double>
-DATA: 1.23
-***** Array of strings
- -> Exec result: OK
-TYPE: JSValue<Array<String>>
-DATA: ["hello", "world"]
-***** Array of booleans
- -> Exec result: OK
-TYPE: JSValue<Array<NSNumber<Int>>>
-DATA: [1, 0]
-**** Dictionary
- -> Exec result: OK
-TYPE: JSValue<Dictionary<String, NSNumber<Double>>>
-DATA: ["height":11.3, "width":10.1]
-**** Dictionary(2)
- -> Exec result: OK
-TYPE: JSValue<Dictionary<String, String>>
-DATA: ["height":"f", "width":"a"]
-**** Dictionary(3)
- -> Exec result: OK
-TYPE: JSValue<Dictionary<String, NSNumber<Int>>>
-DATA: ["visible":0, "ensble":1]
-testSerialize : OK
+convert: true -> true
+convert: c -> c
+convert: -1234 -> -1234
+convert: 1234 -> 1234
+convert: 12.34 -> 12.34000015258789
+convert: -43.21 -> -43.21
+convert: "Hello, world" -> Hello, world
+convert: [10.0, 11.1] -> 10,11.100000381469727
+convert: [b:11.1, a:10.0] -> [object Object]
+testValue : OK
 var Week = {
 	Sun : 0,
 	Mon : 1,

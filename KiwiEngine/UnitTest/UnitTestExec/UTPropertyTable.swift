@@ -12,39 +12,34 @@ import Foundation
 
 public func testPropertyTable(console cons: CNConsole) -> Bool
 {
-	var result  = true
-
 	let vm      = JSVirtualMachine()
 	let context = KEContext(virtualMachine: vm)
 	let table0  = KEPropertyTable(context: context)
 
-	/* Add boolean property */
-	let prop0 = "visible"
-	table0.set(prop0, JSValue(bool: true, in: context))
-	let ret0 = table0.get(prop0)
-	cons.print(string: "proprty : true -> \(ret0)\n")
+	let point0  = CGPoint(x: 10.0, y: 11.1)
 
-	/* Add listner function */
-	cons.print(string: "*** Add listner function\n")
-	table0.addListener(property: prop0, listener: {
-		(value: Any) -> Void in
-		if let v = value as? JSValue {
-			let iv = v.toBool()
-			cons.print(string: "* Listener: value \(iv)\n")
-		} else {
-			cons.print(string: "* Listener: Unknown object: \(value)\n")
-		}
-	})
-	table0.set(prop0, JSValue(bool: false, in: context))
+	addProperty(propertyTable: table0, propertyName: "undefined", propertyValue: JSValue(undefinedIn: context), console: cons)
+	addProperty(propertyTable: table0, propertyName: "null", propertyValue: JSValue(nullIn: context), console: cons)
+	addProperty(propertyTable: table0, propertyName: "bool", propertyValue: JSValue(bool: true, in: context), console: cons)
+	addProperty(propertyTable: table0, propertyName: "int32", propertyValue: JSValue(int32: -1234, in: context), console: cons)
+	addProperty(propertyTable: table0, propertyName: "uInt32", propertyValue: JSValue(uInt32: 2345, in: context), console: cons)
+	addProperty(propertyTable: table0, propertyName: "double", propertyValue: JSValue(double: 1.234, in: context), console: cons)
+	addProperty(propertyTable: table0, propertyName: "point", propertyValue: JSValue(point: point0, in: context), console: cons)
 
-	cons.print(string: "*** Call set() function\n")
-	let tableprop = NSString(string: "table")
-	context.setObject(table0, forKeyedSubscript: tableprop)
-	let script0 = "table.set(\"visible\", true) ;"
-	if !UTExecute(context: context, console: cons, script: script0) {
-		result = false
-	}
-
-	return result
+	return true
 }
 
+private func addProperty(propertyTable table: KEPropertyTable, propertyName name: String, propertyValue value: JSValue, console cons: CNConsole)
+{
+	table.addListener(property: name, listener: {
+		(_ value: JSValue) -> Void in
+		let valstr: String
+		if let str = value.toString() {
+			valstr = str
+		} else {
+			valstr = "<Can not convert>"
+		}
+		cons.print(string: "Listener: \(name) = \(valstr)\n")
+	})
+	table.set(name, value)
+}

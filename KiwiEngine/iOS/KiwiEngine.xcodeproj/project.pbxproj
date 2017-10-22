@@ -8,13 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		052251EC1EAB852F0021A8B5 /* KiwiEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 052251EA1EAB852F0021A8B5 /* KiwiEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		053B49F61F0291D100B1BB7D /* KECoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053B49F51F0291D100B1BB7D /* KECoder.swift */; };
+		05398A241F8089B300DF4472 /* KEPropertyValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05398A231F8089B300DF4472 /* KEPropertyValue.swift */; };
 		057340E41EDAF092006CB96E /* KEPropertyTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057340E31EDAF092006CB96E /* KEPropertyTable.swift */; };
+		058699F21F93BAF900F21555 /* KEValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058699F11F93BAF900F21555 /* KEValue.swift */; };
 		05AE79EE1F3A1CA2006701D8 /* KEEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AE79ED1F3A1CA2006701D8 /* KEEnum.swift */; };
 		05BF0BCA1EAC978D003C8DF3 /* KEContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BF0BC81EAC978D003C8DF3 /* KEContext.swift */; };
 		05BF0BCB1EAC978D003C8DF3 /* KEEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BF0BC91EAC978D003C8DF3 /* KEEngine.swift */; };
-		05BF0BCD1EAC97BC003C8DF3 /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05BF0BCC1EAC97BC003C8DF3 /* Canary.framework */; };
-		05D89FC81EFAB7320067F402 /* KEValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D89FC71EFAB7320067F402 /* KEValue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,13 +30,12 @@
 		052251E71EAB852F0021A8B5 /* KiwiEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		052251EA1EAB852F0021A8B5 /* KiwiEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiEngine.h; sourceTree = "<group>"; };
 		052251EB1EAB852F0021A8B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		053B49F51F0291D100B1BB7D /* KECoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KECoder.swift; sourceTree = "<group>"; };
+		05398A231F8089B300DF4472 /* KEPropertyValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEPropertyValue.swift; sourceTree = "<group>"; };
 		057340E31EDAF092006CB96E /* KEPropertyTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEPropertyTable.swift; sourceTree = "<group>"; };
+		058699F11F93BAF900F21555 /* KEValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEValue.swift; sourceTree = "<group>"; };
 		05AE79ED1F3A1CA2006701D8 /* KEEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEEnum.swift; sourceTree = "<group>"; };
 		05BF0BC81EAC978D003C8DF3 /* KEContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEContext.swift; sourceTree = "<group>"; };
 		05BF0BC91EAC978D003C8DF3 /* KEEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEEngine.swift; sourceTree = "<group>"; };
-		05BF0BCC1EAC97BC003C8DF3 /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../../../local/Frameworks/Canary.framework; sourceTree = "<group>"; };
-		05D89FC71EFAB7320067F402 /* KEValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEValue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,7 +43,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05BF0BCD1EAC97BC003C8DF3 /* Canary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,7 +70,6 @@
 			isa = PBXGroup;
 			children = (
 				052251EB1EAB852F0021A8B5 /* Info.plist */,
-				05BF0BCC1EAC97BC003C8DF3 /* Canary.framework */,
 			);
 			path = KiwiEngine;
 			sourceTree = "<group>";
@@ -85,8 +81,8 @@
 				05BF0BC81EAC978D003C8DF3 /* KEContext.swift */,
 				05BF0BC91EAC978D003C8DF3 /* KEEngine.swift */,
 				057340E31EDAF092006CB96E /* KEPropertyTable.swift */,
-				05D89FC71EFAB7320067F402 /* KEValue.swift */,
-				053B49F51F0291D100B1BB7D /* KECoder.swift */,
+				05398A231F8089B300DF4472 /* KEPropertyValue.swift */,
+				058699F11F93BAF900F21555 /* KEValue.swift */,
 				05AE79ED1F3A1CA2006701D8 /* KEEnum.swift */,
 			);
 			name = Source;
@@ -149,13 +145,13 @@
 		052251DE1EAB852F0021A8B5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Steel Wheels Project";
 				TargetAttributes = {
 					052251E61EAB852F0021A8B5 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = TR2DNF3P93;
-						LastSwiftMigration = 0830;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					05BF0BCE1EAC9856003C8DF3 = {
@@ -198,10 +194,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				053B49F61F0291D100B1BB7D /* KECoder.swift in Sources */,
+				05398A241F8089B300DF4472 /* KEPropertyValue.swift in Sources */,
 				05BF0BCA1EAC978D003C8DF3 /* KEContext.swift in Sources */,
 				05AE79EE1F3A1CA2006701D8 /* KEEnum.swift in Sources */,
-				05D89FC81EFAB7320067F402 /* KEValue.swift in Sources */,
+				058699F21F93BAF900F21555 /* KEValue.swift in Sources */,
 				05BF0BCB1EAC978D003C8DF3 /* KEEngine.swift in Sources */,
 				057340E41EDAF092006CB96E /* KEPropertyTable.swift in Sources */,
 			);
@@ -228,7 +224,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -236,7 +234,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -283,7 +285,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -291,7 +295,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -343,7 +351,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -368,7 +377,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

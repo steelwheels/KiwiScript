@@ -1,6 +1,6 @@
 # About KiwiScript
 Repository for the package of frameworks to implement/support JavaScript
-runtime by iOS and Mac OS X applications. This package contains
+runtime by macOS and iOS applications. This package contains
 - `Kiwi Engine`: The framework to operate JavaScript engine based on [JavaScriptCore](https://developer.apple.com/reference/javascriptcore).
 - `KSStdLib`: General purpose library which is used as the built-in object in the JavaScript.
 - `KiwiShell`: JavaScript interface to control shell commands by macOS application.

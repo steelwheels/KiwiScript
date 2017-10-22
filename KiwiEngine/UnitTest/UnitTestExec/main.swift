@@ -23,9 +23,8 @@ func test(funcName fn:String, result res:Bool) -> Bool
 
 summary = test(funcName: "testError", result: testError(console: console)) && summary
 summary = test(funcName: "testObject", result: testObject(console: console)) && summary
-summary = test(funcName: "testConverter", result: testConverter(console: console)) && summary
 summary = test(funcName: "testPropertyTable", result: testPropertyTable(console: console)) && summary
-summary = test(funcName: "testSerialize", result: testSerialize(console: console)) && summary
+summary = test(funcName: "testValue", result: testValue(console: console)) && summary
 summary = test(funcName: "testEnum", result: testEnum(console: console)) && summary
 
 

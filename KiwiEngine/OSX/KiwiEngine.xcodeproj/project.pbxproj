@@ -13,20 +13,19 @@
 		0507B1771BA41B9A0048D325 /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0507B1761BA41B9A0048D325 /* KiwiEngine.framework */; };
 		0507B1871BA41DB90048D325 /* UnitTestExec in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058B53231BA41A6C009522DF /* UnitTestExec */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		052B0F7A1BE8A3A400E3BFEE /* UTObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B0F781BE8A33400E3BFEE /* UTObject.swift */; };
+		0537CE8F1F80F76E00CB313A /* KEValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0537CE8E1F80F76E00CB313A /* KEValue.swift */; };
+		0537CE911F81226D00CB313A /* UTValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0537CE901F81226D00CB313A /* UTValue.swift */; };
 		054536C61B78021500FE978C /* KiwiEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 054536C51B78021500FE978C /* KiwiEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		054637F21BB05FE400DEE12F /* UTError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054637F01BB05F4500DEE12F /* UTError.swift */; };
 		054860B81F38935A007A431A /* KEEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054860B71F38935A007A431A /* KEEnum.swift */; };
-		0561D5B01F086717008C310E /* UTConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0561D5AF1F086717008C310E /* UTConverter.swift */; };
 		057F881F1B78031B0029AB4F /* KEContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F881E1B78031B0029AB4F /* KEContext.swift */; };
 		057F88231B780B4A0029AB4F /* KEEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F88221B780B4A0029AB4F /* KEEngine.swift */; };
 		058B53261BA41A6C009522DF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058B53251BA41A6C009522DF /* main.swift */; };
 		0592B89E1F3A2363006C92AD /* UTEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0592B89C1F3A2301006C92AD /* UTEnum.swift */; };
 		05CF6D7B1BA41F9700BD9D91 /* KiwiEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05CF6D7A1BA41F9700BD9D91 /* KiwiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05CF6D7D1BA41FCF00BD9D91 /* Canary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05CF6D7C1BA41FCF00BD9D91 /* Canary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		05D89FC61EFAB7110067F402 /* KEValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D89FC51EFAB7110067F402 /* KEValue.swift */; };
-		05D89FCA1EFAD4300067F402 /* KECoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D89FC91EFAD4300067F402 /* KECoder.swift */; };
+		05D89FC61EFAB7110067F402 /* KEPropertyValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D89FC51EFAB7110067F402 /* KEPropertyValue.swift */; };
 		05DA9F861BA3E2AE0027EA25 /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DA9F851BA3E2AE0027EA25 /* Canary.framework */; };
-		05E9BA3D1EFF12DA009E903C /* UTSerialize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E9BA3C1EFF12DA009E903C /* UTSerialize.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,12 +99,13 @@
 		0507B1761BA41B9A0048D325 /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../Library/Frameworks/KiwiEngine.framework; sourceTree = "<group>"; };
 		0507B17E1BA41D850048D325 /* UnitTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		052B0F781BE8A33400E3BFEE /* UTObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTObject.swift; sourceTree = "<group>"; };
+		0537CE8E1F80F76E00CB313A /* KEValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEValue.swift; sourceTree = "<group>"; };
+		0537CE901F81226D00CB313A /* UTValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTValue.swift; sourceTree = "<group>"; };
 		054536C01B78021500FE978C /* KiwiEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		054536C41B78021500FE978C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		054536C51B78021500FE978C /* KiwiEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiEngine.h; sourceTree = SOURCE_ROOT; };
 		054637F01BB05F4500DEE12F /* UTError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTError.swift; sourceTree = "<group>"; };
 		054860B71F38935A007A431A /* KEEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEEnum.swift; sourceTree = "<group>"; };
-		0561D5AF1F086717008C310E /* UTConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTConverter.swift; sourceTree = "<group>"; };
 		057F881E1B78031B0029AB4F /* KEContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEContext.swift; sourceTree = "<group>"; };
 		057F88221B780B4A0029AB4F /* KEEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEEngine.swift; sourceTree = "<group>"; };
 		058B53231BA41A6C009522DF /* UnitTestExec */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTestExec; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,10 +115,8 @@
 		05CF6D761BA41EF000BD9D91 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05CF6D7A1BA41F9700BD9D91 /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = /Users/tomoo/Library/Frameworks/KiwiEngine.framework; sourceTree = "<absolute>"; };
 		05CF6D7C1BA41FCF00BD9D91 /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = /Users/tomoo/Library/Frameworks/Canary.framework; sourceTree = "<absolute>"; };
-		05D89FC51EFAB7110067F402 /* KEValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEValue.swift; sourceTree = "<group>"; };
-		05D89FC91EFAD4300067F402 /* KECoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KECoder.swift; sourceTree = "<group>"; };
+		05D89FC51EFAB7110067F402 /* KEPropertyValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEPropertyValue.swift; sourceTree = "<group>"; };
 		05DA9F851BA3E2AE0027EA25 /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../../Library/Frameworks/Canary.framework; sourceTree = "<group>"; };
-		05E9BA3C1EFF12DA009E903C /* UTSerialize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTSerialize.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,8 +193,8 @@
 				057F881E1B78031B0029AB4F /* KEContext.swift */,
 				057F88221B780B4A0029AB4F /* KEEngine.swift */,
 				0504226F1ED5C02600183E4F /* KEPropertyTable.swift */,
-				05D89FC51EFAB7110067F402 /* KEValue.swift */,
-				05D89FC91EFAD4300067F402 /* KECoder.swift */,
+				05D89FC51EFAB7110067F402 /* KEPropertyValue.swift */,
+				0537CE8E1F80F76E00CB313A /* KEValue.swift */,
 				054860B71F38935A007A431A /* KEEnum.swift */,
 				054536C31B78021500FE978C /* Supporting Files */,
 			);
@@ -221,8 +219,7 @@
 				054637F01BB05F4500DEE12F /* UTError.swift */,
 				052B0F781BE8A33400E3BFEE /* UTObject.swift */,
 				050422711ED5CEF300183E4F /* UTPropertyTable.swift */,
-				05E9BA3C1EFF12DA009E903C /* UTSerialize.swift */,
-				0561D5AF1F086717008C310E /* UTConverter.swift */,
+				0537CE901F81226D00CB313A /* UTValue.swift */,
 				0592B89C1F3A2301006C92AD /* UTEnum.swift */,
 			);
 			path = UnitTestExec;
@@ -348,7 +345,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Steel Wheels Project";
 				TargetAttributes = {
 					0507B17D1BA41D850048D325 = {
@@ -356,9 +353,11 @@
 					};
 					054536BF1B78021500FE978C = {
 						CreatedOnToolsVersion = 6.4;
+						LastSwiftMigration = 0900;
 					};
 					058B53221BA41A6C009522DF = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0900;
 					};
 					05B40EE71BE5A40800AA8525 = {
 						CreatedOnToolsVersion = 7.1;
@@ -420,9 +419,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				050422701ED5C02600183E4F /* KEPropertyTable.swift in Sources */,
-				05D89FC61EFAB7110067F402 /* KEValue.swift in Sources */,
+				05D89FC61EFAB7110067F402 /* KEPropertyValue.swift in Sources */,
 				054860B81F38935A007A431A /* KEEnum.swift in Sources */,
-				05D89FCA1EFAD4300067F402 /* KECoder.swift in Sources */,
+				0537CE8F1F80F76E00CB313A /* KEValue.swift in Sources */,
 				057F88231B780B4A0029AB4F /* KEEngine.swift in Sources */,
 				057F881F1B78031B0029AB4F /* KEContext.swift in Sources */,
 			);
@@ -432,12 +431,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05E9BA3D1EFF12DA009E903C /* UTSerialize.swift in Sources */,
 				054637F21BB05FE400DEE12F /* UTError.swift in Sources */,
 				052B0F7A1BE8A3A400E3BFEE /* UTObject.swift in Sources */,
 				050422721ED5CEF300183E4F /* UTPropertyTable.swift in Sources */,
 				058B53261BA41A6C009522DF /* main.swift in Sources */,
-				0561D5B01F086717008C310E /* UTConverter.swift in Sources */,
+				0537CE911F81226D00CB313A /* UTValue.swift in Sources */,
 				0592B89E1F3A2363006C92AD /* UTEnum.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -505,14 +503,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -554,14 +558,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -592,6 +602,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer: Tomoo Hamada (TUD48R26KP)";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -612,8 +623,9 @@
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -621,6 +633,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer: Tomoo Hamada (TUD48R26KP)";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -640,9 +653,10 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -659,8 +673,9 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -677,8 +692,9 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

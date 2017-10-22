@@ -9,7 +9,7 @@ import Canary
 import JavaScriptCore
 import Foundation
 
-private typealias FunctionRef	= (Any) -> Void
+private typealias FunctionRef	= (_ value: JSValue) -> Void
 
 @objc protocol KEPropertyExport: JSExport
 {
@@ -20,7 +20,7 @@ private typealias FunctionRef	= (Any) -> Void
 @objc public class KEPropertyTable: NSObject, KEPropertyExport
 {
 	private var mContext:	KEContext
-	private var mTable:	NSMutableDictionary // Key:String, value:JSValue
+	private var mTable:	NSMutableDictionary // Key:String, value:KEPropertyValue
 	private var mListeners:	Dictionary<String, KEListener>
 
 	public init(context ctxt: KEContext){
@@ -37,12 +37,12 @@ private typealias FunctionRef	= (Any) -> Void
 		}
 	}
 
-	public func addListener(property prop: String, listener lsfunc: @escaping (Any) -> Void){
+	public func addListener(property prop: String, listener lsfunc: @escaping (_ value: JSValue) -> Void){
 		var listener: KEListener
 		if let lsfunc = mListeners[prop] {
 			listener = lsfunc
 		} else {
-			listener = KEListener()
+			listener = KEListener(context: mContext)
 			mTable.addObserver(listener, forKeyPath: prop, options: [.new], context: nil)
 			mListeners[prop] = listener
 		}
@@ -50,19 +50,24 @@ private typealias FunctionRef	= (Any) -> Void
 	}
 
 	public func set(_ name: String, _ value: JSValue) {
-		mTable.setValue(value, forKey: name)
+		let obj = KEPropertyValue(value: value)
+		mTable.setValue(obj, forKey: name)
 	}
 
 	public func get(_ name: String) -> JSValue {
-		if let value = mTable.value(forKey: name) as? JSValue {
-			return value
+		if let obj = mTable.value(forKey: name) as? KEPropertyValue {
+			return obj.toValue(context: mContext)
 		} else {
 			return JSValue(undefinedIn: mContext)
 		}
 	}
 
 	public func check(_ name: String) -> JSValue? {
-		return mTable.value(forKey: name) as? JSValue
+		if let obj = mTable.value(forKey: name) as? KEPropertyValue {
+			return obj.toValue(context: mContext)
+		} else {
+			return nil
+		}
 	}
 
 	public var propertyNames: Array<String> {
@@ -77,13 +82,15 @@ private typealias FunctionRef	= (Any) -> Void
 
 private class KEListener: NSObject
 {
+	private var mContext:	KEContext
 	private var mListenerFuncs: Array<FunctionRef>
 
-	public override init(){
+	public init(context ctxt: KEContext){
+		mContext       = ctxt
 		mListenerFuncs = []
 	}
 
-	public func add(listener lsfunc: @escaping (Any) -> Void)
+	public func add(listener lsfunc: @escaping (_ value: JSValue) -> Void)
 	{
 		mListenerFuncs.append(lsfunc)
 	}
@@ -91,7 +98,8 @@ private class KEListener: NSObject
 	public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?)
 	{
 		if let path = keyPath, let obj = object as? NSObject {
-			if let val = obj.value(forKey: path) {
+			if let pval = obj.value(forKey: path) as? KEPropertyValue {
+				let val = pval.toValue(context: mContext)
 				for cbfunc in mListenerFuncs {
 					cbfunc(val)
 				}
