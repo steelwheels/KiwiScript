@@ -1,12 +1,13 @@
-* UTConsole
-Hello, world!!
-stdout: 1
-stderr: 2
-RESULT : true
-* UTMath
-PI = 3.141592653589793
+*** Setup ***
+Execute: var a = 1 ; 
+ -> result: undefined
+Execute: print("Hello, world");
+Hello, world -> result: 12
+Execute: print("PI = " + Math.PI);
+PI = 3.141592653589793 -> result: 22
+Execute: print("sin(PI/2) = " + Math.sin(Math.PI/2) + "\n") ;
 sin(PI/2) = 1
+ -> result: 14
+Execute: print("cos(PI/2) = " + Math.cos(Math.PI/2) + "\n") ;
 cos(PI/2) = 6.123233995736766e-17
-RESULT : true
-**** SUMMARY
-TOTAL RESULT: OK
+ -> result: 34

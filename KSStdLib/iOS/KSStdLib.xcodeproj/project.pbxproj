@@ -7,10 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		052CCCEC1E9BC7A200406E13 /* KSConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052CCCE31E9BC7A200406E13 /* KSConsole.swift */; };
 		052CCCED1E9BC7A200406E13 /* KSMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052CCCE41E9BC7A200406E13 /* KSMath.swift */; };
-		052CCCEE1E9BC7A200406E13 /* KSPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052CCCE51E9BC7A200406E13 /* KSPoint.swift */; };
-		052CCCEF1E9BC7A200406E13 /* KSSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052CCCE61E9BC7A200406E13 /* KSSize.swift */; };
 		052CCCF01E9BC7A200406E13 /* KSStdLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052CCCE71E9BC7A200406E13 /* KSStdLib.swift */; };
 /* End PBXBuildFile section */
 
@@ -25,10 +22,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		052CCCE31E9BC7A200406E13 /* KSConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KSConsole.swift; path = ../Source/KSConsole.swift; sourceTree = "<group>"; };
 		052CCCE41E9BC7A200406E13 /* KSMath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KSMath.swift; path = ../Source/KSMath.swift; sourceTree = "<group>"; };
-		052CCCE51E9BC7A200406E13 /* KSPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KSPoint.swift; path = ../Source/KSPoint.swift; sourceTree = "<group>"; };
-		052CCCE61E9BC7A200406E13 /* KSSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KSSize.swift; path = ../Source/KSSize.swift; sourceTree = "<group>"; };
 		052CCCE71E9BC7A200406E13 /* KSStdLib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KSStdLib.swift; path = ../Source/KSStdLib.swift; sourceTree = "<group>"; };
 		05981E3F1E9BC64E00DE65B8 /* KSStdLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KSStdLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05981E421E9BC64E00DE65B8 /* KSStdLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSStdLib.h; path = ../Source/KSStdLib.h; sourceTree = SOURCE_ROOT; };
@@ -75,11 +69,8 @@
 		05981E4A1E9BC65700DE65B8 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				052CCCE31E9BC7A200406E13 /* KSConsole.swift */,
-				052CCCE41E9BC7A200406E13 /* KSMath.swift */,
-				052CCCE51E9BC7A200406E13 /* KSPoint.swift */,
-				052CCCE61E9BC7A200406E13 /* KSSize.swift */,
 				052CCCE71E9BC7A200406E13 /* KSStdLib.swift */,
+				052CCCE41E9BC7A200406E13 /* KSMath.swift */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -188,10 +179,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				052CCCEF1E9BC7A200406E13 /* KSSize.swift in Sources */,
-				052CCCEC1E9BC7A200406E13 /* KSConsole.swift in Sources */,
 				052CCCF01E9BC7A200406E13 /* KSStdLib.swift in Sources */,
-				052CCCEE1E9BC7A200406E13 /* KSPoint.swift in Sources */,
 				052CCCED1E9BC7A200406E13 /* KSMath.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

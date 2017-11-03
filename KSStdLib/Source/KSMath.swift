@@ -10,7 +10,7 @@ import JavaScriptCore
 import Darwin
 
 @objc protocol KSMathOperating : JSExport {
-	var PI : Double { get }
+	var PI : JSValue { get }
 	
 	func sin(_: JSValue) -> JSValue
 	func cos(_: JSValue) -> JSValue
@@ -26,17 +26,9 @@ import Darwin
 		mContext = ctxt
 		super.init()
 	}
-	
-	public class func rootObjectName() -> NSString {
-		return "Math"
-	}
-	
-	public func registerToContext(context ctxt: JSContext){
-		ctxt.setObject(self, forKeyedSubscript: KSMath.rootObjectName())
-	}
 
-	var PI : Double {
-		get { return Double.pi}
+	var PI : JSValue {
+		get { return JSValue(double: Double.pi, in: mContext) }
 	}
 	
 	func sin(_ src: JSValue) -> JSValue {
