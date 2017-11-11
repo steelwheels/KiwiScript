@@ -25,7 +25,7 @@
 		052CCCE41E9BC7A200406E13 /* KSMath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KSMath.swift; path = ../Source/KSMath.swift; sourceTree = "<group>"; };
 		052CCCE71E9BC7A200406E13 /* KSStdLib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KSStdLib.swift; path = ../Source/KSStdLib.swift; sourceTree = "<group>"; };
 		05981E3F1E9BC64E00DE65B8 /* KSStdLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KSStdLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		05981E421E9BC64E00DE65B8 /* KSStdLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSStdLib.h; sourceTree = SOURCE_ROOT; };
+		05981E421E9BC64E00DE65B8 /* KSStdLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSStdLib.h; sourceTree = "<group>"; };
 		05981E431E9BC64E00DE65B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
