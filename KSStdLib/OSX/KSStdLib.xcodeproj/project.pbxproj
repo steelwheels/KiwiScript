@@ -15,6 +15,7 @@
 		0595FC491B9E014D003D53D4 /* KSStdLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056953921B9C898A00A59739 /* KSStdLib.framework */; };
 		0595FC4C1B9E020D003D53D4 /* KSStdLib.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0595FC4B1B9E020D003D53D4 /* KSStdLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0595FC4E1B9E021F003D53D4 /* Canary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0595FC4D1B9E021F003D53D4 /* Canary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05B8246B1FB4B374002A36EB /* KSConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8246A1FB4B374002A36EB /* KSConsole.swift */; };
 		05C03E781BA56FBE00D70098 /* KSStdLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C03E771BA56FBE00D70098 /* KSStdLib.swift */; };
 		05EC0A881B8FD83C0053BA1C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EC0A871B8FD83C0053BA1C /* main.swift */; };
 /* End PBXBuildFile section */
@@ -95,6 +96,7 @@
 		057C204C1B9C54FD00D4382D /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = /Users/tomoo/Library/Frameworks/Canary.framework; sourceTree = "<absolute>"; };
 		0595FC4B1B9E020D003D53D4 /* KSStdLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KSStdLib.framework; path = ../../../../../Library/Frameworks/KSStdLib.framework; sourceTree = "<group>"; };
 		0595FC4D1B9E021F003D53D4 /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../../../Library/Frameworks/Canary.framework; sourceTree = "<group>"; };
+		05B8246A1FB4B374002A36EB /* KSConsole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KSConsole.swift; sourceTree = "<group>"; };
 		05C03E771BA56FBE00D70098 /* KSStdLib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSStdLib.swift; sourceTree = "<group>"; };
 		05EC0A851B8FD83C0053BA1C /* UnitTestExec */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTestExec; sourceTree = BUILT_PRODUCTS_DIR; };
 		05EC0A871B8FD83C0053BA1C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				050172D61B877A99007CB6D9 /* KSStdLib.h */,
 				05C03E771BA56FBE00D70098 /* KSStdLib.swift */,
 				054E93491BDD262E00FFB0AE /* KSMath.swift */,
+				05B8246A1FB4B374002A36EB /* KSConsole.swift */,
 				050172D41B877A99007CB6D9 /* Supporting Files */,
 			);
 			name = Source;
@@ -378,6 +381,7 @@
 			files = (
 				054E934A1BDD262E00FFB0AE /* KSMath.swift in Sources */,
 				05C03E781BA56FBE00D70098 /* KSStdLib.swift in Sources */,
+				05B8246B1FB4B374002A36EB /* KSConsole.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,7 +8,7 @@
 import Canary
 import Foundation
 
-let console = CNFileConsole(file: CNTextFile.stdout)
+let console = CNFileConsole()
 var summary = true
 
 func test(funcName fn:String, result res:Bool) -> Bool
