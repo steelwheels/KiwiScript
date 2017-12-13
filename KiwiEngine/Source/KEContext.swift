@@ -42,7 +42,7 @@ public class KEContext : JSContext
 		mRuntimeErrors = []
 	}
 	
-	public func addErrorMessage(message msg : String){
+	private func addErrorMessage(message msg : String){
 		mRuntimeErrors.append(msg)
 	}
 

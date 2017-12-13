@@ -9,14 +9,14 @@ import Canary
 import JavaScriptCore
 import Foundation
 
-public protocol KSConsoleProtocol: JSExport
+@objc public protocol KSConsoleProtocol: JSExport
 {
 	func print(_ value: JSValue) -> Void
 	func error(_ value: JSValue) -> Void
 	func scan() -> JSValue
 }
 
-public class KSConsole: NSObject, KSConsoleProtocol
+@objc public class KSConsole: NSObject, KSConsoleProtocol
 {
 	private var mConsole: CNConsole
 	private var mContext: JSContext
