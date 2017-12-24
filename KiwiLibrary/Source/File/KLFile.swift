@@ -5,6 +5,7 @@
  *   Copyright (C) 2017 Steel Wheels Project
  */
 
+import Canary
 import KiwiEngine
 import JavaScriptCore
 import Foundation
@@ -17,145 +18,95 @@ public protocol KLFileProtocol: JSExport
 public protocol KLFileObjectProtocol: JSExport
 {
 	func close() -> JSValue
-	func read() -> JSValue
-	func write(_ str: JSValue) -> JSValue
+	func getLine() -> JSValue
+	func put(_ str: JSValue) -> JSValue
 }
 
-/*
 public class KLFile: NSObject, KLFileProtocol
 {
-	private var mContext: 		KEContext
+	private var mContext:	KEContext
+	private var mFile:	CNFile? = nil
 
 	public init(context ctxt: KEContext){
-		mContext    = ctxt
+		mContext = ctxt
 	}
 
-	public func open(_ pathval: JSValue, _ accval: JSValue) -> JSValue {
-		var result: KLFileObject? = nil
-		if pathval.isString && accval.isString {
-			if let pathstr = pathval.toString(), let accstr = accval.toString() {
-				switch accstr {
-				case "r": // read access
-					result = openToRead(pathString: pathstr)
-				case "w": // write access
-					result = openToWrite(pathString: pathstr, doAppend: false)
-				case "w+": // append access
-					result = openToWrite(pathString: pathstr, doAppend: true)
-				default:
-					break // nothing have to do
-				}
+	public func open(_ pathval: JSValue, _ accval: JSValue) -> JSValue
+	{
+		if let pathstr = decodePathString(pathval), let acctype = decodeAccessType(accval) {
+			let (file, _) = CNOpenFile(filePath: pathstr, accessType: acctype)
+			if let f = file {
+				let fileobj = KLFileObject(file: f, context: mContext)
+				return JSValue(object: fileobj, in: mContext)
 			}
 		}
-		if let resobj = result {
-			return JSValue(object: resobj, in: mContext)
-		} else {
-			return JSValue(nullIn: mContext)
-		}
+		return JSValue(nullIn: mContext)
 	}
 
-	private func openToRead(pathString path: String) -> KLFileObject? {
-		let url = pathToURL(pathString: path)
-		if let stream = InputStream(url: url) {
-			return KLInputFileObject(inputStream: stream, context: mContext)
+	private func decodePathString(_ pathval: JSValue) -> String? {
+		if pathval.isString {
+			return pathval.toString()
 		}
 		return nil
 	}
 
-	private func openToWrite(pathString path: String, doAppend append: Bool) -> KLFileObject? {
-		let url = pathToURL(pathString: path)
-		if let stream = OutputStream(url: url, append: append) {
-			return KLOutputFileObject(outputStream: stream, context: mContext)
+	private func decodeAccessType(_ accval: JSValue) -> CNFileAccessType? {
+		if accval.isString {
+			if let accstr = accval.toString() {
+				let result : CNFileAccessType?
+				switch accstr {
+				case "r":  result = .ReadAccess
+				case "w":  result = .WriteAccess
+				case "w+": result = .AppendAccess
+				default:   result = nil
+				}
+				return result
+			}
 		}
 		return nil
-	}
-
-	private func pathToURL(pathString path: String) -> URL {
-		let curdir = FileManager.default.currentDirectoryPath
-		let cururl = URL(fileURLWithPath: curdir, isDirectory: true)
-		return URL(fileURLWithPath: path, relativeTo: cururl)
 	}
 }
 
 public class KLFileObject: NSObject, KLFileObjectProtocol
 {
-	public var context: KEContext
+	private var mFile:	CNFile
+	private var mContext:	KEContext
 
-	public init(context ctxt: KEContext){
-		context = ctxt
+	public init(file fl: CNFile, context ctxt: KEContext){
+		mFile    = fl
+		mContext = ctxt
 	}
 
 	public func close() -> JSValue {
-		fatalError("can not happen")
-	}
-	public func read() -> JSValue {
-		fatalError("can not happen")
-	}
-	public func write(_ str: JSValue) -> JSValue {
-		fatalError("can not happen")
-	}
-}
-
-public class KLInputFileObject: KLFileObject
-{
-	private var mInputStream:	InputStream
-
-	public init(inputStream stream: InputStream, context ctxt: KEContext){
-		mInputStream = stream
-		super.init(context: ctxt)
-	}
-
-	public override func close() -> JSValue {
-		mInputStream.close()
-		if mInputStream.streamError == nil {
-			return JSValue(int32: 0, in: context)
+		let result: Int32
+		if mFile.isClosed {
+			/* Already closed */
+			result = 1
 		} else {
-			return JSValue(int32: 1, in: context)
+			/* Not closed yet */
+			mFile.close()
+			result = 0
+		}
+		return JSValue(int32: result, in: mContext)
+	}
+
+	public func getLine() -> JSValue {
+		if let line = mFile.getLine() {
+			return JSValue(object: line, in: mContext)
+		} else {
+			return JSValue(nullIn: mContext)
 		}
 	}
 
-	public override func read() -> JSValue {
-
-	}
-
-	public override func write(_ str: JSValue) -> JSValue {
-		return JSValue(int32: 0, in: context)
-	}
-}
-
-public class KLOutputFileObject: KLFileObject
-{
-	private var mOutputStream:	OutputStream
-	public init(outputStream stream: OutputStream, context ctxt: KEContext){
-		mOutputStream = stream
-		super.init(context: ctxt)
+	public func put(_ strval: JSValue) -> JSValue {
+		var result: Int32 = 0
+		if strval.isString {
+			if let str = strval.toString() {
+				let count = mFile.put(string: str)
+				result = Int32(count)
+			}
+		}
+		return JSValue(int32: result, in: mContext)
 	}
 }
-
-*/
-
-/*
-let dir = dirs![0]; //documents directory
-var getDocPath = dir.stringByAppendingPathComponent("favlist.txt")
-
-var data : NSData = NSData(contentsOfFile: getDocPath)!
-var inputStream : NSInputStream = NSInputStream(data: data)
-
-let bufferSize = 1500
-var myBuffer = Array<UInt8>(count: bufferSize, repeatedValue: 0)
-
-inputStream.open()
-
-var bytesRead = inputStream.read(&myBuffer, maxLength: bufferSize)
-var textFileContents = NSString(bytes: &myBuffer, length: bytesRead, encoding: NSUTF8StringEncoding)
-var a : String = textFileContents!
-var textFileContentsTempArray = split(a){$0 == "\n"}
-
-for (var a = 0; a < myFavListMax; a++) {
-	myFavList[a] = textFileContentsTempArray[a]
-}
-
-inputStream.close()
-}
-*/
-
 

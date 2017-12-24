@@ -25,20 +25,20 @@ none
 #### Return value
 When the closing file is succeeded, return value will be "0". If some errors were occurred, Non zero value will be returned.
 
-### `read` method
-Read entire contents of file and return it as string value.
+### `getLine` method
+Read a line string from file and return it as string value. The string will be terminated by "\n" except the last line. When there are no string to be read, the return value will be *nil*.
 ````
-var string = file.read()
+var string = file.getLine()
 ````
 #### Parameter(s)
 none
 #### Return value
-If the read operation is succeeded, the string value is returned. On the other hand, when the reading is failed, this value will be nil.
+See method description.
 
-### `write` method
-Write the parameter string into the file.
+### `put` method
+Write the string into the file.
 ```
-var size = file.write(string)
+var size = file.put(string)
 ```
 ### Parameter(s)
 |Parameter    |Type   |Description                    |

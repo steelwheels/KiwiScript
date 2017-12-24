@@ -15,5 +15,9 @@ public func KLSetupLibrary(context ctxt: KEContext, console cons: CNConsole, con
 		let consobj = KLConsole(console: cons)
 		ctxt.setObject(consobj, forKeyedSubscript: NSString(string: "console"))
 	}
+	if cfg.hasFile {
+		let fileobj = KLFile(context: ctxt)
+		ctxt.setObject(fileobj, forKeyedSubscript: NSString(string: "File"))
+	}
 }
 
