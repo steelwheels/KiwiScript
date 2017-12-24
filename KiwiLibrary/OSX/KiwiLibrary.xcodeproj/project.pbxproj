@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05669FF81FE6B08F00709ADA /* KLFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05669FF71FE6B08F00709ADA /* KLFile.swift */; };
 		05ED6D6A1FE2D845007FC6D6 /* KLConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ED6D691FE2D845007FC6D6 /* KLConsole.swift */; };
 		05ED6D6D1FE2DDD5007FC6D6 /* KLConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ED6D6C1FE2DDD5007FC6D6 /* KLConfig.swift */; };
 		05ED6D6F1FE2DE94007FC6D6 /* KLSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ED6D6E1FE2DE94007FC6D6 /* KLSetup.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		05669FF71FE6B08F00709ADA /* KLFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLFile.swift; sourceTree = "<group>"; };
 		05ED6D691FE2D845007FC6D6 /* KLConsole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLConsole.swift; sourceTree = "<group>"; };
 		05ED6D6C1FE2DDD5007FC6D6 /* KLConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = KLConfig.swift; path = ../../Source/Setup/KLConfig.swift; sourceTree = "<group>"; };
 		05ED6D6E1FE2DE94007FC6D6 /* KLSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLSetup.swift; sourceTree = "<group>"; };
@@ -48,6 +50,7 @@
 			children = (
 				05ED6D6B1FE2DD84007FC6D6 /* Setup */,
 				0522A4941FE18B01004904A2 /* Console */,
+				05669FF61FE6B06700709ADA /* File */,
 				05EEFA481FE1898A00935427 /* KiwiLibrary.h */,
 			);
 			name = Source;
@@ -60,6 +63,14 @@
 				05ED6D691FE2D845007FC6D6 /* KLConsole.swift */,
 			);
 			path = Console;
+			sourceTree = "<group>";
+		};
+		05669FF61FE6B06700709ADA /* File */ = {
+			isa = PBXGroup;
+			children = (
+				05669FF71FE6B08F00709ADA /* KLFile.swift */,
+			);
+			path = File;
 			sourceTree = "<group>";
 		};
 		05ED6D6B1FE2DD84007FC6D6 /* Setup */ = {
@@ -202,6 +213,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05ED6D6F1FE2DE94007FC6D6 /* KLSetup.swift in Sources */,
+				05669FF81FE6B08F00709ADA /* KLFile.swift in Sources */,
 				05ED6D6D1FE2DDD5007FC6D6 /* KLConfig.swift in Sources */,
 				05ED6D6A1FE2D845007FC6D6 /* KLConsole.swift in Sources */,
 			);

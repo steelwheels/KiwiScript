@@ -1,10 +1,9 @@
-//
-//  KiwiLibrary.h
-//  KiwiLibrary
-//
-//  Created by Tomoo Hamada on 2017/12/14.
-//  Copyright © 2017年 Tomoo Hamada. All rights reserved.
-//
+/**
+ * @file	KiwiLibrary.swift
+ * @brief	Bridge header for Objective-C
+ * @par Copyright
+ *   Copyright (C) 2017 Steel Wheels Project
+ */
 
 #import <Cocoa/Cocoa.h>
 

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		052CCCED1E9BC7A200406E13 /* KSMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052CCCE41E9BC7A200406E13 /* KSMath.swift */; };
 		052CCCF01E9BC7A200406E13 /* KSStdLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052CCCE71E9BC7A200406E13 /* KSStdLib.swift */; };
+		0573A10C1FEFC8DC00130953 /* KSConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0573A10B1FEFC8DC00130953 /* KSConsole.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,6 +25,7 @@
 /* Begin PBXFileReference section */
 		052CCCE41E9BC7A200406E13 /* KSMath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KSMath.swift; path = ../Source/KSMath.swift; sourceTree = "<group>"; };
 		052CCCE71E9BC7A200406E13 /* KSStdLib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KSStdLib.swift; path = ../Source/KSStdLib.swift; sourceTree = "<group>"; };
+		0573A10B1FEFC8DC00130953 /* KSConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSConsole.swift; sourceTree = "<group>"; };
 		05981E3F1E9BC64E00DE65B8 /* KSStdLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KSStdLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05981E421E9BC64E00DE65B8 /* KSStdLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSStdLib.h; sourceTree = "<group>"; };
 		05981E431E9BC64E00DE65B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -68,9 +70,10 @@
 		05981E4A1E9BC65700DE65B8 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				05981E421E9BC64E00DE65B8 /* KSStdLib.h */,
 				052CCCE71E9BC7A200406E13 /* KSStdLib.swift */,
 				052CCCE41E9BC7A200406E13 /* KSMath.swift */,
-				05981E421E9BC64E00DE65B8 /* KSStdLib.h */,
+				0573A10B1FEFC8DC00130953 /* KSConsole.swift */,
 			);
 			name = Source;
 			path = ../Source;
@@ -182,6 +185,7 @@
 			files = (
 				052CCCF01E9BC7A200406E13 /* KSStdLib.swift in Sources */,
 				052CCCED1E9BC7A200406E13 /* KSMath.swift in Sources */,
+				0573A10C1FEFC8DC00130953 /* KSConsole.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
