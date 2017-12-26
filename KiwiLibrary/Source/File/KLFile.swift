@@ -10,19 +10,20 @@ import KiwiEngine
 import JavaScriptCore
 import Foundation
 
-public protocol KLFileProtocol: JSExport
+@objc public protocol KLFileProtocol: JSExport
 {
 	func open(_ pathstr: JSValue, _ acctype: JSValue) -> JSValue
 }
 
-public protocol KLFileObjectProtocol: JSExport
+@objc public protocol KLFileObjectProtocol: JSExport
 {
 	func close() -> JSValue
-	func getLine() -> JSValue
+	func getc() -> JSValue
+	func getl() -> JSValue
 	func put(_ str: JSValue) -> JSValue
 }
 
-public class KLFile: NSObject, KLFileProtocol
+@objc public class KLFile: NSObject, KLFileProtocol
 {
 	private var mContext:	KEContext
 	private var mFile:	CNFile? = nil
@@ -41,6 +42,11 @@ public class KLFile: NSObject, KLFileProtocol
 			}
 		}
 		return JSValue(nullIn: mContext)
+	}
+
+	public class func standardFile(fileType type: CNStandardFileType, context ctxt: KEContext) -> KLFileObject {
+		let file    = CNStandardFile(type: type)
+		return KLFileObject(file: file, context: ctxt)
 	}
 
 	private func decodePathString(_ pathval: JSValue) -> String? {
@@ -67,7 +73,7 @@ public class KLFile: NSObject, KLFileProtocol
 	}
 }
 
-public class KLFileObject: NSObject, KLFileObjectProtocol
+@objc public class KLFileObject: NSObject, KLFileObjectProtocol
 {
 	private var mFile:	CNFile
 	private var mContext:	KEContext
@@ -90,7 +96,16 @@ public class KLFileObject: NSObject, KLFileObjectProtocol
 		return JSValue(int32: result, in: mContext)
 	}
 
-	public func getLine() -> JSValue {
+	public func getc() -> JSValue {
+		if let c = mFile.getChar() {
+			let str = String(c)
+			return JSValue(object: str, in: mContext)
+		} else {
+			return JSValue(nullIn: mContext)
+		}
+	}
+
+	public func getl() -> JSValue {
 		if let line = mFile.getLine() {
 			return JSValue(object: line, in: mContext)
 		} else {

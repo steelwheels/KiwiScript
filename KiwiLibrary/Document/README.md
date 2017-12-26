@@ -5,7 +5,7 @@ for JavaScript (based on the [JavaScriptCore](https://developer.apple.com/docume
 technology).
 
 # Copyright
-Copyright (C) 2015-2017 [Steel Wheels Project](https://sites.google.com/site/steelwheelsproject/).
+Copyright (C) 2015-2017 [Steel Wheels Project](http://steelwheels.github.io/).
 This software is distributed under [GNU LESSER GENERAL PUBLIC LICENSE Version 2.1](https://www.gnu.org/licenses/lgpl-2.1-standalone.html).
 
 # Target
@@ -15,5 +15,4 @@ This software is distributed under [GNU LESSER GENERAL PUBLIC LICENSE Version 2.
 # Library references
 |name         |Description                          |
 |:---         |:---                                 |
-|File         |Support file access                  |
- 
+|[File Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/FileClass.md)         |Support text file access                  |
