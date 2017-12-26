@@ -12,8 +12,6 @@ import Foundation
 
 @objc public protocol KLConsoleProtocol: JSExport
 {
-	func print(_ value: JSValue)
-	func error(_ value: JSValue)
 	func log(_ value: JSValue)
 }
 
@@ -23,14 +21,6 @@ import Foundation
 	
 	public init(console cons: CNConsole){
 		mConsole = cons
-	}
-
-	public func print(_ value: JSValue){
-		mConsole.print(string: value.toString())
-	}
-
-	public func error(_ value: JSValue){
-		mConsole.error(string: value.toString())
 	}
 
 	public func log(_ value: JSValue){

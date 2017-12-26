@@ -1,4 +1,4 @@
-# File and FileObject class
+# File Operation
 The *File* class is used to generate *FileObject* object.
 The file object is used to access files on local storage.
 
@@ -69,3 +69,7 @@ var size = file.put(string)
 |string       |String |The string to write into the file |
 ### Return value
 If the write operation is succeeded, the size of parameter string is returned. If it is failed, this value will be 0.
+
+## Related link
+* [KiwiLibrary](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/README.md): This framework contains this class.
+* [Steel Wheels Project](http://steelwheels.github.io): Web site of developer.
