@@ -3,7 +3,7 @@ Repository for the package of frameworks to implement/support JavaScript runtime
 
 This package contains
 - `Kiwi Engine`: Define primitive data/classes to support execution of JavaScript.
-- [KiwiLibrary](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/README.md): Built-in libraries to be used in the JavaScript.
+- [KiwiLibrary](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/README.md): Built-in libraries to be used in the JavaScript.
 
 # Copyright
 Copyright (C) 2015-2017 [Steel Wheels Project](https://sites.google.com/site/steelwheelsproject/).

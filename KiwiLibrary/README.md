@@ -13,10 +13,11 @@ This software is distributed under [GNU LESSER GENERAL PUBLIC LICENSE Version 2.
 * Development Tool: Xcode9 or later
 
 ## Library references
-|name         |Function                         |
+|Class Name         |Function                         |
 |:---         |:---                                 |
 |[Console Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/ConsoleClass.md)  | Logging                     |
 |[File Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/FileClass.md)         |Text file access                 |
+|[Process Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/ProcessClass.md)       |Process control                 |
 
 ## Related link
 * [Steel Wheels Project](http://steelwheels.github.io): Web site of developer.
