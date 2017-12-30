@@ -79,8 +79,8 @@
 		05ED6D6B1FE2DD84007FC6D6 /* Setup */ = {
 			isa = PBXGroup;
 			children = (
-				05ED6D6C1FE2DDD5007FC6D6 /* KLConfig.swift */,
 				05ED6D6E1FE2DE94007FC6D6 /* KLSetup.swift */,
+				05ED6D6C1FE2DDD5007FC6D6 /* KLConfig.swift */,
 			);
 			name = Setup;
 			path = ../Source/Setup;

@@ -11,10 +11,18 @@ import Foundation
 
 public func KLSetupLibrary(context ctxt: KEContext, console cons: CNConsole, config cfg: KLConfig)
 {
-	if cfg.hasConsole {
-		let consobj = KLConsole(console: cons)
-		ctxt.setObject(consobj, forKeyedSubscript: NSString(string: "console"))
-	}
+	/* Add console */
+	let consobj = KLConsole(console: cons)
+	ctxt.setObject(consobj, forKeyedSubscript: NSString(string: "console"))
+
+	/* Add process */
+	let procobj = KLProcess(terminateHandler: {
+		(_ code:Int32) -> Int32 in
+		return code
+	})
+	ctxt.setObject(procobj, forKeyedSubscript: NSString(string: "Process"))
+
+	/* Add File  */
 	if cfg.hasFile {
 		KLSetupFileLibrary(context: ctxt)
 	}

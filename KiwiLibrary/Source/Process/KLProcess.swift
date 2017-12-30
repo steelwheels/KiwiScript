@@ -11,20 +11,28 @@ import Darwin
 
 @objc public protocol KLProcessProtocol: JSExport
 {
-	func exit(code c: Int)
+	func exit(_ code: JSValue) -> JSValue
 }
 
 @objc public class KLProcess: NSObject, KLProcessProtocol
 {
-	private var mTerminateHandler: (_ code: Int) -> Int
+	private var mTerminateHandler: (_ code: Int32) -> Int32
 
-	public init(terminateHandler termhdl: @escaping (_ code: Int) -> Int){
+	public init(terminateHandler termhdl: @escaping (_ code: Int32) -> Int32){
 		mTerminateHandler = termhdl
 	}
 
-	public func exit(code c: Int){
-		let code = mTerminateHandler(c)
-		exit(code: code)
+	public func exit(_ cval: JSValue) -> JSValue
+	{
+		let code: Int32
+		if cval.isNumber {
+			code = cval.toInt32()
+		} else {
+			NSLog("Unknown code value")
+			code = 1
+		}
+		let retval = mTerminateHandler(code)
+		Darwin.exit(retval)
 	}
 }
 

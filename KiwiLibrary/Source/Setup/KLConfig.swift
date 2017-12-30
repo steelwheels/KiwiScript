@@ -9,11 +9,9 @@ import Foundation
 
 public class KLConfig
 {
-	public var hasConsole:	Bool
 	public var hasFile:	Bool
 
 	public init(){
-		hasConsole	= false
 		hasFile		= false
 	}
 }
