@@ -22,9 +22,13 @@ public func KLSetupLibrary(context ctxt: KEContext, console cons: CNConsole, con
 	})
 	ctxt.setObject(procobj, forKeyedSubscript: NSString(string: "Process"))
 
-	/* Add File  */
-	if cfg.hasFile {
+	/* Add File lib  */
+	if cfg.hasFileLib {
 		KLSetupFileLibrary(context: ctxt)
+	}
+	/* Add JSON lib */
+	if cfg.hasJSONLib {
+		KLSetupJSONLibrary(context: ctxt)
 	}
 }
 
@@ -42,3 +46,10 @@ private func KLSetupFileLibrary(context ctxt: KEContext)
 	let stderrobj = KLFile.standardFile(fileType: .error, context: ctxt)
 	ctxt.setObject(stderrobj, forKeyedSubscript: NSString(string: "stderr"))
 }
+
+private func KLSetupJSONLibrary(context ctxt: KEContext)
+{
+	let jsonobj = KLJSON(context: ctxt)
+	ctxt.setObject(jsonobj, forKeyedSubscript: NSString(string: "JSON"))
+}
+

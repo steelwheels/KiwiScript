@@ -68,7 +68,7 @@ var size = file.put(string)
 |:---         |:---   |:---                           |
 |string       |String |The string to write into the file |
 ### Return value
-If the write operation is succeeded, the size of parameter string is returned. If it is failed, this value will be 0.
+If the write operation is succeeded, the size　(unit: byte) of parameter string is returned. If it is failed, this value will be 0.
 
 ## Related link
 * [KiwiLibrary](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/README.md): This framework contains this class.

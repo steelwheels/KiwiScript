@@ -13,6 +13,7 @@
 		05ED6D6D1FE2DDD5007FC6D6 /* KLConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ED6D6C1FE2DDD5007FC6D6 /* KLConfig.swift */; };
 		05ED6D6F1FE2DE94007FC6D6 /* KLSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ED6D6E1FE2DE94007FC6D6 /* KLSetup.swift */; };
 		05EEFA561FE1898A00935427 /* KiwiLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 05EEFA481FE1898A00935427 /* KiwiLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		05F3263C1FF7CDE70092CFD3 /* KLJSONFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F3263B1FF7CDE70092CFD3 /* KLJSONFile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +35,7 @@
 		05EEFA451FE1898A00935427 /* KiwiLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05EEFA481FE1898A00935427 /* KiwiLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiLibrary.h; sourceTree = "<group>"; };
 		05EEFA491FE1898A00935427 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
+		05F3263B1FF7CDE70092CFD3 /* KLJSONFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLJSONFile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 			children = (
 				05B6958C1FF7647A00A9C8E0 /* KLConsole.swift */,
 				05669FF71FE6B08F00709ADA /* KLFile.swift */,
+				05F3263B1FF7CDE70092CFD3 /* KLJSONFile.swift */,
 			);
 			path = File;
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 				05B6958D1FF7647B00A9C8E0 /* KLConsole.swift in Sources */,
 				05ED6D6F1FE2DE94007FC6D6 /* KLSetup.swift in Sources */,
 				05669FF81FE6B08F00709ADA /* KLFile.swift in Sources */,
+				05F3263C1FF7CDE70092CFD3 /* KLJSONFile.swift in Sources */,
 				05ED6D6D1FE2DDD5007FC6D6 /* KLConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
