@@ -9,17 +9,16 @@ import KiwiEngine
 import Canary
 import Foundation
 
-public func KLSetupLibrary(context ctxt: KEContext, console cons: CNConsole, config cfg: KLConfig)
+public func KLSetupLibrary(context ctxt: KEContext, console cons: CNCursesConsole, config cfg: KLConfig)
 {
+	KLSetupConsoleLibrary(context: ctxt, console: cons)
+
 	/* Add process */
 	let procobj = KLProcess(terminateHandler: {
 		(_ code:Int32) -> Int32 in
 		return code
 	})
 	ctxt.setObject(procobj, forKeyedSubscript: NSString(string: "Process"))
-
-	/* Add console lib */
-	KLSetupConsoleLibrary(context: ctxt, console: cons, hasCurses: cfg.hasCursesLib)
 
 	/* Add File lib  */
 	if cfg.hasFileLib {
@@ -31,16 +30,10 @@ public func KLSetupLibrary(context ctxt: KEContext, console cons: CNConsole, con
 	}
 }
 
-private func KLSetupConsoleLibrary(context ctxt: KEContext, console cons: CNConsole, hasCurses hascurs: Bool)
+private func KLSetupConsoleLibrary(context ctxt: KEContext, console cons: CNCursesConsole)
 {
-	let key = NSString(string: "console")
-	if hascurs {
-		let cursobj = KLCurses(context: ctxt)
-		ctxt.setObject(cursobj, forKeyedSubscript: key)
-	} else {
-		let consobj = KLConsole(console: cons)
-		ctxt.setObject(consobj, forKeyedSubscript: key)
-	}
+	let console = KLConsole(console: cons)
+	ctxt.setObject(console, forKeyedSubscript: NSString(string: "console"))
 }
 
 private func KLSetupFileLibrary(context ctxt: KEContext)

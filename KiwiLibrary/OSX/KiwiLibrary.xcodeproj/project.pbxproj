@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		052594FB200ADFF100BA9B26 /* KLCurses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052594FA200ADFF100BA9B26 /* KLCurses.swift */; };
 		05669FF81FE6B08F00709ADA /* KLFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05669FF71FE6B08F00709ADA /* KLFile.swift */; };
 		05B6958D1FF7647B00A9C8E0 /* KLConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B6958C1FF7647A00A9C8E0 /* KLConsole.swift */; };
 		05B695921FF764D300A9C8E0 /* KLProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B695911FF764D300A9C8E0 /* KLProcess.swift */; };
@@ -28,7 +27,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		052594FA200ADFF100BA9B26 /* KLCurses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLCurses.swift; sourceTree = "<group>"; };
 		05669FF71FE6B08F00709ADA /* KLFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLFile.swift; sourceTree = "<group>"; };
 		05B6958C1FF7647A00A9C8E0 /* KLConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLConsole.swift; sourceTree = "<group>"; };
 		05B695911FF764D300A9C8E0 /* KLProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLProcess.swift; sourceTree = "<group>"; };
@@ -67,7 +65,6 @@
 			isa = PBXGroup;
 			children = (
 				05B6958C1FF7647A00A9C8E0 /* KLConsole.swift */,
-				052594FA200ADFF100BA9B26 /* KLCurses.swift */,
 				05669FF71FE6B08F00709ADA /* KLFile.swift */,
 				05F3263B1FF7CDE70092CFD3 /* KLJSONFile.swift */,
 			);
@@ -222,7 +219,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				05B695921FF764D300A9C8E0 /* KLProcess.swift in Sources */,
-				052594FB200ADFF100BA9B26 /* KLCurses.swift in Sources */,
 				05B6958D1FF7647B00A9C8E0 /* KLConsole.swift in Sources */,
 				05ED6D6F1FE2DE94007FC6D6 /* KLSetup.swift in Sources */,
 				05669FF81FE6B08F00709ADA /* KLFile.swift in Sources */,
