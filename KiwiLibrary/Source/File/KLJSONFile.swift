@@ -14,6 +14,8 @@ import Foundation
 {
 	func read(_ fname: JSValue) -> JSValue
 	func write(_ fname: JSValue, _ json: JSValue) -> JSValue
+
+	func serialize(_ json: JSValue) -> JSValue
 }
 
 @objc public class KLJSON: NSObject, KLJSONProtocol
@@ -57,6 +59,19 @@ import Foundation
 			errcode = 1	/* Invalid file name */
 		}
 		return JSValue(int32: errcode, in: mContext)
+	}
+
+	public func serialize(_ json: JSValue) -> JSValue {
+		if let obj = json.toObject() as? Dictionary<String, AnyObject> {
+			let (str, err) = CNJSONFile.serialize(dictionary: obj)
+			if let e = err {
+				let estr = e.toString()
+				NSLog("serialization failed: \(estr)")
+			} else {
+				return JSValue(object: str!, in: mContext)
+			}
+		}
+		return JSValue(nullIn: mContext)
 	}
 
 	private func valueToURL(value v: JSValue) -> URL? {

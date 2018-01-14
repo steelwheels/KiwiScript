@@ -16,6 +16,7 @@ public enum JSValueType {
 	case NumberType
 	case StringType
 	case ArrayType
+	case DictionaryType
 	case DateType
 	case ObjectType
 }
@@ -37,7 +38,7 @@ extension CNValueType {
 		case .ArrayType:
 			result = .ArrayType
 		case .DictionaryType:
-			result = .ObjectType
+			result = .DictionaryType
 		case .StringType:
 			result = .StringType
 		}
@@ -151,6 +152,11 @@ extension JSValue
 			result = .DateType
 		} else if self.isObject {
 			result = .ObjectType
+			if let obj = self.toObject() {
+				if let _ = obj as? Dictionary<String, AnyObject> {
+					result = .DictionaryType
+				}
+			}
 		} else {
 			fatalError("Unknown type")
 		}
@@ -194,7 +200,7 @@ extension JSValue
 				} else {
 					result = nil
 				}
-			case .ArrayType, .DateType, .ObjectType:
+			case .ArrayType, .DictionaryType, .DateType, .ObjectType:
 				result = JSValue(bool: true, in: ctxt)
 			}
 		case .NumberType:
@@ -219,7 +225,7 @@ extension JSValue
 				} else {
 					result = JSValue(undefinedIn: ctxt)
 				}
-			case .ArrayType, .DateType, .ObjectType:
+			case .ArrayType, .DictionaryType, .DateType, .ObjectType:
 				result = nil
 			}
 		case .StringType:
@@ -235,7 +241,7 @@ extension JSValue
 					result = JSValue(undefinedIn: ctxt)
 				}
 			}
-		case .ArrayType, .DateType, .ObjectType:
+		case .ArrayType, .DictionaryType, .DateType, .ObjectType:
 			result = nil
 		}
 		return result

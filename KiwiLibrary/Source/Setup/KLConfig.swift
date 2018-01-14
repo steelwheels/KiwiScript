@@ -9,11 +9,13 @@ import Foundation
 
 public class KLConfig
 {
-	public var hasFileLib:	Bool
-	public var hasJSONLib:	Bool
+	public var hasFileLib:		Bool
+	public var hasCursesLib:	Bool
+	public var hasJSONLib:		Bool
 
 	public init(){
 		hasFileLib	= false
+		hasCursesLib	= false
 		hasJSONLib	= false
 	}
 }

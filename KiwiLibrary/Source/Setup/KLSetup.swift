@@ -11,16 +11,15 @@ import Foundation
 
 public func KLSetupLibrary(context ctxt: KEContext, console cons: CNConsole, config cfg: KLConfig)
 {
-	/* Add console */
-	let consobj = KLConsole(console: cons)
-	ctxt.setObject(consobj, forKeyedSubscript: NSString(string: "console"))
-
 	/* Add process */
 	let procobj = KLProcess(terminateHandler: {
 		(_ code:Int32) -> Int32 in
 		return code
 	})
 	ctxt.setObject(procobj, forKeyedSubscript: NSString(string: "Process"))
+
+	/* Add console lib */
+	KLSetupConsoleLibrary(context: ctxt, console: cons, hasCurses: cfg.hasCursesLib)
 
 	/* Add File lib  */
 	if cfg.hasFileLib {
@@ -29,6 +28,18 @@ public func KLSetupLibrary(context ctxt: KEContext, console cons: CNConsole, con
 	/* Add JSON lib */
 	if cfg.hasJSONLib {
 		KLSetupJSONLibrary(context: ctxt)
+	}
+}
+
+private func KLSetupConsoleLibrary(context ctxt: KEContext, console cons: CNConsole, hasCurses hascurs: Bool)
+{
+	let key = NSString(string: "console")
+	if hascurs {
+		let cursobj = KLCurses(context: ctxt)
+		ctxt.setObject(cursobj, forKeyedSubscript: key)
+	} else {
+		let consobj = KLConsole(console: cons)
+		ctxt.setObject(consobj, forKeyedSubscript: key)
 	}
 }
 

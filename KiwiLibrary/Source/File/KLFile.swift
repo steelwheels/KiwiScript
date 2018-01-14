@@ -1,6 +1,6 @@
 /**
- * @file	KSFile.swift
- * @brief	Define KSFile class
+ * @file	KLFile.swift
+ * @brief	Define KLFile class
  * @par Copyright
  *   Copyright (C) 2017 Steel Wheels Project
  */

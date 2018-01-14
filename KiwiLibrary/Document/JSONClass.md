@@ -40,3 +40,17 @@ The error code is returned as an integer value.
 |1            |Invalid file name                      |
 |2            |Failed to make JSON from given string  |
 |3            |Failed to write JSON file              |
+
+### `serialize` class method
+Encode JSON data into string.
+````
+var string = JSON.serialize(object)
+````
+### Parameter(s)
+|Parameter    |Type   |Description                    |
+|:---         |:---   |:---                           |
+|object       |Object |The source object to be encoded |
+
+### Return value
+When the serialization is succeeded, the returned value is string which presents the JSON object by text.
+If the serialization is failed, this value will be *null*.

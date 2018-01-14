@@ -1,6 +1,6 @@
 # File Operation
-The *File* class is used to generate *FileObject* object.
-The file object is used to access files on local storage.
+The *File* class is used to following operations:
+* Generate *FileObject* object.
 
 ## Global variables
 Following global variables are defined when this class is imported.
@@ -13,18 +13,19 @@ Following global variables are defined when this class is imported.
 |stderr     |FileObject   | Standard error output     |
 
 ## File class
-Allocate file object by the file name and access method.
+
 ### `open` class method
+Allocate file object by the file name and access method.
 ````
 var file = File.open(<file-name>, <access-type>)
 ````
-### Parameter(s)
+#### Parameter(s)
 |Parameter    |Type   |Description                    |
 |:---         |:---   |:---                           |
 |file-name    |String |The path of the file to access.|
 |access-type  |String |"r" for read, "w" to write new file . and "w+" to write to append.|
 
-### Return value
+#### Return value
 If the opening the file is succeeded, the *FileObject* object is returned. The file-object is built-in object. It can be accessed by following methods. On the other hand, when the opening file is failed, the return value will be nil.
 
 ## FileObject class
