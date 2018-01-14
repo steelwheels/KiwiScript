@@ -13,7 +13,7 @@ import Foundation
 @objc public protocol KLConsoleProtocol: JSExport
 {
 	func log(_ value: JSValue)
-	func setCursesMode(_ mode: JSValue)
+	func setScreenMode(_ mode: JSValue)
 }
 
 @objc public class KLConsole: NSObject, KLConsoleProtocol
@@ -28,11 +28,11 @@ import Foundation
 		mConsole.print(string: value.toString())
 	}
 
-	public func setCursesMode(_ mode: JSValue){
+	public func setScreenMode(_ mode: JSValue){
 		if mode.isBoolean {
 			let m : CNCursesConsole.ConsoleMode
 			if mode.toBool() {
-				m = .Curses
+				m = .Screen
 			} else {
 				m = .Shell
 			}
