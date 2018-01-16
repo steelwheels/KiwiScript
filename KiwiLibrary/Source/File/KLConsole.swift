@@ -14,9 +14,12 @@ import Foundation
 {
 	func log(_ value: JSValue)
 
-	var visiblePrompt: JSValue { get set }
-	var doBuffering: JSValue { get set }
-	var doEcho: JSValue { get set }
+	var visiblePrompt	: JSValue { get set }
+	var doBuffering		: JSValue { get set }
+	var doEcho		: JSValue { get set }
+
+	var foregroundColor	: JSValue { get set }
+	var backgroundColor	: JSValue { get set }
 
 	func setScreenMode(_ mode: JSValue)
 	func getKey() -> JSValue
@@ -81,6 +84,40 @@ import Foundation
 			if value.isBoolean {
 				mConsole.doEcho = value.toBool()
 			}
+		}
+	}
+
+	public var foregroundColor: JSValue {
+		get {
+			let color = mConsole.foregroundColor
+			return JSValue(int32: color.rawValue, in: mContext)
+		}
+		set(newcol){
+			if newcol.isNumber {
+				let num   = newcol.toInt32()
+				if let color = CNColor(rawValue: num) {
+					mConsole.foregroundColor = color
+					return
+				}
+			}
+			NSLog("Failed to set foreground color: \(newcol.description)")
+		}
+	}
+
+	public var backgroundColor: JSValue {
+		get {
+			let color = mConsole.backgroundColor
+			return JSValue(int32: color.rawValue, in: mContext)
+		}
+		set(newcol){
+			if newcol.isNumber {
+				let num   = newcol.toInt32()
+				if let color = CNColor(rawValue: num) {
+					mConsole.backgroundColor = color
+					return
+				}
+			}
+			NSLog("Failed to set background color: \(newcol.description)")
 		}
 	}
 

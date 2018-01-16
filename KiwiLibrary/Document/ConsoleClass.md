@@ -11,7 +11,8 @@ Following global variables are defined for console operation.
 
 |Variable   |Class    | Description                     |
 |:---       |:---     |:---                             |
-|console    |Console  | Singleton object of Console class  |
+|console    |Console  |Singleton object of Console class  |
+|Color      |Color    |Table of the colors              |
 
 ## Console Class
 
@@ -78,6 +79,19 @@ No parameters.
 #### Return values
 When any key are pressed, the key code will be returned.
 If no keys are pressed, this method return *null*.
+
+## Color Class
+The Color class has the table of colors for console.
+### Color properties
+Following properties are used to specify the color:
+* `Color.Black`
+* `Color.Red`
+* `Color.Green`
+* `Color.Yellow`
+* `Color.Blue`
+* `Color.Magenta`
+* `Color.Cyan`
+* `Color.White`
 
 ## Related link
 * [KiwiLibrary](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/README.md): This framework contains this class.

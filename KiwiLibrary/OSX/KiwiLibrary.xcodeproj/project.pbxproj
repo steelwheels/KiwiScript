@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		05669FF81FE6B08F00709ADA /* KLFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05669FF71FE6B08F00709ADA /* KLFile.swift */; };
+		057FBF8C200DBDDD002CEF61 /* KLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057FBF8B200DBDDD002CEF61 /* KLColor.swift */; };
 		05B6958D1FF7647B00A9C8E0 /* KLConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B6958C1FF7647A00A9C8E0 /* KLConsole.swift */; };
 		05B695921FF764D300A9C8E0 /* KLProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B695911FF764D300A9C8E0 /* KLProcess.swift */; };
 		05ED6D6D1FE2DDD5007FC6D6 /* KLConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ED6D6C1FE2DDD5007FC6D6 /* KLConfig.swift */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		05669FF71FE6B08F00709ADA /* KLFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLFile.swift; sourceTree = "<group>"; };
+		057FBF8B200DBDDD002CEF61 /* KLColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = KLColor.swift; path = ../Console/KLColor.swift; sourceTree = "<group>"; };
 		05B6958C1FF7647A00A9C8E0 /* KLConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLConsole.swift; sourceTree = "<group>"; };
 		05B695911FF764D300A9C8E0 /* KLProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLProcess.swift; sourceTree = "<group>"; };
 		05ED6D6C1FE2DDD5007FC6D6 /* KLConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = KLConfig.swift; path = ../../Source/Setup/KLConfig.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				05B6958C1FF7647A00A9C8E0 /* KLConsole.swift */,
+				057FBF8B200DBDDD002CEF61 /* KLColor.swift */,
 				05669FF71FE6B08F00709ADA /* KLFile.swift */,
 				05F3263B1FF7CDE70092CFD3 /* KLJSONFile.swift */,
 			);
@@ -222,6 +225,7 @@
 				05B6958D1FF7647B00A9C8E0 /* KLConsole.swift in Sources */,
 				05ED6D6F1FE2DE94007FC6D6 /* KLSetup.swift in Sources */,
 				05669FF81FE6B08F00709ADA /* KLFile.swift in Sources */,
+				057FBF8C200DBDDD002CEF61 /* KLColor.swift in Sources */,
 				05F3263C1FF7CDE70092CFD3 /* KLJSONFile.swift in Sources */,
 				05ED6D6D1FE2DDD5007FC6D6 /* KLConfig.swift in Sources */,
 			);

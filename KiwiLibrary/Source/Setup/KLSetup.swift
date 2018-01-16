@@ -34,6 +34,9 @@ private func KLSetupConsoleLibrary(context ctxt: KEContext, console cons: CNCurs
 {
 	let console = KLConsole(context: ctxt, console: cons)
 	ctxt.setObject(console, forKeyedSubscript: NSString(string: "console"))
+
+	let color = KLColor(context: ctxt)
+	ctxt.setObject(color, forKeyedSubscript: NSString(string: "Color"))
 }
 
 private func KLSetupFileLibrary(context ctxt: KEContext)
