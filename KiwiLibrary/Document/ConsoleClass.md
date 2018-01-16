@@ -69,6 +69,30 @@ console.doEcho = <boolean-value>
 |true      |Echo the input                      |
 |false     |Do not echo the input (default)     |
 
+### `screenWidth` property
+The *readonly* property to get screen width
+````
+let width = console.screenWidth
+````
+
+### `screenHeight` property
+The *readonly* property to get screen height
+````
+let width = console.screenHeight
+````
+
+### `cursorX` property
+The *readonly* property to get cursor X position
+````
+let x = console.cursorX
+````
+
+### `cursorY` property
+The *readonly* property to get cursor Y position
+````
+let y = console.cursorY
+````
+
 ### `getKey` method
 Get last pressed key.
 You can use this method when the current mode is screen mode.

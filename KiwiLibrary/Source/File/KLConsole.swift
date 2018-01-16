@@ -18,6 +18,11 @@ import Foundation
 	var doBuffering		: JSValue { get set }
 	var doEcho		: JSValue { get set }
 
+	var screenWidth		: JSValue { get }
+	var screenHeight	: JSValue { get }
+	var cursorX		: JSValue { get }
+	var cursorY		: JSValue { get }
+
 	var foregroundColor	: JSValue { get set }
 	var backgroundColor	: JSValue { get set }
 
@@ -29,7 +34,7 @@ import Foundation
 {
 	private var mContext: KEContext
 	private var mConsole: CNCursesConsole
-	
+
 	public init(context ctxt: KEContext, console cons: CNCursesConsole){
 		mContext = ctxt
 		mConsole = cons
@@ -84,6 +89,31 @@ import Foundation
 			if value.isBoolean {
 				mConsole.doEcho = value.toBool()
 			}
+		}
+	}
+
+	public var screenWidth : JSValue {
+		get {
+			let width = mConsole.screenWidth
+			return JSValue(int32: Int32(width), in: mContext)
+		}
+	}
+	public var screenHeight	: JSValue {
+		get {
+			let height = mConsole.screenHeight
+			return JSValue(int32: Int32(height), in: mContext)
+		}
+	}
+	public var cursorX : JSValue {
+		get {
+			let x = mConsole.cursorX
+			return JSValue(int32: Int32(x), in: mContext)
+		}
+	}
+	public var cursorY : JSValue {
+		get {
+			let y = mConsole.cursorY
+			return JSValue(int32: Int32(y), in: mContext)
 		}
 	}
 
