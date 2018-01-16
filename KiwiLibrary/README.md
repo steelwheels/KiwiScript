@@ -15,7 +15,7 @@ This software is distributed under [GNU LESSER GENERAL PUBLIC LICENSE Version 2.
 ## Library references
 |Class Name         |Function                         |
 |:---         |:---                                 |
-|[Console Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/ConsoleClass.md)  | Logging                     |
+|[Console Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/ConsoleClass.md)  | Support shell and screen mode                     |
 |[File Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/FileClass.md)         |Text file access                 |
 |[Process Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/ProcessClass.md)       |Process control                 |
 

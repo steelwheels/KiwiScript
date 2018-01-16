@@ -38,6 +38,47 @@ console.setCursesMode(<boolean value>)
 |true      |Select screen modes            |
 |false     |Select shell mode (default)    |
 
+### `visiblePrompt` property
+The property to show/hide the prompt.
+````
+console.visiblePrompt = <boolean-value>
+````
+|Value     |Description                           |  
+|:---      |:---                                  |
+|true      |Show prompt at the cursor position    |
+|false     |Hide prompt at the cursor position (default)   |
+
+### `doBuffering` property
+The property to decide input buffering or not.
+````
+console.doBuffering = <boolean-value>
+````
+|Value     |Description                           |  
+|:---      |:---                                  |
+|true      |Accept input after the return key is pressed   |
+|false     |Accept input for each keystroke (default)   |
+
+### `doEcho` property
+The property to decide to echo the input or not.
+````
+console.doEcho = <boolean-value>
+````
+|Value     |Description                         |  
+|:---      |:---                                |
+|true      |Echo the input                      |
+|false     |Do not echo the input (default)     |
+
+### `getKey` method
+Get last pressed key.
+You can use this method when the current mode is screen mode.
+
+#### Parameter(s)
+No parameters.
+
+#### Return values
+When any key are pressed, the key code will be returned.
+If no keys are pressed, this method return *null*.
+
 ## Related link
 * [KiwiLibrary](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/README.md): This framework contains this class.
 * [Steel Wheels Project](http://steelwheels.github.io): Web site of developer.

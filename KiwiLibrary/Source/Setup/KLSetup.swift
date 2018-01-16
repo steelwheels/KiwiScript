@@ -32,7 +32,7 @@ public func KLSetupLibrary(context ctxt: KEContext, console cons: CNCursesConsol
 
 private func KLSetupConsoleLibrary(context ctxt: KEContext, console cons: CNCursesConsole)
 {
-	let console = KLConsole(console: cons)
+	let console = KLConsole(context: ctxt, console: cons)
 	ctxt.setObject(console, forKeyedSubscript: NSString(string: "console"))
 }
 
