@@ -22,6 +22,7 @@ import Foundation
 	var screenHeight	: JSValue { get }
 	var cursorX		: JSValue { get }
 	var cursorY		: JSValue { get }
+	func moveTo(_ x: JSValue, _ y:JSValue)
 
 	var foregroundColor	: JSValue { get set }
 	var backgroundColor	: JSValue { get set }
@@ -114,6 +115,16 @@ import Foundation
 		get {
 			let y = mConsole.cursorY
 			return JSValue(int32: Int32(y), in: mContext)
+		}
+	}
+
+	public func moveTo(_ x: JSValue, _ y:JSValue) {
+		if x.isNumber && y.isNumber {
+			let xval = x.toInt32()
+			let yval = y.toInt32()
+			mConsole.moveTo(x: Int(xval), y: Int(yval))
+		} else {
+			NSLog("Invalid parameters")
 		}
 	}
 

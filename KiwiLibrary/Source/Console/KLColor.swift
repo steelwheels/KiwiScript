@@ -20,6 +20,11 @@ import Foundation
 	var Magenta	: JSValue { get }
 	var Cyan	: JSValue { get }
 	var White	: JSValue { get }
+
+	var Min 	: JSValue { get }
+	var Max 	: JSValue { get }
+
+	func description(_ color: JSValue) -> JSValue
 }
 
 @objc public class KLColor: NSObject, KLColorProtocol
@@ -38,6 +43,19 @@ import Foundation
 	public var Magenta	: JSValue { get { return colorValue(color: .Magenta	) }}
 	public var Cyan		: JSValue { get { return colorValue(color: .Cyan	) }}
 	public var White	: JSValue { get { return colorValue(color: .White	) }}
+
+	public var Min 		: JSValue { get { return colorValue(color: .Min		) }}
+	public var Max 		: JSValue { get { return colorValue(color: .Max		) }}
+
+	public func description(_ color: JSValue) -> JSValue {
+		if color.isNumber {
+			if let color = CNColor(rawValue: color.toInt32()) {
+				let name = color.description()
+				return JSValue(object: name, in: mContext)
+			}
+		}
+		return JSValue(nullIn: mContext)
+	}
 
 	private func colorValue(color col: CNColor) -> JSValue {
 		return JSValue(int32: col.rawValue, in: mContext)
