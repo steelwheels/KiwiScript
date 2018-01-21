@@ -16,6 +16,10 @@ public func KLSetupLibrary(context ctxt: KEContext, console cons: CNCursesConsol
 	let manager = KLModuleManager.shared
 	manager.setup(context: ctxt, console: cons, terminateHandler: termhdl)
 
+	/* Add "require" function */
+	let require = KLAllocateRequireFunction(context: ctxt)
+	ctxt.setObject(require, forKeyedSubscript: NSString(string: "require"))
+
 	/* Add process module */
 	if let process = manager.getModule(moduleName: "process") as? KLProcess {
 		ctxt.setObject(process, forKeyedSubscript: NSString(string: "Process"))
@@ -40,29 +44,25 @@ public func KLSetupLibrary(context ctxt: KEContext, console cons: CNCursesConsol
 		return
 	}
 
-	/* Add File lib  */
-	if cfg.hasFileLib {
-		KLSetupFileLibrary(context: ctxt)
+	/* Add File module  */
+	if let file = manager.getModule(moduleName: "file") as? KLFile {
+		ctxt.setObject(file, forKeyedSubscript: NSString(string: "File"))
+
+		let stdinobj = KLFile.standardFile(fileType: .input, context: ctxt)
+		ctxt.setObject(stdinobj, forKeyedSubscript: NSString(string: "stdin"))
+
+		let stdoutobj = KLFile.standardFile(fileType: .output, context: ctxt)
+		ctxt.setObject(stdoutobj, forKeyedSubscript: NSString(string: "stdout"))
+
+		let stderrobj = KLFile.standardFile(fileType: .error, context: ctxt)
+		ctxt.setObject(stderrobj, forKeyedSubscript: NSString(string: "stderr"))
+	} else {
+		NSLog("Failed to allocate \"console\" module")
+		return
 	}
+
 	/* Add JSON lib */
-	if cfg.hasJSONLib {
-		KLSetupJSONLibrary(context: ctxt)
-	}
-}
-
-private func KLSetupFileLibrary(context ctxt: KEContext)
-{
-	let fileobj = KLFile(context: ctxt)
-	ctxt.setObject(fileobj, forKeyedSubscript: NSString(string: "File"))
-
-	let stdinobj = KLFile.standardFile(fileType: .input, context: ctxt)
-	ctxt.setObject(stdinobj, forKeyedSubscript: NSString(string: "stdin"))
-
-	let stdoutobj = KLFile.standardFile(fileType: .output, context: ctxt)
-	ctxt.setObject(stdoutobj, forKeyedSubscript: NSString(string: "stdout"))
-
-	let stderrobj = KLFile.standardFile(fileType: .error, context: ctxt)
-	ctxt.setObject(stderrobj, forKeyedSubscript: NSString(string: "stderr"))
+	//KLSetupJSONLibrary(context: ctxt)
 }
 
 private func KLSetupJSONLibrary(context ctxt: KEContext)
