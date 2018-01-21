@@ -6,19 +6,39 @@
  */
 
 import KiwiEngine
+import JavaScriptCore
 import Canary
 import Foundation
 
-public func KLSetupLibrary(context ctxt: KEContext, console cons: CNCursesConsole, config cfg: KLConfig)
+public func KLSetupLibrary(context ctxt: KEContext, console cons: CNCursesConsole, terminateHandler termhdl: @escaping (_ code:Int32) -> Int32, config cfg: KLConfig)
 {
-	KLSetupConsoleLibrary(context: ctxt, console: cons)
+	/* Setup module manager */
+	let manager = KLModuleManager.shared
+	manager.setup(context: ctxt, console: cons, terminateHandler: termhdl)
 
-	/* Add process */
-	let procobj = KLProcess(terminateHandler: {
-		(_ code:Int32) -> Int32 in
-		return code
-	})
-	ctxt.setObject(procobj, forKeyedSubscript: NSString(string: "Process"))
+	/* Add process module */
+	if let process = manager.getModule(moduleName: "process") as? KLProcess {
+		ctxt.setObject(process, forKeyedSubscript: NSString(string: "Process"))
+	} else {
+		NSLog("Failed to allocate \"Process\" module")
+		return
+	}
+
+	/* Add color module */
+	if let color = manager.getModule(moduleName: "color") as? KLColor {
+		ctxt.setObject(color, forKeyedSubscript: NSString(string: "Color"))
+	} else {
+		NSLog("Failed to allocate \"Color\" module")
+		return
+	}
+
+	/* Add console module */
+	if let console = manager.getModule(moduleName: "console") as? KLConsole {
+		ctxt.setObject(console, forKeyedSubscript: NSString(string: "console"))
+	} else {
+		NSLog("Failed to allocate \"console\" module")
+		return
+	}
 
 	/* Add File lib  */
 	if cfg.hasFileLib {
@@ -28,15 +48,6 @@ public func KLSetupLibrary(context ctxt: KEContext, console cons: CNCursesConsol
 	if cfg.hasJSONLib {
 		KLSetupJSONLibrary(context: ctxt)
 	}
-}
-
-private func KLSetupConsoleLibrary(context ctxt: KEContext, console cons: CNCursesConsole)
-{
-	let console = KLConsole(context: ctxt, console: cons)
-	ctxt.setObject(console, forKeyedSubscript: NSString(string: "console"))
-
-	let color = KLColor(context: ctxt)
-	ctxt.setObject(color, forKeyedSubscript: NSString(string: "Color"))
 }
 
 private func KLSetupFileLibrary(context ctxt: KEContext)
