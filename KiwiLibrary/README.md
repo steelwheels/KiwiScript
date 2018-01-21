@@ -12,12 +12,8 @@ This software is distributed under [GNU LESSER GENERAL PUBLIC LICENSE Version 2.
 * OS: Mac OS X 10.13 or later
 * Development Tool: Xcode9 or later
 
-## Library references
-|Class Name         |Function                         |
-|:---         |:---                                 |
-|[Console Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/ConsoleClass.md)  | Support shell and screen mode                     |
-|[File Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/FileClass.md)         |Text file access                 |
-|[Process Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/ProcessClass.md)       |Process control                 |
+## Module references
+See [Built-in Modules](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/BuiltinModules.md).
 
 ## Related link
 * [Steel Wheels Project](http://steelwheels.github.io): Web site of developer.
