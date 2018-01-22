@@ -21,7 +21,7 @@ public func KLSetupLibrary(context ctxt: KEContext, console cons: CNCursesConsol
 	ctxt.setObject(require, forKeyedSubscript: NSString(string: "require"))
 
 	/* Add process module */
-	if let process = manager.getModule(moduleName: "process") as? KLProcess {
+	if let process = manager.getBuiltinModule(moduleName: "process") as? KLProcess {
 		ctxt.setObject(process, forKeyedSubscript: NSString(string: "Process"))
 	} else {
 		NSLog("Failed to allocate \"Process\" module")
@@ -29,7 +29,7 @@ public func KLSetupLibrary(context ctxt: KEContext, console cons: CNCursesConsol
 	}
 
 	/* Add color module */
-	if let color = manager.getModule(moduleName: "color") as? KLColor {
+	if let color = manager.getBuiltinModule(moduleName: "color") as? KLColor {
 		ctxt.setObject(color, forKeyedSubscript: NSString(string: "Color"))
 	} else {
 		NSLog("Failed to allocate \"Color\" module")
@@ -37,7 +37,7 @@ public func KLSetupLibrary(context ctxt: KEContext, console cons: CNCursesConsol
 	}
 
 	/* Add console module */
-	if let console = manager.getModule(moduleName: "console") as? KLConsole {
+	if let console = manager.getBuiltinModule(moduleName: "console") as? KLConsole {
 		ctxt.setObject(console, forKeyedSubscript: NSString(string: "console"))
 	} else {
 		NSLog("Failed to allocate \"console\" module")
@@ -45,7 +45,7 @@ public func KLSetupLibrary(context ctxt: KEContext, console cons: CNCursesConsol
 	}
 
 	/* Add File module  */
-	if let file = manager.getModule(moduleName: "file") as? KLFile {
+	if let file = manager.getBuiltinModule(moduleName: "file") as? KLFile {
 		ctxt.setObject(file, forKeyedSubscript: NSString(string: "File"))
 
 		let stdinobj = KLFile.standardFile(fileType: .input, context: ctxt)

@@ -16,8 +16,10 @@ public func KLAllocateRequireFunction(context ctxt: KEContext) -> JSValue
 		if value.isString {
 			if let pathstr = value.toString() {
 				let manager = KLModuleManager.shared
-				if let obj = manager.getModule(moduleName: pathstr) {
+				if let obj = manager.getBuiltinModule(moduleName: pathstr) {
 					return JSValue(object: obj, in: ctxt)
+				} else if let val = manager.importExternalModule(moduleName: pathstr) {
+					return val
 				}
 			}
 		}
