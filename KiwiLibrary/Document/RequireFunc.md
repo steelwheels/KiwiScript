@@ -27,7 +27,7 @@ There are 3 kind of modules:
 3. *User module*: The JavaScript library which is implemented by the developer.
 
 #### Built-in modules
-If the given "path" string is equals to the module name, the module will be chosen. The document [Built-in modules](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/BuiltinModules.md) has the list of them.
+If the given "path" string is equals to the module name, the module will be chosen. The document [Built-in modules](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md) has the list of them.
 
 #### System Modules
 Not supported yet.

@@ -13,7 +13,8 @@ This software is distributed under [GNU LESSER GENERAL PUBLIC LICENSE Version 2.
 * Development Tool: Xcode9 or later
 
 ## Module references
-See [Built-in Modules](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/BuiltinModules.md).
+See [Libraries](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md).
 
 ## Related link
 * [Steel Wheels Project](http://steelwheels.github.io): Web site of developer.
+
