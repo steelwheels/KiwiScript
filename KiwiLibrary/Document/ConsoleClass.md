@@ -12,7 +12,8 @@ Following global variables are defined for console operation.
 |Variable   |Class    | Description                     |
 |:---       |:---     |:---                             |
 |console    |Console  |Singleton object of Console class  |
-|Color      |Color    |Singleton object of for the table of the colors              |
+|Color      |Color    |Table of the colors              |
+|Align      |Align    |Table of alignment kinds |
 
 ## Console Class
 
@@ -31,74 +32,70 @@ none
 
 ### `setScreenMode` method
 Select the console mode: *Shell mode* or *Screen mode*.
-````
-console.setScreenMode(<boolean value>)
-````
-|Value     |Description                    |
-|:---      |:---                           |
-|true      |Select screen modes            |
-|false     |Select shell mode (default)    |
+
+|Value  |Access | Description              |  
+|:---   |:---   |:---                      |
+|Bool   |Read/Write| *true*: Select screen mode |
+|       |          | *false*: Select shell mode (default) |
 
 ### `visiblePrompt` property
 The property to show/hide the prompt.
-This works for only screen mode.
-````
-console.visiblePrompt = <boolean-value>
-````
-|Value     |Description                           |  
-|:---      |:---                                  |
-|true      |Show prompt at the cursor position    |
-|false     |Hide prompt at the cursor position (default)   |
+
+|Value  |Access | Description              |  
+|:---   |:---   |:---                      |
+|Bool   |Read/Write| *true*: Show prompt     |
+|       |          | *false*: Hide prompt    |
 
 ### `doBuffering` property
 The property to decide input buffering or not.
-This works for only screen mode.
-````
-console.doBuffering = <boolean-value>
-````
-|Value     |Description                           |  
-|:---      |:---                                  |
-|true      |Accept input after the return key is pressed   |
-|false     |Accept input for each keystroke (default)   |
+
+|Value     |Access | Description                        |  
+|:---      |:---   |:---                                |
+|Bool    |Read/Write| *true*: Accept input after the return key is pressed  |
+|        |          | *false*: Accept input for each keystroke (default)  |
 
 ### `doEcho` property
-The property to decide to echo the input or not.
-This works for only screen mode.
-````
-console.doEcho = <boolean-value>
-````
-|Value     |Description                         |  
-|:---      |:---                                |
-|true      |Echo the input                      |
-|false     |Do not echo the input (default)     |
+The property to decide echo the input or not.
+
+|Value     |Access | Description                        |  
+|:---      |:---   |:---                                |
+|Bool    |Read/Write| *true*: Echo the input |
+|        |          | *false*: Do not echo the input |
 
 ### `screenWidth` property
-The *readonly* property to get screen width.
-This works for only screen mode.
-````
-let width = console.screenWidth
-````
+This works under screen mode.
+
+|Value      |Access | Description             |
+|:---       |:---   | :---                    |
+|Int |Read Only |Screen width|
 
 ### `screenHeight` property
-The *readonly* property to get screen height.
-This works for only screen mode.
-````
-let width = console.screenHeight
-````
+This works under screen mode.
+
+|Value      |Access | Description             |
+|:---       |:---   | :---                    |
+|Int |Read Only |Screen height|
 
 ### `cursorX` property
-The *readonly* property to get cursor X position.
-This works for only screen mode.
-````
-let x = console.cursorX
-````
+|Value      |Access | Description             |
+|:---       |:---   | :---                    |
+|Int |Read Only |Current cursor X position|
 
 ### `cursorY` property
-The *readonly* property to get cursor Y position.
-This works for only screen mode.
+|Value      |Access | Description             |
+|:---       |:---   | :---                    |
+|Int |Read Only |Current cursor Y position|
+
+### `setColor` method
+Set foreground and background color. About the color parameter, see *Color class* in this document.
 ````
-let y = console.cursorY
+setColor(forecol, backcol) ;
 ````
+
+|Parameter    |Type    |Description                   |
+|:---         |:---    |:---                          |
+|forecol      |Int     |Foreground color              |
+|backcol      |Int     |Background color              |
 
 ### `moveTo` method
 Move cursor to given position.
@@ -128,8 +125,8 @@ If no keys are pressed, this method return *null*.
 
 ## Color Class
 The Color class has the table of colors for console.
-### Color properties
-Following properties are used to specify the color. Every properties has unique integer values:
+### Properties
+Following properties are used to specify the color. Every properties has unique signed integer values:
 * `Color.Black`
 * `Color.Red`
 * `Color.Green`
@@ -150,6 +147,17 @@ for(let col=Color.Min ; col<=Color.Max ; col++){
   ...
 }
 ````
+
+## Align class
+The Align class has the table of kinds of alignment.
+### Properties
+Following properties are used to specify the alignment. Every properties has signed integer values:
+* `Align.Left`
+* `Align.Center`
+* `Align.Right`
+* `Align.Top`
+* `Align.Middle`
+* `Align.Bottom`
 
 ### Utility methods
 #### `description` method

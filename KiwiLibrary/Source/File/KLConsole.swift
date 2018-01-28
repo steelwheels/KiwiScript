@@ -22,12 +22,12 @@ import Foundation
 	var screenHeight	: JSValue { get }
 	var cursorX		: JSValue { get }
 	var cursorY		: JSValue { get }
+
+	func setColor(_ fcol: JSValue, _ bcol: JSValue)
 	func moveTo(_ x: JSValue, _ y:JSValue)
 
-	var foregroundColor	: JSValue { get set }
-	var backgroundColor	: JSValue { get set }
-
 	func setScreenMode(_ mode: JSValue)
+	
 	func getKey() -> JSValue
 }
 
@@ -118,6 +118,18 @@ import Foundation
 		}
 	}
 
+	public func setColor(_ fval: JSValue, _ bval: JSValue){
+		if fval.isNumber && bval.isNumber {
+			let fnum = fval.toInt32()
+			let bnum = bval.toInt32()
+			if let fcol = CNColor(rawValue: fnum), let bcol = CNColor(rawValue: bnum) {
+				mConsole.setColor(foregroundColor: fcol, backgroundColor: bcol)
+				return
+			}
+		}
+		NSLog("Failed to set color: \(fval.description) \(bval.description)")
+	}
+
 	public func moveTo(_ x: JSValue, _ y:JSValue) {
 		if x.isNumber && y.isNumber {
 			let xval = x.toInt32()
@@ -125,40 +137,6 @@ import Foundation
 			mConsole.moveTo(x: Int(xval), y: Int(yval))
 		} else {
 			NSLog("Invalid parameters")
-		}
-	}
-
-	public var foregroundColor: JSValue {
-		get {
-			let color = mConsole.foregroundColor
-			return JSValue(int32: color.rawValue, in: mContext)
-		}
-		set(newcol){
-			if newcol.isNumber {
-				let num   = newcol.toInt32()
-				if let color = CNColor(rawValue: num) {
-					mConsole.foregroundColor = color
-					return
-				}
-			}
-			NSLog("Failed to set foreground color: \(newcol.description)")
-		}
-	}
-
-	public var backgroundColor: JSValue {
-		get {
-			let color = mConsole.backgroundColor
-			return JSValue(int32: color.rawValue, in: mContext)
-		}
-		set(newcol){
-			if newcol.isNumber {
-				let num   = newcol.toInt32()
-				if let color = CNColor(rawValue: num) {
-					mConsole.backgroundColor = color
-					return
-				}
-			}
-			NSLog("Failed to set background color: \(newcol.description)")
 		}
 	}
 

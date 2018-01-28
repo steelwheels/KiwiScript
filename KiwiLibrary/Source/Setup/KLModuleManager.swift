@@ -54,6 +54,7 @@ public class KLModuleManager
 		if let ctxt = mContext, let cons = mConsole, let termhdl = mTerminateHandler {
 			switch name {
 			case "color":	result = KLColor(context: ctxt)
+			case "align":	result = KLAlign(context: ctxt)
 			case "console":	result = KLConsole(context: ctxt, console: cons)
 			case "file":	result = KLFile(context: ctxt)
 			case "JSON":	result = KLJSON(context: ctxt)

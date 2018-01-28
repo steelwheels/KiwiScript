@@ -36,6 +36,15 @@ public func KLSetupLibrary(context ctxt: KEContext, console cons: CNCursesConsol
 		return
 	}
 
+	/* Add align module */
+	if let align = manager.getBuiltinModule(moduleName: "align") as? KLAlign {
+		ctxt.setObject(align, forKeyedSubscript: NSString(string: "Align"))
+	} else {
+		NSLog("Failed to allocate \"Align\" module")
+		return
+	}
+
+
 	/* Add console module */
 	if let console = manager.getBuiltinModule(moduleName: "console") as? KLConsole {
 		ctxt.setObject(console, forKeyedSubscript: NSString(string: "console"))
