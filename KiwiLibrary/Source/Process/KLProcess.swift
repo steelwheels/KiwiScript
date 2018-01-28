@@ -16,10 +16,10 @@ import Darwin
 
 @objc public class KLProcess: NSObject, KLProcessProtocol
 {
-	private var mTerminateHandler: (_ code: Int32) -> Int32
+	private var mExceptionHandler: (_ exception: KLException) -> Void
 
-	public init(terminateHandler termhdl: @escaping (_ code: Int32) -> Int32){
-		mTerminateHandler = termhdl
+	public init(exceptionHandler ehandler: @escaping (_ exception: KLException) -> Void){
+		mExceptionHandler = ehandler
 	}
 
 	public func exit(_ cval: JSValue) -> JSValue
@@ -31,8 +31,8 @@ import Darwin
 			NSLog("Unknown code value")
 			code = 1
 		}
-		let retval = mTerminateHandler(code)
-		Darwin.exit(retval)
+		mExceptionHandler(.Exit(code))
+		Darwin.exit(code)
 	}
 }
 

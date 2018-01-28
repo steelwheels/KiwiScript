@@ -14,7 +14,7 @@ public func testError(console cons: CNConsole) -> Bool
 {
 	var result = true
 	let vm = JSVirtualMachine()
-	let context = KEContext(virtualMachine: vm)
+	let context = KEContext(virtualMachine: vm!)
 
 	console.print(string: "*** Script1\n")
 	let script1 = "function hoge" ;
@@ -30,18 +30,22 @@ public func testError(console cons: CNConsole) -> Bool
 private func testScript(console cons: CNConsole, context ctxt: KEContext, script scr: String) -> Bool
 {
 	var testResult = false
-	let (resultp, errorsp) = KEEngine.runScript(context: ctxt, script: scr)
-	if let errors = errorsp {
-		for error in errors {
-			console.print(string: "ERROR: \(error)\n")
+
+	ctxt.runScript(script: scr, exceptionHandler: {
+		(_ result: KEExecutionResult) -> Void in
+		switch result {
+		case .Exception(_, let message):
+			console.print(string: "Exception: \(message)\n")
+		case .Finished(_, let value):
+			let message: String
+			if let v = value {
+				message = v.toString()
+				testResult = true
+			} else {
+				message = "<none>"
+			}
+			console.print(string: "Finished: \(message)\n")
 		}
-	} else {
-		if let result = resultp {
-			console.print(string: "RESULT: \(result)\n")
-			testResult = true
-		} else {
-			fatalError("can not happen")
-		}
-	}
+	})
 	return testResult
 }

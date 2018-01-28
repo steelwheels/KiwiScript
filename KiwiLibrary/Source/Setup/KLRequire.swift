@@ -1,6 +1,6 @@
 /**
  * @file	KLRequire.swift
- * @brief	Extend KLRequire function
+ * @brief	Define KLAllocateRequireFunction function
  * @par Copyright
  *   Copyright (C) 2018 Steel Wheels Project
  */

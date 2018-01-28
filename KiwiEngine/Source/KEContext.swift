@@ -9,41 +9,54 @@ import Foundation
 import JavaScriptCore
 import Canary
 
+public enum KEExecutionResult {
+	case Finished(JSContext, JSValue?)
+	case Exception(JSContext, String)
+}
+
 public class KEContext : JSContext
 {
-	private var mRuntimeErrors : Array<String> = [] ;
-	
-	public override init(virtualMachine vm: JSVirtualMachine!) {
+	public override init(virtualMachine vm: JSVirtualMachine) {
 		super.init(virtualMachine: vm)
+	}
+
+	public func runScript(script scr: String!, exceptionHandler fhandler: @escaping (_ result: KEExecutionResult) -> Void)  {
+		/* Set exception handler */
+		setExceptionHandler(finalizeHandler: fhandler)
+
+		/* Evaluate script */
+		let retval = super.evaluateScript(scr)
+
+		/* Call handler with return value */
+		let result = KEExecutionResult.Finished(self, retval)
+		fhandler(result)
+	}
+
+	public func callFunction(functionName funcname: String, arguments args: Array<AnyObject>, exceptionHandler fhandler: @escaping (_ result: KEExecutionResult) -> Void) {
+		/* Set exception handler */
+		setExceptionHandler(finalizeHandler: fhandler)
+
+		/* Call function */
+		let jsfunc : JSValue = self.objectForKeyedSubscript(funcname)
+		let retval = jsfunc.call(withArguments: args)
+
+		/* Call handler with return value */
+		let result = KEExecutionResult.Finished(self, retval)
+		fhandler(result)
+	}
+
+	private func setExceptionHandler(finalizeHandler fhandler: @escaping (_ result: KEExecutionResult) -> Void) {
 		self.exceptionHandler = { (contextp, exception) in
-			if let context = contextp as? KEContext {
-				var msg: String
-				if let e = exception {
-					msg = e.description
-				} else {
-					msg = "Unknown exception"
-				}
-				context.addErrorMessage(message: msg) ;
-				return
-			}
-			var desc: String = ""
+			var message: String
 			if let e = exception {
-				desc = e.description
+				message = e.description
+			} else {
+				message = "Unknown exception"
 			}
-			NSLog("Internal error \(desc)")
+			/* Call handler with exception */
+			let result = KEExecutionResult.Exception(self, message)
+			fhandler(result)
 		}
-	}
-	
-	public func runtimeErrors() -> Array<String> {
-		return mRuntimeErrors ;
-	}
-	
-	public func clearRuntimeErrors() {
-		mRuntimeErrors = []
-	}
-	
-	private func addErrorMessage(message msg : String){
-		mRuntimeErrors.append(msg)
 	}
 
 	public func addGlobalObject(name n: NSString, object o: NSObject){

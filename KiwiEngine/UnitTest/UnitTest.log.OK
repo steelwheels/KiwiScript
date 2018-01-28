@@ -1,10 +1,14 @@
 *** Script1
-ERROR: SyntaxError: Unexpected end of script
+Exception: SyntaxError: Unexpected end of script
+Finished: undefined
 *** Script2
-ERROR: SyntaxError: Unexpected identifier 'hoge'. Expected a ';' following a return statement.
+Exception: SyntaxError: Unexpected identifier 'hoge'. Expected a ';' following a return statement.
+Finished: undefined
 testError : OK
-RunScriot -> OK (undefined)
-RESULT: newangle = 2.3
+*** context.runScript
+Finished: undefined
+*** context.callFunction
+Finished: 2.3
 testObject : OK
 Listener: undefined = undefined
 Listener: null = null
@@ -20,7 +24,7 @@ convert: -1234 -> -1234
 convert: 1234 -> 1234
 convert: 12.34 -> 12.34000015258789
 convert: -43.21 -> -43.21
-convert: "Hello, world" -> Hello, world
+convert: Hello, world -> Hello, world
 convert: [10.0, 11.1] -> 10,11.100000381469727
 convert: [b:11.1, a:10.0] -> [object Object]
 testValue : OK

@@ -1,8 +1,8 @@
 /**
  * @file	KLSetup.swift
- * @brief	Extend KLSetup class
+ * @brief	Define KLSetupLibrary function
  * @par Copyright
- *   Copyright (C) 2017 Steel Wheels Project
+ *   Copyright (C) 2017-2018 Steel Wheels Project
  */
 
 import KiwiEngine
@@ -10,11 +10,11 @@ import JavaScriptCore
 import Canary
 import Foundation
 
-public func KLSetupLibrary(context ctxt: KEContext, console cons: CNCursesConsole, terminateHandler termhdl: @escaping (_ code:Int32) -> Int32, config cfg: KLConfig)
+public func KLSetupLibrary(context ctxt: KEContext, console cons: CNCursesConsole, config cfg: KLConfig, exceptionHandler ehandler: @escaping (_ exception: KLException) -> Void)
 {
 	/* Setup module manager */
 	let manager = KLModuleManager.shared
-	manager.setup(context: ctxt, console: cons, terminateHandler: termhdl)
+	manager.setup(context: ctxt, console: cons, exceptionHandler: ehandler)
 
 	/* Add "require" function */
 	let require = KLAllocateRequireFunction(context: ctxt)

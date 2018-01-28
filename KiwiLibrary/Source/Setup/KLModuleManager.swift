@@ -1,6 +1,6 @@
 /**
  * @file	KLModuleManager.swift
- * @brief	Extend KLModuleManager class
+ * @brief	Define KLModuleManager class
  * @par Copyright
  *   Copyright (C) 2018 Steel Wheels Project
  */
@@ -18,20 +18,20 @@ public class KLModuleManager
 	private var mIs1stExternalModule:	Bool
 	private var mContext:			KEContext?
 	private var mConsole:			CNCursesConsole?
-	private var mTerminateHandler: 		((_ code: Int32) -> Int32)?
+	private var mExceptionHandler: 		((_ exception: KLException) -> Void)?
 
 	private init(){
 		mModuleTable 		= [:]
 		mIs1stExternalModule	= true
 		mContext     		= nil
 		mConsole     		= nil
-		mTerminateHandler	= nil
+		mExceptionHandler	= nil
 	}
 
-	public func setup(context ctxt: KEContext, console cons: CNCursesConsole, terminateHandler termhdl: @escaping (_ code: Int32) -> Int32){
+	public func setup(context ctxt: KEContext, console cons: CNCursesConsole, exceptionHandler ehandler: @escaping (_ exception: KLException) -> Void){
 		mContext 		= ctxt
 		mConsole		= cons
-		mTerminateHandler	= termhdl
+		mExceptionHandler	= ehandler
 	}
 
 	public func getBuiltinModule(moduleName name: String) -> JSExport? {
@@ -51,14 +51,14 @@ public class KLModuleManager
 
 	private func allocateBuiltinModule(moduleName name: String) -> JSExport? {
 		let result: JSExport?
-		if let ctxt = mContext, let cons = mConsole, let termhdl = mTerminateHandler {
+		if let ctxt = mContext, let cons = mConsole, let ehandler = mExceptionHandler {
 			switch name {
 			case "color":	result = KLColor(context: ctxt)
 			case "align":	result = KLAlign(context: ctxt)
 			case "console":	result = KLConsole(context: ctxt, console: cons)
 			case "file":	result = KLFile(context: ctxt)
 			case "JSON":	result = KLJSON(context: ctxt)
-			case "process":	result = KLProcess(terminateHandler: termhdl)
+			case "process":	result = KLProcess(exceptionHandler: ehandler)
 			default:	result = nil
 			}
 		} else {
@@ -69,19 +69,27 @@ public class KLModuleManager
 	}
 
 	public func importExternalModule(moduleName name: String) -> JSValue? {
+		var result: JSValue? = nil
 		let pname = "Library/" + name
 		let (url, err) = CNFilePath.URLForBundleFile(bundleName: "jstools", fileName: pname, ofType: "js")
 		if let u = url {
 			do {
 				let script = try String(contentsOf: u)
-				return compile(moduleName: name, script: script)
+				result = compile(moduleName: name, script: script)
 			} catch _ {
-				NSLog("[Error] Can not read file: \(name)")
+				let message = "Can not read file: \(name)"
+				raiseException(exception: .CompileError(message))
 			}
 		} else {
-			NSLog("[Error] \(err!.toString())")
+			let message: String
+			if let e = err {
+				message = e.description
+			} else {
+				message = "Unknown error"
+			}
+			raiseException(exception: .CompileError(message))
 		}
-		return nil
+		return result
 	}
 
 	private func compile(moduleName name: String, script scr: String) -> JSValue? {
@@ -96,19 +104,28 @@ public class KLModuleManager
 		let script = head + scr + " ; module.exports ;\n"
 
 		/* compile */
+		var retval: JSValue? = nil
 		if let ctxt = mContext {
-			let (retval, errors) = KEEngine.runScript(context: ctxt, script: script)
-			if let errs = errors, let console = mConsole {
-				for e in errs {
-					console.error(string: "module \"\(name)\": \(e)\n")
+			ctxt.runScript(script: script, exceptionHandler: {
+				(_ result: KEExecutionResult) -> Void in
+				switch result {
+				case .Exception(_, let message):
+					self.raiseException(exception: .CompileError(message))
+				case .Finished(_, let value):
+					retval = value
 				}
-				return nil
-			} else {
-				return retval
-			}
+			})
 		} else {
-			NSLog("Internal error")
-			return nil
+			raiseException(exception: .CompileError("Context is not defined"))
+		}
+		return retval
+	}
+
+	private func raiseException(exception excep: KLException) {
+		if let ehandler = mExceptionHandler {
+			ehandler(excep)
+		} else {
+			NSLog(excep.description)
 		}
 	}
 }

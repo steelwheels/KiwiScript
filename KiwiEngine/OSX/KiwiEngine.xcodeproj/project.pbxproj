@@ -19,7 +19,6 @@
 		054637F21BB05FE400DEE12F /* UTError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054637F01BB05F4500DEE12F /* UTError.swift */; };
 		054860B81F38935A007A431A /* KEEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054860B71F38935A007A431A /* KEEnum.swift */; };
 		057F881F1B78031B0029AB4F /* KEContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F881E1B78031B0029AB4F /* KEContext.swift */; };
-		057F88231B780B4A0029AB4F /* KEEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F88221B780B4A0029AB4F /* KEEngine.swift */; };
 		058B53261BA41A6C009522DF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058B53251BA41A6C009522DF /* main.swift */; };
 		0592B89E1F3A2363006C92AD /* UTEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0592B89C1F3A2301006C92AD /* UTEnum.swift */; };
 		05CF6D7B1BA41F9700BD9D91 /* KiwiEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05CF6D7A1BA41F9700BD9D91 /* KiwiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -107,7 +106,6 @@
 		054637F01BB05F4500DEE12F /* UTError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTError.swift; sourceTree = "<group>"; };
 		054860B71F38935A007A431A /* KEEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEEnum.swift; sourceTree = "<group>"; };
 		057F881E1B78031B0029AB4F /* KEContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEContext.swift; sourceTree = "<group>"; };
-		057F88221B780B4A0029AB4F /* KEEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEEngine.swift; sourceTree = "<group>"; };
 		058B53231BA41A6C009522DF /* UnitTestExec */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTestExec; sourceTree = BUILT_PRODUCTS_DIR; };
 		058B53251BA41A6C009522DF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		0592B89C1F3A2301006C92AD /* UTEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTEnum.swift; sourceTree = "<group>"; };
@@ -191,7 +189,6 @@
 			children = (
 				054536C51B78021500FE978C /* KiwiEngine.h */,
 				057F881E1B78031B0029AB4F /* KEContext.swift */,
-				057F88221B780B4A0029AB4F /* KEEngine.swift */,
 				0504226F1ED5C02600183E4F /* KEPropertyTable.swift */,
 				05D89FC51EFAB7110067F402 /* KEPropertyValue.swift */,
 				0537CE8E1F80F76E00CB313A /* KEValue.swift */,
@@ -422,7 +419,6 @@
 				05D89FC61EFAB7110067F402 /* KEPropertyValue.swift in Sources */,
 				054860B81F38935A007A431A /* KEEnum.swift in Sources */,
 				0537CE8F1F80F76E00CB313A /* KEValue.swift in Sources */,
-				057F88231B780B4A0029AB4F /* KEEngine.swift in Sources */,
 				057F881F1B78031B0029AB4F /* KEContext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

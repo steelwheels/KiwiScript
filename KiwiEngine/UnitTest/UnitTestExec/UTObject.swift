@@ -13,29 +13,45 @@ import KiwiEngine
 public func testObject(console cons: CNConsole) -> Bool
 {
 	let vm = JSVirtualMachine()
-	let context = KEContext(virtualMachine: vm)
+	let context = KEContext(virtualMachine: vm!)
+	var testResult = false
 	let newobj = UTObjectBridge()
-	let objval = context.allocateObjectValue(object: newobj)
-
+	let newval = context.allocateObjectValue(object: newobj)
 	let script =   "function test(object){"
-		     + "  var tmp ;"
-		     + "  tmp = object.angle() + 1.1 ;"
-		     + "  object.setAngle(tmp); "
-		     + "}"
-	runScript(console: cons, context: context, script: script)
+		+ "  var tmp ;"
+		+ "  tmp = object.angle() + 1.1 ;"
+		+ "  object.setAngle(tmp) ; "
+		+ "  return object.angle() ; "
+		+ "}"
+	cons.print(string: "*** context.runScript\n")
+	context.runScript(script: script, exceptionHandler: {
+		(_ result: KEExecutionResult) -> Void in
+		testResult = finalizeHandler(result: result, console: console)
+	})
+	cons.print(string: "*** context.callFunction\n")
+	context.callFunction(functionName: "test", arguments: [newval], exceptionHandler: {
+		(_ result: KEExecutionResult) -> Void in
+		testResult = finalizeHandler(result: result, console: console)
+	})
+	return testResult
+}
 
-	let (_, errorsp) = KEEngine.callFunction(context: context, functionName: "test", arguments: [objval])
-	if let errors = errorsp {
-		console.print(string: "Failed to call function\n")
-		for error in errors {
-			console.print(string: "\(error)\n")
+private func finalizeHandler(result res: KEExecutionResult, console cons: CNConsole) -> Bool {
+	var testResult = false
+	switch res {
+	case .Exception(_, let message):
+		cons.print(string: "Exception: \(message)\n")
+	case .Finished(_, let value):
+		let message: String
+		if let v = value {
+			message = v.toString()
+			testResult = true
+		} else {
+			message = "<none>"
 		}
-		return false
+		cons.print(string: "Finished: \(message)\n")
 	}
-
-	console.print(string: "RESULT: newangle = \(newobj.angle())\n")
-
-	return true
+	return testResult
 }
 
 @objc protocol UTObjectBridging : JSExport {
@@ -61,20 +77,4 @@ public func testObject(console cons: CNConsole) -> Bool
 	}
 }
 
-private func runScript(console cons: CNConsole, context: KEContext, script : String)
-{
-	let (resultp, errorsp) = KEEngine.runScript(context: context, script: script)
-	if let errors = errorsp {
-		cons.print(string: "RunScript -> NG\n")
-		for error in errors {
-			cons.print(string: "\(error) ")
-		}
-	} else {
-		if let result = resultp {
-			cons.print(string: "RunScriot -> OK (\(result))\n")
-		} else {
-			fatalError("can not happen")
-		}
-	}
-}
 

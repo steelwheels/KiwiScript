@@ -12,10 +12,10 @@ import Foundation
 
 public func testPropertyTable(console cons: CNConsole) -> Bool
 {
-	let vm      = JSVirtualMachine()
-	let context = KEContext(virtualMachine: vm)
-	let table0  = KEPropertyTable(context: context)
+	let vm = JSVirtualMachine()
+	let context = KEContext(virtualMachine: vm!)
 
+	let table0  = KEPropertyTable(context: context)
 	let point0  = CGPoint(x: 10.0, y: 11.1)
 
 	addProperty(propertyTable: table0, propertyName: "undefined", propertyValue: JSValue(undefinedIn: context), console: cons)
