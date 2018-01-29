@@ -9,10 +9,10 @@ import Foundation
 
 public class KLConfig
 {
-	public var dummy: Int
+	public var useStrictMode: Bool
 
 	public init(){
-		dummy = 0
+		useStrictMode = true
 	}
 }
 
