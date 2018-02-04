@@ -53,13 +53,15 @@ public class KLModuleManager
 		let result: JSExport?
 		if let ctxt = mContext, let cons = mConsole, let ehandler = mExceptionHandler {
 			switch name {
-			case "color":	result = KLColor(context: ctxt)
-			case "align":	result = KLAlign(context: ctxt)
-			case "console":	result = KLConsole(context: ctxt, console: cons)
-			case "file":	result = KLFile(context: ctxt)
-			case "JSON":	result = KLJSON(context: ctxt)
-			case "process":	result = KLProcess(exceptionHandler: ehandler)
-			default:	result = nil
+			case "color":		result = KLColor(context: ctxt)
+			case "align":		result = KLAlign(context: ctxt)
+			case "authorize":	result = KLAuthorize(context: ctxt)
+			case "console":		result = KLConsole(context: ctxt, console: cons)
+			case "file":		result = KLFile(context: ctxt)
+			case "JSON":		result = KLJSON(context: ctxt)
+			case "process":		result = KLProcess(exceptionHandler: ehandler)
+			case "contact":		result = KLContact(context: ctxt, console: cons)
+			default:		result = nil
 			}
 		} else {
 			NSLog("Object is not setupped")

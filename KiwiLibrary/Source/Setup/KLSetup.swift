@@ -59,6 +59,13 @@ public func KLSetupLibrary(context ctxt: KEContext, console cons: CNCursesConsol
 		return
 	}
 
+	/* Add authorize module */
+	if let auth = manager.getBuiltinModule(moduleName: "authorize") as? KLAuthorize {
+		ctxt.setObject(auth, forKeyedSubscript: NSString(string: "Authorize"))
+	} else {
+		NSLog("Failed to allocate \"Authorize\" module")
+		return
+	}
 
 	/* Add console module */
 	if let console = manager.getBuiltinModule(moduleName: "console") as? KLConsole {
