@@ -25,12 +25,12 @@ import Foundation
 		mContext = ctxt
 	}
 
-	public var Undetermined 	: JSValue { get { return accessValue(type: .Undetermined	) }}
-	public var Denied		: JSValue { get { return accessValue(type: .Denied		) }}
-	public var Authorized		: JSValue { get { return accessValue(type: .Authorized		) }}
+	public var Undetermined 	: JSValue { get { return accessValue(state: .Undetermined	) }}
+	public var Denied		: JSValue { get { return accessValue(state: .Denied		) }}
+	public var Authorized		: JSValue { get { return accessValue(state: .Authorized		) }}
 
-	private func accessValue(type t: CNAuthorizeType) -> JSValue {
-		return JSValue(int32: Int32(t.rawValue), in: mContext)
+	private func accessValue(state s: CNAuthorizeState) -> JSValue {
+		return JSValue(int32: Int32(s.rawValue), in: mContext)
 	}
 
 }

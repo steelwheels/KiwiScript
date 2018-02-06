@@ -22,82 +22,29 @@ public class KLContact: NSObject, KLContactProtocol
 {
 	private var mContext:		KEContext
 	private var mConsole:		CNConsole
-	private var mAuthorize:		CNAuthorizeType
+	private var mAddressBook:	CNAddressBook
 
 	public init(context ctxt: KEContext, console cons: CNConsole){
 		mContext      = ctxt
 		mConsole      = cons
-		mAuthorize    = .Undetermined
+		mAddressBook  = CNAddressBook()
 	}
 
 	public var status: JSValue {
-		get { return JSValue(int32: Int32(mAuthorize.rawValue), in: mContext) }
+		get { return JSValue(int32: Int32(mAddressBook.state.rawValue), in: mContext) }
 	}
 
 	public func authorize() -> JSValue {
-		requestAuthorize()
-		return JSValue(int32: Int32(mAuthorize.rawValue), in: mContext)
-	}
-
-	private func requestAuthorize() {
-		if mAuthorize == .Undetermined {
-			let status = CNContactStore.authorizationStatus(for: .contacts)
-			switch status {
-			case .authorized:
-				mAuthorize = .Authorized
-			case .denied:
-				mAuthorize = .Denied
-			case .notDetermined, .restricted:
-				requestAccess()
-			}
-		}
-	}
-
-	private func requestAccess() {
-		let store = CNContactStore()
-		store.requestAccess(for: .contacts, completionHandler: {
-			(_ granted: Bool, _ error: Error?) -> Void in
-			if granted {
-				self.mAuthorize = .Authorized
-			} else {
-				self.mAuthorize = .Denied
-			}
-		})
+		return JSValue(int32: Int32(mAddressBook.state.rawValue), in: mContext)
 	}
 
 	public func contacts() -> JSValue
 	{
-		if let result = allContacts() {
-			return JSValue(object: result, in: mContext)
+		if let contacts = mAddressBook.contacts() {
+			return JSValue(object: contacts, in: mContext)
 		} else {
 			return JSValue(nullIn: mContext)
 		}
-	}
-
-	public func allContacts() -> Array<Dictionary<String, AnyObject>>? {
-		requestAuthorize()
-		let store   = CNContactStore()
-		let keys    = [CNContactFamilyNameKey as CNKeyDescriptor]
-		let request = CNContactFetchRequest(keysToFetch: keys)
-		do {
-			var result: Array<Dictionary<String, AnyObject>> = []
-			try store.enumerateContacts(with: request, usingBlock: {
-				(contact, pointer) in
-				result.append(KLContact.contactToDictionary(contact: contact))
-			})
-			return result
-		}
-		catch {
-			return nil
-		}
-	}
-
-	private class func contactToDictionary(contact cont: CNContact) -> Dictionary<String, AnyObject> {
-		var result: Dictionary<String, AnyObject> = [:]
-		result["identifier"]  = NSString(string: cont.identifier)
-		result["givenName"]   = NSString(string: cont.givenName)
-		result["familyName"]  = NSString(string: cont.familyName)
-		return result
 	}
 }
 
