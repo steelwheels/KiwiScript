@@ -41,7 +41,7 @@ import Foundation
 	public func write(_ fname: JSValue, _ json: JSValue) -> JSValue {
 		let errcode:Int32
 		if let url = valueToURL(value: fname) {
-			if let obj = json.toObject() as? Dictionary<String, AnyObject> {
+			if let obj = json.toObject() as? NSDictionary {
 				if let err = CNJSONFile.writeFile(URL: url, dictionary: obj) {
 					let errstr = err.toString()
 					NSLog("Can not write JSON file: \(errstr)")
@@ -62,7 +62,7 @@ import Foundation
 	}
 
 	public func serialize(_ json: JSValue) -> JSValue {
-		if let obj = json.toObject() as? Dictionary<String, AnyObject> {
+		if let obj = json.toObject() as? NSDictionary {
 			let (str, err) = CNJSONFile.serialize(dictionary: obj)
 			if let e = err {
 				let estr = e.toString()
