@@ -32,7 +32,7 @@ import Foundation
 			if let e = err {
 				NSLog(e.toString())
 			} else {
-				return JSValue(object: obj, in: mContext)
+				return objectToValue(JSONObject: obj!, context: mContext)
 			}
 		}
 		return JSValue(nullIn: mContext)
@@ -41,8 +41,8 @@ import Foundation
 	public func write(_ fname: JSValue, _ json: JSValue) -> JSValue {
 		let errcode:Int32
 		if let url = valueToURL(value: fname) {
-			if let obj = json.toObject() as? NSDictionary {
-				if let err = CNJSONFile.writeFile(URL: url, dictionary: obj) {
+			if let obj = valueToObject(value: json) {
+				if let err = CNJSONFile.writeFile(URL: url, JSONObject: obj) {
 					let errstr = err.toString()
 					NSLog("Can not write JSON file: \(errstr)")
 					errcode = 3
@@ -62,8 +62,8 @@ import Foundation
 	}
 
 	public func serialize(_ json: JSValue) -> JSValue {
-		if let obj = json.toObject() as? NSDictionary {
-			let (str, err) = CNJSONFile.serialize(dictionary: obj)
+		if let obj = valueToObject(value: json) {
+			let (str, err) = CNJSONFile.serialize(JSONObject: obj)
 			if let e = err {
 				let estr = e.toString()
 				NSLog("serialization failed: \(estr)")
@@ -72,6 +72,26 @@ import Foundation
 			}
 		}
 		return JSValue(nullIn: mContext)
+	}
+
+	private func valueToObject(value val: JSValue) -> CNJSONObject? {
+		let valobj = val.toObject()
+		if let dictobj = valobj as? NSDictionary {
+			return CNJSONObject(dictionary: dictobj)
+		} else if let arrobj = valobj as? NSArray {
+			return CNJSONObject(array: arrobj)
+		} else {
+			return nil
+		}
+	}
+
+	private func objectToValue(JSONObject obj: CNJSONObject, context ctxt: KEContext) -> JSValue {
+		let result: JSValue
+		switch obj {
+		case .Array(let array):		result = JSValue(object: array, in: ctxt)
+		case .Dictionary(let dict):	result = JSValue(object: dict, in: ctxt)
+		}
+		return result
 	}
 
 	private func valueToURL(value v: JSValue) -> URL? {
