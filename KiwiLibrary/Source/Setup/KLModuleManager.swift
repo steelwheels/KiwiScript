@@ -18,7 +18,7 @@ public class KLModuleManager
 	private var mIs1stExternalModule:	Bool
 	private var mContext:			KEContext?
 	private var mConsole:			CNCursesConsole?
-	private var mExceptionHandler: 		((_ exception: KLException) -> Void)?
+	private var mExceptionHandler: 		((_ exception: KEException) -> Void)?
 
 	private init(){
 		mModuleTable 		= [:]
@@ -28,7 +28,7 @@ public class KLModuleManager
 		mExceptionHandler	= nil
 	}
 
-	public func setup(context ctxt: KEContext, console cons: CNCursesConsole, exceptionHandler ehandler: @escaping (_ exception: KLException) -> Void){
+	public func setup(context ctxt: KEContext, console cons: CNCursesConsole, exceptionHandler ehandler: @escaping (_ exception: KEException) -> Void){
 		mContext 		= ctxt
 		mConsole		= cons
 		mExceptionHandler	= ehandler
@@ -109,12 +109,13 @@ public class KLModuleManager
 		var retval: JSValue? = nil
 		if let ctxt = mContext {
 			ctxt.runScript(script: script, exceptionHandler: {
-				(_ result: KEExecutionResult) -> Void in
+				(_ result: KEException) -> Void in
+				self.raiseException(exception: result)
 				switch result {
-				case .Exception(_, let message):
-					self.raiseException(exception: .CompileError(message))
-				case .Finished(_, let value):
+				case .Evaluated(_, let value):
 					retval = value
+				case .CompileError(_), .Exit(_), .Terminated(_, _):
+					retval = nil
 				}
 			})
 		} else {
@@ -123,7 +124,7 @@ public class KLModuleManager
 		return retval
 	}
 
-	private func raiseException(exception excep: KLException) {
+	private func raiseException(exception excep: KEException) {
 		if let ehandler = mExceptionHandler {
 			ehandler(excep)
 		} else {

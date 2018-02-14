@@ -5,6 +5,7 @@
  *   Copyright (C) 2017 Steel Wheels Project
  */
 
+import KiwiEngine
 import JavaScriptCore
 import Foundation
 import Darwin
@@ -16,9 +17,9 @@ import Darwin
 
 @objc public class KLProcess: NSObject, KLProcessProtocol
 {
-	private var mExceptionHandler: (_ exception: KLException) -> Void
+	private var mExceptionHandler:	(_ exception: KEException) -> Void
 
-	public init(exceptionHandler ehandler: @escaping (_ exception: KLException) -> Void){
+	public init(exceptionHandler ehandler: @escaping (_ exception: KEException) -> Void){
 		mExceptionHandler = ehandler
 	}
 

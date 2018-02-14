@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		05669FF81FE6B08F00709ADA /* KLFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05669FF71FE6B08F00709ADA /* KLFile.swift */; };
-		05735C2A201DAF410000A77E /* KLException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05735C29201DAF410000A77E /* KLException.swift */; };
 		057D234E20138D78006BB602 /* KLModuleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057D234D20138D78006BB602 /* KLModuleManager.swift */; };
 		057D2B942014512E0027A52A /* KLRequire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057D2B932014512E0027A52A /* KLRequire.swift */; };
 		057FBF8C200DBDDD002CEF61 /* KLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057FBF8B200DBDDD002CEF61 /* KLColor.swift */; };
@@ -36,7 +35,6 @@
 
 /* Begin PBXFileReference section */
 		05669FF71FE6B08F00709ADA /* KLFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLFile.swift; sourceTree = "<group>"; };
-		05735C29201DAF410000A77E /* KLException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLException.swift; sourceTree = "<group>"; };
 		057D234D20138D78006BB602 /* KLModuleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLModuleManager.swift; sourceTree = "<group>"; };
 		057D2B932014512E0027A52A /* KLRequire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLRequire.swift; sourceTree = "<group>"; };
 		057FBF8B200DBDDD002CEF61 /* KLColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = KLColor.swift; path = ../Console/KLColor.swift; sourceTree = "<group>"; };
@@ -123,7 +121,6 @@
 				05ED6D6C1FE2DDD5007FC6D6 /* KLConfig.swift */,
 				057D2B932014512E0027A52A /* KLRequire.swift */,
 				057D234D20138D78006BB602 /* KLModuleManager.swift */,
-				05735C29201DAF410000A77E /* KLException.swift */,
 			);
 			name = Setup;
 			path = ../Source/Setup;
@@ -265,7 +262,6 @@
 				05B6958D1FF7647B00A9C8E0 /* KLConsole.swift in Sources */,
 				05ED6D6F1FE2DE94007FC6D6 /* KLSetup.swift in Sources */,
 				05BD7AF5201B7DE400C67457 /* KLAlign.swift in Sources */,
-				05735C2A201DAF410000A77E /* KLException.swift in Sources */,
 				05669FF81FE6B08F00709ADA /* KLFile.swift in Sources */,
 				058550A1202556BD00988C97 /* KLAuthorize.swift in Sources */,
 				057D2B942014512E0027A52A /* KLRequire.swift in Sources */,

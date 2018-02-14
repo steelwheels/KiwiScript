@@ -32,9 +32,10 @@ Here is the example to load primitive classes for graphics.
 ````
 var graph = require('Graphics/Primitive') ;
 ````
-|Library name | Document                 |
+|Library name | Description                 |
 |:---         |:---                      |
-|`Graphics/Primitive` | [Graphics Primitive Class ](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/GraphicsPrimitive.md)
+|`Math/Math` |[Primitive functions for mathematics](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Math.md)|
+|`Graphics/Primitive`|[Graphics Primitive Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/GraphicsPrimitive.md) |
 
 ## Related link
 * [Kiwi Library](https://github.com/steelwheels/KiwiScript/tree/master/KiwiLibrary): Top level document

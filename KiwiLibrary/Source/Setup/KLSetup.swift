@@ -10,20 +10,13 @@ import JavaScriptCore
 import Canary
 import Foundation
 
-public func KLSetupLibrary(context ctxt: KEContext, console cons: CNCursesConsole, config cfg: KLConfig, exceptionHandler ehandler: @escaping (_ exception: KLException) -> Void)
+public func KLSetupLibrary(context ctxt: KEContext, console cons: CNCursesConsole, config cfg: KLConfig, exceptionHandler ehandler: @escaping (_ exception: KEException) -> Void)
 {
 	/* Set strict mode */
 	if cfg.useStrictMode {
 		ctxt.runScript(script: "'use strict' ;", exceptionHandler: {
-			(_ result: KEExecutionResult) -> Void in
-			switch result {
-			case .Exception(_, let message):
-				let except = KLException.CompileError(message)
-				ehandler(except)
-				return /* Can not continue */
-			case .Finished(_, _):
-				break
-			}
+			(_ result: KEException) -> Void in
+			ehandler(result)
 		})
 	}
 
