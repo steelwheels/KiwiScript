@@ -32,11 +32,11 @@ private func testScript(console cons: CNConsole, context ctxt: KEContext, script
 	var testResult = false
 
 	ctxt.runScript(script: scr, exceptionHandler: {
-		(_ result: KEExecutionResult) -> Void in
+		(_ result: KEException) -> Void in
 		switch result {
-		case .Exception(_, let message):
-			console.print(string: "Exception: \(message)\n")
-		case .Finished(_, let value):
+		case .Terminated(_, let message):
+			console.print(string: "Terminated: \(message)\n")
+		case .Evaluated(_, let value):
 			let message: String
 			if let v = value {
 				message = v.toString()
@@ -44,7 +44,11 @@ private func testScript(console cons: CNConsole, context ctxt: KEContext, script
 			} else {
 				message = "<none>"
 			}
-			console.print(string: "Finished: \(message)\n")
+			console.print(string: "Evaluated: \(message)\n")
+		case .CompileError(let message):
+			console.print(string: "Compile error: \(message)\n")
+		case .Exit(let code):
+			console.print(string: "Exit: \(code)\n")
 		}
 	})
 	return testResult

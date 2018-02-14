@@ -9,18 +9,13 @@ import Foundation
 import JavaScriptCore
 import Canary
 
-public enum KEExecutionResult {
-	case Finished(JSContext, JSValue?)
-	case Exception(JSContext, String)
-}
-
 public class KEContext : JSContext
 {
 	public override init(virtualMachine vm: JSVirtualMachine) {
 		super.init(virtualMachine: vm)
 	}
 
-	public func runScript(script scr: String!, exceptionHandler fhandler: @escaping (_ result: KEExecutionResult) -> Void)  {
+	public func runScript(script scr: String!, exceptionHandler fhandler: @escaping (_ result: KEException) -> Void)  {
 		/* Set exception handler */
 		setExceptionHandler(finalizeHandler: fhandler)
 
@@ -28,11 +23,11 @@ public class KEContext : JSContext
 		let retval = super.evaluateScript(scr)
 
 		/* Call handler with return value */
-		let result = KEExecutionResult.Finished(self, retval)
+		let result = KEException.Evaluated(self, retval)
 		fhandler(result)
 	}
 
-	public func callFunction(functionName funcname: String, arguments args: Array<AnyObject>, exceptionHandler fhandler: @escaping (_ result: KEExecutionResult) -> Void) {
+	public func callFunction(functionName funcname: String, arguments args: Array<AnyObject>, exceptionHandler fhandler: @escaping (_ result: KEException) -> Void) {
 		/* Set exception handler */
 		setExceptionHandler(finalizeHandler: fhandler)
 
@@ -41,11 +36,11 @@ public class KEContext : JSContext
 		let retval = jsfunc.call(withArguments: args)
 
 		/* Call handler with return value */
-		let result = KEExecutionResult.Finished(self, retval)
+		let result = KEException.Evaluated(self, retval)
 		fhandler(result)
 	}
 
-	private func setExceptionHandler(finalizeHandler fhandler: @escaping (_ result: KEExecutionResult) -> Void) {
+	private func setExceptionHandler(finalizeHandler fhandler: @escaping (_ result: KEException) -> Void) {
 		self.exceptionHandler = { (contextp, exception) in
 			var message: String
 			if let e = exception {
@@ -54,7 +49,7 @@ public class KEContext : JSContext
 				message = "Unknown exception"
 			}
 			/* Call handler with exception */
-			let result = KEExecutionResult.Exception(self, message)
+			let result = KEException.Terminated(self, message)
 			fhandler(result)
 		}
 	}

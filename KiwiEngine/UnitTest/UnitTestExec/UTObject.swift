@@ -25,23 +25,23 @@ public func testObject(console cons: CNConsole) -> Bool
 		+ "}"
 	cons.print(string: "*** context.runScript\n")
 	context.runScript(script: script, exceptionHandler: {
-		(_ result: KEExecutionResult) -> Void in
+		(_ result: KEException) -> Void in
 		testResult = finalizeHandler(result: result, console: console)
 	})
 	cons.print(string: "*** context.callFunction\n")
 	context.callFunction(functionName: "test", arguments: [newval], exceptionHandler: {
-		(_ result: KEExecutionResult) -> Void in
+		(_ result: KEException) -> Void in
 		testResult = finalizeHandler(result: result, console: console)
 	})
 	return testResult
 }
 
-private func finalizeHandler(result res: KEExecutionResult, console cons: CNConsole) -> Bool {
+private func finalizeHandler(result res: KEException, console cons: CNConsole) -> Bool {
 	var testResult = false
 	switch res {
-	case .Exception(_, let message):
-		cons.print(string: "Exception: \(message)\n")
-	case .Finished(_, let value):
+	case .Terminated(_, let message):
+		cons.print(string: "Terminated: \(message)\n")
+	case .Evaluated(_, let value):
 		let message: String
 		if let v = value {
 			message = v.toString()
@@ -49,7 +49,11 @@ private func finalizeHandler(result res: KEExecutionResult, console cons: CNCons
 		} else {
 			message = "<none>"
 		}
-		cons.print(string: "Finished: \(message)\n")
+		cons.print(string: "Evaluated: \(message)\n")
+	case .CompileError(let message):
+		cons.print(string: "Compile error: \(message)\n")
+	case .Exit(let code):
+		cons.print(string: "Exit: \(code)\n")
 	}
 	return testResult
 }

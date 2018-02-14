@@ -1,14 +1,14 @@
 *** Script1
-Exception: SyntaxError: Unexpected end of script
-Finished: undefined
+Terminated: SyntaxError: Unexpected end of script
+Evaluated: undefined
 *** Script2
-Exception: SyntaxError: Unexpected identifier 'hoge'. Expected a ';' following a return statement.
-Finished: undefined
+Terminated: SyntaxError: Unexpected identifier 'hoge'. Expected a ';' following a return statement.
+Evaluated: undefined
 testError : OK
 *** context.runScript
-Finished: undefined
+Evaluated: undefined
 *** context.callFunction
-Finished: 2.3
+Evaluated: 2.3
 testObject : OK
 Listener: undefined = undefined
 Listener: null = null
