@@ -22,3 +22,21 @@ Terminate process by the given exit code.
 
 #### Return value
 None
+
+### `sleep` class method
+Sleep the process for a specified number of seconds.
+````
+  Process.sleep(<seconds>)
+````
+
+#### Parameters
+|Parameter    |Type   |Description                    |
+|:---         |:---   |:---                           |
+|seconds      |Double |Time to sleep. The unit of the time is *seconds*. |
+
+#### Return value
+None
+
+## Related link
+* [Kiwi Library](https://github.com/steelwheels/KiwiScript/tree/master/KiwiLibrary): Top level document
+* [Steel Wheels Project](http://steelwheels.github.io): Web site of developer.

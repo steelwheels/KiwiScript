@@ -35,32 +35,29 @@ Select the console mode: *Shell mode* or *Screen mode*.
 
 |Value  |Access | Description              |  
 |:---   |:---   |:---                      |
-|Bool   |Read/Write| *true*: Select screen mode |
-|       |          | *false*: Select shell mode (default) |
+|Bool   |Read/Write| `true`: Select screen mode |
+|       |          | `false`: Select shell mode (default) |
 
 ### `visiblePrompt` property
 The property to show/hide the prompt.
 
 |Value  |Access | Description              |  
 |:---   |:---   |:---                      |
-|Bool   |Read/Write| *true*: Show prompt     |
-|       |          | *false*: Hide prompt    |
+|Bool   |Read/Write| `true`: Show prompt (default), `false`: Hide prompt    |
 
 ### `doBuffering` property
 The property to decide input buffering or not.
 
 |Value     |Access | Description                        |  
 |:---      |:---   |:---                                |
-|Bool    |Read/Write| *true*: Accept input after the return key is pressed  |
-|        |          | *false*: Accept input for each keystroke (default)  |
+|Bool    |Read/Write| `true`: Accept input after the return key is pressed, `false`: Accept input for each keystroke (default)  |
 
 ### `doEcho` property
 The property to decide echo the input or not.
 
 |Value     |Access | Description                        |  
 |:---      |:---   |:---                                |
-|Bool    |Read/Write| *true*: Echo the input |
-|        |          | *false*: Do not echo the input |
+|Bool    |Read/Write| `true`: Echo the input,  `false`: Do not echo the input |
 
 ### `screenWidth` property
 This works under screen mode.

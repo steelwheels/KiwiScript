@@ -13,13 +13,16 @@ import Darwin
 @objc public protocol KLProcessProtocol: JSExport
 {
 	func exit(_ code: JSValue) -> JSValue
+	func sleep(_ time: JSValue) -> JSValue
 }
 
 @objc public class KLProcess: NSObject, KLProcessProtocol
 {
+	private var mContext: 		KEContext
 	private var mExceptionHandler:	(_ exception: KEException) -> Void
 
-	public init(exceptionHandler ehandler: @escaping (_ exception: KEException) -> Void){
+	public init(context ctxt: KEContext, exceptionHandler ehandler: @escaping (_ exception: KEException) -> Void){
+		mContext	  = ctxt
 		mExceptionHandler = ehandler
 	}
 
@@ -34,6 +37,17 @@ import Darwin
 		}
 		mExceptionHandler(.Exit(code))
 		Darwin.exit(code)
+	}
+
+	public func sleep(_ time: JSValue) -> JSValue
+	{
+		if time.isNumber {
+			let tval = time.toDouble()
+			Thread.sleep(forTimeInterval: TimeInterval(tval))
+		} else {
+			NSLog("Invalid value to sleep")
+		}
+		return JSValue(undefinedIn: mContext)
 	}
 }
 
