@@ -12,6 +12,7 @@
 		05941F59203DBBCE005930F9 /* Canary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05941F58203DBBCE005930F9 /* Canary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0597DEBB2039C8E4008CAC98 /* KiwiEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0597DEBA2039C8E4008CAC98 /* KiwiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05D049D52039AA9000642E6A /* KHShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D049D42039AA9000642E6A /* KHShell.swift */; };
+		05E73E6F2041712000D317D0 /* KHShellConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E73E6E2041712000D317D0 /* KHShellConsole.swift */; };
 		05EB10A02039BA2C005209C4 /* KiwiShell.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05EB109F2039BA2C005209C4 /* KiwiShell.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -74,6 +75,7 @@
 		05D049D42039AA9000642E6A /* KHShell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KHShell.swift; sourceTree = "<group>"; };
 		05D049DA2039AC3C00642E6A /* UnitTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		05D049DC2039AC3C00642E6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05E73E6E2041712000D317D0 /* KHShellConsole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KHShellConsole.swift; sourceTree = "<group>"; };
 		05EB109F2039BA2C005209C4 /* KiwiShell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiShell.framework; path = ../../../../Library/Frameworks/KiwiShell.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				055AAA902039A319008018A8 /* KiwiShell.h */,
+				05E73E6E2041712000D317D0 /* KHShellConsole.swift */,
 				05D049D42039AA9000642E6A /* KHShell.swift */,
 			);
 			name = Source;
@@ -320,6 +323,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05D049D52039AA9000642E6A /* KHShell.swift in Sources */,
+				05E73E6F2041712000D317D0 /* KHShellConsole.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

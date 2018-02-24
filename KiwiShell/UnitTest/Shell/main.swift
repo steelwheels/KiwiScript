@@ -13,8 +13,13 @@ let args    = CommandLine.arguments
 let appname = args[0]
 print("Hello, World! from \(appname)")
 
+let console  = CNFileConsole()
+let shell    = KHShellConsole(applicationName: appname, console: console)
+shell.repl()
+
+/*
 let editline = CNEditLine()
-editline.setup(programName: "Shell")
+editline.setup(programName: "Shell", console: console)
 editline.doBuffering = true
 
 var input: String? = nil
@@ -24,5 +29,7 @@ while input == nil {
 	}
 }
 print("input -> \(input!)")
+*/
+
 
 
