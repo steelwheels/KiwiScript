@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		055232D62039AE1100FD002C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055232D52039AE1100FD002C /* main.swift */; };
 		055AAA912039A319008018A8 /* KiwiShell.h in Headers */ = {isa = PBXBuildFile; fileRef = 055AAA902039A319008018A8 /* KiwiShell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		05941F59203DBBCE005930F9 /* Canary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05941F58203DBBCE005930F9 /* Canary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0597DEBB2039C8E4008CAC98 /* KiwiEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0597DEBA2039C8E4008CAC98 /* KiwiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05D049D52039AA9000642E6A /* KHShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D049D42039AA9000642E6A /* KHShell.swift */; };
 		05EB10A02039BA2C005209C4 /* KiwiShell.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05EB109F2039BA2C005209C4 /* KiwiShell.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -53,6 +55,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				05941F59203DBBCE005930F9 /* Canary.framework in CopyFiles */,
+				0597DEBB2039C8E4008CAC98 /* KiwiEngine.framework in CopyFiles */,
 				05EB10A02039BA2C005209C4 /* KiwiShell.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -62,9 +66,11 @@
 /* Begin PBXFileReference section */
 		05100ECC2039A17000C269BB /* KiwiShell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiShell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05100ED02039A17000C269BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		055232D32039AE1100FD002C /* UnitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		055232D32039AE1100FD002C /* Shell */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Shell; sourceTree = BUILT_PRODUCTS_DIR; };
 		055232D52039AE1100FD002C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		055AAA902039A319008018A8 /* KiwiShell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KiwiShell.h; sourceTree = "<group>"; };
+		05941F58203DBBCE005930F9 /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../../Library/Frameworks/Canary.framework; sourceTree = "<group>"; };
+		0597DEBA2039C8E4008CAC98 /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../Library/Frameworks/KiwiEngine.framework; sourceTree = "<group>"; };
 		05D049D42039AA9000642E6A /* KHShell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KHShell.swift; sourceTree = "<group>"; };
 		05D049DA2039AC3C00642E6A /* UnitTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		05D049DC2039AC3C00642E6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -99,12 +105,13 @@
 		05100EC22039A17000C269BB = {
 			isa = PBXGroup;
 			children = (
-				05EB109F2039BA2C005209C4 /* KiwiShell.framework */,
 				055AAA8F2039A244008018A8 /* Source */,
 				05100ECE2039A17000C269BB /* OSX */,
 				05D049DB2039AC3C00642E6A /* UnitTest */,
-				055232D42039AE1100FD002C /* UnitTest */,
 				05100ECD2039A17000C269BB /* Products */,
+				05941F58203DBBCE005930F9 /* Canary.framework */,
+				0597DEBA2039C8E4008CAC98 /* KiwiEngine.framework */,
+				05EB109F2039BA2C005209C4 /* KiwiShell.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -113,7 +120,7 @@
 			children = (
 				05100ECC2039A17000C269BB /* KiwiShell.framework */,
 				05D049DA2039AC3C00642E6A /* UnitTest.bundle */,
-				055232D32039AE1100FD002C /* UnitTest */,
+				055232D32039AE1100FD002C /* Shell */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -126,13 +133,6 @@
 			name = OSX;
 			sourceTree = "<group>";
 		};
-		055232D42039AE1100FD002C /* UnitTest */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UnitTest;
-			sourceTree = "<group>";
-		};
 		055AAA8F2039A244008018A8 /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,11 +143,19 @@
 			path = ../Source;
 			sourceTree = "<group>";
 		};
+		05B067F920416A5B0084172B /* Shell */ = {
+			isa = PBXGroup;
+			children = (
+				055232D52039AE1100FD002C /* main.swift */,
+			);
+			path = Shell;
+			sourceTree = "<group>";
+		};
 		05D049DB2039AC3C00642E6A /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
 				05D049DC2039AC3C00642E6A /* Info.plist */,
-				055232D52039AE1100FD002C /* main.swift */,
+				05B067F920416A5B0084172B /* Shell */,
 			);
 			name = UnitTest;
 			path = ../UnitTest;
@@ -203,9 +211,9 @@
 			productReference = 05100ECC2039A17000C269BB /* KiwiShell.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		055232D22039AE1100FD002C /* UnitTest */ = {
+		055232D22039AE1100FD002C /* Shell */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 055232D72039AE1100FD002C /* Build configuration list for PBXNativeTarget "UnitTest" */;
+			buildConfigurationList = 055232D72039AE1100FD002C /* Build configuration list for PBXNativeTarget "Shell" */;
 			buildPhases = (
 				055232CF2039AE1100FD002C /* Sources */,
 				055232D02039AE1100FD002C /* Frameworks */,
@@ -216,9 +224,9 @@
 			dependencies = (
 				055232DB2039AE1B00FD002C /* PBXTargetDependency */,
 			);
-			name = UnitTest;
+			name = Shell;
 			productName = UnitTest;
-			productReference = 055232D32039AE1100FD002C /* UnitTest */;
+			productReference = 055232D32039AE1100FD002C /* Shell */;
 			productType = "com.apple.product-type.tool";
 		};
 		05D049D92039AC3C00642E6A /* UnitTestBundle */ = {
@@ -284,7 +292,7 @@
 				05100ECB2039A17000C269BB /* KiwiShell */,
 				055232C72039AD9200FD002C /* Install */,
 				05D049D92039AC3C00642E6A /* UnitTestBundle */,
-				055232D22039AE1100FD002C /* UnitTest */,
+				055232D22039AE1100FD002C /* Shell */,
 			);
 		};
 /* End PBXProject section */
@@ -550,10 +558,12 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
-				FRAMEWORK_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/$(PRODUCT_NAME).bundle/Contents/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/$(PRODUCT_NAME).bundle/Contents/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/$(PRODUCT_NAME).bundle/Contents/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/UnitTest.bundle/Contents/Frameworks";
+				GCC_OPTIMIZATION_LEVEL = 2;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/UnitTest.bundle/Contents/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/UnitTest.bundle/Contents/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -563,9 +573,10 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
-				FRAMEWORK_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/$(PRODUCT_NAME).bundle/Contents/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/$(PRODUCT_NAME).bundle/Contents/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/$(PRODUCT_NAME).bundle/Contents/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/UnitTest.bundle/Contents/Frameworks";
+				GCC_OPTIMIZATION_LEVEL = 2;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/UnitTest.bundle/Contents/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/UnitTest.bundle/Contents/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 			};
@@ -633,7 +644,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		055232D72039AE1100FD002C /* Build configuration list for PBXNativeTarget "UnitTest" */ = {
+		055232D72039AE1100FD002C /* Build configuration list for PBXNativeTarget "Shell" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				055232D82039AE1100FD002C /* Debug */,

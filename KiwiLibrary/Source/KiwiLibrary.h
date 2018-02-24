@@ -2,7 +2,7 @@
  * @file	KiwiLibrary.swift
  * @brief	Bridge header for Objective-C
  * @par Copyright
- *   Copyright (C) 2017 Steel Wheels Project
+ *   Copyright (C) 2018 Steel Wheels Project
  */
 
 #import <Cocoa/Cocoa.h>
