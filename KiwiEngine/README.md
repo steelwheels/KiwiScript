@@ -17,3 +17,7 @@ The *KEContext class* is a subclass of JSContext. It is extended to keep runtime
 ## `KEPropertyTable` class
 The storage to store property values.
 The property value (implemented by `KEPropertyValue` class) is independent from JavaScript Context.
+
+## Related link
+* [Steel Wheels Project](http://steelwheels.github.io): Web site of developer.
+* [KiwiScript](https://github.com/steelwheels/KiwiScript): The repository which contains this framework.

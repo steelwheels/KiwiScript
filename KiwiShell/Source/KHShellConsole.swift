@@ -6,6 +6,7 @@
  */
 
 import Foundation
+import KiwiEngine
 import JavaScriptCore
 import Canary
 
@@ -15,32 +16,32 @@ public class KHShellConsole
 	private var mConsole:		CNFileConsole
 	private var mShell: 		KHShell
 
-	public init(applicationName aname: String, console cons: CNFileConsole){
+	public init(applicationName aname: String, context ctxt: KEContext, console cons: CNFileConsole){
 		mApplicationName	= aname
 		mConsole		= cons
-		if let vm = JSVirtualMachine() {
-			mShell			= KHShell(virtualMachine: vm, console: cons)
-		} else {
-			fatalError("Failed to allocate VM")
-		}
+		mShell			= KHShell(context: ctxt, console: cons)
 	}
 
-	public func repl() {
+	public func repl() -> Int32
+	{
 		let editline = CNEditLine()
 		editline.setup(programName: mApplicationName, console: mConsole)
 		editline.doBuffering = true
 
 		var docont = true
+		var result: Int32 = 0
 		while docont {
 			if let str = editline.gets() {
 				switch mShell.execute(commandLine: str) {
 				case .Continue:
 					break
-				case .Exit(_):
+				case .Exit(let code):
+					result = code
 					docont = false
 				}
 			}
 		}
+		return result
 	}
 }
 

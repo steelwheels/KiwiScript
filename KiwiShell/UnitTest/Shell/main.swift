@@ -6,17 +6,24 @@
  */
 
 import KiwiShell
+import KiwiEngine
 import Canary
+import JavaScriptCore
 import Foundation
 
 let args    = CommandLine.arguments
 let appname = args[0]
 print("Hello, World! from \(appname)")
 
-let console  = CNFileConsole()
-let shell    = KHShellConsole(applicationName: appname, console: console)
-shell.repl()
+guard let vm = JSVirtualMachine() else {
+	fatalError("Could not allocate VM")
+}
 
+let context  = KEContext(virtualMachine: vm)
+let console  = CNFileConsole()
+let shell    = KHShellConsole(applicationName: appname, context: context, console: console)
+let result   = shell.repl()
+print(" -> result = \(result)")
 /*
 let editline = CNEditLine()
 editline.setup(programName: "Shell", console: console)

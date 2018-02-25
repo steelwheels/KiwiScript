@@ -15,8 +15,8 @@ public class KHShell
 	private var mContext: KEContext
 	private var mConsole: CNConsole
 
-	public init(virtualMachine vm: JSVirtualMachine, console cons: CNConsole){
-		mContext = KEContext(virtualMachine: vm)
+	public init(context ctxt: KEContext, console cons: CNConsole){
+		mContext = ctxt
 		mConsole = cons
 	}
 
