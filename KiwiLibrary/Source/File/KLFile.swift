@@ -85,7 +85,7 @@ import Foundation
 
 	public func close() -> JSValue {
 		let result: Int32
-		if mFile.isClosed {
+		if mFile.isClosed() {
 			/* Already closed */
 			result = 1
 		} else {
