@@ -75,12 +75,16 @@ import Foundation
 
 @objc public class KLFileObject: NSObject, KLFileObjectProtocol
 {
-	private var mFile:	CNFile
+	private var mFile:	CNTextFile
 	private var mContext:	KEContext
 
-	public init(file fl: CNFile, context ctxt: KEContext){
+	public init(file fl: CNTextFile, context ctxt: KEContext){
 		mFile    = fl
 		mContext = ctxt
+	}
+
+	public var coreObject: CNFile {
+		return mFile
 	}
 
 	public func close() -> JSValue {
@@ -117,8 +121,8 @@ import Foundation
 		var result: Int32 = 0
 		if strval.isString {
 			if let str = strval.toString() {
-				let count = mFile.put(string: str)
-				result = Int32(count)
+				mFile.put(string: str)
+				result = Int32(str.lengthOfBytes(using: .utf8))
 			}
 		}
 		return JSValue(int32: result, in: mContext)

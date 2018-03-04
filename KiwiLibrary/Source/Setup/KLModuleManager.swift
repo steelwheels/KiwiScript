@@ -60,6 +60,7 @@ public class KLModuleManager
 			case "file":		result = KLFile(context: ctxt)
 			case "JSON":		result = KLJSON(context: ctxt)
 			case "process":		result = KLProcess(context: ctxt, exceptionHandler: ehandler)
+			case "shell":		result = KLShell(context: ctxt)
 			case "contact":		result = KLContact(context: ctxt, console: cons)
 			default:		result = nil
 			}

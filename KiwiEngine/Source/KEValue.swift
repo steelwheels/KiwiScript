@@ -134,6 +134,15 @@ extension CNValue
 
 extension JSValue
 {
+	public class func castObject<T>(value val: JSValue) -> T? {
+		if val.isObject {
+			if let obj = val.toObject() as? T {
+				return obj
+			}
+		}
+		return nil
+	}
+
 	public func type() -> JSValueType {
 		var result: JSValueType
 		if self.isUndefined {

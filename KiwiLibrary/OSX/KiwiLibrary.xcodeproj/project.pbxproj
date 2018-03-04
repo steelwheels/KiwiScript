@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05C49214204ABF3800C5D910 /* KLShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C49213204ABF3800C5D910 /* KLShell.swift */; };
 		05F0201E203F088400B430F5 /* KLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F0201D203F088400B430F5 /* KLColor.swift */; };
 		05F02025203F08D000B430F5 /* KLAuthorize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F02023203F08CF00B430F5 /* KLAuthorize.swift */; };
 		05F02026203F08D000B430F5 /* KLContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F02024203F08CF00B430F5 /* KLContact.swift */; };
@@ -36,6 +37,7 @@
 		05B12283203F0734009DDBEF /* KiwiLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05B12286203F0734009DDBEF /* KiwiLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KiwiLibrary.h; path = ../../Source/KiwiLibrary.h; sourceTree = "<group>"; };
 		05B12287203F0734009DDBEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
+		05C49213204ABF3800C5D910 /* KLShell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLShell.swift; sourceTree = "<group>"; };
 		05F0201D203F088400B430F5 /* KLColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLColor.swift; sourceTree = "<group>"; };
 		05F02023203F08CF00B430F5 /* KLAuthorize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLAuthorize.swift; sourceTree = "<group>"; };
 		05F02024203F08CF00B430F5 /* KLContact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLContact.swift; sourceTree = "<group>"; };
@@ -87,6 +89,14 @@
 			path = KiwiLibrary;
 			sourceTree = "<group>";
 		};
+		05C49212204AB7C900C5D910 /* Shell */ = {
+			isa = PBXGroup;
+			children = (
+				05C49213204ABF3800C5D910 /* KLShell.swift */,
+			);
+			path = Shell;
+			sourceTree = "<group>";
+		};
 		05F0201B203F083000B430F5 /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +105,7 @@
 				05F02022203F08B700B430F5 /* Database */,
 				05F02027203F08F400B430F5 /* File */,
 				05F02030203F093800B430F5 /* Process */,
+				05C49212204AB7C900C5D910 /* Shell */,
 			);
 			name = Source;
 			path = ../Source;
@@ -252,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05F0203B203F097900B430F5 /* KLSetup.swift in Sources */,
+				05C49214204ABF3800C5D910 /* KLShell.swift in Sources */,
 				05F02032203F095000B430F5 /* KLProcess.swift in Sources */,
 				05F0203A203F097900B430F5 /* KLRequire.swift in Sources */,
 				05F02025203F08D000B430F5 /* KLAuthorize.swift in Sources */,
