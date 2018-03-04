@@ -21,6 +21,7 @@ This is a table of built-in modules.
 |-            |Yes          |`Process`       |[Process Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/ProcessClass.md)|
 |-            |Yes          |`console`       |[Console Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/ConsoleClass.md) |
 |-            |Yes          |`File`          |[File Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/FileClass.md)  |
+|`Shell`      |No           |`Shell`          |[Shell Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/ShellClass.md)  |
 |`JSON`       |No           |`JSON`          |[JSON Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/JSONClass.md)  |
 |`Contact`     |No           |`Contact`      |[Contact Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/ContactClass.md)  |
 
