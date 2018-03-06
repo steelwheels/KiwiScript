@@ -26,10 +26,15 @@ import Foundation
 @objc public class KLFile: NSObject, KLFileProtocol
 {
 	private var mContext:	KEContext
-	private var mFile:	CNFile? = nil
+	private var mStdin:	KLFileObject
+	private var mStdout:	KLFileObject
+	private var mStderr:	KLFileObject
 
 	public init(context ctxt: KEContext){
 		mContext = ctxt
+		mStdin	 = KLFileObject(file: CNStandardFile(type: .input),  context: ctxt)
+		mStdout	 = KLFileObject(file: CNStandardFile(type: .output), context: ctxt)
+		mStderr  = KLFileObject(file: CNStandardFile(type: .error),  context: ctxt)
 	}
 
 	public func open(_ pathval: JSValue, _ accval: JSValue) -> JSValue
@@ -44,9 +49,14 @@ import Foundation
 		return JSValue(nullIn: mContext)
 	}
 
-	public class func standardFile(fileType type: CNStandardFileType, context ctxt: KEContext) -> KLFileObject {
-		let file    = CNStandardFile(type: type)
-		return KLFileObject(file: file, context: ctxt)
+	public func standardFile(fileType type: CNStandardFileType, context ctxt: KEContext) -> KLFileObject {
+		let result: KLFileObject
+		switch type {
+		case .input:	result = mStdin
+		case .output:	result = mStdout
+		case .error:	result = mStderr
+		}
+		return result
 	}
 
 	private func decodePathString(_ pathval: JSValue) -> String? {
@@ -83,7 +93,7 @@ import Foundation
 		mContext = ctxt
 	}
 
-	public var coreObject: CNFile {
+	public var file: CNTextFile {
 		return mFile
 	}
 

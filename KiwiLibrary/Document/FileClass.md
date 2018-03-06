@@ -1,17 +1,16 @@
 # File Operation
-The *File* class is used to following operations:
-* Generate *FileObject* object.
+The *File* class is used to allocate *FileObject* class.
+The FileObject is used to read and/or write the file.
 
 ## Global variables
 Following global variables are defined when this class is imported.
 
 |Variable   |Class  | Description                     |
 |:---       |:---   |:---                             |
-|File       |File   | Singleton object of File class  |
+|File       |File   |Singleton object of File class   |
 |stdin      |FileObject   | Standard input            |
 |stdout     |FileObject   | Standard output           |
 |stderr     |FileObject   | Standard error output     |
-
 ## File class
 
 ### `open` class method

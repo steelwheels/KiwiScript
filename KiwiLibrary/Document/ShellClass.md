@@ -20,9 +20,13 @@ Execute the other application asynchronously.
 |Parameter |Type       |Description       |
 |:--       |:---       |:---              |
 |command   |String     |The command to execute on the shell. It has command line application and following options and arguments such as "`/bin/ls -l`"|
-|infile    |FileObject |See [File Object Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/FileClass.md). In usually, the `stdin` is used for standard input.|
-|outfile   |FileObject |See [File Object Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/FileClass.md).In usually, the `stdout` is used for standard output.|
-|errfile   |FileObject |See [File Object Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/FileClass.md). In usually, the `stderr` is used for standard error.|
+|infile    |*1 |Input data stream |
+|outfile   |*1 |Output data stream|
+|errfile   |*1 |Error stream|
+
+The type "\*1" presents the data stream object: [File Object Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/FileClass.md) or [Pipe Object Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/PipeClass.md).
+If you want to connect the stream into the other shell execution, use the *Pipe Object*.
+On the other hand, the *File Object* will be used to read/write stream from/to the file.
 
 #### Return Value
 The instance of [Process Object](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/ProcessClass.md) is returned when the given command is started. Otherwise, this value will be `null`.

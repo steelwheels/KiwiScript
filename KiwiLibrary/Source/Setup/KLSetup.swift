@@ -72,17 +72,22 @@ public func KLSetupLibrary(context ctxt: KEContext, console cons: CNCursesConsol
 	if let file = manager.getBuiltinModule(moduleName: "file") as? KLFile {
 		ctxt.setObject(file, forKeyedSubscript: NSString(string: "File"))
 
-		let stdinobj = KLFile.standardFile(fileType: .input, context: ctxt)
+		let stdinobj = file.standardFile(fileType: .input, context: ctxt)
 		ctxt.setObject(stdinobj, forKeyedSubscript: NSString(string: "stdin"))
 
-		let stdoutobj = KLFile.standardFile(fileType: .output, context: ctxt)
+		let stdoutobj = file.standardFile(fileType: .output, context: ctxt)
 		ctxt.setObject(stdoutobj, forKeyedSubscript: NSString(string: "stdout"))
 
-		let stderrobj = KLFile.standardFile(fileType: .error, context: ctxt)
+		let stderrobj = file.standardFile(fileType: .error, context: ctxt)
 		ctxt.setObject(stderrobj, forKeyedSubscript: NSString(string: "stderr"))
 	} else {
-		NSLog("Failed to allocate \"console\" module")
+		NSLog("Failed to allocate \"file\" module")
 		return
+	}
+
+	/* Add Pipe module */
+	if let pipe = manager.getBuiltinModule(moduleName: "pipe") as? KLPipe {
+		ctxt.setObject(pipe, forKeyedSubscript: NSString(string: "Pipe"))
 	}
 
 	/* Add JSON lib */

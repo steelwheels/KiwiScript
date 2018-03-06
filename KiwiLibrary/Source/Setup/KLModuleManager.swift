@@ -58,6 +58,7 @@ public class KLModuleManager
 			case "authorize":	result = KLAuthorize(context: ctxt)
 			case "console":		result = KLConsole(context: ctxt, console: cons)
 			case "file":		result = KLFile(context: ctxt)
+			case "pipe":		result = KLPipe(context: ctxt)
 			case "JSON":		result = KLJSON(context: ctxt)
 			case "process":		result = KLProcess(context: ctxt, exceptionHandler: ehandler)
 			case "shell":		result = KLShell(context: ctxt)

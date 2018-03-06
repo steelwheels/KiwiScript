@@ -25,11 +25,11 @@ import Foundation
 	}
 
 	public func execute(_ cmd: JSValue, _ infile: JSValue, _ outfile: JSValue, _ errfile: JSValue) -> JSValue {
-		let inobj  = castToFileObject(value: infile,  defaultFile: CNStandardFile(type: .input),  context: mContext)
-		let outobj = castToFileObject(value: outfile, defaultFile: CNStandardFile(type: .output), context: mContext)
-		let errobj = castToFileObject(value: errfile, defaultFile: CNStandardFile(type: .error),  context: mContext)
-		if let cmdstr = cmd.toString(), let infileobj  = inobj, let outfileobj = outobj, let errfileobj = errobj {
-			let shell = CNShell.execute(command: cmdstr, inputFile: infileobj.coreObject, outputFile: outfileobj.coreObject, errorFile: errfileobj.coreObject, terminateHandler: nil)
+		let inport  = castToPort(value: infile)
+		let outport = castToPort(value: outfile)
+		let errport = castToPort(value: errfile)
+		if let cmdstr = cmd.toString(), let inport = inport, let outport = outport, let errport = errport {
+			let shell = CNShell.execute(command: cmdstr, inputFile: inport, outputFile: outport, errorFile: errport, terminateHandler: nil)
 			let process = KLProcessObject(process: shell, context: mContext)
 			return JSValue(object: process, in: mContext)
 		} else {
@@ -37,18 +37,25 @@ import Foundation
 		}
 	}
 
-	private func castToFileObject(value val: JSValue, defaultFile deffile: CNTextFile, context ctxt: KEContext) -> KLFileObject? {
-		let result: KLFileObject?
+	private func castToPort(value val: JSValue) -> CNShell.Port? {
+		let result: CNShell.Port?
 		if val.isObject {
-			result = JSValue.castObject(value: val)
+			if let file:KLFileObject = JSValue.castObject(value: val) {
+				result = .File(file.file)
+			} else if let pipe:KLPipeObject = JSValue.castObject(value: val) {
+				result = .Pipe(pipe.pipe)
+			} else {
+				/* Invalid object */
+				result = nil
+			}
 		} else if val.isNull {
-			result = KLFileObject(file: deffile, context: ctxt)
+			result = .Standard
 		} else {
+			/* Invalid parameter */
 			result = nil
 		}
 		return result
 	}
-
 
 	public func searchCommand(_ cmd: JSValue) -> JSValue {
 		if cmd.isString {
