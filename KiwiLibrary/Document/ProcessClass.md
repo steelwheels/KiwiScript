@@ -12,6 +12,13 @@ Following global variables are defined when this class is imported.
 
 ## Process Class
 
+### `arguments` property
+The command line argument strings.
+````
+  const args = Process.arguments ;
+````
+The type of this property is array of strings (`Array<String>`).
+
 ### `exit` class method
 Terminate process by the given exit code.
 ````
