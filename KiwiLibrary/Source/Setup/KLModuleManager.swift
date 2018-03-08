@@ -17,6 +17,7 @@ public class KLModuleManager
 	private var mModuleTable:		Dictionary<String, JSExport>
 	private var mIs1stExternalModule:	Bool
 	private var mContext:			KEContext?
+	private var mArguments:			Array<String>
 	private var mConsole:			CNCursesConsole?
 	private var mExceptionHandler: 		((_ exception: KEException) -> Void)?
 
@@ -24,12 +25,14 @@ public class KLModuleManager
 		mModuleTable 		= [:]
 		mIs1stExternalModule	= true
 		mContext     		= nil
+		mArguments		= []
 		mConsole     		= nil
 		mExceptionHandler	= nil
 	}
 
-	public func setup(context ctxt: KEContext, console cons: CNCursesConsole, exceptionHandler ehandler: @escaping (_ exception: KEException) -> Void){
+	public func setup(context ctxt: KEContext, arguments args: Array<String>, console cons: CNCursesConsole, exceptionHandler ehandler: @escaping (_ exception: KEException) -> Void){
 		mContext 		= ctxt
+		mArguments		= args
 		mConsole		= cons
 		mExceptionHandler	= ehandler
 	}
@@ -60,7 +63,7 @@ public class KLModuleManager
 			case "file":		result = KLFile(context: ctxt)
 			case "pipe":		result = KLPipe(context: ctxt)
 			case "JSON":		result = KLJSON(context: ctxt)
-			case "process":		result = KLProcess(context: ctxt, exceptionHandler: ehandler)
+			case "process":		result = KLProcess(context: ctxt, arguments: mArguments, exceptionHandler: ehandler)
 			case "shell":		result = KLShell(context: ctxt)
 			case "contact":		result = KLContact(context: ctxt, console: cons)
 			default:		result = nil

@@ -10,7 +10,7 @@ import JavaScriptCore
 import Canary
 import Foundation
 
-public func KLSetupLibrary(context ctxt: KEContext, console cons: CNCursesConsole, config cfg: KLConfig, exceptionHandler ehandler: @escaping (_ exception: KEException) -> Void)
+public func KLSetupLibrary(context ctxt: KEContext, arguments args: Array<String>, console cons: CNCursesConsole, config cfg: KLConfig, exceptionHandler ehandler: @escaping (_ exception: KEException) -> Void)
 {
 	/* Set strict mode */
 	if cfg.useStrictMode {
@@ -22,7 +22,7 @@ public func KLSetupLibrary(context ctxt: KEContext, console cons: CNCursesConsol
 
 	/* Setup module manager */
 	let manager = KLModuleManager.shared
-	manager.setup(context: ctxt, console: cons, exceptionHandler: ehandler)
+	manager.setup(context: ctxt, arguments: args, console: cons, exceptionHandler: ehandler)
 
 	/* Add "require" function */
 	let require = KLAllocateRequireFunction(context: ctxt)
