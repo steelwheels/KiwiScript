@@ -27,7 +27,7 @@ public class KEContext : JSContext
 		fhandler(result)
 	}
 
-	public func callFunction(functionName funcname: String, arguments args: Array<AnyObject>, exceptionHandler fhandler: @escaping (_ result: KEException) -> Void) {
+	public func callFunction(functionName funcname: String, arguments args: Array<Any>, exceptionHandler fhandler: @escaping (_ result: KEException) -> Void) {
 		/* Set exception handler */
 		setExceptionHandler(finalizeHandler: fhandler)
 
