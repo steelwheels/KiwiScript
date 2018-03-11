@@ -89,14 +89,5 @@ public func KLSetupLibrary(context ctxt: KEContext, arguments args: Array<String
 	if let pipe = manager.getBuiltinModule(moduleName: "pipe") as? KLPipe {
 		ctxt.setObject(pipe, forKeyedSubscript: NSString(string: "Pipe"))
 	}
-
-	/* Add JSON lib */
-	//KLSetupJSONLibrary(context: ctxt)
-}
-
-private func KLSetupJSONLibrary(context ctxt: KEContext)
-{
-	let jsonobj = KLJSON(context: ctxt)
-	ctxt.setObject(jsonobj, forKeyedSubscript: NSString(string: "JSON"))
 }
 

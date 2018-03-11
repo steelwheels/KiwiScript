@@ -153,10 +153,10 @@
 		05F02033203F096900B430F5 /* Setup */ = {
 			isa = PBXGroup;
 			children = (
+				05F02037203F097900B430F5 /* KLSetup.swift */,
 				05F02034203F097900B430F5 /* KLConfig.swift */,
 				05F02035203F097900B430F5 /* KLModuleManager.swift */,
 				05F02036203F097900B430F5 /* KLRequire.swift */,
-				05F02037203F097900B430F5 /* KLSetup.swift */,
 			);
 			path = Setup;
 			sourceTree = "<group>";

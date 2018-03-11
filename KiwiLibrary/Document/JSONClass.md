@@ -1,12 +1,11 @@
 # JSON operation
 The *JSON* class is used to parse JSON string, encode JSON data into string. This class also supports read/write JSON file.
 
-## Global variables
-Following global variables are defined when this class is imported.
-
-|Variable   |Class  | Description                     |
-|:---       |:---   |:---                             |
-|JSON       |JSON   | Singleton object of JSON class  |
+## How to use this class instance
+You can import this library by [require statement](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/RequireFunc.md).
+````
+const JSON = require("JSON") ;
+````
 
 ## JSON class
 ### `read` class method
