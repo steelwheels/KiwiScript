@@ -16,7 +16,7 @@ Following global variables are defined when this class is imported.
 ### `open` class method
 Allocate file object by the file name and access method.
 ````
-var file = File.open(<file-name>, <access-type>)
+var file = File.open(<file-name>, <access-type>) ;
 ````
 #### Parameter(s)
 |Parameter    |Type   |Description                    |
@@ -26,6 +26,35 @@ var file = File.open(<file-name>, <access-type>)
 
 #### Return value
 If the opening the file is succeeded, the *FileObject* object is returned. The file-object is built-in object. It can be accessed by following methods. On the other hand, when the opening file is failed, the return value will be nil.
+
+### `type` property
+Type property has following constant values to present type of the file.
+
+|Name       |Description            |
+|:---       |:---                   |
+|NotExist   |Not exist              |
+|File       |File                   |
+|Directory  |Directory              |
+
+### `checkFileType` method
+Check the file type given by path string.
+````
+const type = File.checkFileType(path) ;
+````
+#### Parameter(s)
+|Parameter    |Type   |Description                    |
+|:---         |:---   |:---                           |
+|path         |String |Path of the file to be checked |
+
+#### Return value
+The constant value which is defined in the `type` property of this class.
+The following example checks the file "tmp" is file or not:
+````
+  if(File.checkFileType("tmp") == File.type.File){
+    /* The file named "tmp" is a file */
+    ...
+  }
+````
 
 ## FileObject class
 ### `close` method

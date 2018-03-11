@@ -13,6 +13,9 @@ import Foundation
 @objc public protocol KLFileProtocol: JSExport
 {
 	func open(_ pathstr: JSValue, _ acctype: JSValue) -> JSValue
+
+	var type: JSValue { get }
+	func checkFileType(_ pathstr: JSValue) -> JSValue
 }
 
 @objc public protocol KLFileObjectProtocol: JSExport
@@ -23,18 +26,29 @@ import Foundation
 	func put(_ str: JSValue) -> JSValue
 }
 
+@objc public protocol KLFileTypeProtocol: JSExport
+{
+	var NotExist:	JSValue { get }
+	var File:	JSValue { get }
+	var Directory:	JSValue { get }
+}
+
 @objc public class KLFile: NSObject, KLFileProtocol
 {
 	private var mContext:	KEContext
+	private var mFileType:	KLFileTypeObject
+	private var mFileValue:	JSValue
 	private var mStdin:	KLFileObject
 	private var mStdout:	KLFileObject
 	private var mStderr:	KLFileObject
 
 	public init(context ctxt: KEContext){
-		mContext = ctxt
-		mStdin	 = KLFileObject(file: CNStandardFile(type: .input),  context: ctxt)
-		mStdout	 = KLFileObject(file: CNStandardFile(type: .output), context: ctxt)
-		mStderr  = KLFileObject(file: CNStandardFile(type: .error),  context: ctxt)
+		mContext   = ctxt
+		mFileType  = KLFileTypeObject(context: ctxt)
+		mFileValue = JSValue(object: mFileType, in: ctxt)
+		mStdin	   = KLFileObject(file: CNStandardFile(type: .input),  context: ctxt)
+		mStdout	   = KLFileObject(file: CNStandardFile(type: .output), context: ctxt)
+		mStderr    = KLFileObject(file: CNStandardFile(type: .error),  context: ctxt)
 	}
 
 	public func open(_ pathval: JSValue, _ accval: JSValue) -> JSValue
@@ -80,6 +94,27 @@ import Foundation
 			}
 		}
 		return nil
+	}
+
+	public var type: JSValue {
+		get { return mFileValue }
+	}
+
+	public func checkFileType(_ pathval: JSValue) -> JSValue {
+		if pathval.isString {
+			if let pathstr = pathval.toString() {
+				let fmanager = FileManager.default
+				var result: JSValue
+				switch fmanager.checkFileType(pathString: pathstr) {
+				case .NotExist:		result = mFileType.NotExist
+				case .File:		result = mFileType.File
+				case .Directory:	result = mFileType.Directory
+				}
+				return result
+			}
+		}
+		NSLog("Invalid parameter: \(pathval)")
+		return mFileType.NotExist
 	}
 }
 
@@ -137,5 +172,24 @@ import Foundation
 		}
 		return JSValue(int32: result, in: mContext)
 	}
+}
+
+@objc public class KLFileTypeObject: NSObject, KLFileTypeProtocol
+{
+	private var	mContext:		KEContext
+	private var	mNotExitValue:		JSValue
+	private var 	mFileValue:		JSValue
+	private var 	mDirectoryValue:	JSValue
+
+	public init(context ctxt: KEContext){
+		mContext 	= ctxt
+		mNotExitValue	= JSValue(int32: CNFileType.NotExist.rawValue,	in: mContext)
+		mFileValue	= JSValue(int32: CNFileType.File.rawValue,	in: mContext)
+		mDirectoryValue	= JSValue(int32: CNFileType.Directory.rawValue,	in: mContext)
+	}
+
+	public var NotExist:	JSValue { get { return mNotExitValue	}}
+	public var File:	JSValue { get { return mFileValue	}}
+	public var Directory:	JSValue { get { return mDirectoryValue 	}}
 }
 
