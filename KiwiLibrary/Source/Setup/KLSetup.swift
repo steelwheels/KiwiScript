@@ -34,12 +34,14 @@ public func KLSetupLibrary(context ctxt: KEContext, arguments args: Array<String
 	manager.setup(context: ctxt, arguments: args, console: cons, exceptionHandler: ehandler)
 
 	/* Add process module */
+	#if os(OSX)
 	if let process = manager.getBuiltinModule(moduleName: "process") as? KLProcess {
 		ctxt.setObject(process, forKeyedSubscript: NSString(string: "Process"))
 	} else {
 		NSLog("Failed to allocate \"Process\" module")
 		return
 	}
+	#endif // os(OSX)
 
 	/* Add color module */
 	if let color = manager.getBuiltinModule(moduleName: "color") as? KLColor {

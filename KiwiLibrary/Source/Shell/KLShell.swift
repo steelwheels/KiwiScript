@@ -5,6 +5,8 @@
  *   Copyright (C) 2018 Steel Wheels Project
  */
 
+#if os(OSX)
+
 import Canary
 import KiwiEngine
 import JavaScriptCore
@@ -68,5 +70,7 @@ import Foundation
 		return JSValue(nullIn: mContext)
 	}
 }
+
+#endif // os(OSX)
 
 

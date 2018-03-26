@@ -63,9 +63,19 @@ public class KLModuleManager
 			case "file":		result = KLFile(context: ctxt)
 			case "pipe":		result = KLPipe(context: ctxt)
 			case "JSON":		result = KLJSON(context: ctxt)
-			case "process":		result = KLProcess(context: ctxt, arguments: mArguments, exceptionHandler: ehandler)
-			case "shell":		result = KLShell(context: ctxt)
 			case "contact":		result = KLContact(context: ctxt, console: cons)
+			case "process":
+				#if os(OSX)
+					result = KLProcess(context: ctxt, arguments: mArguments, exceptionHandler: ehandler)
+				#else
+					result = nil
+				#endif
+			case "shell":
+				#if os(OSX)
+					result = KLShell(context: ctxt)
+				#else
+					result = nil
+				#endif
 			default:		result = nil
 			}
 		} else {

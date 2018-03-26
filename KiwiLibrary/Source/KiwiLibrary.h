@@ -5,7 +5,12 @@
  *   Copyright (C) 2018 Steel Wheels Project
  */
 
-#import <Cocoa/Cocoa.h>
+#import "TargetConditionals.h"
+#if TARGET_OS_IPHONE
+#       import <UIKit/UIKit.h>
+#else
+#       import <Cocoa/Cocoa.h>
+#endif
 
 //! Project version number for KiwiLibrary.
 FOUNDATION_EXPORT double KiwiLibraryVersionNumber;
