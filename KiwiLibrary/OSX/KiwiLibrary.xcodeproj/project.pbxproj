@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0525C946204C4BB50058CCBF /* KLPipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525C945204C4BB50058CCBF /* KLPipe.swift */; };
+		058E19562056D2E300513607 /* KLGlobalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058E19552056D2E300513607 /* KLGlobalManager.swift */; };
 		05C49214204ABF3800C5D910 /* KLShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C49213204ABF3800C5D910 /* KLShell.swift */; };
 		05F0201E203F088400B430F5 /* KLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F0201D203F088400B430F5 /* KLColor.swift */; };
 		05F02025203F08D000B430F5 /* KLAuthorize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F02023203F08CF00B430F5 /* KLAuthorize.swift */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		0525C945204C4BB50058CCBF /* KLPipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLPipe.swift; sourceTree = "<group>"; };
+		058E19552056D2E300513607 /* KLGlobalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLGlobalManager.swift; sourceTree = "<group>"; };
 		05B12283203F0734009DDBEF /* KiwiLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05B12286203F0734009DDBEF /* KiwiLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KiwiLibrary.h; path = ../../Source/KiwiLibrary.h; sourceTree = "<group>"; };
 		05B12287203F0734009DDBEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				05F02037203F097900B430F5 /* KLSetup.swift */,
 				05F02034203F097900B430F5 /* KLConfig.swift */,
 				05F02035203F097900B430F5 /* KLModuleManager.swift */,
+				058E19552056D2E300513607 /* KLGlobalManager.swift */,
 				05F02036203F097900B430F5 /* KLRequire.swift */,
 			);
 			path = Setup;
@@ -268,6 +271,7 @@
 				05F0203B203F097900B430F5 /* KLSetup.swift in Sources */,
 				05C49214204ABF3800C5D910 /* KLShell.swift in Sources */,
 				05F02032203F095000B430F5 /* KLProcess.swift in Sources */,
+				058E19562056D2E300513607 /* KLGlobalManager.swift in Sources */,
 				05F0203A203F097900B430F5 /* KLRequire.swift in Sources */,
 				0525C946204C4BB50058CCBF /* KLPipe.swift in Sources */,
 				05F02025203F08D000B430F5 /* KLAuthorize.swift in Sources */,

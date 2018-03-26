@@ -18,7 +18,7 @@ Following global variables are defined for console operation.
 ## Console Class
 
 ### `log` method
-Print log message into terminal. This method can be used by all modes.
+Print log message. This method can be used by all modes.
 ````
 console.log(<message>)
 ````
@@ -26,6 +26,19 @@ console.log(<message>)
 |Parameter    |Type   |Description                    |
 |:---         |:---   |:---                           |
 |message      |String |Log message string             |
+
+#### Return value
+none
+
+### `error` method
+Print error message. This method can be used by all modes.
+````
+console.error(<message>)
+````
+#### Parameter(s)
+|Parameter    |Type   |Description                    |
+|:---         |:---   |:---                           |
+|message      |String |Error message string           |
 
 #### Return value
 none

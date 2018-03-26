@@ -1,8 +1,9 @@
 # Library
 
-## General data types
-The general purpose data type is defined at the following link:
-[general data types](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/GeneralType.md).
+## Global data types, functions
+Following data types and functions are defined at global scope.
+* [Data types](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/GlobalType.md)
+* [Functions](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/GlobalFunction.md)
 
 ## Built-in modules
 The module is written by Swift and built in `jsrun` command.

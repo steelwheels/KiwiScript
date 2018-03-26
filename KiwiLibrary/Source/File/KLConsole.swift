@@ -13,6 +13,7 @@ import Foundation
 @objc public protocol KLConsoleProtocol: JSExport
 {
 	func log(_ value: JSValue)
+	func error(_ value: JSValue)
 
 	var visiblePrompt	: JSValue { get set }
 	var doBuffering		: JSValue { get set }
@@ -43,6 +44,10 @@ import Foundation
 
 	public func log(_ value: JSValue){
 		mConsole.print(string: value.toString())
+	}
+
+	public func error(_ value: JSValue){
+		mConsole.error(string: value.toString())
 	}
 
 	public func setScreenMode(_ mode: JSValue){

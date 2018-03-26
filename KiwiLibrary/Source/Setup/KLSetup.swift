@@ -20,13 +20,18 @@ public func KLSetupLibrary(context ctxt: KEContext, arguments args: Array<String
 		})
 	}
 
-	/* Setup module manager */
-	let manager = KLModuleManager.shared
-	manager.setup(context: ctxt, arguments: args, console: cons, exceptionHandler: ehandler)
-
 	/* Add "require" function */
 	let require = KLAllocateRequireFunction(context: ctxt)
 	ctxt.setObject(require, forKeyedSubscript: NSString(string: "require"))
+
+	/* Setup global manager */
+	let global = KLGlobalManager.shared
+	global.setup(context: ctxt)
+	global.setTypeCheckFunctions()
+
+	/* Setup module manager */
+	let manager = KLModuleManager.shared
+	manager.setup(context: ctxt, arguments: args, console: cons, exceptionHandler: ehandler)
 
 	/* Add process module */
 	if let process = manager.getBuiltinModule(moduleName: "process") as? KLProcess {

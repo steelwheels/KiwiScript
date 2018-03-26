@@ -23,7 +23,7 @@ const status = contact.authorize()
 none
 
 #### Return value
-The authorization result. See "Authorize Type" in [General purpose type](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/GeneralType.md).
+The authorization result. See "Authorize Type" in [Global data type](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/GlobalType.md).
 
 
 ## Related link

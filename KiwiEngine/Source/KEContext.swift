@@ -54,8 +54,8 @@ public class KEContext : JSContext
 		}
 	}
 
-	public func addGlobalObject(name n: NSString, object o: NSObject){
-		self.setObject(o, forKeyedSubscript:n)
+	public func setObject(name n: String, object o: Any!){
+		self.setObject(o, forKeyedSubscript: NSString(string: n))
 	}
 	
 	public func allocateObjectValue(object o: NSObject) -> JSValue {
