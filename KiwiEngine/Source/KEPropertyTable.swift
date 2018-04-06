@@ -19,14 +19,14 @@ private typealias FunctionRef	= (_ value: JSValue) -> Void
 
 @objc public class KEPropertyTable: NSObject, KEPropertyExport
 {
-	private var mContext:	KEContext
-	private var mTable:	NSMutableDictionary // Key:String, value:KEPropertyValue
-	private var mListeners:	Dictionary<String, KEListener>
+	private var mContext:		KEContext
+	private var mTable:		NSMutableDictionary // Key:String, value:KEPropertyValue
+	private var mListeners:		Dictionary<String, KEListener>
 
 	public init(context ctxt: KEContext){
-		mContext   = ctxt
-		mTable     = NSMutableDictionary(capacity: 8)
-		mListeners = [:]
+		mContext   	= ctxt
+		mTable     	= NSMutableDictionary(capacity: 8)
+		mListeners 	= [:]
 	}
 
 	deinit {
@@ -70,6 +70,29 @@ private typealias FunctionRef	= (_ value: JSValue) -> Void
 		}
 	}
 
+	public func setObject(_ name: String, _ obj: JSExport) {
+		if let value = JSValue(object: obj, in: mContext) {
+			set(name, value)
+		} else {
+			NSLog("Failed tp allocate value")
+		}
+	}
+
+	public func getObject(_ name: String) -> JSExport? {
+		if let value = check(name) {
+			if value.isObject {
+				if let obj = value.toObject() as? JSExport {
+					return obj
+				}
+			}
+		}
+		return nil
+	}
+
+	public var context: KEContext {
+		get { return mContext }
+	}
+	
 	public var propertyNames: Array<String> {
 		get {
 			if let keys = mTable.allKeys as? Array<String> {

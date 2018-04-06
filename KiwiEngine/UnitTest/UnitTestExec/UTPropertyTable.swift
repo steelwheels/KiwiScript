@@ -1,6 +1,6 @@
 /**
- * @file	UTValue.swift
- * @brief	Unit test for KiwiEngine framework
+ * @file	UTPropertyTable.swift
+ * @brief	Unit test for KEPropertyTable class
  * @par Copyright
  *   Copyright (C) 2017 Steel Wheels Project
  */

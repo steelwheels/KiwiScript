@@ -25,7 +25,7 @@ public class KLGlobalManager
 
 	private func addObject(name nm: String, object obj: Any){
 		if let val = JSValue(object: obj, in: mContext){
-			mContext!.setObject(name: nm, object: val)
+			mContext!.setValue(val, forKey: nm)
 		} else {
 			NSLog("Failed to allocate object for \(nm)")
 		}

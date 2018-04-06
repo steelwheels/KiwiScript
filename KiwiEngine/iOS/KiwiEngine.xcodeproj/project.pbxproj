@@ -55,7 +55,7 @@
 			isa = PBXGroup;
 			children = (
 				0561B1141EAB8FDC00657EBC /* Source */,
-				052251E91EAB852F0021A8B5 /* KiwiEngine */,
+				052251E91EAB852F0021A8B5 /* iOS */,
 				052251E81EAB852F0021A8B5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -68,12 +68,12 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		052251E91EAB852F0021A8B5 /* KiwiEngine */ = {
+		052251E91EAB852F0021A8B5 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
 				052251EB1EAB852F0021A8B5 /* Info.plist */,
 			);
-			path = KiwiEngine;
+			name = iOS;
 			sourceTree = "<group>";
 		};
 		0561B1141EAB8FDC00657EBC /* Source */ = {
