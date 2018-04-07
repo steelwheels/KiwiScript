@@ -23,10 +23,13 @@ private typealias FunctionRef	= (_ value: JSValue) -> Void
 	private var mTable:		NSMutableDictionary // Key:String, value:KEPropertyValue
 	private var mListeners:		Dictionary<String, KEListener>
 
+	public weak var owner:		AnyObject?
+
 	public init(context ctxt: KEContext){
 		mContext   	= ctxt
 		mTable     	= NSMutableDictionary(capacity: 8)
 		mListeners 	= [:]
+		owner		= nil
 	}
 
 	deinit {

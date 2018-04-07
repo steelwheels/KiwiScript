@@ -18,6 +18,10 @@ Listener: uInt32 = 2345
 Listener: double = 1.234
 Listener: point = [object Object]
 testPropertyTable : OK
+[objA] set(prop_a, 10)
+[objB] set(prop_b, Hello)
+Evaluated: undefined
+testPropertyTable2 : OK
 convert: true -> true
 convert: c -> c
 convert: -1234 -> -1234
