@@ -56,7 +56,7 @@ public func testPropertyTable2(console cons: CNConsole) -> Bool
 	let objb = UTObject(name: "objB", context: context, console: cons)
 	obja.setObject("obj_b", objb)
 
-	context.setObject(name: "obj_a", object: obja)
+	context.set(name: "obj_a", object: obja)
 	
 	let script =   "obj_a.set(\"prop_a\", 10) ;"
 		     + "obj_a.get(\"obj_b\").set(\"prop_b\", \"Hello\") ;"

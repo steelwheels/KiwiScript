@@ -54,12 +54,12 @@ public class KEContext : JSContext
 		}
 	}
 
-	public func setObject(name n: String, object o: JSExport){
+	public func set(name n: String, object o: JSExport){
 		self.setObject(o, forKeyedSubscript: NSString(string: n))
 	}
 	
-	public func allocateObjectValue(object o: JSExport) -> JSValue {
-		 return JSValue(object: o, in: self)
+	public func set(name n: String, value val: JSValue){
+		self.setObject(val, forKeyedSubscript: NSString(string: n))
 	}
 }
 

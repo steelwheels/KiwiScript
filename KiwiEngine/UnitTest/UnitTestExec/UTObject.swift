@@ -16,7 +16,7 @@ public func testObject(console cons: CNConsole) -> Bool
 	let context = KEContext(virtualMachine: vm!)
 	var testResult = false
 	let newobj = UTObjectBridge()
-	let newval = context.allocateObjectValue(object: newobj)
+	let newval = JSValue(object: newobj, in: context)
 	let script =   "function test(object){"
 		+ "  var tmp ;"
 		+ "  tmp = object.angle() + 1.1 ;"
@@ -29,7 +29,7 @@ public func testObject(console cons: CNConsole) -> Bool
 		testResult = finalizeHandler(result: result, console: console)
 	})
 	cons.print(string: "*** context.callFunction\n")
-	context.callFunction(functionName: "test", arguments: [newval], exceptionHandler: {
+	context.callFunction(functionName: "test", arguments: [newval!], exceptionHandler: {
 		(_ result: KEException) -> Void in
 		testResult = finalizeHandler(result: result, console: console)
 	})
