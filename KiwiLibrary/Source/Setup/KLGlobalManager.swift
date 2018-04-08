@@ -24,11 +24,12 @@ public class KLGlobalManager
 	}
 
 	private func addObject(name nm: String, object obj: Any){
-		if let val = JSValue(object: obj, in: mContext){
-			mContext!.setValue(val, forKey: nm)
-		} else {
-			NSLog("Failed to allocate object for \(nm)")
+		if let context = mContext {
+			if let val = JSValue(object: obj, in: context){
+				context.set(name: nm, value: val)
+			}
 		}
+		NSLog("Failed to allocate object for \(nm)")
 	}
 
 	public func setTypeCheckFunctions(){
