@@ -27,6 +27,7 @@ public class KLGlobalManager
 		if let context = mContext {
 			if let val = JSValue(object: obj, in: context){
 				context.set(name: nm, value: val)
+				return
 			}
 		}
 		NSLog("Failed to allocate object for \(nm)")
