@@ -19,6 +19,24 @@ public enum JSValueType {
 	case DictionaryType
 	case DateType
 	case ObjectType
+
+	public var description: String {
+		get {
+			var result: String
+			switch self {
+			case .UndefinedType:	result = "undefined"
+			case .NullType:		result = "null"
+			case .BooleanType:	result = "bool"
+			case .NumberType:	result = "float"
+			case .StringType:	result = "string"
+			case .ArrayType:	result = "array"
+			case .DictionaryType:	result = "dictionary"
+			case .DateType:		result = "date"
+			case .ObjectType:	result = "object"
+			}
+			return result
+		}
+	}
 }
 
 extension CNValueType {

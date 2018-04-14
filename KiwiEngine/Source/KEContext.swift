@@ -61,5 +61,9 @@ public class KEContext : JSContext
 	public func set(name n: String, value val: JSValue){
 		self.setObject(val, forKeyedSubscript: NSString(string: n))
 	}
+
+	public func getValue(name n:String) -> JSValue? {
+		return self.objectForKeyedSubscript(NSString(string: n))
+	}
 }
 

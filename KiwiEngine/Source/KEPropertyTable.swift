@@ -22,14 +22,14 @@ private typealias FunctionRef	= (_ value: JSValue) -> Void
 	private var mContext:		KEContext
 	private var mTable:		NSMutableDictionary // Key:String, value:KEPropertyValue
 	private var mListeners:		Dictionary<String, KEListener>
-
-	public weak var owner:		AnyObject?
+	private weak var mOwner:	AnyObject?
 
 	public init(context ctxt: KEContext){
+		//Swift.print("KEPropertyTable:init")
 		mContext   	= ctxt
 		mTable     	= NSMutableDictionary(capacity: 8)
 		mListeners 	= [:]
-		owner		= nil
+		mOwner		= nil
 	}
 
 	deinit {
@@ -37,6 +37,17 @@ private typealias FunctionRef	= (_ value: JSValue) -> Void
 			if let obs = mListeners[prop] {
 				mTable.removeObserver(obs, forKeyPath: prop)
 			}
+		}
+	}
+
+	public weak var owner: AnyObject? {
+		set(newown){
+			//Swift.print("KEPropertyTable:set \(String(describing: newown))")
+			mOwner = newown
+		}
+		get {
+			//Swift.print("KEPropertyTable:get \(String(describing: mOwner))")
+			return mOwner
 		}
 	}
 
