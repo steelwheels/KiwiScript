@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		050422701ED5C02600183E4F /* KEPropertyTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504226F1ED5C02600183E4F /* KEPropertyTable.swift */; };
 		050422721ED5CEF300183E4F /* UTPropertyTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050422711ED5CEF300183E4F /* UTPropertyTable.swift */; };
-		0507B1751BA41B860048D325 /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0507B1731BA41B860048D325 /* Canary.framework */; };
 		0507B1771BA41B9A0048D325 /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0507B1761BA41B9A0048D325 /* KiwiEngine.framework */; };
 		0507B1871BA41DB90048D325 /* UnitTestExec in Copy Files */ = {isa = PBXBuildFile; fileRef = 058B53231BA41A6C009522DF /* UnitTestExec */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		052B0F7A1BE8A3A400E3BFEE /* UTObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B0F781BE8A33400E3BFEE /* UTObject.swift */; };
@@ -23,10 +22,9 @@
 		058B53261BA41A6C009522DF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058B53251BA41A6C009522DF /* main.swift */; };
 		0592B89E1F3A2363006C92AD /* UTEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0592B89C1F3A2301006C92AD /* UTEnum.swift */; };
 		05CF6D7B1BA41F9700BD9D91 /* KiwiEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05CF6D7A1BA41F9700BD9D91 /* KiwiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		05CF6D7D1BA41FCF00BD9D91 /* Canary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05CF6D7C1BA41FCF00BD9D91 /* Canary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05CFAB962034875F001623BC /* KEException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CFAB952034875F001623BC /* KEException.swift */; };
-		05D89FC61EFAB7110067F402 /* KEPropertyValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D89FC51EFAB7110067F402 /* KEPropertyValue.swift */; };
 		05DFA829206865800032EC5B /* KECompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DFA828206865800032EC5B /* KECompiler.swift */; };
+		05E81095208B372A00230477 /* CoconutData.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05E81094208B372A00230477 /* CoconutData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,7 +76,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				05CF6D7D1BA41FCF00BD9D91 /* Canary.framework in CopyFiles */,
+				05E81095208B372A00230477 /* CoconutData.framework in CopyFiles */,
 				05CF6D7B1BA41F9700BD9D91 /* KiwiEngine.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -97,7 +95,6 @@
 /* Begin PBXFileReference section */
 		0504226F1ED5C02600183E4F /* KEPropertyTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEPropertyTable.swift; sourceTree = "<group>"; };
 		050422711ED5CEF300183E4F /* UTPropertyTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTPropertyTable.swift; sourceTree = "<group>"; };
-		0507B1731BA41B860048D325 /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../../Library/Frameworks/Canary.framework; sourceTree = "<group>"; };
 		0507B1761BA41B9A0048D325 /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../Library/Frameworks/KiwiEngine.framework; sourceTree = "<group>"; };
 		0507B17E1BA41D850048D325 /* UnitTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		052B0F781BE8A33400E3BFEE /* UTObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTObject.swift; sourceTree = "<group>"; };
@@ -116,10 +113,9 @@
 		05B40EED1BE5A4AE00AA8525 /* check.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = check.mk; sourceTree = SOURCE_ROOT; };
 		05CF6D761BA41EF000BD9D91 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05CF6D7A1BA41F9700BD9D91 /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = /Users/tomoo/Library/Frameworks/KiwiEngine.framework; sourceTree = "<absolute>"; };
-		05CF6D7C1BA41FCF00BD9D91 /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = /Users/tomoo/Library/Frameworks/Canary.framework; sourceTree = "<absolute>"; };
 		05CFAB952034875F001623BC /* KEException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEException.swift; sourceTree = "<group>"; };
-		05D89FC51EFAB7110067F402 /* KEPropertyValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEPropertyValue.swift; sourceTree = "<group>"; };
 		05DFA828206865800032EC5B /* KECompiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KECompiler.swift; sourceTree = "<group>"; };
+		05E81094208B372A00230477 /* CoconutData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutData.framework; path = ../../../../Library/Frameworks/CoconutData.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,7 +138,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0507B1771BA41B9A0048D325 /* KiwiEngine.framework in Frameworks */,
-				0507B1751BA41B860048D325 /* Canary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,7 +159,6 @@
 			isa = PBXGroup;
 			children = (
 				0507B1761BA41B9A0048D325 /* KiwiEngine.framework */,
-				0507B1731BA41B860048D325 /* Canary.framework */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -172,6 +166,7 @@
 		054536B61B78021500FE978C = {
 			isa = PBXGroup;
 			children = (
+				05E81094208B372A00230477 /* CoconutData.framework */,
 				054536C21B78021500FE978C /* Source */,
 				050167441B78471900B15C80 /* UnitTest */,
 				054536C11B78021500FE978C /* Products */,
@@ -196,7 +191,6 @@
 				05DFA828206865800032EC5B /* KECompiler.swift */,
 				05CFAB952034875F001623BC /* KEException.swift */,
 				0504226F1ED5C02600183E4F /* KEPropertyTable.swift */,
-				05D89FC51EFAB7110067F402 /* KEPropertyValue.swift */,
 				0537CE8E1F80F76E00CB313A /* KEValue.swift */,
 				054860B71F38935A007A431A /* KEEnum.swift */,
 				054536C31B78021500FE978C /* Supporting Files */,
@@ -231,7 +225,6 @@
 		05CF6D751BA41ECE00BD9D91 /* UnitTestBundle */ = {
 			isa = PBXGroup;
 			children = (
-				05CF6D7C1BA41FCF00BD9D91 /* Canary.framework */,
 				05CF6D7A1BA41F9700BD9D91 /* KiwiEngine.framework */,
 				05CF6D761BA41EF000BD9D91 /* Info.plist */,
 			);
@@ -357,6 +350,7 @@
 					054536BF1B78021500FE978C = {
 						CreatedOnToolsVersion = 6.4;
 						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
 					};
 					058B53221BA41A6C009522DF = {
 						CreatedOnToolsVersion = 7.0;
@@ -422,7 +416,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				050422701ED5C02600183E4F /* KEPropertyTable.swift in Sources */,
-				05D89FC61EFAB7110067F402 /* KEPropertyValue.swift in Sources */,
 				054860B81F38935A007A431A /* KEEnum.swift in Sources */,
 				05DFA829206865800032EC5B /* KECompiler.swift in Sources */,
 				0537CE8F1F80F76E00CB313A /* KEValue.swift in Sources */,
@@ -611,9 +604,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -626,9 +621,10 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -643,9 +639,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -658,9 +656,10 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -681,7 +680,7 @@
 				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/UnitTest.bundle/Contents/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
@@ -700,7 +699,7 @@
 				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/UnitTest.bundle/Contents/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;

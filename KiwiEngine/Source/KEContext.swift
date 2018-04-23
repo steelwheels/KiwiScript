@@ -7,7 +7,7 @@
 
 import Foundation
 import JavaScriptCore
-import Canary
+import CoconutData
 
 public class KEContext : JSContext
 {

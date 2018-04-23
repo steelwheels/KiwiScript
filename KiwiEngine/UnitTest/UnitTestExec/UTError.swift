@@ -7,7 +7,7 @@
 
 import Foundation
 import KiwiEngine
-import Canary
+import CoconutData
 import JavaScriptCore
 
 public func testError(console cons: CNConsole) -> Bool

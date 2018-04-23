@@ -6,7 +6,7 @@
  */
 
 import KiwiEngine
-import Canary
+import CoconutData
 import JavaScriptCore
 import Foundation
 
@@ -43,7 +43,9 @@ import Foundation
 	}
 
 	public func setObject(_ name: String, _ object: JSExport){
-		mPropertyTable.setObject(name, object)
+		if let value = JSValue(object: object, in: mContext) {
+			mPropertyTable.set(name, value)
+		}
 	}
 }
 

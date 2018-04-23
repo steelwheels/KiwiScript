@@ -6,7 +6,7 @@
  */
 
 import KiwiEngine
-import Canary
+import CoconutData
 import Foundation
 
 public func testEnum(console cons: CNConsole) -> Bool

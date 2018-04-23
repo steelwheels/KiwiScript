@@ -5,7 +5,7 @@
  *   Copyright (C) 2017 Steel Wheels Project
  */
 
-import Canary
+import CoconutData
 import JavaScriptCore
 import Foundation
 
@@ -17,19 +17,18 @@ private typealias FunctionRef	= (_ value: JSValue) -> Void
 	func get(_ name: String) -> JSValue
 }
 
-@objc public class KEPropertyTable: NSObject, KEPropertyExport
+@objc open class KEPropertyTable: NSObject, KEPropertyExport
 {
 	private var mContext:		KEContext
-	private var mTable:		NSMutableDictionary // Key:String, value:KEPropertyValue
+	private var mTable:		NSMutableDictionary // Key:String, value:JSValue
 	private var mListeners:		Dictionary<String, KEListener>
-	private weak var mOwner:	AnyObject?
+
+	public weak var owner:		AnyObject? = nil
 
 	public init(context ctxt: KEContext){
-		//Swift.print("KEPropertyTable:init")
 		mContext   	= ctxt
 		mTable     	= NSMutableDictionary(capacity: 8)
 		mListeners 	= [:]
-		mOwner		= nil
 	}
 
 	deinit {
@@ -37,17 +36,6 @@ private typealias FunctionRef	= (_ value: JSValue) -> Void
 			if let obs = mListeners[prop] {
 				mTable.removeObserver(obs, forKeyPath: prop)
 			}
-		}
-	}
-
-	public weak var owner: AnyObject? {
-		set(newown){
-			//Swift.print("KEPropertyTable:set \(String(describing: newown))")
-			mOwner = newown
-		}
-		get {
-			//Swift.print("KEPropertyTable:get \(String(describing: mOwner))")
-			return mOwner
 		}
 	}
 
@@ -64,43 +52,23 @@ private typealias FunctionRef	= (_ value: JSValue) -> Void
 	}
 
 	public func set(_ name: String, _ value: JSValue) {
-		let obj = KEPropertyValue(value: value)
-		mTable.setValue(obj, forKey: name)
+		mTable.setValue(value, forKey: name)
 	}
 
 	public func get(_ name: String) -> JSValue {
-		if let obj = mTable.value(forKey: name) as? KEPropertyValue {
-			return obj.toValue(context: mContext)
+		if let value = mTable.value(forKey: name) as? JSValue {
+			return value
 		} else {
 			return JSValue(undefinedIn: mContext)
 		}
 	}
 
 	public func check(_ name: String) -> JSValue? {
-		if let obj = mTable.value(forKey: name) as? KEPropertyValue {
-			return obj.toValue(context: mContext)
+		if let value = mTable.value(forKey: name) as? JSValue {
+			return value
 		} else {
 			return nil
 		}
-	}
-
-	public func setObject(_ name: String, _ obj: JSExport) {
-		if let value = JSValue(object: obj, in: mContext) {
-			set(name, value)
-		} else {
-			NSLog("Failed tp allocate value")
-		}
-	}
-
-	public func getObject(_ name: String) -> JSExport? {
-		if let value = check(name) {
-			if value.isObject {
-				if let obj = value.toObject() as? JSExport {
-					return obj
-				}
-			}
-		}
-		return nil
 	}
 
 	public var context: KEContext {
@@ -135,8 +103,7 @@ private class KEListener: NSObject
 	public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?)
 	{
 		if let path = keyPath, let obj = object as? NSObject {
-			if let pval = obj.value(forKey: path) as? KEPropertyValue {
-				let val = pval.toValue(context: mContext)
+			if let val = obj.value(forKey: path) as? JSValue{
 				for cbfunc in mListenerFuncs {
 					cbfunc(val)
 				}
