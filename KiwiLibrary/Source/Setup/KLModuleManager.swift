@@ -6,7 +6,7 @@
  */
 
 import KiwiEngine
-import Canary
+import CoconutData
 import JavaScriptCore
 import Foundation
 
@@ -18,7 +18,7 @@ public class KLModuleManager
 	private var mIs1stExternalModule:	Bool
 	private var mContext:			KEContext?
 	private var mArguments:			Array<String>
-	private var mConsole:			CNCursesConsole?
+	private var mConsole:			CNConsole?
 	private var mExceptionHandler: 		((_ exception: KEException) -> Void)?
 
 	private init(){
@@ -30,7 +30,7 @@ public class KLModuleManager
 		mExceptionHandler	= nil
 	}
 
-	public func setup(context ctxt: KEContext, arguments args: Array<String>, console cons: CNCursesConsole, exceptionHandler ehandler: @escaping (_ exception: KEException) -> Void){
+	public func setup(context ctxt: KEContext, arguments args: Array<String>, console cons: CNConsole, exceptionHandler ehandler: @escaping (_ exception: KEException) -> Void){
 		mContext 		= ctxt
 		mArguments		= args
 		mConsole		= cons
@@ -60,6 +60,9 @@ public class KLModuleManager
 			case "align":		result = KLAlign(context: ctxt)
 			case "authorize":	result = KLAuthorize(context: ctxt)
 			case "console":		result = KLConsole(context: ctxt, console: cons)
+			#if os(OSX)
+			case "curses":		result = KLCurses(context: ctxt)
+			#endif
 			case "file":		result = KLFile(context: ctxt)
 			case "pipe":		result = KLPipe(context: ctxt)
 			case "JSON":		result = KLJSON(context: ctxt)

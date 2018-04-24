@@ -7,7 +7,8 @@
 
 #if os(OSX)
 
-import Canary
+import CoconutData
+import CoconutShell
 import KiwiEngine
 import JavaScriptCore
 import Foundation

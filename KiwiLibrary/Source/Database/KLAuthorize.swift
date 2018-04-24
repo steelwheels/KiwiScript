@@ -6,7 +6,7 @@
  */
 
 import KiwiEngine
-import Canary
+import CoconutData
 import JavaScriptCore
 import Foundation
 

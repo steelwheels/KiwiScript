@@ -5,10 +5,10 @@
  *   Copyright (C) 2018 Steel Wheels Project
  */
 
-import Foundation
 import KiwiEngine
+import CoconutData
 import JavaScriptCore
-import Canary
+import Foundation
 
 public class KHShellConsole
 {
@@ -24,14 +24,10 @@ public class KHShellConsole
 
 	public func repl() -> Int32
 	{
-		let editline = CNEditLine()
-		editline.setup(programName: mApplicationName, console: mConsole)
-		editline.doBuffering = true
-
 		var docont = true
 		var result: Int32 = 0
 		while docont {
-			if let str = editline.gets() {
+			if let str = mConsole.scan() {
 				switch mShell.execute(commandLine: str) {
 				case .Continue:
 					break

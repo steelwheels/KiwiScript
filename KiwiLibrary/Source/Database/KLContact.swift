@@ -6,7 +6,8 @@
  */
 
 import KiwiEngine
-import Canary
+import CoconutData
+import CoconutDatabase
 import JavaScriptCore
 import Contacts
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0525C946204C4BB50058CCBF /* KLPipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525C945204C4BB50058CCBF /* KLPipe.swift */; };
+		057F73B8208E3EE700D7CF57 /* KLCurses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F73B7208E3EE700D7CF57 /* KLCurses.swift */; };
 		058E19562056D2E300513607 /* KLGlobalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058E19552056D2E300513607 /* KLGlobalManager.swift */; };
 		05C49214204ABF3800C5D910 /* KLShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C49213204ABF3800C5D910 /* KLShell.swift */; };
 		05F0201E203F088400B430F5 /* KLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F0201D203F088400B430F5 /* KLColor.swift */; };
@@ -37,10 +38,11 @@
 
 /* Begin PBXFileReference section */
 		0525C945204C4BB50058CCBF /* KLPipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLPipe.swift; sourceTree = "<group>"; };
+		057F73B7208E3EE700D7CF57 /* KLCurses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLCurses.swift; sourceTree = "<group>"; };
 		058E19552056D2E300513607 /* KLGlobalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLGlobalManager.swift; sourceTree = "<group>"; };
 		05B12283203F0734009DDBEF /* KiwiLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		05B12286203F0734009DDBEF /* KiwiLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KiwiLibrary.h; path = ../../Source/KiwiLibrary.h; sourceTree = "<group>"; };
-		05B12287203F0734009DDBEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
+		05B12286203F0734009DDBEF /* KiwiLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiLibrary.h; sourceTree = "<group>"; };
+		05B12287203F0734009DDBEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05C49213204ABF3800C5D910 /* KLShell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLShell.swift; sourceTree = "<group>"; };
 		05F0201D203F088400B430F5 /* KLColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLColor.swift; sourceTree = "<group>"; };
 		05F02023203F08CF00B430F5 /* KLAuthorize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLAuthorize.swift; sourceTree = "<group>"; };
@@ -71,7 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				05F0201B203F083000B430F5 /* Source */,
-				05B12285203F0734009DDBEF /* KiwiLibrary */,
+				05B12285203F0734009DDBEF /* OSX */,
 				05B12284203F0734009DDBEF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -84,13 +86,12 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		05B12285203F0734009DDBEF /* KiwiLibrary */ = {
+		05B12285203F0734009DDBEF /* OSX */ = {
 			isa = PBXGroup;
 			children = (
-				05B12286203F0734009DDBEF /* KiwiLibrary.h */,
 				05B12287203F0734009DDBEF /* Info.plist */,
 			);
-			path = KiwiLibrary;
+			name = OSX;
 			sourceTree = "<group>";
 		};
 		05C49212204AB7C900C5D910 /* Shell */ = {
@@ -104,6 +105,7 @@
 		05F0201B203F083000B430F5 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				05B12286203F0734009DDBEF /* KiwiLibrary.h */,
 				05F02033203F096900B430F5 /* Setup */,
 				05F0201C203F086900B430F5 /* Console */,
 				05F02022203F08B700B430F5 /* Database */,
@@ -118,6 +120,7 @@
 		05F0201C203F086900B430F5 /* Console */ = {
 			isa = PBXGroup;
 			children = (
+				057F73B7208E3EE700D7CF57 /* KLCurses.swift */,
 				05F0201D203F088400B430F5 /* KLColor.swift */,
 			);
 			path = Console;
@@ -273,6 +276,7 @@
 				05F02032203F095000B430F5 /* KLProcess.swift in Sources */,
 				058E19562056D2E300513607 /* KLGlobalManager.swift in Sources */,
 				05F0203A203F097900B430F5 /* KLRequire.swift in Sources */,
+				057F73B8208E3EE700D7CF57 /* KLCurses.swift in Sources */,
 				0525C946204C4BB50058CCBF /* KLPipe.swift in Sources */,
 				05F02025203F08D000B430F5 /* KLAuthorize.swift in Sources */,
 				05F02038203F097900B430F5 /* KLConfig.swift in Sources */,
@@ -454,6 +458,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = "$(HOME)/Library/Frameworks";
 				FRAMEWORK_VERSION = A;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
@@ -479,6 +484,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = "$(HOME)/Library/Frameworks";
 				FRAMEWORK_VERSION = A;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";

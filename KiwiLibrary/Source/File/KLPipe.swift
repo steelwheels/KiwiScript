@@ -5,7 +5,7 @@
  *   Copyright (C) 2017, 2018 Steel Wheels Project
  */
 
-import Canary
+import CoconutData
 import KiwiEngine
 import JavaScriptCore
 import Foundation

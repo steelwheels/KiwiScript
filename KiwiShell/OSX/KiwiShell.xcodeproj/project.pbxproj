@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		055232D62039AE1100FD002C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055232D52039AE1100FD002C /* main.swift */; };
 		055AAA912039A319008018A8 /* KiwiShell.h in Headers */ = {isa = PBXBuildFile; fileRef = 055AAA902039A319008018A8 /* KiwiShell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		05941F59203DBBCE005930F9 /* Canary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05941F58203DBBCE005930F9 /* Canary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0597DEBB2039C8E4008CAC98 /* KiwiEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0597DEBA2039C8E4008CAC98 /* KiwiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05D049D52039AA9000642E6A /* KHShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D049D42039AA9000642E6A /* KHShell.swift */; };
 		05E73E6F2041712000D317D0 /* KHShellConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E73E6E2041712000D317D0 /* KHShellConsole.swift */; };
 		05EB10A02039BA2C005209C4 /* KiwiShell.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05EB109F2039BA2C005209C4 /* KiwiShell.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05F5EA6E208F762000CF98C3 /* CoconutData.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05F5EA6D208F762000CF98C3 /* CoconutData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +56,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				05941F59203DBBCE005930F9 /* Canary.framework in CopyFiles */,
+				05F5EA6E208F762000CF98C3 /* CoconutData.framework in CopyFiles */,
 				0597DEBB2039C8E4008CAC98 /* KiwiEngine.framework in CopyFiles */,
 				05EB10A02039BA2C005209C4 /* KiwiShell.framework in CopyFiles */,
 			);
@@ -70,13 +70,13 @@
 		055232D32039AE1100FD002C /* Shell */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Shell; sourceTree = BUILT_PRODUCTS_DIR; };
 		055232D52039AE1100FD002C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		055AAA902039A319008018A8 /* KiwiShell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KiwiShell.h; sourceTree = "<group>"; };
-		05941F58203DBBCE005930F9 /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../../Library/Frameworks/Canary.framework; sourceTree = "<group>"; };
 		0597DEBA2039C8E4008CAC98 /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../Library/Frameworks/KiwiEngine.framework; sourceTree = "<group>"; };
 		05D049D42039AA9000642E6A /* KHShell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KHShell.swift; sourceTree = "<group>"; };
 		05D049DA2039AC3C00642E6A /* UnitTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		05D049DC2039AC3C00642E6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05E73E6E2041712000D317D0 /* KHShellConsole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KHShellConsole.swift; sourceTree = "<group>"; };
 		05EB109F2039BA2C005209C4 /* KiwiShell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiShell.framework; path = ../../../../Library/Frameworks/KiwiShell.framework; sourceTree = "<group>"; };
+		05F5EA6D208F762000CF98C3 /* CoconutData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutData.framework; path = ../../../../Library/Frameworks/CoconutData.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,11 +107,11 @@
 		05100EC22039A17000C269BB = {
 			isa = PBXGroup;
 			children = (
+				05F5EA6D208F762000CF98C3 /* CoconutData.framework */,
 				055AAA8F2039A244008018A8 /* Source */,
 				05100ECE2039A17000C269BB /* OSX */,
 				05D049DB2039AC3C00642E6A /* UnitTest */,
 				05100ECD2039A17000C269BB /* Products */,
-				05941F58203DBBCE005930F9 /* Canary.framework */,
 				0597DEBA2039C8E4008CAC98 /* KiwiEngine.framework */,
 				05EB109F2039BA2C005209C4 /* KiwiShell.framework */,
 			);
@@ -258,7 +258,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Tomoo Hamada";
 				TargetAttributes = {
 					05100ECB2039A17000C269BB = {
@@ -377,6 +377,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -384,6 +385,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -437,6 +439,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -444,6 +447,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

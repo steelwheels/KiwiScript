@@ -7,10 +7,10 @@
 
 import KiwiEngine
 import JavaScriptCore
-import Canary
+import CoconutData
 import Foundation
 
-public func KLSetupLibrary(context ctxt: KEContext, arguments args: Array<String>, console cons: CNCursesConsole, config cfg: KLConfig, exceptionHandler ehandler: @escaping (_ exception: KEException) -> Void)
+public func KLSetupLibrary(context ctxt: KEContext, arguments args: Array<String>, console cons: CNConsole, config cfg: KLConfig, exceptionHandler ehandler: @escaping (_ exception: KEException) -> Void)
 {
 	/* Set strict mode */
 	if cfg.useStrictMode {
