@@ -41,7 +41,13 @@ open class KECompiler
 	public var context: KEContext        { get { return mContext }}
 	public var console: CNConsole        { get { return mConsole }}
 	public var config:  KECompilerConfig { get { return mConfig  }}
-	
+
+	public func log(string str: String) {
+		if mConfig.doVerbose {
+			mConsole.print(string: str)
+		}
+	}
+
 	public func defineSetter(instance inst:String, accessType access: CNAccessType, propertyName name:String){
 		if access.isReadable {
 			let stmt = "\(inst).__defineGetter__(\"\(name)\", function(   ){ return this.get(\"\(name)\"     ); }) ;\n"
@@ -54,9 +60,7 @@ open class KECompiler
 	}
 
 	public func compile(statement stmt: String) -> JSValue? {
-		if mConfig.doVerbose {
-			mConsole.print(string: stmt)
-		}
+		log(string: stmt)
 		return mContext.evaluateScript(stmt)
 	}
 
