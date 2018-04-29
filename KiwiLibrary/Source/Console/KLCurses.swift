@@ -15,8 +15,9 @@ import Foundation
 
 @objc public protocol KLCursesProtocol: JSExport
 {
-	func log(_ value: JSValue)
-	func error(_ value: JSValue)
+	func mode(_ value: JSValue)
+
+	func put(_ value: JSValue)
 
 	var visiblePrompt	: JSValue { get set }
 	var doBuffering		: JSValue { get set }
@@ -43,11 +44,17 @@ import Foundation
 		mContext	= ctxt
 	}
 
-	public func log(_ value: JSValue) {
-		mCurses.put(string: value.toString())
+	public func mode(_ value: JSValue){
+		if value.isBoolean {
+			if value.toBool() {
+				mCurses.setup()	// enable
+			} else {
+				mCurses.finalize()
+			}
+		}
 	}
 
-	public func error(_ value: JSValue) {
+	public func put(_ value: JSValue) {
 		mCurses.put(string: value.toString())
 	}
 

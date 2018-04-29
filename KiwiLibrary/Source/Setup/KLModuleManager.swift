@@ -79,7 +79,8 @@ public class KLModuleManager
 				#else
 					result = nil
 				#endif
-			default:		result = nil
+			default:
+				result = nil
 			}
 		} else {
 			NSLog("Object is not setupped")
