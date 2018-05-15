@@ -11,36 +11,38 @@ import Foundation
 
 public enum KECompileError: Error
 {
-	case NoError
 	case SyntaxError(String)	// error message
+
+	public func toObject() -> NSError {
+		var message: String
+		switch self {
+		case .SyntaxError(let msg):
+			message = "Syntax error: \(msg)"
+		}
+		return NSError.parseError(message: message)
+	}
 }
 
-public struct KECompilerConfig
+public protocol KEConfig
 {
-	var mDoVerbose:	Bool
-
-	public init(doVerbose verb: Bool){
-		mDoVerbose = verb
-	}
-
-	public var doVerbose: Bool { get { return mDoVerbose }}
+	var doVerbose: Bool { get set }
 }
 
 open class KECompiler
 {
 	private var mContext		: KEContext
 	private var mConsole		: CNConsole
-	private var mConfig		: KECompilerConfig
+	private var mConfig		: KEConfig
 
-	public init(context ctxt: KEContext, console cons: CNConsole, config conf: KECompilerConfig){
+	public init(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig){
 		mContext	= ctxt
 		mConsole	= cons
 		mConfig		= conf
 	}
 
-	public var context: KEContext        { get { return mContext }}
-	public var console: CNConsole        { get { return mConsole }}
-	public var config:  KECompilerConfig { get { return mConfig  }}
+	public var context: KEContext { get { return mContext }}
+	public var console: CNConsole { get { return mConsole }}
+	public var config:  KEConfig  { get { return mConfig  }}
 
 	public func log(string str: String) {
 		if mConfig.doVerbose {

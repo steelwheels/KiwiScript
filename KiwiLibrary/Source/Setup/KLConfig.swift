@@ -7,12 +7,8 @@
 
 import Foundation
 
-public class KLConfig
+public protocol KLConfig
 {
-	public var useStrictMode: Bool
-
-	public init(){
-		useStrictMode = true
-	}
+	var useStrictMode: Bool { get set }
 }
 
