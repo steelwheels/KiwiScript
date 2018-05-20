@@ -59,6 +59,14 @@ public func KLSetupLibrary(context ctxt: KEContext, arguments args: Array<String
 		return
 	}
 
+	/* Add orientation module */
+	if let orientation = manager.getBuiltinModule(moduleName: "orientation") as? KLOrientation {
+		ctxt.setObject(orientation, forKeyedSubscript: NSString(string: "Orientation"))
+	} else {
+		NSLog("Failed to allocate \"Orientation\" module")
+		return
+	}
+
 	/* Add authorize module */
 	if let auth = manager.getBuiltinModule(moduleName: "authorize") as? KLAuthorize {
 		ctxt.setObject(auth, forKeyedSubscript: NSString(string: "Authorize"))

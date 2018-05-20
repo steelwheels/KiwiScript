@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05446D6820B1175000CD0D22 /* KLOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05446D6720B1175000CD0D22 /* KLOrientation.swift */; };
 		05A71EBC208E3EA2007356BB /* KLCurses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A71EBB208E3EA2007356BB /* KLCurses.swift */; };
 		05BCE6552068BCEF007B0559 /* KLConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCE6502068BCEE007B0559 /* KLConfig.swift */; };
 		05BCE6562068BCEF007B0559 /* KLModuleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCE6512068BCEE007B0559 /* KLModuleManager.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		05446D6720B1175000CD0D22 /* KLOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLOrientation.swift; sourceTree = "<group>"; };
 		05A71EBB208E3EA2007356BB /* KLCurses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLCurses.swift; sourceTree = "<group>"; };
 		05BCE6502068BCEE007B0559 /* KLConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLConfig.swift; sourceTree = "<group>"; };
 		05BCE6512068BCEE007B0559 /* KLModuleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLModuleManager.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 			children = (
 				05C6E06B20688F2F000E8A13 /* KiwiLibrary.h */,
 				05BCE64F2068BCD8007B0559 /* Setup */,
+				05446D6620B1171E00CD0D22 /* Global */,
 				05BCE65D2068BD48007B0559 /* Console */,
 				05BCE65A2068BCFA007B0559 /* Process */,
 				05BCE6662068BD98007B0559 /* File */,
@@ -82,6 +85,15 @@
 			);
 			name = Source;
 			path = ../Source;
+			sourceTree = "<group>";
+		};
+		05446D6620B1171E00CD0D22 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				05BCE66B2068BDAE007B0559 /* KLAlign.swift */,
+				05446D6720B1175000CD0D22 /* KLOrientation.swift */,
+			);
+			path = Global;
 			sourceTree = "<group>";
 		};
 		05BCE64F2068BCD8007B0559 /* Setup */ = {
@@ -125,7 +137,6 @@
 		05BCE6662068BD98007B0559 /* File */ = {
 			isa = PBXGroup;
 			children = (
-				05BCE66B2068BDAE007B0559 /* KLAlign.swift */,
 				05BCE66A2068BDAE007B0559 /* KLConsole.swift */,
 				05BCE6672068BDAE007B0559 /* KLFile.swift */,
 				05BCE6692068BDAE007B0559 /* KLJSONFile.swift */,
@@ -286,6 +297,7 @@
 				05BCE6632068BD85007B0559 /* KLAuthorize.swift in Sources */,
 				05BCE6702068BDAE007B0559 /* KLAlign.swift in Sources */,
 				05BCE6732068BDD7007B0559 /* KLShell.swift in Sources */,
+				05446D6820B1175000CD0D22 /* KLOrientation.swift in Sources */,
 				05BCE6552068BCEF007B0559 /* KLConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

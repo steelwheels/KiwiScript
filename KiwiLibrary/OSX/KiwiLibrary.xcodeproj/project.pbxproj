@@ -23,6 +23,7 @@
 		05F02039203F097900B430F5 /* KLModuleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F02035203F097900B430F5 /* KLModuleManager.swift */; };
 		05F0203A203F097900B430F5 /* KLRequire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F02036203F097900B430F5 /* KLRequire.swift */; };
 		05F0203B203F097900B430F5 /* KLSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F02037203F097900B430F5 /* KLSetup.swift */; };
+		05F487E720B110DF002F7741 /* KLOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F487E620B110DF002F7741 /* KLOrientation.swift */; };
 		05FE42A5204164B90094D971 /* KiwiLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 05B12286203F0734009DDBEF /* KiwiLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		05F02035203F097900B430F5 /* KLModuleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLModuleManager.swift; sourceTree = "<group>"; };
 		05F02036203F097900B430F5 /* KLRequire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLRequire.swift; sourceTree = "<group>"; };
 		05F02037203F097900B430F5 /* KLSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLSetup.swift; sourceTree = "<group>"; };
+		05F487E620B110DF002F7741 /* KLOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLOrientation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				05B12286203F0734009DDBEF /* KiwiLibrary.h */,
+				05F487E520B11057002F7741 /* Global */,
 				05F02033203F096900B430F5 /* Setup */,
 				05F0201C203F086900B430F5 /* Console */,
 				05F02022203F08B700B430F5 /* Database */,
@@ -138,7 +141,6 @@
 		05F02027203F08F400B430F5 /* File */ = {
 			isa = PBXGroup;
 			children = (
-				05F0202B203F091100B430F5 /* KLAlign.swift */,
 				05F0202A203F091100B430F5 /* KLConsole.swift */,
 				05F02028203F091100B430F5 /* KLFile.swift */,
 				0525C945204C4BB50058CCBF /* KLPipe.swift */,
@@ -165,6 +167,15 @@
 				05F02036203F097900B430F5 /* KLRequire.swift */,
 			);
 			path = Setup;
+			sourceTree = "<group>";
+		};
+		05F487E520B11057002F7741 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				05F0202B203F091100B430F5 /* KLAlign.swift */,
+				05F487E620B110DF002F7741 /* KLOrientation.swift */,
+			);
+			path = Global;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,6 +297,7 @@
 				05F0202C203F091100B430F5 /* KLFile.swift in Sources */,
 				05F0202F203F091100B430F5 /* KLAlign.swift in Sources */,
 				05F02039203F097900B430F5 /* KLModuleManager.swift in Sources */,
+				05F487E720B110DF002F7741 /* KLOrientation.swift in Sources */,
 				05F02026203F08D000B430F5 /* KLContact.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

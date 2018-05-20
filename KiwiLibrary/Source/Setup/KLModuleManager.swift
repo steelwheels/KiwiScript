@@ -58,6 +58,7 @@ public class KLModuleManager
 			switch name {
 			case "color":		result = KLColor(context: ctxt)
 			case "align":		result = KLAlign(context: ctxt)
+			case "orientation":	result = KLOrientation(context: ctxt)
 			case "authorize":	result = KLAuthorize(context: ctxt)
 			case "console":		result = KLConsole(context: ctxt, console: cons)
 			#if os(OSX)
