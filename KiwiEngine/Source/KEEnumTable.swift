@@ -13,7 +13,7 @@ public protocol KEEnumProtocol: JSExport
 	func get(_ name: String) -> JSValue
 }
 
-@objc public class KEEnumObject: NSObject, KEEnumProtocol
+@objc open class KEEnumObject: NSObject, KEEnumProtocol
 {
 	private var mContext:	  KEContext
 	private var mEnumMembers: Dictionary<String, Int32>		// member name, value
