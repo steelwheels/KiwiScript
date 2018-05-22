@@ -52,8 +52,16 @@ public class KEEnumTable
 		mEnumTable = [:]
 	}
 
+	public var names: Array<String> {
+		get { return Array(mEnumTable.keys) }
+	}
+
 	public func set(name nm: String, object obj: KEEnumObject){
 		mEnumTable[nm] = obj
+	}
+
+	public func get(name nm: String) -> KEEnumObject? {
+		return mEnumTable[nm]
 	}
 
 	public func value(forClass name:String, forMember memb: String) -> Int32? {
