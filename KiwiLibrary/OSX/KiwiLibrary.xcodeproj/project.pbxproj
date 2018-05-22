@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0525C946204C4BB50058CCBF /* KLPipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525C945204C4BB50058CCBF /* KLPipe.swift */; };
 		057F73B8208E3EE700D7CF57 /* KLCurses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F73B7208E3EE700D7CF57 /* KLCurses.swift */; };
+		0582FCD520B31AF6009EB4F7 /* KLEnumTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0582FCD420B31AF6009EB4F7 /* KLEnumTable.swift */; };
 		058E19562056D2E300513607 /* KLGlobalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058E19552056D2E300513607 /* KLGlobalManager.swift */; };
 		05C49214204ABF3800C5D910 /* KLShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C49213204ABF3800C5D910 /* KLShell.swift */; };
 		05F0201E203F088400B430F5 /* KLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F0201D203F088400B430F5 /* KLColor.swift */; };
@@ -40,6 +41,7 @@
 /* Begin PBXFileReference section */
 		0525C945204C4BB50058CCBF /* KLPipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLPipe.swift; sourceTree = "<group>"; };
 		057F73B7208E3EE700D7CF57 /* KLCurses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLCurses.swift; sourceTree = "<group>"; };
+		0582FCD420B31AF6009EB4F7 /* KLEnumTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLEnumTable.swift; sourceTree = "<group>"; };
 		058E19552056D2E300513607 /* KLGlobalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLGlobalManager.swift; sourceTree = "<group>"; };
 		05B12283203F0734009DDBEF /* KiwiLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05B12286203F0734009DDBEF /* KiwiLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiLibrary.h; sourceTree = "<group>"; };
@@ -108,8 +110,8 @@
 			isa = PBXGroup;
 			children = (
 				05B12286203F0734009DDBEF /* KiwiLibrary.h */,
-				05F487E520B11057002F7741 /* Global */,
 				05F02033203F096900B430F5 /* Setup */,
+				05F487E520B11057002F7741 /* Global */,
 				05F0201C203F086900B430F5 /* Console */,
 				05F02022203F08B700B430F5 /* Database */,
 				05F02027203F08F400B430F5 /* File */,
@@ -124,7 +126,6 @@
 			isa = PBXGroup;
 			children = (
 				057F73B7208E3EE700D7CF57 /* KLCurses.swift */,
-				05F0201D203F088400B430F5 /* KLColor.swift */,
 			);
 			path = Console;
 			sourceTree = "<group>";
@@ -132,7 +133,6 @@
 		05F02022203F08B700B430F5 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				05F02023203F08CF00B430F5 /* KLAuthorize.swift */,
 				05F02024203F08CF00B430F5 /* KLContact.swift */,
 			);
 			path = Database;
@@ -172,8 +172,11 @@
 		05F487E520B11057002F7741 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				0582FCD420B31AF6009EB4F7 /* KLEnumTable.swift */,
 				05F0202B203F091100B430F5 /* KLAlign.swift */,
 				05F487E620B110DF002F7741 /* KLOrientation.swift */,
+				05F0201D203F088400B430F5 /* KLColor.swift */,
+				05F02023203F08CF00B430F5 /* KLAuthorize.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				05C49214204ABF3800C5D910 /* KLShell.swift in Sources */,
 				05F02032203F095000B430F5 /* KLProcess.swift in Sources */,
 				058E19562056D2E300513607 /* KLGlobalManager.swift in Sources */,
+				0582FCD520B31AF6009EB4F7 /* KLEnumTable.swift in Sources */,
 				05F0203A203F097900B430F5 /* KLRequire.swift in Sources */,
 				057F73B8208E3EE700D7CF57 /* KLCurses.swift in Sources */,
 				0525C946204C4BB50058CCBF /* KLPipe.swift in Sources */,

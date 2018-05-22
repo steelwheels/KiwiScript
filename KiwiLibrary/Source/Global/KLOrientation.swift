@@ -10,25 +10,16 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-@objc public protocol KLOrientationProtocol: JSExport
+public class KLOrientation: KEEnumObject
 {
-	var Horizontal:		JSValue { get }
-	var Vertical:		JSValue { get }
-}
+	static public let Horizontal:		Int32		= 0
+	static public let Vertical:		Int32		= 1
 
-@objc public class KLOrientation: NSObject, KLOrientationProtocol
-{
-	private var mContext: KEContext
+	public override init(context ctxt: KEContext) {
+		super.init(context: ctxt)
 
-	public init(context ctxt: KEContext){
-		mContext = ctxt
-	}
-
-	public var Horizontal 	: JSValue { get { return alignValue(value: CNOrientation.Horizontal.rawValue) }}
-	public var Vertical	: JSValue { get { return alignValue(value: CNOrientation.Vertical.rawValue) }}
-
-	private func alignValue(value v: Int32) -> JSValue {
-		return JSValue(int32: Int32(v), in: mContext)
+		set(name: "horizontal", value: KLOrientation.Horizontal)
+		set(name: "vertical",   value: KLOrientation.Vertical)
 	}
 }
 

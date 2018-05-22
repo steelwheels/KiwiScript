@@ -92,6 +92,8 @@
 			children = (
 				05BCE66B2068BDAE007B0559 /* KLAlign.swift */,
 				05446D6720B1175000CD0D22 /* KLOrientation.swift */,
+				05BCE65E2068BD5D007B0559 /* KLColor.swift */,
+				05BCE6612068BD85007B0559 /* KLAuthorize.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -119,7 +121,6 @@
 		05BCE65D2068BD48007B0559 /* Console */ = {
 			isa = PBXGroup;
 			children = (
-				05BCE65E2068BD5D007B0559 /* KLColor.swift */,
 				05A71EBB208E3EA2007356BB /* KLCurses.swift */,
 			);
 			path = Console;
@@ -128,7 +129,6 @@
 		05BCE6602068BD67007B0559 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				05BCE6612068BD85007B0559 /* KLAuthorize.swift */,
 				05BCE6622068BD85007B0559 /* KLContact.swift */,
 			);
 			path = Database;

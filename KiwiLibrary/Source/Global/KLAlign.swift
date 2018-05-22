@@ -9,45 +9,26 @@ import KiwiEngine
 import JavaScriptCore
 import Foundation
 
-@objc public protocol KLAlignProtocol: JSExport
+public class KLAlign: KEEnumObject
 {
-	var Left	: JSValue { get }
-	var Center	: JSValue { get }
-	var Right	: JSValue { get }
+	static public let Left:		Int32		= 0
+	static public let Center:	Int32		= 2
+	static public let Right:	Int32		= 1
 
-	var Top		: JSValue { get }
-	var Middle	: JSValue { get }
-	var Bottom	: JSValue { get }
-}
+	static public let Top:		Int32		= 0
+	static public let Middle:	Int32		= 2
+	static public let Bottom:	Int32		= 1
 
-@objc public class KLAlign: NSObject, KLAlignProtocol
-{
-	static public let leftValue:	Int32		= 0
-	static public let centerValue:	Int32		= 2
-	static public let rightValue:	Int32		= 1
+	public override init(context ctxt: KEContext) {
+		super.init(context: ctxt)
+		set(name: "left", 	value: KLAlign.Left)
+		set(name: "center", 	value: KLAlign.Center)
+		set(name: "right",	value: KLAlign.Right)
 
-	static public let topValue:	Int32		= 0
-	static public let middleValue:	Int32		= 2
-	static public let bottomValue:	Int32		= 1
-
-	private var mContext: KEContext
-
-	public init(context ctxt: KEContext){
-		mContext = ctxt
+		set(name: "top", 	value: KLAlign.Top)
+		set(name: "middle", 	value: KLAlign.Middle)
+		set(name: "bottom",	value: KLAlign.Bottom)
 	}
-
-	public var Left 	: JSValue { get { return alignValue(value: KLAlign.leftValue) }}
-	public var Center	: JSValue { get { return alignValue(value: KLAlign.centerValue) }}
-	public var Right	: JSValue { get { return alignValue(value: KLAlign.rightValue) }}
-
-	public var Top		: JSValue { get { return alignValue(value: KLAlign.topValue) }}
-	public var Middle	: JSValue { get { return alignValue(value: KLAlign.middleValue) }}
-	public var Bottom	: JSValue { get { return alignValue(value: KLAlign.bottomValue) }}
-
-	private func alignValue(value v: Int32) -> JSValue {
-		return JSValue(int32: Int32(v), in: mContext)
-	}
-
 }
 
 /* map NSTextAlignment to KLAlign */
@@ -57,11 +38,11 @@ public extension NSTextAlignment
 		if val.isNumber {
 			let result: NSTextAlignment?
 			switch val.toInt32(){
-			case KLAlign.leftValue:
+			case KLAlign.Left:
 				result = .left
-			case KLAlign.rightValue:
+			case KLAlign.Right:
 				result = .right
-			case KLAlign.centerValue:
+			case KLAlign.Center:
 				result = .center
 			default:
 				result = nil
@@ -75,11 +56,11 @@ public extension NSTextAlignment
 		let immval : Int32?
 		switch align {
 		case .left:
-			immval = KLAlign.leftValue
+			immval = KLAlign.Left
 		case .center:
-			immval = KLAlign.centerValue
+			immval = KLAlign.Center
 		case .right:
-			immval = KLAlign.rightValue
+			immval = KLAlign.Right
 		default:
 			immval = nil
 		}

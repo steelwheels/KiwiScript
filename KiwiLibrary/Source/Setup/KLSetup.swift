@@ -43,38 +43,6 @@ public func KLSetupLibrary(context ctxt: KEContext, arguments args: Array<String
 	}
 	#endif // os(OSX)
 
-	/* Add color module */
-	if let color = manager.getBuiltinModule(moduleName: "color") as? KLColor {
-		ctxt.setObject(color, forKeyedSubscript: NSString(string: "Color"))
-	} else {
-		NSLog("Failed to allocate \"Color\" module")
-		return
-	}
-
-	/* Add align module */
-	if let align = manager.getBuiltinModule(moduleName: "align") as? KLAlign {
-		ctxt.setObject(align, forKeyedSubscript: NSString(string: "Align"))
-	} else {
-		NSLog("Failed to allocate \"Align\" module")
-		return
-	}
-
-	/* Add orientation module */
-	if let orientation = manager.getBuiltinModule(moduleName: "orientation") as? KLOrientation {
-		ctxt.setObject(orientation, forKeyedSubscript: NSString(string: "Orientation"))
-	} else {
-		NSLog("Failed to allocate \"Orientation\" module")
-		return
-	}
-
-	/* Add authorize module */
-	if let auth = manager.getBuiltinModule(moduleName: "authorize") as? KLAuthorize {
-		ctxt.setObject(auth, forKeyedSubscript: NSString(string: "Authorize"))
-	} else {
-		NSLog("Failed to allocate \"Authorize\" module")
-		return
-	}
-
 	/* Add console module */
 	if let console = manager.getBuiltinModule(moduleName: "console") as? KLConsole {
 		ctxt.setObject(console, forKeyedSubscript: NSString(string: "console"))
