@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		05446D6820B1175000CD0D22 /* KLOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05446D6720B1175000CD0D22 /* KLOrientation.swift */; };
+		055F7C2320B4735400D9B96A /* KLEnumTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055F7C2220B4735400D9B96A /* KLEnumTable.swift */; };
 		05A71EBC208E3EA2007356BB /* KLCurses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A71EBB208E3EA2007356BB /* KLCurses.swift */; };
 		05BCE6552068BCEF007B0559 /* KLConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCE6502068BCEE007B0559 /* KLConfig.swift */; };
 		05BCE6562068BCEF007B0559 /* KLModuleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCE6512068BCEE007B0559 /* KLModuleManager.swift */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		05446D6720B1175000CD0D22 /* KLOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLOrientation.swift; sourceTree = "<group>"; };
+		055F7C2220B4735400D9B96A /* KLEnumTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLEnumTable.swift; sourceTree = "<group>"; };
 		05A71EBB208E3EA2007356BB /* KLCurses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLCurses.swift; sourceTree = "<group>"; };
 		05BCE6502068BCEE007B0559 /* KLConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLConfig.swift; sourceTree = "<group>"; };
 		05BCE6512068BCEE007B0559 /* KLModuleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLModuleManager.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 		05446D6620B1171E00CD0D22 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				055F7C2220B4735400D9B96A /* KLEnumTable.swift */,
 				05BCE66B2068BDAE007B0559 /* KLAlign.swift */,
 				05446D6720B1175000CD0D22 /* KLOrientation.swift */,
 				05BCE65E2068BD5D007B0559 /* KLColor.swift */,
@@ -286,6 +289,7 @@
 				05BCE6562068BCEF007B0559 /* KLModuleManager.swift in Sources */,
 				05BCE66D2068BDAE007B0559 /* KLPipe.swift in Sources */,
 				05BCE66C2068BDAE007B0559 /* KLFile.swift in Sources */,
+				055F7C2320B4735400D9B96A /* KLEnumTable.swift in Sources */,
 				05BCE66E2068BDAE007B0559 /* KLJSONFile.swift in Sources */,
 				05A71EBC208E3EA2007356BB /* KLCurses.swift in Sources */,
 				05BCE6642068BD85007B0559 /* KLContact.swift in Sources */,

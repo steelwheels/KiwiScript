@@ -8,7 +8,7 @@
 import KiwiEngine
 import Foundation
 
-public func KESetEnumTable(enumTable table: KEEnumTable, context ctxt: KEContext)
+public func KLSetEnumTable(enumTable table: KEEnumTable, context ctxt: KEContext)
 {
 	/* Align */
 	let align       = KLAlign(context: ctxt)
