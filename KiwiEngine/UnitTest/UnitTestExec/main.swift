@@ -26,7 +26,6 @@ summary = test(funcName: "testObject", result: testObject(console: console)) && 
 summary = test(funcName: "testPropertyTable", result: testPropertyTable(console: console)) && summary
 summary = test(funcName: "testPropertyTable2", result: testPropertyTable2(console: console)) && summary
 summary = test(funcName: "testValue", result: testValue(console: console)) && summary
-summary = test(funcName: "testEnum", result: testEnum(console: console)) && summary
 
 
 if summary {

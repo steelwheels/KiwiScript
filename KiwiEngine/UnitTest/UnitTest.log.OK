@@ -32,5 +32,4 @@ convert: Hello, world -> Hello, world
 convert: [10.0, 11.1] -> 10,11.100000381469727
 convert: [b:11.1, a:10.0] -> [object Object]
 testValue : OK
-testEnum : OK
 SUMMARY: OK

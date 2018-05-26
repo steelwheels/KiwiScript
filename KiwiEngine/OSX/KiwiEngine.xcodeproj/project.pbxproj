@@ -16,11 +16,11 @@
 		0537CE911F81226D00CB313A /* UTValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0537CE901F81226D00CB313A /* UTValue.swift */; };
 		054536C61B78021500FE978C /* KiwiEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 054536C51B78021500FE978C /* KiwiEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		054637F21BB05FE400DEE12F /* UTError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054637F01BB05F4500DEE12F /* UTError.swift */; };
-		0553EC9720B313B800BB6059 /* KEEnumTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0553EC9620B313B800BB6059 /* KEEnumTable.swift */; };
 		05706F5F2077BDB4004F58B6 /* UTPropertyTable2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05706F5E2077BDB4004F58B6 /* UTPropertyTable2.swift */; };
 		057F881F1B78031B0029AB4F /* KEContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F881E1B78031B0029AB4F /* KEContext.swift */; };
 		058B53261BA41A6C009522DF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058B53251BA41A6C009522DF /* main.swift */; };
-		0592B89E1F3A2363006C92AD /* UTEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0592B89C1F3A2301006C92AD /* UTEnum.swift */; };
+		05BFF6D920B8DC3B004CEB28 /* KEObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BFF6D820B8DC3B004CEB28 /* KEObject.swift */; };
+		05BFF6DB20B916F1004CEB28 /* KEApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BFF6DA20B916F1004CEB28 /* KEApplication.swift */; };
 		05CF6D7B1BA41F9700BD9D91 /* KiwiEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05CF6D7A1BA41F9700BD9D91 /* KiwiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05CFAB962034875F001623BC /* KEException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CFAB952034875F001623BC /* KEException.swift */; };
 		05DFA829206865800032EC5B /* KECompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DFA828206865800032EC5B /* KECompiler.swift */; };
@@ -104,13 +104,13 @@
 		054536C41B78021500FE978C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		054536C51B78021500FE978C /* KiwiEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiEngine.h; sourceTree = SOURCE_ROOT; };
 		054637F01BB05F4500DEE12F /* UTError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTError.swift; sourceTree = "<group>"; };
-		0553EC9620B313B800BB6059 /* KEEnumTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEEnumTable.swift; sourceTree = "<group>"; };
 		05706F5E2077BDB4004F58B6 /* UTPropertyTable2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTPropertyTable2.swift; sourceTree = "<group>"; };
 		057F881E1B78031B0029AB4F /* KEContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEContext.swift; sourceTree = "<group>"; };
 		058B53231BA41A6C009522DF /* UnitTestExec */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTestExec; sourceTree = BUILT_PRODUCTS_DIR; };
 		058B53251BA41A6C009522DF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		0592B89C1F3A2301006C92AD /* UTEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTEnum.swift; sourceTree = "<group>"; };
 		05B40EED1BE5A4AE00AA8525 /* check.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = check.mk; sourceTree = SOURCE_ROOT; };
+		05BFF6D820B8DC3B004CEB28 /* KEObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEObject.swift; sourceTree = "<group>"; };
+		05BFF6DA20B916F1004CEB28 /* KEApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEApplication.swift; sourceTree = "<group>"; };
 		05CF6D761BA41EF000BD9D91 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05CF6D7A1BA41F9700BD9D91 /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = /Users/tomoo/Library/Frameworks/KiwiEngine.framework; sourceTree = "<absolute>"; };
 		05CFAB952034875F001623BC /* KEException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEException.swift; sourceTree = "<group>"; };
@@ -192,7 +192,8 @@
 				05CFAB952034875F001623BC /* KEException.swift */,
 				0504226F1ED5C02600183E4F /* KEPropertyTable.swift */,
 				0537CE8E1F80F76E00CB313A /* KEValue.swift */,
-				0553EC9620B313B800BB6059 /* KEEnumTable.swift */,
+				05BFF6D820B8DC3B004CEB28 /* KEObject.swift */,
+				05BFF6DA20B916F1004CEB28 /* KEApplication.swift */,
 				054536C31B78021500FE978C /* Supporting Files */,
 			);
 			name = Source;
@@ -217,7 +218,6 @@
 				050422711ED5CEF300183E4F /* UTPropertyTable.swift */,
 				05706F5E2077BDB4004F58B6 /* UTPropertyTable2.swift */,
 				0537CE901F81226D00CB313A /* UTValue.swift */,
-				0592B89C1F3A2301006C92AD /* UTEnum.swift */,
 			);
 			path = UnitTestExec;
 			sourceTree = "<group>";
@@ -416,8 +416,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				050422701ED5C02600183E4F /* KEPropertyTable.swift in Sources */,
-				0553EC9720B313B800BB6059 /* KEEnumTable.swift in Sources */,
+				05BFF6DB20B916F1004CEB28 /* KEApplication.swift in Sources */,
 				05DFA829206865800032EC5B /* KECompiler.swift in Sources */,
+				05BFF6D920B8DC3B004CEB28 /* KEObject.swift in Sources */,
 				0537CE8F1F80F76E00CB313A /* KEValue.swift in Sources */,
 				057F881F1B78031B0029AB4F /* KEContext.swift in Sources */,
 				05CFAB962034875F001623BC /* KEException.swift in Sources */,
@@ -434,7 +435,6 @@
 				05706F5F2077BDB4004F58B6 /* UTPropertyTable2.swift in Sources */,
 				058B53261BA41A6C009522DF /* main.swift in Sources */,
 				0537CE911F81226D00CB313A /* UTValue.swift in Sources */,
-				0592B89E1F3A2363006C92AD /* UTEnum.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
