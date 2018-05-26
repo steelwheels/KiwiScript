@@ -1,4 +1,5 @@
-# General purpose types
+# Global type
+This document describes about built-in data types.
 
 ## Authorize type
 The authorize type has the state of the authorization process.
