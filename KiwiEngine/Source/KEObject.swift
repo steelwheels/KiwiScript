@@ -71,6 +71,11 @@ extension KEObject
 		self.propertyTable.set(nm, val!)
 	}
 
+	public func set(name nm: String, arrayValue aval: Array<Any>){
+		let val = JSValue(object: aval, in: context)
+		self.propertyTable.set(nm, val!)
+	}
+
 	public func get(name nm: String) -> JSValue? {
 		return self.propertyTable.check(nm)
 	}
@@ -97,6 +102,17 @@ extension KEObject
 		if let val = propertyTable.check(nm) {
 			if val.isString {
 				return val.toString()
+			}
+		}
+		return nil
+	}
+
+	public func getArray(name nm: String) -> Array<Any>? {
+		if let val = propertyTable.check(nm) {
+			if val.isObject {
+				if let arr = val.toObject() as? Array<Any> {
+					return arr
+				}
 			}
 		}
 		return nil

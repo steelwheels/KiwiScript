@@ -11,7 +11,7 @@ import Foundation
 
 public class KEApplication: KEDefaultObject
 {
-	public static let NameProperty		= "name"
+	public static let ArgumentsProperty	= "arguments"
 	public static let ConfigProperty 	= "config"
 	public static let ProgramProperty	= "program"
 
@@ -29,8 +29,8 @@ public class KEApplication: KEDefaultObject
 		console = CNFileConsole()
 		super.init(instanceName: iname, context: ctxt)
 
-		/* Name */
-		self.set(name: KEApplication.NameProperty, stringValue: "Untitled")
+		/* Arguments */
+		self.set(name: KEApplication.ArgumentsProperty, arrayValue: CommandLine.arguments)
 		/* Add config */
 		let config = KEConfig(instanceName: KEApplication.ConfigProperty, context: ctxt)
 		self.set(name: KEApplication.ConfigProperty, object: config)
@@ -39,15 +39,8 @@ public class KEApplication: KEDefaultObject
 		self.set(name: KEApplication.ProgramProperty, object: program)
 	}
 
-	public var name: String? {
-		get { return self.getString(name: KEApplication.NameProperty) }
-		set(newval) {
-			if let v = newval {
-				self.set(name: KEApplication.NameProperty, stringValue: v)
-			} else {
-				self.set(name: KEApplication.NameProperty, stringValue: "Untitled")
-			}
-		}
+	public var arguments: Array<Any>? {
+		get { return self.getArray(name: KEApplication.ArgumentsProperty) }
 	}
 
 	public var config: KEConfig? {
