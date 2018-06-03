@@ -31,7 +31,7 @@ private func testScript(console cons: CNConsole, context ctxt: KEContext, script
 {
 	var testResult = false
 
-	ctxt.runScript(script: scr, exceptionHandler: {
+	ctxt.exceptionCallback = {
 		(_ result: KEException) -> Void in
 		switch result {
 		case .Terminated(_, let message):
@@ -50,6 +50,8 @@ private func testScript(console cons: CNConsole, context ctxt: KEContext, script
 		case .Exit(let code):
 			console.print(string: "Exit: \(code)\n")
 		}
-	})
+	}
+
+	ctxt.runScript(script: scr)
 	return testResult
 }

@@ -19,9 +19,10 @@ guard let vm = JSVirtualMachine() else {
 	fatalError("Could not allocate VM")
 }
 
-let context  = KEContext(virtualMachine: vm)
-let console  = CNFileConsole()
-let shell    = KHShellConsole(applicationName: appname, context: context, console: console)
+let application = KEApplication()
+application.name = appname
+
+let shell    = KHShellConsole(application: application)
 let result   = shell.repl()
 print(" -> result = \(result)")
 /*

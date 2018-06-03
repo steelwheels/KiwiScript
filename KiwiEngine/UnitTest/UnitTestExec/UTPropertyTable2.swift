@@ -65,11 +65,14 @@ public func testPropertyTable2(console cons: CNConsole) -> Bool
 
 	var testResult:  Bool	= false
 	var scrdone: Bool	= false
-	context.runScript(script: script, exceptionHandler: {
+
+	context.exceptionCallback = {
 		(_ result: KEException) -> Void in
 		testResult = finalizeHandler(result: result, console: console)
 		scrdone    = true
-	})
+	}
+
+	context.runScript(script: script)
 
 	while !scrdone {
 

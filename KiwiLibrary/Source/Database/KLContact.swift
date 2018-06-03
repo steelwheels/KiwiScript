@@ -22,12 +22,10 @@ import Contacts
 public class KLContact: NSObject, KLContactProtocol
 {
 	private var mContext:		KEContext
-	private var mConsole:		CNConsole
 	private var mAddressBook:	CNAddressBook
 
-	public init(context ctxt: KEContext, console cons: CNConsole){
+	public init(context ctxt: KEContext){
 		mContext      = ctxt
-		mConsole      = cons
 		mAddressBook  = CNAddressBook()
 	}
 

@@ -11,47 +11,49 @@ import CoconutData
 
 public class KEContext : JSContext
 {
+	public typealias ExceptionCallback =  (_ result: KEException) -> Void
+
+	public var exceptionCallback: ExceptionCallback
+
 	public override init(virtualMachine vm: JSVirtualMachine) {
+		exceptionCallback = {
+			(_ result: KEException) -> Void in
+			let msg = result.description
+			NSLog("[Exception] \(msg)")
+		}
 		super.init(virtualMachine: vm)
+
+		/* Set handler */
+		self.exceptionHandler = {
+			(contextp, exception) in
+			let message: String
+			if let e = exception {
+				message = e.description
+			} else {
+				message = "Unknow exception"
+			}
+			self.exceptionCallback(KEException.CompileError(message))
+		}
 	}
 
-	public func runScript(script scr: String!, exceptionHandler fhandler: @escaping (_ result: KEException) -> Void)  {
-		/* Set exception handler */
-		setExceptionHandler(finalizeHandler: fhandler)
 
+	public func runScript(script scr: String!)  {
 		/* Evaluate script */
 		let retval = super.evaluateScript(scr)
 
 		/* Call handler with return value */
 		let result = KEException.Evaluated(self, retval)
-		fhandler(result)
+		self.exceptionCallback(result)
 	}
 
-	public func callFunction(functionName funcname: String, arguments args: Array<Any>, exceptionHandler fhandler: @escaping (_ result: KEException) -> Void) {
-		/* Set exception handler */
-		setExceptionHandler(finalizeHandler: fhandler)
-
+	public func callFunction(functionName funcname: String, arguments args: Array<Any>) {
 		/* Call function */
 		let jsfunc : JSValue = self.objectForKeyedSubscript(funcname)
 		let retval = jsfunc.call(withArguments: args)
 
 		/* Call handler with return value */
 		let result = KEException.Evaluated(self, retval)
-		fhandler(result)
-	}
-
-	private func setExceptionHandler(finalizeHandler fhandler: @escaping (_ result: KEException) -> Void) {
-		self.exceptionHandler = { (contextp, exception) in
-			var message: String
-			if let e = exception {
-				message = e.description
-			} else {
-				message = "Unknown exception"
-			}
-			/* Call handler with exception */
-			let result = KEException.Terminated(self, message)
-			fhandler(result)
-		}
+		self.exceptionCallback(result)
 	}
 
 	public func set(name n: String, object o: JSExport){

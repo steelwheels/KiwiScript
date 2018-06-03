@@ -24,15 +24,16 @@ public func testObject(console cons: CNConsole) -> Bool
 		+ "  return object.angle() ; "
 		+ "}"
 	cons.print(string: "*** context.runScript\n")
-	context.runScript(script: script, exceptionHandler: {
+
+	context.exceptionCallback = {
 		(_ result: KEException) -> Void in
 		testResult = finalizeHandler(result: result, console: console)
-	})
+	}
+
+	context.runScript(script: script)
 	cons.print(string: "*** context.callFunction\n")
-	context.callFunction(functionName: "test", arguments: [newval!], exceptionHandler: {
-		(_ result: KEException) -> Void in
-		testResult = finalizeHandler(result: result, console: console)
-	})
+	context.callFunction(functionName: "test", arguments: [newval!])
+
 	return testResult
 }
 

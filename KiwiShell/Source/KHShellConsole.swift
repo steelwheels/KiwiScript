@@ -12,23 +12,22 @@ import Foundation
 
 public class KHShellConsole
 {
-	private var mApplicationName:	String
-	private var mConsole:		CNFileConsole
-	private var mShell: 		KHShell
+	private var mApplication:	KEApplication
 
-	public init(applicationName aname: String, context ctxt: KEContext, console cons: CNFileConsole){
-		mApplicationName	= aname
-		mConsole		= cons
-		mShell			= KHShell(context: ctxt, console: cons)
+	public init(application app: KEApplication){
+		mApplication	= app
 	}
 
 	public func repl() -> Int32
 	{
+		let shell   = KHShell(application: mApplication)
+		let console = mApplication.console
+
 		var docont = true
 		var result: Int32 = 0
 		while docont {
-			if let str = mConsole.scan() {
-				switch mShell.execute(commandLine: str) {
+			if let str = console.scan() {
+				switch shell.execute(commandLine: str) {
 				case .Continue:
 					break
 				case .Exit(let code):

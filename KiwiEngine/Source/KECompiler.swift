@@ -23,31 +23,45 @@ public enum KECompileError: Error
 	}
 }
 
-public protocol KEConfig
-{
-	var doVerbose: Bool { get set }
-}
-
 open class KECompiler
 {
+	private var mApplication	: KEApplication
 	private var mContext		: KEContext
 	private var mConsole		: CNConsole
-	private var mConfig		: KEConfig
 
-	public init(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig){
-		mContext	= ctxt
-		mConsole	= cons
-		mConfig		= conf
+	public init(application app: KEApplication){
+		mApplication	= app
+		mContext	= app.context
+		mConsole	= app.console
 	}
 
+	public var application: KEApplication { get { return mApplication }}
 	public var context: KEContext { get { return mContext }}
 	public var console: CNConsole { get { return mConsole }}
-	public var config:  KEConfig  { get { return mConfig  }}
+
+	public var doVerbose: Bool {
+		get {
+			if let config = application.config {
+				return config.doVerbose
+			}
+			return true
+		}
+	}
 
 	public func log(string str: String) {
-		if mConfig.doVerbose {
+		if doVerbose {
 			mConsole.print(string: str)
 		}
+	}
+
+	public func defineGlobalVariable(variableName name: String, object obj: JSExport){
+		log(string: "/* global variable: \(name) */\n")
+		mContext.set(name: name, object: obj)
+	}
+
+	public func defineGlobalVariable(variableName name: String, value val: JSValue){
+		log(string: "/* global variable: \(name) */\n")
+		mContext.set(name: name, value: val)
 	}
 
 	public func defineSetter(instance inst:String, accessType access: CNAccessType, propertyName name:String){
@@ -69,11 +83,19 @@ open class KECompiler
 	public func compile(statements stmts: Array<String>) -> JSValue? {
 		var addedstmt: String = ""
 		for stmt in stmts {
-			if mConfig.doVerbose {
-				mConsole.print(string: stmt)
-			}
+			log(string: stmt)
 			addedstmt = addedstmt + stmt + "\n"
 		}
 		return mContext.evaluateScript(addedstmt)
+	}
+
+	public func compile(enumObject eobj: KEObject){
+		let instname = eobj.instanceName
+		log(string: "/* Define Enum: \(instname) */\n")
+		context.set(name: instname, object: eobj.propertyTable)
+		let members = eobj.propertyTable.propertyNames
+		for member in members {
+			defineSetter(instance: instname, accessType: .ReadOnlyAccess, propertyName: member)
+		}
 	}
 }

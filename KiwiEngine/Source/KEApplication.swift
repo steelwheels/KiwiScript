@@ -5,25 +5,57 @@
  *   Copyright (C) 2017 Steel Wheels Project
  */
 
+import CoconutData
 import JavaScriptCore
 import Foundation
 
 public class KEApplication: KEDefaultObject
 {
-	public init(applicationName aname: String){
-		let vm = JSVirtualMachine()
-		let context = KEContext(virtualMachine: vm!)
-		super.init(instanceName: "application", context: context)
+	public static let NameProperty		= "name"
+	public static let ConfigProperty 	= "config"
+	public static let ProgramProperty	= "program"
+
+	public var console:	CNConsole
+
+	public convenience init(){
+		guard let vm = JSVirtualMachine() else {
+			fatalError("Failed to allocate JavaScript VM")
+		}
+		let ctxt = KEContext(virtualMachine: vm)
+		self.init(instanceName: "application", context: ctxt)
 	}
 
-	private func setup(application app: KEApplication){
-		/* Allocate "program" object */
-		let program = KEDefaultObject(instanceName: "program", context: context)
-		app.set(name: "program", object: program)
+	public override init(instanceName iname: String, context ctxt: KEContext) {
+		console = CNFileConsole()
+		super.init(instanceName: iname, context: ctxt)
 
-		/* Allocate "enumTable" object to program object */
-		let etable = KEDefaultObject(instanceName: "enumTable", context: context)
-		program.set(name: "enumTable", object: etable)
+		/* Name */
+		self.set(name: KEApplication.NameProperty, stringValue: "Untitled")
+		/* Add config */
+		let config = KEConfig(instanceName: KEApplication.ConfigProperty, context: ctxt)
+		self.set(name: KEApplication.ConfigProperty, object: config)
+		/* Add program */
+		let program = KEProgram(instanceName: KEApplication.ProgramProperty, context: ctxt)
+		self.set(name: KEApplication.ProgramProperty, object: program)
+	}
+
+	public var name: String? {
+		get { return self.getString(name: KEApplication.NameProperty) }
+		set(newval) {
+			if let v = newval {
+				self.set(name: KEApplication.NameProperty, stringValue: v)
+			} else {
+				self.set(name: KEApplication.NameProperty, stringValue: "Untitled")
+			}
+		}
+	}
+
+	public var config: KEConfig? {
+		get { return self.object(name: KEApplication.ConfigProperty) as? KEConfig }
+	}
+
+	public var program: KEProgram? {
+		get { return self.object(name: KEApplication.ProgramProperty) as? KEProgram }
 	}
 }
 

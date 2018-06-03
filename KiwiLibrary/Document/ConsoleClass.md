@@ -7,8 +7,6 @@ Following global variables are defined for console operation.
 |Variable   |Class    | Description                     |
 |:---       |:---     |:---                             |
 |console    |Console  |Singleton object of Console class  |
-|Color      |Color    |Table of the colors              |
-|Align      |Align    |Table of alignment kinds |
 
 ## Console Class
 

@@ -10,16 +10,16 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-public class KLOrientation: KEEnumObject
+public class KLOrientation: KEDefaultObject
 {
 	static public let Horizontal:		Int32		= 0
 	static public let Vertical:		Int32		= 1
 
-	public override init(context ctxt: KEContext) {
-		super.init(context: ctxt)
+	public override init(instanceName iname: String, context ctxt: KEContext){
+		super.init(instanceName: iname, context: ctxt)
 
-		set(name: "horizontal", value: KLOrientation.Horizontal)
-		set(name: "vertical",   value: KLOrientation.Vertical)
+		set(name: "horizontal",	int32Value: KLOrientation.Horizontal)
+		set(name: "vertical",	int32Value: KLOrientation.Vertical)
 	}
 }
 

@@ -8,9 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		0525C946204C4BB50058CCBF /* KLPipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525C945204C4BB50058CCBF /* KLPipe.swift */; };
+		05341CC220BDCB73001E2173 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05341CC120BDCB73001E2173 /* main.swift */; };
 		057F73B8208E3EE700D7CF57 /* KLCurses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F73B7208E3EE700D7CF57 /* KLCurses.swift */; };
-		0582FCD520B31AF6009EB4F7 /* KLEnumTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0582FCD420B31AF6009EB4F7 /* KLEnumTable.swift */; };
-		058E19562056D2E300513607 /* KLGlobalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058E19552056D2E300513607 /* KLGlobalManager.swift */; };
+		058735D420C2C7E500797EFD /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 058735D320C2C7E500797EFD /* CoconutData.framework */; };
+		058735D620C2C7F700797EFD /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 058735D520C2C7F700797EFD /* KiwiEngine.framework */; };
+		058735D720C2C81C00797EFD /* CoconutData.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058735D320C2C7E500797EFD /* CoconutData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		058735D820C2C82100797EFD /* KiwiEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058735D520C2C7F700797EFD /* KiwiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		058735D920C2C82700797EFD /* KiwiLibrary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B12283203F0734009DDBEF /* KiwiLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05C49214204ABF3800C5D910 /* KLShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C49213204ABF3800C5D910 /* KLShell.swift */; };
 		05F0201E203F088400B430F5 /* KLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F0201D203F088400B430F5 /* KLColor.swift */; };
 		05F02025203F08D000B430F5 /* KLAuthorize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F02023203F08CF00B430F5 /* KLAuthorize.swift */; };
@@ -21,14 +25,19 @@
 		05F0202F203F091100B430F5 /* KLAlign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F0202B203F091100B430F5 /* KLAlign.swift */; };
 		05F02032203F095000B430F5 /* KLProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F02031203F095000B430F5 /* KLProcess.swift */; };
 		05F02038203F097900B430F5 /* KLConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F02034203F097900B430F5 /* KLConfig.swift */; };
-		05F02039203F097900B430F5 /* KLModuleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F02035203F097900B430F5 /* KLModuleManager.swift */; };
-		05F0203A203F097900B430F5 /* KLRequire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F02036203F097900B430F5 /* KLRequire.swift */; };
-		05F0203B203F097900B430F5 /* KLSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F02037203F097900B430F5 /* KLSetup.swift */; };
+		05F0203B203F097900B430F5 /* KLCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F02037203F097900B430F5 /* KLCompiler.swift */; };
 		05F487E720B110DF002F7741 /* KLOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F487E620B110DF002F7741 /* KLOrientation.swift */; };
 		05FE42A5204164B90094D971 /* KiwiLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 05B12286203F0734009DDBEF /* KiwiLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		05341CC620BDCB7D001E2173 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05B1227A203F0734009DDBEF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0551CEA520BDC8A100615229;
+			remoteInfo = UnitTestBundle;
+		};
 		05456C33203F188000942254 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 05B1227A203F0734009DDBEF /* Project object */;
@@ -36,13 +45,48 @@
 			remoteGlobalIDString = 05B12282203F0734009DDBEF;
 			remoteInfo = KiwiLibrary;
 		};
+		0551CEAC20BDC8AD00615229 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05B1227A203F0734009DDBEF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05456C2F203F187900942254;
+			remoteInfo = Install;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		05341CBD20BDCB73001E2173 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		0551CEAE20BDC8B800615229 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				058735D920C2C82700797EFD /* KiwiLibrary.framework in CopyFiles */,
+				058735D820C2C82100797EFD /* KiwiEngine.framework in CopyFiles */,
+				058735D720C2C81C00797EFD /* CoconutData.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0525C945204C4BB50058CCBF /* KLPipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLPipe.swift; sourceTree = "<group>"; };
+		05341CBF20BDCB73001E2173 /* UnitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		05341CC120BDCB73001E2173 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		0551CEA620BDC8A100615229 /* UnitTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		0551CEA820BDC8A100615229 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		057F73B7208E3EE700D7CF57 /* KLCurses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLCurses.swift; sourceTree = "<group>"; };
-		0582FCD420B31AF6009EB4F7 /* KLEnumTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLEnumTable.swift; sourceTree = "<group>"; };
-		058E19552056D2E300513607 /* KLGlobalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLGlobalManager.swift; sourceTree = "<group>"; };
+		058735D320C2C7E500797EFD /* CoconutData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutData.framework; path = ../../../../Library/Frameworks/CoconutData.framework; sourceTree = "<group>"; };
+		058735D520C2C7F700797EFD /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../Library/Frameworks/KiwiEngine.framework; sourceTree = "<group>"; };
 		05B12283203F0734009DDBEF /* KiwiLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05B12286203F0734009DDBEF /* KiwiLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiLibrary.h; sourceTree = "<group>"; };
 		05B12287203F0734009DDBEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,29 +100,80 @@
 		05F0202B203F091100B430F5 /* KLAlign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLAlign.swift; sourceTree = "<group>"; };
 		05F02031203F095000B430F5 /* KLProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLProcess.swift; sourceTree = "<group>"; };
 		05F02034203F097900B430F5 /* KLConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLConfig.swift; sourceTree = "<group>"; };
-		05F02035203F097900B430F5 /* KLModuleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLModuleManager.swift; sourceTree = "<group>"; };
-		05F02036203F097900B430F5 /* KLRequire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLRequire.swift; sourceTree = "<group>"; };
-		05F02037203F097900B430F5 /* KLSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLSetup.swift; sourceTree = "<group>"; };
+		05F02037203F097900B430F5 /* KLCompiler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLCompiler.swift; sourceTree = "<group>"; };
 		05F487E620B110DF002F7741 /* KLOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLOrientation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		05B1227F203F0734009DDBEF /* Frameworks */ = {
+		05341CBC20BDCB73001E2173 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0551CEA320BDC8A100615229 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05B1227F203F0734009DDBEF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				058735D620C2C7F700797EFD /* KiwiEngine.framework in Frameworks */,
+				058735D420C2C7E500797EFD /* CoconutData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05341CC020BDCB73001E2173 /* UnitTest */ = {
+			isa = PBXGroup;
+			children = (
+				05341CC120BDCB73001E2173 /* main.swift */,
+			);
+			path = UnitTest;
+			sourceTree = "<group>";
+		};
+		0551CEA120BDC87A00615229 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				05341CC020BDCB73001E2173 /* UnitTest */,
+				0551CEA720BDC8A100615229 /* UnitTestBundle */,
+			);
+			name = Test;
+			path = ../Test;
+			sourceTree = "<group>";
+		};
+		0551CEA720BDC8A100615229 /* UnitTestBundle */ = {
+			isa = PBXGroup;
+			children = (
+				0551CEA820BDC8A100615229 /* Info.plist */,
+			);
+			path = UnitTestBundle;
+			sourceTree = "<group>";
+		};
+		05AAEC9F20C1B9F000694209 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				058735D520C2C7F700797EFD /* KiwiEngine.framework */,
+				058735D320C2C7E500797EFD /* CoconutData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		05B12279203F0734009DDBEF = {
 			isa = PBXGroup;
 			children = (
 				05F0201B203F083000B430F5 /* Source */,
+				0551CEA120BDC87A00615229 /* Test */,
 				05B12285203F0734009DDBEF /* OSX */,
 				05B12284203F0734009DDBEF /* Products */,
+				05AAEC9F20C1B9F000694209 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,6 +181,8 @@
 			isa = PBXGroup;
 			children = (
 				05B12283203F0734009DDBEF /* KiwiLibrary.framework */,
+				0551CEA620BDC8A100615229 /* UnitTest.bundle */,
+				05341CBF20BDCB73001E2173 /* UnitTest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -160,11 +257,8 @@
 		05F02033203F096900B430F5 /* Setup */ = {
 			isa = PBXGroup;
 			children = (
-				05F02037203F097900B430F5 /* KLSetup.swift */,
+				05F02037203F097900B430F5 /* KLCompiler.swift */,
 				05F02034203F097900B430F5 /* KLConfig.swift */,
-				05F02035203F097900B430F5 /* KLModuleManager.swift */,
-				058E19552056D2E300513607 /* KLGlobalManager.swift */,
-				05F02036203F097900B430F5 /* KLRequire.swift */,
 			);
 			path = Setup;
 			sourceTree = "<group>";
@@ -172,7 +266,6 @@
 		05F487E520B11057002F7741 /* Global */ = {
 			isa = PBXGroup;
 			children = (
-				0582FCD420B31AF6009EB4F7 /* KLEnumTable.swift */,
 				05F0202B203F091100B430F5 /* KLAlign.swift */,
 				05F487E620B110DF002F7741 /* KLOrientation.swift */,
 				05F0201D203F088400B430F5 /* KLColor.swift */,
@@ -213,6 +306,43 @@
 /* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
+		05341CBE20BDCB73001E2173 /* UnitTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05341CC520BDCB73001E2173 /* Build configuration list for PBXNativeTarget "UnitTest" */;
+			buildPhases = (
+				05341CBB20BDCB73001E2173 /* Sources */,
+				05341CBC20BDCB73001E2173 /* Frameworks */,
+				05341CBD20BDCB73001E2173 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				05341CC720BDCB7D001E2173 /* PBXTargetDependency */,
+			);
+			name = UnitTest;
+			productName = UnitTest;
+			productReference = 05341CBF20BDCB73001E2173 /* UnitTest */;
+			productType = "com.apple.product-type.tool";
+		};
+		0551CEA520BDC8A100615229 /* UnitTestBundle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0551CEA920BDC8A100615229 /* Build configuration list for PBXNativeTarget "UnitTestBundle" */;
+			buildPhases = (
+				0551CEA220BDC8A100615229 /* Sources */,
+				0551CEA320BDC8A100615229 /* Frameworks */,
+				0551CEA420BDC8A100615229 /* Resources */,
+				0551CEAE20BDC8B800615229 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0551CEAD20BDC8AD00615229 /* PBXTargetDependency */,
+			);
+			name = UnitTestBundle;
+			productName = UnitTestBundle;
+			productReference = 0551CEA620BDC8A100615229 /* UnitTest.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
 		05B12282203F0734009DDBEF /* KiwiLibrary */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05B12297203F0734009DDBEF /* Build configuration list for PBXNativeTarget "KiwiLibrary" */;
@@ -237,12 +367,20 @@
 		05B1227A203F0734009DDBEF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0920;
+				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Tomoo Hamada";
 				TargetAttributes = {
+					05341CBE20BDCB73001E2173 = {
+						CreatedOnToolsVersion = 9.3.1;
+						ProvisioningStyle = Automatic;
+					};
 					05456C2F203F187900942254 = {
 						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					0551CEA520BDC8A100615229 = {
+						CreatedOnToolsVersion = 9.3.1;
 						ProvisioningStyle = Automatic;
 					};
 					05B12282203F0734009DDBEF = {
@@ -266,11 +404,20 @@
 			targets = (
 				05B12282203F0734009DDBEF /* KiwiLibrary */,
 				05456C2F203F187900942254 /* Install */,
+				0551CEA520BDC8A100615229 /* UnitTestBundle */,
+				05341CBE20BDCB73001E2173 /* UnitTest */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0551CEA420BDC8A100615229 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05B12281203F0734009DDBEF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -281,16 +428,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		05341CBB20BDCB73001E2173 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05341CC220BDCB73001E2173 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0551CEA220BDC8A100615229 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05B1227E203F0734009DDBEF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05F0203B203F097900B430F5 /* KLSetup.swift in Sources */,
+				05F0203B203F097900B430F5 /* KLCompiler.swift in Sources */,
 				05C49214204ABF3800C5D910 /* KLShell.swift in Sources */,
 				05F02032203F095000B430F5 /* KLProcess.swift in Sources */,
-				058E19562056D2E300513607 /* KLGlobalManager.swift in Sources */,
-				0582FCD520B31AF6009EB4F7 /* KLEnumTable.swift in Sources */,
-				05F0203A203F097900B430F5 /* KLRequire.swift in Sources */,
 				057F73B8208E3EE700D7CF57 /* KLCurses.swift in Sources */,
 				0525C946204C4BB50058CCBF /* KLPipe.swift in Sources */,
 				05F02025203F08D000B430F5 /* KLAuthorize.swift in Sources */,
@@ -300,7 +459,6 @@
 				05F0202D203F091100B430F5 /* KLJSONFile.swift in Sources */,
 				05F0202C203F091100B430F5 /* KLFile.swift in Sources */,
 				05F0202F203F091100B430F5 /* KLAlign.swift in Sources */,
-				05F02039203F097900B430F5 /* KLModuleManager.swift in Sources */,
 				05F487E720B110DF002F7741 /* KLOrientation.swift in Sources */,
 				05F02026203F08D000B430F5 /* KLContact.swift in Sources */,
 			);
@@ -309,14 +467,54 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		05341CC720BDCB7D001E2173 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0551CEA520BDC8A100615229 /* UnitTestBundle */;
+			targetProxy = 05341CC620BDCB7D001E2173 /* PBXContainerItemProxy */;
+		};
 		05456C34203F188000942254 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 05B12282203F0734009DDBEF /* KiwiLibrary */;
 			targetProxy = 05456C33203F188000942254 /* PBXContainerItemProxy */;
 		};
+		0551CEAD20BDC8AD00615229 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05456C2F203F187900942254 /* Install */;
+			targetProxy = 0551CEAC20BDC8AD00615229 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		05341CC320BDCB73001E2173 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				FRAMEWORK_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/$(PRODUCT_NAME).bundle/Contents/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/$(PRODUCT_NAME).bundle/Contents/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/$(PRODUCT_NAME).bundle/Contents/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		05341CC420BDCB73001E2173 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				FRAMEWORK_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/$(PRODUCT_NAME).bundle/Contents/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/$(PRODUCT_NAME).bundle/Contents/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/$(PRODUCT_NAME).bundle/Contents/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
 		05456C31203F187900942254 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -341,6 +539,48 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		0551CEAA20BDC8A100615229 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
+				INFOPLIST_FILE = ../Test/UnitTestBundle/Info.plist;
+				INSTALL_PATH = "$(HOME)/local/Bundles";
+				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UnitTestBundle;
+				PRODUCT_NAME = UnitTest;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		0551CEAB20BDC8A100615229 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
+				INFOPLIST_FILE = ../Test/UnitTestBundle/Info.plist;
+				INSTALL_PATH = "$(HOME)/local/Bundles";
+				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UnitTestBundle;
+				PRODUCT_NAME = UnitTest;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
 		};
@@ -472,7 +712,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(HOME)/Library/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(HOME)/Library/Frameworks",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				FRAMEWORK_VERSION = A;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
@@ -481,7 +724,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.KiwiLibrary;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -498,7 +741,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(HOME)/Library/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(HOME)/Library/Frameworks",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				FRAMEWORK_VERSION = A;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
@@ -507,6 +753,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.KiwiLibrary;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
@@ -514,11 +761,29 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		05341CC520BDCB73001E2173 /* Build configuration list for PBXNativeTarget "UnitTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05341CC320BDCB73001E2173 /* Debug */,
+				05341CC420BDCB73001E2173 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		05456C30203F187900942254 /* Build configuration list for PBXLegacyTarget "Install" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				05456C31203F187900942254 /* Debug */,
 				05456C32203F187900942254 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0551CEA920BDC8A100615229 /* Build configuration list for PBXNativeTarget "UnitTestBundle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0551CEAA20BDC8A100615229 /* Debug */,
+				0551CEAB20BDC8A100615229 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

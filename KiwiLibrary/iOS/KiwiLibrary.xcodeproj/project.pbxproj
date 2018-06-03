@@ -7,14 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0530DBD020BEFD9600497ED7 /* KLCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0530DBCF20BEFD9600497ED7 /* KLCompiler.swift */; };
 		05446D6820B1175000CD0D22 /* KLOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05446D6720B1175000CD0D22 /* KLOrientation.swift */; };
-		055F7C2320B4735400D9B96A /* KLEnumTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055F7C2220B4735400D9B96A /* KLEnumTable.swift */; };
 		05A71EBC208E3EA2007356BB /* KLCurses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A71EBB208E3EA2007356BB /* KLCurses.swift */; };
 		05BCE6552068BCEF007B0559 /* KLConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCE6502068BCEE007B0559 /* KLConfig.swift */; };
-		05BCE6562068BCEF007B0559 /* KLModuleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCE6512068BCEE007B0559 /* KLModuleManager.swift */; };
-		05BCE6572068BCEF007B0559 /* KLGlobalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCE6522068BCEE007B0559 /* KLGlobalManager.swift */; };
-		05BCE6582068BCEF007B0559 /* KLRequire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCE6532068BCEF007B0559 /* KLRequire.swift */; };
-		05BCE6592068BCEF007B0559 /* KLSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCE6542068BCEF007B0559 /* KLSetup.swift */; };
 		05BCE65C2068BD3E007B0559 /* KLProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCE65B2068BD3E007B0559 /* KLProcess.swift */; };
 		05BCE65F2068BD5D007B0559 /* KLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCE65E2068BD5D007B0559 /* KLColor.swift */; };
 		05BCE6632068BD85007B0559 /* KLAuthorize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCE6612068BD85007B0559 /* KLAuthorize.swift */; };
@@ -39,14 +35,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0530DBCF20BEFD9600497ED7 /* KLCompiler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLCompiler.swift; sourceTree = "<group>"; };
 		05446D6720B1175000CD0D22 /* KLOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLOrientation.swift; sourceTree = "<group>"; };
-		055F7C2220B4735400D9B96A /* KLEnumTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLEnumTable.swift; sourceTree = "<group>"; };
 		05A71EBB208E3EA2007356BB /* KLCurses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLCurses.swift; sourceTree = "<group>"; };
 		05BCE6502068BCEE007B0559 /* KLConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLConfig.swift; sourceTree = "<group>"; };
-		05BCE6512068BCEE007B0559 /* KLModuleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLModuleManager.swift; sourceTree = "<group>"; };
-		05BCE6522068BCEE007B0559 /* KLGlobalManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLGlobalManager.swift; sourceTree = "<group>"; };
-		05BCE6532068BCEF007B0559 /* KLRequire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLRequire.swift; sourceTree = "<group>"; };
-		05BCE6542068BCEF007B0559 /* KLSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLSetup.swift; sourceTree = "<group>"; };
 		05BCE65B2068BD3E007B0559 /* KLProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLProcess.swift; sourceTree = "<group>"; };
 		05BCE65E2068BD5D007B0559 /* KLColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLColor.swift; sourceTree = "<group>"; };
 		05BCE6612068BD85007B0559 /* KLAuthorize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLAuthorize.swift; sourceTree = "<group>"; };
@@ -92,7 +84,6 @@
 		05446D6620B1171E00CD0D22 /* Global */ = {
 			isa = PBXGroup;
 			children = (
-				055F7C2220B4735400D9B96A /* KLEnumTable.swift */,
 				05BCE66B2068BDAE007B0559 /* KLAlign.swift */,
 				05446D6720B1175000CD0D22 /* KLOrientation.swift */,
 				05BCE65E2068BD5D007B0559 /* KLColor.swift */,
@@ -104,11 +95,8 @@
 		05BCE64F2068BCD8007B0559 /* Setup */ = {
 			isa = PBXGroup;
 			children = (
+				0530DBCF20BEFD9600497ED7 /* KLCompiler.swift */,
 				05BCE6502068BCEE007B0559 /* KLConfig.swift */,
-				05BCE6522068BCEE007B0559 /* KLGlobalManager.swift */,
-				05BCE6512068BCEE007B0559 /* KLModuleManager.swift */,
-				05BCE6532068BCEF007B0559 /* KLRequire.swift */,
-				05BCE6542068BCEF007B0559 /* KLSetup.swift */,
 			);
 			path = Setup;
 			sourceTree = "<group>";
@@ -285,16 +273,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05BCE6572068BCEF007B0559 /* KLGlobalManager.swift in Sources */,
-				05BCE6562068BCEF007B0559 /* KLModuleManager.swift in Sources */,
 				05BCE66D2068BDAE007B0559 /* KLPipe.swift in Sources */,
 				05BCE66C2068BDAE007B0559 /* KLFile.swift in Sources */,
-				055F7C2320B4735400D9B96A /* KLEnumTable.swift in Sources */,
 				05BCE66E2068BDAE007B0559 /* KLJSONFile.swift in Sources */,
 				05A71EBC208E3EA2007356BB /* KLCurses.swift in Sources */,
 				05BCE6642068BD85007B0559 /* KLContact.swift in Sources */,
-				05BCE6592068BCEF007B0559 /* KLSetup.swift in Sources */,
-				05BCE6582068BCEF007B0559 /* KLRequire.swift in Sources */,
 				05BCE66F2068BDAE007B0559 /* KLConsole.swift in Sources */,
 				05BCE65F2068BD5D007B0559 /* KLColor.swift in Sources */,
 				05BCE65C2068BD3E007B0559 /* KLProcess.swift in Sources */,
@@ -302,6 +285,7 @@
 				05BCE6702068BDAE007B0559 /* KLAlign.swift in Sources */,
 				05BCE6732068BDD7007B0559 /* KLShell.swift in Sources */,
 				05446D6820B1175000CD0D22 /* KLOrientation.swift in Sources */,
+				0530DBD020BEFD9600497ED7 /* KLCompiler.swift in Sources */,
 				05BCE6552068BCEF007B0559 /* KLConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

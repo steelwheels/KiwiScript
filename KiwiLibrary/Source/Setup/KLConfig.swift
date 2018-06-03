@@ -5,10 +5,30 @@
  *   Copyright (C) 2017-2018 Steel Wheels Project
  */
 
+import KiwiEngine
 import Foundation
 
-public protocol KLConfig
+public class KLConfig
 {
-	var useStrictMode: Bool { get set }
+	public enum ApplicationKind {
+		case TerminalApplication
+		case GUIApplication
+	}
+
+	public var	mKind		: ApplicationKind
+	public var	useStrictMode	: Bool
+	public var	verboseMode	: Bool
+
+	public init(){
+		mKind		= .TerminalApplication
+		useStrictMode	= true
+		verboseMode	= false
+	}
+
+	public init(kind appkind: ApplicationKind, useStrictMode strict: Bool, doVerbose doverb: Bool) {
+		mKind		= appkind
+		useStrictMode	= strict
+		verboseMode	= doverb
+	}
 }
 

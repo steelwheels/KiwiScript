@@ -10,7 +10,7 @@ import KiwiEngine
 import JavaScriptCore
 import Foundation
 
-public class KLColor: KEEnumObject
+public class KLColor: KEDefaultObject
 {
 	public static let Black		= CNColor.Black.rawValue
 	public static let Red 		= CNColor.Red.rawValue
@@ -21,17 +21,17 @@ public class KLColor: KEEnumObject
 	public static let Cyan		= CNColor.Cyan.rawValue
 	public static let White		= CNColor.White.rawValue
 
-	public override init(context ctxt: KEContext) {
-		super.init(context: ctxt)
+	public override init(instanceName iname: String, context ctxt: KEContext){
+		super.init(instanceName: iname, context: ctxt)
 
-		set(name: "black", 	value: KLColor.Black)
-		set(name: "red", 	value: KLColor.Red)
-		set(name: "green",	value: KLColor.Green)
-		set(name: "yello",	value: KLColor.Yellow)
-		set(name: "blue",	value: KLColor.Blue)
-		set(name: "magenta",	value: KLColor.Magenta)
-		set(name: "cyan",	value: KLColor.Cyan)
-		set(name: "white",	value: KLColor.White)
+		set(name: "black",	int32Value: KLColor.Black)
+		set(name: "red",	int32Value: KLColor.Red)
+		set(name: "green",	int32Value: KLColor.Green)
+		set(name: "yellow",	int32Value: KLColor.Yellow)
+		set(name: "blue",	int32Value: KLColor.Blue)
+		set(name: "magenta",	int32Value: KLColor.Magenta)
+		set(name: "cyan",	int32Value: KLColor.Cyan)
+		set(name: "white",	int32Value: KLColor.White)
 	}
 }
 

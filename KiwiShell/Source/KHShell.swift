@@ -12,38 +12,39 @@ import Foundation
 
 public class KHShell
 {
-	private var mContext: KEContext
-	private var mConsole: CNConsole
-
-	public init(context ctxt: KEContext, console cons: CNConsole){
-		mContext = ctxt
-		mConsole = cons
-	}
-
 	public enum EvaluationResult {
-	case Continue
-	case Exit(code: Int32)
+		case Continue
+		case Exit(code: Int32)
 	}
 
-	public func execute(commandLine cline: String) -> EvaluationResult {
-		var result: EvaluationResult = .Continue
-		mContext.runScript(script: cline, exceptionHandler: {
+	private var mApplication: 	KEApplication
+	private var mResult:		EvaluationResult = .Continue
+
+	public init(application app: KEApplication){
+		mApplication = app
+		mApplication.context.exceptionCallback = {
 			(exception: KEException) in
+			let console = self.mApplication.console
 			switch exception {
 			case .CompileError(let message):
-				self.mConsole.error(string: message)
+				console.error(string: message)
 			case .Evaluated(_, let result):
 				if let value = result {
 					let desc = value.description
-					self.mConsole.print(string: desc + "\n")
+					console.print(string: desc + "\n")
 				}
 			case .Exit(let code):
-				result = .Exit(code: code)
+				self.mResult = .Exit(code: code)
 			case .Terminated(_, let message):
-				self.mConsole.error(string: message)
-				result = .Exit(code: -1)
+				console.error(string: message)
+				self.mResult = .Exit(code: -1)
 			}
-		})
-		return result
+		}
+	}
+
+	public func execute(commandLine cline: String) -> EvaluationResult {
+		mResult = EvaluationResult.Continue
+		mApplication.context.runScript(script: cline)
+		return mResult
 	}
 }

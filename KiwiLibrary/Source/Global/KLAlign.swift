@@ -9,7 +9,7 @@ import KiwiEngine
 import JavaScriptCore
 import Foundation
 
-public class KLAlign: KEEnumObject
+public class KLAlign: KEDefaultObject
 {
 	static public let Left:		Int32		= 0
 	static public let Center:	Int32		= 2
@@ -19,15 +19,16 @@ public class KLAlign: KEEnumObject
 	static public let Middle:	Int32		= 2
 	static public let Bottom:	Int32		= 1
 
-	public override init(context ctxt: KEContext) {
-		super.init(context: ctxt)
-		set(name: "left", 	value: KLAlign.Left)
-		set(name: "center", 	value: KLAlign.Center)
-		set(name: "right",	value: KLAlign.Right)
+	public override init(instanceName iname: String, context ctxt: KEContext){
+		super.init(instanceName: iname, context: ctxt)
 
-		set(name: "top", 	value: KLAlign.Top)
-		set(name: "middle", 	value: KLAlign.Middle)
-		set(name: "bottom",	value: KLAlign.Bottom)
+		set(name: "left",	int32Value: KLAlign.Left)
+		set(name: "center",	int32Value: KLAlign.Center)
+		set(name: "right",	int32Value: KLAlign.Right)
+
+		set(name: "top",	int32Value: KLAlign.Top)
+		set(name: "middle",	int32Value: KLAlign.Middle)
+		set(name: "bottom",	int32Value: KLAlign.Bottom)
 	}
 }
 

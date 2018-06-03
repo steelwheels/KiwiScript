@@ -19,7 +19,7 @@ public enum KEException {
 			let result: String
 			switch self {
 			case .CompileError(let message):
-				result = "Compile error: \(message)"
+				result = "\(message)"
 			case .Evaluated(_, let value):
 				if let v = value {
 					result = "Evaluated: \(v.description)"

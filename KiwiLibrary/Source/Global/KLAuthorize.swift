@@ -10,18 +10,18 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-public class KLAuthorize: KEEnumObject
+public class KLAuthorize: KEDefaultObject
 {
 	public static let Undetermined	= CNAuthorizeState.Undetermined.rawValue
 	public static let Denied	= CNAuthorizeState.Denied.rawValue
 	public static let Authorized	= CNAuthorizeState.Authorized.rawValue
 
-	public override init(context ctxt: KEContext) {
-		super.init(context: ctxt)
+	public override init(instanceName iname: String, context ctxt: KEContext){
+		super.init(instanceName: iname, context: ctxt)
 
-		set(name: "undetermined", 	value: KLAuthorize.Undetermined)
-		set(name: "denied",		value: KLAuthorize.Denied)
-		set(name: "authorized",		value: KLAuthorize.Authorized)
+		set(name: "undetermined",	int32Value: KLAuthorize.Undetermined)
+		set(name: "denied",		int32Value: KLAuthorize.Denied)
+		set(name: "authorized",		int32Value: KLAuthorize.Authorized)
 	}
 }
 
