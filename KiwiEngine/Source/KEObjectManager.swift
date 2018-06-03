@@ -19,14 +19,14 @@ public class KEObjectManager: KEDefaultObject
 		mAllocatorTable[name] = alloc
 	}
 
-	public func require(className name: String) -> JSValue? {
+	public func require(className name: String, in owner: AnyClass) -> JSValue? {
 		if let val = propertyTable.check(name) {
 			return val
 		} else {
 			if let val = allocate(className: name) {
 				self.set(name: name, value: val)
 				return val
-			} else if let val = load(scriptFileName: name) {
+			} else if let val = load(scriptFileName: name, in: owner) {
 				self.set(name: name, value: val)
 				return val
 			}
@@ -42,14 +42,16 @@ public class KEObjectManager: KEDefaultObject
 		return nil
 	}
 
-	private func load(scriptFileName name: String) -> JSValue? {
-		if let url = CNFilePath.URLForResourceFile(fileName: name, fileExtension: "js", subdirectory: "Library") {
+	private func load(scriptFileName name: String, in owner: AnyClass) -> JSValue? {
+		if let url = CNFilePath.URLForResourceFile(fileName: name, fileExtension: "js", subdirectory: "Library", forClass: owner) {
 			do {
 				let script = try String(contentsOf: url)
 				return context.evaluateScript(script)
 			} catch _ {
 				raiseException(message: "Can not compile for class \"\(name)\"")
 			}
+		} else {
+			raiseException(message: "Can not find library] \(name)")
 		}
 		return nil
 	}

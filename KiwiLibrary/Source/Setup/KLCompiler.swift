@@ -33,7 +33,7 @@ public class KLLibraryCompiler: KECompiler
 			return
 		}
 		defineObjectAllocators(objectManager: manager)
-		allocateRequireFunction(objectManager: manager)
+		defineRequireFunction(objectManager: manager)
 	}
 
 	private func applyConfig(config conf: KLConfig){
@@ -198,8 +198,10 @@ public class KLLibraryCompiler: KECompiler
 		#endif
 	}
 
-	private func allocateRequireFunction(objectManager manager: KEObjectManager)
+	private func defineRequireFunction(objectManager manager: KEObjectManager)
 	{
+		log(string: "/* Define require function */\n")
+
 		/* define module object */
 		let _ = compile(statement: "module = {} ;\n")
 
@@ -207,7 +209,7 @@ public class KLLibraryCompiler: KECompiler
 			(_ value: JSValue) -> JSValue in
 			if value.isString {
 				if let cname = value.toString() {
-					if let val = manager.require(className: cname) {
+					if let val = manager.require(className: cname, in: KLLibraryCompiler.self) {
 						return val
 					}
 				}
@@ -215,7 +217,6 @@ public class KLLibraryCompiler: KECompiler
 			return JSValue(nullIn: self.context)
 		}
 		if let funcval = JSValue(object: require, in: context) {
-			log(string: "/* Define require function */\n")
 			context.set(name: "require", value: funcval)
 		} else {
 			NSLog("Failed to allocate require function")

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0525C946204C4BB50058CCBF /* KLPipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525C945204C4BB50058CCBF /* KLPipe.swift */; };
+		052B154220C3833800BAF41B /* Math.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 052B153F20C382E500BAF41B /* Math.js */; };
 		05341CC220BDCB73001E2173 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05341CC120BDCB73001E2173 /* main.swift */; };
 		057F73B8208E3EE700D7CF57 /* KLCurses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F73B7208E3EE700D7CF57 /* KLCurses.swift */; };
 		058735D420C2C7E500797EFD /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 058735D320C2C7E500797EFD /* CoconutData.framework */; };
@@ -55,6 +56,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		052B154120C3832B00BAF41B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Library;
+			dstSubfolderSpec = 7;
+			files = (
+				052B154220C3833800BAF41B /* Math.js in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05341CBD20BDCB73001E2173 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -80,6 +91,7 @@
 
 /* Begin PBXFileReference section */
 		0525C945204C4BB50058CCBF /* KLPipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLPipe.swift; sourceTree = "<group>"; };
+		052B153F20C382E500BAF41B /* Math.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Math.js; sourceTree = "<group>"; };
 		05341CBF20BDCB73001E2173 /* UnitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		05341CC120BDCB73001E2173 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		0551CEA620BDC8A100615229 /* UnitTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,6 +143,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		052B153D20C382BA00BAF41B /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				052B153E20C382D300BAF41B /* Library */,
+			);
+			name = Resource;
+			path = ../Resource;
+			sourceTree = "<group>";
+		};
+		052B153E20C382D300BAF41B /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				052B153F20C382E500BAF41B /* Math.js */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
 		05341CC020BDCB73001E2173 /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				05F0201B203F083000B430F5 /* Source */,
+				052B153D20C382BA00BAF41B /* Resource */,
 				0551CEA120BDC87A00615229 /* Test */,
 				05B12285203F0734009DDBEF /* OSX */,
 				05B12284203F0734009DDBEF /* Products */,
@@ -350,7 +380,7 @@
 				05B1227E203F0734009DDBEF /* Sources */,
 				05B1227F203F0734009DDBEF /* Frameworks */,
 				05B12280203F0734009DDBEF /* Headers */,
-				05B12281203F0734009DDBEF /* Resources */,
+				052B154120C3832B00BAF41B /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -412,13 +442,6 @@
 
 /* Begin PBXResourcesBuildPhase section */
 		0551CEA420BDC8A100615229 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		05B12281203F0734009DDBEF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
