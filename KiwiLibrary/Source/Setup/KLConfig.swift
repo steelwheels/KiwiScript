@@ -8,7 +8,7 @@
 import KiwiEngine
 import Foundation
 
-public class KLConfig
+open class KLConfig
 {
 	public enum ApplicationKind {
 		case TerminalApplication

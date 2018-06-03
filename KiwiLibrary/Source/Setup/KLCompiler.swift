@@ -21,6 +21,7 @@ public class KLLibraryCompiler: KECompiler
 		applyConfig(config: conf)
 		setStrictMode()
 		defineEnumTypes()
+		defineGlobalObjects()
 		defineGlobalFunctions()
 
 		guard let program = application.program else {
@@ -69,6 +70,21 @@ public class KLLibraryCompiler: KECompiler
 		/* Authorize */
 		let authorize = KLAuthorize(instanceName: "Authorize", context: context)
 		compile(enumObject: authorize)
+	}
+
+	private func defineGlobalObjects()
+	{
+		let console = KLConsole(context: self.context, console: self.console)
+		defineGlobalObject(name: "console", object: console)
+	}
+
+	private func defineGlobalObject(name nm: String, object obj: JSExport)
+	{
+		if let consval = JSValue(object: obj, in: self.context) {
+			defineGlobalVariable(variableName: nm, value: consval)
+		} else {
+			NSLog("Failed to allocate object for \(nm)")
+		}
 	}
 
 	private func defineGlobalFunctions()
