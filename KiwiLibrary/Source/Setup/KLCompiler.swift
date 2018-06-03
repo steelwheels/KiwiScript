@@ -21,7 +21,7 @@ public class KLLibraryCompiler: KECompiler
 		applyConfig(config: conf)
 		setStrictMode()
 		defineEnumTypes()
-		defineGlobalObjects()
+		defineGlobalObjects(applicationKind: conf.kind)
 		defineGlobalFunctions()
 
 		guard let program = application.program else {
@@ -72,10 +72,23 @@ public class KLLibraryCompiler: KECompiler
 		compile(enumObject: authorize)
 	}
 
-	private func defineGlobalObjects()
+	private func defineGlobalObjects(applicationKind kind: KLConfig.ApplicationKind)
 	{
 		let console = KLConsole(context: self.context, console: self.console)
 		defineGlobalObject(name: "console", object: console)
+
+		switch kind {
+		case .TerminalApplication:
+			#if os(OSX)
+				/* Process */
+				let process = KLProcess(context: context)
+				defineGlobalObject(name: "Process", object: process)
+			#else
+				break
+			#endif
+		case .GUIApplication:
+			break
+		}
 	}
 
 	private func defineGlobalObject(name nm: String, object obj: JSExport)

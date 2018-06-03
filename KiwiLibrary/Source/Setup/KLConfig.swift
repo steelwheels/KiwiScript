@@ -15,18 +15,18 @@ open class KLConfig
 		case GUIApplication
 	}
 
-	public var	mKind		: ApplicationKind
+	public var	kind		: ApplicationKind
 	public var	useStrictMode	: Bool
 	public var	verboseMode	: Bool
 
 	public init(){
-		mKind		= .TerminalApplication
+		kind		= .TerminalApplication
 		useStrictMode	= true
 		verboseMode	= false
 	}
 
 	public init(kind appkind: ApplicationKind, useStrictMode strict: Bool, doVerbose doverb: Bool) {
-		mKind		= appkind
+		kind		= appkind
 		useStrictMode	= strict
 		verboseMode	= doverb
 	}

@@ -14,7 +14,6 @@ import Darwin
 
 @objc public protocol KLProcessProtocol: JSExport
 {
-	var arguments: JSValue { get }
 	func exit(_ code: JSValue) -> JSValue
 	func sleep(_ time: JSValue) -> JSValue
 }
@@ -28,19 +27,9 @@ import Darwin
 @objc public class KLProcess: NSObject, KLProcessProtocol
 {
 	private var mContext: 		KEContext
-	private var mArguments:		Array<String>
-	private var mExceptionHandler:	(_ exception: KEException) -> Void
 
-	public init(context ctxt: KEContext, arguments args: Array<String>, exceptionHandler ehandler: @escaping (_ exception: KEException) -> Void){
+	public init(context ctxt: KEContext){
 		mContext	  = ctxt
-		mArguments	  = args
-		mExceptionHandler = ehandler
-	}
-
-	public var arguments: JSValue {
-		get {
-			return JSValue(object: mArguments, in: mContext)
-		}
 	}
 
 	public func exit(_ cval: JSValue) -> JSValue
@@ -52,7 +41,11 @@ import Darwin
 			NSLog("Unknown code value")
 			code = 1
 		}
-		mExceptionHandler(.Exit(code))
+		
+		let callback = mContext.exceptionCallback
+		let except = KEException.Exit(code)
+		callback(except)
+
 		Darwin.exit(code)
 	}
 
