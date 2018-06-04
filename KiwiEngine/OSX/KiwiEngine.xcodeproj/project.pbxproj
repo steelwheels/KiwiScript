@@ -29,7 +29,7 @@
 		05BFF6D920B8DC3B004CEB28 /* KEObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BFF6D820B8DC3B004CEB28 /* KEObject.swift */; };
 		05BFF6DB20B916F1004CEB28 /* KEApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BFF6DA20B916F1004CEB28 /* KEApplication.swift */; };
 		05CFAB962034875F001623BC /* KEException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CFAB952034875F001623BC /* KEException.swift */; };
-		05D6DD9E20BF07490086E02B /* KEObjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D6DD9D20BF07490086E02B /* KEObjectManager.swift */; };
+		05D6DD9E20BF07490086E02B /* KEObjectLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D6DD9D20BF07490086E02B /* KEObjectLoader.swift */; };
 		05DFA829206865800032EC5B /* KECompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DFA828206865800032EC5B /* KECompiler.swift */; };
 /* End PBXBuildFile section */
 
@@ -112,7 +112,7 @@
 		05BFF6DA20B916F1004CEB28 /* KEApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEApplication.swift; sourceTree = "<group>"; };
 		05CF6D761BA41EF000BD9D91 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05CFAB952034875F001623BC /* KEException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEException.swift; sourceTree = "<group>"; };
-		05D6DD9D20BF07490086E02B /* KEObjectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEObjectManager.swift; sourceTree = "<group>"; };
+		05D6DD9D20BF07490086E02B /* KEObjectLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEObjectLoader.swift; sourceTree = "<group>"; };
 		05DFA828206865800032EC5B /* KECompiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KECompiler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -194,7 +194,7 @@
 				05BFF6D820B8DC3B004CEB28 /* KEObject.swift */,
 				05BFF6DA20B916F1004CEB28 /* KEApplication.swift */,
 				055D8E2420BAC318009ED276 /* KEProgram.swift */,
-				05D6DD9D20BF07490086E02B /* KEObjectManager.swift */,
+				05D6DD9D20BF07490086E02B /* KEObjectLoader.swift */,
 				054ED52320BA15B900F7B4CB /* KEConfig.swift */,
 				054536C31B78021500FE978C /* Supporting Files */,
 			);
@@ -419,7 +419,7 @@
 			files = (
 				050422701ED5C02600183E4F /* KEPropertyTable.swift in Sources */,
 				05BFF6DB20B916F1004CEB28 /* KEApplication.swift in Sources */,
-				05D6DD9E20BF07490086E02B /* KEObjectManager.swift in Sources */,
+				05D6DD9E20BF07490086E02B /* KEObjectLoader.swift in Sources */,
 				05DFA829206865800032EC5B /* KECompiler.swift in Sources */,
 				05BFF6D920B8DC3B004CEB28 /* KEObject.swift in Sources */,
 				055D8E2520BAC318009ED276 /* KEProgram.swift in Sources */,

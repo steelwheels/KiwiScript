@@ -28,12 +28,12 @@ public class KLLibraryCompiler: KECompiler
 			console.error(string: "No program object")
 			return
 		}
-		guard let manager = program.objectManager else {
-			console.error(string: "No object manager")
+		guard let loader = program.objectLoader else {
+			console.error(string: "No object loader")
 			return
 		}
-		defineObjectAllocators(objectManager: manager)
-		defineRequireFunction(objectManager: manager)
+		defineLoadableObjects(objectLoader: loader)
+		defineRequireFunction(objectLoader: loader)
 	}
 
 	private func applyConfig(config conf: KLConfig){
@@ -55,21 +55,30 @@ public class KLLibraryCompiler: KECompiler
 	}
 
 	private func defineEnumTypes(){
+		guard let program = application.program else {
+			console.error(string: "No program in application")
+			return
+		}
+		guard let etable = program.enumTable else {
+			console.error(string: "No enum table in application")
+			return
+		}
+
 		/* Align */
 		let align =  KLAlign(instanceName: "Align", context: context)
-		compile(enumObject: align)
+		compile(enumObject: align, enumTable: etable)
 
 		/* Orientation */
 		let orientation = KLOrientation(instanceName: "Orientation", context: context)
-		compile(enumObject: orientation)
+		compile(enumObject: orientation, enumTable: etable)
 
 		/* Color */
 		let color = KLColor(instanceName: "Color", context: context)
-		compile(enumObject: color)
+		compile(enumObject: color, enumTable: etable)
 
 		/* Authorize */
 		let authorize = KLAuthorize(instanceName: "Authorize", context: context)
-		compile(enumObject: authorize)
+		compile(enumObject: authorize, enumTable: etable)
 	}
 
 	private func defineGlobalObjects(applicationKind kind: KLConfig.ApplicationKind)
@@ -83,6 +92,19 @@ public class KLLibraryCompiler: KECompiler
 				/* Process */
 				let process = KLProcess(context: context)
 				defineGlobalObject(name: "Process", object: process)
+
+				/* File */
+				let file = KLFile(context: context)
+				defineGlobalObject(name: "File", object: file)
+
+				let stdinobj = file.standardFile(fileType: .input, context: context)
+				defineGlobalObject(name: "stdin", object: stdinobj)
+
+				let stdoutobj = file.standardFile(fileType: .output, context: context)
+				defineGlobalObject(name: "stdout", object: stdoutobj)
+
+				let stderrobj = file.standardFile(fileType: .error, context: context)
+				defineGlobalObject(name: "stderr", object: stderrobj)
 			#else
 				break
 			#endif
@@ -175,43 +197,43 @@ public class KLLibraryCompiler: KECompiler
 		}
 	}
 
-	private func defineObjectAllocators(objectManager manager: KEObjectManager)
+	private func defineLoadableObjects(objectLoader loader: KEObjectLoader)
 	{
 		/* KLFile */
-		manager.addAllocator(className: "file", allocator: {
+		loader.addAllocator(className: "file", allocator: {
 			(_ context: KEContext) -> JSExport in
 			return KLFile(context: context)
 		})
 		/* KLPipe */
-		manager.addAllocator(className: "pipe", allocator: {
+		loader.addAllocator(className: "pipe", allocator: {
 			(_ context: KEContext) -> JSExport in
 			return KLPipe(context: context)
 		})
 		/* KLJSON */
-		manager.addAllocator(className: "JSON", allocator: {
+		loader.addAllocator(className: "JSON", allocator: {
 			(_ context: KEContext) -> JSExport in
 			return KLJSON(context: context)
 		})
 		/* KLContact */
-		manager.addAllocator(className: "contact", allocator: {
+		loader.addAllocator(className: "contact", allocator: {
 			(_ context: KEContext) -> JSExport in
 			return KLContact(context: context)
 		})
 
 		#if os(OSX)
 		/* KLCurses */
-		manager.addAllocator(className: "shell", allocator: {
+		loader.addAllocator(className: "shell", allocator: {
 			(_ context: KEContext) -> JSExport in
 			return KLShell(context: context)
 		})
-		manager.addAllocator(className: "curses", allocator: {
+		loader.addAllocator(className: "curses", allocator: {
 			(_ context: KEContext) -> JSExport in
 			return KLCurses(context: context)
 		})
 		#endif
 	}
 
-	private func defineRequireFunction(objectManager manager: KEObjectManager)
+	private func defineRequireFunction(objectLoader loader: KEObjectLoader)
 	{
 		log(string: "/* Define require function */\n")
 
@@ -222,7 +244,7 @@ public class KLLibraryCompiler: KECompiler
 			(_ value: JSValue) -> JSValue in
 			if value.isString {
 				if let cname = value.toString() {
-					if let val = manager.require(className: cname, in: KLLibraryCompiler.self) {
+					if let val = loader.require(className: cname, in: KLLibraryCompiler.self) {
 						return val
 					}
 				}
@@ -249,16 +271,6 @@ public func KLSetupLibrary(context ctxt: KEContext, arguments args: Array<String
 	/* Setup module manager */
 	let manager = KLModuleManager.shared
 	manager.setup(context: ctxt, arguments: args, console: cons, exceptionHandler: ehandler)
-
-	/* Add process module */
-	#if os(OSX)
-	if let process = manager.getBuiltinModule(moduleName: "process") as? KLProcess {
-		ctxt.setObject(process, forKeyedSubscript: NSString(string: "Process"))
-	} else {
-		NSLog("Failed to allocate \"Process\" module")
-		return
-	}
-	#endif // os(OSX)
 
 	/* Add console module */
 	if let console = manager.getBuiltinModule(moduleName: "console") as? KLConsole {

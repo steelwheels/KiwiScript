@@ -89,7 +89,8 @@ open class KECompiler
 		return mContext.evaluateScript(addedstmt)
 	}
 
-	public func compile(enumObject eobj: KEObject){
+	public func compile(enumObject eobj: KEObject, enumTable etable: KEObject){
+		/* Compile */
 		let instname = eobj.instanceName
 		log(string: "/* Define Enum: \(instname) */\n")
 		context.set(name: instname, object: eobj.propertyTable)
@@ -97,5 +98,7 @@ open class KECompiler
 		for member in members {
 			defineSetter(instance: instname, accessType: .ReadOnlyAccess, propertyName: member)
 		}
+		/* Store to enum table */
+		etable.set(name: instname, object: eobj)
 	}
 }

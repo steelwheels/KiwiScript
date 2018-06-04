@@ -1,6 +1,6 @@
 /**
- * @file	KEObjectManager.swift
- * @brief	Define KEObjectManager class
+ * @file	KEObjectLoader.swift
+ * @brief	Define KEObjectLoader class
  * @par Copyright
  *   Copyright (C) 2017 Steel Wheels Project
  */
@@ -9,7 +9,7 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-public class KEObjectManager: KEDefaultObject
+public class KEObjectLoader: KEDefaultObject
 {
 	public typealias AllocatorMethod = (_ context: KEContext) -> JSExport
 
