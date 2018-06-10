@@ -38,6 +38,7 @@ Authorize.__defineGetter__("undetermined", function(   ){ return this.get("undet
 /* global variable: isObject */
 /* global variable: isArray */
 /* global variable: isDate */
+/* global variable: exit */
 /* Define require function */
 module = {} ;
 [UnitTest]

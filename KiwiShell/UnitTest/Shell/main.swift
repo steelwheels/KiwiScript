@@ -19,7 +19,7 @@ guard let vm = JSVirtualMachine() else {
 	fatalError("Could not allocate VM")
 }
 
-let application = KEApplication()
+let application = KEApplication(kind: .Terminal)
 application.name = appname
 
 let shell    = KHShellConsole(application: application)

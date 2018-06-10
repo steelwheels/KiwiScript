@@ -41,6 +41,7 @@ public class KLLibraryCompiler: KECompiler
 		if let appconf = application.config {
 			appconf.doVerbose     = conf.verboseMode
 			appconf.useStrictMode = conf.useStrictMode
+			appconf.scriptFiles   = conf.scriptFiles
 		} else {
 			console.error(string: "No config object")
 		}
@@ -187,6 +188,14 @@ public class KLLibraryCompiler: KECompiler
 			return JSValue(bool: result, in: self.context)
 		}
 		defineGlobalFunction(name: "isDate", function: isDateFunc)
+
+		/* exit */
+		let exitFunc: @convention(block) (_ value: JSValue) -> JSValue = {
+			(_ value: JSValue) -> JSValue in
+			let _ = self.application.exit(value)
+			return JSValue(undefinedIn: self.context)
+		}
+		defineGlobalFunction(name: "exit", function: exitFunc)
 	}
 
 	private func defineGlobalFunction(name nm: String, function obj: Any){
@@ -259,49 +268,5 @@ public class KLLibraryCompiler: KECompiler
 	}
 }
 
-/*
-public func KLSetupLibrary(context ctxt: KEContext, arguments args: Array<String>, console cons: CNConsole, config cfg: KLConfig, exceptionHandler ehandler: @escaping (_ exception: KEException) -> Void)
-{
-
-	/* Setup global manager */
-	let global = KLGlobalManager.shared
-	global.setup(context: ctxt)
-	global.setTypeCheckFunctions()
-
-	/* Setup module manager */
-	let manager = KLModuleManager.shared
-	manager.setup(context: ctxt, arguments: args, console: cons, exceptionHandler: ehandler)
-
-	/* Add console module */
-	if let console = manager.getBuiltinModule(moduleName: "console") as? KLConsole {
-		ctxt.setObject(console, forKeyedSubscript: NSString(string: "console"))
-	} else {
-		NSLog("Failed to allocate \"console\" module")
-		return
-	}
-
-	/* Add File module  */
-	if let file = manager.getBuiltinModule(moduleName: "file") as? KLFile {
-		ctxt.setObject(file, forKeyedSubscript: NSString(string: "File"))
-
-		let stdinobj = file.standardFile(fileType: .input, context: ctxt)
-		ctxt.setObject(stdinobj, forKeyedSubscript: NSString(string: "stdin"))
-
-		let stdoutobj = file.standardFile(fileType: .output, context: ctxt)
-		ctxt.setObject(stdoutobj, forKeyedSubscript: NSString(string: "stdout"))
-
-		let stderrobj = file.standardFile(fileType: .error, context: ctxt)
-		ctxt.setObject(stderrobj, forKeyedSubscript: NSString(string: "stderr"))
-	} else {
-		NSLog("Failed to allocate \"file\" module")
-		return
-	}
-
-	/* Add Pipe module */
-	if let pipe = manager.getBuiltinModule(moduleName: "pipe") as? KLPipe {
-		ctxt.setObject(pipe, forKeyedSubscript: NSString(string: "Pipe"))
-	}
-}
-*/
 
 

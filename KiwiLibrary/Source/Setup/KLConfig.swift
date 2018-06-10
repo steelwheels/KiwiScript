@@ -18,17 +18,13 @@ open class KLConfig
 	public var	kind		: ApplicationKind
 	public var	useStrictMode	: Bool
 	public var	verboseMode	: Bool
+	public var	scriptFiles	: Array<String>
 
-	public init(){
-		kind		= .TerminalApplication
-		useStrictMode	= true
-		verboseMode	= false
-	}
-
-	public init(kind appkind: ApplicationKind, useStrictMode strict: Bool, doVerbose doverb: Bool) {
+	public init(kind appkind: ApplicationKind, useStrictMode strict: Bool, doVerbose doverb: Bool, scriptFiles files: Array<String>) {
 		kind		= appkind
 		useStrictMode	= strict
 		verboseMode	= doverb
+		scriptFiles	= files
 	}
 }
 

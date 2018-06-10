@@ -19,7 +19,6 @@ This is a table of built-in modules.
 
 |Module name  |Auto load    |Top class/object name | Document             |
 |:---         |:---         |:---            |:---|
-|-            |Yes          |`Process`       |[Process Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/ProcessClass.md)|
 |-            |Yes          |`console`       |[Console Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/ConsoleClass.md) |
 |-            |Yes          |`Curses`       |[Curses Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/CursesClass.md) |
 |-            |Yes          |`File`          |[File Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/FileClass.md)  |

@@ -18,12 +18,14 @@ public class KEConfig: KEDefaultObject
 	static let ApplicationKindProperty	= "applicationKind"
 	static let DoVerboseProperty		= "doVerbose"
 	static let UseStrictMode		= "useStrictMode"
+	static let ScriptFilesProperty		= "scriptFiles"
 
 	public init(kind knd: ApplicationKind, instanceName iname: String, context ctxt: KEContext) {
 		super.init(instanceName: iname, context: ctxt)
 		self.kind 	   = knd
 		self.doVerbose     = false
 		self.useStrictMode = true
+		self.scriptFiles   = []
 	}
 
 	public var kind: ApplicationKind {
@@ -67,5 +69,23 @@ public class KEConfig: KEDefaultObject
 			self.set(name: KEConfig.UseStrictMode, boolValue: newval)
 		}
 	}
-}
 
+	public var scriptFiles: Array<String> {
+		get {
+			if let val = self.getArray(name: KEConfig.ScriptFilesProperty){
+				if let arr = val as? Array<String> {
+					return arr
+				} else {
+					NSLog("Array does not contain string")
+					return []
+				}
+			} else {
+				NSLog("No scriptFiles property")
+				return []
+			}
+		}
+		set(files) {
+			self.set(name: KEConfig.ScriptFilesProperty, arrayValue: files)
+		}
+	}
+}
