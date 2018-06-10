@@ -10,20 +10,19 @@ import Foundation
 
 open class KLConfig
 {
-	public enum ApplicationKind {
-		case TerminalApplication
-		case GUIApplication
-	}
-
-	public var	kind		: ApplicationKind
-	public var	useStrictMode	: Bool
-	public var	verboseMode	: Bool
+	public var	kind		: KEConfig.ApplicationKind
+	public var	doStrict	: Bool
+	public var	doVerbose	: Bool
 	public var	scriptFiles	: Array<String>
 
-	public init(kind appkind: ApplicationKind, useStrictMode strict: Bool, doVerbose doverb: Bool, scriptFiles files: Array<String>) {
+	public convenience init(kind appkind: KEConfig.ApplicationKind){
+		self.init(kind: appkind, useStrictMode: true, doVerbose: false, scriptFiles: [])
+	}
+
+	public init(kind appkind: KEConfig.ApplicationKind, useStrictMode strict: Bool, doVerbose doverb: Bool, scriptFiles files: Array<String>) {
 		kind		= appkind
-		useStrictMode	= strict
-		verboseMode	= doverb
+		doStrict	= strict
+		doVerbose	= doverb
 		scriptFiles	= files
 	}
 }

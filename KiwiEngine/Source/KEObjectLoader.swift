@@ -15,15 +15,15 @@ public class KEObjectLoader: KEDefaultObject
 
 	private var mAllocatorTable:	Dictionary<String, AllocatorMethod>	= [:]
 
-	public func addAllocator(className name: String, allocator alloc: @escaping AllocatorMethod) {
+	public func addAllocator(modelName name: String, allocator alloc: @escaping AllocatorMethod) {
 		mAllocatorTable[name] = alloc
 	}
 
-	public func require(className name: String, in owner: AnyClass) -> JSValue? {
+	public func require(modelName name: String, in owner: AnyClass) -> JSValue? {
 		if let val = propertyTable.check(name) {
 			return val
 		} else {
-			if let val = allocate(className: name) {
+			if let val = allocate(modelName: name) {
 				self.set(name: name, value: val)
 				return val
 			} else if let val = load(scriptFileName: name, in: owner) {
@@ -34,7 +34,7 @@ public class KEObjectLoader: KEDefaultObject
 		}
 	}
 
-	private func allocate(className name: String) -> JSValue? {
+	private func allocate(modelName name: String) -> JSValue? {
 		if let method = mAllocatorTable[name] {
 			let obj = method(context)
 			return JSValue(object: obj, in: context)

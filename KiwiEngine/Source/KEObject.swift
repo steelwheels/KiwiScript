@@ -31,8 +31,8 @@ public enum KEObjectValue
 public protocol KEObject
 {
 	var context:			KEContext { get }
+	var modelName:			String { get }
 	var instanceName: 		String { get }
-	var className:			String { get }
 	var propertyTable: 		KEPropertyTable { get }
 	var objectTable:		KEObjectTable { get }
 
@@ -68,8 +68,8 @@ open class KEDefaultObject: KEObject
 	private var mObjectTable:	KEObjectTable
 
 	public var context: 		KEContext { get { return mContext } }
+	public var modelName:		String { get { return "Object" }}
 	public var instanceName: 	String { get { return mInstanceName }}
-	public var className:		String { get { return "Object" }}
 	public var propertyTable: 	KEPropertyTable { get { return mPropertyTable }}
 	public var objectTable:		KEObjectTable { get { return mObjectTable }}
 

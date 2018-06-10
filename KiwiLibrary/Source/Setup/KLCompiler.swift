@@ -39,8 +39,8 @@ public class KLLibraryCompiler: KECompiler
 	private func applyConfig(config conf: KLConfig){
 		log(string: "/* Apply config */\n")
 		if let appconf = application.config {
-			appconf.doVerbose     = conf.verboseMode
-			appconf.useStrictMode = conf.useStrictMode
+			appconf.doVerbose     = conf.doVerbose
+			appconf.useStrictMode = conf.doStrict
 			appconf.scriptFiles   = conf.scriptFiles
 		} else {
 			console.error(string: "No config object")
@@ -82,13 +82,13 @@ public class KLLibraryCompiler: KECompiler
 		compile(enumObject: authorize, enumTable: etable)
 	}
 
-	private func defineGlobalObjects(applicationKind kind: KLConfig.ApplicationKind)
+	private func defineGlobalObjects(applicationKind kind: KEConfig.ApplicationKind)
 	{
 		let console = KLConsole(context: self.context, console: self.console)
 		defineGlobalObject(name: "console", object: console)
 
 		switch kind {
-		case .TerminalApplication:
+		case .Terminal:
 			#if os(OSX)
 				/* Process */
 				let process = KLProcess(context: context)
@@ -109,7 +109,7 @@ public class KLLibraryCompiler: KECompiler
 			#else
 				break
 			#endif
-		case .GUIApplication:
+		case .Window:
 			break
 		}
 	}
@@ -209,33 +209,33 @@ public class KLLibraryCompiler: KECompiler
 	private func defineLoadableObjects(objectLoader loader: KEObjectLoader)
 	{
 		/* KLFile */
-		loader.addAllocator(className: "file", allocator: {
+		loader.addAllocator(modelName: "file", allocator: {
 			(_ context: KEContext) -> JSExport in
 			return KLFile(context: context)
 		})
 		/* KLPipe */
-		loader.addAllocator(className: "pipe", allocator: {
+		loader.addAllocator(modelName: "pipe", allocator: {
 			(_ context: KEContext) -> JSExport in
 			return KLPipe(context: context)
 		})
 		/* KLJSON */
-		loader.addAllocator(className: "JSON", allocator: {
+		loader.addAllocator(modelName: "JSON", allocator: {
 			(_ context: KEContext) -> JSExport in
 			return KLJSON(context: context)
 		})
 		/* KLContact */
-		loader.addAllocator(className: "contact", allocator: {
+		loader.addAllocator(modelName: "contact", allocator: {
 			(_ context: KEContext) -> JSExport in
 			return KLContact(context: context)
 		})
 
 		#if os(OSX)
 		/* KLCurses */
-		loader.addAllocator(className: "shell", allocator: {
+		loader.addAllocator(modelName: "shell", allocator: {
 			(_ context: KEContext) -> JSExport in
 			return KLShell(context: context)
 		})
-		loader.addAllocator(className: "curses", allocator: {
+		loader.addAllocator(modelName: "curses", allocator: {
 			(_ context: KEContext) -> JSExport in
 			return KLCurses(context: context)
 		})
@@ -253,7 +253,7 @@ public class KLLibraryCompiler: KECompiler
 			(_ value: JSValue) -> JSValue in
 			if value.isString {
 				if let cname = value.toString() {
-					if let val = loader.require(className: cname, in: KLLibraryCompiler.self) {
+					if let val = loader.require(modelName: cname, in: KLLibraryCompiler.self) {
 						return val
 					}
 				}
