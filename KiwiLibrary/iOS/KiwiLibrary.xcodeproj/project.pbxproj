@@ -23,6 +23,7 @@
 		05BCE6702068BDAE007B0559 /* KLAlign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCE66B2068BDAE007B0559 /* KLAlign.swift */; };
 		05BCE6732068BDD7007B0559 /* KLShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCE6722068BDD7007B0559 /* KLShell.swift */; };
 		05C6E07920688F30000E8A13 /* KiwiLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 05C6E06B20688F2F000E8A13 /* KiwiLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		05FFA9DE20CBEACE007C662E /* KLURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FFA9DD20CBEACD007C662E /* KLURL.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		05C6E06820688F2F000E8A13 /* KiwiLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05C6E06B20688F2F000E8A13 /* KiwiLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiLibrary.h; sourceTree = "<group>"; };
 		05C6E06C20688F30000E8A13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05FFA9DD20CBEACD007C662E /* KLURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLURL.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 		05BCE6662068BD98007B0559 /* File */ = {
 			isa = PBXGroup;
 			children = (
+				05FFA9DD20CBEACD007C662E /* KLURL.swift */,
 				05BCE66A2068BDAE007B0559 /* KLConsole.swift */,
 				05BCE6672068BDAE007B0559 /* KLFile.swift */,
 				05BCE6692068BDAE007B0559 /* KLJSONFile.swift */,
@@ -302,6 +305,7 @@
 				05BCE66F2068BDAE007B0559 /* KLConsole.swift in Sources */,
 				05BCE65F2068BD5D007B0559 /* KLColor.swift in Sources */,
 				05BCE65C2068BD3E007B0559 /* KLProcess.swift in Sources */,
+				05FFA9DE20CBEACE007C662E /* KLURL.swift in Sources */,
 				05BCE6632068BD85007B0559 /* KLAuthorize.swift in Sources */,
 				05BCE6702068BDAE007B0559 /* KLAlign.swift in Sources */,
 				05BCE6732068BDD7007B0559 /* KLShell.swift in Sources */,

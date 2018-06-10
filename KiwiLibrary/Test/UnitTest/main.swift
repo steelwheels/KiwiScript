@@ -14,7 +14,7 @@ public func main()
 {
 	Swift.print("[UnitTest]")
 
-	let application = KEApplication()
+	let application = KEApplication(kind: .Terminal)
 
 	application.console.print(string: "Hello, world!!\n")
 	let config = KLConfig(kind: .TerminalApplication, useStrictMode: true, doVerbose: true)

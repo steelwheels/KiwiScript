@@ -8,14 +8,56 @@
 import JavaScriptCore
 import Foundation
 
+public enum KEObjectValue
+{
+	case Object(KEObject)
+	case Function(KEFunction)
+
+	func toObject() -> KEObject? {
+		switch self {
+		case .Object(let obj):		return obj
+		case .Function(_):		return nil
+		}
+	}
+
+	func toFunction() -> KEFunction? {
+		switch self {
+		case .Object(_):		return nil
+		case .Function(let fnc):	return fnc
+		}
+	}
+}
+
 public protocol KEObject
 {
 	var context:			KEContext { get }
 	var instanceName: 		String { get }
+	var className:			String { get }
 	var propertyTable: 		KEPropertyTable { get }
-	var objectTable:		Dictionary<String, KEObject> { get set }
+	var objectTable:		KEObjectTable { get }
 
-	func set(name nm: String, object obj: KEObject)
+	func set(name nm: String, object obj: KEObjectValue)
+}
+
+public class KEObjectTable
+{
+	private var mObjectTable:	Dictionary<String, KEObjectValue>
+
+	public init(){
+		mObjectTable = [:]
+	}
+
+	public var objectNames: Array<String> {
+		get { return Array(mObjectTable.keys) }
+	}
+
+	public func set(name nm: String, object obj: KEObjectValue){
+		mObjectTable[nm] = obj
+	}
+
+	public func object(name nm: String) -> KEObjectValue? {
+		return mObjectTable[nm]
+	}
 }
 
 open class KEDefaultObject: KEObject
@@ -23,35 +65,47 @@ open class KEDefaultObject: KEObject
 	private var mContext:		KEContext
 	private var mInstanceName:	String
 	private var mPropertyTable:	KEPropertyTable
-	private var mObjectTable:	Dictionary<String, KEObject>
+	private var mObjectTable:	KEObjectTable
 
 	public var context: 		KEContext { get { return mContext } }
 	public var instanceName: 	String { get { return mInstanceName }}
+	public var className:		String { get { return "Object" }}
 	public var propertyTable: 	KEPropertyTable { get { return mPropertyTable }}
-	public var objectTable:		Dictionary<String, KEObject> {
-						get { return mObjectTable }
-						set(table){ mObjectTable = table }
-					}
+	public var objectTable:		KEObjectTable { get { return mObjectTable }}
 
 	public init(instanceName iname: String, context ctxt: KEContext){
 		mContext	= ctxt
 		mInstanceName	= iname
 		mPropertyTable	= KEPropertyTable(context: ctxt)
-		mObjectTable	= [:]
+		mObjectTable	= KEObjectTable()
 	}
 
-	public func set(name nm: String, object obj: KEObject){
-		self.objectTable[nm] = obj
-		if let prop = JSValue(object: obj.propertyTable, in: context) {
-			propertyTable.set(nm, prop)
-		} else {
-			NSLog("Failed to allocate")
+	public func set(name nm: String, object obj: KEObjectValue){
+		mObjectTable.set(name: nm, object: obj)
+		switch obj {
+		case .Object(let obj):
+			if let prop = JSValue(object: obj.propertyTable, in: context) {
+				propertyTable.set(nm, prop)
+			} else {
+				NSLog("Failed to allocate")
+			}
+		case .Function(let obj):
+			propertyTable.set(nm, obj.functionObject)
+			break
 		}
 	}
 }
 
 extension KEObject
 {
+	public var propertyNames: Array<String> {
+		return propertyTable.propertyNames
+	}
+
+	public var objectNames: Array<String> {
+		return objectTable.objectNames
+	}
+	
 	public func set(name nm: String, value val: JSValue) {
 		self.propertyTable.set(nm, val)
 	}
@@ -118,7 +172,11 @@ extension KEObject
 		return nil
 	}
 
-	public func object(name nm: String) -> KEObject? {
-		return self.objectTable[nm]
+	public func object(name nm: String) -> KEObjectValue? {
+		return objectTable.object(name: nm)
+	}
+
+	public func set(name nm: String, object obj: KEObjectValue) {
+		objectTable.set(name: nm, object: obj)
 	}
 }

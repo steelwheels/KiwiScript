@@ -99,6 +99,6 @@ open class KECompiler
 			defineSetter(instance: instname, accessType: .ReadOnlyAccess, propertyName: member)
 		}
 		/* Store to enum table */
-		etable.set(name: instname, object: eobj)
+		etable.set(name: instname, object: .Object(eobj))
 	}
 }

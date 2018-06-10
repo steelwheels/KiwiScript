@@ -10,13 +10,36 @@ import Foundation
 
 public class KEConfig: KEDefaultObject
 {
-	static let DoVerboseProperty	= "doVerbose"
-	static let UseStrictMode	= "useStrictMode"
+	public enum ApplicationKind: Int32 {
+		case Terminal
+		case Window
+	}
 
-	public override init(instanceName iname: String, context ctxt: KEContext) {
+	static let ApplicationKindProperty	= "applicationKind"
+	static let DoVerboseProperty		= "doVerbose"
+	static let UseStrictMode		= "useStrictMode"
+
+	public init(kind knd: ApplicationKind, instanceName iname: String, context ctxt: KEContext) {
 		super.init(instanceName: iname, context: ctxt)
+		self.kind 	   = knd
 		self.doVerbose     = false
 		self.useStrictMode = true
+	}
+
+	public var kind: ApplicationKind {
+		get {
+			if let val = self.getInt32(name: KEConfig.ApplicationKindProperty) {
+				if let kind = ApplicationKind(rawValue: val) {
+					return kind
+				}
+			}
+			NSLog("No application kind")
+			return .Terminal
+		}
+		set(kind) {
+			let val = kind.rawValue
+			self.set(name: KEConfig.ApplicationKindProperty, int32Value: val)
+		}
 	}
 
 	public var doVerbose: Bool {

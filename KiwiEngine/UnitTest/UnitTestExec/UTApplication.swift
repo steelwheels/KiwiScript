@@ -11,7 +11,7 @@ import Foundation
 
 public func testApplication(console cons: CNConsole) -> Bool
 {
-	let application = KEApplication()
+	let application = KEApplication(kind: .Terminal)
 	application.console.print(string: "application is allocated\n")
 	if let args = application.arguments {
 		cons.print(string: "arguments: count = \(args.count)\n")
