@@ -1,0 +1,44 @@
+Hello, world!!
+[Allocate compiler]
+[Start compile]
+'use strict' ;/* Define Enum: Align */
+Align.__defineGetter__("center", function(   ){ return this.get("center"     ); }) ;
+Align.__defineGetter__("middle", function(   ){ return this.get("middle"     ); }) ;
+Align.__defineGetter__("bottom", function(   ){ return this.get("bottom"     ); }) ;
+Align.__defineGetter__("left", function(   ){ return this.get("left"     ); }) ;
+Align.__defineGetter__("right", function(   ){ return this.get("right"     ); }) ;
+Align.__defineGetter__("top", function(   ){ return this.get("top"     ); }) ;
+/* Define Enum: Orientation */
+Orientation.__defineGetter__("horizontal", function(   ){ return this.get("horizontal"     ); }) ;
+Orientation.__defineGetter__("vertical", function(   ){ return this.get("vertical"     ); }) ;
+/* Define Enum: Color */
+Color.__defineGetter__("green", function(   ){ return this.get("green"     ); }) ;
+Color.__defineGetter__("yellow", function(   ){ return this.get("yellow"     ); }) ;
+Color.__defineGetter__("black", function(   ){ return this.get("black"     ); }) ;
+Color.__defineGetter__("cyan", function(   ){ return this.get("cyan"     ); }) ;
+Color.__defineGetter__("blue", function(   ){ return this.get("blue"     ); }) ;
+Color.__defineGetter__("red", function(   ){ return this.get("red"     ); }) ;
+Color.__defineGetter__("magenta", function(   ){ return this.get("magenta"     ); }) ;
+Color.__defineGetter__("white", function(   ){ return this.get("white"     ); }) ;
+/* Define Enum: Authorize */
+Authorize.__defineGetter__("denied", function(   ){ return this.get("denied"     ); }) ;
+Authorize.__defineGetter__("authorized", function(   ){ return this.get("authorized"     ); }) ;
+Authorize.__defineGetter__("undetermined", function(   ){ return this.get("undetermined"     ); }) ;
+/* global variable: console */
+/* global variable: Process */
+/* global variable: File */
+/* global variable: stdin */
+/* global variable: stdout */
+/* global variable: stderr */
+/* global variable: isUndefined */
+/* global variable: isNull */
+/* global variable: isBoolean */
+/* global variable: isNumber */
+/* global variable: isString */
+/* global variable: isObject */
+/* global variable: isArray */
+/* global variable: isDate */
+/* Define require function */
+module = {} ;
+[UnitTest]
+[Bye]

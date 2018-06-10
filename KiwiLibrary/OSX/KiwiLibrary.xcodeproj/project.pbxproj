@@ -54,6 +54,13 @@
 			remoteGlobalIDString = 05456C2F203F187900942254;
 			remoteInfo = Install;
 		};
+		05D6EA3120CCAAA900C58802 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05B1227A203F0734009DDBEF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05341CBE20BDCB73001E2173;
+			remoteInfo = UnitTest;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -336,6 +343,21 @@
 			passBuildSettingsInEnvironment = 1;
 			productName = Install;
 		};
+		05D6EA2D20CCAAA000C58802 /* Check */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f ../../Script/unit_test.mk";
+			buildConfigurationList = 05D6EA3020CCAAA000C58802 /* Build configuration list for PBXLegacyTarget "Check" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+				05D6EA3220CCAAA900C58802 /* PBXTargetDependency */,
+			);
+			name = Check;
+			passBuildSettingsInEnvironment = 1;
+			productName = Check;
+		};
 /* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
@@ -421,6 +443,10 @@
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
+					05D6EA2D20CCAAA000C58802 = {
+						CreatedOnToolsVersion = 9.4;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 05B1227D203F0734009DDBEF /* Build configuration list for PBXProject "KiwiLibrary" */;
@@ -439,6 +465,7 @@
 				05456C2F203F187900942254 /* Install */,
 				0551CEA520BDC8A100615229 /* UnitTestBundle */,
 				05341CBE20BDCB73001E2173 /* UnitTest */,
+				05D6EA2D20CCAAA000C58802 /* Check */,
 			);
 		};
 /* End PBXProject section */
@@ -508,6 +535,11 @@
 			isa = PBXTargetDependency;
 			target = 05456C2F203F187900942254 /* Install */;
 			targetProxy = 0551CEAC20BDC8AD00615229 /* PBXContainerItemProxy */;
+		};
+		05D6EA3220CCAAA900C58802 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05341CBE20BDCB73001E2173 /* UnitTest */;
+			targetProxy = 05D6EA3120CCAAA900C58802 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -785,6 +817,35 @@
 			};
 			name = Release;
 		};
+		05D6EA2E20CCAAA000C58802 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		05D6EA2F20CCAAA000C58802 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -829,6 +890,15 @@
 			buildConfigurations = (
 				05B12298203F0734009DDBEF /* Debug */,
 				05B12299203F0734009DDBEF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05D6EA3020CCAAA000C58802 /* Build configuration list for PBXLegacyTarget "Check" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05D6EA2E20CCAAA000C58802 /* Debug */,
+				05D6EA2F20CCAAA000C58802 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
