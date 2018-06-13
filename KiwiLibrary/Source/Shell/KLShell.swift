@@ -33,7 +33,7 @@ import Foundation
 		let errport = castToPort(value: errfile)
 		if let cmdstr = cmd.toString(), let inport = inport, let outport = outport, let errport = errport {
 			let shell = CNShell.execute(command: cmdstr, inputFile: inport, outputFile: outport, errorFile: errport, terminateHandler: nil)
-			let process = KLProcessObject(process: shell, context: mContext)
+			let process = KLProcess(process: shell, context: mContext)
 			return JSValue(object: process, in: mContext)
 		} else {
 			return JSValue(nullIn: mContext)

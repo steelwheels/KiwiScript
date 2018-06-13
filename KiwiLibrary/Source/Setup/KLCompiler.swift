@@ -90,10 +90,6 @@ public class KLLibraryCompiler: KECompiler
 		switch kind {
 		case .Terminal:
 			#if os(OSX)
-				/* Process */
-				let process = KLProcess(context: context)
-				defineGlobalObject(name: "Process", object: process)
-
 				/* File */
 				let file = KLFile(context: context)
 				defineGlobalObject(name: "File", object: file)
