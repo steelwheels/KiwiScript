@@ -12,12 +12,12 @@ import Foundation
 public class KLAlign: KEDefaultObject
 {
 	static public let Left:		Int32		= 0
-	static public let Center:	Int32		= 2
-	static public let Right:	Int32		= 1
+	static public let Center:	Int32		= 1
+	static public let Right:	Int32		= 2
 
-	static public let Top:		Int32		= 0
-	static public let Middle:	Int32		= 2
-	static public let Bottom:	Int32		= 1
+	static public let Top:		Int32		= 3
+	static public let Middle:	Int32		= 4
+	static public let Bottom:	Int32		= 5
 
 	public override init(instanceName iname: String, context ctxt: KEContext){
 		super.init(instanceName: iname, context: ctxt)

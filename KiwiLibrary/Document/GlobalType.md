@@ -58,12 +58,6 @@ Following properties are used to specify the alignment. Every properties has sig
 * `Align.Middle`
 * `Align.Bottom`
 
-## Orientation Type
-The `Orientation` object has the table of kind of orientation.
-Following properties are used to specify the orientation. Every properties has signed integer values:
-* `Orientation.Vertical`
-* `Orientation.Horizontal`
-
 ## Related link
 * [KiwiLibrary](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/README.md): This framework contains this class.
 * [Steel Wheels Project](http://steelwheels.github.io): Web site of developer.
