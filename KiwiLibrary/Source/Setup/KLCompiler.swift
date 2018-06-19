@@ -69,10 +69,6 @@ public class KLLibraryCompiler: KECompiler
 		let align =  KLAlign(instanceName: "Align", context: context)
 		compile(enumObject: align, enumTable: etable)
 
-		/* Orientation */
-		let orientation = KLOrientation(instanceName: "Orientation", context: context)
-		compile(enumObject: orientation, enumTable: etable)
-
 		/* Color */
 		let color = KLColor(instanceName: "Color", context: context)
 		compile(enumObject: color, enumTable: etable)

@@ -8,10 +8,6 @@ Align.__defineGetter__("bottom", function(   ){ return this.get("bottom"     ); 
 Align.__defineGetter__("left", function(   ){ return this.get("left"     ); }) ;
 Align.__defineGetter__("right", function(   ){ return this.get("right"     ); }) ;
 Align.__defineGetter__("top", function(   ){ return this.get("top"     ); }) ;
-/* Define Enum: Orientation */
-Orientation.__defineGetter__("horizontal", function(   ){ return this.get("horizontal"     ); }) ;
-Orientation.__defineGetter__("vertical", function(   ){ return this.get("vertical"     ); }) ;
-Orientation.__defineGetter__("auto", function(   ){ return this.get("auto"     ); }) ;
 /* Define Enum: Color */
 Color.__defineGetter__("green", function(   ){ return this.get("green"     ); }) ;
 Color.__defineGetter__("yellow", function(   ){ return this.get("yellow"     ); }) ;
