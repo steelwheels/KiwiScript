@@ -6,8 +6,8 @@ Following data types and functions are defined at global scope.
 * [Functions](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/GlobalFunction.md)
 
 ## Built-in modules
-The module is written by Swift and built in `jsrun` command.
-The auto loaded class/object is always loaded before executing the user script.
+The module is written by native language (Swift).
+The auto loaded class/object can be always used in the user script.
 On the other hand, the other libraries are loaded by
 [require](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/RequireFunc.md) statement.
 
@@ -26,6 +26,13 @@ This is a table of built-in modules.
 |`Shell`      |No           |`Shell`          |[Shell Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/ShellClass.md)  |
 |`JSON`       |No           |`JSON`          |[JSON Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/JSONClass.md)  |
 |`Contact`     |No           |`Contact`      |[Contact Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/ContactClass.md)  |
+
+## Built-in Classes
+Following classes are supported:
+
+|Class name   |Description         |
+|:---         |:---                 |
+|[URL class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/URLClass.md) | Operate URL |
 
 ## Standard Library
 The library is written by JavaScript and distributed within the JSTool package.

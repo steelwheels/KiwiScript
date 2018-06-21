@@ -22,16 +22,6 @@ testPropertyTable : OK
 [objB] set(prop_b, Hello)
 Evaluated: undefined
 testPropertyTable2 : OK
-convert: true -> true
-convert: c -> c
-convert: -1234 -> -1234
-convert: 1234 -> 1234
-convert: 12.34 -> 12.34000015258789
-convert: -43.21 -> -43.21
-convert: Hello, world -> Hello, world
-convert: [10.0, 11.1] -> 10,11.100000381469727
-convert: [b:11.1, a:10.0] -> [object Object]
-testValue : OK
 application is allocated
 arguments: count = 1
 KiwiEngine.KEConfig

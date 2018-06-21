@@ -83,6 +83,9 @@ public class KLLibraryCompiler: KECompiler
 		let console = KLConsole(context: self.context, console: self.console)
 		defineGlobalObject(name: "console", object: console)
 
+		let url = KLURL(context: self.context)
+		defineGlobalObject(name: "URL", object: url)
+
 		switch kind {
 		case .Terminal:
 			#if os(OSX)

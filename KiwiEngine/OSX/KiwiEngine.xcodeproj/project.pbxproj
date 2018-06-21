@@ -13,7 +13,6 @@
 		052B0F7A1BE8A3A400E3BFEE /* UTObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B0F781BE8A33400E3BFEE /* UTObject.swift */; };
 		0536477620C237C600EA3BC2 /* UTApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0536477520C237C600EA3BC2 /* UTApplication.swift */; };
 		0537CE8F1F80F76E00CB313A /* KEValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0537CE8E1F80F76E00CB313A /* KEValue.swift */; };
-		0537CE911F81226D00CB313A /* UTValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0537CE901F81226D00CB313A /* UTValue.swift */; };
 		054536C61B78021500FE978C /* KiwiEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 054536C51B78021500FE978C /* KiwiEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		054637F21BB05FE400DEE12F /* UTError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054637F01BB05F4500DEE12F /* UTError.swift */; };
 		054ED52420BA15B900F7B4CB /* KEConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054ED52320BA15B900F7B4CB /* KEConfig.swift */; };
@@ -97,7 +96,6 @@
 		052B0F781BE8A33400E3BFEE /* UTObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTObject.swift; sourceTree = "<group>"; };
 		0536477520C237C600EA3BC2 /* UTApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTApplication.swift; sourceTree = "<group>"; };
 		0537CE8E1F80F76E00CB313A /* KEValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEValue.swift; sourceTree = "<group>"; };
-		0537CE901F81226D00CB313A /* UTValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTValue.swift; sourceTree = "<group>"; };
 		054536C01B78021500FE978C /* KiwiEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		054536C41B78021500FE978C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		054536C51B78021500FE978C /* KiwiEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiEngine.h; sourceTree = SOURCE_ROOT; };
@@ -233,7 +231,6 @@
 				052B0F781BE8A33400E3BFEE /* UTObject.swift */,
 				050422711ED5CEF300183E4F /* UTPropertyTable.swift */,
 				05706F5E2077BDB4004F58B6 /* UTPropertyTable2.swift */,
-				0537CE901F81226D00CB313A /* UTValue.swift */,
 				0536477520C237C600EA3BC2 /* UTApplication.swift */,
 				058735D120C2BF9200797EFD /* UTCompiler.swift */,
 			);
@@ -448,7 +445,6 @@
 				050422721ED5CEF300183E4F /* UTPropertyTable.swift in Sources */,
 				05706F5F2077BDB4004F58B6 /* UTPropertyTable2.swift in Sources */,
 				058B53261BA41A6C009522DF /* main.swift in Sources */,
-				0537CE911F81226D00CB313A /* UTValue.swift in Sources */,
 				058735D220C2BF9200797EFD /* UTCompiler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
