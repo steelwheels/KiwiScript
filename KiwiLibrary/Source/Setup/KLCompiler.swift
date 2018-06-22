@@ -23,6 +23,7 @@ public class KLLibraryCompiler: KECompiler
 		defineEnumTypes()
 		defineGlobalObjects(applicationKind: conf.kind)
 		defineGlobalFunctions()
+		defineGlobalConstructors()
 
 		guard let program = application.program else {
 			console.error(string: "No program object")
@@ -82,9 +83,6 @@ public class KLLibraryCompiler: KECompiler
 	{
 		let console = KLConsole(context: self.context, console: self.console)
 		defineGlobalObject(name: "console", object: console)
-
-		let url = KLURL(context: self.context)
-		defineGlobalObject(name: "URL", object: url)
 
 		switch kind {
 		case .Terminal:
@@ -199,6 +197,24 @@ public class KLLibraryCompiler: KECompiler
 		} else {
 			NSLog("Failed to allocate object for \(nm)")
 		}
+	}
+
+	private func defineGlobalConstructors()
+	{
+		/* URL */
+		let urlFunc: @convention(block) (_ value: JSValue) -> JSValue = {
+			(_ value: JSValue) -> JSValue in
+			let context = self.context
+			if value.isString {
+				if let str = value.toString() {
+					if let urlobj = KLURL.constructor(filePath: str, context: context) {
+						return JSValue(object: urlobj, in: context)
+					}
+				}
+			}
+			return JSValue(nullIn: context)
+		}
+		defineGlobalFunction(name: "URL", function: urlFunc)
 	}
 
 	private func defineLoadableObjects(objectLoader loader: KEObjectLoader)
