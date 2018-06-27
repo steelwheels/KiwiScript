@@ -29,6 +29,8 @@ public class KLLibraryCompiler: KECompiler
 			console.error(string: "No program object")
 			return
 		}
+		definePrimitiveFactories(program: program)
+
 		guard let loader = program.objectLoader else {
 			console.error(string: "No object loader")
 			return
@@ -215,6 +217,20 @@ public class KLLibraryCompiler: KECompiler
 			return JSValue(nullIn: context)
 		}
 		defineGlobalFunction(name: "URL", function: urlFunc)
+	}
+
+	private func definePrimitiveFactories(program prg: KEProgram) {
+		if let factory = prg.primitiveFactory {
+			factory.addAllocator(typeName: "URL", parameterType: .StringType, allocator:{
+				(_ value: CNValue, _ context: KEContext) -> JSValue? in
+				if let str = value.stringValue {
+					let urlobj = KLURL.constructor(filePath: str, context: context)
+					return JSValue(object: urlobj, in: context)
+				} else {
+					return nil
+				}
+			})
+		}
 	}
 
 	private func defineLoadableObjects(objectLoader loader: KEObjectLoader)
