@@ -10,10 +10,11 @@ import Foundation
 
 public class KEProgram: KEDefaultObject
 {
-	public static let EnumTableProperty	= "enumTable"
-	public static let SharedObjectsProperty	= "shareObjects"
-	public static let ObjectLoaderProperty	= "objectLoader"
-	public static let ObjectFactoryProperty	= "objectFactory"
+	public static let EnumTableProperty		= "enumTable"
+	public static let SharedObjectsProperty		= "shareObjects"
+	public static let ObjectLoaderProperty		= "objectLoader"
+	public static let ObjectFactoryProperty		= "objectFactory"
+	public static let PrimitiveFactoryProperty	= "primitiveFactory"
 
 	public override init(instanceName iname: String, context ctxt: KEContext) {
 		super.init(instanceName: iname, context: ctxt)
@@ -28,8 +29,11 @@ public class KEProgram: KEDefaultObject
 		let loader = KEObjectLoader(instanceName: KEProgram.ObjectLoaderProperty, context: ctxt)
 		self.set(name: KEProgram.ObjectLoaderProperty, object: .Object(loader))
 		/* Allocate ObjectFactory */
-		let factory = KEObjectFactory(instanceName: KEProgram.ObjectFactoryProperty, context: ctxt)
-		self.set(name: KEProgram.ObjectFactoryProperty, object: .Object(factory))
+		let objfact = KEObjectFactory(instanceName: KEProgram.ObjectFactoryProperty, context: ctxt)
+		self.set(name: KEProgram.ObjectFactoryProperty, object: .Object(objfact))
+		/* Allocate PrimitiveFactory */
+		let prmfact = KEPrimitiveFactory(instanceName: KEProgram.PrimitiveFactoryProperty, context: ctxt)
+		self.set(name: KEProgram.PrimitiveFactoryProperty, object: .Object(prmfact))
 	}
 
 	public var enumTable: KEObject? {
@@ -47,5 +51,8 @@ public class KEProgram: KEDefaultObject
 	public var objectFactory: KEObjectFactory? {
 		get { return object(name: KEProgram.ObjectFactoryProperty)?.toObject() as? KEObjectFactory }
 	}
-}
 
+	public var primitiveFactory: KEPrimitiveFactory? {
+		get { return object(name: KEProgram.PrimitiveFactoryProperty)?.toObject() as? KEPrimitiveFactory }
+	}
+}

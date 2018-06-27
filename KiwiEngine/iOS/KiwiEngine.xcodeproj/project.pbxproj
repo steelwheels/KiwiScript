@@ -18,6 +18,7 @@
 		058699F21F93BAF900F21555 /* KEValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058699F11F93BAF900F21555 /* KEValue.swift */; };
 		05A45A9020B95D8E00350A5A /* KEApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A45A8F20B95D8E00350A5A /* KEApplication.swift */; };
 		05A45A9220B95D9600350A5A /* KEObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A45A9120B95D9600350A5A /* KEObject.swift */; };
+		05BF08C020DFD7BA006BBA97 /* KEPrimitiveFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BF08BF20DFD7BA006BBA97 /* KEPrimitiveFactory.swift */; };
 		05BF0BCA1EAC978D003C8DF3 /* KEContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BF0BC81EAC978D003C8DF3 /* KEContext.swift */; };
 		05CFAB9820349158001623BC /* KEException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CFAB9720349158001623BC /* KEException.swift */; };
 /* End PBXBuildFile section */
@@ -46,6 +47,7 @@
 		058699F11F93BAF900F21555 /* KEValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEValue.swift; sourceTree = "<group>"; };
 		05A45A8F20B95D8E00350A5A /* KEApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEApplication.swift; sourceTree = "<group>"; };
 		05A45A9120B95D9600350A5A /* KEObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEObject.swift; sourceTree = "<group>"; };
+		05BF08BF20DFD7BA006BBA97 /* KEPrimitiveFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEPrimitiveFactory.swift; sourceTree = "<group>"; };
 		05BF0BC81EAC978D003C8DF3 /* KEContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEContext.swift; sourceTree = "<group>"; };
 		05CFAB9720349158001623BC /* KEException.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEException.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,6 +102,7 @@
 				057B098720C98A7000A8D774 /* KEFunction.swift */,
 				05401D5820C04C7B00E5C976 /* KEObjectLoader.swift */,
 				051C71B220C594DE0073BEFC /* KEObjectFactory.swift */,
+				05BF08BF20DFD7BA006BBA97 /* KEPrimitiveFactory.swift */,
 				057340E31EDAF092006CB96E /* KEPropertyTable.swift */,
 				05A45A8F20B95D8E00350A5A /* KEApplication.swift */,
 			);
@@ -224,6 +227,7 @@
 				057340E41EDAF092006CB96E /* KEPropertyTable.swift in Sources */,
 				05CFAB9820349158001623BC /* KEException.swift in Sources */,
 				0580363F20BEF289006618C9 /* KEConfig.swift in Sources */,
+				05BF08C020DFD7BA006BBA97 /* KEPrimitiveFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
