@@ -20,8 +20,11 @@ import Foundation
 	private var mContext:	KEContext
 
 	public class func constructor(filePath path: String, context ctxt: KEContext) -> KLURL? {
-		let url = URL(fileURLWithPath: path)
-		return KLURL(URL: url, context: ctxt)
+		if let url = URL(string: path) {
+			return KLURL(URL: url, context: ctxt)
+		} else {
+			return nil
+		}
 	}
 	
 	public init(URL u: URL, context ctxt: KEContext){
