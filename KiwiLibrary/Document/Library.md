@@ -30,9 +30,14 @@ This is a table of built-in modules.
 ## Built-in Classes
 Following classes are supported:
 
-|Class name   |Description         |
-|:---         |:---                 |
-|[URL class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/URLClass.md) | Operate URL |
+|Class name   |Target               |Description          |
+|:---         |:---                 |:---                 |
+|[URL class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/URLClass.md) | macOS, iOS | Operate URL |
+
+## Built-in Functions
+|Class name   |Target               |Description          |
+|:---         |:---                 |:---                 |
+|[Panel functions](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/PanelFunc.md) | macOS            |Operate panel such as open panel and save panel|
 
 ## Standard Library
 The library is written by JavaScript and distributed within the JSTool package.

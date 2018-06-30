@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		051FA32C20C38224009037F1 /* Math.js in Resources */ = {isa = PBXBuildFile; fileRef = 051FA32920C381C5009037F1 /* Math.js */; };
 		0530DBD020BEFD9600497ED7 /* KLCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0530DBCF20BEFD9600497ED7 /* KLCompiler.swift */; };
+		0555D2A320E72C1C00760EA7 /* KLPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0555D2A220E72C1C00760EA7 /* KLPanel.swift */; };
 		05A71EBC208E3EA2007356BB /* KLCurses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A71EBB208E3EA2007356BB /* KLCurses.swift */; };
 		05BCE6552068BCEF007B0559 /* KLConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCE6502068BCEE007B0559 /* KLConfig.swift */; };
 		05BCE65C2068BD3E007B0559 /* KLProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCE65B2068BD3E007B0559 /* KLProcess.swift */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		051FA32920C381C5009037F1 /* Math.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Math.js; sourceTree = "<group>"; };
 		0530DBCF20BEFD9600497ED7 /* KLCompiler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLCompiler.swift; sourceTree = "<group>"; };
+		0555D2A220E72C1C00760EA7 /* KLPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLPanel.swift; sourceTree = "<group>"; };
 		05A71EBB208E3EA2007356BB /* KLCurses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLCurses.swift; sourceTree = "<group>"; };
 		05BCE6502068BCEE007B0559 /* KLConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLConfig.swift; sourceTree = "<group>"; };
 		05BCE65B2068BD3E007B0559 /* KLProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLProcess.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				05BCE64F2068BCD8007B0559 /* Setup */,
 				05446D6620B1171E00CD0D22 /* Global */,
 				05BCE65D2068BD48007B0559 /* Console */,
+				0555D2A120E72B9F00760EA7 /* GUI */,
 				05BCE65A2068BCFA007B0559 /* Process */,
 				05BCE6662068BD98007B0559 /* File */,
 				05BCE6602068BD67007B0559 /* Database */,
@@ -108,6 +111,14 @@
 				05BCE6612068BD85007B0559 /* KLAuthorize.swift */,
 			);
 			path = Global;
+			sourceTree = "<group>";
+		};
+		0555D2A120E72B9F00760EA7 /* GUI */ = {
+			isa = PBXGroup;
+			children = (
+				0555D2A220E72C1C00760EA7 /* KLPanel.swift */,
+			);
+			path = GUI;
 			sourceTree = "<group>";
 		};
 		05BCE64F2068BCD8007B0559 /* Setup */ = {
@@ -302,6 +313,7 @@
 				05BCE66F2068BDAE007B0559 /* KLConsole.swift in Sources */,
 				05BCE65F2068BD5D007B0559 /* KLColor.swift in Sources */,
 				05BCE65C2068BD3E007B0559 /* KLProcess.swift in Sources */,
+				0555D2A320E72C1C00760EA7 /* KLPanel.swift in Sources */,
 				05FFA9DE20CBEACE007C662E /* KLURL.swift in Sources */,
 				05BCE6632068BD85007B0559 /* KLAuthorize.swift in Sources */,
 				05BCE6702068BDAE007B0559 /* KLAlign.swift in Sources */,

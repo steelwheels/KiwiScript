@@ -22,7 +22,7 @@ public class KLLibraryCompiler: KECompiler
 		setStrictMode()
 		defineEnumTypes()
 		defineGlobalObjects(applicationKind: conf.kind)
-		defineGlobalFunctions()
+		defineGlobalFunctions(applicationKind: conf.kind)
 		defineGlobalConstructors()
 
 		guard let program = application.program else {
@@ -118,7 +118,7 @@ public class KLLibraryCompiler: KECompiler
 		}
 	}
 
-	private func defineGlobalFunctions()
+	private func defineGlobalFunctions(applicationKind kind: KEConfig.ApplicationKind)
 	{
 		/* isUndefined */
 		let isUndefinedFunc: @convention(block) (_ value: JSValue) -> JSValue = {
@@ -191,6 +191,28 @@ public class KLLibraryCompiler: KECompiler
 			return JSValue(undefinedIn: self.context)
 		}
 		defineGlobalFunction(name: "exit", function: exitFunc)
+
+		switch kind {
+		case .Terminal:
+			break
+		case .Window:
+			#if os(OSX)
+				/* Panel: openPanel */
+				let openPanelFunc: @convention(block) (_ title: JSValue, _ isdir: JSValue, _ extensions: JSValue) -> JSValue = {
+					(_ title: JSValue, _ isdir: JSValue, _ extensions: JSValue) -> JSValue in
+					return KLPanel.shared.openPanel(title: title, isDirectory: isdir, extensions: extensions, context: self.context)
+				}
+				defineGlobalFunction(name: "openPanel", function: openPanelFunc)
+				/* Panel: savePanel */
+				let savePanelFunc: @convention(block) (_ title: JSValue, _ outdir: JSValue, _ callback: JSValue) -> JSValue = {
+					(_ title: JSValue, _ outdir: JSValue, _ callback: JSValue) -> JSValue in
+					return KLPanel.shared.savePanel(title: title, outputDirectory: outdir, callback: callback, context: self.context)
+				}
+				defineGlobalFunction(name: "savePanel", function: savePanelFunc)
+			#else  // os(OSX)
+				break
+			#endif // os(OSX)
+		}
 	}
 
 	private func defineGlobalFunction(name nm: String, function obj: Any){
