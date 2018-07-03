@@ -11,12 +11,14 @@ Align.__defineGetter__("top", function(   ){ return this.get("top"     ); }) ;
 /* Define Enum: Color */
 Color.__defineGetter__("green", function(   ){ return this.get("green"     ); }) ;
 Color.__defineGetter__("yellow", function(   ){ return this.get("yellow"     ); }) ;
+Color.__defineGetter__("min", function(   ){ return this.get("min"     ); }) ;
 Color.__defineGetter__("black", function(   ){ return this.get("black"     ); }) ;
 Color.__defineGetter__("cyan", function(   ){ return this.get("cyan"     ); }) ;
 Color.__defineGetter__("blue", function(   ){ return this.get("blue"     ); }) ;
 Color.__defineGetter__("red", function(   ){ return this.get("red"     ); }) ;
 Color.__defineGetter__("magenta", function(   ){ return this.get("magenta"     ); }) ;
 Color.__defineGetter__("white", function(   ){ return this.get("white"     ); }) ;
+Color.__defineGetter__("max", function(   ){ return this.get("max"     ); }) ;
 /* Define Enum: Authorize */
 Authorize.__defineGetter__("denied", function(   ){ return this.get("denied"     ); }) ;
 Authorize.__defineGetter__("authorized", function(   ){ return this.get("authorized"     ); }) ;

@@ -21,6 +21,9 @@ public class KLColor: KEDefaultObject
 	public static let Cyan		= CNColor.Cyan.rawValue
 	public static let White		= CNColor.White.rawValue
 
+	public static let Min		= CNColor.Min.rawValue
+	public static let Max		= CNColor.Max.rawValue
+
 	public override init(instanceName iname: String, context ctxt: KEContext){
 		super.init(instanceName: iname, context: ctxt)
 
@@ -32,6 +35,9 @@ public class KLColor: KEDefaultObject
 		set(name: "magenta",	int32Value: KLColor.Magenta)
 		set(name: "cyan",	int32Value: KLColor.Cyan)
 		set(name: "white",	int32Value: KLColor.White)
+
+		set(name: "min",	int32Value: KLColor.Min)
+		set(name: "max",	int32Value: KLColor.Max)
 	}
 }
 

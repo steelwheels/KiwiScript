@@ -2,7 +2,7 @@
 
 ## Global data types, functions
 Following data types and functions are defined at global scope.
-* [Data types](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/GlobalType.md)
+* [Data types](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/EnumType.md)
 * [Functions](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/GlobalFunction.md)
 
 ## Built-in modules
