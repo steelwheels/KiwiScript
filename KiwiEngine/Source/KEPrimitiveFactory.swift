@@ -52,6 +52,11 @@ public class KEPrimitiveFactory: KEDefaultObject
 			}
 			return nil
 		})
+		/* void */
+		self.addAllocator(typeName: "void", parameterType: .VoidType, allocator: {
+			(_ value: CNValue, _ context: KEContext) -> JSValue? in
+			return JSValue(undefinedIn: context)
+		})
 	}
 
 	public var allTypeNames: Array<String> {
