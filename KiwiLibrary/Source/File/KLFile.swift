@@ -15,7 +15,9 @@ import Foundation
 	func open(_ pathstr: JSValue, _ acctype: JSValue) -> JSValue
 
 	var type: JSValue { get }
+
 	func checkFileType(_ pathstr: JSValue) -> JSValue
+	func uti(_ pathstr: JSValue) -> JSValue
 }
 
 @objc public protocol KLFileObjectProtocol: JSExport
@@ -98,6 +100,18 @@ import Foundation
 
 	public var type: JSValue {
 		get { return mFileValue }
+	}
+
+	public func uti(_ pathval: JSValue) -> JSValue {
+		if pathval.isString {
+			if let pathstr = pathval.toString() {
+				let pathurl = URL(fileURLWithPath: pathstr)
+				if let uti = CNFilePath.UTIForFile(URL: pathurl) {
+					return JSValue(object: uti, in: mContext)
+				}
+			}
+		}
+		return JSValue(nullIn: mContext)
 	}
 
 	public func checkFileType(_ pathval: JSValue) -> JSValue {

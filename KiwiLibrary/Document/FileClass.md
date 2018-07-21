@@ -41,6 +41,7 @@ Check the file type given by path string.
 ````
 const type = File.checkFileType(path) ;
 ````
+
 #### Parameter(s)
 |Parameter    |Type   |Description                    |
 |:---         |:---   |:---                           |
@@ -55,6 +56,22 @@ The following example checks the file "tmp" is file or not:
     ...
   }
 ````
+
+### `uti` method
+Get UTI of the file given by path string.
+````
+const uti = File.uti(path)
+````
+
+#### Parameter(s)
+|Parameter    |Type   |Description                    |
+|:---         |:---   |:---                           |
+|path         |String |Path of the file to be checked |
+
+#### Return value
+If the file pointed by "path" is exist,
+the UTI of the file is returned as string.
+It it is not, the return value will be *null*.
 
 ## FileObject class
 ### `close` method

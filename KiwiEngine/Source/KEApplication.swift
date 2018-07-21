@@ -34,8 +34,6 @@ public class KEApplication: KEDefaultObject, KEApplicationProtocol
 		console = CNFileConsole()
 		super.init(instanceName: iname, context: ctxt)
 
-		/* Arguments */
-		self.set(name: KEApplication.ArgumentsProperty, arrayValue: CommandLine.arguments)
 		/* Add config */
 		let config = KEConfig(kind: knd, instanceName: KEApplication.ConfigProperty, context: ctxt)
 		self.set(name: KEApplication.ConfigProperty, object: .Object(config))
@@ -46,6 +44,7 @@ public class KEApplication: KEDefaultObject, KEApplicationProtocol
 
 	public var arguments: Array<Any>? {
 		get { return self.getArray(name: KEApplication.ArgumentsProperty) }
+		set(args) { if let a = args { self.set(name: KEApplication.ArgumentsProperty, arrayValue: a) }}
 	}
 
 	public var config: KEConfig? {
