@@ -4,7 +4,7 @@ The *Console* class is used to operate terminal by The  [ncurses](https://develo
 ## How to use this class instance
 You can import this library by [require statement](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/RequireFunc.md).
 ````
-const curses = require("Curses") ;
+const curses = require("curses") ;
 ````
 
 ## Curses Class
