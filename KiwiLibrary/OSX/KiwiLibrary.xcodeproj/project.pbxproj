@@ -12,16 +12,15 @@
 		052AC6B120E72A0500DB3AC1 /* KLPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052AC6B020E72A0500DB3AC1 /* KLPanel.swift */; };
 		052B154220C3833800BAF41B /* Math.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 052B153F20C382E500BAF41B /* Math.js */; };
 		05341CC220BDCB73001E2173 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05341CC120BDCB73001E2173 /* main.swift */; };
+		055560F3211B4A4C009DB8F8 /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 055560F2211B4A4B009DB8F8 /* CoconutData.framework */; };
+		055560F5211B4A82009DB8F8 /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 055560F2211B4A4B009DB8F8 /* CoconutData.framework */; };
 		057F73B8208E3EE700D7CF57 /* KLCurses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F73B7208E3EE700D7CF57 /* KLCurses.swift */; };
-		058735D420C2C7E500797EFD /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 058735D320C2C7E500797EFD /* CoconutData.framework */; };
 		058735D620C2C7F700797EFD /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 058735D520C2C7F700797EFD /* KiwiEngine.framework */; };
-		058735D720C2C81C00797EFD /* CoconutData.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058735D320C2C7E500797EFD /* CoconutData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		058735D820C2C82100797EFD /* KiwiEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058735D520C2C7F700797EFD /* KiwiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		058735D920C2C82700797EFD /* KiwiLibrary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B12283203F0734009DDBEF /* KiwiLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05C49214204ABF3800C5D910 /* KLShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C49213204ABF3800C5D910 /* KLShell.swift */; };
 		05F0201E203F088400B430F5 /* KLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F0201D203F088400B430F5 /* KLColor.swift */; };
 		05F02025203F08D000B430F5 /* KLAuthorize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F02023203F08CF00B430F5 /* KLAuthorize.swift */; };
-		05F02026203F08D000B430F5 /* KLContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F02024203F08CF00B430F5 /* KLContact.swift */; };
 		05F0202C203F091100B430F5 /* KLFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F02028203F091100B430F5 /* KLFile.swift */; };
 		05F0202D203F091100B430F5 /* KLJSONFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F02029203F091100B430F5 /* KLJSONFile.swift */; };
 		05F0202E203F091100B430F5 /* KLConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F0202A203F091100B430F5 /* KLConsole.swift */; };
@@ -91,7 +90,6 @@
 			files = (
 				058735D920C2C82700797EFD /* KiwiLibrary.framework in CopyFiles */,
 				058735D820C2C82100797EFD /* KiwiEngine.framework in CopyFiles */,
-				058735D720C2C81C00797EFD /* CoconutData.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,8 +104,8 @@
 		05341CC120BDCB73001E2173 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		0551CEA620BDC8A100615229 /* UnitTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		0551CEA820BDC8A100615229 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		055560F2211B4A4B009DB8F8 /* CoconutData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutData.framework; path = ../../../../Library/Frameworks/CoconutData.framework; sourceTree = "<group>"; };
 		057F73B7208E3EE700D7CF57 /* KLCurses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLCurses.swift; sourceTree = "<group>"; };
-		058735D320C2C7E500797EFD /* CoconutData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutData.framework; path = ../../../../Library/Frameworks/CoconutData.framework; sourceTree = "<group>"; };
 		058735D520C2C7F700797EFD /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../Library/Frameworks/KiwiEngine.framework; sourceTree = "<group>"; };
 		05B12283203F0734009DDBEF /* KiwiLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05B12286203F0734009DDBEF /* KiwiLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiLibrary.h; sourceTree = "<group>"; };
@@ -115,7 +113,6 @@
 		05C49213204ABF3800C5D910 /* KLShell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLShell.swift; sourceTree = "<group>"; };
 		05F0201D203F088400B430F5 /* KLColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLColor.swift; sourceTree = "<group>"; };
 		05F02023203F08CF00B430F5 /* KLAuthorize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLAuthorize.swift; sourceTree = "<group>"; };
-		05F02024203F08CF00B430F5 /* KLContact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLContact.swift; sourceTree = "<group>"; };
 		05F02028203F091100B430F5 /* KLFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLFile.swift; sourceTree = "<group>"; };
 		05F02029203F091100B430F5 /* KLJSONFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLJSONFile.swift; sourceTree = "<group>"; };
 		05F0202A203F091100B430F5 /* KLConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLConsole.swift; sourceTree = "<group>"; };
@@ -137,6 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				055560F5211B4A82009DB8F8 /* CoconutData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,8 +142,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				055560F3211B4A4C009DB8F8 /* CoconutData.framework in Frameworks */,
 				058735D620C2C7F700797EFD /* KiwiEngine.framework in Frameworks */,
-				058735D420C2C7E500797EFD /* CoconutData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,8 +204,8 @@
 		05AAEC9F20C1B9F000694209 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				055560F2211B4A4B009DB8F8 /* CoconutData.framework */,
 				058735D520C2C7F700797EFD /* KiwiEngine.framework */,
-				058735D320C2C7E500797EFD /* CoconutData.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -258,7 +256,6 @@
 				05F487E520B11057002F7741 /* Global */,
 				05F0201C203F086900B430F5 /* Console */,
 				052AC6AF20E729C700DB3AC1 /* GUI */,
-				05F02022203F08B700B430F5 /* Database */,
 				05F02027203F08F400B430F5 /* File */,
 				05F02030203F093800B430F5 /* Process */,
 				05C49212204AB7C900C5D910 /* Shell */,
@@ -273,14 +270,6 @@
 				057F73B7208E3EE700D7CF57 /* KLCurses.swift */,
 			);
 			path = Console;
-			sourceTree = "<group>";
-		};
-		05F02022203F08B700B430F5 /* Database */ = {
-			isa = PBXGroup;
-			children = (
-				05F02024203F08CF00B430F5 /* KLContact.swift */,
-			);
-			path = Database;
 			sourceTree = "<group>";
 		};
 		05F02027203F08F400B430F5 /* File */ = {
@@ -522,7 +511,6 @@
 				05F0202D203F091100B430F5 /* KLJSONFile.swift in Sources */,
 				05F0202C203F091100B430F5 /* KLFile.swift in Sources */,
 				05F0202F203F091100B430F5 /* KLAlign.swift in Sources */,
-				05F02026203F08D000B430F5 /* KLContact.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -559,7 +547,10 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
-				FRAMEWORK_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/$(PRODUCT_NAME).bundle/Contents/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(TARGET_BUILD_DIR)/$(PRODUCT_NAME).bundle/Contents/Frameworks",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				GCC_OPTIMIZATION_LEVEL = 1;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/$(PRODUCT_NAME).bundle/Contents/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/$(PRODUCT_NAME).bundle/Contents/Frameworks";
@@ -577,7 +568,10 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
-				FRAMEWORK_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/$(PRODUCT_NAME).bundle/Contents/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(TARGET_BUILD_DIR)/$(PRODUCT_NAME).bundle/Contents/Frameworks",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				GCC_OPTIMIZATION_LEVEL = 1;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/$(PRODUCT_NAME).bundle/Contents/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/$(PRODUCT_NAME).bundle/Contents/Frameworks";

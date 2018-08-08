@@ -272,11 +272,6 @@ public class KLLibraryCompiler: KECompiler
 			(_ context: KEContext) -> JSExport in
 			return KLJSON(context: context)
 		})
-		/* KLContact */
-		loader.addAllocator(modelName: "contact", allocator: {
-			(_ context: KEContext) -> JSExport in
-			return KLContact(context: context)
-		})
 
 		#if os(OSX)
 		/* KLCurses */
