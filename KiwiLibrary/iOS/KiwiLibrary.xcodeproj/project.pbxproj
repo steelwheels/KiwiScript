@@ -19,7 +19,7 @@
 		05BCE66D2068BDAE007B0559 /* KLPipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCE6682068BDAE007B0559 /* KLPipe.swift */; };
 		05BCE66E2068BDAE007B0559 /* KLJSONFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCE6692068BDAE007B0559 /* KLJSONFile.swift */; };
 		05BCE66F2068BDAE007B0559 /* KLConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCE66A2068BDAE007B0559 /* KLConsole.swift */; };
-		05BCE6702068BDAE007B0559 /* KLAlign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCE66B2068BDAE007B0559 /* KLAlign.swift */; };
+		05BCE6702068BDAE007B0559 /* KLAlignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCE66B2068BDAE007B0559 /* KLAlignment.swift */; };
 		05BCE6732068BDD7007B0559 /* KLShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCE6722068BDD7007B0559 /* KLShell.swift */; };
 		05C6E07920688F30000E8A13 /* KiwiLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 05C6E06B20688F2F000E8A13 /* KiwiLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05FFA9DE20CBEACE007C662E /* KLURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FFA9DD20CBEACD007C662E /* KLURL.swift */; };
@@ -48,7 +48,7 @@
 		05BCE6682068BDAE007B0559 /* KLPipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLPipe.swift; sourceTree = "<group>"; };
 		05BCE6692068BDAE007B0559 /* KLJSONFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLJSONFile.swift; sourceTree = "<group>"; };
 		05BCE66A2068BDAE007B0559 /* KLConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLConsole.swift; sourceTree = "<group>"; };
-		05BCE66B2068BDAE007B0559 /* KLAlign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLAlign.swift; sourceTree = "<group>"; };
+		05BCE66B2068BDAE007B0559 /* KLAlignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLAlignment.swift; sourceTree = "<group>"; };
 		05BCE6722068BDD7007B0559 /* KLShell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLShell.swift; sourceTree = "<group>"; };
 		05C6E06820688F2F000E8A13 /* KiwiLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05C6E06B20688F2F000E8A13 /* KiwiLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiLibrary.h; sourceTree = "<group>"; };
@@ -103,7 +103,7 @@
 		05446D6620B1171E00CD0D22 /* Global */ = {
 			isa = PBXGroup;
 			children = (
-				05BCE66B2068BDAE007B0559 /* KLAlign.swift */,
+				05BCE66B2068BDAE007B0559 /* KLAlignment.swift */,
 				05BCE65E2068BD5D007B0559 /* KLColor.swift */,
 				05BCE6612068BD85007B0559 /* KLAuthorize.swift */,
 			);
@@ -304,7 +304,7 @@
 				0555D2A320E72C1C00760EA7 /* KLPanel.swift in Sources */,
 				05FFA9DE20CBEACE007C662E /* KLURL.swift in Sources */,
 				05BCE6632068BD85007B0559 /* KLAuthorize.swift in Sources */,
-				05BCE6702068BDAE007B0559 /* KLAlign.swift in Sources */,
+				05BCE6702068BDAE007B0559 /* KLAlignment.swift in Sources */,
 				05BCE6732068BDD7007B0559 /* KLShell.swift in Sources */,
 				0530DBD020BEFD9600497ED7 /* KLCompiler.swift in Sources */,
 				05BCE6552068BCEF007B0559 /* KLConfig.swift in Sources */,

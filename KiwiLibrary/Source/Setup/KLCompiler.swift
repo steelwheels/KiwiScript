@@ -68,8 +68,8 @@ public class KLLibraryCompiler: KECompiler
 			return
 		}
 
-		/* Align */
-		let align =  KLAlign(instanceName: "Align", context: context)
+		/* Alignment */
+		let align =  KLAlignment(instanceName: "Alignment", context: context)
 		compile(enumObject: align, enumTable: etable)
 
 		/* Color */

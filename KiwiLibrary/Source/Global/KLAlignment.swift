@@ -9,7 +9,7 @@ import KiwiEngine
 import JavaScriptCore
 import Foundation
 
-public class KLAlign: KEDefaultObject
+public class KLAlignment: KEDefaultObject
 {
 	static public let Left:		Int32		= 0
 	static public let Center:	Int32		= 1
@@ -22,13 +22,13 @@ public class KLAlign: KEDefaultObject
 	public override init(instanceName iname: String, context ctxt: KEContext){
 		super.init(instanceName: iname, context: ctxt)
 
-		set(name: "left",	int32Value: KLAlign.Left)
-		set(name: "center",	int32Value: KLAlign.Center)
-		set(name: "right",	int32Value: KLAlign.Right)
+		set(name: "left",	int32Value: KLAlignment.Left)
+		set(name: "center",	int32Value: KLAlignment.Center)
+		set(name: "right",	int32Value: KLAlignment.Right)
 
-		set(name: "top",	int32Value: KLAlign.Top)
-		set(name: "middle",	int32Value: KLAlign.Middle)
-		set(name: "bottom",	int32Value: KLAlign.Bottom)
+		set(name: "top",	int32Value: KLAlignment.Top)
+		set(name: "middle",	int32Value: KLAlignment.Middle)
+		set(name: "bottom",	int32Value: KLAlignment.Bottom)
 	}
 }
 
@@ -39,11 +39,11 @@ public extension NSTextAlignment
 		if val.isNumber {
 			let result: NSTextAlignment?
 			switch val.toInt32(){
-			case KLAlign.Left:
+			case KLAlignment.Left:
 				result = .left
-			case KLAlign.Right:
+			case KLAlignment.Right:
 				result = .right
-			case KLAlign.Center:
+			case KLAlignment.Center:
 				result = .center
 			default:
 				result = nil
@@ -57,11 +57,11 @@ public extension NSTextAlignment
 		let immval : Int32?
 		switch align {
 		case .left:
-			immval = KLAlign.Left
+			immval = KLAlignment.Left
 		case .center:
-			immval = KLAlign.Center
+			immval = KLAlignment.Center
 		case .right:
-			immval = KLAlign.Right
+			immval = KLAlignment.Right
 		default:
 			immval = nil
 		}

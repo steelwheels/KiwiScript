@@ -1,13 +1,13 @@
 Hello, world!!
 [Allocate compiler]
 [Start compile]
-'use strict' ;/* Define Enum: Align */
-Align.__defineGetter__("center", function(   ){ return this.get("center"     ); }) ;
-Align.__defineGetter__("middle", function(   ){ return this.get("middle"     ); }) ;
-Align.__defineGetter__("bottom", function(   ){ return this.get("bottom"     ); }) ;
-Align.__defineGetter__("left", function(   ){ return this.get("left"     ); }) ;
-Align.__defineGetter__("right", function(   ){ return this.get("right"     ); }) ;
-Align.__defineGetter__("top", function(   ){ return this.get("top"     ); }) ;
+'use strict' ;/* Define Enum: Alignment */
+Alignment.__defineGetter__("center", function(   ){ return this.get("center"     ); }) ;
+Alignment.__defineGetter__("middle", function(   ){ return this.get("middle"     ); }) ;
+Alignment.__defineGetter__("bottom", function(   ){ return this.get("bottom"     ); }) ;
+Alignment.__defineGetter__("left", function(   ){ return this.get("left"     ); }) ;
+Alignment.__defineGetter__("right", function(   ){ return this.get("right"     ); }) ;
+Alignment.__defineGetter__("top", function(   ){ return this.get("top"     ); }) ;
 /* Define Enum: Color */
 Color.__defineGetter__("green", function(   ){ return this.get("green"     ); }) ;
 Color.__defineGetter__("yellow", function(   ){ return this.get("yellow"     ); }) ;

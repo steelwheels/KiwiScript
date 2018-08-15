@@ -20,7 +20,7 @@ guard let vm = JSVirtualMachine() else {
 }
 
 let application = KEApplication(kind: .Terminal)
-application.name = appname
+//application.name = appname
 
 let shell    = KHShellConsole(application: application)
 let result   = shell.repl()
