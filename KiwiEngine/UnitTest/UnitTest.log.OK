@@ -23,8 +23,8 @@ testPropertyTable : OK
 Evaluated: undefined
 testPropertyTable2 : OK
 application is allocated
-arguments: count = 1
-KiwiEngine.KEConfig
+arguments: count = 0
+config.kind=terminal
 testApplication : OK
 testCompiler : OK
 SUMMARY: OK

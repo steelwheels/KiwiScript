@@ -60,7 +60,7 @@ public class KEObjectTable
 	}
 }
 
-open class KEDefaultObject: KEObject
+open class KEDefaultObject: NSObject, KEObject
 {
 	private var mContext:		KEContext
 	private var mInstanceName:	String

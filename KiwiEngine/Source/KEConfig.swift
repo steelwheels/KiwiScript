@@ -13,6 +13,15 @@ public class KEConfig: KEDefaultObject
 	public enum ApplicationKind: Int32 {
 		case Terminal
 		case Window
+
+		public func description() -> String {
+			let result: String
+			switch self {
+			case .Terminal: result = "terminal"
+			case .Window:	result = "window"
+			}
+			return result
+		}
 	}
 
 	static let ApplicationKindProperty	= "applicationKind"

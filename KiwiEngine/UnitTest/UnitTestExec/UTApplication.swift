@@ -19,7 +19,7 @@ public func testApplication(console cons: CNConsole) -> Bool
 		cons.print(string: "arguments: count = nil\n")
 	}
 	if let config = application.config {
-		application.console.print(string: "\(config)\n")
+		application.console.print(string: "config.kind=\(config.kind.description())\n")
 	} else {
 		cons.error(string: "No config object")
 	}
