@@ -32,6 +32,8 @@ import Foundation
 		mContext = ctxt
 	}
 
+	public var url: URL { get { return mURL }}
+
 	public var absoluteString: JSValue {
 		get {
 			let str = mURL.absoluteString
