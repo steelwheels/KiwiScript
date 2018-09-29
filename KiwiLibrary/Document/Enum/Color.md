@@ -1,8 +1,7 @@
 # Color type
-
-## Color Type
 The Color class has the table of colors for console.
-### Properties
+
+## Properties
 Following properties are used to specify the color. Every properties has unique signed integer values:
 * `Color.black`
 * `Color.red`

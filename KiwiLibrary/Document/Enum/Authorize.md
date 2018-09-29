@@ -1,9 +1,7 @@
 # Authorize type
-
-## Authorize type
 The authorize type has the state of the authorization process.
 
-### Properties
+## Properties
 Following properties are used to specify the authorize types.
 Every properties has unique signed integer values:
 * `Authorize.undetermined`

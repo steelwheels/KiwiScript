@@ -47,6 +47,6 @@ var string = JSON.serialize(object)
 When the serialization is succeeded, the returned value is string which presents the JSON object by text.
 If the serialization is failed, this value will be *null*.
 
-## References
+# References
 * [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library
 

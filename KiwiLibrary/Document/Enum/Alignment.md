@@ -1,9 +1,8 @@
 # Alignment Type
 
-## Alignment Type
 The `Alignment` object has the table of kinds of alignment.
 
-### Properties
+## Properties
 Following properties are used to specify the alignment.
 Every properties has signed integer values:
 * `Alignment.left`

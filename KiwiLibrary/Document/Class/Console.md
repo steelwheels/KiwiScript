@@ -8,7 +8,7 @@ Following global variables are defined for console operation.
 |:---       |:---     |:---                             |
 |console    |Console  |Singleton object of Console class  |
 
-### `log` method
+## `log` method
 Print log message to standard output.
 ````
 console.log(<message>)
@@ -18,36 +18,35 @@ console.log(<message>)
 |:---         |:---   |:---                           |
 |message      |String |Log message string             |
 
-#### Return value
+### Return value
 none
 
-### `print` method
+## `print` method
 Print message to standard output.
 ````
 console.print(<message>)
 ````
-#### Parameter(s)
+### Parameter(s)
 |Parameter    |Type   |Description                    |
 |:---         |:---   |:---                           |
 |message      |String |Log message string             |
 
-#### Return value
+### Return value
 none
 
-### `error` method
+## `error` method
 Print error message. This method can be used by all modes.
 ````
 console.error(<message>)
 ````
-#### Parameter(s)
+### Parameter(s)
 |Parameter    |Type   |Description                    |
 |:---         |:---   |:---                           |
 |message      |String |Error message string           |
 
-#### Return value
+### Return value
 none
 
 ## References
 * [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library
-
 
