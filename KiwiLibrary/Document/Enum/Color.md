@@ -1,4 +1,4 @@
-# Enum Types
+# Color type
 
 ## Color Type
 The Color class has the table of colors for console.
@@ -23,4 +23,7 @@ for(let col=Color.min ; col<=Color.max ; col++){
   ...
 }
 ````
+
+## References
+* [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library
 

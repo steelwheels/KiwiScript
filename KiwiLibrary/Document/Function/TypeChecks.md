@@ -1,4 +1,4 @@
-# Global functions
+# Type check functions
 
 ## Type check functions
 Following functions checks the type of values.
@@ -17,3 +17,7 @@ const flag = isUndefined(value) ;
 |isObject       |Object                     |
 |isArray        |Array                      |
 |isDate         |Date                       |
+
+## References
+* [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library
+

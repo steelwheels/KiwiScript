@@ -1,4 +1,4 @@
-# Enum Type
+# Alignment Type
 
 ## Alignment Type
 The `Alignment` object has the table of kinds of alignment.
@@ -12,4 +12,7 @@ Every properties has signed integer values:
 * `Alignment.top`
 * `Alignment.middle`
 * `Alignment.bottom`
+
+## References
+* [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library
 

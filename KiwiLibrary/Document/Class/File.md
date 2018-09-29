@@ -1,4 +1,4 @@
-# File Operation
+# File Class
 The *File* class is used to allocate *FileObject* class.
 The FileObject is used to read and/or write the file.
 
@@ -11,7 +11,6 @@ Following global variables are defined when this class is imported.
 |stdin      |FileObject   | Standard input            |
 |stdout     |FileObject   | Standard output           |
 |stderr     |FileObject   | Standard error output     |
-## File class
 
 ### `open` class method
 Allocate file object by the file name and access method.
@@ -116,6 +115,6 @@ var size = file.put(string)
 ### Return value
 If the write operation is succeeded, the size　(unit: byte) of parameter string is returned. If it is failed, this value will be 0.
 
-## Related link
-* [KiwiLibrary](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/README.md): This framework contains this class.
-* [Steel Wheels Project](http://steelwheels.github.io): Web site of developer.
+## References
+* [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library
+

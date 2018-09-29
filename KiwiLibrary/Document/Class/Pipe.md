@@ -1,4 +1,4 @@
-# Pipe operation
+# Pipe class
 
 ## `Pipe` class
 ### `open` class method
@@ -17,6 +17,6 @@ The input file (instance of *FileObject*).
 #### `output` property
 The output file (instance of *FileObject*).
 
-## Related link
-* [Kiwi Library](https://github.com/steelwheels/KiwiScript/tree/master/KiwiLibrary): Top level document
-* [Steel Wheels Project](http://steelwheels.github.io): Web site of developer.
+## References
+* [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library
+

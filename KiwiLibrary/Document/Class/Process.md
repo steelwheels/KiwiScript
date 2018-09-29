@@ -1,4 +1,5 @@
-# Process class
+# Process Class
+
 ## Introduction
 The `Process` object presents the status of sub-process.
 In usually, the object will be allocated by process creation function.
@@ -16,6 +17,6 @@ Wait until the process is finished.
 process.waitUntilExit()
 ````
 
-## Related link
-* [Amber Frameworks](https://github.com/steelwheels/Amber/blob/master/README.md): This framework contains this class.
-* [Steel Wheels Project](http://steelwheels.github.io): Web site of developer.
+## References
+* [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library
+

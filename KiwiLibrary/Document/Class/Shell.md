@@ -1,21 +1,12 @@
-# Shell operation
+# Shell Class
 The *Shell class* is used to execute command line application from the JavaScript.
 
-## Global variables
-Following global variables are defined when this class is imported.
-
-|Variable   |Class   | Description                     |
-|:---       |:---    |:---                             |
-|Shell      |Shell   | Singleton object of Shell class  |
-
-## Shell Class
-
-### The `execute` class method
+## The `execute` class method
 Execute the other application asynchronously.
 ````
   let process = Shell.execute(command, infile, outfile, errfile) ;
 ````
-#### Parameter(s)
+### Parameter(s)
 
 |Parameter |Type       |Description       |
 |:--       |:---       |:---              |
@@ -28,23 +19,23 @@ The type "\*1" presents the data stream object: [File Object Class](https://gith
 If you want to connect the stream into the other shell execution, use the *Pipe Object*.
 On the other hand, the *File Object* will be used to read/write stream from/to the file.
 
-#### Return Value
+### Return Value
 The instance of [Process Object](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/ProcessClass.md) is returned when the given command is started. Otherwise, this value will be `null`.
 
-### The `searchCommand` class method
+## The `searchCommand` class method
 ````
   let pathstr = Shell.searchCommand(commandname) ;
 ````
 
-#### Parameter(s)
+### Parameter(s)
 
 |Parameter   |Type       |Description       |
 |:--         |:---       |:---              |
 |commandname |String     |Name of the command line application such as "`ls`".|
 
-#### Return Value
+### Return Value
 The string object which presents the path of the given command is returned when the command is found. Otherwise, this value will be `null`.
 
-## Related link
-* [Kiwi Library](https://github.com/steelwheels/KiwiScript/tree/master/KiwiLibrary): Top level document
-* [Steel Wheels Project](http://steelwheels.github.io): Web site of developer.
+## References
+* [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library
+

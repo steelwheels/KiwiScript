@@ -1,13 +1,5 @@
-# Curses Operation
-The *Console* class is used to operate terminal by The  [ncurses](https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man3/ncurses.3x.html).
-
-## How to use this class instance
-You can import this library by [require statement](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/RequireFunc.md).
-````
-const curses = require("curses") ;
-````
-
-## Curses Class
+# Curses class
+The *Curses* class is used to operate terminal by The  [ncurses](https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man3/ncurses.3x.html).
 
 ### `mode` method
 Enter/leave screen mode.
@@ -136,6 +128,6 @@ No parameters.
 When any key are pressed, the key code will be returned.
 If no keys are pressed, this method return *null*.
 
-## Related link
-* [KiwiLibrary](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/README.md): This framework contains this class.
-* [Steel Wheels Project](http://steelwheels.github.io): Web site of developer.
+## References
+* [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library
+

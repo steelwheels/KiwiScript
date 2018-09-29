@@ -1,4 +1,4 @@
-# Console Operation
+# Console class
 The *Console* class is used to print text to console.
 
 ## Global variables
@@ -7,8 +7,6 @@ Following global variables are defined for console operation.
 |Variable   |Class    | Description                     |
 |:---       |:---     |:---                             |
 |console    |Console  |Singleton object of Console class  |
-
-## Console Class
 
 ### `log` method
 Print log message to standard output.
@@ -49,6 +47,7 @@ console.error(<message>)
 #### Return value
 none
 
-## Related link
-* [KiwiLibrary](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/README.md): This framework contains this class.
-* [Steel Wheels Project](http://steelwheels.github.io): Web site of developer.
+## References
+* [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library
+
+

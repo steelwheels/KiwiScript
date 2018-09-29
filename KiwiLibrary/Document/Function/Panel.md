@@ -1,4 +1,4 @@
-# Panel Functions
+# Panel functions
 This document describes about panel functions.
 
 # Functions
@@ -35,6 +35,6 @@ var didsaved = savePanel(title, directory, callback) ;
 |:---     |:---                     |
 |bool     |*true*:File is saved, *false*: is not saved |
 
-## Related link
-* [KiwiLibrary](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/README.md): This framework contains this class.
-* [Steel Wheels Project](http://steelwheels.github.io): Web site of developer.
+## References
+* [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library
+
