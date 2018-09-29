@@ -24,7 +24,7 @@ Execute the other application asynchronously.
 |outfile   |*1 |Output data stream|
 |errfile   |*1 |Error stream|
 
-The type "\*1" presents the data stream object: [File Object Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/FileClass.md) or [Pipe Object Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/PipeClass.md).
+The type "\*1" presents the data stream object: [File Object Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/File.md) or [Pipe Object Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Pipe.md).
 If you want to connect the stream into the other shell execution, use the *Pipe Object*.
 On the other hand, the *File Object* will be used to read/write stream from/to the file.
 

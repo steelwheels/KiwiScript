@@ -20,10 +20,11 @@ public class KLLibraryCompiler: KECompiler
 	{
 		applyConfig(config: conf)
 		setStrictMode()
+
 		defineEnumTypes()
-		defineGlobalObjects(applicationKind: conf.kind)
-		defineGlobalFunctions(applicationKind: conf.kind)
-		defineGlobalConstructors()
+		defineFunctions(applicationKind: conf.kind)
+		defineClassObjects(applicationKind: conf.kind)
+		defineConstructorFunctions()
 
 		guard let program = application.program else {
 			console.error(string: "No program object")
@@ -81,44 +82,7 @@ public class KLLibraryCompiler: KECompiler
 		compile(enumObject: authorize, enumTable: etable)
 	}
 
-	private func defineGlobalObjects(applicationKind kind: KEConfig.ApplicationKind)
-	{
-		let console = KLConsole(context: self.context, console: self.console)
-		defineGlobalObject(name: "console", object: console)
-
-		switch kind {
-		case .Terminal:
-			#if os(OSX)
-				/* File */
-				let file = KLFile(context: context)
-				defineGlobalObject(name: "File", object: file)
-
-				let stdinobj = file.standardFile(fileType: .input, context: context)
-				defineGlobalObject(name: "stdin", object: stdinobj)
-
-				let stdoutobj = file.standardFile(fileType: .output, context: context)
-				defineGlobalObject(name: "stdout", object: stdoutobj)
-
-				let stderrobj = file.standardFile(fileType: .error, context: context)
-				defineGlobalObject(name: "stderr", object: stderrobj)
-			#else
-				break
-			#endif
-		case .Window:
-			break
-		}
-	}
-
-	private func defineGlobalObject(name nm: String, object obj: JSExport)
-	{
-		if let consval = JSValue(object: obj, in: self.context) {
-			defineGlobalVariable(variableName: nm, value: consval)
-		} else {
-			NSLog("Failed to allocate object for \(nm)")
-		}
-	}
-
-	private func defineGlobalFunctions(applicationKind kind: KEConfig.ApplicationKind)
+	private func defineFunctions(applicationKind kind: KEConfig.ApplicationKind)
 	{
 		/* isUndefined */
 		let isUndefinedFunc: @convention(block) (_ value: JSValue) -> JSValue = {
@@ -197,33 +161,64 @@ public class KLLibraryCompiler: KECompiler
 			break
 		case .Window:
 			#if os(OSX)
-				/* Panel: openPanel */
-				let openPanelFunc: @convention(block) (_ title: JSValue, _ isdir: JSValue, _ extensions: JSValue) -> JSValue = {
-					(_ title: JSValue, _ isdir: JSValue, _ extensions: JSValue) -> JSValue in
-					return KLPanel.shared.openPanel(title: title, isDirectory: isdir, extensions: extensions, context: self.context)
-				}
-				defineGlobalFunction(name: "openPanel", function: openPanelFunc)
-				/* Panel: savePanel */
-				let savePanelFunc: @convention(block) (_ title: JSValue, _ outdir: JSValue, _ callback: JSValue) -> JSValue = {
-					(_ title: JSValue, _ outdir: JSValue, _ callback: JSValue) -> JSValue in
-					return KLPanel.shared.savePanel(title: title, outputDirectory: outdir, callback: callback, context: self.context)
-				}
-				defineGlobalFunction(name: "savePanel", function: savePanelFunc)
+			/* Panel: openPanel */
+			let openPanelFunc: @convention(block) (_ title: JSValue, _ isdir: JSValue, _ extensions: JSValue) -> JSValue = {
+				(_ title: JSValue, _ isdir: JSValue, _ extensions: JSValue) -> JSValue in
+				return KLPanel.shared.openPanel(title: title, isDirectory: isdir, extensions: extensions, context: self.context)
+			}
+			defineGlobalFunction(name: "openPanel", function: openPanelFunc)
+			/* Panel: savePanel */
+			let savePanelFunc: @convention(block) (_ title: JSValue, _ outdir: JSValue, _ callback: JSValue) -> JSValue = {
+				(_ title: JSValue, _ outdir: JSValue, _ callback: JSValue) -> JSValue in
+				return KLPanel.shared.savePanel(title: title, outputDirectory: outdir, callback: callback, context: self.context)
+			}
+			defineGlobalFunction(name: "savePanel", function: savePanelFunc)
 			#else  // os(OSX)
-				break
+			break
 			#endif // os(OSX)
 		}
 	}
 
-	private func defineGlobalFunction(name nm: String, function obj: Any){
-		if let val = JSValue(object: obj, in: context){
-			defineGlobalVariable(variableName: nm, value: val)
-		} else {
-			NSLog("Failed to allocate object for \(nm)")
+	private func defineClassObjects(applicationKind kind: KEConfig.ApplicationKind)
+	{
+		let console = KLConsole(context: self.context, console: self.console)
+		defineGlobalObject(name: "console", object: console)
+
+		let json = KLJSON(context: self.context)
+		defineGlobalObject(name: "JSON", object: json)
+
+		switch kind {
+		case .Terminal:
+			#if os(OSX)
+			/* File */
+			let file = KLFile(context: context)
+			defineGlobalObject(name: "File", object: file)
+
+			let stdinobj = file.standardFile(fileType: .input, context: context)
+			defineGlobalObject(name: "stdin", object: stdinobj)
+
+			let stdoutobj = file.standardFile(fileType: .output, context: context)
+			defineGlobalObject(name: "stdout", object: stdoutobj)
+
+			let stderrobj = file.standardFile(fileType: .error, context: context)
+			defineGlobalObject(name: "stderr", object: stderrobj)
+
+			/* Curses */
+			let cursesobj = KLCurses(context: context)
+			defineGlobalObject(name: "Curses", object: cursesobj)
+
+			/* Shell */
+			let shellobj = KLShell(context: context, console: self.console)
+			defineGlobalObject(name: "Shell", object: shellobj)
+			#else
+			break
+			#endif
+		case .Window:
+			break
 		}
 	}
 
-	private func defineGlobalConstructors()
+	private func defineConstructorFunctions()
 	{
 		/* URL */
 		let urlFunc: @convention(block) (_ value: JSValue) -> JSValue = {
@@ -239,6 +234,23 @@ public class KLLibraryCompiler: KECompiler
 			return JSValue(nullIn: context)
 		}
 		defineGlobalFunction(name: "URL", function: urlFunc)
+	}
+
+	private func defineGlobalObject(name nm: String, object obj: JSExport)
+	{
+		if let consval = JSValue(object: obj, in: self.context) {
+			defineGlobalVariable(variableName: nm, value: consval)
+		} else {
+			NSLog("Failed to allocate object for \(nm)")
+		}
+	}
+
+	private func defineGlobalFunction(name nm: String, function obj: Any){
+		if let val = JSValue(object: obj, in: context){
+			defineGlobalVariable(variableName: nm, value: val)
+		} else {
+			NSLog("Failed to allocate object for \(nm)")
+		}
 	}
 
 	private func definePrimitiveFactories(program prg: KEProgram) {
@@ -267,23 +279,6 @@ public class KLLibraryCompiler: KECompiler
 			(_ context: KEContext) -> JSExport in
 			return KLPipe(context: context)
 		})
-		/* KLJSON */
-		loader.addAllocator(modelName: "JSON", allocator: {
-			(_ context: KEContext) -> JSExport in
-			return KLJSON(context: context)
-		})
-
-		#if os(OSX)
-		/* KLCurses */
-		loader.addAllocator(modelName: "shell", allocator: {
-			(_ context: KEContext) -> JSExport in
-			return KLShell(context: context)
-		})
-		loader.addAllocator(modelName: "curses", allocator: {
-			(_ context: KEContext) -> JSExport in
-			return KLCurses(context: context)
-		})
-		#endif
 	}
 
 	private func defineRequireFunction(objectLoader loader: KEObjectLoader)

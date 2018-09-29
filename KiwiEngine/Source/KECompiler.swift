@@ -55,12 +55,10 @@ open class KECompiler
 	}
 
 	public func defineGlobalVariable(variableName name: String, object obj: JSExport){
-		log(string: "/* global variable: \(name) */\n")
 		mContext.set(name: name, object: obj)
 	}
 
 	public func defineGlobalVariable(variableName name: String, value val: JSValue){
-		log(string: "/* global variable: \(name) */\n")
 		mContext.set(name: name, value: val)
 	}
 

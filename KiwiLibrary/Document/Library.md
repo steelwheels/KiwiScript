@@ -1,57 +1,27 @@
-# Library
+# Kiwi Standard Library
+The built-in class, function, data types for JavaScript.
 
-## Global data types, functions
-Following data types and functions are defined at global scope.
-* [Data types](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/EnumType.md)
-* [Functions](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/GlobalFunction.md)
+## Enum types
+* [Alignment](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/Alignment.md): Kind of alignment of components.
+* [Authorize](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/Authorize.md): Kind of authorization for access security.
+* [Color](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/Color.md) : Basic color definitions
 
-## Built-in modules
-The module is written by native language (Swift).
-The auto loaded class/object can be always used in the user script.
-On the other hand, the other libraries are loaded by
-[require](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/RequireFunc.md) statement.
+## Functions
+* [Type check functions](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/TypeCheck.md): Functions to check object types.
+* [Open/Save Panel](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Panel.md): *For macOS only.* Function to display panel to select input/output function.
 
-Here is the example to load `JSON` module
-````
-var JSON = require('JSON') ;
-````
-This is a table of built-in modules.
+## Objects
+There are some pre-defined objects. They are instance of built-in classes:
+* `console`: An instance of [Console class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Console.md)
+* `curses`: An instance of [Curses class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Curses.md)
 
-|Module name  |Auto load    |Top class/object name | Document             |
-|:---         |:---         |:---            |:---|
-|-            |Yes          |`console`       |[Console Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/ConsoleClass.md) |
-|-            |Yes          |`Curses`       |[Curses Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/CursesClass.md) |
-|-            |Yes          |`File`          |[File Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/FileClass.md)  |
-|-            |Yes          |`Pipe`          |[Pipe Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/PipeClass.md)  |
-|`Shell`      |No           |`Shell`          |[Shell Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/ShellClass.md)  |
-|`JSON`       |No           |`JSON`          |[JSON Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/JSONClass.md)  |
-|`Contact`     |No           |`Contact`      |[Contact Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/ContactClass.md)  |
+## Class objects
+Class objects to operate objects.
+* `File`: The class object of [File class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/File.md).
+* `Pipe`: The class object of [Pipe class ](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Pipe.md)
+* `Shell`: The class object of [Shell class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Shell.md)
+* `JSON`: The class object of [JSON class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/JSON.md)
 
-## Built-in Classes
-Following classes are supported:
-
-|Class name   |Target               |Description          |
-|:---         |:---                 |:---                 |
-|[URL class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/URLClass.md) | macOS, iOS | Operate URL |
-
-## Built-in Functions
-|Class name   |Target               |Description          |
-|:---         |:---                 |:---                 |
-|[Panel functions](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/PanelFunc.md) | macOS            |Operate panel such as open panel and save panel|
-
-## Standard Library
-The library is written by JavaScript and distributed within the JSTool package.
-They will be loaded by [require](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/RequireFunc.md) statement.
-
-Here is the example to load primitive classes for graphics.
-````
-var graph = require('Graphics/Primitive') ;
-````
-|Library name | Description                 |
-|:---         |:---                      |
-|`Math/Math` |[Primitive functions for mathematics](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Math.md)|
-|`Graphics/Primitive`|[Graphics Primitive Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/GraphicsPrimitive.md) |
-
-## Related link
-* [Kiwi Library](https://github.com/steelwheels/KiwiScript/tree/master/KiwiLibrary): Top level document
-* [Steel Wheels Project](http://steelwheels.github.io): Web site of developer.
+## Classes
+* [URL](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md): Data representation of URL. The constructor function is also defined.
+* [Process](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Process.md):

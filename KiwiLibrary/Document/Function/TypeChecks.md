@@ -17,8 +17,3 @@ const flag = isUndefined(value) ;
 |isObject       |Object                     |
 |isArray        |Array                      |
 |isDate         |Date                       |
-
-
-## Related links
-* [JSTools](https://github.com/steelwheels/JSTools/blob/master/README.md): Top page of JSTools.
-* [Steel Wheels Project](http://steelwheels.github.io): Developers web page.
