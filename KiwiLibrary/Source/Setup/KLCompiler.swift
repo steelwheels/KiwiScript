@@ -36,7 +36,6 @@ public class KLLibraryCompiler: KECompiler
 			console.error(string: "No object loader")
 			return
 		}
-		defineLoadableObjects(objectLoader: loader)
 		defineRequireFunction(objectLoader: loader)
 	}
 
@@ -184,6 +183,9 @@ public class KLLibraryCompiler: KECompiler
 		let console = KLConsole(context: self.context, console: self.console)
 		defineGlobalObject(name: "console", object: console)
 
+		let pipe = KLPipe(context: self.context)
+		defineGlobalObject(name: "Pipe", object: pipe)
+
 		let json = KLJSON(context: self.context)
 		defineGlobalObject(name: "JSON", object: json)
 
@@ -208,7 +210,7 @@ public class KLLibraryCompiler: KECompiler
 			defineGlobalObject(name: "Curses", object: cursesobj)
 
 			/* Shell */
-			let shellobj = KLShell(context: context, console: self.console)
+			let shellobj = KLShell(context: context)
 			defineGlobalObject(name: "Shell", object: shellobj)
 			#else
 			break
@@ -265,20 +267,6 @@ public class KLLibraryCompiler: KECompiler
 				}
 			})
 		}
-	}
-
-	private func defineLoadableObjects(objectLoader loader: KEObjectLoader)
-	{
-		/* KLFile */
-		loader.addAllocator(modelName: "file", allocator: {
-			(_ context: KEContext) -> JSExport in
-			return KLFile(context: context)
-		})
-		/* KLPipe */
-		loader.addAllocator(modelName: "pipe", allocator: {
-			(_ context: KEContext) -> JSExport in
-			return KLPipe(context: context)
-		})
 	}
 
 	private func defineRequireFunction(objectLoader loader: KEObjectLoader)

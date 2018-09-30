@@ -23,23 +23,6 @@ Color.__defineGetter__("max", function(   ){ return this.get("max"     ); }) ;
 Authorize.__defineGetter__("denied", function(   ){ return this.get("denied"     ); }) ;
 Authorize.__defineGetter__("authorized", function(   ){ return this.get("authorized"     ); }) ;
 Authorize.__defineGetter__("undetermined", function(   ){ return this.get("undetermined"     ); }) ;
-/* global variable: isUndefined */
-/* global variable: isNull */
-/* global variable: isBoolean */
-/* global variable: isNumber */
-/* global variable: isString */
-/* global variable: isObject */
-/* global variable: isArray */
-/* global variable: isDate */
-/* global variable: exit */
-/* global variable: console */
-/* global variable: File */
-/* global variable: stdin */
-/* global variable: stdout */
-/* global variable: stderr */
-/* global variable: Curses */
-/* global variable: Shell */
-/* global variable: URL */
 /* Define require function */
 module = {} ;
 [UnitTest]
