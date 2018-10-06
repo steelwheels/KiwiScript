@@ -18,6 +18,20 @@ Execute the other application asynchronously.
 ### Return Value
 The instance of [Process Object](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/ProcessClass.md) is returned when the given command is started. Otherwise, this value will be `null`.
 
+## The `executeOnConsole` class method
+This is similar to `execute` method but the parameters are different.
+````
+  let process = Shell.executeOnConsole(command, console) ;
+````
+### Parameter(s)
+|Parameter |Type       |Description       |
+|:--       |:---       |:---              |
+|command   |String     |The command to execute on the shell. |
+|console   |[Console](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Console.md)   |Use this console for input, output and error stream|
+
+### Return Value
+See `execute` method.
+
 ## The `searchCommand` class method
 ````
   let pathstr = Shell.searchCommand(commandname) ;

@@ -27,6 +27,10 @@ import Foundation
 		mConsole = cons
 	}
 
+	public var console: CNConsole {
+		get { return mConsole }
+	}
+
 	public func log(_ value: JSValue){
 		mConsole.print(string: value.toString())
 	}

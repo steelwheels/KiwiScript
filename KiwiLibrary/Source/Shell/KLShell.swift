@@ -16,6 +16,7 @@ import Foundation
 @objc public protocol KLShellProtocol: JSExport
 {
 	func execute(_ cmd: JSValue, _ input: JSValue, _ outout: JSValue, _ error: JSValue) -> JSValue
+	func executeOnConsole(_ cmd: JSValue, _ console: JSValue) -> JSValue
 	func searchCommand(_ cmd: JSValue) -> JSValue
 }
 
@@ -47,6 +48,27 @@ import Foundation
 			if let pipe = obj as? KLPipeObject {
 				return pipe.pipe.pipe
 			}
+		}
+		NSLog("\(#function) [Error] Invalid object: \(val)")
+		return nil
+	}
+
+	public func executeOnConsole(_ cmd: JSValue, _ console: JSValue) -> JSValue {
+		if let cmdstr = cmd.toString(), let cons = valueToConsole(value: console) {
+			let shell   = CNShell.execute(command: cmdstr, console: cons, terminateHandler: nil)
+			let process = KLProcess(process: shell, context: mContext)
+			return JSValue(object: process, in: mContext)
+		} else {
+			NSLog("\(#function) [Error] Invalid object: \(cmd) or \(console)")
+			return JSValue(nullIn: mContext)
+		}
+	}
+
+	private func valueToConsole(value val: JSValue) -> CNConsole? {
+		if val.isNull {
+			return nil
+		} else if let cons = val.toObject() as? KLConsole {
+			return cons.console
 		}
 		NSLog("\(#function) [Error] Invalid object: \(val)")
 		return nil
