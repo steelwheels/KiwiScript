@@ -167,31 +167,31 @@ public class KLLibraryCompiler: KECompiler
 		let json = KLJSON(context: self.context)
 		defineGlobalObject(name: "JSON", object: json)
 
+		#if os(OSX)
+			let shellobj = KLShell(context: context)
+			defineGlobalObject(name: "Shell", object: shellobj)
+		#endif
+
 		switch kind {
 		case .Terminal:
 			#if os(OSX)
-			/* File */
-			let file = KLFile(context: context)
-			defineGlobalObject(name: "File", object: file)
+				/* File */
+				let file = KLFile(context: context)
+				defineGlobalObject(name: "File", object: file)
 
-			let stdinobj = file.standardFile(fileType: .input, context: context)
-			defineGlobalObject(name: "stdin", object: stdinobj)
+				let stdinobj = file.standardFile(fileType: .input, context: context)
+				defineGlobalObject(name: "stdin", object: stdinobj)
 
-			let stdoutobj = file.standardFile(fileType: .output, context: context)
-			defineGlobalObject(name: "stdout", object: stdoutobj)
+				let stdoutobj = file.standardFile(fileType: .output, context: context)
+				defineGlobalObject(name: "stdout", object: stdoutobj)
 
-			let stderrobj = file.standardFile(fileType: .error, context: context)
-			defineGlobalObject(name: "stderr", object: stderrobj)
+				let stderrobj = file.standardFile(fileType: .error, context: context)
+				defineGlobalObject(name: "stderr", object: stderrobj)
 
-			/* Curses */
-			let cursesobj = KLCurses(context: context)
-			defineGlobalObject(name: "Curses", object: cursesobj)
-
-			/* Shell */
-			let shellobj = KLShell(context: context)
-			defineGlobalObject(name: "Shell", object: shellobj)
+				let cursesobj = KLCurses(context: context)
+				defineGlobalObject(name: "Curses", object: cursesobj)
 			#else
-			break
+				break
 			#endif
 		case .Window:
 			break

@@ -12,6 +12,7 @@ import Foundation
 @objc public protocol KLURLProtocol: JSExport
 {
 	var absoluteString: JSValue { get }
+	var path: JSValue { get }
 }
 
 @objc public class KLURL: NSObject, KLURLProtocol
@@ -37,6 +38,13 @@ import Foundation
 	public var absoluteString: JSValue {
 		get {
 			let str = mURL.absoluteString
+			return JSValue(object: str, in: mContext)
+		}
+	}
+
+	public var path: JSValue {
+		get {
+			let str = mURL.path
 			return JSValue(object: str, in: mContext)
 		}
 	}
