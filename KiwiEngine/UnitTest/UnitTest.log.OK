@@ -1,8 +1,8 @@
 *** Script1
-Compile error: SyntaxError: Unexpected end of script
+SyntaxError: Unexpected end of script
 Evaluated: undefined
 *** Script2
-Compile error: SyntaxError: Unexpected identifier 'hoge'. Expected a ';' following a return statement.
+SyntaxError: Unexpected identifier 'hoge'. Expected a ';' following a return statement.
 Evaluated: undefined
 testError : OK
 *** context.runScript

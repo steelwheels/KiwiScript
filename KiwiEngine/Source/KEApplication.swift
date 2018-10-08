@@ -34,6 +34,12 @@ public class KEApplication: KEDefaultObject, KEApplicationProtocol
 		console = CNFileConsole()
 		super.init(instanceName: iname, context: ctxt)
 
+		/* Update exception to use console */
+		ctxt.exceptionCallback = {
+			(_ result: KEException) -> Void in
+			let msg = result.description
+			self.console.error(string: "[Exception] \(msg)")
+		}
 		/* Add arguments */
 		let empty: Array<String> = []
 		self.arguments = empty
@@ -77,12 +83,13 @@ public class KEApplication: KEDefaultObject, KEApplicationProtocol
 				#if os(OSX)
 					NSApplication.shared.terminate(self)
 				#else
-					NSLog("exit is NOT supported")
-					break
+					let except = KEException.Runtime("exit is NOT supported")
+					context.exceptionCallback(except)
 				#endif
 			}
 		} else {
-			NSLog("No Config Object")
+			let except = KEException.Runtime("No config object")
+			context.exceptionCallback(except)
 			Darwin.exit(code)
 		}
 	}

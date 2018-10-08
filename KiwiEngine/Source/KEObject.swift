@@ -87,7 +87,8 @@ open class KEDefaultObject: NSObject, KEObject
 			if let prop = JSValue(object: obj.propertyTable, in: context) {
 				propertyTable.set(nm, prop)
 			} else {
-				NSLog("Failed to allocate")
+				let except = KEException.Runtime("Failed to allocate object")
+				mContext.exceptionCallback(except)
 			}
 		case .Function(let obj):
 			propertyTable.set(nm, obj.functionObject)

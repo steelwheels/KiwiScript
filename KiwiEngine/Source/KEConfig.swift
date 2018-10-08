@@ -44,7 +44,8 @@ public class KEConfig: KEDefaultObject
 					return kind
 				}
 			}
-			NSLog("No application kind")
+			let except = KEException.Runtime("No application kind")
+			context.exceptionCallback(except)
 			return .Terminal
 		}
 		set(kind) {
@@ -85,11 +86,13 @@ public class KEConfig: KEDefaultObject
 				if let arr = val as? Array<String> {
 					return arr
 				} else {
-					NSLog("Array does not contain string")
+					let except = KEException.Runtime("Array does not contain string")
+					context.exceptionCallback(except)
 					return []
 				}
 			} else {
-				NSLog("No scriptFiles property")
+				let except = KEException.Runtime("No scriptFiles property")
+				context.exceptionCallback(except)
 				return []
 			}
 		}

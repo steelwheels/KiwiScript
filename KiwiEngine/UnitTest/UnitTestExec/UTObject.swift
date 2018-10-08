@@ -39,22 +39,14 @@ public func testObject(console cons: CNConsole) -> Bool
 
 private func finalizeHandler(result res: KEException, console cons: CNConsole) -> Bool {
 	var testResult = false
+	cons.print(string: res.description + "\n")
 	switch res {
-	case .Terminated(_, let message):
-		cons.print(string: "Terminated: \(message)\n")
 	case .Evaluated(_, let value):
-		let message: String
-		if let v = value {
-			message = v.toString()
+		if let _ = value {
 			testResult = true
-		} else {
-			message = "<none>"
 		}
-		cons.print(string: "Evaluated: \(message)\n")
-	case .CompileError(let message):
-		cons.print(string: "Compile error: \(message)\n")
-	case .Exit(let code):
-		cons.print(string: "Exit: \(code)\n")
+	case .CompileError(_), .Runtime(_), .Exit(_), .Terminated(_, _):
+		break
 	}
 	return testResult
 }

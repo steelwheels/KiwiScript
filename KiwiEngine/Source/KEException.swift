@@ -11,6 +11,7 @@ import Foundation
 public enum KEException {
 	case CompileError(String)
 	case Evaluated(JSContext, JSValue?)
+	case Runtime(String)			// String: message
 	case Exit(Int32)
 	case Terminated(JSContext, String)
 
@@ -26,6 +27,8 @@ public enum KEException {
 				} else {
 					result = "Evaluated: nil"
 				}
+			case .Runtime(let msg):
+				result = "Error: \(msg)"
 			case .Exit(let code):
 				result = "Exit: \(code)"
 			case .Terminated(_, let message):

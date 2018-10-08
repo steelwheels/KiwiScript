@@ -110,6 +110,7 @@ private class KEListener: NSObject
 				return
 			}
 		}
-		NSLog("Could not get property")
+		let except = KEException.Runtime("Could not get property")
+		mContext.exceptionCallback(except)
 	}
 }

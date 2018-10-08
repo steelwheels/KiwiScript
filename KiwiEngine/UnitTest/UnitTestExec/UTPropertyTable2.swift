@@ -83,22 +83,14 @@ public func testPropertyTable2(console cons: CNConsole) -> Bool
 
 private func finalizeHandler(result res: KEException, console cons: CNConsole) -> Bool {
 	var testResult = false
+	cons.print(string: res.description + "\n")
 	switch res {
-	case .Terminated(_, let message):
-		cons.print(string: "Terminated: \(message)\n")
+	case .Terminated(_, _), .CompileError(_), .Runtime(_), .Exit(_):
+		break
 	case .Evaluated(_, let value):
-		let message: String
-		if let v = value {
-			message = v.toString()
+		if let _ = value {
 			testResult = true
-		} else {
-			message = "<none>"
 		}
-		cons.print(string: "Evaluated: \(message)\n")
-	case .CompileError(let message):
-		cons.print(string: "Compile error: \(message)\n")
-	case .Exit(let code):
-		cons.print(string: "Exit: \(code)\n")
 	}
 	return testResult
 }

@@ -24,34 +24,17 @@ public func testError(console cons: CNConsole) -> Bool
 	let script2 = "function hoge(a, b){ return a hoge; }" ;
 	result = testScript(console: cons, context: context, script: script2) && result
 
-	return true
+	return result
 }
 
 private func testScript(console cons: CNConsole, context ctxt: KEContext, script scr: String) -> Bool
 {
 	var testResult = false
-
 	ctxt.exceptionCallback = {
 		(_ result: KEException) -> Void in
-		switch result {
-		case .Terminated(_, let message):
-			console.print(string: "Terminated: \(message)\n")
-		case .Evaluated(_, let value):
-			let message: String
-			if let v = value {
-				message = v.toString()
-				testResult = true
-			} else {
-				message = "<none>"
-			}
-			console.print(string: "Evaluated: \(message)\n")
-		case .CompileError(let message):
-			console.print(string: "Compile error: \(message)\n")
-		case .Exit(let code):
-			console.print(string: "Exit: \(code)\n")
-		}
+		console.print(string: result.description + "\n")
+		testResult = true /* Error is required */
 	}
-
 	ctxt.runScript(script: scr)
 	return testResult
 }
