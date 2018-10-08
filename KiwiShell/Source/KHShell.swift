@@ -27,16 +27,19 @@ public class KHShell
 			let console = self.mApplication.console
 			switch exception {
 			case .CompileError(let message):
-				console.error(string: message)
+				console.error(string: message + "\n")
 			case .Evaluated(_, let result):
 				if let value = result {
 					let desc = value.description
 					console.print(string: desc + "\n")
 				}
+			case .Runtime(let message):
+				console.error(string: message + "\n")
+				self.mResult = .Exit(code: -1)
 			case .Exit(let code):
 				self.mResult = .Exit(code: code)
 			case .Terminated(_, let message):
-				console.error(string: message)
+				console.error(string: message + "\n")
 				self.mResult = .Exit(code: -1)
 			}
 		}
