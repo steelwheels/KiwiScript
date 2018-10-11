@@ -26,18 +26,12 @@ public enum KECompileError: Error
 open class KECompiler
 {
 	private var mApplication	: KEApplication
-	private var mContext		: KEContext
-	private var mConsole		: CNConsole
 
 	public init(application app: KEApplication){
 		mApplication	= app
-		mContext	= app.context
-		mConsole	= app.console
 	}
 
 	public var application: KEApplication { get { return mApplication }}
-	public var context: KEContext { get { return mContext }}
-	public var console: CNConsole { get { return mConsole }}
 
 	public var doVerbose: Bool {
 		get {
@@ -50,16 +44,21 @@ open class KECompiler
 
 	public func log(string str: String) {
 		if doVerbose {
-			mConsole.print(string: str)
+			mApplication.console.print(string: str)
 		}
 	}
 
+	public func error(message msg: String){
+		let except = KEException.CompileError(msg)
+		mApplication.context.exceptionCallback(except)
+	}
+
 	public func defineGlobalVariable(variableName name: String, object obj: JSExport){
-		mContext.set(name: name, object: obj)
+		mApplication.context.set(name: name, object: obj)
 	}
 
 	public func defineGlobalVariable(variableName name: String, value val: JSValue){
-		mContext.set(name: name, value: val)
+		mApplication.context.set(name: name, value: val)
 	}
 
 	public func defineSetter(instance inst:String, accessType access: CNAccessType, propertyName name:String){
@@ -75,7 +74,7 @@ open class KECompiler
 
 	public func compile(statement stmt: String) -> JSValue? {
 		log(string: stmt)
-		return mContext.evaluateScript(stmt)
+		return mApplication.context.evaluateScript(stmt)
 	}
 
 	public func compile(statements stmts: Array<String>) -> JSValue? {
@@ -84,14 +83,14 @@ open class KECompiler
 			log(string: stmt)
 			addedstmt = addedstmt + stmt + "\n"
 		}
-		return mContext.evaluateScript(addedstmt)
+		return mApplication.context.evaluateScript(addedstmt)
 	}
 
 	public func compile(enumObject eobj: KEObject, enumTable etable: KEObject){
 		/* Compile */
 		let instname = eobj.instanceName
 		log(string: "/* Define Enum: \(instname) */\n")
-		context.set(name: instname, object: eobj.propertyTable)
+		mApplication.context.set(name: instname, object: eobj.propertyTable)
 		let members = eobj.propertyTable.propertyNames
 		for member in members {
 			defineSetter(instance: instname, accessType: .ReadOnlyAccess, propertyName: member)
