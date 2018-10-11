@@ -129,7 +129,8 @@ import Foundation
 				return
 			}
 		}
-		NSLog("Failed to set color: \(fval.description) \(bval.description)")
+		let except = KEException.Runtime("\(#function) Failed to set color: \(fval.description) \(bval.description)")
+		mContext.exceptionCallback(except)
 	}
 
 	public func moveTo(_ x: JSValue, _ y:JSValue) {
@@ -138,7 +139,8 @@ import Foundation
 			let yval = y.toInt32()
 			mCurses.moveTo(x: Int(xval), y: Int(yval))
 		} else {
-			NSLog("Invalid parameters")
+			let except = KEException.Runtime("\(#function) Invalid parameters")
+			mContext.exceptionCallback(except)
 		}
 	}
 

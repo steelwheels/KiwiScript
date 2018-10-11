@@ -27,13 +27,13 @@ public class KLLibraryCompiler: KECompiler
 		defineConstructorFunctions()
 
 		guard let program = application.program else {
-			console.error(string: "No program object")
+			application.console.error(string: "No program object")
 			return
 		}
 		definePrimitiveFactories(program: program)
 
 		guard let loader = program.objectLoader else {
-			console.error(string: "No object loader")
+			application.console.error(string: "No object loader")
 			return
 		}
 		defineRequireFunction(objectLoader: loader)
@@ -46,7 +46,7 @@ public class KLLibraryCompiler: KECompiler
 			appconf.useStrictMode = conf.doStrict
 			appconf.scriptFiles   = conf.scriptFiles
 		} else {
-			console.error(string: "No config object")
+			application.console.error(string: "No config object")
 		}
 	}
 
@@ -59,6 +59,9 @@ public class KLLibraryCompiler: KECompiler
 	}
 
 	private func defineEnumTypes(){
+		let console = application.console
+		let context = application.context
+
 		guard let program = application.program else {
 			console.error(string: "No program in application")
 			return
@@ -87,7 +90,7 @@ public class KLLibraryCompiler: KECompiler
 		let isUndefinedFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in
 			let result: Bool = value.isUndefined
-			return JSValue(bool: result, in: self.context)
+			return JSValue(bool: result, in: self.application.context)
 		}
 		defineGlobalFunction(name: "isUndefined", function: isUndefinedFunc)
 
@@ -95,7 +98,7 @@ public class KLLibraryCompiler: KECompiler
 		let isNullFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in
 			let result: Bool = value.isNull
-			return JSValue(bool: result, in: self.context)
+			return JSValue(bool: result, in: self.application.context)
 		}
 		defineGlobalFunction(name: "isNull", function: isNullFunc)
 
@@ -103,7 +106,7 @@ public class KLLibraryCompiler: KECompiler
 		let isBooleanFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in
 			let result: Bool = value.isBoolean
-			return JSValue(bool: result, in: self.context)
+			return JSValue(bool: result, in: self.application.context)
 		}
 		defineGlobalFunction(name: "isBoolean", function: isBooleanFunc)
 
@@ -111,7 +114,7 @@ public class KLLibraryCompiler: KECompiler
 		let isNumberFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in
 			let result: Bool = value.isNumber
-			return JSValue(bool: result, in: self.context)
+			return JSValue(bool: result, in: self.application.context)
 		}
 		defineGlobalFunction(name: "isNumber", function: isNumberFunc)
 
@@ -119,7 +122,7 @@ public class KLLibraryCompiler: KECompiler
 		let isStringFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in
 			let result: Bool = value.isString
-			return JSValue(bool: result, in: self.context)
+			return JSValue(bool: result, in: self.application.context)
 		}
 		defineGlobalFunction(name: "isString", function: isStringFunc)
 
@@ -127,7 +130,7 @@ public class KLLibraryCompiler: KECompiler
 		let isObjectFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in
 			let result: Bool = value.isObject
-			return JSValue(bool: result, in: self.context)
+			return JSValue(bool: result, in: self.application.context)
 		}
 		defineGlobalFunction(name: "isObject", function: isObjectFunc)
 
@@ -135,7 +138,7 @@ public class KLLibraryCompiler: KECompiler
 		let isArrayFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in
 			let result: Bool = value.isArray
-			return JSValue(bool: result, in: self.context)
+			return JSValue(bool: result, in: self.application.context)
 		}
 		defineGlobalFunction(name: "isArray", function: isArrayFunc)
 
@@ -143,7 +146,7 @@ public class KLLibraryCompiler: KECompiler
 		let isDateFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in
 			let result: Bool = value.isArray
-			return JSValue(bool: result, in: self.context)
+			return JSValue(bool: result, in: self.application.context)
 		}
 		defineGlobalFunction(name: "isDate", function: isDateFunc)
 
@@ -151,20 +154,22 @@ public class KLLibraryCompiler: KECompiler
 		let exitFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in
 			let _ = self.application.exit(value)
-			return JSValue(undefinedIn: self.context)
+			return JSValue(undefinedIn: self.application.context)
 		}
 		defineGlobalFunction(name: "exit", function: exitFunc)
 	}
 
 	private func defineClassObjects(applicationKind kind: KEConfig.ApplicationKind)
 	{
-		let console = KLConsole(context: self.context, console: self.console)
+		let context = application.context
+		let console = KLConsole(context: context, console: application.console)
+
 		defineGlobalObject(name: "console", object: console)
 
-		let pipe = KLPipe(context: self.context)
+		let pipe = KLPipe(context: context)
 		defineGlobalObject(name: "Pipe", object: pipe)
 
-		let json = KLJSON(context: self.context)
+		let json = KLJSON(context: context)
 		defineGlobalObject(name: "JSON", object: json)
 
 		#if os(OSX)
@@ -203,7 +208,7 @@ public class KLLibraryCompiler: KECompiler
 		/* URL */
 		let urlFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in
-			let context = self.context
+			let context = self.application.context
 			if value.isString {
 				if let str = value.toString() {
 					if let urlobj = KLURL.constructor(filePath: str, context: context) {
@@ -218,18 +223,18 @@ public class KLLibraryCompiler: KECompiler
 
 	private func defineGlobalObject(name nm: String, object obj: JSExport)
 	{
-		if let consval = JSValue(object: obj, in: self.context) {
+		if let consval = JSValue(object: obj, in: application.context) {
 			defineGlobalVariable(variableName: nm, value: consval)
 		} else {
-			NSLog("Failed to allocate object for \(nm)")
+			error(message: "Failed to allocate object for \(nm)")
 		}
 	}
 
 	private func defineGlobalFunction(name nm: String, function obj: Any){
-		if let val = JSValue(object: obj, in: context){
+		if let val = JSValue(object: obj, in: application.context){
 			defineGlobalVariable(variableName: nm, value: val)
 		} else {
-			NSLog("Failed to allocate object for \(nm)")
+			error(message: "Failed to allocate object for \(nm)")
 		}
 	}
 
@@ -263,12 +268,12 @@ public class KLLibraryCompiler: KECompiler
 					}
 				}
 			}
-			return JSValue(nullIn: self.context)
+			return JSValue(nullIn: self.application.context)
 		}
-		if let funcval = JSValue(object: require, in: context) {
-			context.set(name: "require", value: funcval)
+		if let funcval = JSValue(object: require, in: application.context) {
+			application.context.set(name: "require", value: funcval)
 		} else {
-			NSLog("Failed to allocate require function")
+			error(message: "Failed to allocate require function")
 		}
 	}
 }

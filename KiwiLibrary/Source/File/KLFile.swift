@@ -127,7 +127,8 @@ import Foundation
 				return result
 			}
 		}
-		NSLog("Invalid parameter: \(pathval)")
+		let except = KEException.Runtime("\(#function) Invalid parameter: \(pathval)")
+		mContext.exceptionCallback(except)
 		return mFileType.NotExist
 	}
 }
