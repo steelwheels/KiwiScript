@@ -30,8 +30,9 @@ import Foundation
 
 	func setColor(_ fcol: JSValue, _ bcol: JSValue)
 	func moveTo(_ x: JSValue, _ y:JSValue)
-
 	func getKey() -> JSValue
+
+	func window(_ xval: JSValue, _ yval: JSValue, _ wval: JSValue, _ hval: JSValue) -> JSValue
 }
 
 @objc public class KLCurses: NSObject, KLCursesProtocol
@@ -151,8 +152,42 @@ import Foundation
 			return JSValue(nullIn: mContext)
 		}
 	}
+
+	public func window(_ xval: JSValue, _ yval: JSValue, _ wval: JSValue, _ hval: JSValue) -> JSValue {
+
+		if xval.isNumber && yval.isNumber && wval.isNumber && hval.isNumber {
+			let x      = xval.toInt32()
+			let y      = yval.toInt32()
+			let width  = wval.toInt32()
+			let height = hval.toInt32()
+			let winobj = mCurses.window(x: x, y: y, width: width, height: height)
+			let window = KLWindow(window: winobj, context: mContext)
+			return JSValue(object: window, in: mContext)
+		} else {
+			return JSValue(nullIn: mContext)
+		}
+	}
 }
 
+@objc public protocol KLWindowProtocol: JSExport
+{
+	func put(_ value: JSValue)
+}
+
+@objc public class KLWindow: NSObject, KLWindowProtocol
+{
+	private var mWindow:  CNWindow
+	private var mContext: KEContext
+
+	public init(window win: CNWindow, context ctxt: KEContext){
+		mWindow  = win
+		mContext = ctxt
+	}
+
+	public func put(_ value: JSValue) {
+		mWindow.put(string: value.toString())
+	}
+}
 
 #endif // os(OSX)
 
