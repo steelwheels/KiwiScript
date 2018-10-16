@@ -171,6 +171,8 @@ import Foundation
 
 @objc public protocol KLWindowProtocol: JSExport
 {
+	func close()
+	func moveTo(_ xval: JSValue, _ yval: JSValue)
 	func put(_ value: JSValue)
 }
 
@@ -182,6 +184,20 @@ import Foundation
 	public init(window win: CNWindow, context ctxt: KEContext){
 		mWindow  = win
 		mContext = ctxt
+	}
+
+	public func close()
+	{
+		mWindow.close()
+	}
+
+	public func moveTo(_ xval: JSValue, _ yval: JSValue)
+	{
+		if xval.isNumber && yval.isNumber {
+			let x = xval.toInt32()
+			let y = yval.toInt32()
+			mWindow.moveTo(x: x, y: y)
+		}
 	}
 
 	public func put(_ value: JSValue) {
