@@ -29,6 +29,7 @@
 		058B53261BA41A6C009522DF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058B53251BA41A6C009522DF /* main.swift */; };
 		05BFF6D920B8DC3B004CEB28 /* KEObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BFF6D820B8DC3B004CEB28 /* KEObject.swift */; };
 		05BFF6DB20B916F1004CEB28 /* KEApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BFF6DA20B916F1004CEB28 /* KEApplication.swift */; };
+		05CEC1AA21762660004738F9 /* KEProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CEC1A921762660004738F9 /* KEProcess.swift */; };
 		05CFAB962034875F001623BC /* KEException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CFAB952034875F001623BC /* KEException.swift */; };
 		05D1401420C970FC00A4121E /* KEFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D1401320C970FC00A4121E /* KEFunction.swift */; };
 		05D6DD9E20BF07490086E02B /* KEObjectLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D6DD9D20BF07490086E02B /* KEObjectLoader.swift */; };
@@ -113,6 +114,7 @@
 		05B40EED1BE5A4AE00AA8525 /* check.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = check.mk; sourceTree = SOURCE_ROOT; };
 		05BFF6D820B8DC3B004CEB28 /* KEObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEObject.swift; sourceTree = "<group>"; };
 		05BFF6DA20B916F1004CEB28 /* KEApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEApplication.swift; sourceTree = "<group>"; };
+		05CEC1A921762660004738F9 /* KEProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEProcess.swift; sourceTree = "<group>"; };
 		05CF6D761BA41EF000BD9D91 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05CFAB952034875F001623BC /* KEException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEException.swift; sourceTree = "<group>"; };
 		05D1401320C970FC00A4121E /* KEFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEFunction.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				0504226F1ED5C02600183E4F /* KEPropertyTable.swift */,
 				0537CE8E1F80F76E00CB313A /* KEValue.swift */,
 				05BFF6D820B8DC3B004CEB28 /* KEObject.swift */,
+				05CEC1A921762660004738F9 /* KEProcess.swift */,
 				05D1401320C970FC00A4121E /* KEFunction.swift */,
 				05BFF6DA20B916F1004CEB28 /* KEApplication.swift */,
 				055D8E2420BAC318009ED276 /* KEProgram.swift */,
@@ -431,6 +434,7 @@
 				05BFF6D920B8DC3B004CEB28 /* KEObject.swift in Sources */,
 				05D1401420C970FC00A4121E /* KEFunction.swift in Sources */,
 				055D8E2520BAC318009ED276 /* KEProgram.swift in Sources */,
+				05CEC1AA21762660004738F9 /* KEProcess.swift in Sources */,
 				0537CE8F1F80F76E00CB313A /* KEValue.swift in Sources */,
 				0523359E20C593330024576D /* KEObjectFactory.swift in Sources */,
 				057F881F1B78031B0029AB4F /* KEContext.swift in Sources */,

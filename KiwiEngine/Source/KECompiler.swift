@@ -25,40 +25,33 @@ public enum KECompileError: Error
 
 open class KECompiler
 {
-	private var mApplication	: KEApplication
+	private var mProcess:		KEProcess
+	public var doVerbose:		Bool
 
-	public init(application app: KEApplication){
-		mApplication	= app
+	public init(process proc: KEProcess){
+		mProcess	= proc
+		doVerbose	= true
 	}
 
-	public var application: KEApplication { get { return mApplication }}
-
-	public var doVerbose: Bool {
-		get {
-			if let config = application.config {
-				return config.doVerbose
-			}
-			return true
-		}
-	}
-
+	public var process: KEProcess { get { return mProcess }}
+	
 	public func log(string str: String) {
 		if doVerbose {
-			mApplication.console.print(string: str)
+			mProcess.console.print(string: str)
 		}
 	}
 
 	public func error(message msg: String){
 		let except = KEException.CompileError(msg)
-		mApplication.context.exceptionCallback(except)
+		mProcess.context.exceptionCallback(except)
 	}
 
 	public func defineGlobalVariable(variableName name: String, object obj: JSExport){
-		mApplication.context.set(name: name, object: obj)
+		mProcess.context.set(name: name, object: obj)
 	}
 
 	public func defineGlobalVariable(variableName name: String, value val: JSValue){
-		mApplication.context.set(name: name, value: val)
+		mProcess.context.set(name: name, value: val)
 	}
 
 	public func defineSetter(instance inst:String, accessType access: CNAccessType, propertyName name:String){
@@ -74,7 +67,7 @@ open class KECompiler
 
 	public func compile(statement stmt: String) -> JSValue? {
 		log(string: stmt)
-		return mApplication.context.evaluateScript(stmt)
+		return mProcess.context.evaluateScript(stmt)
 	}
 
 	public func compile(statements stmts: Array<String>) -> JSValue? {
@@ -83,14 +76,14 @@ open class KECompiler
 			log(string: stmt)
 			addedstmt = addedstmt + stmt + "\n"
 		}
-		return mApplication.context.evaluateScript(addedstmt)
+		return mProcess.context.evaluateScript(addedstmt)
 	}
 
 	public func compile(enumObject eobj: KEObject, enumTable etable: KEObject){
 		/* Compile */
 		let instname = eobj.instanceName
 		log(string: "/* Define Enum: \(instname) */\n")
-		mApplication.context.set(name: instname, object: eobj.propertyTable)
+		mProcess.context.set(name: instname, object: eobj.propertyTable)
 		let members = eobj.propertyTable.propertyNames
 		for member in members {
 			defineSetter(instance: instname, accessType: .ReadOnlyAccess, propertyName: member)

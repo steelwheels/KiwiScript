@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		051C71B320C594DE0073BEFC /* KEObjectFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051C71B220C594DE0073BEFC /* KEObjectFactory.swift */; };
 		052251EC1EAB852F0021A8B5 /* KiwiEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 052251EA1EAB852F0021A8B5 /* KiwiEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		05376FBE217627F6008FB27A /* KEProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05376FBD217627F6008FB27A /* KEProcess.swift */; };
 		05401D5920C04C7B00E5C976 /* KEObjectLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05401D5820C04C7B00E5C976 /* KEObjectLoader.swift */; };
 		055A479820688CAE00D297FC /* KECompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055A479720688CAE00D297FC /* KECompiler.swift */; };
 		057340E41EDAF092006CB96E /* KEPropertyTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057340E31EDAF092006CB96E /* KEPropertyTable.swift */; };
@@ -38,6 +39,7 @@
 		052251E71EAB852F0021A8B5 /* KiwiEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		052251EA1EAB852F0021A8B5 /* KiwiEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiEngine.h; sourceTree = "<group>"; };
 		052251EB1EAB852F0021A8B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		05376FBD217627F6008FB27A /* KEProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEProcess.swift; sourceTree = "<group>"; };
 		05401D5820C04C7B00E5C976 /* KEObjectLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEObjectLoader.swift; sourceTree = "<group>"; };
 		055A479720688CAE00D297FC /* KECompiler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KECompiler.swift; sourceTree = "<group>"; };
 		057340E31EDAF092006CB96E /* KEPropertyTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEPropertyTable.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				0580364020BEF292006618C9 /* KEProgram.swift */,
 				0580363E20BEF289006618C9 /* KEConfig.swift */,
 				05A45A9120B95D9600350A5A /* KEObject.swift */,
+				05376FBD217627F6008FB27A /* KEProcess.swift */,
 				057B098720C98A7000A8D774 /* KEFunction.swift */,
 				05401D5820C04C7B00E5C976 /* KEObjectLoader.swift */,
 				051C71B220C594DE0073BEFC /* KEObjectFactory.swift */,
@@ -166,7 +169,7 @@
 		052251DE1EAB852F0021A8B5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Steel Wheels Project";
 				TargetAttributes = {
 					052251E61EAB852F0021A8B5 = {
@@ -222,6 +225,7 @@
 				05401D5920C04C7B00E5C976 /* KEObjectLoader.swift in Sources */,
 				057B098820C98A7000A8D774 /* KEFunction.swift in Sources */,
 				058699F21F93BAF900F21555 /* KEValue.swift in Sources */,
+				05376FBE217627F6008FB27A /* KEProcess.swift in Sources */,
 				0580364220BEF293006618C9 /* KEProgram.swift in Sources */,
 				051C71B320C594DE0073BEFC /* KEObjectFactory.swift in Sources */,
 				057340E41EDAF092006CB96E /* KEPropertyTable.swift in Sources */,
@@ -256,6 +260,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -263,6 +268,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -317,6 +323,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -324,6 +331,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

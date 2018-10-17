@@ -14,13 +14,9 @@ public protocol KEApplicationProtocol
 	func exit(_ code: JSValue) -> JSValue
 }
 
-public class KEApplication: KEDefaultObject, KEApplicationProtocol
+public class KEApplication: KEProcess, KEApplicationProtocol
 {
 	public static let ArgumentsProperty	= "arguments"
-	public static let ConfigProperty 	= "config"
-	public static let ProgramProperty	= "program"
-
-	public var console:	CNConsole
 
 	public convenience init(kind knd: KEConfig.ApplicationKind){
 		guard let vm = JSVirtualMachine() else {
@@ -30,38 +26,17 @@ public class KEApplication: KEDefaultObject, KEApplicationProtocol
 		self.init(kind: knd, instanceName: "application", context: ctxt)
 	}
 
-	public init(kind knd: KEConfig.ApplicationKind, instanceName iname: String, context ctxt: KEContext) {
-		console = CNFileConsole()
-		super.init(instanceName: iname, context: ctxt)
+	public override init(kind knd: KEConfig.ApplicationKind, instanceName iname: String, context ctxt: KEContext) {
+		super.init(kind: knd, instanceName: iname, context: ctxt)
 
-		/* Update exception to use console */
-		ctxt.exceptionCallback = {
-			(_ result: KEException) -> Void in
-			let msg = result.description
-			self.console.error(string: "[Exception] \(msg)")
-		}
 		/* Add arguments */
 		let empty: Array<String> = []
 		self.arguments = empty
-		/* Add config */
-		let config = KEConfig(kind: knd, instanceName: KEApplication.ConfigProperty, context: ctxt)
-		self.set(name: KEApplication.ConfigProperty, object: .Object(config))
-		/* Add program */
-		let program = KEProgram(instanceName: KEApplication.ProgramProperty, context: ctxt)
-		self.set(name: KEApplication.ProgramProperty, object: .Object(program))
 	}
 
 	public var arguments: Array<Any>? {
 		get { return self.getArray(name: KEApplication.ArgumentsProperty) }
 		set(args) { if let a = args { self.set(name: KEApplication.ArgumentsProperty, arrayValue: a) }}
-	}
-
-	public var config: KEConfig? {
-		get { return self.object(name: KEApplication.ConfigProperty)?.toObject() as? KEConfig }
-	}
-
-	public var program: KEProgram? {
-		get { return self.object(name: KEApplication.ProgramProperty)?.toObject() as? KEProgram }
 	}
 
 	public func exit(_ error: JSValue) -> JSValue {
