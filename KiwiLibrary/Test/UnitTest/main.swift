@@ -20,7 +20,7 @@ public func main()
 	let config = KLConfig(kind: .Terminal, useStrictMode: true, doVerbose: true, scriptFiles: [])
 
 	application.console.print(string: "[Allocate compiler]\n")
-	let compiler = KLLibraryCompiler(application: application)
+	let compiler = KLApplicationCompiler(application: application)
 
 	application.console.print(string: "[Start compile]\n")
 	compiler.compile(config: config)

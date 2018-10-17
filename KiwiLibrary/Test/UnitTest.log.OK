@@ -25,5 +25,6 @@ Authorize.__defineGetter__("authorized", function(   ){ return this.get("authori
 Authorize.__defineGetter__("undetermined", function(   ){ return this.get("undetermined"     ); }) ;
 /* Define require function */
 module = {} ;
+/* Apply config */
 [UnitTest]
 [Bye]
