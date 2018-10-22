@@ -7,9 +7,13 @@ This software is distributed under [GNU LESSER GENERAL PUBLIC LICENSE Version 2.
 
 # Contents
 This package contains:
-- [Kiwi Engine](https://github.com/steelwheels/KiwiScript/blob/master/KiwiEngine/README.md): Define primitive data/classes to support execution of JavaScript.
+- [Kiwi Engine](https://github.com/steelwheels/KiwiScript/blob/master/KiwiEngine/README.md): Define JavaScript execution environment based on [JavaScriptCore](https://developer.apple.com/documentation/javascriptcore).
 - [KiwiLibrary](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/README.md): Built-in libraries to be used in the JavaScript.
+- [KiwiComponents](): Define Application object model.
 - [Kiwi Shell](https://github.com/steelwheels/KiwiScript/blob/master/KiwiShell/README.md): Shell program programmed by the JavaScript language.
+
+# documentation
+- [Application Object Model]()
 
 # Related links
 * [Steel Wheels Project](http://steelwheels.github.io/): The developer of this software.

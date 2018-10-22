@@ -26,8 +26,7 @@ public class KLApplicationCompiler: KLCompiler
 		}
 	}
 
-	public override func compile(config conf: KLConfig)
-	{
+	public override func compile(config conf: KLConfig) {
 		super.compile(config: conf)
 		applyConfig(config: conf)
 		defineFunctions(applicationKind: conf.kind)
@@ -62,7 +61,7 @@ open class KLCompiler: KECompiler
 		super.init(process: proc)
 	}
 
-	public func compile(config conf: KLConfig)
+	open func compile(config conf: KLConfig)
 	{
 		self.doVerbose = conf.doVerbose
 
