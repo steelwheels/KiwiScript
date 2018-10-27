@@ -1,26 +1,27 @@
 /**
- * @file	KEObject.swift
- * @brief	Define KEObject protocol
+ * @file	KMObject.swift
+ * @brief	Define KMObject protocol
  * @par Copyright
  *   Copyright (C) 2017 Steel Wheels Project
  */
 
+import KiwiEngine
 import JavaScriptCore
 import Foundation
 
-public enum KEObjectValue
+public enum KMObjectValue
 {
-	case Object(KEObject)
-	case Function(KEFunction)
+	case Object(KMObject)
+	case Function(KMFunction)
 
-	func toObject() -> KEObject? {
+	func toObject() -> KMObject? {
 		switch self {
 		case .Object(let obj):		return obj
 		case .Function(_):		return nil
 		}
 	}
 
-	func toFunction() -> KEFunction? {
+	func toFunction() -> KMFunction? {
 		switch self {
 		case .Object(_):		return nil
 		case .Function(let fnc):	return fnc
@@ -28,20 +29,20 @@ public enum KEObjectValue
 	}
 }
 
-public protocol KEObject
+public protocol KMObject
 {
 	var context:			KEContext { get }
 	var modelName:			String { get }
 	var instanceName: 		String { get }
-	var propertyTable: 		KEPropertyTable { get }
-	var objectTable:		KEObjectTable { get }
+	var propertyTable: 		KMPropertyTable { get }
+	var objectTable:		KMObjectTable { get }
 
-	func set(name nm: String, object obj: KEObjectValue)
+	func set(name nm: String, object obj: KMObjectValue)
 }
 
-public class KEObjectTable
+public class KMObjectTable
 {
-	private var mObjectTable:	Dictionary<String, KEObjectValue>
+	private var mObjectTable:	Dictionary<String, KMObjectValue>
 
 	public init(){
 		mObjectTable = [:]
@@ -51,36 +52,36 @@ public class KEObjectTable
 		get { return Array(mObjectTable.keys) }
 	}
 
-	public func set(name nm: String, object obj: KEObjectValue){
+	public func set(name nm: String, object obj: KMObjectValue){
 		mObjectTable[nm] = obj
 	}
 
-	public func object(name nm: String) -> KEObjectValue? {
+	public func object(name nm: String) -> KMObjectValue? {
 		return mObjectTable[nm]
 	}
 }
 
-open class KEDefaultObject: NSObject, KEObject
+open class KMDefaultObject: NSObject, KMObject
 {
 	private var mContext:		KEContext
 	private var mInstanceName:	String
-	private var mPropertyTable:	KEPropertyTable
-	private var mObjectTable:	KEObjectTable
+	private var mPropertyTable:	KMPropertyTable
+	private var mObjectTable:	KMObjectTable
 
 	public var context: 		KEContext { get { return mContext } }
 	public var modelName:		String { get { return "Object" }}
 	public var instanceName: 	String { get { return mInstanceName }}
-	public var propertyTable: 	KEPropertyTable { get { return mPropertyTable }}
-	public var objectTable:		KEObjectTable { get { return mObjectTable }}
+	public var propertyTable: 	KMPropertyTable { get { return mPropertyTable }}
+	public var objectTable:		KMObjectTable { get { return mObjectTable }}
 
 	public init(instanceName iname: String, context ctxt: KEContext){
 		mContext	= ctxt
 		mInstanceName	= iname
-		mPropertyTable	= KEPropertyTable(context: ctxt)
-		mObjectTable	= KEObjectTable()
+		mPropertyTable	= KMPropertyTable(context: ctxt)
+		mObjectTable	= KMObjectTable()
 	}
 
-	public func set(name nm: String, object obj: KEObjectValue){
+	public func set(name nm: String, object obj: KMObjectValue){
 		mObjectTable.set(name: nm, object: obj)
 		switch obj {
 		case .Object(let obj):
@@ -97,7 +98,7 @@ open class KEDefaultObject: NSObject, KEObject
 	}
 }
 
-extension KEObject
+extension KMObject
 {
 	public var propertyNames: Array<String> {
 		return propertyTable.propertyNames
@@ -173,11 +174,11 @@ extension KEObject
 		return nil
 	}
 
-	public func object(name nm: String) -> KEObjectValue? {
+	public func object(name nm: String) -> KMObjectValue? {
 		return objectTable.object(name: nm)
 	}
 
-	public func set(name nm: String, object obj: KEObjectValue) {
+	public func set(name nm: String, object obj: KMObjectValue) {
 		objectTable.set(name: nm, object: obj)
 	}
 }

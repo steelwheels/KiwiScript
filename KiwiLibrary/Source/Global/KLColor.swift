@@ -5,12 +5,13 @@
  *   Copyright (C) 2017-2018 Steel Wheels Project
  */
 
-import CoconutData
 import KiwiEngine
+import KiwiObject
+import CoconutData
 import JavaScriptCore
 import Foundation
 
-public class KLColor: KEDefaultObject
+public class KLColor: KMDefaultObject
 {
 	public static let Black		= CNColor.Black.rawValue
 	public static let Red 		= CNColor.Red.rawValue

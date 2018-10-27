@@ -6,15 +6,16 @@
  */
 
 import KiwiEngine
+import KiwiObject
 import CoconutData
 import JavaScriptCore
 import Foundation
 
 public class KHShellConsole
 {
-	private var mApplication:	KEApplication
+	private var mApplication:	KMApplication
 
-	public init(application app: KEApplication){
+	public init(application app: KMApplication){
 		mApplication	= app
 	}
 

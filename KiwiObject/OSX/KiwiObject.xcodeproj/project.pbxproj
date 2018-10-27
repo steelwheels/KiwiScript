@@ -7,10 +7,44 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0547EBB7217E3F460078FB32 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0547EBB6217E3F460078FB32 /* main.swift */; };
+		0547EBC0217E3FAF0078FB32 /* UTPropertyTable2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0547EBBD217E3FAF0078FB32 /* UTPropertyTable2.swift */; };
+		0547EBC1217E3FAF0078FB32 /* UTPropertyTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0547EBBE217E3FAF0078FB32 /* UTPropertyTable.swift */; };
+		0547EBC2217E3FAF0078FB32 /* UTApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0547EBBF217E3FAF0078FB32 /* UTApplication.swift */; };
+		0547EBC8217E40EB0078FB32 /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0547EBC7217E40EB0078FB32 /* KiwiEngine.framework */; };
+		0547EBC9217E40FC0078FB32 /* KiwiEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0547EBC7217E40EB0078FB32 /* KiwiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0547EBCA217E41720078FB32 /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0547EBC7217E40EB0078FB32 /* KiwiEngine.framework */; };
+		0547EBCC217E41980078FB32 /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0547EBCB217E41980078FB32 /* CoconutData.framework */; };
+		0547EBCD217E41B20078FB32 /* CoconutData.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0547EBCB217E41980078FB32 /* CoconutData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05AC2B662180CC11006FB10B /* KMProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AC2B5C2180CC10006FB10B /* KMProcess.swift */; };
+		05AC2B672180CC11006FB10B /* KMObjectLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AC2B5D2180CC10006FB10B /* KMObjectLoader.swift */; };
+		05AC2B682180CC11006FB10B /* KMFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AC2B5E2180CC10006FB10B /* KMFunction.swift */; };
+		05AC2B692180CC11006FB10B /* KMObjectFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AC2B5F2180CC10006FB10B /* KMObjectFactory.swift */; };
+		05AC2B6A2180CC11006FB10B /* KMProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AC2B602180CC10006FB10B /* KMProgram.swift */; };
+		05AC2B6B2180CC11006FB10B /* KMPropertyTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AC2B612180CC10006FB10B /* KMPropertyTable.swift */; };
+		05AC2B6C2180CC11006FB10B /* KMConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AC2B622180CC11006FB10B /* KMConfig.swift */; };
+		05AC2B6D2180CC11006FB10B /* KMPrimitiveFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AC2B632180CC11006FB10B /* KMPrimitiveFactory.swift */; };
+		05AC2B6E2180CC11006FB10B /* KMApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AC2B642180CC11006FB10B /* KMApplication.swift */; };
+		05AC2B6F2180CC11006FB10B /* KMObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AC2B652180CC11006FB10B /* KMObject.swift */; };
+		05C68782217E36EA00C5C6CB /* KMProcessCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C68781217E36EA00C5C6CB /* KMProcessCompiler.swift */; };
 		05E9124B217E1CD300FA24EC /* KiwiObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E91249217E1CD300FA24EC /* KiwiObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		051AC433217E3BE600292DA1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05E9123D217E1CD300FA24EC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 054C643F217E2671000B8F4F;
+			remoteInfo = Install;
+		};
+		0547EBBB217E3F500078FB32 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05E9123D217E1CD300FA24EC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 051AC42C217E3BDC00292DA1;
+			remoteInfo = UnitTestBundle;
+		};
 		054C6443217E267B000B8F4F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 05E9123D217E1CD300FA24EC /* Project object */;
@@ -20,29 +54,137 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		0547EBB2217E3F460078FB32 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		0547EBC3217E40550078FB32 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0547EBC9217E40FC0078FB32 /* KiwiEngine.framework in CopyFiles */,
+				0547EBCD217E41B20078FB32 /* CoconutData.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		051AC42D217E3BDC00292DA1 /* UnitTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		051AC42F217E3BDC00292DA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0547EBB4217E3F460078FB32 /* UnitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0547EBB6217E3F460078FB32 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		0547EBBD217E3FAF0078FB32 /* UTPropertyTable2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTPropertyTable2.swift; sourceTree = "<group>"; };
+		0547EBBE217E3FAF0078FB32 /* UTPropertyTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTPropertyTable.swift; sourceTree = "<group>"; };
+		0547EBBF217E3FAF0078FB32 /* UTApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTApplication.swift; sourceTree = "<group>"; };
+		0547EBC7217E40EB0078FB32 /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../Library/Frameworks/KiwiEngine.framework; sourceTree = "<group>"; };
+		0547EBCB217E41980078FB32 /* CoconutData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutData.framework; path = ../../../../Library/Frameworks/CoconutData.framework; sourceTree = "<group>"; };
+		05AC2B5C2180CC10006FB10B /* KMProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMProcess.swift; sourceTree = "<group>"; };
+		05AC2B5D2180CC10006FB10B /* KMObjectLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMObjectLoader.swift; sourceTree = "<group>"; };
+		05AC2B5E2180CC10006FB10B /* KMFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMFunction.swift; sourceTree = "<group>"; };
+		05AC2B5F2180CC10006FB10B /* KMObjectFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMObjectFactory.swift; sourceTree = "<group>"; };
+		05AC2B602180CC10006FB10B /* KMProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMProgram.swift; sourceTree = "<group>"; };
+		05AC2B612180CC10006FB10B /* KMPropertyTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMPropertyTable.swift; sourceTree = "<group>"; };
+		05AC2B622180CC11006FB10B /* KMConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMConfig.swift; sourceTree = "<group>"; };
+		05AC2B632180CC11006FB10B /* KMPrimitiveFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMPrimitiveFactory.swift; sourceTree = "<group>"; };
+		05AC2B642180CC11006FB10B /* KMApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMApplication.swift; sourceTree = "<group>"; };
+		05AC2B652180CC11006FB10B /* KMObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMObject.swift; sourceTree = "<group>"; };
+		05C68781217E36EA00C5C6CB /* KMProcessCompiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMProcessCompiler.swift; sourceTree = "<group>"; };
 		05E91246217E1CD300FA24EC /* KiwiObject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiObject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05E91249217E1CD300FA24EC /* KiwiObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiObject.h; sourceTree = "<group>"; };
 		05E9124A217E1CD300FA24EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		05E91243217E1CD300FA24EC /* Frameworks */ = {
+		051AC42A217E3BDC00292DA1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0547EBB1217E3F460078FB32 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0547EBC8217E40EB0078FB32 /* KiwiEngine.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05E91243217E1CD300FA24EC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0547EBCC217E41980078FB32 /* CoconutData.framework in Frameworks */,
+				0547EBCA217E41720078FB32 /* KiwiEngine.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		051AC42E217E3BDC00292DA1 /* UnitTestBundle */ = {
+			isa = PBXGroup;
+			children = (
+				051AC42F217E3BDC00292DA1 /* Info.plist */,
+			);
+			path = UnitTestBundle;
+			sourceTree = "<group>";
+		};
+		0547EBAF217E3D040078FB32 /* UnitTest */ = {
+			isa = PBXGroup;
+			children = (
+				0547EBB5217E3F460078FB32 /* UnitTest */,
+				051AC42E217E3BDC00292DA1 /* UnitTestBundle */,
+			);
+			name = UnitTest;
+			path = ../UnitTest;
+			sourceTree = "<group>";
+		};
+		0547EBB5217E3F460078FB32 /* UnitTest */ = {
+			isa = PBXGroup;
+			children = (
+				0547EBB6217E3F460078FB32 /* main.swift */,
+				0547EBBF217E3FAF0078FB32 /* UTApplication.swift */,
+				0547EBBE217E3FAF0078FB32 /* UTPropertyTable.swift */,
+				0547EBBD217E3FAF0078FB32 /* UTPropertyTable2.swift */,
+			);
+			path = UnitTest;
+			sourceTree = "<group>";
+		};
+		0571EAE8217E2E4500E8950B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0547EBCB217E41980078FB32 /* CoconutData.framework */,
+				0547EBC7217E40EB0078FB32 /* KiwiEngine.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		05C68780217E368200C5C6CB /* Compiler */ = {
+			isa = PBXGroup;
+			children = (
+				05C68781217E36EA00C5C6CB /* KMProcessCompiler.swift */,
+			);
+			path = Compiler;
+			sourceTree = "<group>";
+		};
 		05E9123C217E1CD300FA24EC = {
 			isa = PBXGroup;
 			children = (
 				05E91251217E1CED00FA24EC /* Source */,
+				0547EBAF217E3D040078FB32 /* UnitTest */,
 				05E91248217E1CD300FA24EC /* OSX */,
 				05E91247217E1CD300FA24EC /* Products */,
+				0571EAE8217E2E4500E8950B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -50,6 +192,8 @@
 			isa = PBXGroup;
 			children = (
 				05E91246217E1CD300FA24EC /* KiwiObject.framework */,
+				051AC42D217E3BDC00292DA1 /* UnitTest.bundle */,
+				0547EBB4217E3F460078FB32 /* UnitTest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -66,9 +210,28 @@
 			isa = PBXGroup;
 			children = (
 				05E91249217E1CD300FA24EC /* KiwiObject.h */,
+				05FE2461217E35B700A05687 /* Object */,
+				05C68780217E368200C5C6CB /* Compiler */,
 			);
 			name = Source;
 			path = ../Source;
+			sourceTree = "<group>";
+		};
+		05FE2461217E35B700A05687 /* Object */ = {
+			isa = PBXGroup;
+			children = (
+				05AC2B642180CC11006FB10B /* KMApplication.swift */,
+				05AC2B622180CC11006FB10B /* KMConfig.swift */,
+				05AC2B5E2180CC10006FB10B /* KMFunction.swift */,
+				05AC2B652180CC11006FB10B /* KMObject.swift */,
+				05AC2B5F2180CC10006FB10B /* KMObjectFactory.swift */,
+				05AC2B5D2180CC10006FB10B /* KMObjectLoader.swift */,
+				05AC2B632180CC11006FB10B /* KMPrimitiveFactory.swift */,
+				05AC2B5C2180CC10006FB10B /* KMProcess.swift */,
+				05AC2B602180CC10006FB10B /* KMProgram.swift */,
+				05AC2B612180CC10006FB10B /* KMPropertyTable.swift */,
+			);
+			path = Object;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -103,6 +266,43 @@
 /* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
+		051AC42C217E3BDC00292DA1 /* UnitTestBundle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 051AC432217E3BDC00292DA1 /* Build configuration list for PBXNativeTarget "UnitTestBundle" */;
+			buildPhases = (
+				051AC429217E3BDC00292DA1 /* Sources */,
+				051AC42A217E3BDC00292DA1 /* Frameworks */,
+				051AC42B217E3BDC00292DA1 /* Resources */,
+				0547EBC3217E40550078FB32 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				051AC434217E3BE600292DA1 /* PBXTargetDependency */,
+			);
+			name = UnitTestBundle;
+			productName = UnitTestBundle;
+			productReference = 051AC42D217E3BDC00292DA1 /* UnitTest.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		0547EBB3217E3F460078FB32 /* UnitTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0547EBB8217E3F460078FB32 /* Build configuration list for PBXNativeTarget "UnitTest" */;
+			buildPhases = (
+				0547EBB0217E3F460078FB32 /* Sources */,
+				0547EBB1217E3F460078FB32 /* Frameworks */,
+				0547EBB2217E3F460078FB32 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0547EBBC217E3F500078FB32 /* PBXTargetDependency */,
+			);
+			name = UnitTest;
+			productName = UnitTest;
+			productReference = 0547EBB4217E3F460078FB32 /* UnitTest */;
+			productType = "com.apple.product-type.tool";
+		};
 		05E91245217E1CD300FA24EC /* KiwiObject */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05E9124E217E1CD300FA24EC /* Build configuration list for PBXNativeTarget "KiwiObject" */;
@@ -127,14 +327,22 @@
 		05E9123D217E1CD300FA24EC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1000;
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Steel Wheels Project";
 				TargetAttributes = {
+					051AC42C217E3BDC00292DA1 = {
+						CreatedOnToolsVersion = 10.0;
+					};
+					0547EBB3217E3F460078FB32 = {
+						CreatedOnToolsVersion = 10.0;
+					};
 					054C643F217E2671000B8F4F = {
 						CreatedOnToolsVersion = 10.0;
 					};
 					05E91245217E1CD300FA24EC = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -152,11 +360,20 @@
 			targets = (
 				05E91245217E1CD300FA24EC /* KiwiObject */,
 				054C643F217E2671000B8F4F /* Install */,
+				051AC42C217E3BDC00292DA1 /* UnitTestBundle */,
+				0547EBB3217E3F460078FB32 /* UnitTest */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		051AC42B217E3BDC00292DA1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05E91244217E1CD300FA24EC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -167,16 +384,55 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		05E91242217E1CD300FA24EC /* Sources */ = {
+		051AC429217E3BDC00292DA1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0547EBB0217E3F460078FB32 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0547EBB7217E3F460078FB32 /* main.swift in Sources */,
+				0547EBC1217E3FAF0078FB32 /* UTPropertyTable.swift in Sources */,
+				0547EBC0217E3FAF0078FB32 /* UTPropertyTable2.swift in Sources */,
+				0547EBC2217E3FAF0078FB32 /* UTApplication.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05E91242217E1CD300FA24EC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05AC2B692180CC11006FB10B /* KMObjectFactory.swift in Sources */,
+				05AC2B6B2180CC11006FB10B /* KMPropertyTable.swift in Sources */,
+				05AC2B6F2180CC11006FB10B /* KMObject.swift in Sources */,
+				05C68782217E36EA00C5C6CB /* KMProcessCompiler.swift in Sources */,
+				05AC2B6A2180CC11006FB10B /* KMProgram.swift in Sources */,
+				05AC2B682180CC11006FB10B /* KMFunction.swift in Sources */,
+				05AC2B672180CC11006FB10B /* KMObjectLoader.swift in Sources */,
+				05AC2B6E2180CC11006FB10B /* KMApplication.swift in Sources */,
+				05AC2B6D2180CC11006FB10B /* KMPrimitiveFactory.swift in Sources */,
+				05AC2B662180CC11006FB10B /* KMProcess.swift in Sources */,
+				05AC2B6C2180CC11006FB10B /* KMConfig.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		051AC434217E3BE600292DA1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 054C643F217E2671000B8F4F /* Install */;
+			targetProxy = 051AC433217E3BE600292DA1 /* PBXContainerItemProxy */;
+		};
+		0547EBBC217E3F500078FB32 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 051AC42C217E3BDC00292DA1 /* UnitTestBundle */;
+			targetProxy = 0547EBBB217E3F500078FB32 /* PBXContainerItemProxy */;
+		};
 		054C6444217E267B000B8F4F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 05E91245217E1CD300FA24EC /* KiwiObject */;
@@ -185,6 +441,72 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		051AC430217E3BDC00292DA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				INFOPLIST_FILE = ../UnitTest/UnitTestBundle/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UnitTestBundle;
+				PRODUCT_NAME = UnitTest;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		051AC431217E3BDC00292DA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				INFOPLIST_FILE = ../UnitTest/UnitTestBundle/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UnitTestBundle;
+				PRODUCT_NAME = UnitTest;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		0547EBB9217E3F460078FB32 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(TARGET_BUILD_DIR)/$(PRODUCT_NAME).bundle/Contents/Frameworks",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_OPTIMIZATION_LEVEL = 2;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/$(PRODUCT_NAME).bundle/Contents/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		0547EBBA217E3F460078FB32 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(TARGET_BUILD_DIR)/$(PRODUCT_NAME).bundle/Contents/Frameworks",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_OPTIMIZATION_LEVEL = 2;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/$(PRODUCT_NAME).bundle/Contents/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
 		054C6440217E2671000B8F4F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -336,6 +658,7 @@
 		05E9124F217E1CD300FA24EC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -344,7 +667,12 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				FRAMEWORK_VERSION = A;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -355,6 +683,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.KiwiObject;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
@@ -362,6 +691,7 @@
 		05E91250217E1CD300FA24EC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -370,7 +700,12 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				FRAMEWORK_VERSION = A;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -381,6 +716,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.KiwiObject;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
@@ -388,6 +724,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		051AC432217E3BDC00292DA1 /* Build configuration list for PBXNativeTarget "UnitTestBundle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				051AC430217E3BDC00292DA1 /* Debug */,
+				051AC431217E3BDC00292DA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0547EBB8217E3F460078FB32 /* Build configuration list for PBXNativeTarget "UnitTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0547EBB9217E3F460078FB32 /* Debug */,
+				0547EBBA217E3F460078FB32 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		054C6442217E2671000B8F4F /* Build configuration list for PBXLegacyTarget "Install" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -1,24 +1,25 @@
 /**
- * @file	KEApplication.swift
- * @brief	Define KEApplication class
+ * @file	KMApplication.swift
+ * @brief	Define KMApplication class
  * @par Copyright
  *   Copyright (C) 2017 Steel Wheels Project
  */
 
+import KiwiEngine
 import CoconutData
 import JavaScriptCore
 import Foundation
 
-public protocol KEApplicationProtocol
+public protocol KMApplicationProtocol
 {
 	func exit(_ code: JSValue) -> JSValue
 }
 
-public class KEApplication: KEProcess, KEApplicationProtocol
+public class KMApplication: KMProcess, KMApplicationProtocol
 {
 	public static let ArgumentsProperty	= "arguments"
 
-	public convenience init(kind knd: KEConfig.ApplicationKind){
+	public convenience init(kind knd: KMConfig.ApplicationKind){
 		guard let vm = JSVirtualMachine() else {
 			fatalError("Failed to allocate JavaScript VM")
 		}
@@ -26,7 +27,7 @@ public class KEApplication: KEProcess, KEApplicationProtocol
 		self.init(kind: knd, instanceName: "application", context: ctxt)
 	}
 
-	public override init(kind knd: KEConfig.ApplicationKind, instanceName iname: String, context ctxt: KEContext) {
+	public override init(kind knd: KMConfig.ApplicationKind, instanceName iname: String, context ctxt: KEContext) {
 		super.init(kind: knd, instanceName: iname, context: ctxt)
 
 		/* Add arguments */
@@ -35,8 +36,8 @@ public class KEApplication: KEProcess, KEApplicationProtocol
 	}
 
 	public var arguments: Array<Any>? {
-		get { return self.getArray(name: KEApplication.ArgumentsProperty) }
-		set(args) { if let a = args { self.set(name: KEApplication.ArgumentsProperty, arrayValue: a) }}
+		get { return self.getArray(name: KMApplication.ArgumentsProperty) }
+		set(args) { if let a = args { self.set(name: KMApplication.ArgumentsProperty, arrayValue: a) }}
 	}
 
 	public func exit(_ error: JSValue) -> JSValue {

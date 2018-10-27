@@ -1,14 +1,15 @@
 /**
- * @file	KEConfig.swift
- * @brief	Define KEConfig class
+ * @file	KMConfig.swift
+ * @brief	Define KMConfig class
  * @par Copyright
  *   Copyright (C) 2018 Steel Wheels Project
  */
 
+import KiwiEngine
 import JavaScriptCore
 import Foundation
 
-public class KEConfig: KEDefaultObject
+public class KMConfig: KMDefaultObject
 {
 	public enum ApplicationKind: Int32 {
 		case Terminal
@@ -39,7 +40,7 @@ public class KEConfig: KEDefaultObject
 
 	public var kind: ApplicationKind {
 		get {
-			if let val = self.getInt32(name: KEConfig.ApplicationKindProperty) {
+			if let val = self.getInt32(name: KMConfig.ApplicationKindProperty) {
 				if let kind = ApplicationKind(rawValue: val) {
 					return kind
 				}
@@ -50,39 +51,39 @@ public class KEConfig: KEDefaultObject
 		}
 		set(kind) {
 			let val = kind.rawValue
-			self.set(name: KEConfig.ApplicationKindProperty, int32Value: val)
+			self.set(name: KMConfig.ApplicationKindProperty, int32Value: val)
 		}
 	}
 
 	public var doVerbose: Bool {
 		get {
-			if let val = self.getBool(name: KEConfig.DoVerboseProperty) {
+			if let val = self.getBool(name: KMConfig.DoVerboseProperty) {
 				return val
 			} else {
 				return true
 			}
 		}
 		set(newval){
-			self.set(name: KEConfig.DoVerboseProperty, boolValue: newval)
+			self.set(name: KMConfig.DoVerboseProperty, boolValue: newval)
 		}
 	}
 
 	public var useStrictMode: Bool {
 		get {
-			if let val = self.getBool(name: KEConfig.UseStrictMode) {
+			if let val = self.getBool(name: KMConfig.UseStrictMode) {
 				return val
 			} else {
 				return true
 			}
 		}
 		set(newval){
-			self.set(name: KEConfig.UseStrictMode, boolValue: newval)
+			self.set(name: KMConfig.UseStrictMode, boolValue: newval)
 		}
 	}
 
 	public var scriptFiles: Array<String> {
 		get {
-			if let val = self.getArray(name: KEConfig.ScriptFilesProperty){
+			if let val = self.getArray(name: KMConfig.ScriptFilesProperty){
 				if let arr = val as? Array<String> {
 					return arr
 				} else {
@@ -97,7 +98,7 @@ public class KEConfig: KEDefaultObject
 			}
 		}
 		set(files) {
-			self.set(name: KEConfig.ScriptFilesProperty, arrayValue: files)
+			self.set(name: KMConfig.ScriptFilesProperty, arrayValue: files)
 		}
 	}
 }

@@ -7,18 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		050422701ED5C02600183E4F /* KEPropertyTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504226F1ED5C02600183E4F /* KEPropertyTable.swift */; };
-		050422721ED5CEF300183E4F /* UTPropertyTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050422711ED5CEF300183E4F /* UTPropertyTable.swift */; };
-		0523359E20C593330024576D /* KEObjectFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0523359D20C593330024576D /* KEObjectFactory.swift */; };
-		05279ACB20DFD59A00CBC953 /* KEPrimitiveFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05279ACA20DFD59A00CBC953 /* KEPrimitiveFactory.swift */; };
 		052B0F7A1BE8A3A400E3BFEE /* UTObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B0F781BE8A33400E3BFEE /* UTObject.swift */; };
-		0536477620C237C600EA3BC2 /* UTApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0536477520C237C600EA3BC2 /* UTApplication.swift */; };
 		0537CE8F1F80F76E00CB313A /* KEValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0537CE8E1F80F76E00CB313A /* KEValue.swift */; };
 		054536C61B78021500FE978C /* KiwiEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 054536C51B78021500FE978C /* KiwiEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		054637F21BB05FE400DEE12F /* UTError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054637F01BB05F4500DEE12F /* UTError.swift */; };
-		054ED52420BA15B900F7B4CB /* KEConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054ED52320BA15B900F7B4CB /* KEConfig.swift */; };
-		055D8E2520BAC318009ED276 /* KEProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055D8E2420BAC318009ED276 /* KEProgram.swift */; };
-		05706F5F2077BDB4004F58B6 /* UTPropertyTable2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05706F5E2077BDB4004F58B6 /* UTPropertyTable2.swift */; };
 		057F881F1B78031B0029AB4F /* KEContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F881E1B78031B0029AB4F /* KEContext.swift */; };
 		058735C620C29AE900797EFD /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 058735C520C29AE900797EFD /* CoconutData.framework */; };
 		058735C720C29B3600797EFD /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 058735C520C29AE900797EFD /* CoconutData.framework */; };
@@ -27,12 +19,7 @@
 		058735CA20C29B7700797EFD /* KiwiEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 054536C01B78021500FE978C /* KiwiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		058735D220C2BF9200797EFD /* UTCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058735D120C2BF9200797EFD /* UTCompiler.swift */; };
 		058B53261BA41A6C009522DF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058B53251BA41A6C009522DF /* main.swift */; };
-		05BFF6D920B8DC3B004CEB28 /* KEObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BFF6D820B8DC3B004CEB28 /* KEObject.swift */; };
-		05BFF6DB20B916F1004CEB28 /* KEApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BFF6DA20B916F1004CEB28 /* KEApplication.swift */; };
-		05CEC1AA21762660004738F9 /* KEProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CEC1A921762660004738F9 /* KEProcess.swift */; };
 		05CFAB962034875F001623BC /* KEException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CFAB952034875F001623BC /* KEException.swift */; };
-		05D1401420C970FC00A4121E /* KEFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D1401320C970FC00A4121E /* KEFunction.swift */; };
-		05D6DD9E20BF07490086E02B /* KEObjectLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D6DD9D20BF07490086E02B /* KEObjectLoader.swift */; };
 		05DFA829206865800032EC5B /* KECompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DFA828206865800032EC5B /* KECompiler.swift */; };
 /* End PBXBuildFile section */
 
@@ -91,34 +78,21 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0504226F1ED5C02600183E4F /* KEPropertyTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEPropertyTable.swift; sourceTree = "<group>"; };
-		050422711ED5CEF300183E4F /* UTPropertyTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTPropertyTable.swift; sourceTree = "<group>"; };
 		0507B17E1BA41D850048D325 /* UnitTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		0523359D20C593330024576D /* KEObjectFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEObjectFactory.swift; sourceTree = "<group>"; };
-		05279ACA20DFD59A00CBC953 /* KEPrimitiveFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEPrimitiveFactory.swift; sourceTree = "<group>"; };
 		052B0F781BE8A33400E3BFEE /* UTObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTObject.swift; sourceTree = "<group>"; };
-		0536477520C237C600EA3BC2 /* UTApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTApplication.swift; sourceTree = "<group>"; };
 		0537CE8E1F80F76E00CB313A /* KEValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEValue.swift; sourceTree = "<group>"; };
 		054536C01B78021500FE978C /* KiwiEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		054536C41B78021500FE978C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		054536C51B78021500FE978C /* KiwiEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiEngine.h; sourceTree = SOURCE_ROOT; };
 		054637F01BB05F4500DEE12F /* UTError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTError.swift; sourceTree = "<group>"; };
-		054ED52320BA15B900F7B4CB /* KEConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEConfig.swift; sourceTree = "<group>"; };
-		055D8E2420BAC318009ED276 /* KEProgram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEProgram.swift; sourceTree = "<group>"; };
-		05706F5E2077BDB4004F58B6 /* UTPropertyTable2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTPropertyTable2.swift; sourceTree = "<group>"; };
 		057F881E1B78031B0029AB4F /* KEContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEContext.swift; sourceTree = "<group>"; };
 		058735C520C29AE900797EFD /* CoconutData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutData.framework; path = ../../../../Library/Frameworks/CoconutData.framework; sourceTree = "<group>"; };
 		058735D120C2BF9200797EFD /* UTCompiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTCompiler.swift; sourceTree = "<group>"; };
 		058B53231BA41A6C009522DF /* UnitTestExec */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTestExec; sourceTree = BUILT_PRODUCTS_DIR; };
 		058B53251BA41A6C009522DF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		05B40EED1BE5A4AE00AA8525 /* check.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = check.mk; sourceTree = SOURCE_ROOT; };
-		05BFF6D820B8DC3B004CEB28 /* KEObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEObject.swift; sourceTree = "<group>"; };
-		05BFF6DA20B916F1004CEB28 /* KEApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEApplication.swift; sourceTree = "<group>"; };
-		05CEC1A921762660004738F9 /* KEProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEProcess.swift; sourceTree = "<group>"; };
 		05CF6D761BA41EF000BD9D91 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05CFAB952034875F001623BC /* KEException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEException.swift; sourceTree = "<group>"; };
-		05D1401320C970FC00A4121E /* KEFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEFunction.swift; sourceTree = "<group>"; };
-		05D6DD9D20BF07490086E02B /* KEObjectLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEObjectLoader.swift; sourceTree = "<group>"; };
 		05DFA828206865800032EC5B /* KECompiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KECompiler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -195,17 +169,7 @@
 				057F881E1B78031B0029AB4F /* KEContext.swift */,
 				05DFA828206865800032EC5B /* KECompiler.swift */,
 				05CFAB952034875F001623BC /* KEException.swift */,
-				0504226F1ED5C02600183E4F /* KEPropertyTable.swift */,
 				0537CE8E1F80F76E00CB313A /* KEValue.swift */,
-				05BFF6D820B8DC3B004CEB28 /* KEObject.swift */,
-				05CEC1A921762660004738F9 /* KEProcess.swift */,
-				05D1401320C970FC00A4121E /* KEFunction.swift */,
-				05BFF6DA20B916F1004CEB28 /* KEApplication.swift */,
-				055D8E2420BAC318009ED276 /* KEProgram.swift */,
-				05D6DD9D20BF07490086E02B /* KEObjectLoader.swift */,
-				0523359D20C593330024576D /* KEObjectFactory.swift */,
-				05279ACA20DFD59A00CBC953 /* KEPrimitiveFactory.swift */,
-				054ED52320BA15B900F7B4CB /* KEConfig.swift */,
 				054536C31B78021500FE978C /* Supporting Files */,
 			);
 			name = Source;
@@ -235,9 +199,6 @@
 				058B53251BA41A6C009522DF /* main.swift */,
 				054637F01BB05F4500DEE12F /* UTError.swift */,
 				052B0F781BE8A33400E3BFEE /* UTObject.swift */,
-				050422711ED5CEF300183E4F /* UTPropertyTable.swift */,
-				05706F5E2077BDB4004F58B6 /* UTPropertyTable2.swift */,
-				0536477520C237C600EA3BC2 /* UTApplication.swift */,
 				058735D120C2BF9200797EFD /* UTCompiler.swift */,
 			);
 			path = UnitTestExec;
@@ -427,20 +388,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				050422701ED5C02600183E4F /* KEPropertyTable.swift in Sources */,
-				05BFF6DB20B916F1004CEB28 /* KEApplication.swift in Sources */,
-				05D6DD9E20BF07490086E02B /* KEObjectLoader.swift in Sources */,
 				05DFA829206865800032EC5B /* KECompiler.swift in Sources */,
-				05BFF6D920B8DC3B004CEB28 /* KEObject.swift in Sources */,
-				05D1401420C970FC00A4121E /* KEFunction.swift in Sources */,
-				055D8E2520BAC318009ED276 /* KEProgram.swift in Sources */,
-				05CEC1AA21762660004738F9 /* KEProcess.swift in Sources */,
 				0537CE8F1F80F76E00CB313A /* KEValue.swift in Sources */,
-				0523359E20C593330024576D /* KEObjectFactory.swift in Sources */,
 				057F881F1B78031B0029AB4F /* KEContext.swift in Sources */,
 				05CFAB962034875F001623BC /* KEException.swift in Sources */,
-				054ED52420BA15B900F7B4CB /* KEConfig.swift in Sources */,
-				05279ACB20DFD59A00CBC953 /* KEPrimitiveFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,10 +400,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				054637F21BB05FE400DEE12F /* UTError.swift in Sources */,
-				0536477620C237C600EA3BC2 /* UTApplication.swift in Sources */,
 				052B0F7A1BE8A3A400E3BFEE /* UTObject.swift in Sources */,
-				050422721ED5CEF300183E4F /* UTPropertyTable.swift in Sources */,
-				05706F5F2077BDB4004F58B6 /* UTPropertyTable2.swift in Sources */,
 				058B53261BA41A6C009522DF /* main.swift in Sources */,
 				058735D220C2BF9200797EFD /* UTCompiler.swift in Sources */,
 			);
@@ -570,7 +518,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -621,7 +569,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -651,7 +599,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -686,7 +634,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -710,7 +658,7 @@
 				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/UnitTest.bundle/Contents/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
@@ -729,7 +677,7 @@
 				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/UnitTest.bundle/Contents/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;

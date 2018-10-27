@@ -6,11 +6,12 @@
  */
 
 import KiwiEngine
+import KiwiObject
 import CoconutData
 import JavaScriptCore
 import Foundation
 
-public class KLAuthorize: KEDefaultObject
+public class KLAuthorize: KMDefaultObject
 {
 	public static let Undetermined	= CNAuthorizeState.Undetermined.rawValue
 	public static let Denied	= CNAuthorizeState.Denied.rawValue

@@ -1,10 +1,11 @@
 /**
- * @file	KEPropertyTable.swift
- * @brief	Define KEPropertyTable
+ * @file	KMPropertyTable.swift
+ * @brief	Define KMPropertyTable
  * @par Copyright
  *   Copyright (C) 2017 Steel Wheels Project
  */
 
+import KiwiEngine
 import CoconutData
 import JavaScriptCore
 import Foundation
@@ -17,7 +18,7 @@ private typealias FunctionRef	= (_ value: JSValue) -> Void
 	func get(_ name: String) -> JSValue
 }
 
-@objc open class KEPropertyTable: NSObject, KEPropertyExport
+@objc open class KMPropertyTable: NSObject, KEPropertyExport
 {
 	private var mContext:		KEContext
 	private var mTable:		NSMutableDictionary // Key:String, value:JSValue

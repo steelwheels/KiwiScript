@@ -16,6 +16,8 @@
 		059A74CD20C3685700D83E94 /* KiwiEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050DBEA420C2D49A00F0E133 /* KiwiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		059A74CE20C3685B00D83E94 /* KiwiLibrary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050DBEA620C2D4A800F0E133 /* KiwiLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05D049D52039AA9000642E6A /* KHShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D049D42039AA9000642E6A /* KHShell.swift */; };
+		05D66220217F7A1300599FA3 /* KiwiObject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D6621F217F7A1300599FA3 /* KiwiObject.framework */; };
+		05D66221217F7A9200599FA3 /* KiwiObject.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05D6621F217F7A1300599FA3 /* KiwiObject.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05E73E6F2041712000D317D0 /* KHShellConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E73E6E2041712000D317D0 /* KHShellConsole.swift */; };
 		05EB10A02039BA2C005209C4 /* KiwiShell.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05EB109F2039BA2C005209C4 /* KiwiShell.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -64,6 +66,7 @@
 				059A74CD20C3685700D83E94 /* KiwiEngine.framework in CopyFiles */,
 				059A74CC20C3685200D83E94 /* CoconutData.framework in CopyFiles */,
 				05EB10A02039BA2C005209C4 /* KiwiShell.framework in CopyFiles */,
+				05D66221217F7A9200599FA3 /* KiwiObject.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +84,7 @@
 		05D049D42039AA9000642E6A /* KHShell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KHShell.swift; sourceTree = "<group>"; };
 		05D049DA2039AC3C00642E6A /* UnitTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		05D049DC2039AC3C00642E6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05D6621F217F7A1300599FA3 /* KiwiObject.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiObject.framework; path = ../../../../Library/Frameworks/KiwiObject.framework; sourceTree = "<group>"; };
 		05E73E6E2041712000D317D0 /* KHShellConsole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KHShellConsole.swift; sourceTree = "<group>"; };
 		05EB109F2039BA2C005209C4 /* KiwiShell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiShell.framework; path = ../../../../Library/Frameworks/KiwiShell.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05D66220217F7A1300599FA3 /* KiwiObject.framework in Frameworks */,
 				050DBEA720C2D4A800F0E133 /* KiwiLibrary.framework in Frameworks */,
 				050DBEA520C2D49A00F0E133 /* KiwiEngine.framework in Frameworks */,
 				050DBEA320C2D47A00F0E133 /* CoconutData.framework in Frameworks */,
@@ -116,6 +121,7 @@
 		050DBEA120C2D47A00F0E133 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				05D6621F217F7A1300599FA3 /* KiwiObject.framework */,
 				050DBEA620C2D4A800F0E133 /* KiwiLibrary.framework */,
 				050DBEA420C2D49A00F0E133 /* KiwiEngine.framework */,
 				050DBEA220C2D47A00F0E133 /* CoconutData.framework */,
@@ -433,7 +439,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -489,7 +495,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

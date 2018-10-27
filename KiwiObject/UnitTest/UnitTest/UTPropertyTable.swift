@@ -1,10 +1,11 @@
 /**
  * @file	UTPropertyTable.swift
- * @brief	Unit test for KEPropertyTable class
+ * @brief	Unit test for KMPropertyTable class
  * @par Copyright
  *   Copyright (C) 2017 Steel Wheels Project
  */
 
+import KiwiObject
 import KiwiEngine
 import CoconutData
 import JavaScriptCore
@@ -15,7 +16,7 @@ public func testPropertyTable(console cons: CNConsole) -> Bool
 	let vm = JSVirtualMachine()
 	let context = KEContext(virtualMachine: vm!)
 
-	let table0  = KEPropertyTable(context: context)
+	let table0  = KMPropertyTable(context: context)
 	let point0  = CGPoint(x: 10.0, y: 11.1)
 
 	addProperty(propertyTable: table0, propertyName: "undefined", propertyValue: JSValue(undefinedIn: context), console: cons)
@@ -29,7 +30,7 @@ public func testPropertyTable(console cons: CNConsole) -> Bool
 	return true
 }
 
-private func addProperty(propertyTable table: KEPropertyTable, propertyName name: String, propertyValue value: JSValue, console cons: CNConsole)
+private func addProperty(propertyTable table: KMPropertyTable, propertyName name: String, propertyValue value: JSValue, console cons: CNConsole)
 {
 	table.addListener(property: name, listener: {
 		(_ value: JSValue) -> Void in

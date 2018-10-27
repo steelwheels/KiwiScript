@@ -7,6 +7,7 @@
 
 import KiwiLibrary
 import KiwiEngine
+import KiwiObject
 import CoconutData
 import Foundation
 
@@ -14,7 +15,7 @@ public func main()
 {
 	Swift.print("[UnitTest]")
 
-	let application = KEApplication(kind: .Terminal)
+	let application = KMApplication(kind: .Terminal)
 
 	application.console.print(string: "Hello, world!!\n")
 	let config = KLConfig(kind: .Terminal, useStrictMode: true, doVerbose: true, scriptFiles: [])

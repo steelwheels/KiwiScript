@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		051FA32C20C38224009037F1 /* Math.js in Resources */ = {isa = PBXBuildFile; fileRef = 051FA32920C381C5009037F1 /* Math.js */; };
-		0530DBD020BEFD9600497ED7 /* KLCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0530DBCF20BEFD9600497ED7 /* KLCompiler.swift */; };
 		05A71EBC208E3EA2007356BB /* KLCurses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A71EBB208E3EA2007356BB /* KLCurses.swift */; };
 		05BCE6552068BCEF007B0559 /* KLConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCE6502068BCEE007B0559 /* KLConfig.swift */; };
 		05BCE65C2068BD3E007B0559 /* KLProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCE65B2068BD3E007B0559 /* KLProcess.swift */; };
@@ -21,6 +20,8 @@
 		05BCE6702068BDAE007B0559 /* KLAlignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCE66B2068BDAE007B0559 /* KLAlignment.swift */; };
 		05BCE6732068BDD7007B0559 /* KLShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCE6722068BDD7007B0559 /* KLShell.swift */; };
 		05C6E07920688F30000E8A13 /* KiwiLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 05C6E06B20688F2F000E8A13 /* KiwiLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		05D80FAB217F70C800B7FB24 /* KLApplicationCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D80FAA217F70C800B7FB24 /* KLApplicationCompiler.swift */; };
+		05D80FAD217F70D000B7FB24 /* KLProcessCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D80FAC217F70D000B7FB24 /* KLProcessCompiler.swift */; };
 		05FFA9DE20CBEACE007C662E /* KLURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FFA9DD20CBEACD007C662E /* KLURL.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,7 +37,6 @@
 
 /* Begin PBXFileReference section */
 		051FA32920C381C5009037F1 /* Math.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Math.js; sourceTree = "<group>"; };
-		0530DBCF20BEFD9600497ED7 /* KLCompiler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLCompiler.swift; sourceTree = "<group>"; };
 		05A71EBB208E3EA2007356BB /* KLCurses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLCurses.swift; sourceTree = "<group>"; };
 		05BCE6502068BCEE007B0559 /* KLConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLConfig.swift; sourceTree = "<group>"; };
 		05BCE65B2068BD3E007B0559 /* KLProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLProcess.swift; sourceTree = "<group>"; };
@@ -51,6 +51,8 @@
 		05C6E06820688F2F000E8A13 /* KiwiLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05C6E06B20688F2F000E8A13 /* KiwiLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiLibrary.h; sourceTree = "<group>"; };
 		05C6E06C20688F30000E8A13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05D80FAA217F70C800B7FB24 /* KLApplicationCompiler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLApplicationCompiler.swift; sourceTree = "<group>"; };
+		05D80FAC217F70D000B7FB24 /* KLProcessCompiler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLProcessCompiler.swift; sourceTree = "<group>"; };
 		05FFA9DD20CBEACD007C662E /* KLURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLURL.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,7 +112,8 @@
 		05BCE64F2068BCD8007B0559 /* Setup */ = {
 			isa = PBXGroup;
 			children = (
-				0530DBCF20BEFD9600497ED7 /* KLCompiler.swift */,
+				05D80FAA217F70C800B7FB24 /* KLApplicationCompiler.swift */,
+				05D80FAC217F70D000B7FB24 /* KLProcessCompiler.swift */,
 				05BCE6502068BCEE007B0559 /* KLConfig.swift */,
 			);
 			path = Setup;
@@ -235,7 +238,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Tomoo Hamada";
 				TargetAttributes = {
 					058083AA2068A916008CF58F = {
@@ -283,10 +286,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05D80FAB217F70C800B7FB24 /* KLApplicationCompiler.swift in Sources */,
 				05BCE66D2068BDAE007B0559 /* KLPipe.swift in Sources */,
 				05BCE66C2068BDAE007B0559 /* KLFile.swift in Sources */,
 				05BCE66E2068BDAE007B0559 /* KLJSONFile.swift in Sources */,
 				05A71EBC208E3EA2007356BB /* KLCurses.swift in Sources */,
+				05D80FAD217F70D000B7FB24 /* KLProcessCompiler.swift in Sources */,
 				05BCE66F2068BDAE007B0559 /* KLConsole.swift in Sources */,
 				05BCE65F2068BD5D007B0559 /* KLColor.swift in Sources */,
 				05BCE65C2068BD3E007B0559 /* KLProcess.swift in Sources */,
@@ -294,7 +299,6 @@
 				05BCE6632068BD85007B0559 /* KLAuthorize.swift in Sources */,
 				05BCE6702068BDAE007B0559 /* KLAlignment.swift in Sources */,
 				05BCE6732068BDD7007B0559 /* KLShell.swift in Sources */,
-				0530DBD020BEFD9600497ED7 /* KLCompiler.swift in Sources */,
 				05BCE6552068BCEF007B0559 /* KLConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,7 +393,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -447,7 +451,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -461,7 +465,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
@@ -472,7 +476,7 @@
 				GCC_OPTIMIZATION_LEVEL = 1;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/local/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.KiwiLibrary;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -488,7 +492,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
@@ -498,7 +502,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(HOME)/local/Frameworks";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/local/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.KiwiLibrary;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";

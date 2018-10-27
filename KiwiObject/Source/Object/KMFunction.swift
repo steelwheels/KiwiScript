@@ -1,21 +1,22 @@
 /**
- * @file	KEFunction.swift
- * @brief	Define KEFunction protocol
+ * @file	KMFunction.swift
+ * @brief	Define KMFunction protocol
  * @par Copyright
  *   Copyright (C) 2018 Steel Wheels Project
  */
 
+import KiwiEngine
 import JavaScriptCore
 import Foundation
 
-public protocol KEFunction
+public protocol KMFunction
 {
 	var context:		KEContext { get }
 	var sourceCode: 	String { get }
 	var functionObject:	JSValue { get }
 }
 
-open class KEDefaultFunction: KEFunction
+open class KMDefaultFunction: KMFunction
 {
 	private var mSourceCode:	String
 	private var mFunctionObject:	JSValue

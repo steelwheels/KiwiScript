@@ -1,12 +1,16 @@
-//
-//  KiwiObject.h
-//  KiwiObject
-//
-//  Created by Tomoo Hamada on 2018/10/22.
-//  Copyright © 2018 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	KiwiObject.h.
+ * @brief	Bridge for KiwiObject
+ * @par Copyright
+ *   Copyright (C) 2018 Steel Wheels Project
+ */
 
-#import <Cocoa/Cocoa.h>
+#import "TargetConditionals.h"
+#if TARGET_OS_IPHONE
+#	import <UIKit/UIKit.h>
+#else
+#	import <Cocoa/Cocoa.h>
+#endif
 
 //! Project version number for KiwiObject.
 FOUNDATION_EXPORT double KiwiObjectVersionNumber;

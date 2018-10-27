@@ -1,15 +1,16 @@
 /**
- * @file	KEPrimitiveFactory.swift
- * @brief	Define KEPrimitiveFactory class
+ * @file	KMPrimitiveFactory.swift
+ * @brief	Define KMPrimitiveFactory class
  * @par Copyright
  *   Copyright (C) 2018 Steel Wheels Project
  */
 
+import KiwiEngine
 import CoconutData
 import JavaScriptCore
 import Foundation
 
-public class KEPrimitiveFactory: KEDefaultObject
+public class KMPrimitiveFactory: KMDefaultObject
 {
 	public typealias AllocatorMethod = (_ value: CNValue, _ context: KEContext) -> JSValue?
 

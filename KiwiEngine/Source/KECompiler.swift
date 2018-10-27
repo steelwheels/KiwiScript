@@ -25,33 +25,35 @@ public enum KECompileError: Error
 
 open class KECompiler
 {
-	private var mProcess:		KEProcess
+	private var mContext:		KEContext
+	private var mConsole:		CNConsole
 	public var doVerbose:		Bool
 
-	public init(process proc: KEProcess){
-		mProcess	= proc
+	public init(context ctxt: KEContext, console cons: CNConsole){
+		mContext	= ctxt
+		mConsole	= cons
 		doVerbose	= true
 	}
 
-	public var process: KEProcess { get { return mProcess }}
+	open var context: KEContext { get { return mContext }}
 	
 	public func log(string str: String) {
 		if doVerbose {
-			mProcess.console.print(string: str)
+			mConsole.print(string: str)
 		}
 	}
 
 	public func error(message msg: String){
 		let except = KEException.CompileError(msg)
-		mProcess.context.exceptionCallback(except)
+		mContext.exceptionCallback(except)
 	}
 
 	public func defineGlobalVariable(variableName name: String, object obj: JSExport){
-		mProcess.context.set(name: name, object: obj)
+		mContext.set(name: name, object: obj)
 	}
 
 	public func defineGlobalVariable(variableName name: String, value val: JSValue){
-		mProcess.context.set(name: name, value: val)
+		mContext.set(name: name, value: val)
 	}
 
 	public func defineSetter(instance inst:String, accessType access: CNAccessType, propertyName name:String){
@@ -67,7 +69,7 @@ open class KECompiler
 
 	public func compile(statement stmt: String) -> JSValue? {
 		log(string: stmt)
-		return mProcess.context.evaluateScript(stmt)
+		return mContext.evaluateScript(stmt)
 	}
 
 	public func compile(statements stmts: Array<String>) -> JSValue? {
@@ -76,19 +78,6 @@ open class KECompiler
 			log(string: stmt)
 			addedstmt = addedstmt + stmt + "\n"
 		}
-		return mProcess.context.evaluateScript(addedstmt)
-	}
-
-	public func compile(enumObject eobj: KEObject, enumTable etable: KEObject){
-		/* Compile */
-		let instname = eobj.instanceName
-		log(string: "/* Define Enum: \(instname) */\n")
-		mProcess.context.set(name: instname, object: eobj.propertyTable)
-		let members = eobj.propertyTable.propertyNames
-		for member in members {
-			defineSetter(instance: instname, accessType: .ReadOnlyAccess, propertyName: member)
-		}
-		/* Store to enum table */
-		etable.set(name: instname, object: .Object(eobj))
+		return mContext.evaluateScript(addedstmt)
 	}
 }

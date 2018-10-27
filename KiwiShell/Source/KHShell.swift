@@ -6,6 +6,7 @@
  */
 
 import KiwiEngine
+import KiwiObject
 import CoconutData
 import JavaScriptCore
 import Foundation
@@ -17,10 +18,10 @@ public class KHShell
 		case Exit(code: Int32)
 	}
 
-	private var mApplication: 	KEApplication
+	private var mApplication: 	KMApplication
 	private var mResult:		EvaluationResult = .Continue
 
-	public init(application app: KEApplication){
+	public init(application app: KMApplication){
 		mApplication = app
 		mApplication.context.exceptionCallback = {
 			(exception: KEException) in

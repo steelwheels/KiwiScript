@@ -1,63 +1,19 @@
 /**
- * @file	KLSetup.swift
- * @brief	Define KLSetupLibrary function
+ * @file	KLProcessCompiler.swift
+ * @brief	Define KLProcessCompiler class
  * @par Copyright
- *   Copyright (C) 2017-2018 Steel Wheels Project
+ *   Copyright (C) 2018 Steel Wheels Project
  */
 
 import KiwiEngine
-import JavaScriptCore
+import KiwiObject
 import CoconutData
+import JavaScriptCore
 import Foundation
 
-public class KLApplicationCompiler: KLCompiler
+open class KLProcessCompiler: KMProcessCompiler
 {
-	public init(application app: KEApplication) {
-		super.init(process: app)
-	}
-
-	public var application: KEApplication {
-		get {
-			if let app = process as? KEApplication {
-				return app
-			} else {
-				fatalError("Not KEApplication Objec")
-			}
-		}
-	}
-
-	public override func compile(config conf: KLConfig) {
-		super.compile(config: conf)
-		applyConfig(config: conf)
-		defineFunctions(applicationKind: conf.kind)
-	}
-
-	private func applyConfig(config conf: KLConfig){
-		log(string: "/* Apply config */\n")
-		if let appconf = application.config {
-			appconf.doVerbose     = conf.doVerbose
-			appconf.useStrictMode = conf.doStrict
-			appconf.scriptFiles   = conf.scriptFiles
-		} else {
-			process.console.error(string: "No config object")
-		}
-	}
-
-	private func defineFunctions(applicationKind kind: KEConfig.ApplicationKind)
-	{
-		/* exit */
-		let exitFunc: @convention(block) (_ value: JSValue) -> JSValue = {
-			(_ value: JSValue) -> JSValue in
-			let _ = self.application.exit(value)
-			return JSValue(undefinedIn: self.process.context)
-		}
-		defineGlobalFunction(name: "exit", function: exitFunc)
-	}
-}
-
-open class KLCompiler: KECompiler
-{
-	public override init(process proc: KEProcess) {
+	public override init(process proc: KMProcess) {
 		super.init(process: proc)
 	}
 
@@ -117,7 +73,7 @@ open class KLCompiler: KECompiler
 		compile(enumObject: authorize, enumTable: etable)
 	}
 
-	private func defineFunctions(applicationKind kind: KEConfig.ApplicationKind)
+	private func defineFunctions(applicationKind kind: KMConfig.ApplicationKind)
 	{
 		/* isUndefined */
 		let isUndefinedFunc: @convention(block) (_ value: JSValue) -> JSValue = {
@@ -184,7 +140,7 @@ open class KLCompiler: KECompiler
 		defineGlobalFunction(name: "isDate", function: isDateFunc)
 	}
 
-	private func defineClassObjects(applicationKind kind: KEConfig.ApplicationKind)
+	private func defineClassObjects(applicationKind kind: KMConfig.ApplicationKind)
 	{
 		let context = process.context
 		let console = KLConsole(context: context, console: process.console)
@@ -198,30 +154,30 @@ open class KLCompiler: KECompiler
 		defineGlobalObject(name: "JSON", object: json)
 
 		#if os(OSX)
-			let shellobj = KLShell(context: context)
-			defineGlobalObject(name: "Shell", object: shellobj)
+		let shellobj = KLShell(context: context)
+		defineGlobalObject(name: "Shell", object: shellobj)
 		#endif
 
 		switch kind {
 		case .Terminal:
 			#if os(OSX)
-				/* File */
-				let file = KLFile(context: context)
-				defineGlobalObject(name: "File", object: file)
+			/* File */
+			let file = KLFile(context: context)
+			defineGlobalObject(name: "File", object: file)
 
-				let stdinobj = file.standardFile(fileType: .input, context: context)
-				defineGlobalObject(name: "stdin", object: stdinobj)
+			let stdinobj = file.standardFile(fileType: .input, context: context)
+			defineGlobalObject(name: "stdin", object: stdinobj)
 
-				let stdoutobj = file.standardFile(fileType: .output, context: context)
-				defineGlobalObject(name: "stdout", object: stdoutobj)
+			let stdoutobj = file.standardFile(fileType: .output, context: context)
+			defineGlobalObject(name: "stdout", object: stdoutobj)
 
-				let stderrobj = file.standardFile(fileType: .error, context: context)
-				defineGlobalObject(name: "stderr", object: stderrobj)
+			let stderrobj = file.standardFile(fileType: .error, context: context)
+			defineGlobalObject(name: "stderr", object: stderrobj)
 
-				let cursesobj = KLCurses(context: context)
-				defineGlobalObject(name: "Curses", object: cursesobj)
+			let cursesobj = KLCurses(context: context)
+			defineGlobalObject(name: "Curses", object: cursesobj)
 			#else
-				break
+			break
 			#endif
 		case .Window:
 			break
@@ -263,7 +219,7 @@ open class KLCompiler: KECompiler
 		}
 	}
 
-	private func definePrimitiveFactories(program prg: KEProgram) {
+	private func definePrimitiveFactories(program prg: KMProgram) {
 		if let factory = prg.primitiveFactory {
 			factory.addAllocator(typeName: "URL", parameterType: .StringType, allocator:{
 				(_ value: CNValue, _ context: KEContext) -> JSValue? in
@@ -277,7 +233,7 @@ open class KLCompiler: KECompiler
 		}
 	}
 
-	private func defineRequireFunction(objectLoader loader: KEObjectLoader)
+	private func defineRequireFunction(objectLoader loader: KMObjectLoader)
 	{
 		log(string: "/* Define require function */\n")
 
@@ -288,7 +244,7 @@ open class KLCompiler: KECompiler
 			(_ value: JSValue) -> JSValue in
 			if value.isString {
 				if let cname = value.toString() {
-					if let val = loader.require(modelName: cname, in: KLCompiler.self) {
+					if let val = loader.require(modelName: cname, in: KLProcessCompiler.self) {
 						return val
 					}
 				}
@@ -302,6 +258,3 @@ open class KLCompiler: KECompiler
 		}
 	}
 }
-
-
-

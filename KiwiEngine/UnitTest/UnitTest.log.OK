@@ -10,21 +10,5 @@ Evaluated: undefined
 *** context.callFunction
 Evaluated: 2.3
 testObject : OK
-Listener: undefined = undefined
-Listener: null = null
-Listener: bool = true
-Listener: int32 = -1234
-Listener: uInt32 = 2345
-Listener: double = 1.234
-Listener: point = [object Object]
-testPropertyTable : OK
-[objA] set(prop_a, 10)
-[objB] set(prop_b, Hello)
-Evaluated: undefined
-testPropertyTable2 : OK
-application is allocated
-arguments: count = 0
-config.kind=terminal
-testApplication : OK
 testCompiler : OK
 SUMMARY: OK

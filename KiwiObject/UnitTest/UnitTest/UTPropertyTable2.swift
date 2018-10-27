@@ -1,10 +1,11 @@
 /**
  * @file	UTPropertyTable2.swift
- * @brief	Unit test for KEPropertyTable2 class
+ * @brief	Unit test for KMPropertyTable2 class
  * @par Copyright
  *   Copyright (C) 2017 Steel Wheels Project
  */
 
+import KiwiObject
 import KiwiEngine
 import CoconutData
 import JavaScriptCore
@@ -21,13 +22,13 @@ import Foundation
 	private var mName:		String
 	private var mContext:		KEContext
 	private var mConsole:		CNConsole
-	private var mPropertyTable:	KEPropertyTable
+	private var mPropertyTable:	KMPropertyTable
 
 	public init(name nm: String, context ctxt: KEContext, console cons: CNConsole){
 		mName 		= nm
 		mContext	= ctxt
 		mConsole	= cons
-		mPropertyTable	= KEPropertyTable(context: ctxt)
+		mPropertyTable	= KMPropertyTable(context: ctxt)
 	}
 
 	public func set(_ name: String, _ value: JSValue){
@@ -68,7 +69,7 @@ public func testPropertyTable2(console cons: CNConsole) -> Bool
 
 	context.exceptionCallback = {
 		(_ result: KEException) -> Void in
-		testResult = finalizeHandler(result: result, console: console)
+		testResult = finalizeHandler(result: result, console: cons)
 		scrdone    = true
 	}
 

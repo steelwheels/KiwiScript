@@ -6,10 +6,11 @@
  */
 
 import KiwiEngine
+import KiwiObject
 import JavaScriptCore
 import Foundation
 
-public class KLAlignment: KEDefaultObject
+public class KLAlignment: KMDefaultObject
 {
 	static public let Left:		Int32		= 0
 	static public let Center:	Int32		= 1

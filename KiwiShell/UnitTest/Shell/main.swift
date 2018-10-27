@@ -7,6 +7,7 @@
 
 import KiwiShell
 import KiwiEngine
+import KiwiObject
 import CoconutData
 import JavaScriptCore
 import Foundation
@@ -19,7 +20,7 @@ guard let vm = JSVirtualMachine() else {
 	fatalError("Could not allocate VM")
 }
 
-let application = KEApplication(kind: .Terminal)
+let application = KMApplication(kind: .Terminal)
 //application.name = appname
 
 let shell    = KHShellConsole(application: application)

@@ -5,13 +5,14 @@
  *   Copyright (C) 2018 Steel Wheels Project
  */
 
+import KiwiObject
 import KiwiEngine
 import CoconutData
 import Foundation
 
 public func testApplication(console cons: CNConsole) -> Bool
 {
-	let application = KEApplication(kind: .Terminal)
+	let application = KMApplication(kind: .Terminal)
 	application.console.print(string: "application is allocated\n")
 	if let args = application.arguments {
 		cons.print(string: "arguments: count = \(args.count)\n")
