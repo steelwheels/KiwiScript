@@ -10,5 +10,12 @@ Evaluated: undefined
 *** context.callFunction
 Evaluated: 2.3
 testObject : OK
+Wait until all operations are finished ... Start
+Evaluated: undefined
+Evaluated: undefined
+Wait until all operations are finished ... Done
+1: isExecuting=false, isFinished=true
+2: isExecuting=false, isFinished=true
+testOperation : OK
 testCompiler : OK
 SUMMARY: OK

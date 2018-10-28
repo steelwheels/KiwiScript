@@ -11,6 +11,7 @@
 		055A479820688CAE00D297FC /* KECompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055A479720688CAE00D297FC /* KECompiler.swift */; };
 		058699F21F93BAF900F21555 /* KEValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058699F11F93BAF900F21555 /* KEValue.swift */; };
 		05BF0BCA1EAC978D003C8DF3 /* KEContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BF0BC81EAC978D003C8DF3 /* KEContext.swift */; };
+		05CA70F3218603040029592D /* KEOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CA70F2218603040029592D /* KEOperation.swift */; };
 		05CFAB9820349158001623BC /* KEException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CFAB9720349158001623BC /* KEException.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		055A479720688CAE00D297FC /* KECompiler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KECompiler.swift; sourceTree = "<group>"; };
 		058699F11F93BAF900F21555 /* KEValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEValue.swift; sourceTree = "<group>"; };
 		05BF0BC81EAC978D003C8DF3 /* KEContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEContext.swift; sourceTree = "<group>"; };
+		05CA70F2218603040029592D /* KEOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEOperation.swift; sourceTree = "<group>"; };
 		05CFAB9720349158001623BC /* KEException.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEException.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,6 +77,7 @@
 			children = (
 				052251EA1EAB852F0021A8B5 /* KiwiEngine.h */,
 				05BF0BC81EAC978D003C8DF3 /* KEContext.swift */,
+				05CA70F2218603040029592D /* KEOperation.swift */,
 				058699F11F93BAF900F21555 /* KEValue.swift */,
 				055A479720688CAE00D297FC /* KECompiler.swift */,
 				05CFAB9720349158001623BC /* KEException.swift */,
@@ -192,6 +195,7 @@
 				055A479820688CAE00D297FC /* KECompiler.swift in Sources */,
 				058699F21F93BAF900F21555 /* KEValue.swift in Sources */,
 				05CFAB9820349158001623BC /* KEException.swift in Sources */,
+				05CA70F3218603040029592D /* KEOperation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

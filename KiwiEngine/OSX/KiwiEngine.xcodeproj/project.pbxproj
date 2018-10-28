@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		052B0F7A1BE8A3A400E3BFEE /* UTObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B0F781BE8A33400E3BFEE /* UTObject.swift */; };
 		0537CE8F1F80F76E00CB313A /* KEValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0537CE8E1F80F76E00CB313A /* KEValue.swift */; };
+		0545301A2184A2B6006F96C8 /* KEOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054530192184A2B6006F96C8 /* KEOperation.swift */; };
+		0545301C21851C3F006F96C8 /* UTOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0545301B21851C3F006F96C8 /* UTOperation.swift */; };
 		054536C61B78021500FE978C /* KiwiEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 054536C51B78021500FE978C /* KiwiEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		054637F21BB05FE400DEE12F /* UTError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054637F01BB05F4500DEE12F /* UTError.swift */; };
 		057F881F1B78031B0029AB4F /* KEContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F881E1B78031B0029AB4F /* KEContext.swift */; };
@@ -81,6 +83,8 @@
 		0507B17E1BA41D850048D325 /* UnitTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		052B0F781BE8A33400E3BFEE /* UTObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTObject.swift; sourceTree = "<group>"; };
 		0537CE8E1F80F76E00CB313A /* KEValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEValue.swift; sourceTree = "<group>"; };
+		054530192184A2B6006F96C8 /* KEOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEOperation.swift; sourceTree = "<group>"; };
+		0545301B21851C3F006F96C8 /* UTOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTOperation.swift; sourceTree = "<group>"; };
 		054536C01B78021500FE978C /* KiwiEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		054536C41B78021500FE978C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		054536C51B78021500FE978C /* KiwiEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiEngine.h; sourceTree = SOURCE_ROOT; };
@@ -167,6 +171,7 @@
 			children = (
 				054536C51B78021500FE978C /* KiwiEngine.h */,
 				057F881E1B78031B0029AB4F /* KEContext.swift */,
+				054530192184A2B6006F96C8 /* KEOperation.swift */,
 				05DFA828206865800032EC5B /* KECompiler.swift */,
 				05CFAB952034875F001623BC /* KEException.swift */,
 				0537CE8E1F80F76E00CB313A /* KEValue.swift */,
@@ -200,6 +205,7 @@
 				054637F01BB05F4500DEE12F /* UTError.swift */,
 				052B0F781BE8A33400E3BFEE /* UTObject.swift */,
 				058735D120C2BF9200797EFD /* UTCompiler.swift */,
+				0545301B21851C3F006F96C8 /* UTOperation.swift */,
 			);
 			path = UnitTestExec;
 			sourceTree = "<group>";
@@ -392,6 +398,7 @@
 				0537CE8F1F80F76E00CB313A /* KEValue.swift in Sources */,
 				057F881F1B78031B0029AB4F /* KEContext.swift in Sources */,
 				05CFAB962034875F001623BC /* KEException.swift in Sources */,
+				0545301A2184A2B6006F96C8 /* KEOperation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,6 +406,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0545301C21851C3F006F96C8 /* UTOperation.swift in Sources */,
 				054637F21BB05FE400DEE12F /* UTError.swift in Sources */,
 				052B0F7A1BE8A3A400E3BFEE /* UTObject.swift in Sources */,
 				058B53261BA41A6C009522DF /* main.swift in Sources */,
