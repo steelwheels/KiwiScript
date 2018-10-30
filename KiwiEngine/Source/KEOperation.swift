@@ -102,13 +102,13 @@ public class KEOperation: Operation
 		if self.isCancelled {
 			/* when cancel operation is required, send callback exception execute new */
 			let callback = mContext.exceptionCallback
-			let except   = KEException.Terminated(mContext, "\(#function) Terminated by Cancel operation")
+			let except   = KEException.terminated(mContext)
 			callback(except)
 		} else {
 			/* Execute main operation */
 			let mainscr = mainScript(script: mScript)
 			//NSLog("script: \(mainscr)\n")
-			mContext.runScript(script: mainscr)
+			let _ = mContext.runScript(script: mainscr)
 		}
 	}
 

@@ -1,21 +1,25 @@
 *** Script1
-SyntaxError: Unexpected end of script
-Evaluated: undefined
+exception(SyntaxError: Unexpected end of script)
+finished(undefined)
 *** Script2
-SyntaxError: Unexpected identifier 'hoge'. Expected a ';' following a return statement.
-Evaluated: undefined
+exception(SyntaxError: Unexpected identifier 'hoge'. Expected a ';' following a return statement.)
+finished(undefined)
 testError : OK
 *** context.runScript
-Evaluated: undefined
+finished(undefined)
 *** context.callFunction
-Evaluated: 2.3
+finished(2.3)
 testObject : OK
-Wait until all operations are finished ... Start
-Evaluated: undefined
-Evaluated: undefined
-Wait until all operations are finished ... Done
+finished(undefined)
+finished(undefined)
 1: isExecuting=false, isFinished=true
 2: isExecuting=false, isFinished=true
 testOperation : OK
+class ExitError extends Error {
+  constructor(code){
+    self.errorCode = code ; 
+  }
+}
+Compile ... OK
 testCompiler : OK
 SUMMARY: OK

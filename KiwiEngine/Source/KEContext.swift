@@ -11,49 +11,36 @@ import CoconutData
 
 public class KEContext : JSContext
 {
-	public typealias ExceptionCallback =  (_ result: KEException) -> Void
+	public typealias ExceptionCallback =  (_ exception: KEException) -> Void
 
 	public var exceptionCallback: ExceptionCallback
 
 	public override init(virtualMachine vm: JSVirtualMachine) {
 		exceptionCallback = {
-			(_ result: KEException) -> Void in
-			let msg = result.description
-			NSLog("[Exception] \(msg)")
+			(_ exception: KEException) -> Void in
+			NSLog("[Exception] \(exception.description)")
 		}
 		super.init(virtualMachine: vm)
 
 		/* Set handler */
 		self.exceptionHandler = {
-			(contextp, exception) in
-			let message: String
-			if let e = exception {
-				message = e.description
+			(context, exception) in
+			if let ctxt = context as? KEContext {
+				self.exceptionCallback(KEException.exception(ctxt, exception))
 			} else {
-				message = "Unknow exception"
+				NSLog("[Exception] Internal error")
 			}
-			self.exceptionCallback(KEException.CompileError(message))
 		}
 	}
 
-
-	public func runScript(script scr: String!)  {
-		/* Evaluate script */
-		let retval = super.evaluateScript(scr)
-
-		/* Call handler with return value */
-		let result = KEException.Evaluated(self, retval)
-		self.exceptionCallback(result)
+	public func runScript(script scr: String!) -> JSValue {
+		return super.evaluateScript(scr)
 	}
 
-	public func callFunction(functionName funcname: String, arguments args: Array<Any>) {
+	public func callFunction(functionName funcname: String, arguments args: Array<Any>) -> JSValue {
 		/* Call function */
 		let jsfunc : JSValue = self.objectForKeyedSubscript(funcname)
-		let retval = jsfunc.call(withArguments: args)
-
-		/* Call handler with return value */
-		let result = KEException.Evaluated(self, retval)
-		self.exceptionCallback(result)
+		return jsfunc.call(withArguments: args)
 	}
 
 	public func set(name n: String, object o: JSExport){

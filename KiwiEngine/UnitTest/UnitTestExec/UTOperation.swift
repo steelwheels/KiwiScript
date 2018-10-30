@@ -53,14 +53,19 @@ public class UTOperationObserver: NSObject
 public func testOperation(console cons: CNConsole) -> Bool
 {
 	let vm         = JSVirtualMachine()
-	let context    = KEContext(virtualMachine: vm!)
-	context.exceptionCallback = {
+	let context1    = KEContext(virtualMachine: vm!)
+	context1.exceptionCallback = {
+		(_ result: KEException) -> Void in
+		console.print(string: result.description + "\n")
+	}
+	let context2    = KEContext(virtualMachine: vm!)
+	context2.exceptionCallback = {
 		(_ result: KEException) -> Void in
 		console.print(string: result.description + "\n")
 	}
 
-	let operation1  = KEOperation(context: context, script: "var a = 1 ;")
-	let operation2  = KEOperation(context: context, script: "for(var b=1 ; b<100 ; b++){}")
+	let operation1  = KEOperation(context: context1, script: "var a = 1 ;")
+	let operation2  = KEOperation(context: context2, script: "for(var b=1 ; b<100 ; b++){}")
 	let observer1   = UTOperationObserver(name: "1", console: cons)
 	let observer2	= UTOperationObserver(name: "2", console: cons)
 
@@ -72,9 +77,9 @@ public func testOperation(console cons: CNConsole) -> Bool
 	mqueue.addOperation(operation2)
 	mqueue.maxConcurrentOperationCount = 2
 
-	console.print(string: "Wait until all operations are finished ... Start\n")
+	//console.print(string: "Wait until all operations are finished ... Start\n")
 	mqueue.waitUntilAllOperationsAreFinished()
-	console.print(string: "Wait until all operations are finished ... Done\n")
+	//console.print(string: "Wait until all operations are finished ... Done\n")
 	observer1.print()
 	observer2.print()
 	

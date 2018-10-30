@@ -9,33 +9,35 @@ import JavaScriptCore
 import Foundation
 
 public enum KEException {
-	case CompileError(String)
-	case Evaluated(JSContext, JSValue?)
-	case Runtime(String)			// String: message
-	case Exit(Int32)
-	case Terminated(JSContext, String)
+	case exception(KEContext, JSValue?)	// context, error-object
+	case finished(KEContext, JSValue?)	// context, result-value
+	case terminated(KEContext)
 
 	public var description: String {
 		get {
-			let result: String
+			var result: String
 			switch self {
-			case .CompileError(let message):
-				result = "\(message)"
-			case .Evaluated(_, let value):
-				if let v = value {
-					result = "Evaluated: \(v.description)"
-				} else {
-					result = "Evaluated: nil"
-				}
-			case .Runtime(let msg):
-				result = "Error: \(msg)"
-			case .Exit(let code):
-				result = "Exit: \(code)"
-			case .Terminated(_, let message):
-				result = "Terminated: \(message)"
+			case .exception(_, let value):
+				let valstr = valueToString(value: value)
+				result = "exception(\(valstr))"
+			case .finished(_, let value):
+				let valstr = valueToString(value: value)
+				result = "finished(\(valstr))"
+			case .terminated(_):
+				result = "terminated()"
 			}
 			return result
 		}
+	}
+
+	private func valueToString(value val: JSValue?) -> String {
+		let valstr: String
+		if let v = val {
+			valstr = v.description
+		} else {
+			valstr = "undefined"
+		}
+		return valstr
 	}
 }
 
