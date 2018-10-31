@@ -26,15 +26,12 @@ public class KEContext : JSContext
 		self.exceptionHandler = {
 			(context, exception) in
 			if let ctxt = context as? KEContext {
-				self.exceptionCallback(KEException.exception(ctxt, exception))
+				let except = KEException(context: ctxt, value: exception)
+				self.exceptionCallback(except)
 			} else {
 				NSLog("[Exception] Internal error")
 			}
 		}
-	}
-
-	public func runScript(script scr: String!) -> JSValue {
-		return super.evaluateScript(scr)
 	}
 
 	public func callFunction(functionName funcname: String, arguments args: Array<Any>) -> JSValue {

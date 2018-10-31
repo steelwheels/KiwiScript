@@ -1,25 +1,66 @@
 *** Script1
-exception(SyntaxError: Unexpected end of script)
-finished(undefined)
+SyntaxError: Unexpected end of script
 *** Script2
-exception(SyntaxError: Unexpected identifier 'hoge'. Expected a ';' following a return statement.)
-finished(undefined)
+SyntaxError: Unexpected identifier 'hoge'. Expected a ';' following a return statement.
 testError : OK
-*** context.runScript
-finished(undefined)
-*** context.callFunction
-finished(2.3)
-testObject : OK
-finished(undefined)
-finished(undefined)
-1: isExecuting=false, isFinished=true
-2: isExecuting=false, isFinished=true
-testOperation : OK
-class ExitError extends Error {
-  constructor(code){
-    self.errorCode = code ; 
-  }
+* Setup compiler
+* compile
+/* boot.js */
+
+class ExitError extends Error
+{
+	constructor(code, message){
+		super(message) ;
+		this.code = code ;
+	}
+}
+
+function _exit(code)
+{
+	throw new ExitError(code, "exit") ;
+}
+
+function _exec(fn, ...args)
+{
+	try {
+		return fn(...args) ;
+	} catch(err) {
+		return err.code ;
+	}
 }
 Compile ... OK
 testCompiler : OK
+* Setup compiler
+/* boot.js */
+
+class ExitError extends Error
+{
+	constructor(code, message){
+		super(message) ;
+		this.code = code ;
+	}
+}
+
+function _exit(code)
+{
+	throw new ExitError(code, "exit") ;
+}
+
+function _exec(fn, ...args)
+{
+	try {
+		return fn(...args) ;
+	} catch(err) {
+		return err.code ;
+	}
+}
+Compile: OK
+_exec(function(){ return 0 ; }) ;
+* result0 = 0
+_exec(function(){ _exit(1) ; }) ;
+* result1 = 1
+testExec : OK
+1: isExecuting=false, isFinished=true
+2: isExecuting=false, isFinished=true
+testOperation : OK
 SUMMARY: OK

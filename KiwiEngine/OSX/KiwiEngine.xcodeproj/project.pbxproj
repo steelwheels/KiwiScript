@@ -26,6 +26,7 @@
 		05E0242721874C4900AD4728 /* KEConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E0242621874C4900AD4728 /* KEConfig.swift */; };
 		05E8C62421889C60008CAAF8 /* boot.js in Resources */ = {isa = PBXBuildFile; fileRef = 05E8C62321889C60008CAAF8 /* boot.js */; };
 		05E8C62621889C83008CAAF8 /* boot.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05E8C62321889C60008CAAF8 /* boot.js */; };
+		05E8C6282188BCAE008CAAF8 /* KEObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E8C6272188BCAE008CAAF8 /* KEObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +114,7 @@
 		05DFA828206865800032EC5B /* KECompiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KECompiler.swift; sourceTree = "<group>"; };
 		05E0242621874C4900AD4728 /* KEConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEConfig.swift; sourceTree = "<group>"; };
 		05E8C62321889C60008CAAF8 /* boot.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = boot.js; sourceTree = "<group>"; };
+		05E8C6272188BCAE008CAAF8 /* KEObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +189,7 @@
 			children = (
 				054536C51B78021500FE978C /* KiwiEngine.h */,
 				057F881E1B78031B0029AB4F /* KEContext.swift */,
+				05E8C6272188BCAE008CAAF8 /* KEObject.swift */,
 				05E0242621874C4900AD4728 /* KEConfig.swift */,
 				054530192184A2B6006F96C8 /* KEOperation.swift */,
 				05DFA828206865800032EC5B /* KECompiler.swift */,
@@ -433,6 +436,7 @@
 				05DFA829206865800032EC5B /* KECompiler.swift in Sources */,
 				0537CE8F1F80F76E00CB313A /* KEValue.swift in Sources */,
 				057F881F1B78031B0029AB4F /* KEContext.swift in Sources */,
+				05E8C6282188BCAE008CAAF8 /* KEObject.swift in Sources */,
 				05E0242721874C4900AD4728 /* KEConfig.swift in Sources */,
 				05CFAB962034875F001623BC /* KEException.swift in Sources */,
 				0545301A2184A2B6006F96C8 /* KEOperation.swift in Sources */,

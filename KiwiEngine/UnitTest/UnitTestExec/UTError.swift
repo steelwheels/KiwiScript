@@ -35,6 +35,6 @@ private func testScript(console cons: CNConsole, context ctxt: KEContext, script
 		console.print(string: result.description + "\n")
 		testResult = true /* Error is required */
 	}
-	let _ = ctxt.runScript(script: scr)
+	let _ = ctxt.evaluateScript(scr)
 	return testResult
 }

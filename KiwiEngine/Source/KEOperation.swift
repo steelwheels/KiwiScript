@@ -100,26 +100,18 @@ public class KEOperation: Operation
 
 	public override func main(){
 		if self.isCancelled {
-			/* when cancel operation is required, send callback exception execute new */
-			let callback = mContext.exceptionCallback
-			let except   = KEException.terminated(mContext)
-			callback(except)
+			/* do nothing */
 		} else {
 			/* Execute main operation */
 			let mainscr = mainScript(script: mScript)
-			//NSLog("script: \(mainscr)\n")
-			let _ = mContext.runScript(script: mainscr)
+			let _       = mContext.evaluateScript(mainscr)
+			self.isExecuting = false
+			self.isFinished  = true
 		}
 	}
 
 	private func mainScript(script scr: String) -> String {
-		let result: String =
-			"try {\n" +
-			"  " + scr + "\n" +
-			"} catch(e) {\n" +
-			"  /* Catch exception */\n" +
-			"}; \n"
-		return result
+		return 	"_exec(\(scr)) ;"
 	}
 }
 

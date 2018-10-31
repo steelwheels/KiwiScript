@@ -64,8 +64,21 @@ public func testOperation(console cons: CNConsole) -> Bool
 		console.print(string: result.description + "\n")
 	}
 
-	let operation1  = KEOperation(context: context1, script: "var a = 1 ;")
-	let operation2  = KEOperation(context: context2, script: "for(var b=1 ; b<100 ; b++){}")
+	let config   = KEConfig()
+	//config.doVerbose = true
+
+	let compiler = KECompiler(console: cons, config: config)
+	guard compiler.compile(context: context1) else {
+		console.print(string: "[Error] Compile failed (1)")
+		return false
+	}
+	guard compiler.compile(context: context2) else {
+		console.print(string: "[Error] Compile failed (2)")
+		return false
+	}
+
+	let operation1  = KEOperation(context: context1, script: "function(){ return 0 ; }")
+	let operation2  = KEOperation(context: context2, script: "function(){ return 1 ; }")
 	let observer1   = UTOperationObserver(name: "1", console: cons)
 	let observer2	= UTOperationObserver(name: "2", console: cons)
 
@@ -80,11 +93,9 @@ public func testOperation(console cons: CNConsole) -> Bool
 	//console.print(string: "Wait until all operations are finished ... Start\n")
 	mqueue.waitUntilAllOperationsAreFinished()
 	//console.print(string: "Wait until all operations are finished ... Done\n")
+	sleep(1)
 	observer1.print()
 	observer2.print()
-	
-	/* Wait until KVO print */
-	sleep(1) ;
 
 	return true ;
 }
