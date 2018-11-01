@@ -48,6 +48,14 @@ public class KEContext : JSContext
 		self.setObject(val, forKeyedSubscript: NSString(string: n))
 	}
 
+	public func set(name n: String, function obj: Any){
+		if let val = JSValue(object: obj, in: self){
+			set(name: n, value: val)
+		} else {
+			NSLog("[Error] Can not allocate value at \(#function)")
+		}
+	}
+
 	public func getValue(name n:String) -> JSValue? {
 		return self.objectForKeyedSubscript(NSString(string: n))
 	}

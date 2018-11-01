@@ -7,12 +7,14 @@
 
 import Foundation
 
-public class KEConfig
+open class KEConfig
 {
+	public var	doStrict:	Bool
 	public var 	doVerbose:	Bool
 
 	public init() {
-		doVerbose = false
+		doStrict  	= true
+		doVerbose 	= false
 	}
 }
 

@@ -21,6 +21,7 @@
 		058735CA20C29B7700797EFD /* KiwiEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 054536C01B78021500FE978C /* KiwiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		058735D220C2BF9200797EFD /* UTCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058735D120C2BF9200797EFD /* UTCompiler.swift */; };
 		058B53261BA41A6C009522DF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058B53251BA41A6C009522DF /* main.swift */; };
+		05BEA50B2189F80A00F9A4C6 /* KEEnumTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BEA50A2189F80A00F9A4C6 /* KEEnumTable.swift */; };
 		05CFAB962034875F001623BC /* KEException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CFAB952034875F001623BC /* KEException.swift */; };
 		05DFA829206865800032EC5B /* KECompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DFA828206865800032EC5B /* KECompiler.swift */; };
 		05E0242721874C4900AD4728 /* KEConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E0242621874C4900AD4728 /* KEConfig.swift */; };
@@ -109,6 +110,7 @@
 		058B53231BA41A6C009522DF /* UnitTestExec */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTestExec; sourceTree = BUILT_PRODUCTS_DIR; };
 		058B53251BA41A6C009522DF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		05B40EED1BE5A4AE00AA8525 /* check.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = check.mk; sourceTree = SOURCE_ROOT; };
+		05BEA50A2189F80A00F9A4C6 /* KEEnumTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEEnumTable.swift; sourceTree = "<group>"; };
 		05CF6D761BA41EF000BD9D91 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05CFAB952034875F001623BC /* KEException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEException.swift; sourceTree = "<group>"; };
 		05DFA828206865800032EC5B /* KECompiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KECompiler.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				054536C51B78021500FE978C /* KiwiEngine.h */,
 				057F881E1B78031B0029AB4F /* KEContext.swift */,
 				05E8C6272188BCAE008CAAF8 /* KEObject.swift */,
+				05BEA50A2189F80A00F9A4C6 /* KEEnumTable.swift */,
 				05E0242621874C4900AD4728 /* KEConfig.swift */,
 				054530192184A2B6006F96C8 /* KEOperation.swift */,
 				05DFA828206865800032EC5B /* KECompiler.swift */,
@@ -434,6 +437,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05DFA829206865800032EC5B /* KECompiler.swift in Sources */,
+				05BEA50B2189F80A00F9A4C6 /* KEEnumTable.swift in Sources */,
 				0537CE8F1F80F76E00CB313A /* KEValue.swift in Sources */,
 				057F881F1B78031B0029AB4F /* KEContext.swift in Sources */,
 				05E8C6282188BCAE008CAAF8 /* KEObject.swift in Sources */,
