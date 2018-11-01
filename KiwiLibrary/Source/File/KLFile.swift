@@ -127,8 +127,6 @@ import Foundation
 				return result
 			}
 		}
-		let except = KEException.Runtime("\(#function) Invalid parameter: \(pathval)")
-		mContext.exceptionCallback(except)
 		return mFileType.NotExist
 	}
 }

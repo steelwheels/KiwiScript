@@ -7,26 +7,34 @@
 
 import KiwiLibrary
 import KiwiEngine
-import KiwiObject
 import CoconutData
+import JavaScriptCore
 import Foundation
 
 public func main()
 {
-	Swift.print("[UnitTest]")
+	Swift.print("[UnitTest]\n")
 
-	let application = KMApplication(kind: .Terminal)
+	let console = CNFileConsole()
 
-	application.console.print(string: "Hello, world!!\n")
-	let config = KLConfig(kind: .Terminal, useStrictMode: true, doVerbose: true, scriptFiles: [])
+	let config = KLConfig(kind: .Terminal)
+	config.doStrict  = true
+	config.doVerbose = true
 
-	application.console.print(string: "[Allocate compiler]\n")
-	let compiler = KLApplicationCompiler(application: application)
+	let context  = KEContext(virtualMachine: JSVirtualMachine())
+	context.exceptionCallback = {
+		(_ exception: KEException) -> Void in
+		console.error(string: exception.description)
+	}
 
-	application.console.print(string: "[Start compile]\n")
-	compiler.compile(config: config)
+	let compiler = KLCompiler(console: console, config: config)
+	if(compiler.compile(context: context)){
+		console.print(string: "  -> Compiler: OK\n")
+	} else {
+		console.print(string: "  -> Compiler: NG\n")
+	}
 
-	Swift.print("[Bye]")
+	console.print(string: "[Bye]\n")
 }
 
 main()

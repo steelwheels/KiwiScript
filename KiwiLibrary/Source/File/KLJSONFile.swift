@@ -30,7 +30,7 @@ import Foundation
 		if let url = valueToURL(value: fname) {
 			let (obj, err) = CNJSONFile.readFile(URL: url)
 			if let e = err {
-				let except = KEException.Runtime("\(#function) " + e.toString())
+				let except = KEException(context: mContext, message: e.toString() + "at #(function)")
 				mContext.exceptionCallback(except)
 			} else {
 				return objectToValue(JSONObject: obj!, context: mContext)
@@ -45,7 +45,7 @@ import Foundation
 			if let obj = valueToObject(value: json) {
 				if let err = CNJSONFile.writeFile(URL: url, JSONObject: obj) {
 					let errstr = err.toString()
-					let except = KEException.Runtime("\(#function) Can not write JSON file: \(errstr)")
+					let except = KEException(context: mContext, message: "Can not write JSON file: \(errstr) at \(#function)")
 					mContext.exceptionCallback(except)
 					errcode = 3
 				} else {
@@ -54,7 +54,7 @@ import Foundation
 				}
 			} else {
 				let jsonstr = String(describing: json.toString())
-				let except = KEException.Runtime("\(#function) Invalid json data: \(jsonstr)")
+				let except = KEException(context: mContext, message: "Invalid json data: \(jsonstr) at \(#function)")
 				mContext.exceptionCallback(except)
 				errcode = 2
 			}
@@ -68,9 +68,8 @@ import Foundation
 		if let obj = valueToObject(value: json) {
 			let (str, err) = CNJSONFile.serialize(JSONObject: obj)
 			if let e = err {
-				let estr = e.toString()
-				let except = KEException.Runtime("\(#function) serialization failed: \(estr)")
-				mContext.exceptionCallback(except)
+				NSLog("Error: \(e.toString()) at \(#function)")
+				return JSValue(nullIn: mContext)
 			} else {
 				return JSValue(object: str!, in: mContext)
 			}
