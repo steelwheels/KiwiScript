@@ -1,37 +1,54 @@
-//
-//  main.swift
-//  UnitTest
-//
-//  Created by Tomoo Hamada on 2018/10/23.
-//  Copyright © 2018 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	main.swift
+ * @brief	Main function for unit test
+ * @par Copyright
+ *   Copyright (C) 2018 Steel Wheels Project
+ */
 
+import KiwiObject
+import KiwiLibrary
+import KiwiEngine
 import CoconutData
+import JavaScriptCore
 import Foundation
 
-let console = CNFileConsole()
-var summary = true
+public func main()
+{
+	let config = KLConfig(kind: .Terminal)
+	config.doStrict		= true
+	config.doVerbose	= true
 
-func test(funcName fn:String, result res:Bool) -> Bool
+	let console = CNFileConsole()
+	let context = KEContext(virtualMachine: JSVirtualMachine())
+
+	let compiler = KLCompiler(console: console, config: config)
+	if compiler.compile(context: context) {
+		console.error(string: "Compile: OK\n")
+	} else {
+		console.error(string: "Compile: NG\n")
+		return
+	}
+
+	let result0 = testApplication(context: context, config: config, console: console)
+
+	let result = result0
+	if result {
+		console.print(string: "Summary: OK\n")
+	} else {
+		console.print(string: "Summary: NG\n")
+	}
+}
+
+func test(funcName fn:String, result res:Bool, console cons: CNConsole) -> Bool
 {
 	if(res){
-		console.print(string: "\(fn) : OK\n")
+		cons.print(string: "\(fn) : OK\n")
 	} else {
-		console.print(string: "\(fn) : NG\n")
+		cons.print(string: "\(fn) : NG\n")
 	}
 	return res
 }
 
-//summary = test(funcName: "testError", result: testError(console: console)) && summary
-//summary = test(funcName: "testObject", result: testObject(console: console)) && summary
-summary = test(funcName: "testPropertyTable", result: testPropertyTable(console: console)) && summary
-summary = test(funcName: "testPropertyTable2", result: testPropertyTable2(console: console)) && summary
-summary = test(funcName: "testApplication", result: testApplication(console: console)) && summary
-//summary = test(funcName: "testCompiler", result: testCompiler(console: console)) && summary
+main()
 
-if summary {
-	console.print(string: "SUMMARY: OK")
-} else {
-	console.print(string: "SUMMARY: NG")
-}
 

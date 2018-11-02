@@ -7,26 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0519594C218CA4C70087D0A8 /* KMPrimitiveFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05195945218CA4C60087D0A8 /* KMPrimitiveFactory.swift */; };
+		0519594E218CA4C70087D0A8 /* KMObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05195947218CA4C70087D0A8 /* KMObject.swift */; };
+		0519594F218CA4C70087D0A8 /* KMFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05195948218CA4C70087D0A8 /* KMFunction.swift */; };
+		05195950218CA4C70087D0A8 /* KMApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05195949218CA4C70087D0A8 /* KMApplication.swift */; };
+		05195951218CA4C70087D0A8 /* KMObjectLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0519594A218CA4C70087D0A8 /* KMObjectLoader.swift */; };
+		05195952218CA4C70087D0A8 /* KMObjectFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0519594B218CA4C70087D0A8 /* KMObjectFactory.swift */; };
+		0531C7A4218B4E0200E084C6 /* KiwiLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0531C7A3218B4E0200E084C6 /* KiwiLibrary.framework */; };
+		0531C7A5218B4E0800E084C6 /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0547EBCB217E41980078FB32 /* CoconutData.framework */; };
 		0547EBB7217E3F460078FB32 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0547EBB6217E3F460078FB32 /* main.swift */; };
-		0547EBC0217E3FAF0078FB32 /* UTPropertyTable2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0547EBBD217E3FAF0078FB32 /* UTPropertyTable2.swift */; };
-		0547EBC1217E3FAF0078FB32 /* UTPropertyTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0547EBBE217E3FAF0078FB32 /* UTPropertyTable.swift */; };
 		0547EBC2217E3FAF0078FB32 /* UTApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0547EBBF217E3FAF0078FB32 /* UTApplication.swift */; };
 		0547EBC8217E40EB0078FB32 /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0547EBC7217E40EB0078FB32 /* KiwiEngine.framework */; };
 		0547EBC9217E40FC0078FB32 /* KiwiEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0547EBC7217E40EB0078FB32 /* KiwiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0547EBCA217E41720078FB32 /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0547EBC7217E40EB0078FB32 /* KiwiEngine.framework */; };
 		0547EBCC217E41980078FB32 /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0547EBCB217E41980078FB32 /* CoconutData.framework */; };
 		0547EBCD217E41B20078FB32 /* CoconutData.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0547EBCB217E41980078FB32 /* CoconutData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		05AC2B662180CC11006FB10B /* KMProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AC2B5C2180CC10006FB10B /* KMProcess.swift */; };
-		05AC2B672180CC11006FB10B /* KMObjectLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AC2B5D2180CC10006FB10B /* KMObjectLoader.swift */; };
-		05AC2B682180CC11006FB10B /* KMFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AC2B5E2180CC10006FB10B /* KMFunction.swift */; };
-		05AC2B692180CC11006FB10B /* KMObjectFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AC2B5F2180CC10006FB10B /* KMObjectFactory.swift */; };
-		05AC2B6A2180CC11006FB10B /* KMProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AC2B602180CC10006FB10B /* KMProgram.swift */; };
-		05AC2B6B2180CC11006FB10B /* KMPropertyTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AC2B612180CC10006FB10B /* KMPropertyTable.swift */; };
-		05AC2B6C2180CC11006FB10B /* KMConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AC2B622180CC11006FB10B /* KMConfig.swift */; };
-		05AC2B6D2180CC11006FB10B /* KMPrimitiveFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AC2B632180CC11006FB10B /* KMPrimitiveFactory.swift */; };
-		05AC2B6E2180CC11006FB10B /* KMApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AC2B642180CC11006FB10B /* KMApplication.swift */; };
-		05AC2B6F2180CC11006FB10B /* KMObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AC2B652180CC11006FB10B /* KMObject.swift */; };
-		05C68782217E36EA00C5C6CB /* KMProcessCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C68781217E36EA00C5C6CB /* KMProcessCompiler.swift */; };
 		05E9124B217E1CD300FA24EC /* KiwiObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E91249217E1CD300FA24EC /* KiwiObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -78,26 +73,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		05195945218CA4C60087D0A8 /* KMPrimitiveFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMPrimitiveFactory.swift; sourceTree = "<group>"; };
+		05195947218CA4C70087D0A8 /* KMObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMObject.swift; sourceTree = "<group>"; };
+		05195948218CA4C70087D0A8 /* KMFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMFunction.swift; sourceTree = "<group>"; };
+		05195949218CA4C70087D0A8 /* KMApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMApplication.swift; sourceTree = "<group>"; };
+		0519594A218CA4C70087D0A8 /* KMObjectLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMObjectLoader.swift; sourceTree = "<group>"; };
+		0519594B218CA4C70087D0A8 /* KMObjectFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMObjectFactory.swift; sourceTree = "<group>"; };
 		051AC42D217E3BDC00292DA1 /* UnitTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		051AC42F217E3BDC00292DA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0531C7A3218B4E0200E084C6 /* KiwiLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiLibrary.framework; path = ../../../../Library/Frameworks/KiwiLibrary.framework; sourceTree = "<group>"; };
 		0547EBB4217E3F460078FB32 /* UnitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0547EBB6217E3F460078FB32 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		0547EBBD217E3FAF0078FB32 /* UTPropertyTable2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTPropertyTable2.swift; sourceTree = "<group>"; };
-		0547EBBE217E3FAF0078FB32 /* UTPropertyTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTPropertyTable.swift; sourceTree = "<group>"; };
 		0547EBBF217E3FAF0078FB32 /* UTApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTApplication.swift; sourceTree = "<group>"; };
 		0547EBC7217E40EB0078FB32 /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../Library/Frameworks/KiwiEngine.framework; sourceTree = "<group>"; };
 		0547EBCB217E41980078FB32 /* CoconutData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutData.framework; path = ../../../../Library/Frameworks/CoconutData.framework; sourceTree = "<group>"; };
-		05AC2B5C2180CC10006FB10B /* KMProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMProcess.swift; sourceTree = "<group>"; };
-		05AC2B5D2180CC10006FB10B /* KMObjectLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMObjectLoader.swift; sourceTree = "<group>"; };
-		05AC2B5E2180CC10006FB10B /* KMFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMFunction.swift; sourceTree = "<group>"; };
-		05AC2B5F2180CC10006FB10B /* KMObjectFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMObjectFactory.swift; sourceTree = "<group>"; };
-		05AC2B602180CC10006FB10B /* KMProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMProgram.swift; sourceTree = "<group>"; };
-		05AC2B612180CC10006FB10B /* KMPropertyTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMPropertyTable.swift; sourceTree = "<group>"; };
-		05AC2B622180CC11006FB10B /* KMConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMConfig.swift; sourceTree = "<group>"; };
-		05AC2B632180CC11006FB10B /* KMPrimitiveFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMPrimitiveFactory.swift; sourceTree = "<group>"; };
-		05AC2B642180CC11006FB10B /* KMApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMApplication.swift; sourceTree = "<group>"; };
-		05AC2B652180CC11006FB10B /* KMObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMObject.swift; sourceTree = "<group>"; };
-		05C68781217E36EA00C5C6CB /* KMProcessCompiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMProcessCompiler.swift; sourceTree = "<group>"; };
 		05E91246217E1CD300FA24EC /* KiwiObject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiObject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05E91249217E1CD300FA24EC /* KiwiObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiObject.h; sourceTree = "<group>"; };
 		05E9124A217E1CD300FA24EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -115,7 +104,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0531C7A4218B4E0200E084C6 /* KiwiLibrary.framework in Frameworks */,
 				0547EBC8217E40EB0078FB32 /* KiwiEngine.framework in Frameworks */,
+				0531C7A5218B4E0800E084C6 /* CoconutData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,8 +145,6 @@
 			children = (
 				0547EBB6217E3F460078FB32 /* main.swift */,
 				0547EBBF217E3FAF0078FB32 /* UTApplication.swift */,
-				0547EBBE217E3FAF0078FB32 /* UTPropertyTable.swift */,
-				0547EBBD217E3FAF0078FB32 /* UTPropertyTable2.swift */,
 			);
 			path = UnitTest;
 			sourceTree = "<group>";
@@ -163,18 +152,11 @@
 		0571EAE8217E2E4500E8950B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0531C7A3218B4E0200E084C6 /* KiwiLibrary.framework */,
 				0547EBCB217E41980078FB32 /* CoconutData.framework */,
 				0547EBC7217E40EB0078FB32 /* KiwiEngine.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		05C68780217E368200C5C6CB /* Compiler */ = {
-			isa = PBXGroup;
-			children = (
-				05C68781217E36EA00C5C6CB /* KMProcessCompiler.swift */,
-			);
-			path = Compiler;
 			sourceTree = "<group>";
 		};
 		05E9123C217E1CD300FA24EC = {
@@ -210,28 +192,15 @@
 			isa = PBXGroup;
 			children = (
 				05E91249217E1CD300FA24EC /* KiwiObject.h */,
-				05FE2461217E35B700A05687 /* Object */,
-				05C68780217E368200C5C6CB /* Compiler */,
+				05195949218CA4C70087D0A8 /* KMApplication.swift */,
+				05195947218CA4C70087D0A8 /* KMObject.swift */,
+				05195948218CA4C70087D0A8 /* KMFunction.swift */,
+				0519594B218CA4C70087D0A8 /* KMObjectFactory.swift */,
+				0519594A218CA4C70087D0A8 /* KMObjectLoader.swift */,
+				05195945218CA4C60087D0A8 /* KMPrimitiveFactory.swift */,
 			);
 			name = Source;
 			path = ../Source;
-			sourceTree = "<group>";
-		};
-		05FE2461217E35B700A05687 /* Object */ = {
-			isa = PBXGroup;
-			children = (
-				05AC2B642180CC11006FB10B /* KMApplication.swift */,
-				05AC2B622180CC11006FB10B /* KMConfig.swift */,
-				05AC2B5E2180CC10006FB10B /* KMFunction.swift */,
-				05AC2B652180CC11006FB10B /* KMObject.swift */,
-				05AC2B5F2180CC10006FB10B /* KMObjectFactory.swift */,
-				05AC2B5D2180CC10006FB10B /* KMObjectLoader.swift */,
-				05AC2B632180CC11006FB10B /* KMPrimitiveFactory.swift */,
-				05AC2B5C2180CC10006FB10B /* KMProcess.swift */,
-				05AC2B602180CC10006FB10B /* KMProgram.swift */,
-				05AC2B612180CC10006FB10B /* KMPropertyTable.swift */,
-			);
-			path = Object;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,7 +311,7 @@
 					};
 					05E91245217E1CD300FA24EC = {
 						CreatedOnToolsVersion = 10.0;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -396,8 +365,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0547EBB7217E3F460078FB32 /* main.swift in Sources */,
-				0547EBC1217E3FAF0078FB32 /* UTPropertyTable.swift in Sources */,
-				0547EBC0217E3FAF0078FB32 /* UTPropertyTable2.swift in Sources */,
 				0547EBC2217E3FAF0078FB32 /* UTApplication.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -406,17 +373,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05AC2B692180CC11006FB10B /* KMObjectFactory.swift in Sources */,
-				05AC2B6B2180CC11006FB10B /* KMPropertyTable.swift in Sources */,
-				05AC2B6F2180CC11006FB10B /* KMObject.swift in Sources */,
-				05C68782217E36EA00C5C6CB /* KMProcessCompiler.swift in Sources */,
-				05AC2B6A2180CC11006FB10B /* KMProgram.swift in Sources */,
-				05AC2B682180CC11006FB10B /* KMFunction.swift in Sources */,
-				05AC2B672180CC11006FB10B /* KMObjectLoader.swift in Sources */,
-				05AC2B6E2180CC11006FB10B /* KMApplication.swift in Sources */,
-				05AC2B6D2180CC11006FB10B /* KMPrimitiveFactory.swift in Sources */,
-				05AC2B662180CC11006FB10B /* KMProcess.swift in Sources */,
-				05AC2B6C2180CC11006FB10B /* KMConfig.swift in Sources */,
+				0519594C218CA4C70087D0A8 /* KMPrimitiveFactory.swift in Sources */,
+				05195951218CA4C70087D0A8 /* KMObjectLoader.swift in Sources */,
+				05195952218CA4C70087D0A8 /* KMObjectFactory.swift in Sources */,
+				05195950218CA4C70087D0A8 /* KMApplication.swift in Sources */,
+				0519594F218CA4C70087D0A8 /* KMFunction.swift in Sources */,
+				0519594E218CA4C70087D0A8 /* KMObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

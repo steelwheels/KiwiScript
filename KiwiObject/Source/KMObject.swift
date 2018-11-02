@@ -34,7 +34,7 @@ public protocol KMObject
 	var context:			KEContext { get }
 	var modelName:			String { get }
 	var instanceName: 		String { get }
-	var propertyTable: 		KMPropertyTable { get }
+	var propertyTable: 		KEObject { get }
 	var objectTable:		KMObjectTable { get }
 
 	func set(name nm: String, object obj: KMObjectValue)
@@ -65,19 +65,19 @@ open class KMDefaultObject: NSObject, KMObject
 {
 	private var mContext:		KEContext
 	private var mInstanceName:	String
-	private var mPropertyTable:	KMPropertyTable
+	private var mPropertyTable:	KEObject
 	private var mObjectTable:	KMObjectTable
 
 	public var context: 		KEContext { get { return mContext } }
 	public var modelName:		String { get { return "Object" }}
 	public var instanceName: 	String { get { return mInstanceName }}
-	public var propertyTable: 	KMPropertyTable { get { return mPropertyTable }}
+	public var propertyTable: 	KEObject { get { return mPropertyTable }}
 	public var objectTable:		KMObjectTable { get { return mObjectTable }}
 
 	public init(instanceName iname: String, context ctxt: KEContext){
 		mContext	= ctxt
 		mInstanceName	= iname
-		mPropertyTable	= KMPropertyTable(context: ctxt)
+		mPropertyTable	= KEObject(context: ctxt)
 		mObjectTable	= KMObjectTable()
 	}
 
@@ -88,8 +88,7 @@ open class KMDefaultObject: NSObject, KMObject
 			if let prop = JSValue(object: obj.propertyTable, in: context) {
 				propertyTable.set(nm, prop)
 			} else {
-				let except = KEException.Runtime("Failed to allocate object")
-				mContext.exceptionCallback(except)
+				NSLog("Failed to allocate value at \(#function)")
 			}
 		case .Function(let obj):
 			propertyTable.set(nm, obj.functionObject)

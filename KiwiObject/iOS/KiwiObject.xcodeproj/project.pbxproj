@@ -8,17 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		0581F88F217E24960043B82F /* KiwiObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 0581F88D217E24960043B82F /* KiwiObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		05ABB466217F6DBD001D69F2 /* KMProcessCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ABB465217F6DBD001D69F2 /* KMProcessCompiler.swift */; };
-		05AC2B7A2180CC45006FB10B /* KMProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AC2B702180CC44006FB10B /* KMProcess.swift */; };
-		05AC2B7B2180CC45006FB10B /* KMObjectLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AC2B712180CC44006FB10B /* KMObjectLoader.swift */; };
-		05AC2B7C2180CC45006FB10B /* KMFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AC2B722180CC44006FB10B /* KMFunction.swift */; };
-		05AC2B7D2180CC45006FB10B /* KMObjectFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AC2B732180CC44006FB10B /* KMObjectFactory.swift */; };
-		05AC2B7E2180CC45006FB10B /* KMProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AC2B742180CC45006FB10B /* KMProgram.swift */; };
-		05AC2B7F2180CC45006FB10B /* KMPropertyTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AC2B752180CC45006FB10B /* KMPropertyTable.swift */; };
-		05AC2B802180CC45006FB10B /* KMConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AC2B762180CC45006FB10B /* KMConfig.swift */; };
-		05AC2B812180CC45006FB10B /* KMPrimitiveFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AC2B772180CC45006FB10B /* KMPrimitiveFactory.swift */; };
-		05AC2B822180CC45006FB10B /* KMApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AC2B782180CC45006FB10B /* KMApplication.swift */; };
-		05AC2B832180CC45006FB10B /* KMObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AC2B792180CC45006FB10B /* KMObject.swift */; };
+		05B1DFDE218CAAB200ECEBD7 /* KMObjectFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B1DFD8218CAAB100ECEBD7 /* KMObjectFactory.swift */; };
+		05B1DFDF218CAAB200ECEBD7 /* KMPrimitiveFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B1DFD9218CAAB100ECEBD7 /* KMPrimitiveFactory.swift */; };
+		05B1DFE0218CAAB200ECEBD7 /* KMObjectLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B1DFDA218CAAB100ECEBD7 /* KMObjectLoader.swift */; };
+		05B1DFE1218CAAB200ECEBD7 /* KMFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B1DFDB218CAAB100ECEBD7 /* KMFunction.swift */; };
+		05B1DFE2218CAAB200ECEBD7 /* KMObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B1DFDC218CAAB200ECEBD7 /* KMObject.swift */; };
+		05B1DFE3218CAAB200ECEBD7 /* KMApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B1DFDD218CAAB200ECEBD7 /* KMApplication.swift */; };
 		05E22D9C217F685600E404AF /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E22D9B217F685600E404AF /* KiwiEngine.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,17 +31,12 @@
 		0581F88A217E24960043B82F /* KiwiObject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiObject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0581F88D217E24960043B82F /* KiwiObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiObject.h; sourceTree = "<group>"; };
 		0581F88E217E24960043B82F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		05ABB465217F6DBD001D69F2 /* KMProcessCompiler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMProcessCompiler.swift; sourceTree = "<group>"; };
-		05AC2B702180CC44006FB10B /* KMProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMProcess.swift; sourceTree = "<group>"; };
-		05AC2B712180CC44006FB10B /* KMObjectLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMObjectLoader.swift; sourceTree = "<group>"; };
-		05AC2B722180CC44006FB10B /* KMFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMFunction.swift; sourceTree = "<group>"; };
-		05AC2B732180CC44006FB10B /* KMObjectFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMObjectFactory.swift; sourceTree = "<group>"; };
-		05AC2B742180CC45006FB10B /* KMProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMProgram.swift; sourceTree = "<group>"; };
-		05AC2B752180CC45006FB10B /* KMPropertyTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMPropertyTable.swift; sourceTree = "<group>"; };
-		05AC2B762180CC45006FB10B /* KMConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMConfig.swift; sourceTree = "<group>"; };
-		05AC2B772180CC45006FB10B /* KMPrimitiveFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMPrimitiveFactory.swift; sourceTree = "<group>"; };
-		05AC2B782180CC45006FB10B /* KMApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMApplication.swift; sourceTree = "<group>"; };
-		05AC2B792180CC45006FB10B /* KMObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMObject.swift; sourceTree = "<group>"; };
+		05B1DFD8218CAAB100ECEBD7 /* KMObjectFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMObjectFactory.swift; sourceTree = "<group>"; };
+		05B1DFD9218CAAB100ECEBD7 /* KMPrimitiveFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMPrimitiveFactory.swift; sourceTree = "<group>"; };
+		05B1DFDA218CAAB100ECEBD7 /* KMObjectLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMObjectLoader.swift; sourceTree = "<group>"; };
+		05B1DFDB218CAAB100ECEBD7 /* KMFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMFunction.swift; sourceTree = "<group>"; };
+		05B1DFDC218CAAB200ECEBD7 /* KMObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMObject.swift; sourceTree = "<group>"; };
+		05B1DFDD218CAAB200ECEBD7 /* KMApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMApplication.swift; sourceTree = "<group>"; };
 		05E22D9B217F685600E404AF /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../local/Frameworks/KiwiEngine.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,36 +82,15 @@
 			isa = PBXGroup;
 			children = (
 				0581F88D217E24960043B82F /* KiwiObject.h */,
-				0594CB09217E36430014051A /* Object */,
-				0594CB14217E36600014051A /* Compiler */,
+				05B1DFDC218CAAB200ECEBD7 /* KMObject.swift */,
+				05B1DFDD218CAAB200ECEBD7 /* KMApplication.swift */,
+				05B1DFDB218CAAB100ECEBD7 /* KMFunction.swift */,
+				05B1DFD8218CAAB100ECEBD7 /* KMObjectFactory.swift */,
+				05B1DFDA218CAAB100ECEBD7 /* KMObjectLoader.swift */,
+				05B1DFD9218CAAB100ECEBD7 /* KMPrimitiveFactory.swift */,
 			);
 			name = Source;
 			path = ../Source;
-			sourceTree = "<group>";
-		};
-		0594CB09217E36430014051A /* Object */ = {
-			isa = PBXGroup;
-			children = (
-				05AC2B782180CC45006FB10B /* KMApplication.swift */,
-				05AC2B762180CC45006FB10B /* KMConfig.swift */,
-				05AC2B722180CC44006FB10B /* KMFunction.swift */,
-				05AC2B792180CC45006FB10B /* KMObject.swift */,
-				05AC2B732180CC44006FB10B /* KMObjectFactory.swift */,
-				05AC2B712180CC44006FB10B /* KMObjectLoader.swift */,
-				05AC2B772180CC45006FB10B /* KMPrimitiveFactory.swift */,
-				05AC2B702180CC44006FB10B /* KMProcess.swift */,
-				05AC2B742180CC45006FB10B /* KMProgram.swift */,
-				05AC2B752180CC45006FB10B /* KMPropertyTable.swift */,
-			);
-			path = Object;
-			sourceTree = "<group>";
-		};
-		0594CB14217E36600014051A /* Compiler */ = {
-			isa = PBXGroup;
-			children = (
-				05ABB465217F6DBD001D69F2 /* KMProcessCompiler.swift */,
-			);
-			path = Compiler;
 			sourceTree = "<group>";
 		};
 		05E22D9A217F685500E404AF /* Frameworks */ = {
@@ -193,7 +162,7 @@
 				TargetAttributes = {
 					0581F889217E24960043B82F = {
 						CreatedOnToolsVersion = 10.0;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1010;
 					};
 					05D5D069217E261800E1CFCF = {
 						CreatedOnToolsVersion = 10.0;
@@ -233,17 +202,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05AC2B7D2180CC45006FB10B /* KMObjectFactory.swift in Sources */,
-				05AC2B7F2180CC45006FB10B /* KMPropertyTable.swift in Sources */,
-				05AC2B832180CC45006FB10B /* KMObject.swift in Sources */,
-				05ABB466217F6DBD001D69F2 /* KMProcessCompiler.swift in Sources */,
-				05AC2B7E2180CC45006FB10B /* KMProgram.swift in Sources */,
-				05AC2B7C2180CC45006FB10B /* KMFunction.swift in Sources */,
-				05AC2B7B2180CC45006FB10B /* KMObjectLoader.swift in Sources */,
-				05AC2B822180CC45006FB10B /* KMApplication.swift in Sources */,
-				05AC2B812180CC45006FB10B /* KMPrimitiveFactory.swift in Sources */,
-				05AC2B7A2180CC45006FB10B /* KMProcess.swift in Sources */,
-				05AC2B802180CC45006FB10B /* KMConfig.swift in Sources */,
+				05B1DFDF218CAAB200ECEBD7 /* KMPrimitiveFactory.swift in Sources */,
+				05B1DFE2218CAAB200ECEBD7 /* KMObject.swift in Sources */,
+				05B1DFE3218CAAB200ECEBD7 /* KMApplication.swift in Sources */,
+				05B1DFE1218CAAB200ECEBD7 /* KMFunction.swift in Sources */,
+				05B1DFE0218CAAB200ECEBD7 /* KMObjectLoader.swift in Sources */,
+				05B1DFDE218CAAB200ECEBD7 /* KMObjectFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

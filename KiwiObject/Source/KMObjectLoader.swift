@@ -49,18 +49,12 @@ public class KMObjectLoader: KMDefaultObject
 				let script = try String(contentsOf: url)
 				return context.evaluateScript(script)
 			} catch _ {
-				raiseException(message: "Can not compile for class \"\(name)\"")
+				NSLog("Can not compile for class \"\(name)\"")
 			}
 		} else {
-			raiseException(message: "Can not find library] \(name)")
+			NSLog("Can not find library] \(name)")
 		}
 		return nil
-	}
-
-	private func raiseException(message msg: String) {
-		let callback  = context.exceptionCallback
-		let exception = KEException.Terminated(context, msg)
-		callback(exception)
 	}
 }
 
