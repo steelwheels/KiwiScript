@@ -6,28 +6,29 @@
  */
 
 import KiwiEngine
-import KiwiObject
+import KiwiLibrary
 import CoconutData
 import JavaScriptCore
 import Foundation
 
 public class KHShellConsole
 {
-	private var mApplication:	KMApplication
+	private var mContext:	KEContext
+	private var mConsole:	CNConsole
 
-	public init(application app: KMApplication){
-		mApplication	= app
+	public init(context ctxt: KEContext, console cons: CNConsole){
+		mContext	= ctxt
+		mConsole	= cons
 	}
 
 	public func repl() -> Int32
 	{
-		let shell   = KHShell(application: mApplication)
-		let console = mApplication.console
+		let shell   = KHShell(context: mContext, console: mConsole)
 
 		var docont = true
 		var result: Int32 = 0
 		while docont {
-			if let str = console.scan() {
+			if let str = mConsole.scan() {
 				switch shell.execute(commandLine: str) {
 				case .Continue:
 					break

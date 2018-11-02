@@ -6,7 +6,7 @@
  */
 
 import KiwiEngine
-import KiwiObject
+import KiwiLibrary
 import CoconutData
 import JavaScriptCore
 import Foundation
@@ -18,37 +18,23 @@ public class KHShell
 		case Exit(code: Int32)
 	}
 
-	private var mApplication: 	KMApplication
+	private var mContext:		KEContext
+	private var mConsole:		CNConsole
 	private var mResult:		EvaluationResult = .Continue
 
-	public init(application app: KMApplication){
-		mApplication = app
-		mApplication.context.exceptionCallback = {
+	public init(context ctxt: KEContext, console cons: CNConsole){
+		mContext = ctxt
+		mConsole = cons
+		ctxt.exceptionCallback = {
 			(exception: KEException) in
-			let console = self.mApplication.console
-			switch exception {
-			case .CompileError(let message):
-				console.error(string: message + "\n")
-			case .Evaluated(_, let result):
-				if let value = result {
-					let desc = value.description
-					console.print(string: desc + "\n")
-				}
-			case .Runtime(let message):
-				console.error(string: message + "\n")
-				self.mResult = .Exit(code: -1)
-			case .Exit(let code):
-				self.mResult = .Exit(code: code)
-			case .Terminated(_, let message):
-				console.error(string: message + "\n")
-				self.mResult = .Exit(code: -1)
-			}
+			let console = self.mConsole
+			console.error(string: "[Exception] " + exception.description + "\n")
 		}
 	}
 
 	public func execute(commandLine cline: String) -> EvaluationResult {
 		mResult = EvaluationResult.Continue
-		mApplication.context.runScript(script: cline)
+		mContext.evaluateScript(cline)
 		return mResult
 	}
 }

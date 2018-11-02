@@ -7,10 +7,37 @@
 
 import KiwiShell
 import KiwiEngine
-import KiwiObject
+import KiwiLibrary
 import CoconutData
 import JavaScriptCore
 import Foundation
+
+public func main()
+{
+	let config  = KLConfig(kind: .Terminal)
+	config.doStrict  = true
+	config.doVerbose = true
+
+	let console = CNFileConsole()
+	let context = KEContext(virtualMachine: JSVirtualMachine())
+	let compiler = KLCompiler(console: console, config: config)
+	guard compiler.compile(context: context) else {
+		console.error(string: "Compilation was failed.\n")
+		return
+	}
+
+	let shell    = KHShellConsole(context: context, console: console)
+	let result   = shell.repl()
+	print(" -> result = \(result)")
+
+	console.print(string: "[Bye]\n")
+}
+
+main()
+
+/*
+import KiwiShell
+
 
 let args    = CommandLine.arguments
 let appname = args[0]
@@ -23,10 +50,8 @@ guard let vm = JSVirtualMachine() else {
 let application = KMApplication(kind: .Terminal)
 //application.name = appname
 
-let shell    = KHShellConsole(application: application)
-let result   = shell.repl()
-print(" -> result = \(result)")
-/*
+
+
 let editline = CNEditLine()
 editline.setup(programName: "Shell", console: console)
 editline.doBuffering = true
