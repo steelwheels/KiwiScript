@@ -21,6 +21,9 @@ open class KLCompiler: KECompiler
 		super.init(console: cons, config: conf)
 	}
 
+	public var console: CNConsole { get { return mConsole }}
+	public var config: KLConfig { get { return mConfig }}
+	
 	open override func compile(context ctxt: KEContext) -> Bool {
 		guard super.compile(context: ctxt) else {
 			return false

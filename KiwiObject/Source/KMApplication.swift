@@ -16,8 +16,16 @@ public class KMApplication: KMDefaultObject
 	private static let ArgumentsProperty	= "arguments"
 	private static let ExitProperty		= "exit"
 
+	private var mProgram: KMProgram
+
 	public init(instanceName iname: String, context ctxt: KEContext, config cfg: KLConfig) {
+		/* Allocate program */
+		mProgram = KMProgram(instanceName: "program", context: ctxt)
+		/* Init super object */
 		super.init(instanceName: iname, context: ctxt)
+
+		/* Link: Application -> Program */
+		self.propertyTable.set("program", JSValue(object: mProgram.propertyTable, in: ctxt))
 
 		/* Add arguments */
 		let empty: Array<String> = []

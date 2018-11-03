@@ -22,6 +22,7 @@
 		0547EBCA217E41720078FB32 /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0547EBC7217E40EB0078FB32 /* KiwiEngine.framework */; };
 		0547EBCC217E41980078FB32 /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0547EBCB217E41980078FB32 /* CoconutData.framework */; };
 		0547EBCD217E41B20078FB32 /* CoconutData.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0547EBCB217E41980078FB32 /* CoconutData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		055EA18D218D89FD00EE019D /* KMProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055EA18C218D89FD00EE019D /* KMProgram.swift */; };
 		05E9124B217E1CD300FA24EC /* KiwiObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E91249217E1CD300FA24EC /* KiwiObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -87,6 +88,7 @@
 		0547EBBF217E3FAF0078FB32 /* UTApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTApplication.swift; sourceTree = "<group>"; };
 		0547EBC7217E40EB0078FB32 /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../Library/Frameworks/KiwiEngine.framework; sourceTree = "<group>"; };
 		0547EBCB217E41980078FB32 /* CoconutData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutData.framework; path = ../../../../Library/Frameworks/CoconutData.framework; sourceTree = "<group>"; };
+		055EA18C218D89FD00EE019D /* KMProgram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMProgram.swift; sourceTree = "<group>"; };
 		05E91246217E1CD300FA24EC /* KiwiObject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiObject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05E91249217E1CD300FA24EC /* KiwiObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiObject.h; sourceTree = "<group>"; };
 		05E9124A217E1CD300FA24EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 			children = (
 				05E91249217E1CD300FA24EC /* KiwiObject.h */,
 				05195949218CA4C70087D0A8 /* KMApplication.swift */,
+				055EA18C218D89FD00EE019D /* KMProgram.swift */,
 				05195947218CA4C70087D0A8 /* KMObject.swift */,
 				05195948218CA4C70087D0A8 /* KMFunction.swift */,
 				0519594B218CA4C70087D0A8 /* KMObjectFactory.swift */,
@@ -377,6 +380,7 @@
 				05195951218CA4C70087D0A8 /* KMObjectLoader.swift in Sources */,
 				05195952218CA4C70087D0A8 /* KMObjectFactory.swift in Sources */,
 				05195950218CA4C70087D0A8 /* KMApplication.swift in Sources */,
+				055EA18D218D89FD00EE019D /* KMProgram.swift in Sources */,
 				0519594F218CA4C70087D0A8 /* KMFunction.swift in Sources */,
 				0519594E218CA4C70087D0A8 /* KMObject.swift in Sources */,
 			);
