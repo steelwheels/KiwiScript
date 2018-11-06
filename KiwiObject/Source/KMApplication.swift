@@ -11,12 +11,12 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-public class KMApplication: KMDefaultObject
+open class KMApplication: KMDefaultObject
 {
 	private static let ArgumentsProperty	= "arguments"
 	private static let ExitProperty		= "exit"
 
-	private var mProgram: KMProgram
+	private var mProgram: KMProgram?
 
 	public init(instanceName iname: String, context ctxt: KEContext, config cfg: KLConfig) {
 		/* Allocate program */
@@ -24,15 +24,10 @@ public class KMApplication: KMDefaultObject
 		/* Init super object */
 		super.init(instanceName: iname, context: ctxt)
 
-		/* Link: Application -> Program */
-		self.propertyTable.set("program", JSValue(object: mProgram.propertyTable, in: ctxt))
 
 		/* Add arguments */
 		let empty: Array<String> = []
 		self.arguments = empty
-
-		/* Set exit method */
-		addExitMethod(context: ctxt, config: cfg)
 	}
 
 	public var arguments: Array<Any>? {
@@ -40,25 +35,19 @@ public class KMApplication: KMDefaultObject
 		set(args) { if let a = args { self.set(name: KMApplication.ArgumentsProperty, arrayValue: a) }}
 	}
 
-	private func addExitMethod(context ctxt: KEContext, config cfg: KLConfig){
-		let exitFunc: @convention(block) (_ value: JSValue) -> JSValue
-		switch cfg.kind {
-		case .Terminal:
-			exitFunc = {
-				(_ value: JSValue) -> JSValue in
-				let exitcode = self.valueToCode(value: value)
-				return JSValue(int32: exitcode, in: ctxt)
-			}
-		case .Window:
-			exitFunc = {
-				(_ value: JSValue) -> JSValue in
-				#if os(OSX)
-					NSApplication.shared.terminate(self)
-				#endif
-				return JSValue(undefinedIn: ctxt)
+	public var program: KMProgram? {
+		get {
+			return mProgram
+		}
+		set(prog){
+			mProgram = prog
+			/* Link: Application -> Program */
+			if let p = prog {
+				self.propertyTable.set("program", JSValue(object: p.propertyTable, in: context))
+			} else {
+				self.propertyTable.set("program", JSValue(nullIn: context))
 			}
 		}
-		propertyTable.set(KMApplication.ExitProperty, JSValue(object: exitFunc, in: ctxt))
 	}
 
 	private func valueToCode(value val: JSValue) -> Int32 {

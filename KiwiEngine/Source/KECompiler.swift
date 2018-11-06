@@ -26,8 +26,8 @@ open class KECompiler
 		if let script = readResource(fileName: "boot", fileExtension: "js") {
 			let _ = compile(context: ctxt, statement: script)
 		}
-		/* Define ExitCode enum */
-		defineExitCode(context: ctxt)
+		/* Define Enum Types */
+		defineEnumTypes(context: ctxt)
 
 		return true
 	}
@@ -38,17 +38,13 @@ open class KECompiler
 		}
 	}
 
-	private func defineExitCode(context ctxt: KEContext){
-		let enumtable = KEEnumTable(typeName: "ExitCode")
-		enumtable.add(members: [
-			KEEnumTable.Member(name: "noError",		value: CNExitCode.NoError.rawValue),
-			KEEnumTable.Member(name: "internalError",	value: CNExitCode.InternalError.rawValue),
-			KEEnumTable.Member(name: "commaneLineError",	value: CNExitCode.CommandLineError.rawValue),
-			KEEnumTable.Member(name: "syntaxError",		value: CNExitCode.SyntaxError.rawValue),
-			KEEnumTable.Member(name: "execError",		value: CNExitCode.ExecError.rawValue),
-			KEEnumTable.Member(name: "exception",		value: CNExitCode.Exception.rawValue)
-		])
-		compile(context: ctxt, enumTable: enumtable)
+	private func defineEnumTypes(context ctxt: KEContext){
+		let table = KEEnumTable.shared
+		for typename in table.typeNames.sorted() {
+			if let etype = table.search(by: typename) {
+				compile(context: ctxt, enumType: etype)
+			}
+		}
 	}
 
 	public func readResource(fileName file: String, fileExtension ext: String) -> String? {
@@ -62,7 +58,7 @@ open class KECompiler
 				log(string: "[Error] Unknown")
 			}
 		} else {
-			log(string: "[Error] Can not read \"\(file).\(ext)\"")
+			log(string: "[Error] Can not read \"\(file).\(ext)\"\n")
 		}
 		return nil
 	}
@@ -102,14 +98,14 @@ open class KECompiler
 		return ctxt.evaluateScript(addedstmt)
 	}
 
-	public func compile(context ctxt: KEContext, enumTable etable: KEEnumTable){
+	public func compile(context ctxt: KEContext, enumType etype: KEEnumType){
 		/* Compile */
-		let typename = etable.typeName
+		let typename = etype.typeName
 		log(string: "/* Define Enum: \(typename) */\n")
 
 		var enumstmt = "let \(typename) = {\n"
 		var is1st = true
-		for member in etable.members {
+		for member in etype.members {
 			if !is1st {
 				enumstmt += ",\n"
 			}

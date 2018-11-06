@@ -18,6 +18,7 @@ function _exec(fn, ...args)
 	try {
 		return fn(...args) ;
 	} catch(err) {
+		console.log(err.message + "\n") ;
 		return err.code ;
 	}
 }

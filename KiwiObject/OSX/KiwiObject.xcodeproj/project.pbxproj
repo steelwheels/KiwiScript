@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		050E13E9218DB5AB00279007 /* KMEnumTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E13E8218DB5AB00279007 /* KMEnumTable.swift */; };
 		0519594C218CA4C70087D0A8 /* KMPrimitiveFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05195945218CA4C60087D0A8 /* KMPrimitiveFactory.swift */; };
 		0519594E218CA4C70087D0A8 /* KMObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05195947218CA4C70087D0A8 /* KMObject.swift */; };
 		0519594F218CA4C70087D0A8 /* KMFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05195948218CA4C70087D0A8 /* KMFunction.swift */; };
@@ -74,6 +75,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		050E13E8218DB5AB00279007 /* KMEnumTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMEnumTable.swift; sourceTree = "<group>"; };
 		05195945218CA4C60087D0A8 /* KMPrimitiveFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMPrimitiveFactory.swift; sourceTree = "<group>"; };
 		05195947218CA4C70087D0A8 /* KMObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMObject.swift; sourceTree = "<group>"; };
 		05195948218CA4C70087D0A8 /* KMFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMFunction.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				0519594B218CA4C70087D0A8 /* KMObjectFactory.swift */,
 				0519594A218CA4C70087D0A8 /* KMObjectLoader.swift */,
 				05195945218CA4C60087D0A8 /* KMPrimitiveFactory.swift */,
+				050E13E8218DB5AB00279007 /* KMEnumTable.swift */,
 			);
 			name = Source;
 			path = ../Source;
@@ -377,6 +380,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0519594C218CA4C70087D0A8 /* KMPrimitiveFactory.swift in Sources */,
+				050E13E9218DB5AB00279007 /* KMEnumTable.swift in Sources */,
 				05195951218CA4C70087D0A8 /* KMObjectLoader.swift in Sources */,
 				05195952218CA4C70087D0A8 /* KMObjectFactory.swift in Sources */,
 				05195950218CA4C70087D0A8 /* KMApplication.swift in Sources */,

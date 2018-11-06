@@ -29,52 +29,12 @@ open class KLCompiler: KECompiler
 			return false
 		}
 
-		defineEnumTypes(context: ctxt)
 		defineFunctions(context: ctxt)
 		defineClassObjects(context: ctxt)
 		defineObjects(context: ctxt)
 		defineConstructors(context: ctxt)
 
 		return true
-	}
-
-	private func defineEnumTypes(context ctxt: KEContext) {
-		/* Alignment */
-		let alignment = KEEnumTable(typeName: "Alignment")
-		alignment.add(members: [
-			KEEnumTable.Member(name: "left",	value: CNAlignment.Left.rawValue),
-			KEEnumTable.Member(name: "center",	value: CNAlignment.Center.rawValue),
-			KEEnumTable.Member(name: "right",	value: CNAlignment.Right.rawValue),
-			KEEnumTable.Member(name: "top",		value: CNAlignment.Top.rawValue),
-			KEEnumTable.Member(name: "middle",	value: CNAlignment.Middle.rawValue),
-			KEEnumTable.Member(name: "bottom",	value: CNAlignment.Bottom.rawValue)
-			])
-		super.compile(context: ctxt, enumTable: alignment)
-
-		/* Color */
-		let color = KEEnumTable(typeName: "Color")
-		color.add(members: [
-			KEEnumTable.Member(name: "black",	value: CNColor.Black.rawValue),
-			KEEnumTable.Member(name: "red",		value: CNColor.Red.rawValue),
-			KEEnumTable.Member(name: "green",	value: CNColor.Green.rawValue),
-			KEEnumTable.Member(name: "yellow",	value: CNColor.Yellow.rawValue),
-			KEEnumTable.Member(name: "blue",	value: CNColor.Blue.rawValue),
-			KEEnumTable.Member(name: "magenta",	value: CNColor.Magenta.rawValue),
-			KEEnumTable.Member(name: "cyan",	value: CNColor.Cyan.rawValue),
-			KEEnumTable.Member(name: "white",	value: CNColor.White.rawValue),
-			KEEnumTable.Member(name: "min",		value: CNColor.Min.rawValue),
-			KEEnumTable.Member(name: "max",		value: CNColor.Max.rawValue)
-			])
-		super.compile(context: ctxt, enumTable: color)
-
-		/* Authorize */
-		let authorize = KEEnumTable(typeName: "Authorize")
-		authorize.add(members: [
-			KEEnumTable.Member(name: "undetermined",	value: CNAuthorizeState.Undetermined.rawValue),
-			KEEnumTable.Member(name: "denied",		value: CNAuthorizeState.Denied.rawValue),
-			KEEnumTable.Member(name: "authorized",		value: CNAuthorizeState.Authorized.rawValue)
-			])
-		super.compile(context: ctxt, enumTable: authorize)
 	}
 
 	private func defineFunctions(context ctxt: KEContext) {
@@ -141,6 +101,24 @@ open class KLCompiler: KECompiler
 			return JSValue(bool: result, in: ctxt)
 		}
 		ctxt.set(name: "isDate", function: isDateFunc)
+
+		/* exit function */
+		switch mConfig.kind {
+		case .Terminal:
+			let _ = compile(context: ctxt, statement: "function exit(code){ _exit(code) ; }\n")
+		case .Window:
+			#if os(OSX)
+				let exitfunc: @convention(block) (_ value: JSValue) -> JSValue = {
+					(_ value: JSValue) -> JSValue in
+					NSApplication.shared.terminate(self)
+					return JSValue(undefinedIn: ctxt)
+				}
+				log(string: "/* Define exit function */\n")
+				ctxt.set(name: "exit", function: exitfunc)
+			#else
+				break
+			#endif
+		}
 	}
 
 	private func defineClassObjects(context ctxt: KEContext) {

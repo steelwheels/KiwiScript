@@ -1,30 +1,72 @@
-Hello, world!!
-[Allocate compiler]
-[Start compile]
-'use strict' ;/* Define Enum: Alignment */
-Alignment.__defineGetter__("center", function(   ){ return this.get("center"     ); }) ;
-Alignment.__defineGetter__("middle", function(   ){ return this.get("middle"     ); }) ;
-Alignment.__defineGetter__("bottom", function(   ){ return this.get("bottom"     ); }) ;
-Alignment.__defineGetter__("left", function(   ){ return this.get("left"     ); }) ;
-Alignment.__defineGetter__("right", function(   ){ return this.get("right"     ); }) ;
-Alignment.__defineGetter__("top", function(   ){ return this.get("top"     ); }) ;
-/* Define Enum: Color */
-Color.__defineGetter__("green", function(   ){ return this.get("green"     ); }) ;
-Color.__defineGetter__("yellow", function(   ){ return this.get("yellow"     ); }) ;
-Color.__defineGetter__("min", function(   ){ return this.get("min"     ); }) ;
-Color.__defineGetter__("black", function(   ){ return this.get("black"     ); }) ;
-Color.__defineGetter__("cyan", function(   ){ return this.get("cyan"     ); }) ;
-Color.__defineGetter__("blue", function(   ){ return this.get("blue"     ); }) ;
-Color.__defineGetter__("red", function(   ){ return this.get("red"     ); }) ;
-Color.__defineGetter__("magenta", function(   ){ return this.get("magenta"     ); }) ;
-Color.__defineGetter__("white", function(   ){ return this.get("white"     ); }) ;
-Color.__defineGetter__("max", function(   ){ return this.get("max"     ); }) ;
+'use strict' ;/* boot.js */
+
+class ExitError extends Error
+{
+	constructor(code, message){
+		super(message) ;
+		this.code = code ;
+	}
+}
+
+function _exit(code)
+{
+	throw new ExitError(code, "exit") ;
+}
+
+function _exec(fn, ...args)
+{
+	try {
+		return fn(...args) ;
+	} catch(err) {
+		return err.code ;
+	}
+}
+/* Define Enum: Alignment */
+let Alignment = {
+	left : 0,
+	center : 1,
+	right : 2,
+	top : 3,
+	middle : 4,
+	bottom : 5
+};
 /* Define Enum: Authorize */
-Authorize.__defineGetter__("denied", function(   ){ return this.get("denied"     ); }) ;
-Authorize.__defineGetter__("authorized", function(   ){ return this.get("authorized"     ); }) ;
-Authorize.__defineGetter__("undetermined", function(   ){ return this.get("undetermined"     ); }) ;
-/* Define require function */
-module = {} ;
-/* Apply config */
-[UnitTest]
+let Authorize = {
+	undetermined : 0,
+	denied : 2,
+	authorized : 3
+};
+/* Define Enum: Color */
+let Color = {
+	black : 0,
+	red : 1,
+	green : 2,
+	yellow : 3,
+	blue : 4,
+	magenta : 5,
+	cyan : 6,
+	white : 7,
+	min : 0,
+	max : 7
+};
+/* Define Enum: ExitCode */
+let ExitCode = {
+	noError : 0,
+	internalError : 1,
+	commaneLineError : 2,
+	syntaxError : 3,
+	execError : 4,
+	exception : 5
+};
+/* Define Enum: TextAlign */
+let TextAlign = {
+	left : 0,
+	center : 2,
+	right : 1,
+	justfied : 3,
+	normal : 4
+};
+  -> Compiler: OK
 [Bye]
+[UnitTest]
+

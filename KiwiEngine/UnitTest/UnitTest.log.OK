@@ -5,7 +5,7 @@ SyntaxError: Unexpected identifier 'hoge'. Expected a ';' following a return sta
 testError : OK
 * Setup compiler
 * compile
-/* boot.js */
+'use strict' ;/* boot.js */
 
 class ExitError extends Error
 {
@@ -25,13 +25,59 @@ function _exec(fn, ...args)
 	try {
 		return fn(...args) ;
 	} catch(err) {
+		console.log(err.message + "\n") ;
 		return err.code ;
 	}
 }
+/* Define Enum: Alignment */
+let Alignment = {
+	left : 0,
+	center : 1,
+	right : 2,
+	top : 3,
+	middle : 4,
+	bottom : 5
+};
+/* Define Enum: Authorize */
+let Authorize = {
+	undetermined : 0,
+	denied : 2,
+	authorized : 3
+};
+/* Define Enum: Color */
+let Color = {
+	black : 0,
+	red : 1,
+	green : 2,
+	yellow : 3,
+	blue : 4,
+	magenta : 5,
+	cyan : 6,
+	white : 7,
+	min : 0,
+	max : 7
+};
+/* Define Enum: ExitCode */
+let ExitCode = {
+	noError : 0,
+	internalError : 1,
+	commaneLineError : 2,
+	syntaxError : 3,
+	execError : 4,
+	exception : 5
+};
+/* Define Enum: TextAlign */
+let TextAlign = {
+	left : 0,
+	center : 2,
+	right : 1,
+	justfied : 3,
+	normal : 4
+};
 Compile ... OK
 testCompiler : OK
 * Setup compiler
-/* boot.js */
+'use strict' ;/* boot.js */
 
 class ExitError extends Error
 {
@@ -51,9 +97,55 @@ function _exec(fn, ...args)
 	try {
 		return fn(...args) ;
 	} catch(err) {
+		console.log(err.message + "\n") ;
 		return err.code ;
 	}
 }
+/* Define Enum: Alignment */
+let Alignment = {
+	left : 0,
+	center : 1,
+	right : 2,
+	top : 3,
+	middle : 4,
+	bottom : 5
+};
+/* Define Enum: Authorize */
+let Authorize = {
+	undetermined : 0,
+	denied : 2,
+	authorized : 3
+};
+/* Define Enum: Color */
+let Color = {
+	black : 0,
+	red : 1,
+	green : 2,
+	yellow : 3,
+	blue : 4,
+	magenta : 5,
+	cyan : 6,
+	white : 7,
+	min : 0,
+	max : 7
+};
+/* Define Enum: ExitCode */
+let ExitCode = {
+	noError : 0,
+	internalError : 1,
+	commaneLineError : 2,
+	syntaxError : 3,
+	execError : 4,
+	exception : 5
+};
+/* Define Enum: TextAlign */
+let TextAlign = {
+	left : 0,
+	center : 2,
+	right : 1,
+	justfied : 3,
+	normal : 4
+};
 Compile: OK
 _exec(function(){ return 0 ; }) ;
 * result0 = 0
