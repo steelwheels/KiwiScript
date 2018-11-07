@@ -25,7 +25,6 @@ open class KLConfig: KEConfig
 	}
 
 	public var	kind		: ApplicationKind
-	//public var	scriptFiles	: Array<String>
 
 	public init(kind appkind: ApplicationKind){
 		#if os(OSX)

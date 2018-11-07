@@ -14,11 +14,45 @@ import Darwin
 
 @objc public protocol KLProcessProtocol: JSExport
 {
+	func exit(_ code: JSValue) -> JSValue 		// Undefined
+}
+
+@objc public protocol KLProcessObjectProtocol: JSExport
+{
 	func isRunning() -> JSValue // Bool
 	func waitUntilExit() -> JSValue // Undefined
 }
 
 @objc public class KLProcess: NSObject, KLProcessProtocol
+{
+	private var mContext:	KEContext
+	private var mConfig: 	KLConfig
+
+	public init(context ctxt: KEContext, config conf: KLConfig){
+		mContext = ctxt
+		mConfig  = conf
+		super.init()
+	}
+
+	public func exit(_ code: JSValue) -> JSValue {
+		let ecode: Int32
+		if code.isNumber {
+			ecode = code.toInt32()
+		} else {
+			NSLog("[Error] Invalid parameter: \(code.description) at \(#function)")
+			ecode = 1
+		}
+		switch mConfig.kind {
+		case .Terminal:
+			Darwin.exit(ecode)
+		case .Window:
+			NSApplication.shared.terminate(self)
+		}
+		return JSValue(undefinedIn: mContext)
+	}
+}
+
+@objc public class KLProcessObject: NSObject, KLProcessObjectProtocol
 {
 	private var mProcess:		Process
 	private var mContext:		KEContext

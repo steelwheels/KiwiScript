@@ -101,24 +101,6 @@ open class KLCompiler: KECompiler
 			return JSValue(bool: result, in: ctxt)
 		}
 		ctxt.set(name: "isDate", function: isDateFunc)
-
-		/* exit function */
-		switch mConfig.kind {
-		case .Terminal:
-			let _ = compile(context: ctxt, statement: "function exit(code){ _exit(code) ; }\n")
-		case .Window:
-			#if os(OSX)
-				let exitfunc: @convention(block) (_ value: JSValue) -> JSValue = {
-					(_ value: JSValue) -> JSValue in
-					NSApplication.shared.terminate(self)
-					return JSValue(undefinedIn: ctxt)
-				}
-				log(string: "/* Define exit function */\n")
-				ctxt.set(name: "exit", function: exitfunc)
-			#else
-				break
-			#endif
-		}
 	}
 
 	private func defineClassObjects(context ctxt: KEContext) {
@@ -149,7 +131,13 @@ open class KLCompiler: KECompiler
 		case .Window:
 			break
 		}
-		
+
+		#if os(OSX)
+			/* Process */
+			let process = KLProcess(context: ctxt, config: mConfig)
+			ctxt.set(name: "Process", object: process)
+		#endif
+
 		/* JSON */
 		let json = KLJSON(context: ctxt)
 		ctxt.set(name: "JSON", object: json)
