@@ -34,7 +34,7 @@ import Foundation
 		let errpipe	= valueToPipe(value: error)
 		if let cmdstr = cmd.toString() {
 			let shell = CNShell.execute(command: cmdstr, input: inpipe, output: outpipe, error: errpipe, terminateHandler: nil)
-			let process = KLProcessObject(process: shell, context: mContext)
+			let process = KLProcess(process: shell, context: mContext)
 			return JSValue(object: process, in: mContext)
 		} else {
 			return JSValue(nullIn: mContext)
@@ -56,7 +56,7 @@ import Foundation
 	public func executeOnConsole(_ cmd: JSValue, _ console: JSValue) -> JSValue {
 		if let cmdstr = cmd.toString(), let cons = valueToConsole(value: console) {
 			let shell   = CNShell.execute(command: cmdstr, console: cons, terminateHandler: nil)
-			let process = KLProcessObject(process: shell, context: mContext)
+			let process = KLProcess(process: shell, context: mContext)
 			return JSValue(object: process, in: mContext)
 		} else {
 			NSLog("[Error] Invalid object: \(cmd) or \(console) at \(#function)")

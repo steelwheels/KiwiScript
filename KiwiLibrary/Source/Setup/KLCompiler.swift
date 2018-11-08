@@ -101,6 +101,37 @@ open class KLCompiler: KECompiler
 			return JSValue(bool: result, in: ctxt)
 		}
 		ctxt.set(name: "isDate", function: isDateFunc)
+
+		/* exit */
+		let exitFunc: @convention(block) (_ value: JSValue) -> JSValue
+		switch mConfig.kind {
+		case .Terminal:
+			exitFunc = {
+				(_ value: JSValue) -> JSValue in
+				let ecode: Int32
+				if value.isNumber {
+					ecode = value.toInt32()
+				} else {
+					NSLog("[Error] Invalid parameter for exit() function")
+					ecode = 1
+				}
+				Darwin.exit(ecode)
+			}
+		case .Window:
+			#if os(OSX)
+				exitFunc = {
+					(_ value: JSValue) -> JSValue in
+					NSApplication.shared.terminate(self)
+					return JSValue(undefinedIn: ctxt)
+				}
+			#else
+				exitFunc = {
+					(_ value: JSValue) -> JSValue in
+					return JSValue(undefinedIn: ctxt)
+				}
+			#endif
+		}
+		ctxt.set(name: "exit", function: exitFunc)
 	}
 
 	private func defineClassObjects(context ctxt: KEContext) {
@@ -131,12 +162,6 @@ open class KLCompiler: KECompiler
 		case .Window:
 			break
 		}
-
-		#if os(OSX)
-			/* Process */
-			let process = KLProcess(context: ctxt, config: mConfig)
-			ctxt.set(name: "Process", object: process)
-		#endif
 
 		/* JSON */
 		let json = KLJSON(context: ctxt)

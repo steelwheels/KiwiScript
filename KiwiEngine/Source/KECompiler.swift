@@ -28,7 +28,6 @@ open class KECompiler
 		}
 		/* Define Enum Types */
 		defineEnumTypes(context: ctxt)
-
 		return true
 	}
 
