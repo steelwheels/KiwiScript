@@ -29,14 +29,14 @@ public func testExec(console cons: CNConsole) -> Bool
 		cons.print(string: "Compile: OK\n")
 
 		/* Test "_exec" */
-		let script0  = "_exec(function(){ return 0 ; }) ;\n"
+		let script0  = "_exec_cancelable(function(){ return 0 ; }) ;\n"
 		let compres0 = compiler.compile(context: context, statement: script0)
 		let resstr0  = valueToString(value: compres0)
 		cons.print(string: "* result0 = \(resstr0)\n")
 		let result0 = (resstr0 == "0")
 
-		/* Test "_exit" */
-		let script1  = "_exec(function(){ _exit(1) ; }) ;\n"
+		/* Test "_cancel" */
+		let script1  = "_exec_cancelable(function(){ console.log(\"call cancel\") ; _cancel(1) ; return 0 ;}) ;\n"
 		let compres1 = compiler.compile(context: context, statement: script1)
 		let resstr1  = valueToString(value: compres1)
 		cons.print(string: "* result1 = \(resstr1)\n")

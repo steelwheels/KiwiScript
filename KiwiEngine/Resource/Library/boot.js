@@ -1,24 +1,24 @@
 /* boot.js */
 
-class ExitError extends Error
+class CancelException extends Error
 {
-	constructor(code, message){
-		super(message) ;
+	constructor(code){
 		this.code = code ;
+		super("CancelException") ;
 	}
 }
 
-function _exit(code)
+function _cancel(code)
 {
-	throw new ExitError(code, "exit") ;
+	throw new CancelException(code) ;
 }
 
-function _exec(fn, ...args)
+function _exec_cancelable(fn, ...args)
 {
 	try {
 		return fn(...args) ;
 	} catch(err) {
-		console.log(err.message + "\n") ;
 		return err.code ;
 	}
 }
+
