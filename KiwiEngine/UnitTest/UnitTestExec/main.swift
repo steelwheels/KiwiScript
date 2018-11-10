@@ -24,11 +24,8 @@ func test(funcName fn:String, result res:Bool) -> Bool
 summary = test(funcName: "testError", result: testError(console: console)) && summary
 summary = test(funcName: "testCompiler", result: testCompiler(console: console)) && summary
 summary = test(funcName: "testExec", result: testExec(console: console)) && summary
+summary = test(funcName: "testListener", result: testListener(console: console)) && summary
 //summary = test(funcName: "testOperation", result: testOperation(console: console)) && summary
-
-//summary = test(funcName: "testPropertyTable2", result: testPropertyTable2(console: console)) && summary
-//summary = test(funcName: "testApplication", result: testApplication(console: console)) && summary
-
 
 if summary {
 	console.print(string: "SUMMARY: OK\n")

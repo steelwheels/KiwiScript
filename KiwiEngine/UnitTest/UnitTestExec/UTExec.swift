@@ -20,7 +20,7 @@ public func testExec(console cons: CNConsole) -> Bool
 	let context  = KEContext(virtualMachine: JSVirtualMachine())
 	context.exceptionCallback = {
 		(_ exception: KEException) -> Void in
-		cons.error(string: exception.description)
+		cons.error(string: exception.description + "\n")
 	}
 
 	console.print(string: "* Setup compiler\n")
@@ -36,7 +36,7 @@ public func testExec(console cons: CNConsole) -> Bool
 		let result0 = (resstr0 == "0")
 
 		/* Test "_cancel" */
-		let script1  = "_exec_cancelable(function(){ console.log(\"call cancel\") ; _cancel(1) ; return 0 ;}) ;\n"
+		let script1  = "_exec_cancelable(function(){ _cancel(1) ; return 0 ;}) ;\n"
 		let compres1 = compiler.compile(context: context, statement: script1)
 		let resstr1  = valueToString(value: compres1)
 		cons.print(string: "* result1 = \(resstr1)\n")

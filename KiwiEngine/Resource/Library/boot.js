@@ -2,9 +2,9 @@
 
 class CancelException extends Error
 {
-	constructor(code){
-		this.code = code ;
+	constructor (code){
 		super("CancelException") ;
+		this.code = code ;
 	}
 }
 

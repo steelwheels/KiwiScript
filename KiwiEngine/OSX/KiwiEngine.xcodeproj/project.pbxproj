@@ -14,6 +14,8 @@
 		054536C61B78021500FE978C /* KiwiEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 054536C51B78021500FE978C /* KiwiEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		054637F21BB05FE400DEE12F /* UTError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054637F01BB05F4500DEE12F /* UTError.swift */; };
 		0573D08D218D77EB00915EA1 /* KEError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0573D08C218D77EB00915EA1 /* KEError.swift */; };
+		057CF7802195F79200299960 /* UTListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057CF77F2195F79200299960 /* UTListener.swift */; };
+		057CF7822195FE7F00299960 /* KEOperationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057CF7812195FE7F00299960 /* KEOperationObject.swift */; };
 		057F881F1B78031B0029AB4F /* KEContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F881E1B78031B0029AB4F /* KEContext.swift */; };
 		058735C620C29AE900797EFD /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 058735C520C29AE900797EFD /* CoconutData.framework */; };
 		058735C720C29B3600797EFD /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 058735C520C29AE900797EFD /* CoconutData.framework */; };
@@ -106,6 +108,8 @@
 		054536C51B78021500FE978C /* KiwiEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiEngine.h; sourceTree = SOURCE_ROOT; };
 		054637F01BB05F4500DEE12F /* UTError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTError.swift; sourceTree = "<group>"; };
 		0573D08C218D77EB00915EA1 /* KEError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEError.swift; sourceTree = "<group>"; };
+		057CF77F2195F79200299960 /* UTListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTListener.swift; sourceTree = "<group>"; };
+		057CF7812195FE7F00299960 /* KEOperationObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEOperationObject.swift; sourceTree = "<group>"; };
 		057F881E1B78031B0029AB4F /* KEContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEContext.swift; sourceTree = "<group>"; };
 		058735C520C29AE900797EFD /* CoconutData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutData.framework; path = ../../../../Library/Frameworks/CoconutData.framework; sourceTree = "<group>"; };
 		058735D120C2BF9200797EFD /* UTCompiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTCompiler.swift; sourceTree = "<group>"; };
@@ -197,6 +201,7 @@
 				05BEA50A2189F80A00F9A4C6 /* KEEnumTable.swift */,
 				05E0242621874C4900AD4728 /* KEConfig.swift */,
 				054530192184A2B6006F96C8 /* KEOperation.swift */,
+				057CF7812195FE7F00299960 /* KEOperationObject.swift */,
 				05DFA828206865800032EC5B /* KECompiler.swift */,
 				05CFAB952034875F001623BC /* KEException.swift */,
 				0573D08C218D77EB00915EA1 /* KEError.swift */,
@@ -231,6 +236,7 @@
 				054637F01BB05F4500DEE12F /* UTError.swift */,
 				058735D120C2BF9200797EFD /* UTCompiler.swift */,
 				052B0F781BE8A33400E3BFEE /* UTExec.swift */,
+				057CF77F2195F79200299960 /* UTListener.swift */,
 				0545301B21851C3F006F96C8 /* UTOperation.swift */,
 			);
 			path = UnitTestExec;
@@ -441,6 +447,7 @@
 			files = (
 				05DFA829206865800032EC5B /* KECompiler.swift in Sources */,
 				05BEA50B2189F80A00F9A4C6 /* KEEnumTable.swift in Sources */,
+				057CF7822195FE7F00299960 /* KEOperationObject.swift in Sources */,
 				0537CE8F1F80F76E00CB313A /* KEValue.swift in Sources */,
 				057F881F1B78031B0029AB4F /* KEContext.swift in Sources */,
 				05E8C6282188BCAE008CAAF8 /* KEObject.swift in Sources */,
@@ -459,6 +466,7 @@
 				054637F21BB05FE400DEE12F /* UTError.swift in Sources */,
 				052B0F7A1BE8A3A400E3BFEE /* UTExec.swift in Sources */,
 				058B53261BA41A6C009522DF /* main.swift in Sources */,
+				057CF7802195F79200299960 /* UTListener.swift in Sources */,
 				058735D220C2BF9200797EFD /* UTCompiler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -83,6 +83,13 @@ open class KECompiler
 		}
 	}
 
+	public func compile(context ctxt: KEContext, instance inst: String, object obj: KEObject) {
+		/* Define setter and getter */
+		for pname in obj.propertyNames {
+			defineSetter(context: ctxt, instance: inst, accessType: .ReadWriteAccess, propertyName: pname)
+		}
+	}
+
 	public func compile(context ctxt: KEContext, statement stmt: String) -> JSValue? {
 		log(string: stmt)
 		return ctxt.evaluateScript(stmt)

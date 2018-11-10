@@ -8,25 +8,28 @@
 import JavaScriptCore
 import Foundation
 
-private typealias FunctionRef	= (_ value: JSValue) -> Void
-
 @objc protocol KEObjectProtocol: JSExport
 {
 	func set(_ name: String, _ value: JSValue)
 	func get(_ name: String) -> JSValue
 }
 
+private enum Function {
+	case reference((_ value: JSValue) -> JSValue)
+	case value(JSValue)
+}
+
 private class KEListener: NSObject
 {
 	private var mContext:		KEContext
-	private var mListenerFuncs:	Array<FunctionRef>
+	private var mListenerFuncs:	Array<Function>
 
 	public init(context ctxt: KEContext){
 		mContext       = ctxt
 		mListenerFuncs = []
 	}
 
-	public func add(listener lsfunc: @escaping (_ value: JSValue) -> Void)
+	public func add(listener lsfunc: Function)
 	{
 		mListenerFuncs.append(lsfunc)
 	}
@@ -36,7 +39,12 @@ private class KEListener: NSObject
 		if let path = keyPath, let obj = object as? NSObject {
 			if let val = obj.value(forKey: path) as? JSValue{
 				for cbfunc in mListenerFuncs {
-					cbfunc(val)
+					switch cbfunc {
+					case .reference(let ref):
+						let _ = ref(val)
+					case .value(let ref):
+						let _ = ref.call(withArguments: [val])
+					}
 				}
 				return
 			}
@@ -46,7 +54,7 @@ private class KEListener: NSObject
 	}
 }
 
-@objc open class KEObject: NSObject, KEObjectProtocol
+open class KEObject: NSObject, KEObjectProtocol
 {
 	private var mContext:		KEContext
 	private var mTable:		NSMutableDictionary // Key:String, value:JSValue
@@ -58,6 +66,9 @@ private class KEListener: NSObject
 		mContext   	= ctxt
 		mTable     	= NSMutableDictionary(capacity: 8)
 		mListeners 	= [:]
+		super.init()
+
+		setup(context: ctxt)
 	}
 
 	deinit {
@@ -68,7 +79,24 @@ private class KEListener: NSObject
 		}
 	}
 
-	public func addListener(property prop: String, listener lsfunc: @escaping (_ value: JSValue) -> Void){
+	private func setup(context ctxt: KEContext) {
+		let listnerfunc: @convention(block) (_ property: JSValue, _ listenerfunc: JSValue) -> JSValue = {
+			(_ property: JSValue, _ listenerfunc: JSValue) -> JSValue in
+			if let propname = property.toString()  {
+				self.addListener(property: propname, reference: Function.value(listenerfunc))
+			} else {
+				NSLog("[Error] Invalid parameters\n")
+			}
+			return JSValue(nullIn: ctxt)
+		}
+		set("addListener", JSValue(object: listnerfunc, in: ctxt))
+	}
+
+	public func addListener(property prop: String, listener lsfunc: @escaping (_ value: JSValue) -> JSValue){
+		addListener(property: prop, reference: .reference(lsfunc))
+	}
+
+	private func addListener(property prop: String, reference lsfunc: Function) {
 		var listener: KEListener
 		if let lsfunc = mListeners[prop] {
 			listener = lsfunc
