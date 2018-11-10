@@ -10,12 +10,12 @@ import Foundation
 
 @objc protocol KEObjectProtocol: JSExport
 {
-	func set(_ name: String, _ value: JSValue)
+	func set(_ name: String, _ value: JSValue) -> Void
 	func get(_ name: String) -> JSValue
 }
 
 private enum Function {
-	case reference((_ value: JSValue) -> JSValue)
+	case reference((_ value: JSValue) -> Void)
 	case value(JSValue)
 }
 
@@ -80,19 +80,18 @@ open class KEObject: NSObject, KEObjectProtocol
 	}
 
 	private func setup(context ctxt: KEContext) {
-		let listnerfunc: @convention(block) (_ property: JSValue, _ listenerfunc: JSValue) -> JSValue = {
-			(_ property: JSValue, _ listenerfunc: JSValue) -> JSValue in
+		let listnerfunc: @convention(block) (_ property: JSValue, _ listenerfunc: JSValue) -> Void = {
+			(_ property: JSValue, _ listenerfunc: JSValue) -> Void in
 			if let propname = property.toString()  {
 				self.addListener(property: propname, reference: Function.value(listenerfunc))
 			} else {
 				NSLog("[Error] Invalid parameters\n")
 			}
-			return JSValue(nullIn: ctxt)
 		}
-		set("addListener", JSValue(object: listnerfunc, in: ctxt))
+		 set("addListener", JSValue(object: listnerfunc, in: ctxt))
 	}
 
-	public func addListener(property prop: String, listener lsfunc: @escaping (_ value: JSValue) -> JSValue){
+	public func addListener(property prop: String, listener lsfunc: @escaping (_ value: JSValue) -> Void){
 		addListener(property: prop, reference: .reference(lsfunc))
 	}
 
