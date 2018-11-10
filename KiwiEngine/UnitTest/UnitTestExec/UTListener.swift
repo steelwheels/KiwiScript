@@ -10,12 +10,9 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-public func testListener(console cons: CNConsole) -> Bool
+public func testListener(console cons: CNConsole, config conf: KEConfig) -> Bool
 {
 	var result = true
-
-	let config   = KEConfig()
-	config.doVerbose = true
 
 	let context  = KEContext(virtualMachine: JSVirtualMachine())
 	context.exceptionCallback = {
@@ -24,7 +21,7 @@ public func testListener(console cons: CNConsole) -> Bool
 	}
 
 	console.print(string: "* Setup compiler\n")
-	let compiler = KECompiler(console: cons, config: config)
+	let compiler = KECompiler(console: cons, config: conf)
 	if compiler.compile(context: context) {
 		cons.print(string: "Compile: OK\n")
 

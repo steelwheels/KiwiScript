@@ -5,113 +5,116 @@
  *   Copyright (C) 2015 Steel Wheels Project
  */
 
+import CoconutData
 import JavaScriptCore
 import Foundation
 
+private class KEOperationCompiler: KECompiler
+{
+	public func compile(context ctxt: KEContext, operationObject obj: KEOperationObject, fileName fname: String) -> Bool {
+		log(string: "/* Compile Operation object */\n")
+		ctxt.set(name: "Operation", object: obj)
+
+		/* Compile the object */
+		super.compile(context: ctxt, instance: "Operation", object: obj)
+		
+		/* Add listener function */
+		let listnerstmt = "Operation.addListener(\"isCanceled\", function(value){\n" +
+				  "  if(value){ cancel(1) ; }\n" +
+				  "}) ;\n"
+		let _ = compile(context: ctxt, statement: listnerstmt)
+
+		/* Read source script */
+		guard let script = super.readUserScript(scriptFile: fname) else {
+			NSLog("[Error] Failed to compile \"\(fname)\" at \(#function)")
+			return false
+		}
+		let _ = compile(context: ctxt, statement: script)
+
+		return true
+	}
+}
+
 public class KEOperation: Operation
 {
-	static public let ExecutingItem		= "isExecuting"
-	static public let FinishedItem		= "isFinished"
+	private var mContext:		KEContext
+	private var mOperationObject:	KEOperationObject
+	private var mConsole:		CNConsole
+	private var mConfig:		KEConfig
+	private var mExecName:		String?
+	private var mMainName:		String?
+	private var mArguments:		Array<JSValue>?
+	private var mResult:		JSValue?
 
-	private var mContext:				KEContext
-	private var mScript:				String
-	private var mExceptionCallback:			KEContext.ExceptionCallback
-	private var mObservers:				Array<NSObject>
-
-	@objc private dynamic var mIsExecuting:		Bool
-	@objc private dynamic var mIsFinished:		Bool
-
-	public init(context ctxt: KEContext, script scr: String){
-		mContext 		= ctxt
-		mScript			= scr
-		mExceptionCallback	= ctxt.exceptionCallback
-		mIsExecuting		= false
-		mIsFinished		= false
-		mObservers		= []
+	public init(virtualMachine vm: JSVirtualMachine, console cons: CNConsole, config conf: KEConfig){
+		mContext		= KEContext(virtualMachine: vm)
+		mOperationObject	= KEOperationObject(context: mContext)
+		mConsole		= cons
+		mConfig			= conf
+		mExecName		= nil
+		mMainName		= nil
+		mArguments		= nil
+		mResult			= nil
 		super.init()
-		
-		/* Replace exception callback */
-		ctxt.exceptionCallback = {
-			(_ result: KEException) -> Void in
-			self.isExecuting = false
-			self.isFinished  = true
-			/* Call original callback here */
-			self.mExceptionCallback(result)
-		}
-	}
-
-	deinit {
-		while mObservers.count > 0 {
-			remove(observer: mObservers[0])
-		}
 	}
 
 	public override var isAsynchronous: Bool {
 		get { return true }
 	}
 
-	public override var isExecuting: Bool {
-		get {
-			return mIsExecuting
-		}
-		set(newval) {
-			if newval != mIsExecuting {
-				self.willChangeValue(forKey: KEOperation.ExecutingItem)
-				mIsExecuting = newval
-				self.didChangeValue(forKey: KEOperation.ExecutingItem)
-			}
-		}
-	}
-
 	public override var isFinished: Bool {
-		get {
-			return mIsFinished
-		}
-		set(newval) {
-			if newval != mIsFinished {
-				self.willChangeValue(forKey: KEOperation.FinishedItem)
-				mIsFinished = newval
-				self.didChangeValue(forKey: KEOperation.FinishedItem)
+		get          { return mOperationObject.isFinished	}
+		set (newval) { mOperationObject.isFinished = newval 	}
+	}
+
+	public override var isExecuting: Bool {
+		get	     { return mOperationObject.isExecuting	}
+		set (newval) { mOperationObject.isExecuting = newval 	}
+	}
+
+	public override var isCancelled: Bool {
+		get	     { return mOperationObject.isCanceled	}
+		set (newvao) { mOperationObject.isCanceled = true 	}
+	}
+
+	public func compile(fileName fname: String) -> Bool {
+		/* setup the context */
+		let compiler = KEOperationCompiler(console: mConsole, config: mConfig)
+		return compiler.compile(context: mContext, operationObject: mOperationObject, fileName: fname)
+	}
+
+	public func set(mainName mname: String, arguments args: Array<JSValue>){
+		mMainName	= mname
+		mArguments	= args
+	}
+
+	public override func main() {
+		/* Start execution */
+		isExecuting	= true
+		isFinished	= false
+
+		/* Call main function */
+		mResult = callStartup()
+
+		/* Finish execution */
+		isExecuting	= false
+		isFinished	= true
+	}
+
+	private func callStartup() -> JSValue? {
+		if let mainname = mMainName, let args = mArguments {
+			if let mainval = mContext.objectForKeyedSubscript(mainname) {
+				if let startval = mContext.objectForKeyedSubscript("_exec_cancelable") {
+					return startval.call(withArguments: [mainval, args])
+				}
 			}
 		}
+		return nil
 	}
 
-	public func add(observer obs: NSObject) {
-		self.addObserver(obs, forKeyPath: KEOperation.ExecutingItem, options: [.new], context: nil)
-		self.addObserver(obs, forKeyPath: KEOperation.FinishedItem,  options: [.new], context: nil)
-		mObservers.append(obs)
-	}
-
-	public func remove(observer obs: NSObject){
-		if let idx = mObservers.index(where: {$0 === obs} ) {
-			self.removeObserver(obs, forKeyPath: KEOperation.ExecutingItem)
-			self.removeObserver(obs, forKeyPath: KEOperation.FinishedItem)
-			mObservers.remove(at: idx)
-		}
-	}
-
-	public override func start() {
-		/* Change the state */
-		self.isExecuting = true
-		self.isFinished  = false
-		/* Call main */
-		self.main()
-	}
-
-	public override func main(){
-		if self.isCancelled {
-			/* do nothing */
-		} else {
-			/* Execute main operation */
-			let mainscr = mainScript(script: mScript)
-			let _       = mContext.evaluateScript(mainscr)
-			self.isExecuting = false
-			self.isFinished  = true
-		}
-	}
-
-	private func mainScript(script scr: String) -> String {
-		return 	"_exec(\(scr)) ;"
+	public override func cancel() {
+		mOperationObject.isCanceled = true
+		super.cancel()
 	}
 }
 

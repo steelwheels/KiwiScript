@@ -29,7 +29,6 @@
 		05DFA829206865800032EC5B /* KECompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DFA828206865800032EC5B /* KECompiler.swift */; };
 		05E0242721874C4900AD4728 /* KEConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E0242621874C4900AD4728 /* KEConfig.swift */; };
 		05E8C62421889C60008CAAF8 /* boot.js in Resources */ = {isa = PBXBuildFile; fileRef = 05E8C62321889C60008CAAF8 /* boot.js */; };
-		05E8C62621889C83008CAAF8 /* boot.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05E8C62321889C60008CAAF8 /* boot.js */; };
 		05E8C6282188BCAE008CAAF8 /* KEObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E8C6272188BCAE008CAAF8 /* KEObject.swift */; };
 /* End PBXBuildFile section */
 
@@ -91,7 +90,6 @@
 			dstPath = Library;
 			dstSubfolderSpec = 7;
 			files = (
-				05E8C62621889C83008CAAF8 /* boot.js in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,6 +119,7 @@
 		05CFAB952034875F001623BC /* KEException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEException.swift; sourceTree = "<group>"; };
 		05DFA828206865800032EC5B /* KECompiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KECompiler.swift; sourceTree = "<group>"; };
 		05E0242621874C4900AD4728 /* KEConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEConfig.swift; sourceTree = "<group>"; };
+		05E1B06D21973F0D00D8E924 /* UTOperation.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = UTOperation.js; sourceTree = "<group>"; };
 		05E8C62321889C60008CAAF8 /* boot.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = boot.js; sourceTree = "<group>"; };
 		05E8C6272188BCAE008CAAF8 /* KEObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -231,6 +230,7 @@
 		058B53241BA41A6C009522DF /* UnitTestExec */ = {
 			isa = PBXGroup;
 			children = (
+				05E1B06D21973F0D00D8E924 /* UTOperation.js */,
 				05B40EED1BE5A4AE00AA8525 /* check.mk */,
 				058B53251BA41A6C009522DF /* main.swift */,
 				054637F01BB05F4500DEE12F /* UTError.swift */,

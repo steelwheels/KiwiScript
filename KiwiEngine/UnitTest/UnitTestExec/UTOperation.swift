@@ -10,6 +10,19 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
+public func testOperation(console cons: CNConsole, config conf: KEConfig) -> Bool
+{
+	let vm         = JSVirtualMachine()
+	let operation0 = KEOperation(virtualMachine: vm!, console: console, config: conf)
+	if operation0.compile(fileName: "../UnitTest/UnitTestExec/UTOperation.js") {
+		return true
+	} else {
+		cons.print(string: "[Error] Failed to compile\n")
+		return false
+	}
+}
+
+/*
 public class UTOperationObserver: NSObject
 {
 	private var mName	: String
@@ -99,3 +112,5 @@ public func testOperation(console cons: CNConsole) -> Bool
 
 	return true ;
 }
+*/
+

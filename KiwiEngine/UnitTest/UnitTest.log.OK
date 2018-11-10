@@ -5,30 +5,7 @@ SyntaxError: Unexpected identifier 'hoge'. Expected a ';' following a return sta
 testError : OK
 * Setup compiler
 * compile
-'use strict' ;/* boot.js */
-
-class CancelException extends Error
-{
-	constructor (code){
-		super("CancelException") ;
-		this.code = code ;
-	}
-}
-
-function _cancel(code)
-{
-	throw new CancelException(code) ;
-}
-
-function _exec_cancelable(fn, ...args)
-{
-	try {
-		return fn(...args) ;
-	} catch(err) {
-		return err.code ;
-	}
-}
-
+'use strict' ;
 /* Define Enum: Alignment */
 let Alignment = {
 	left : 0,
@@ -74,33 +51,35 @@ let TextAlign = {
 	justfied : 3,
 	normal : 4
 };
+/* boot.js */
+
+class CancelException extends Error
+{
+	constructor (code){
+		super("CancelException") ;
+		this.code = code ;
+	}
+}
+
+function _cancel(code)
+{
+	throw new CancelException(code) ;
+}
+
+function _exec_cancelable(fn, ...args)
+{
+	try {
+		return fn(...args) ;
+	} catch(err) {
+		return err.code ;
+	}
+}
+
+
 Compile ... OK
 testCompiler : OK
 * Setup compiler
-'use strict' ;/* boot.js */
-
-class CancelException extends Error
-{
-	constructor (code){
-		super("CancelException") ;
-		this.code = code ;
-	}
-}
-
-function _cancel(code)
-{
-	throw new CancelException(code) ;
-}
-
-function _exec_cancelable(fn, ...args)
-{
-	try {
-		return fn(...args) ;
-	} catch(err) {
-		return err.code ;
-	}
-}
-
+'use strict' ;
 /* Define Enum: Alignment */
 let Alignment = {
 	left : 0,
@@ -146,6 +125,31 @@ let TextAlign = {
 	justfied : 3,
 	normal : 4
 };
+/* boot.js */
+
+class CancelException extends Error
+{
+	constructor (code){
+		super("CancelException") ;
+		this.code = code ;
+	}
+}
+
+function _cancel(code)
+{
+	throw new CancelException(code) ;
+}
+
+function _exec_cancelable(fn, ...args)
+{
+	try {
+		return fn(...args) ;
+	} catch(err) {
+		return err.code ;
+	}
+}
+
+
 Compile: OK
 _exec_cancelable(function(){ return 0 ; }) ;
 * result0 = 0
@@ -153,30 +157,7 @@ _exec_cancelable(function(){ _cancel(1) ; return 0 ;}) ;
 * result1 = 1
 testExec : OK
 * Setup compiler
-'use strict' ;/* boot.js */
-
-class CancelException extends Error
-{
-	constructor (code){
-		super("CancelException") ;
-		this.code = code ;
-	}
-}
-
-function _cancel(code)
-{
-	throw new CancelException(code) ;
-}
-
-function _exec_cancelable(fn, ...args)
-{
-	try {
-		return fn(...args) ;
-	} catch(err) {
-		return err.code ;
-	}
-}
-
+'use strict' ;
 /* Define Enum: Alignment */
 let Alignment = {
 	left : 0,
@@ -222,8 +203,35 @@ let TextAlign = {
 	justfied : 3,
 	normal : 4
 };
+/* boot.js */
+
+class CancelException extends Error
+{
+	constructor (code){
+		super("CancelException") ;
+		this.code = code ;
+	}
+}
+
+function _cancel(code)
+{
+	throw new CancelException(code) ;
+}
+
+function _exec_cancelable(fn, ...args)
+{
+	try {
+		return fn(...args) ;
+	} catch(err) {
+		return err.code ;
+	}
+}
+
+
 Compile: OK
 /* Allocate OperationObject */
+Operation.__defineGetter__("isExecuting", function(   ){ return this.get("isExecuting"     ); }) ;
+Operation.__defineSetter__("isExecuting", function(val){ return this.set("isExecuting", val); }) ;
 Operation.__defineGetter__("isCanceled", function(   ){ return this.get("isCanceled"     ); }) ;
 Operation.__defineSetter__("isCanceled", function(val){ return this.set("isCanceled", val); }) ;
 Operation.__defineGetter__("addListener", function(   ){ return this.get("addListener"     ); }) ;
@@ -234,4 +242,22 @@ Operation.isCanceled = true ;
 flag: true
 Exec: OK
 testListener : OK
+/* Compile Operation object */
+Operation.__defineGetter__("isExecuting", function(   ){ return this.get("isExecuting"     ); }) ;
+Operation.__defineSetter__("isExecuting", function(val){ return this.set("isExecuting", val); }) ;
+Operation.__defineGetter__("isCanceled", function(   ){ return this.get("isCanceled"     ); }) ;
+Operation.__defineSetter__("isCanceled", function(val){ return this.set("isCanceled", val); }) ;
+Operation.__defineGetter__("addListener", function(   ){ return this.get("addListener"     ); }) ;
+Operation.__defineSetter__("addListener", function(val){ return this.set("addListener", val); }) ;
+Operation.addListener("isCanceled", function(value){
+  if(value){ cancel(1) ; }
+}) ;
+/* UTOperation.js */
+
+let counter = 0 ;
+
+function main() {
+	counter += 1 ;
+}
+testOperation : OK
 SUMMARY: OK

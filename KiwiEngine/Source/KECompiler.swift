@@ -22,18 +22,18 @@ open class KECompiler
 	open func compile(context ctxt: KEContext) -> Bool {
 		/* Set strict */
 		setStrictMode(context: ctxt)
+		/* Define Enum Types */
+		defineEnumTypes(context: ctxt)
 		/* Compile "boot.js" */
 		if let script = readResource(fileName: "boot", fileExtension: "js") {
 			let _ = compile(context: ctxt, statement: script)
 		}
-		/* Define Enum Types */
-		defineEnumTypes(context: ctxt)
 		return true
 	}
 
 	private func setStrictMode(context ctxt: KEContext){
 		if mConfig.doStrict {
-			let _ = compile(context: ctxt, statement: "'use strict' ;")
+			let _ = compile(context: ctxt, statement: "'use strict' ;\n")
 		}
 	}
 
@@ -46,21 +46,40 @@ open class KECompiler
 		}
 	}
 
+	public func readUserScript(scriptFile file: String) -> String? {
+		do {
+			let url  = URL(fileURLWithPath: file)
+			return try String(contentsOf: url, encoding: .utf8)
+		} catch _ {
+			return nil
+		}
+	}
+
 	public func readResource(fileName file: String, fileExtension ext: String) -> String? {
-		if let url = CNFilePath.URLForResourceFile(fileName: file, fileExtension: ext, forClass: KECompiler.self) {
-			let (scriptp, errorp) = url.loadContents()
-			if let script = scriptp {
-				return script as String
-			} else if let error = errorp {
-				log(string: "[Error] " + error.description)
+		do {
+			if let url = CNFilePath.URLForResourceFile(fileName: file, fileExtension: ext, forClass: KECompiler.self) {
+				return try String(contentsOf: url, encoding: .utf8)
 			} else {
-				log(string: "[Error] Unknown")
+				return nil
 			}
+		} catch _ {
+			return nil
+		}
+	}
+
+	/*
+	private func readFromURL(URL url: URL) -> String? {
+		let (scriptp, errorp) = url.loadContents()
+		if let script = scriptp {
+			return script as String
+		} else if let error = errorp {
+			log(string: "[Error] " + error.description)
 		} else {
-			log(string: "[Error] Can not read \"\(file).\(ext)\"\n")
+			log(string: "[Error] Unknown")
 		}
 		return nil
 	}
+*/
 
 	public func log(string str: String) {
 		if mConfig.doVerbose {
@@ -123,3 +142,4 @@ open class KECompiler
 		let _ = compile(context: ctxt, statement: enumstmt)
 	}
 }
+
