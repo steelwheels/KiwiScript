@@ -12,105 +12,114 @@ import Foundation
 
 public func testOperation(console cons: CNConsole, config conf: KEConfig) -> Bool
 {
-	let vm         = JSVirtualMachine()
-	let operation0 = KEOperation(virtualMachine: vm!, console: console, config: conf)
-	if operation0.compile(fileName: "../UnitTest/UnitTestExec/UTOperation.js") {
-		return true
-	} else {
-		cons.print(string: "[Error] Failed to compile\n")
+	let context = KEContext(virtualMachine: JSVirtualMachine())
+	let process = KEOperationProcess(context: context)
+
+	cons.print(string: "/*** Compile Operation ***/\n")
+	let srcurl = URL(fileURLWithPath: "../UnitTest/UnitTestExec/UTOperation.js")
+	let compiler = KEOperationCompiler(console: cons, config: conf)
+	guard compiler.compile(context: context, process: process, sourceFiles: [srcurl]) else {
 		return false
 	}
+
+	cons.print(string: "/*** Enqueue Operation ***/\n")
+	let operation = KEOperation(context: context, process: process, arguments: [])
+	let queue     = OperationQueue()
+	queue.addOperation(operation)
+
+	queue.waitUntilAllOperationsAreFinished()
+
+	var result = false
+	let cntref = context.objectForKeyedSubscript("counter")
+	if let cntval = cntref  {
+		if cntval.isNumber {
+			cons.print(string: "counter = \(cntval.description)\n")
+			if cntval.toInt32() == 1 {
+				result = true
+			}
+		} else {
+			cons.error(string: "[Error] Invalid value \(cntval.description)\n")
+		}
+	} else {
+		cons.error(string: "[Error] No result\n")
+	}
+
+	if result {
+		cons.print(string: "testOperation: OK\n")
+	} else {
+		cons.print(string: "testOperation: NG\n")
+	}
+
+	return result
 }
 
 /*
-public class UTOperationObserver: NSObject
+public func testOperation(console cons: CNConsole, config conf: KEConfig) -> Bool
 {
-	private var mName	: String
-	private var mConsole	: CNConsole
-
-	public var isExecuting	: Bool
-	public var isFinished	: Bool
-
-	public init(name nm: String, console cons: CNConsole){
-		mName 		= nm
-		mConsole	= cons
-		isExecuting	= false
-		isFinished	= false
+	cons.print(string: "*** Start testOperation\n")
+	let vm         = JSVirtualMachine()!
+	guard let operation0 = allocateOperation(virtualMachine: vm, console: cons, config: conf) else {
+		return false
 	}
 
-	public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-		if let key = keyPath {
-			if key == KEOperation.ExecutingItem {
-				if let op = object as? KEOperation {
-					isExecuting = op.isExecuting
-				} else {
-					mConsole.print(string: "Observer\(mName): isExecuting=\(String(describing: object))\n")
-				}
-			} else if key == KEOperation.FinishedItem {
-				if let op = object as? KEOperation {
-					isFinished = op.isFinished
-				} else {
-					mConsole.print(string: "Observer\(mName): isFinished=\(String(describing: object))\n")
-				}
-			} else {
-				mConsole.print(string: "Observer\(mName): Unknown key: \(key)\n")
-			}
+	cons.print(string: "Enter operation into queue\n")
+	let queue = OperationQueue()
+
+	/* 1st execution */
+	queue.addOperation(operation0)
+	cons.print(string: "Wait until finished\n")
+	waitUntilFinished(operation: operation0)
+	printResult(operation: operation0, console: console)
+
+	#if false
+	/* 2nd execution */
+	queue.addOperation(operation0)
+	cons.print(string: "Wait until finished\n")
+	waitUntilFinished(operation: operation0)
+	printResult(operation: operation0, console: console)
+	#endif
+	
+	cons.print(string: "Bye: OK\n")
+	return true
+}
+
+private func allocateOperation(virtualMachine vm: JSVirtualMachine, console cons: CNConsole, config conf: KEConfig) -> KEOperation?
+{
+	let operation = KEOperation(virtualMachine: vm, console: console, config: conf)
+	if operation.compile(fileName: "../UnitTest/UnitTestExec/UTOperation.js") {
+		if operation.setStartup(mainName: "main", arguments: []) {
+			return operation
+		} else {
+			cons.print(string: "[Error] user functions is not found.\n")
+		}
+	} else {
+		cons.print(string: "[Error] Failed to compile\n")
+	}
+	return nil
+}
+
+private func waitUntilFinished(operation op: KEOperation)
+{
+	#if true
+	op.waitUntilFinished()
+	#else
+	var docont = true
+	while(docont){
+		if(op.isFinished){
+			docont = false
 		}
 	}
-
-	public func print(){
-		mConsole.print(string: "\(mName): isExecuting=\(isExecuting), isFinished=\(isFinished)\n")
-	}
+	#endif
 }
 
-public func testOperation(console cons: CNConsole) -> Bool
+private func printResult(operation op: KEOperation, console cons: CNConsole)
 {
-	let vm         = JSVirtualMachine()
-	let context1    = KEContext(virtualMachine: vm!)
-	context1.exceptionCallback = {
-		(_ result: KEException) -> Void in
-		console.print(string: result.description + "\n")
+	if let resval = op.result {
+		cons.print(string: "Result = \(resval.description)\n")
+	} else {
+		cons.print(string: "Result = nil\n")
 	}
-	let context2    = KEContext(virtualMachine: vm!)
-	context2.exceptionCallback = {
-		(_ result: KEException) -> Void in
-		console.print(string: result.description + "\n")
-	}
-
-	let config   = KEConfig()
-	//config.doVerbose = true
-
-	let compiler = KECompiler(console: cons, config: config)
-	guard compiler.compile(context: context1) else {
-		console.print(string: "[Error] Compile failed (1)")
-		return false
-	}
-	guard compiler.compile(context: context2) else {
-		console.print(string: "[Error] Compile failed (2)")
-		return false
-	}
-
-	let operation1  = KEOperation(context: context1, script: "function(){ return 0 ; }")
-	let operation2  = KEOperation(context: context2, script: "function(){ return 1 ; }")
-	let observer1   = UTOperationObserver(name: "1", console: cons)
-	let observer2	= UTOperationObserver(name: "2", console: cons)
-
-	operation1.add(observer: observer1)
-	operation2.add(observer: observer2)
-
-	let mqueue = OperationQueue()
-	mqueue.addOperation(operation1)
-	mqueue.addOperation(operation2)
-	mqueue.maxConcurrentOperationCount = 2
-
-	//console.print(string: "Wait until all operations are finished ... Start\n")
-	mqueue.waitUntilAllOperationsAreFinished()
-	//console.print(string: "Wait until all operations are finished ... Done\n")
-	sleep(1)
-	observer1.print()
-	observer2.print()
-
-	return true ;
 }
+
 */
 

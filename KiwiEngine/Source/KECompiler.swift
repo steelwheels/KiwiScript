@@ -67,8 +67,7 @@ open class KECompiler
 		}
 	}
 
-	/*
-	private func readFromURL(URL url: URL) -> String? {
+	public func readFromURL(URL url: URL) -> String? {
 		let (scriptp, errorp) = url.loadContents()
 		if let script = scriptp {
 			return script as String
@@ -79,7 +78,6 @@ open class KECompiler
 		}
 		return nil
 	}
-*/
 
 	public func log(string str: String) {
 		if mConfig.doVerbose {

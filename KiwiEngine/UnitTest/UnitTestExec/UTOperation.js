@@ -1,7 +1,8 @@
 /* UTOperation.js */
 
-let counter = 0 ;
+var counter = 0 ;
 
 function main() {
 	counter += 1 ;
+	return counter ;
 }

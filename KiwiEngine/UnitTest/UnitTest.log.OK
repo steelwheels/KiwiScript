@@ -156,7 +156,7 @@ _exec_cancelable(function(){ return 0 ; }) ;
 _exec_cancelable(function(){ _cancel(1) ; return 0 ;}) ;
 * result1 = 1
 testExec : OK
-* Setup compiler
+/*** Compile Operation ***/
 'use strict' ;
 /* Define Enum: Alignment */
 let Alignment = {
@@ -228,36 +228,25 @@ function _exec_cancelable(fn, ...args)
 }
 
 
-Compile: OK
-/* Allocate OperationObject */
-Operation.__defineGetter__("isExecuting", function(   ){ return this.get("isExecuting"     ); }) ;
-Operation.__defineSetter__("isExecuting", function(val){ return this.set("isExecuting", val); }) ;
-Operation.__defineGetter__("isCanceled", function(   ){ return this.get("isCanceled"     ); }) ;
-Operation.__defineSetter__("isCanceled", function(val){ return this.set("isCanceled", val); }) ;
-Operation.__defineGetter__("addListener", function(   ){ return this.get("addListener"     ); }) ;
-Operation.__defineSetter__("addListener", function(val){ return this.set("addListener", val); }) ;
-var flag = false ;
-Operation.addListener("isCanceled", function(value){ flag = true ;}) ; 
-Operation.isCanceled = true ;
-flag: true
-Exec: OK
-testListener : OK
-/* Compile Operation object */
-Operation.__defineGetter__("isExecuting", function(   ){ return this.get("isExecuting"     ); }) ;
-Operation.__defineSetter__("isExecuting", function(val){ return this.set("isExecuting", val); }) ;
-Operation.__defineGetter__("isCanceled", function(   ){ return this.get("isCanceled"     ); }) ;
-Operation.__defineSetter__("isCanceled", function(val){ return this.set("isCanceled", val); }) ;
-Operation.__defineGetter__("addListener", function(   ){ return this.get("addListener"     ); }) ;
-Operation.__defineSetter__("addListener", function(val){ return this.set("addListener", val); }) ;
-Operation.addListener("isCanceled", function(value){
-  if(value){ cancel(1) ; }
-}) ;
+Process.__defineGetter__("isExecuting", function(   ){ return this.get("isExecuting"     ); }) ;
+Process.__defineSetter__("isExecuting", function(val){ return this.set("isExecuting", val); }) ;
+Process.__defineGetter__("isFinished", function(   ){ return this.get("isFinished"     ); }) ;
+Process.__defineSetter__("isFinished", function(val){ return this.set("isFinished", val); }) ;
+Process.__defineGetter__("isCanceled", function(   ){ return this.get("isCanceled"     ); }) ;
+Process.__defineSetter__("isCanceled", function(val){ return this.set("isCanceled", val); }) ;
+Process.__defineGetter__("addListener", function(   ){ return this.get("addListener"     ); }) ;
+Process.__defineSetter__("addListener", function(val){ return this.set("addListener", val); }) ;
+Process.addListener("isCanceled", function(newval){ if(newval){ _cancel(1) ; }}) ;
 /* UTOperation.js */
 
-let counter = 0 ;
+var counter = 0 ;
 
 function main() {
 	counter += 1 ;
+	return counter ;
 }
+/*** Enqueue Operation ***/
+counter = 1
+testOperation: OK
 testOperation : OK
 SUMMARY: OK
