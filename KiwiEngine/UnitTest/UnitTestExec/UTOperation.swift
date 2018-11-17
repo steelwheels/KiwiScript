@@ -19,10 +19,17 @@ public func allocateContext(console cons: CNConsole, config conf: KEConfig) -> K
 		cons.print(string: "/*** Compile Operation ***/\n")
 	}
 	let srcurl = URL(fileURLWithPath: "../UnitTest/UnitTestExec/UTOperation.js")
-	let compiler = KEOperationCompiler(console: cons, config: conf)
-	guard compiler.compile(context: context, sourceFiles: [srcurl]) else {
+	let compiler = KECompiler(console: cons, config: conf)
+	guard compiler.compile(context: context.context) else {
 		fatalError("Failed to compile at \(#function)")
 	}
+	guard compiler.compile(operationContext: context) else {
+		fatalError("Failed to compile at \(#function)")
+	}
+	guard compiler.compile(context: ctxt, sourceFiles: [srcurl]) else {
+		fatalError("Failed to compile at \(#function)")
+	}
+
 	return context
 }
 

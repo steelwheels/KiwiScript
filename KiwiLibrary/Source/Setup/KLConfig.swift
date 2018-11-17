@@ -26,13 +26,13 @@ open class KLConfig: KEConfig
 
 	public var	kind		: ApplicationKind
 
-	public init(kind appkind: ApplicationKind){
+	public init(kind appkind: ApplicationKind, doStrict strict: Bool, doVerbose verbose: Bool){
 		#if os(OSX)
 			kind 	= .Terminal
 		#else
 			kind	= .Window
 		#endif
-		super.init()
+		super.init(doStrict: strict, doVerbose: verbose)
 	}
 }
 

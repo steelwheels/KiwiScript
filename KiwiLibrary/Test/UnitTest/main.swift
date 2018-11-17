@@ -17,9 +17,7 @@ public func main()
 
 	let console = CNFileConsole()
 
-	let config = KLConfig(kind: .Terminal)
-	config.doStrict  = true
-	config.doVerbose = true
+	let config = KLConfig(kind: .Terminal, doStrict: true, doVerbose: false)
 
 	let context  = KEContext(virtualMachine: JSVirtualMachine())
 	context.exceptionCallback = {

@@ -46,21 +46,6 @@ public class KEOperationProcess: KEObject
 		get	   { return getBoolean(name: KEOperationProcess.isCanceledItem) }
 		set(value) { set(name: KEOperationProcess.isCanceledItem, booleanValue: value) }
 	}
-
-	private func getBoolean(name nm: String) -> Bool {
-		let val = super.get(KEOperationProcess.isExecutingItem)
-		if val.isBoolean {
-			return val.toBool()
-		} else {
-			fatalError("Invalid object at \(#function)")
-		}
-	}
-
-	private func set(name nm: String, booleanValue value: Bool) {
-		if let valobj = JSValue(bool: value, in: context) {
-			super.set(nm, valobj)
-		}
-	}
 }
 
 public class KEOperation: CNOperation

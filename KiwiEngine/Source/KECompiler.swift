@@ -31,6 +31,20 @@ open class KECompiler
 		return true
 	}
 
+	/* Call this method after 'compile(context ctxt: KEContext)' is called */
+	public func compile(operationContext ctxt: KEOperationContext) -> Bool {
+		let context = ctxt.context
+
+		/* Define global variable: Process */
+		let process = ctxt.process
+		context.set(name: "Process", object: process)
+		compile(context: context, instance: "Process", object: process)
+		let procstmt = "Process.addListener(\"isCanceled\", function(newval){ if(newval){ _cancel() ; }}) ;\n"
+		let _ = compile(context: context, statement: procstmt)
+
+		return true
+	}
+
 	private func setStrictMode(context ctxt: KEContext){
 		if mConfig.doStrict {
 			let _ = compile(context: ctxt, statement: "'use strict' ;\n")
@@ -138,6 +152,29 @@ open class KECompiler
 		enumstmt += "\n};\n"
 
 		let _ = compile(context: ctxt, statement: enumstmt)
+	}
+
+	public func compile(context ctxt: KEContext, sourceFiles srcfiles: Array<URL>) -> Bool {
+		var result = true
+		for srcfile in srcfiles {
+			let (script, error) = srcfile.loadContents()
+			if let scr = script {
+				let _ = compile(context: ctxt, statement: scr as String)
+			} else {
+				let desc = message(fromError: error)
+				mConsole.error(string: "[Error] \(desc)\n")
+				result = false
+			}
+		}
+		return result
+	}
+
+	private func message(fromError err: NSError?) -> String {
+		if let e = err {
+			return e.description
+		} else {
+			return "Unknown error"
+		}
 	}
 }
 

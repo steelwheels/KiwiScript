@@ -139,5 +139,35 @@ open class KEObject: NSObject, KEObjectProtocol
 			fatalError("Invalid key types")
 		}
 	}
+
+	public func getBoolean(name nm: String) -> Bool {
+		let val = get(nm)
+		if val.isBoolean {
+			return val.toBool()
+		} else {
+			fatalError("Invalid object at \(#function)")
+		}
+	}
+
+	public func set(name nm: String, booleanValue value: Bool) {
+		if let valobj = JSValue(bool: value, in: context) {
+			set(nm, valobj)
+		}
+	}
+
+	public func getDouble(name nm: String) -> Double {
+		let val = get(nm)
+		if val.isNumber {
+			return val.toDouble()
+		} else {
+			fatalError("Invalid object at \(#function)")
+		}
+	}
+
+	public func set(name nm: String, doubleValue value: Double) {
+		if let valobj = JSValue(double: value, in: context) {
+			set(nm, valobj)
+		}
+	}
 }
 
