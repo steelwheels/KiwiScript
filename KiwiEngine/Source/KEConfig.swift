@@ -12,9 +12,9 @@ open class KEConfig
 	public var	doStrict:	Bool
 	public var 	doVerbose:	Bool
 
-	public init() {
-		doStrict  	= true
-		doVerbose 	= false
+	public init(doStrict strict: Bool, doVerbose verbose: Bool) {
+		doStrict  = strict
+		doVerbose = verbose
 	}
 }
 

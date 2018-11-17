@@ -154,6 +154,7 @@ _exec_cancelable(function(){ return 0 ; }) ;
 _exec_cancelable(function(){ _cancel() ; return 0 ;}) ;
 * retval1 = 4
 testExec : OK
+/*** Enqueue Operation ***/
 /*** Compile Operation ***/
 'use strict' ;
 /* Define Enum: Alignment */
@@ -242,10 +243,9 @@ function main() {
 	counter += 1 ;
 	return ExitCode.noError ;
 }
-/*** Enqueue Operation ***/
-counter = 1
 1st operation ... OK
-counter = 2
 2nd operation ... OK
 testOperation : OK
+testOperationQueues(console:) ... OK
+testOperationQueues : OK
 SUMMARY: OK

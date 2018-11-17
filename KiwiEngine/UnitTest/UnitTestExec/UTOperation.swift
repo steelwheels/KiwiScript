@@ -10,27 +10,36 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-public func testOperation(console cons: CNConsole, config conf: KEConfig) -> Bool
+public func allocateContext(console cons: CNConsole, config conf: KEConfig) -> KEOperationContext
 {
-	let context = KEContext(virtualMachine: JSVirtualMachine())
-	let process = KEOperationProcess(context: context)
+	let ctxt    = KEContext(virtualMachine: JSVirtualMachine())
+	let context = KEOperationContext(context: ctxt)
 
-	cons.print(string: "/*** Compile Operation ***/\n")
+	if conf.doVerbose {
+		cons.print(string: "/*** Compile Operation ***/\n")
+	}
 	let srcurl = URL(fileURLWithPath: "../UnitTest/UnitTestExec/UTOperation.js")
 	let compiler = KEOperationCompiler(console: cons, config: conf)
-	guard compiler.compile(context: context, process: process, sourceFiles: [srcurl]) else {
-		return false
+	guard compiler.compile(context: context, sourceFiles: [srcurl]) else {
+		fatalError("Failed to compile at \(#function)")
 	}
+	return context
+}
 
-	cons.print(string: "/*** Enqueue Operation ***/\n")
+public func testOperation(console cons: CNConsole, config conf: KEConfig) -> Bool
+{
+	if conf.doVerbose {
+		cons.print(string: "/*** Enqueue Operation ***/\n")
+	}
+	
 	let queue     = OperationQueue()
 
 	/* 1st operation */
-	let ctxt0 = KEOperationContext(context: context)
+	let ctxt0 = allocateContext(console: cons, config: conf)
 	let op0   = KEOperation(context: ctxt0, arguments: [])
 	queue.addOperation(op0)
 	queue.waitUntilAllOperationsAreFinished()
-	guard let counter0 = getCounter(context: context, console:cons) else {
+	guard let counter0 = getCounter(context: ctxt0.context, console:cons) else {
 		cons.print(string: "[Error] No counter value\n")
 		return false
 	}
@@ -51,11 +60,10 @@ public func testOperation(console cons: CNConsole, config conf: KEConfig) -> Boo
 	}
 
 	/* 2nd operation */
-	let ctxt1 = KEOperationContext(context: context)
-	let op1   = KEOperation(context: ctxt1, arguments: [])
+	let op1   = KEOperation(context: ctxt0, arguments: [])
 	queue.addOperation(op1)
 	queue.waitUntilAllOperationsAreFinished()
-	guard let counter1 = getCounter(context: context, console:cons) else {
+	guard let counter1 = getCounter(context: ctxt0.context, console:cons) else {
 		cons.print(string: "[Error] No counter value\n")
 		return false
 	}
@@ -78,12 +86,12 @@ public func testOperation(console cons: CNConsole, config conf: KEConfig) -> Boo
 	return true
 }
 
-private func getCounter(context ctxt: KEContext, console cons: CNConsole) -> Int32?
+public func getCounter(context ctxt: KEContext, console cons: CNConsole) -> Int32?
 {
 	let cntref = ctxt.objectForKeyedSubscript("counter")
 	if let cntval = cntref  {
 		if cntval.isNumber {
-			cons.print(string: "counter = \(cntval.description)\n")
+			//cons.print(string: "counter = \(cntval.description)\n")
 			return cntval.toInt32()
 		} else {
 			cons.error(string: "[Error] Invalid value \(cntval.description)\n")

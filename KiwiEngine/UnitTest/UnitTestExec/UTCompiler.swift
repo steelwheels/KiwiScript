@@ -12,8 +12,7 @@ import Foundation
 
 public func testCompiler(console cons: CNConsole) -> Bool
 {
-	let config   = KEConfig()
-	config.doVerbose = true
+	let config   = KEConfig(doStrict: true, doVerbose: true)
 
 	let context  = KEContext(virtualMachine: JSVirtualMachine())
 	context.exceptionCallback = {

@@ -14,8 +14,7 @@ public func testExec(console cons: CNConsole) -> Bool
 {
 	var result = true
 
-	let config   = KEConfig()
-	config.doVerbose = true
+	let config   = KEConfig(doStrict: true, doVerbose: true)
 
 	let context  = KEContext(virtualMachine: JSVirtualMachine())
 	context.exceptionCallback = {

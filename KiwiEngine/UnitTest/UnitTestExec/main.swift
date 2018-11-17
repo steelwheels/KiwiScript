@@ -10,8 +10,7 @@ import CoconutData
 import Foundation
 
 let console = CNFileConsole()
-let config   = KEConfig()
-config.doVerbose = true
+let config  = KEConfig(doStrict: true, doVerbose: true)
 
 var summary = true
 
@@ -29,6 +28,7 @@ summary = test(funcName: "testError", result: testError(console: console)) && su
 summary = test(funcName: "testCompiler", result: testCompiler(console: console)) && summary
 summary = test(funcName: "testExec", result: testExec(console: console)) && summary
 summary = test(funcName: "testOperation", result: testOperation(console: console, config: config)) && summary
+summary = test(funcName: "testOperationQueues", result: testOperationQueues(console: console)) && summary
 
 if summary {
 	console.print(string: "SUMMARY: OK\n")

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0517CAD0219FA42200C2B120 /* KEOperationQueues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0517CACF219FA42200C2B120 /* KEOperationQueues.swift */; };
+		051FBC4A219FAF4E00ECA925 /* UTOperationQueues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051FBC49219FAF4E00ECA925 /* UTOperationQueues.swift */; };
 		052B0F7A1BE8A3A400E3BFEE /* UTExec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B0F781BE8A33400E3BFEE /* UTExec.swift */; };
 		0537CE8F1F80F76E00CB313A /* KEValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0537CE8E1F80F76E00CB313A /* KEValue.swift */; };
 		0545301A2184A2B6006F96C8 /* KEOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054530192184A2B6006F96C8 /* KEOperation.swift */; };
@@ -98,6 +99,7 @@
 /* Begin PBXFileReference section */
 		0507B17E1BA41D850048D325 /* UnitTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		0517CACF219FA42200C2B120 /* KEOperationQueues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEOperationQueues.swift; sourceTree = "<group>"; };
+		051FBC49219FAF4E00ECA925 /* UTOperationQueues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTOperationQueues.swift; sourceTree = "<group>"; };
 		052B0F781BE8A33400E3BFEE /* UTExec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTExec.swift; sourceTree = "<group>"; };
 		0537CE8E1F80F76E00CB313A /* KEValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEValue.swift; sourceTree = "<group>"; };
 		054530192184A2B6006F96C8 /* KEOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEOperation.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				058735D120C2BF9200797EFD /* UTCompiler.swift */,
 				052B0F781BE8A33400E3BFEE /* UTExec.swift */,
 				0545301B21851C3F006F96C8 /* UTOperation.swift */,
+				051FBC49219FAF4E00ECA925 /* UTOperationQueues.swift */,
 			);
 			path = UnitTestExec;
 			sourceTree = "<group>";
@@ -463,6 +466,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				051FBC4A219FAF4E00ECA925 /* UTOperationQueues.swift in Sources */,
 				0545301C21851C3F006F96C8 /* UTOperation.swift in Sources */,
 				054637F21BB05FE400DEE12F /* UTError.swift in Sources */,
 				052B0F7A1BE8A3A400E3BFEE /* UTExec.swift in Sources */,
