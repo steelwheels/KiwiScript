@@ -18,7 +18,7 @@ public class KEOperationCompiler: KECompiler
 		/* Define global variable: Process */
 		ctxt.set(name: "Process", object: proc)
 		super.compile(context: ctxt, instance: "Process", object: proc)
-		let procstmt = "Process.addListener(\"isCanceled\", function(newval){ if(newval){ _cancel(1) ; }}) ;\n"
+		let procstmt = "Process.addListener(\"isCanceled\", function(newval){ if(newval){ _cancel() ; }}) ;\n"
 		let _ = super.compile(context: ctxt, statement: procstmt)
 
 		/* Read source files */

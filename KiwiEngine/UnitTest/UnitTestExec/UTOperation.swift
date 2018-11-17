@@ -23,103 +23,74 @@ public func testOperation(console cons: CNConsole, config conf: KEConfig) -> Boo
 	}
 
 	cons.print(string: "/*** Enqueue Operation ***/\n")
-	let operation = KEOperation(context: context, process: process, arguments: [])
 	let queue     = OperationQueue()
-	queue.addOperation(operation)
 
+	/* 1st operation */
+	let ctxt0 = KEOperationContext(context: context)
+	let op0   = KEOperation(context: ctxt0, arguments: [])
+	queue.addOperation(op0)
 	queue.waitUntilAllOperationsAreFinished()
+	guard let counter0 = getCounter(context: context, console:cons) else {
+		cons.print(string: "[Error] No counter value\n")
+		return false
+	}
+	if counter0 == 1 {
+		cons.print(string: "1st operation ... OK\n")
+	} else {
+		cons.print(string: "[Error] Unexpected counter value\n")
+		return false
+	}
+	if let code = op0.exitCode {
+		if code != .NoError {
+			cons.print(string: "Error: \(code.description)\n")
+			return false
+		}
+	} else {
+		cons.print(string: "No exit code.\n")
+		return false
+	}
 
-	var result = false
-	let cntref = context.objectForKeyedSubscript("counter")
+	/* 2nd operation */
+	let ctxt1 = KEOperationContext(context: context)
+	let op1   = KEOperation(context: ctxt1, arguments: [])
+	queue.addOperation(op1)
+	queue.waitUntilAllOperationsAreFinished()
+	guard let counter1 = getCounter(context: context, console:cons) else {
+		cons.print(string: "[Error] No counter value\n")
+		return false
+	}
+	if counter1 == 2 {
+		cons.print(string: "2nd operation ... OK\n")
+	} else {
+		cons.print(string: "[Error] Unexpected counter value\n")
+		return false
+	}
+	if let code = op1.exitCode {
+		if code != .NoError {
+			cons.print(string: "Error: \(code.description)\n")
+			return false
+		}
+	} else {
+		cons.print(string: "No exit code.\n")
+		return false
+	}
+
+	return true
+}
+
+private func getCounter(context ctxt: KEContext, console cons: CNConsole) -> Int32?
+{
+	let cntref = ctxt.objectForKeyedSubscript("counter")
 	if let cntval = cntref  {
 		if cntval.isNumber {
 			cons.print(string: "counter = \(cntval.description)\n")
-			if cntval.toInt32() == 1 {
-				result = true
-			}
+			return cntval.toInt32()
 		} else {
 			cons.error(string: "[Error] Invalid value \(cntval.description)\n")
 		}
 	} else {
 		cons.error(string: "[Error] No result\n")
 	}
-
-	if result {
-		cons.print(string: "testOperation: OK\n")
-	} else {
-		cons.print(string: "testOperation: NG\n")
-	}
-
-	return result
-}
-
-/*
-public func testOperation(console cons: CNConsole, config conf: KEConfig) -> Bool
-{
-	cons.print(string: "*** Start testOperation\n")
-	let vm         = JSVirtualMachine()!
-	guard let operation0 = allocateOperation(virtualMachine: vm, console: cons, config: conf) else {
-		return false
-	}
-
-	cons.print(string: "Enter operation into queue\n")
-	let queue = OperationQueue()
-
-	/* 1st execution */
-	queue.addOperation(operation0)
-	cons.print(string: "Wait until finished\n")
-	waitUntilFinished(operation: operation0)
-	printResult(operation: operation0, console: console)
-
-	#if false
-	/* 2nd execution */
-	queue.addOperation(operation0)
-	cons.print(string: "Wait until finished\n")
-	waitUntilFinished(operation: operation0)
-	printResult(operation: operation0, console: console)
-	#endif
-	
-	cons.print(string: "Bye: OK\n")
-	return true
-}
-
-private func allocateOperation(virtualMachine vm: JSVirtualMachine, console cons: CNConsole, config conf: KEConfig) -> KEOperation?
-{
-	let operation = KEOperation(virtualMachine: vm, console: console, config: conf)
-	if operation.compile(fileName: "../UnitTest/UnitTestExec/UTOperation.js") {
-		if operation.setStartup(mainName: "main", arguments: []) {
-			return operation
-		} else {
-			cons.print(string: "[Error] user functions is not found.\n")
-		}
-	} else {
-		cons.print(string: "[Error] Failed to compile\n")
-	}
 	return nil
 }
-
-private func waitUntilFinished(operation op: KEOperation)
-{
-	#if true
-	op.waitUntilFinished()
-	#else
-	var docont = true
-	while(docont){
-		if(op.isFinished){
-			docont = false
-		}
-	}
-	#endif
-}
-
-private func printResult(operation op: KEOperation, console cons: CNConsole)
-{
-	if let resval = op.result {
-		cons.print(string: "Result = \(resval.description)\n")
-	} else {
-		cons.print(string: "Result = nil\n")
-	}
-}
-
-*/
 

@@ -28,7 +28,6 @@ public class KEEnumTable
 			KEEnumType.Member(name: "internalError",	value: CNExitCode.InternalError.rawValue),
 			KEEnumType.Member(name: "commaneLineError",	value: CNExitCode.CommandLineError.rawValue),
 			KEEnumType.Member(name: "syntaxError",		value: CNExitCode.SyntaxError.rawValue),
-			KEEnumType.Member(name: "execError",		value: CNExitCode.ExecError.rawValue),
 			KEEnumType.Member(name: "exception",		value: CNExitCode.Exception.rawValue)
 			])
 		mEnumTypes[exitcode.typeName] = exitcode

@@ -9,6 +9,16 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
+public struct KEOperationContext {
+	public var	context: 	KEContext
+	public var	process:	KEOperationProcess
+
+	public init(context ctxt: KEContext){
+		context	= ctxt
+		process	= KEOperationProcess(context: ctxt)
+	}
+}
+
 public class KEOperationProcess: KEObject
 {
 	private static let isExecutingItem	= "isExecuting"
@@ -55,14 +65,19 @@ public class KEOperationProcess: KEObject
 
 public class KEOperation: CNOperation
 {
-	private var mContext:		KEContext
-	private var mProcess:		KEOperationProcess
-	private var mArguments:		Array<JSValue>
+	public typealias FinalizeCallback = (_ exitcode: CNExitCode, _ context: KEOperationContext) -> Void
 
-	public init(context ctxt: KEContext, process proc: KEOperationProcess, arguments args: Array<JSValue>){
+	private var mContext:		KEOperationContext
+	private var mArguments:		Array<JSValue>
+	private var mExitCode:		CNExitCode?
+
+	private var finalizer:		FinalizeCallback?
+
+	public init(context ctxt: KEOperationContext, arguments args: Array<JSValue>){
 		mContext	= ctxt
-		mProcess	= proc
 		mArguments	= args
+		mExitCode	= nil
+		finalizer	= nil
 	}
 
 	public override var isExecuting: Bool {
@@ -70,7 +85,7 @@ public class KEOperation: CNOperation
 			return super.isExecuting
 		}
 		set(newval) {
-			mProcess.isExecuting = newval
+			mContext.process.isExecuting = newval
 			super.isExecuting = newval
 		}
 	}
@@ -80,7 +95,7 @@ public class KEOperation: CNOperation
 			return super.isFinished
 		}
 		set(newval){
-			mProcess.isFinished = newval
+			mContext.process.isFinished = newval
 			super.isFinished = newval
 		}
 	}
@@ -90,15 +105,36 @@ public class KEOperation: CNOperation
 			return super.isCancelled
 		}
 		set(newval){
-			mProcess.isCanceled = newval
+			mContext.process.isCanceled = newval
 			super.isCancelled = newval
 		}
 	}
 
+	public var exitCode: CNExitCode? {
+		get { return mExitCode }
+	}
+	
 	public override func mainOperation() {
-		if let execfunc = mContext.objectForKeyedSubscript("_exec_cancelable"),
-		   let mainfunc = mContext.objectForKeyedSubscript("main") {
-			execfunc.call(withArguments: [mainfunc, mArguments])
+		if let execfunc = mContext.context.objectForKeyedSubscript("_exec_cancelable"),
+		   let mainfunc = mContext.context.objectForKeyedSubscript("main") {
+			let retval = execfunc.call(withArguments: [mainfunc, mArguments])
+			let code   = valueToExitCode(value: retval)
+			mExitCode  = code
+			if let fin = finalizer {
+				fin(code, mContext)
+			}
 		}
+	}
+
+	private func valueToExitCode(value val: JSValue?) -> CNExitCode {
+		var result: CNExitCode = .InternalError
+		if let v = val {
+			if v.isNumber {
+				if let err = CNExitCode(rawValue: v.toInt32()) {
+					result = err
+				}
+			}
+		}
+		return result
 	}
 }

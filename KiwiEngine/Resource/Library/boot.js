@@ -8,9 +8,9 @@ class CancelException extends Error
 	}
 }
 
-function _cancel(code)
+function _cancel()
 {
-	throw new CancelException(code) ;
+	throw new CancelException(ExitCode.exception) ;
 }
 
 function _exec_cancelable(fn, ...args)

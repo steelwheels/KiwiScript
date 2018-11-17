@@ -31,16 +31,26 @@ public func testExec(console cons: CNConsole) -> Bool
 		/* Test "_exec" */
 		let script0  = "_exec_cancelable(function(){ return 0 ; }) ;\n"
 		let compres0 = compiler.compile(context: context, statement: script0)
-		let resstr0  = valueToString(value: compres0)
-		cons.print(string: "* result0 = \(resstr0)\n")
-		let result0 = (resstr0 == "0")
+		let retval0  = valueToInt(value: compres0)
+		let result0: Bool
+		if let rval0 = retval0 {
+			result0 = rval0 == CNExitCode.NoError.rawValue
+			cons.print(string: "* retval0 = \(rval0)\n")
+		} else {
+			result0 = false
+		}
 
 		/* Test "_cancel" */
-		let script1  = "_exec_cancelable(function(){ _cancel(1) ; return 0 ;}) ;\n"
+		let script1  = "_exec_cancelable(function(){ _cancel() ; return 0 ;}) ;\n"
 		let compres1 = compiler.compile(context: context, statement: script1)
-		let resstr1  = valueToString(value: compres1)
-		cons.print(string: "* result1 = \(resstr1)\n")
-		let result1 = (resstr1 == "1")
+		let retval1  = valueToInt(value: compres1)
+		let result1: Bool
+		if let rval1 = retval1 {
+			result1 = rval1 == CNExitCode.Exception.rawValue
+			cons.print(string: "* retval1 = \(rval1)\n")
+		} else {
+			result1 = false
+		}
 
 		result = result0 && result1
 	} else {
@@ -51,13 +61,14 @@ public func testExec(console cons: CNConsole) -> Bool
 }
 
 
-private func valueToString(value val: JSValue?) -> String
+private func valueToInt(value val: JSValue?) -> Int32?
 {
 	if let v = val {
-		return v.description
-	} else {
-		return "nil"
+		if v.isNumber {
+			return v.toInt32()
+		}
 	}
+	return nil
 }
 
 /*

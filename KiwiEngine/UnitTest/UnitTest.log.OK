@@ -40,8 +40,7 @@ let ExitCode = {
 	internalError : 1,
 	commaneLineError : 2,
 	syntaxError : 3,
-	execError : 4,
-	exception : 5
+	exception : 4
 };
 /* Define Enum: TextAlign */
 let TextAlign = {
@@ -61,9 +60,9 @@ class CancelException extends Error
 	}
 }
 
-function _cancel(code)
+function _cancel()
 {
-	throw new CancelException(code) ;
+	throw new CancelException(ExitCode.exception) ;
 }
 
 function _exec_cancelable(fn, ...args)
@@ -114,8 +113,7 @@ let ExitCode = {
 	internalError : 1,
 	commaneLineError : 2,
 	syntaxError : 3,
-	execError : 4,
-	exception : 5
+	exception : 4
 };
 /* Define Enum: TextAlign */
 let TextAlign = {
@@ -135,9 +133,9 @@ class CancelException extends Error
 	}
 }
 
-function _cancel(code)
+function _cancel()
 {
-	throw new CancelException(code) ;
+	throw new CancelException(ExitCode.exception) ;
 }
 
 function _exec_cancelable(fn, ...args)
@@ -152,9 +150,9 @@ function _exec_cancelable(fn, ...args)
 
 Compile: OK
 _exec_cancelable(function(){ return 0 ; }) ;
-* result0 = 0
-_exec_cancelable(function(){ _cancel(1) ; return 0 ;}) ;
-* result1 = 1
+* retval0 = 0
+_exec_cancelable(function(){ _cancel() ; return 0 ;}) ;
+* retval1 = 4
 testExec : OK
 /*** Compile Operation ***/
 'use strict' ;
@@ -192,8 +190,7 @@ let ExitCode = {
 	internalError : 1,
 	commaneLineError : 2,
 	syntaxError : 3,
-	execError : 4,
-	exception : 5
+	exception : 4
 };
 /* Define Enum: TextAlign */
 let TextAlign = {
@@ -213,9 +210,9 @@ class CancelException extends Error
 	}
 }
 
-function _cancel(code)
+function _cancel()
 {
-	throw new CancelException(code) ;
+	throw new CancelException(ExitCode.exception) ;
 }
 
 function _exec_cancelable(fn, ...args)
@@ -236,17 +233,19 @@ Process.__defineGetter__("isCanceled", function(   ){ return this.get("isCancele
 Process.__defineSetter__("isCanceled", function(val){ return this.set("isCanceled", val); }) ;
 Process.__defineGetter__("addListener", function(   ){ return this.get("addListener"     ); }) ;
 Process.__defineSetter__("addListener", function(val){ return this.set("addListener", val); }) ;
-Process.addListener("isCanceled", function(newval){ if(newval){ _cancel(1) ; }}) ;
+Process.addListener("isCanceled", function(newval){ if(newval){ _cancel() ; }}) ;
 /* UTOperation.js */
 
 var counter = 0 ;
 
 function main() {
 	counter += 1 ;
-	return counter ;
+	return ExitCode.noError ;
 }
 /*** Enqueue Operation ***/
 counter = 1
-testOperation: OK
+1st operation ... OK
+counter = 2
+2nd operation ... OK
 testOperation : OK
 SUMMARY: OK
