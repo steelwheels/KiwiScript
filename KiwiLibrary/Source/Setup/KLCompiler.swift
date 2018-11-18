@@ -12,6 +12,13 @@ import Foundation
 
 open class KLCompiler: KECompiler
 {
+	public var	libConfig: KLConfig
+
+	public init(console cons: CNConsole, config conf: KLConfig) {
+		libConfig = conf
+		super.init(console: cons, config: conf)
+	}
+
 	open override func compile(context ctxt: KEContext, process proc: KEProcess) -> Bool {
 		guard super.compile(context: ctxt, process: proc) else {
 			return false
@@ -21,6 +28,7 @@ open class KLCompiler: KECompiler
 		defineClassObjects(context: ctxt)
 		defineObjects(context: ctxt)
 		defineConstructors(context: ctxt)
+		importLibrary(context: ctxt)
 
 		return true
 	}
@@ -190,6 +198,14 @@ open class KLCompiler: KECompiler
 			return JSValue(nullIn: ctxt)
 		}
 		ctxt.set(name: "URL", function: urlFunc)
+	}
+
+	private func importLibrary(context ctxt: KEContext) {
+		if libConfig.doUseGraphicsPrimitive {
+			if let script = readResource(fileName: "Library/graphics", fileExtension: "js", forClass: KLCompiler.self) {
+				let _ = compile(context: ctxt, statement: script)
+			}
+		}
 	}
 }
 

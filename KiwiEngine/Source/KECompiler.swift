@@ -28,7 +28,7 @@ open class KECompiler
 		/* Define Enum Types */
 		defineEnumTypes(context: ctxt)
 		/* Compile "boot.js" */
-		if let script = readResource(fileName: "boot", fileExtension: "js") {
+		if let script = readResource(fileName: "boot", fileExtension: "js", forClass: KECompiler.self) {
 			let _ = compile(context: ctxt, statement: script)
 		}
 		/* Define "Process" instance. This must be executed after compiling "boot.js" */
@@ -76,9 +76,9 @@ open class KECompiler
 		}
 	}
 
-	public func readResource(fileName file: String, fileExtension ext: String) -> String? {
+	public func readResource(fileName file: String, fileExtension ext: String, forClass fclass: AnyClass) -> String? {
 		do {
-			if let url = CNFilePath.URLForResourceFile(fileName: file, fileExtension: ext, forClass: KECompiler.self) {
+			if let url = CNFilePath.URLForResourceFile(fileName: file, fileExtension: ext, forClass: fclass) {
 				return try String(contentsOf: url, encoding: .utf8)
 			} else {
 				return nil

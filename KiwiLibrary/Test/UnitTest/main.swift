@@ -17,7 +17,8 @@ public func main()
 
 	let console = CNFileConsole()
 
-	let config = KLConfig(kind: .Terminal, doStrict: true, doVerbose: false)
+	let config = KLConfig(kind: .Terminal, doStrict: true, doVerbose: true)
+	config.doUseGraphicsPrimitive = true
 
 	let context  = KEContext(virtualMachine: JSVirtualMachine())
 	context.exceptionCallback = {
@@ -25,8 +26,10 @@ public func main()
 		console.error(string: exception.description)
 	}
 
+	let process = KEProcess(context: context, config: config)
+
 	let compiler = KLCompiler(console: console, config: config)
-	if(compiler.compile(context: context)){
+	if(compiler.compile(context: context, process: process)){
 		console.print(string: "  -> Compiler: OK\n")
 	} else {
 		console.print(string: "  -> Compiler: NG\n")
