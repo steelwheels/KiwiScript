@@ -29,6 +29,21 @@ public func testExec(console cons: CNConsole) -> Bool
 	if compiler.compile(context: context, process: process) {
 		cons.print(string: "Compile: OK\n")
 
+		/* Test "Process.isExecuting" */
+		let scriptp  = "isexec = Process.isExecuting ;\n"
+		let _        = compiler.compile(context: context, statement: scriptp)
+		var resultp: Bool = false
+		if let retvalp = context.objectForKeyedSubscript("isexec") {
+			if retvalp.isBoolean && retvalp.toBool() {
+				cons.print(string: "// Process.isExecuting == true\n")
+				resultp = true
+			} else {
+				cons.print(string: "[Error] Process.isExecuting is NOT true\n")
+			}
+		} else {
+			cons.print(string: "[Error] No \"isexec\" variable\n")
+		}
+
 		/* Test "_exec" */
 		let script0  = "_exec_cancelable(function(){ return 0 ; }) ;\n"
 		let compres0 = compiler.compile(context: context, statement: script0)
@@ -53,7 +68,7 @@ public func testExec(console cons: CNConsole) -> Bool
 			result1 = false
 		}
 
-		result = result0 && result1
+		result = resultp && result0 && result1
 	} else {
 		cons.print(string: "Compile: NG\n")
 		result = false

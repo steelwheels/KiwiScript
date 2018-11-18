@@ -15,6 +15,12 @@ let Alignment = {
 	middle : 4,
 	bottom : 5
 };
+/* Define Enum: ApplicationKind */
+let ApplicationKind = {
+	terminal : 0,
+	window : 1,
+	operation : 2
+};
 /* Define Enum: Authorize */
 let Authorize = {
 	undetermined : 0,
@@ -98,6 +104,12 @@ let Alignment = {
 	middle : 4,
 	bottom : 5
 };
+/* Define Enum: ApplicationKind */
+let ApplicationKind = {
+	terminal : 0,
+	window : 1,
+	operation : 2
+};
 /* Define Enum: Authorize */
 let Authorize = {
 	undetermined : 0,
@@ -169,6 +181,8 @@ Process.__defineSetter__("isCanceled", function(val){ return this.set("isCancele
 Process.__defineGetter__("addListener", function(   ){ return this.get("addListener"     ); }) ;
 Process.__defineSetter__("addListener", function(val){ return this.set("addListener", val); }) ;
 Compile: OK
+isexec = Process.isExecuting ;
+// Process.isExecuting == true
 _exec_cancelable(function(){ return 0 ; }) ;
 * retval0 = 0
 _exec_cancelable(function(){ _cancel() ; return 0 ;}) ;
@@ -185,6 +199,12 @@ let Alignment = {
 	top : 3,
 	middle : 4,
 	bottom : 5
+};
+/* Define Enum: ApplicationKind */
+let ApplicationKind = {
+	terminal : 0,
+	window : 1,
+	operation : 2
 };
 /* Define Enum: Authorize */
 let Authorize = {
