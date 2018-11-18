@@ -12,24 +12,12 @@ import Foundation
 
 open class KLCompiler: KECompiler
 {
-	private var 	mConsole:	CNConsole
-	private var	mConfig:	KLConfig
-
-	public init(console cons: CNConsole, config conf: KLConfig) {
-		mConsole	= cons
-		mConfig		= conf
-		super.init(console: cons, config: conf)
-	}
-
-	public var console: CNConsole { get { return mConsole }}
-	public var config: KLConfig { get { return mConfig }}
-	
-	open override func compile(context ctxt: KEContext) -> Bool {
-		guard super.compile(context: ctxt) else {
+	open override func compile(context ctxt: KEContext, process proc: KEProcess) -> Bool {
+		guard super.compile(context: ctxt, process: proc) else {
 			return false
 		}
 
-		defineFunctions(context: ctxt)
+		defineFunctions(context: ctxt, process: proc)
 		defineClassObjects(context: ctxt)
 		defineObjects(context: ctxt)
 		defineConstructors(context: ctxt)
@@ -37,7 +25,7 @@ open class KLCompiler: KECompiler
 		return true
 	}
 
-	private func defineFunctions(context ctxt: KEContext) {
+	private func defineFunctions(context ctxt: KEContext, process proc: KEProcess) {
 		/* isUndefined */
 		let isUndefinedFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in
@@ -104,7 +92,7 @@ open class KLCompiler: KECompiler
 
 		/* exit */
 		let exitFunc: @convention(block) (_ value: JSValue) -> JSValue
-		switch mConfig.kind {
+		switch config.kind {
 		case .Terminal:
 			exitFunc = {
 				(_ value: JSValue) -> JSValue in
@@ -130,12 +118,18 @@ open class KLCompiler: KECompiler
 					return JSValue(undefinedIn: ctxt)
 				}
 			#endif
+		case .Operation:
+			exitFunc = {
+				(_ value: JSValue) -> JSValue in
+				proc.isCanceled = true
+				return JSValue(undefinedIn: ctxt)
+			}
 		}
 		ctxt.set(name: "exit", function: exitFunc)
 	}
 
 	private func defineClassObjects(context ctxt: KEContext) {
-		switch mConfig.kind {
+		switch config.kind {
 		case .Terminal:
 			#if os(OSX)
 				/* Pipe */
@@ -159,6 +153,8 @@ open class KLCompiler: KECompiler
 				ctxt.set(name: "Curses", object: cursesobj)
 			#endif /* if os(OSX) */
 			break
+		case .Operation:
+			break
 		case .Window:
 			break
 		}
@@ -176,8 +172,8 @@ open class KLCompiler: KECompiler
 
 	private func defineObjects(context ctxt: KEContext) {
 		/* Console */
-		let console = KLConsole(context: ctxt, console: mConsole)
-		ctxt.set(name: "console", object: console)
+		let consobj = KLConsole(context: ctxt, console: console)
+		ctxt.set(name: "console", object: consobj)
 	}
 
 	private func defineConstructors(context ctxt: KEContext) {
