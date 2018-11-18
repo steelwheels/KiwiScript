@@ -155,6 +155,21 @@ open class KEObject: NSObject, KEObjectProtocol
 		}
 	}
 
+	public func getInt32(name nm: String) -> Int32 {
+		let val = get(nm)
+		if val.isNumber {
+			return val.toInt32()
+		} else {
+			fatalError("Invalid object at \(#function)")
+		}
+	}
+
+	public func set(name nm: String, int32Value value: Int32) {
+		if let valobj = JSValue(int32: value, in: context) {
+			set(nm, valobj)
+		}
+	}
+
 	public func getDouble(name nm: String) -> Double {
 		let val = get(nm)
 		if val.isNumber {

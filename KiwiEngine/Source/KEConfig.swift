@@ -7,12 +7,30 @@
 
 import Foundation
 
+public enum KEApplicationKind: Int32 {
+	case Terminal
+	case Window
+	case Operation
+
+	public func description() -> String {
+		let result: String
+		switch self {
+		case .Terminal: 	result = "terminal"
+		case .Window:		result = "window"
+		case .Operation:	result = "operation"
+		}
+		return result
+	}
+}
+
 open class KEConfig
 {
+	public var	kind:		KEApplicationKind
 	public var	doStrict:	Bool
 	public var 	doVerbose:	Bool
 
-	public init(doStrict strict: Bool, doVerbose verbose: Bool) {
+	public init(kind knd: KEApplicationKind, doStrict strict: Bool, doVerbose verbose: Bool) {
+		kind	  = knd
 		doStrict  = strict
 		doVerbose = verbose
 	}

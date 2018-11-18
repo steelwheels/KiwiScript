@@ -12,7 +12,7 @@ import Foundation
 
 public func testCompiler(console cons: CNConsole) -> Bool
 {
-	let config   = KEConfig(doStrict: true, doVerbose: true)
+	let config   = KEConfig(kind: .Terminal, doStrict: true, doVerbose: true)
 
 	let context  = KEContext(virtualMachine: JSVirtualMachine())
 	context.exceptionCallback = {
@@ -20,12 +20,14 @@ public func testCompiler(console cons: CNConsole) -> Bool
 		cons.error(string: exception.description)
 	}
 
+	let process  = KEProcess(context: context, config: config)
+
 	console.print(string: "* Setup compiler\n")
 	let compiler = KECompiler(console: cons, config: config)
 
 	let result: Bool
 	console.print(string: "* compile\n")
-	if compiler.compile(context: context) {
+	if compiler.compile(context: context, process: process) {
 		console.print(string: "Compile ... OK\n")
 		result = true
 	} else {

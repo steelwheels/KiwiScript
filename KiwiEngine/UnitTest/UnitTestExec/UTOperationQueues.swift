@@ -11,16 +11,19 @@ import Foundation
 
 public func testOperationQueues(console cons: CNConsole) -> Bool
 {
-	let conf  = KEConfig(doStrict: true, doVerbose: false)
+	let conf  = KEConfig(kind: .Operation, doStrict: true, doVerbose: false)
 	let qnum  = 2
 	let opnum = 4
 
 	/* Allocate cotexts */
-	var ctxtgroups: Array<Array<KEOperationContext>> = []
+	typealias  OperationContext = KEOperationQueues.OperationContext
+	var ctxtgroups: Array<Array<OperationContext>> = []
 	for _ in 0..<qnum {
-		var ctxtgroup: Array<KEOperationContext> = []
+		var ctxtgroup: Array<OperationContext> = []
 		for _ in 0..<opnum {
-			ctxtgroup.append(allocateContext(console: cons, config: conf))
+			let (ctxt, proc) = allocateContext(console: cons, config: conf)
+			let opctxt = OperationContext(context: ctxt, process: proc)
+			ctxtgroup.append(opctxt)
 		}
 		ctxtgroups.append(ctxtgroup)
 	}
@@ -42,7 +45,7 @@ public func testOperationQueues(console cons: CNConsole) -> Bool
 	return result
 }
 
-private func checkResult(expectedValue expval: Int, contextGroups groups: Array<Array<KEOperationContext>>, console cons: CNConsole) -> Bool
+private func checkResult(expectedValue expval: Int, contextGroups groups: Array<Array<KEOperationQueues.OperationContext>>, console cons: CNConsole) -> Bool
 {
 	var result = true
 	for group in groups {

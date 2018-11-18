@@ -9,57 +9,20 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-public struct KEOperationContext {
-	public var	context: 	KEContext
-	public var	process:	KEOperationProcess
-
-	public init(context ctxt: KEContext){
-		context	= ctxt
-		process	= KEOperationProcess(context: ctxt)
-	}
-}
-
-public class KEOperationProcess: KEObject
-{
-	private static let isExecutingItem	= "isExecuting"
-	private static let isFinishedItem	= "isFinished"
-	private static let isCanceledItem	= "isCanceled"
-
-	public override init(context ctxt: KEContext) {
-		super.init(context: ctxt)
-
-		isExecuting	= false
-		isFinished	= false
-		isCanceled	= false
-	}
-	public var isExecuting: Bool {
-		get	   { return getBoolean(name: KEOperationProcess.isExecutingItem) }
-		set(value) { set(name: KEOperationProcess.isExecutingItem, booleanValue: value) }
-	}
-
-	public var isFinished: Bool {
-		get	   { return getBoolean(name: KEOperationProcess.isFinishedItem) }
-		set(value) { set(name: KEOperationProcess.isFinishedItem, booleanValue: value) }
-	}
-
-	public var isCanceled: Bool {
-		get	   { return getBoolean(name: KEOperationProcess.isCanceledItem) }
-		set(value) { set(name: KEOperationProcess.isCanceledItem, booleanValue: value) }
-	}
-}
-
 public class KEOperation: CNOperation
 {
-	public typealias FinalizeCallback = (_ exitcode: CNExitCode, _ context: KEOperationContext) -> Void
+	public typealias FinalizeCallback = (_ exitcode: CNExitCode, _ context: KEContext, _ process: KEProcess) -> Void
 
-	private var mContext:		KEOperationContext
+	private var mContext:		KEContext
+	private var mProcess:		KEProcess
 	private var mArguments:		Array<JSValue>
 	private var mExitCode:		CNExitCode?
 
 	private var finalizer:		FinalizeCallback?
 
-	public init(context ctxt: KEOperationContext, arguments args: Array<JSValue>){
+	public init(context ctxt: KEContext, process proc: KEProcess, arguments args: Array<JSValue>){
 		mContext	= ctxt
+		mProcess	= proc
 		mArguments	= args
 		mExitCode	= nil
 		finalizer	= nil
@@ -70,7 +33,7 @@ public class KEOperation: CNOperation
 			return super.isExecuting
 		}
 		set(newval) {
-			mContext.process.isExecuting = newval
+			mProcess.isExecuting = newval
 			super.isExecuting = newval
 		}
 	}
@@ -80,7 +43,7 @@ public class KEOperation: CNOperation
 			return super.isFinished
 		}
 		set(newval){
-			mContext.process.isFinished = newval
+			mProcess.isFinished = newval
 			super.isFinished = newval
 		}
 	}
@@ -90,7 +53,7 @@ public class KEOperation: CNOperation
 			return super.isCancelled
 		}
 		set(newval){
-			mContext.process.isCanceled = newval
+			mProcess.isCanceled = newval
 			super.isCancelled = newval
 		}
 	}
@@ -100,13 +63,13 @@ public class KEOperation: CNOperation
 	}
 	
 	public override func mainOperation() {
-		if let execfunc = mContext.context.objectForKeyedSubscript("_exec_cancelable"),
-		   let mainfunc = mContext.context.objectForKeyedSubscript("main") {
+		if let execfunc = mContext.objectForKeyedSubscript("_exec_cancelable"),
+		   let mainfunc = mContext.objectForKeyedSubscript("main") {
 			let retval = execfunc.call(withArguments: [mainfunc, mArguments])
 			let code   = valueToExitCode(value: retval)
 			mExitCode  = code
 			if let fin = finalizer {
-				fin(code, mContext)
+				fin(code, mContext, mProcess)
 			}
 		}
 	}

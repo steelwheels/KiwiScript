@@ -14,7 +14,7 @@ public func testExec(console cons: CNConsole) -> Bool
 {
 	var result = true
 
-	let config   = KEConfig(doStrict: true, doVerbose: true)
+	let config   = KEConfig(kind: .Terminal, doStrict: true, doVerbose: true)
 
 	let context  = KEContext(virtualMachine: JSVirtualMachine())
 	context.exceptionCallback = {
@@ -22,9 +22,11 @@ public func testExec(console cons: CNConsole) -> Bool
 		cons.error(string: exception.description + "\n")
 	}
 
+	let process = KEProcess(context: context, config: config)
+
 	console.print(string: "* Setup compiler\n")
 	let compiler = KECompiler(console: cons, config: config)
-	if compiler.compile(context: context) {
+	if compiler.compile(context: context, process: process) {
 		cons.print(string: "Compile: OK\n")
 
 		/* Test "_exec" */

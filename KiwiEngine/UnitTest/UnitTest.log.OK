@@ -75,6 +75,16 @@ function _exec_cancelable(fn, ...args)
 }
 
 
+Process.__defineGetter__("isExecuting", function(   ){ return this.get("isExecuting"     ); }) ;
+Process.__defineSetter__("isExecuting", function(val){ return this.set("isExecuting", val); }) ;
+Process.__defineGetter__("isFinished", function(   ){ return this.get("isFinished"     ); }) ;
+Process.__defineSetter__("isFinished", function(val){ return this.set("isFinished", val); }) ;
+Process.__defineGetter__("kind", function(   ){ return this.get("kind"     ); }) ;
+Process.__defineSetter__("kind", function(val){ return this.set("kind", val); }) ;
+Process.__defineGetter__("isCanceled", function(   ){ return this.get("isCanceled"     ); }) ;
+Process.__defineSetter__("isCanceled", function(val){ return this.set("isCanceled", val); }) ;
+Process.__defineGetter__("addListener", function(   ){ return this.get("addListener"     ); }) ;
+Process.__defineSetter__("addListener", function(val){ return this.set("addListener", val); }) ;
 Compile ... OK
 testCompiler : OK
 * Setup compiler
@@ -148,6 +158,16 @@ function _exec_cancelable(fn, ...args)
 }
 
 
+Process.__defineGetter__("isExecuting", function(   ){ return this.get("isExecuting"     ); }) ;
+Process.__defineSetter__("isExecuting", function(val){ return this.set("isExecuting", val); }) ;
+Process.__defineGetter__("isFinished", function(   ){ return this.get("isFinished"     ); }) ;
+Process.__defineSetter__("isFinished", function(val){ return this.set("isFinished", val); }) ;
+Process.__defineGetter__("kind", function(   ){ return this.get("kind"     ); }) ;
+Process.__defineSetter__("kind", function(val){ return this.set("kind", val); }) ;
+Process.__defineGetter__("isCanceled", function(   ){ return this.get("isCanceled"     ); }) ;
+Process.__defineSetter__("isCanceled", function(val){ return this.set("isCanceled", val); }) ;
+Process.__defineGetter__("addListener", function(   ){ return this.get("addListener"     ); }) ;
+Process.__defineSetter__("addListener", function(val){ return this.set("addListener", val); }) ;
 Compile: OK
 _exec_cancelable(function(){ return 0 ; }) ;
 * retval0 = 0
@@ -230,11 +250,12 @@ Process.__defineGetter__("isExecuting", function(   ){ return this.get("isExecut
 Process.__defineSetter__("isExecuting", function(val){ return this.set("isExecuting", val); }) ;
 Process.__defineGetter__("isFinished", function(   ){ return this.get("isFinished"     ); }) ;
 Process.__defineSetter__("isFinished", function(val){ return this.set("isFinished", val); }) ;
+Process.__defineGetter__("kind", function(   ){ return this.get("kind"     ); }) ;
+Process.__defineSetter__("kind", function(val){ return this.set("kind", val); }) ;
 Process.__defineGetter__("isCanceled", function(   ){ return this.get("isCanceled"     ); }) ;
 Process.__defineSetter__("isCanceled", function(val){ return this.set("isCanceled", val); }) ;
 Process.__defineGetter__("addListener", function(   ){ return this.get("addListener"     ); }) ;
 Process.__defineSetter__("addListener", function(val){ return this.set("addListener", val); }) ;
-Process.addListener("isCanceled", function(newval){ if(newval){ _cancel() ; }}) ;
 /* UTOperation.js */
 
 var counter = 0 ;

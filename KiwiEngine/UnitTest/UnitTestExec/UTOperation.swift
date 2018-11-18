@@ -10,27 +10,24 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-public func allocateContext(console cons: CNConsole, config conf: KEConfig) -> KEOperationContext
+public func allocateContext(console cons: CNConsole, config conf: KEConfig) -> (KEContext, KEProcess)
 {
 	let ctxt    = KEContext(virtualMachine: JSVirtualMachine())
-	let context = KEOperationContext(context: ctxt)
+	let proc    = KEProcess(context: ctxt, config: conf)
 
 	if conf.doVerbose {
 		cons.print(string: "/*** Compile Operation ***/\n")
 	}
 	let srcurl = URL(fileURLWithPath: "../UnitTest/UnitTestExec/UTOperation.js")
 	let compiler = KECompiler(console: cons, config: conf)
-	guard compiler.compile(context: context.context) else {
-		fatalError("Failed to compile at \(#function)")
-	}
-	guard compiler.compile(operationContext: context) else {
+	guard compiler.compile(context: ctxt, process: proc) else {
 		fatalError("Failed to compile at \(#function)")
 	}
 	guard compiler.compile(context: ctxt, sourceFiles: [srcurl]) else {
 		fatalError("Failed to compile at \(#function)")
 	}
 
-	return context
+	return (ctxt, proc)
 }
 
 public func testOperation(console cons: CNConsole, config conf: KEConfig) -> Bool
@@ -42,11 +39,11 @@ public func testOperation(console cons: CNConsole, config conf: KEConfig) -> Boo
 	let queue     = OperationQueue()
 
 	/* 1st operation */
-	let ctxt0 = allocateContext(console: cons, config: conf)
-	let op0   = KEOperation(context: ctxt0, arguments: [])
+	let (ctxt0, proc0) = allocateContext(console: cons, config: conf)
+	let op0   = KEOperation(context: ctxt0, process: proc0, arguments: [])
 	queue.addOperation(op0)
 	queue.waitUntilAllOperationsAreFinished()
-	guard let counter0 = getCounter(context: ctxt0.context, console:cons) else {
+	guard let counter0 = getCounter(context: ctxt0, console:cons) else {
 		cons.print(string: "[Error] No counter value\n")
 		return false
 	}
@@ -67,10 +64,10 @@ public func testOperation(console cons: CNConsole, config conf: KEConfig) -> Boo
 	}
 
 	/* 2nd operation */
-	let op1   = KEOperation(context: ctxt0, arguments: [])
+	let op1   = KEOperation(context: ctxt0, process: proc0, arguments: [])
 	queue.addOperation(op1)
 	queue.waitUntilAllOperationsAreFinished()
-	guard let counter1 = getCounter(context: ctxt0.context, console:cons) else {
+	guard let counter1 = getCounter(context: ctxt0, console:cons) else {
 		cons.print(string: "[Error] No counter value\n")
 		return false
 	}
