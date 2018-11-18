@@ -11,7 +11,7 @@ import KiwiEngine
 import CoconutData
 import Foundation
 
-public func testApplication(context ctxt: KEContext, config conf: KLConfig, console cons: CNConsole) -> Bool
+public func testApplication(context ctxt: KEContext, config conf: KEConfig, console cons: CNConsole) -> Bool
 {
 	let application = KMApplication(instanceName: "application", context: ctxt, config: conf)
 	cons.print(string: "application is allocated\n")

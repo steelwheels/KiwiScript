@@ -14,15 +14,14 @@ import Foundation
 
 public func main()
 {
-	let config = KLConfig(kind: .Terminal)
-	config.doStrict		= true
-	config.doVerbose	= true
+	let config = KEConfig(kind: .Terminal, doStrict: true, doVerbose: true)
 
 	let console = CNFileConsole()
 	let context = KEContext(virtualMachine: JSVirtualMachine())
+	let process = KEProcess(context: context, config: config)
 
 	let compiler = KLCompiler(console: console, config: config)
-	if compiler.compile(context: context) {
+	if compiler.compile(context: context, process: process) {
 		console.error(string: "Compile: OK\n")
 	} else {
 		console.error(string: "Compile: NG\n")

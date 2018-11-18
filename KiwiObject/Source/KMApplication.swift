@@ -18,7 +18,7 @@ open class KMApplication: KMDefaultObject
 
 	private var mProgram: KMProgram?
 
-	public init(instanceName iname: String, context ctxt: KEContext, config cfg: KLConfig) {
+	public init(instanceName iname: String, context ctxt: KEContext, config cfg: KEConfig) {
 		/* Allocate program */
 		mProgram = KMProgram(instanceName: "program", context: ctxt)
 		/* Init super object */
