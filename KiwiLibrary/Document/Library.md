@@ -17,7 +17,7 @@ There are some use cases to use JavaScript program in the application:
 
 ## Functions
 * [exit](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Exit.md): Exit the process.
-* [Type check functions](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/TypeCheck.md): Functions to check object types.
+* [isNull, isUndefined, isNumber, ...](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/TypeChecks.md): Functions to check object types.
 * [Open/Save Panel](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Panel.md): *For macOS only.* Function to display panel to select input/output function.
 
 ## Objects
@@ -28,7 +28,8 @@ You can allocate [Window](https://github.com/steelwheels/KiwiScript/blob/master/
 
 ## Class objects
 Class objects to operate objects.
-* `Process`: The class object of [Process class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Process.md). This has interface to control the main process such as `exit` method.
+* [`Process`](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Process.md): This has interface to control the main process such as `exit` method.
+* [`Math`](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Math.md): Mathematical function and constants such as `sin()`, `cos()`, `PI`.
 * `File`: The class object of [File class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/File.md).
 * `Pipe`: The class object of [Pipe class ](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Pipe.md)
 * `Shell`: The class object of [Shell class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Shell.md)
