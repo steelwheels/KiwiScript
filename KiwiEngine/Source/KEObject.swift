@@ -184,5 +184,21 @@ open class KEObject: NSObject, KEObjectProtocol
 			set(nm, valobj)
 		}
 	}
+
+	public func getObject<T>(name nm: String) -> T? {
+		let val = get(nm)
+		if val.isObject {
+			if let obj = val.toObject() as? T {
+				return obj
+			}
+		}
+		return nil
+	}
+
+	public func set(name nm: String, objectValue value: AnyObject){
+		if let valobj = JSValue(object: value, in: context) {
+			set(nm, valobj)
+		}
+	}
 }
 

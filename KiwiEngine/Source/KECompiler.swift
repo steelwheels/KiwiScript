@@ -178,7 +178,7 @@ open class KECompiler
 
 	private func message(fromError err: NSError?) -> String {
 		if let e = err {
-			return e.description
+			return e.toString()
 		} else {
 			return "Unknown error"
 		}
