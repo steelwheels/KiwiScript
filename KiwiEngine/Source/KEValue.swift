@@ -106,7 +106,8 @@ extension JSValue
 		case .NullType:
 			result = .nullValue
 		case .BooleanType:
-			result = .booleanValue(self.toBool())
+			let ival: Int = self.toBool() ? 1 : 0
+			result = .numberValue(NSNumber(integerLiteral: ival))
 		case .NumberType:
 			result = .numberValue(self.toNumber()!)
 		case .StringType:
@@ -224,8 +225,6 @@ extension CNNativeValue {
 		switch self {
 		case .nullValue:
 			result = JSValue(nullIn: ctxt)
-		case .booleanValue(let val):
-			result = JSValue(bool: val, in: ctxt)
 		case .numberValue(let val):
 			result = JSValue(object: val, in: ctxt)
 		case .stringValue(let val):
