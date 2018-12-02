@@ -370,5 +370,45 @@ d1 = {origin: {x:10.0, y:11.0}, size: {width:20.0, height: 21.0}};
     width: 20
   }
 }
+/* Dictionary: d2 = {
+  imageFile:      "Images/blue-symbol.png",
+  scale:          0.5,
+  alpha:          1.0,
+  position:       {x:10.0, y:10.0},
+  rotation:       0.5,
+  duration:       1.0
+} */
+d2 = {
+  imageFile:      "Images/blue-symbol.png",
+  scale:          0.5,
+  alpha:          1.0,
+  position:       {x:10.0, y:10.0},
+  rotation:       0.5,
+  duration:       1.0
+}* JSType = dictionary
+* NativeValue = {
+  alpha: true
+  duration: true
+  imageFile: "Images/blue-symbol.png"
+  position: 
+  {
+    x: 10
+    y: 10
+  }
+  rotation: 0.5
+  scale: 0.5
+}
+* JSValue = {
+  alpha: true
+  duration: true
+  imageFile: "Images/blue-symbol.png"
+  position: 
+  {
+    x: 10
+    y: 10
+  }
+  rotation: 0.5
+  scale: 0.5
+}
 testValue : OK
 SUMMARY: OK

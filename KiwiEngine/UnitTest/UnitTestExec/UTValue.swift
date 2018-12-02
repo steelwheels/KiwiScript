@@ -49,6 +49,20 @@ private class UTCompiler: KECompiler
 		let d1 = self.compile(context: ctxt, statement: "d1 = {origin: {x:10.0, y:11.0}, size: {width:20.0, height: 21.0}};\n")
 		printValue(value: d1, context: ctxt)
 
+		/* Dictionary */
+		let stmt =
+			"d2 = {\n" +
+			"  imageFile:      \"Images/blue-symbol.png\",\n" +
+			"  scale:          0.5,\n" +
+			"  alpha:          1.0,\n" +
+			"  position:       {x:10.0, y:10.0},\n" +
+			"  rotation:       0.5,\n" +
+			"  duration:       1.0\n" +
+			"}"
+		console.print(string: "/* Dictionary: \(stmt) */\n")
+		let d2 = self.compile(context: ctxt, statement: stmt)
+		printValue(value: d2, context: ctxt)
+
 		return true
 	}
 
