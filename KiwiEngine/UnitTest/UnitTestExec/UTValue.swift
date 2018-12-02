@@ -64,8 +64,10 @@ private class UTCompiler: KECompiler
 			nttxt.print(console: console)
 
 			/* Backto JSValue */
+			console.print(string: "* JSValue = ")
 			let jsval = ntval.toJSValue(context: ctxt)
-			console.print(string: "* JSValue = \(jsval.description)\n")
+			let jstxt = jsval.toText()
+			jstxt.print(console: console)
 
 		} else {
 			console.print(string: "[Error] No value\n")

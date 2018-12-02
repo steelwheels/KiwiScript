@@ -156,6 +156,66 @@ extension JSValue
 		}
 		return result
 	}
+
+	public func toText() -> CNText {
+		let result: CNText
+		switch self.type {
+		case .UndefinedType:
+			result = CNTextLine(string: "undefined")
+		case .NullType:
+			result = CNTextLine(string: "null")
+		case .BooleanType, .NumberType, .StringType, .DateType, .RangeType, .PointType, .SizeType, .RectType:
+			result = CNTextLine(string: "\(self.description)")
+		case .ArrayType:
+			if let arr = self.toArray() {
+				let section = CNTextSection()
+				section.header = "[" ; section.footer = "]"
+				for elm in arr {
+					if let obj = CNNativeValue.anyToValue(object: elm) {
+						section.add(text: obj.toText())
+					} else {
+						NSLog("Unknown object at \(#function)")
+						section.add(text: CNTextLine(string: "?"))
+					}
+				}
+				result = section
+			} else {
+				result = CNTextLine(string: "\(self.description)")
+			}
+		case .DictionaryType:
+			if let val = self.toDictionary() as? Dictionary<String, Any> {
+				let keys = val.keys.sorted()
+				let section = CNTextSection()
+				section.header = "{" ; section.footer = "}"
+				for key in keys {
+					if let elm = val[key] {
+						if let obj = CNNativeValue.anyToValue(object: elm) {
+							let txt = obj.toText()
+							if let line = txt as? CNTextLine {
+								line.prepend(string: "\(key): ")
+								section.add(text: line)
+							} else {
+								section.add(text: CNTextLine(string: "\(key): "))
+								section.add(text: txt)
+							}
+						} else {
+							NSLog("Unknown object at \(#function)")
+							section.add(text: CNTextLine(string: "?"))
+						}
+					} else {
+						NSLog("Unknown object at \(#function)")
+						section.add(text: CNTextLine(string: "?"))
+					}
+				}
+				result = section
+			} else {
+				result = CNTextLine(string: "\(self.description)")
+			}
+		case .ObjectType:
+			result = CNTextLine(string: "\(self.description)")
+		}
+		return result
+	}
 }
 
 extension CNNativeValue {

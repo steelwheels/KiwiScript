@@ -319,33 +319,56 @@ a0 = [0, 1, 2, 3, 3.1] ;
   3
   3.1
 ]
-* JSValue = false,true,2,3,3.1
+* JSValue = [
+  false
+  true
+  2
+  3
+  3.1
+]
 /* Dictionary: {a:0, b:1, c:2, d:3, e:3.1} */
 d0 = {a:0, b:1, c:2, d:3, e:3.1} ;
 * JSType = dictionary
 * NativeValue = {
-  e: 3.1
-  b: true
-  d: 3
   a: false
+  b: true
   c: 2
+  d: 3
+  e: 3.1
 }
-* JSValue = [object Object]
+* JSValue = {
+  a: false
+  b: true
+  c: 2
+  d: 3
+  e: 3.1
+}
 /* Dictionary: {origin: {x:10.0, y:11.0}, size: {width:20.0, height: 21.0}} */
 d1 = {origin: {x:10.0, y:11.0}, size: {width:20.0, height: 21.0}};
 * JSType = dictionary
 * NativeValue = {
-  size: 
-  {
-    width: 20
-    height: 21
-  }
   origin: 
   {
-    y: 11
     x: 10
+    y: 11
+  }
+  size: 
+  {
+    height: 21
+    width: 20
   }
 }
-* JSValue = [object Object]
+* JSValue = {
+  origin: 
+  {
+    x: 10
+    y: 11
+  }
+  size: 
+  {
+    height: 21
+    width: 20
+  }
+}
 testValue : OK
 SUMMARY: OK
