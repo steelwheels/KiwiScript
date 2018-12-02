@@ -15,9 +15,13 @@ public enum JSValueType {
 	case BooleanType
 	case NumberType
 	case StringType
+	case DateType
 	case ArrayType
 	case DictionaryType
-	case DateType
+	case RangeType
+	case RectType
+	case PointType
+	case SizeType
 	case ObjectType
 
 	public var description: String {
@@ -27,11 +31,15 @@ public enum JSValueType {
 			case .UndefinedType:	result = "undefined"
 			case .NullType:		result = "null"
 			case .BooleanType:	result = "bool"
-			case .NumberType:	result = "float"
+			case .NumberType:	result = "number"
 			case .StringType:	result = "string"
+			case .DateType:		result = "date"
 			case .ArrayType:	result = "array"
 			case .DictionaryType:	result = "dictionary"
-			case .DateType:		result = "date"
+			case .RangeType:	result = "range"
+			case .PointType:	result = "point"
+			case .SizeType:		result = "size"
+			case .RectType:		result = "rect"
 			case .ObjectType:	result = "object"
 			}
 			return result
@@ -50,31 +58,142 @@ extension JSValue
 		return nil
 	}
 
-	public func type() -> JSValueType {
-		var result: JSValueType
-		if self.isUndefined {
-			result = .UndefinedType
-		} else if self.isNull {
-			result = .NullType
-		} else if self.isBoolean {
-			result = .BooleanType
-		} else if self.isNumber {
-			result = .NumberType
-		} else if self.isString {
-			result = .StringType
-		} else if self.isArray {
-			result = .ArrayType
-		} else if self.isDate {
-			result = .DateType
-		} else if self.isObject {
-			result = .ObjectType
-			if let obj = self.toObject() {
-				if let _ = obj as? Dictionary<String, AnyObject> {
-					result = .DictionaryType
+	public var type: JSValueType {
+		get {
+			var result: JSValueType
+			if self.isUndefined {
+				result = .UndefinedType
+			} else if self.isNull {
+				result = .NullType
+			} else if self.isBoolean {
+				result = .BooleanType
+			} else if self.isNumber {
+				result = .NumberType
+			} else if self.isString {
+				result = .StringType
+			} else if self.isArray {
+				result = .ArrayType
+			} else if self.isDate {
+				result = .DateType
+			} else if self.isObject {
+				result = .ObjectType
+				if let obj = self.toObject() {
+					if let _ = obj as? Dictionary<String, AnyObject> {
+						result = .DictionaryType
+					} else if let _ = obj as? NSRange {
+						result = .RangeType
+					} else if let _ = obj as? CGPoint {
+						result = .PointType
+					} else if let _ = obj as? CGSize {
+						result = .SizeType
+					} else if let _ = obj as? CGRect {
+						result = .RectType
+					}
+				}
+			} else {
+				fatalError("Unknown type")
+			}
+			return result
+		}
+	}
+
+	public func toNativeValue() -> CNNativeValue {
+		let result: CNNativeValue
+		switch self.type {
+		case .UndefinedType:
+			NSLog("Undefined value is not supported \(#function)")
+			result = .nullValue
+		case .NullType:
+			result = .nullValue
+		case .BooleanType:
+			result = .booleanValue(self.toBool())
+		case .NumberType:
+			result = .numberValue(self.toNumber()!)
+		case .StringType:
+			result = .stringValue(self.toString())
+		case .DateType:
+			result = .dateValue(self.toDate())
+		case .RangeType:
+			result = .rangeValue(self.toRange())
+		case .PointType:
+			result = .pointValue(self.toPoint())
+		case .SizeType:
+			result = .sizeValue(self.toSize())
+		case .RectType:
+			result = .rectValue(self.toRect())
+		case .ArrayType:
+			let srcarr = self.toArray()!
+			var dstarr: Array<CNNativeValue> = []
+			for elm in srcarr {
+				if let object = CNNativeValue.anyToValue(object: elm) {
+					dstarr.append(object)
+				} else {
+					NSLog("Failed to convert at \(#function)")
 				}
 			}
-		} else {
-			fatalError("Unknown type")
+			result = .arrayValue(dstarr)
+		case .DictionaryType:
+			var dstdict: Dictionary<String, CNNativeValue> = [:]
+			if let srcdict = self.toDictionary() as? Dictionary<String, Any> {
+				for (key, value) in srcdict {
+					if let obj = CNNativeValue.anyToValue(object: value) {
+						dstdict[key] = obj
+					} else {
+						NSLog("Failed to convert at \(#function)")
+					}
+				}
+			} else {
+				NSLog("Failed to convert at \(#function)")
+			}
+			result = .dictionaryValue(dstdict)
+		case .ObjectType:
+			if let obj = self.toObject() as? NSObject {
+				result = .objectValue(obj)
+			} else {
+				NSLog("Unknown object type")
+				result = .nullValue
+			}
+		}
+		return result
+	}
+}
+
+extension CNNativeValue {
+	public func toJSValue(context ctxt: KEContext) -> JSValue {
+		let result: JSValue
+		switch self {
+		case .nullValue:
+			result = JSValue(nullIn: ctxt)
+		case .booleanValue(let val):
+			result = JSValue(bool: val, in: ctxt)
+		case .numberValue(let val):
+			result = JSValue(object: val, in: ctxt)
+		case .stringValue(let val):
+			result = JSValue(object: val, in: ctxt)
+		case .dateValue(let val):
+			result = JSValue(object: val, in: ctxt)
+		case .rangeValue(let val):
+			result = JSValue(object: val, in: ctxt)
+		case .pointValue(let val):
+			result = JSValue(point: val, in: ctxt)
+		case .sizeValue(let val):
+			result = JSValue(size: val, in: ctxt)
+		case .rectValue(let val):
+			result = JSValue(rect: val, in: ctxt)
+		case .dictionaryValue(let dict):
+			var newdict: Dictionary<String, Any> = [:]
+			for (key, elm) in dict {
+				newdict[key] = elm.toAny()
+			}
+			result = JSValue(object: newdict, in: ctxt)
+		case .arrayValue(let arr):
+			var newarr: Array<Any> = []
+			for elm in arr {
+				newarr.append(elm.toAny())
+			}
+			result = JSValue(object: newarr, in: ctxt)
+		case .objectValue(let val):
+			result = JSValue(object: val, in: ctxt)
 		}
 		return result
 	}

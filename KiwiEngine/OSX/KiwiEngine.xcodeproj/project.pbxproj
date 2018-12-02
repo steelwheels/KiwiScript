@@ -14,6 +14,7 @@
 		0545301C21851C3F006F96C8 /* UTOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0545301B21851C3F006F96C8 /* UTOperation.swift */; };
 		054536C61B78021500FE978C /* KiwiEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 054536C51B78021500FE978C /* KiwiEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		054637F21BB05FE400DEE12F /* UTError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054637F01BB05F4500DEE12F /* UTError.swift */; };
+		056EF13321B29105001EE449 /* UTValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056EF13221B29105001EE449 /* UTValue.swift */; };
 		0573D08D218D77EB00915EA1 /* KEError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0573D08C218D77EB00915EA1 /* KEError.swift */; };
 		057F881F1B78031B0029AB4F /* KEContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F881E1B78031B0029AB4F /* KEContext.swift */; };
 		058735C620C29AE900797EFD /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 058735C520C29AE900797EFD /* CoconutData.framework */; };
@@ -107,6 +108,7 @@
 		054536C41B78021500FE978C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		054536C51B78021500FE978C /* KiwiEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiEngine.h; sourceTree = SOURCE_ROOT; };
 		054637F01BB05F4500DEE12F /* UTError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTError.swift; sourceTree = "<group>"; };
+		056EF13221B29105001EE449 /* UTValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTValue.swift; sourceTree = "<group>"; };
 		0573D08C218D77EB00915EA1 /* KEError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEError.swift; sourceTree = "<group>"; };
 		057F881E1B78031B0029AB4F /* KEContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEContext.swift; sourceTree = "<group>"; };
 		058735C520C29AE900797EFD /* CoconutData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutData.framework; path = ../../../../Library/Frameworks/CoconutData.framework; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				052B0F781BE8A33400E3BFEE /* UTExec.swift */,
 				0545301B21851C3F006F96C8 /* UTOperation.swift */,
 				051FBC49219FAF4E00ECA925 /* UTOperationQueues.swift */,
+				056EF13221B29105001EE449 /* UTValue.swift */,
 			);
 			path = UnitTestExec;
 			sourceTree = "<group>";
@@ -471,6 +474,7 @@
 				054637F21BB05FE400DEE12F /* UTError.swift in Sources */,
 				052B0F7A1BE8A3A400E3BFEE /* UTExec.swift in Sources */,
 				058B53261BA41A6C009522DF /* main.swift in Sources */,
+				056EF13321B29105001EE449 /* UTValue.swift in Sources */,
 				058735D220C2BF9200797EFD /* UTCompiler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
