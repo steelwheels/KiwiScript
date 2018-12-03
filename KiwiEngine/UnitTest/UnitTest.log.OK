@@ -309,6 +309,13 @@ s0 = "hello" ;
 * JSType = string
 * NativeValue = "hello"
 * JSValue = hello
+p0 = {x:10.0, y:11.1} ;
+* JSType = point
+* NativeValue = {x:10.0, y:11.1}
+* JSValue = {
+  x: 10
+  y: 11.1
+}
 /* Array: [0, 1, 2, 3, 3.1] */
 a0 = [0, 1, 2, 3, 3.1] ;
 * JSType = array
@@ -345,30 +352,11 @@ d0 = {a:0, b:1, c:2, d:3, e:3.1} ;
 }
 /* Dictionary: {origin: {x:10.0, y:11.0}, size: {width:20.0, height: 21.0}} */
 d1 = {origin: {x:10.0, y:11.0}, size: {width:20.0, height: 21.0}};
-* JSType = dictionary
-* NativeValue = {
-  origin: 
-  {
-    x: 10
-    y: 11
-  }
-  size: 
-  {
-    height: 21
-    width: 20
-  }
-}
+* JSType = rect
+* NativeValue = {origin:{x:10.0, y:11.0}, size:{width:20.0, height:21.0}}
 * JSValue = {
-  origin: 
-  {
-    x: 10
-    y: 11
-  }
-  size: 
-  {
-    height: 21
-    width: 20
-  }
+  origin: {x:10.0, y:11.0}
+  size: {width:20.0, height:21.0}
 }
 /* Dictionary: d2 = {
   imageFile:      "Images/blue-symbol.png",
@@ -390,11 +378,7 @@ d2 = {
   alpha: 1
   duration: 1
   imageFile: "Images/blue-symbol.png"
-  position: 
-  {
-    x: 10
-    y: 10
-  }
+  position: {x:10.0, y:10.0}
   rotation: 0.5
   scale: 0.5
 }
@@ -402,11 +386,7 @@ d2 = {
   alpha: 1
   duration: 1
   imageFile: "Images/blue-symbol.png"
-  position: 
-  {
-    x: 10
-    y: 10
-  }
+  position: {x:10.0, y:10.0}
   rotation: 0.5
   scale: 0.5
 }

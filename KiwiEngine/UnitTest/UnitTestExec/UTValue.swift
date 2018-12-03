@@ -34,6 +34,11 @@ private class UTCompiler: KECompiler
 		let s0 = self.compile(context: ctxt, statement: "s0 = \"hello\" ;\n")
 		printValue(value: s0, context: ctxt)
 
+		/* Point */
+		let stmtp = "p0 = {x:10.0, y:11.1} ;\n"
+		let p0 = self.compile(context: ctxt, statement: stmtp)
+		printValue(value: p0, context: ctxt)
+
 		/* Array */
 		console.print(string: "/* Array: [0, 1, 2, 3, 3.1] */\n")
 		let a0 = self.compile(context: ctxt, statement: "a0 = [0, 1, 2, 3, 3.1] ;\n")

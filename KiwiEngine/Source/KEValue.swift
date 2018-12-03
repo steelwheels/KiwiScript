@@ -76,25 +76,55 @@ extension JSValue
 			} else if self.isDate {
 				result = .DateType
 			} else if self.isObject {
-				result = .ObjectType
-				if let obj = self.toObject() {
-					if let _ = obj as? Dictionary<String, AnyObject> {
-						result = .DictionaryType
-					} else if let _ = obj as? NSRange {
-						result = .RangeType
-					} else if let _ = obj as? CGPoint {
+				if let dict = self.toObject() as? Dictionary<String, AnyObject> {
+					if isPointObject(object: dict) {
 						result = .PointType
-					} else if let _ = obj as? CGSize {
+					} else if isSizeObject(object: dict) {
 						result = .SizeType
-					} else if let _ = obj as? CGRect {
+					} else if isRectObject(object: dict) {
 						result = .RectType
+					} else {
+						result = .DictionaryType
 					}
+				} else {
+					result = .ObjectType
 				}
 			} else {
 				fatalError("Unknown type")
 			}
 			return result
 		}
+	}
+
+	private func isPointObject(object obj: Dictionary<String, AnyObject>) -> Bool {
+		if obj.count == 2 {
+			if obj["x"] != nil && obj["y"] != nil {
+				return true
+			}
+		}
+		return false
+	}
+
+	private func isSizeObject(object obj: Dictionary<String, AnyObject>) -> Bool {
+		if obj.count == 2 {
+			if obj["width"] != nil && obj["height"] != nil {
+				return true
+			}
+		}
+		return false
+	}
+
+	private func isRectObject(object obj: Dictionary<String, AnyObject>) -> Bool {
+		if obj.count == 2 {
+			if let origin = obj["origin"] as? Dictionary<String, AnyObject> {
+				if isPointObject(object: origin) {
+					if let size = obj["size"] as? Dictionary<String, AnyObject> {
+						return isSizeObject(object: size)
+					}
+				}
+			}
+		}
+		return false
 	}
 
 	public func toNativeValue() -> CNNativeValue {
@@ -117,11 +147,26 @@ extension JSValue
 		case .RangeType:
 			result = .rangeValue(self.toRange())
 		case .PointType:
-			result = .pointValue(self.toPoint())
+			if let point = valueToPoint(value: self) {
+				result = .pointValue(point)
+			} else {
+				NSLog("Failed to convert point")
+				result = .nullValue
+			}
 		case .SizeType:
-			result = .sizeValue(self.toSize())
+			if let size = valueToSize(value: self) {
+				result = .sizeValue(size)
+			} else {
+				NSLog("Failed to convert size")
+				result = .nullValue
+			}
 		case .RectType:
-			result = .rectValue(self.toRect())
+			if let rect = valueToRect(value: self) {
+				result = .rectValue(rect)
+			} else {
+				NSLog("Failed to convert rect")
+				result = .nullValue
+			}
 		case .ArrayType:
 			let srcarr = self.toArray()!
 			var dstarr: Array<CNNativeValue> = []
@@ -146,7 +191,7 @@ extension JSValue
 			} else {
 				NSLog("Failed to convert at \(#function)")
 			}
-			result = .dictionaryValue(dstdict)
+			result = CNNativeValue.dictionaryToValue(dictionary: dstdict)
 		case .ObjectType:
 			if let obj = self.toObject() as? NSObject {
 				result = .objectValue(obj)
@@ -158,6 +203,51 @@ extension JSValue
 		return result
 	}
 
+	private func valueToPoint(value val: JSValue) -> CGPoint? {
+		if let dict = val.toObject() as? Dictionary<String, AnyObject> {
+			return valueToPoint(dictionary: dict)
+		}
+		return nil
+	}
+
+	private func valueToPoint(dictionary dict: Dictionary<String, AnyObject>) -> CGPoint? {
+		if let xnum = dict["x"] as? NSNumber, let ynum = dict["y"] as? NSNumber {
+			let x = CGFloat(xnum.doubleValue)
+			let y = CGFloat(ynum.doubleValue)
+			return CGPoint(x: x, y: y)
+		}
+		return nil
+	}
+
+	private func valueToSize(value val: JSValue) -> CGSize? {
+		if let dict = val.toObject() as? Dictionary<String, AnyObject> {
+			return valueToSize(dictionary: dict)
+		}
+		return nil
+	}
+
+	private func valueToSize(dictionary dict: Dictionary<String, AnyObject>) -> CGSize? {
+		if let wnum = dict["width"] as? NSNumber, let hnum = dict["height"] as? NSNumber {
+			let width  = CGFloat(wnum.doubleValue)
+			let height = CGFloat(hnum.doubleValue)
+			return CGSize(width: width, height: height)
+		}
+		return nil
+	}
+
+	private func valueToRect(value val: JSValue) -> CGRect? {
+		if let dict = val.toObject() as? Dictionary<String, AnyObject> {
+			if let odict = dict["origin"] as? Dictionary<String, AnyObject>,
+			   let hdict = dict["size"] as? Dictionary<String, AnyObject> {
+				if let origin = valueToPoint(dictionary: odict),
+				   let size   = valueToSize(dictionary: hdict) {
+					return CGRect(origin: origin, size: size)
+				}
+			}
+		}
+		return nil
+	}
+
 	public func toText() -> CNText {
 		let result: CNText
 		switch self.type {
@@ -165,7 +255,7 @@ extension JSValue
 			result = CNTextLine(string: "undefined")
 		case .NullType:
 			result = CNTextLine(string: "null")
-		case .BooleanType, .NumberType, .StringType, .DateType, .RangeType, .PointType, .SizeType, .RectType:
+		case .BooleanType, .NumberType, .StringType, .DateType, .RangeType:
 			result = CNTextLine(string: "\(self.description)")
 		case .ArrayType:
 			if let arr = self.toArray() {
@@ -183,7 +273,7 @@ extension JSValue
 			} else {
 				result = CNTextLine(string: "\(self.description)")
 			}
-		case .DictionaryType:
+		case .DictionaryType, .PointType, .SizeType, .RectType:
 			if let val = self.toDictionary() as? Dictionary<String, Any> {
 				let keys = val.keys.sorted()
 				let section = CNTextSection()
@@ -234,11 +324,14 @@ extension CNNativeValue {
 		case .rangeValue(let val):
 			result = JSValue(object: val, in: ctxt)
 		case .pointValue(let val):
-			result = JSValue(point: val, in: ctxt)
+			let dict = pointToObject(point: val)
+			result = JSValue(object: dict, in: ctxt)
 		case .sizeValue(let val):
-			result = JSValue(size: val, in: ctxt)
+			let size = sizeToObject(size: val)
+			result = JSValue(object: size, in: ctxt)
 		case .rectValue(let val):
-			result = JSValue(rect: val, in: ctxt)
+			let rect = rectToObject(point: val)
+			result = JSValue(object: rect, in: ctxt)
 		case .dictionaryValue(let dict):
 			var newdict: Dictionary<String, Any> = [:]
 			for (key, elm) in dict {
@@ -254,6 +347,30 @@ extension CNNativeValue {
 		case .objectValue(let val):
 			result = JSValue(object: val, in: ctxt)
 		}
+		return result
+	}
+
+	private func pointToObject(point val: CGPoint) -> Dictionary<String, Any> {
+		let result: Dictionary<String, Any> = [
+			"x":	NSNumber(value: Double(val.x)),
+			"y":	NSNumber(value: Double(val.y))
+		]
+		return result
+	}
+
+	private func sizeToObject(size val: CGSize) -> Dictionary<String, Any> {
+		let result: Dictionary<String, Any> = [
+			"width":	NSNumber(value: Double(val.width)),
+			"height":	NSNumber(value: Double(val.height))
+		]
+		return result
+	}
+
+	private func rectToObject(point val: CGRect) -> Dictionary<String, Any> {
+		let result: Dictionary<String, Any> = [
+			"origin":	pointToObject(point: val.origin),
+			"size":		sizeToObject(size: val.size)
+		]
 		return result
 	}
 }
