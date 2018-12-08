@@ -390,5 +390,22 @@ d2 = {
   rotation: 0.5
   scale: 0.5
 }
+/* class A { 
+ constructor(){ this.x = 10 ; }
+ funcA(){ return 1 ; }
+} ; 
+aobject = new A() ; */
+class A { 
+ constructor(){ this.x = 10 ; }
+ funcA(){ return 1 ; }
+} ; 
+aobject = new A() ;
+* JSType = dictionary
+* NativeValue = {
+  x: 10
+}
+* JSValue = {
+  x: 10
+}
 testValue : OK
 SUMMARY: OK

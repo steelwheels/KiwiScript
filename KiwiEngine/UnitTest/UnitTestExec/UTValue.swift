@@ -68,6 +68,16 @@ private class UTCompiler: KECompiler
 		let d2 = self.compile(context: ctxt, statement: stmt)
 		printValue(value: d2, context: ctxt)
 
+		/* Class */
+		let c0stmt = "class A { \n" +
+			     " constructor(){ this.x = 10 ; }\n" +
+			     " funcA(){ return 1 ; }\n" +
+			     "} ; \n" +
+			     "aobject = new A() ;"
+		console.print(string: "/* \(c0stmt) */\n")
+		let c0 = self.compile(context: ctxt, statement: c0stmt + "\n")
+		printValue(value: c0, context: ctxt)
+
 		return true
 	}
 
