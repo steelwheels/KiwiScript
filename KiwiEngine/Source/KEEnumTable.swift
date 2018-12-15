@@ -40,14 +40,19 @@ public class KEEnumTable
 			])
 		mEnumTypes[exitcode.typeName] = exitcode
 
+		let axis = KEEnumType(typeName: "Axis")
+		axis.add(members: [
+			KEEnumType.Member(name: "horizontal",	value: CNAxis.horizontal.rawValue),
+			KEEnumType.Member(name: "vertical",	value: CNAxis.vertical.rawValue)
+		])
+		mEnumTypes[axis.typeName] = axis
+
 		let alignment = KEEnumType(typeName: "Alignment")
 		alignment.add(members: [
-			KEEnumType.Member(name: "left",		value: CNAlignment.Left.rawValue),
-			KEEnumType.Member(name: "center",	value: CNAlignment.Center.rawValue),
-			KEEnumType.Member(name: "right",	value: CNAlignment.Right.rawValue),
-			KEEnumType.Member(name: "top",		value: CNAlignment.Top.rawValue),
-			KEEnumType.Member(name: "middle",	value: CNAlignment.Middle.rawValue),
-			KEEnumType.Member(name: "bottom",	value: CNAlignment.Bottom.rawValue)
+			KEEnumType.Member(name: "leading",	value: CNAlignment.leading.rawValue),
+			KEEnumType.Member(name: "trailing",	value: CNAlignment.trailing.rawValue),
+			KEEnumType.Member(name: "fill",		value: CNAlignment.fill.rawValue),
+			KEEnumType.Member(name: "center",	value: CNAlignment.center.rawValue)
 		])
 		mEnumTypes[alignment.typeName] = alignment
 
