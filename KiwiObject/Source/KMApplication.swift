@@ -14,7 +14,7 @@ import Foundation
 open class KMApplication: KMDefaultObject
 {
 	private static let ArgumentsProperty	= "arguments"
-	private static let ExitProperty		= "exit"
+	//private static let ExitProperty		= "exit"
 
 	private var mProgram: KMProgram?
 

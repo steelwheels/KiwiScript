@@ -12,34 +12,20 @@ import Foundation
 
 @objc public protocol KLDatabaseProtocol: JSExport
 {
-	func create(_ identifier: JSValue, _ value: JSValue) -> JSValue // Bool
 	func read(_ identifier: JSValue) -> JSValue // Object
 	func write(_ identifier: JSValue, _ value: JSValue) -> JSValue // Bool
-	func delete(_ identifier: JSValue) -> JSValue // Object or undefined
+	func delete(_ identifier: JSValue) -> JSValue // Bool
 	func commit()
 }
 
 @objc public class KLDatabase: NSObject, KLDatabaseProtocol
 {
-	private var mDatabase:	CNDatabase
+	private var mDatabase:	CNDatabaseProtocol
 	private var mContext:	KEContext
 
-	public init(database db: CNDatabase, context ctxt: KEContext){
+	public init(database db: CNDatabaseProtocol, context ctxt: KEContext){
 		mDatabase = db
 		mContext  = ctxt
-	}
-
-	public func create(_ identval: JSValue, _ value: JSValue) -> JSValue {
-		/* Check parameters */
-		guard let identifier = valueToIdentifier(value: identval) else {
-			return JSValue(nullIn: mContext)
-		}
-		let native = value.toNativeValue()
-
-		/* Call database */
-		let result = mDatabase.create(identifier: identifier, value: native)
-		/* Return result */
-		return JSValue(bool: result, in: mContext)
 	}
 
 	public func read(_ identval: JSValue) -> JSValue {
@@ -61,29 +47,24 @@ import Foundation
 	public func write(_ identval: JSValue, _ value: JSValue) -> JSValue {
 		/* Check parameters */
 		guard let identifier = valueToIdentifier(value: identval) else {
-			return JSValue(nullIn: mContext)
+			return JSValue(bool: false, in: mContext)
 		}
 		let native = value.toNativeValue()
 		/* Call database */
-		let result = mDatabase.write(identifier: identifier, value: native)
+		let _ = mDatabase.write(identifier: identifier, value: native)
 		/* Return result */
-		return JSValue(bool: result, in: mContext)
+		return JSValue(bool: true, in: mContext)
 	}
 
 	public func delete(_ identval: JSValue) -> JSValue {
 		/* Check parameters */
 		guard let identifier = valueToIdentifier(value: identval) else {
-			return JSValue(undefinedIn: mContext)
+			return JSValue(bool: false, in: mContext)
 		}
 		/* Call database */
-		let retval: JSValue
-		if let natval = mDatabase.read(identifier: identifier) {
-			retval = natval.toJSValue(context: mContext)
-		} else {
-			retval = JSValue(undefinedIn: mContext)
-		}
+		mDatabase.delete(identifier: identifier)
 		/* Return result */
-		return retval
+		return JSValue(bool: true, in: mContext)
 	}
 
 	public func commit() {

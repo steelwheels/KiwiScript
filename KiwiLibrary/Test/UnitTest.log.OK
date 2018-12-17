@@ -1,12 +1,10 @@
 'use strict' ;
 /* Define Enum: Alignment */
 let Alignment = {
-	left : 0,
-	center : 1,
-	right : 2,
-	top : 3,
-	middle : 4,
-	bottom : 5
+	leading : 0,
+	trailing : 1,
+	fill : 2,
+	center : 3
 };
 /* Define Enum: ApplicationKind */
 let ApplicationKind = {
@@ -19,6 +17,11 @@ let Authorize = {
 	undetermined : 0,
 	denied : 2,
 	authorized : 3
+};
+/* Define Enum: Axis */
+let Axis = {
+	horizontal : 0,
+	vertical : 1
 };
 /* Define Enum: Color */
 let Color = {
@@ -93,6 +96,10 @@ class Point {
 		this.x = x ;
 		this.y = y ;
 	}
+
+	get description() {
+		return "(x:" + this.x + ", y:"+ this.y + ")" ;
+	}
 }
 
 class Size {
@@ -100,12 +107,20 @@ class Size {
 		this.width  = width ;
 		this.height = height ;
 	}
+
+	get description() {
+		return "(w:" + this.width + ", h:"+ this.height + ")" ;
+	}
 }
 
 class Rect {
 	constructor(origin, size) {	// (Point, Size)
 		this.origin = origin ;
 		this.size   = size ;
+	}
+
+	get description() {
+		return "(" + this.origin.description + ", " + this.size.description + ")" ;
 	}
 }
   -> Compiler: OK

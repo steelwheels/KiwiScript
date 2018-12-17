@@ -5,14 +5,6 @@ The `Database` defines the API for database access.
 This object will be returned by the component object.
 
 ## Methods
-### `create` method
-Add new record named as `identifier`.
-````
-create(identifier: String, value: Dictionary<String, Any>) -> Bool
-````
-#### Return value
-When the creation is succeeded, this value will be 'true'.
-
 ### `read` method
 Get record named `identifier`.
 ````
@@ -33,11 +25,10 @@ When the writing is succeeded, this value will be 'true'.
 ### `delete` method
 Delete the record named `identifier`.
 ````
-delete(identifier: String) -> Object?
+delete(identifier: String) -> Bool
 ````
 #### Return value
-The deleted object. When the record is not found,
-this value will be `undefined`.
+When he deleting is succeeded, this value will be 'true'.
 
 ### `commit` method
 Tell the database that creating and writing records are finished.
