@@ -15,7 +15,6 @@
 		05B1DFE0218CAAB200ECEBD7 /* KMObjectLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B1DFDA218CAAB100ECEBD7 /* KMObjectLoader.swift */; };
 		05B1DFE1218CAAB200ECEBD7 /* KMFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B1DFDB218CAAB100ECEBD7 /* KMFunction.swift */; };
 		05B1DFE2218CAAB200ECEBD7 /* KMObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B1DFDC218CAAB200ECEBD7 /* KMObject.swift */; };
-		05B1DFE3218CAAB200ECEBD7 /* KMApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B1DFDD218CAAB200ECEBD7 /* KMApplication.swift */; };
 		05E22D9C217F685600E404AF /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E22D9B217F685600E404AF /* KiwiEngine.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,7 +39,6 @@
 		05B1DFDA218CAAB100ECEBD7 /* KMObjectLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMObjectLoader.swift; sourceTree = "<group>"; };
 		05B1DFDB218CAAB100ECEBD7 /* KMFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMFunction.swift; sourceTree = "<group>"; };
 		05B1DFDC218CAAB200ECEBD7 /* KMObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMObject.swift; sourceTree = "<group>"; };
-		05B1DFDD218CAAB200ECEBD7 /* KMApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMApplication.swift; sourceTree = "<group>"; };
 		05E22D9B217F685600E404AF /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../local/Frameworks/KiwiEngine.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,7 +85,6 @@
 			children = (
 				0581F88D217E24960043B82F /* KiwiObject.h */,
 				05B1DFDC218CAAB200ECEBD7 /* KMObject.swift */,
-				05B1DFDD218CAAB200ECEBD7 /* KMApplication.swift */,
 				059F3CC8218D955800717B5A /* KMProgram.swift */,
 				05B1DFDB218CAAB100ECEBD7 /* KMFunction.swift */,
 				05B1DFD8218CAAB100ECEBD7 /* KMObjectFactory.swift */,
@@ -211,7 +208,6 @@
 				05B1DFDF218CAAB200ECEBD7 /* KMPrimitiveFactory.swift in Sources */,
 				050E13EB218DB60700279007 /* KMEnumTable.swift in Sources */,
 				05B1DFE2218CAAB200ECEBD7 /* KMObject.swift in Sources */,
-				05B1DFE3218CAAB200ECEBD7 /* KMApplication.swift in Sources */,
 				05B1DFE1218CAAB200ECEBD7 /* KMFunction.swift in Sources */,
 				059F3CC9218D955800717B5A /* KMProgram.swift in Sources */,
 				05B1DFE0218CAAB200ECEBD7 /* KMObjectLoader.swift in Sources */,

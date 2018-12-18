@@ -28,7 +28,7 @@ public func main()
 		return
 	}
 
-	let result0 = testApplication(context: context, config: config, console: console)
+	let result0 = testProgram(context: context, console: console)
 
 	let result = result0
 	if result {
