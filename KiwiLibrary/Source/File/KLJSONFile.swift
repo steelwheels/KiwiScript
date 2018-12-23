@@ -14,8 +14,6 @@ import Foundation
 {
 	func read(_ fname: JSValue) -> JSValue
 	func write(_ fname: JSValue, _ json: JSValue) -> JSValue
-
-	func serialize(_ json: JSValue) -> JSValue
 }
 
 @objc public class KLJSON: NSObject, KLJSONProtocol
@@ -28,73 +26,34 @@ import Foundation
 
 	public func read(_ fname: JSValue) -> JSValue {
 		if let url = valueToURL(value: fname) {
-			let (obj, err) = CNJSONFile.readFile(URL: url)
-			if let e = err {
-				let except = KEException(context: mContext, message: e.toString() + "at #(function)")
-				mContext.exceptionCallback(except)
-			} else {
-				return objectToValue(JSONObject: obj!, context: mContext)
+			do {
+				if let data = NSData(contentsOf: url) {
+					let json = try JSONSerialization.jsonObject(with: data as Data, options: [])
+					return JSValue(object: json, in: mContext)
+				}
+			}
+			catch {
+				/* through */
 			}
 		}
 		return JSValue(nullIn: mContext)
 	}
 
 	public func write(_ fname: JSValue, _ json: JSValue) -> JSValue {
-		let errcode:Int32
+		var result = false
 		if let url = valueToURL(value: fname) {
-			if let obj = valueToObject(value: json) {
-				if let err = CNJSONFile.writeFile(URL: url, JSONObject: obj) {
-					let errstr = err.toString()
-					let except = KEException(context: mContext, message: "Can not write JSON file: \(errstr) at \(#function)")
-					mContext.exceptionCallback(except)
-					errcode = 3
-				} else {
-					/* No errors */
-					errcode = 0
+			do {
+				if let jsdata = json.toObject() {
+					let data = try JSONSerialization.data(withJSONObject: jsdata, options: JSONSerialization.WritingOptions.prettyPrinted)
+					try data.write(to: url, options: .atomic)
+					result = true
 				}
-			} else {
-				let jsonstr = String(describing: json.toString())
-				let except = KEException(context: mContext, message: "Invalid json data: \(jsonstr) at \(#function)")
-				mContext.exceptionCallback(except)
-				errcode = 2
 			}
-		} else {
-			errcode = 1	/* Invalid file name */
-		}
-		return JSValue(int32: errcode, in: mContext)
-	}
-
-	public func serialize(_ json: JSValue) -> JSValue {
-		if let obj = valueToObject(value: json) {
-			let (str, err) = CNJSONFile.serialize(JSONObject: obj)
-			if let e = err {
-				NSLog("Error: \(e.toString()) at \(#function)")
-				return JSValue(nullIn: mContext)
-			} else {
-				return JSValue(object: str!, in: mContext)
+			catch {
+				/* through */
 			}
 		}
-		return JSValue(nullIn: mContext)
-	}
-
-	private func valueToObject(value val: JSValue) -> CNJSONObject? {
-		let valobj = val.toObject()
-		if let dictobj = valobj as? NSDictionary {
-			return CNJSONObject(dictionary: dictobj)
-		} else if let arrobj = valobj as? NSArray {
-			return CNJSONObject(array: arrobj)
-		} else {
-			return nil
-		}
-	}
-
-	private func objectToValue(JSONObject obj: CNJSONObject, context ctxt: KEContext) -> JSValue {
-		let result: JSValue
-		switch obj {
-		case .Array(let array):		result = JSValue(object: array, in: ctxt)
-		case .Dictionary(let dict):	result = JSValue(object: dict, in: ctxt)
-		}
-		return result
+		return JSValue(bool: result, in: mContext)
 	}
 
 	private func valueToURL(value v: JSValue) -> URL? {
