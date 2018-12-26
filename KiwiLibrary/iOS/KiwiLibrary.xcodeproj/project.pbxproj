@@ -19,6 +19,7 @@
 		05BCE66F2068BDAE007B0559 /* KLConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCE66A2068BDAE007B0559 /* KLConsole.swift */; };
 		05BCE6732068BDD7007B0559 /* KLShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCE6722068BDD7007B0559 /* KLShell.swift */; };
 		05C6E07920688F30000E8A13 /* KiwiLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 05C6E06B20688F2F000E8A13 /* KiwiLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		05D6BF8721D3E269001D737A /* KLImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D6BF8621D3E269001D737A /* KLImage.swift */; };
 		05FFA9DE20CBEACE007C662E /* KLURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FFA9DD20CBEACD007C662E /* KLURL.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		05C6E06820688F2F000E8A13 /* KiwiLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05C6E06B20688F2F000E8A13 /* KiwiLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiLibrary.h; sourceTree = "<group>"; };
 		05C6E06C20688F30000E8A13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05D6BF8621D3E269001D737A /* KLImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLImage.swift; sourceTree = "<group>"; };
 		05FFA9DD20CBEACD007C662E /* KLURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLURL.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,6 +71,7 @@
 				05BCE65D2068BD48007B0559 /* Console */,
 				05BCE65A2068BCFA007B0559 /* Process */,
 				05BCE6662068BD98007B0559 /* File */,
+				05D6BF8521D3E24C001D737A /* Data */,
 				0523F39121B3C17D0074DA14 /* Database */,
 				05BCE6712068BDBC007B0559 /* Shell */,
 			);
@@ -170,6 +173,14 @@
 				05C6E06C20688F30000E8A13 /* Info.plist */,
 			);
 			name = iOS;
+			sourceTree = "<group>";
+		};
+		05D6BF8521D3E24C001D737A /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				05D6BF8621D3E269001D737A /* KLImage.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,6 +290,7 @@
 			files = (
 				05BCE66D2068BDAE007B0559 /* KLPipe.swift in Sources */,
 				05BCE66C2068BDAE007B0559 /* KLFile.swift in Sources */,
+				05D6BF8721D3E269001D737A /* KLImage.swift in Sources */,
 				05BCE66E2068BDAE007B0559 /* KLJSONFile.swift in Sources */,
 				05A71EBC208E3EA2007356BB /* KLCurses.swift in Sources */,
 				05BCE66F2068BDAE007B0559 /* KLConsole.swift in Sources */,
