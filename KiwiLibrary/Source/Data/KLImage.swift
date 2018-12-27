@@ -38,5 +38,9 @@ import Foundation
 	public var size: JSValue {
 		get { return JSValue(size: mImageCore.size, in: mContext) }
 	}
+
+	public var coreImage: KLImageCore {
+		get { return mImageCore }
+	}
 }
 
