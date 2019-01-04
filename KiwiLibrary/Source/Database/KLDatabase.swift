@@ -10,61 +10,88 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-@objc public protocol KLDatabaseProtocol: JSExport
+@objc public class KLDatabase: KEObject
 {
-	func read(_ identifier: JSValue) -> JSValue // Object
-	func write(_ identifier: JSValue, _ value: JSValue) -> JSValue // Bool
-	func delete(_ identifier: JSValue) -> JSValue // Bool
-	func commit()
-}
+	static let 	ReadItem 	= "read"
+	static let 	WriteItem	= "write"
+	static let	DeleteItem	= "delete"
+	static let 	CommitItem	= "commit"
 
-@objc public class KLDatabase: NSObject, KLDatabaseProtocol
-{
-	private var mDatabase:	CNDatabaseProtocol
-	private var mContext:	KEContext
+	private var mDatabase: CNDatabaseProtocol
 
-	public init(database db: CNDatabaseProtocol, context ctxt: KEContext){
+	public init(database db: CNDatabaseProtocol, context ctxt: KEContext) {
 		mDatabase = db
-		mContext  = ctxt
+		super.init(context: ctxt)
+		setup(context: ctxt)
 	}
 
-	public func read(_ identval: JSValue) -> JSValue {
+	private func setup(context ctxt: KEContext){
+		/* Define: read */
+		let readfunc: @convention(block) (_ ident: JSValue) -> JSValue = {
+			(_ ident: JSValue) -> JSValue in
+			return self.read(identifier: ident)
+		}
+		set(KLDatabase.ReadItem,  JSValue(object: readfunc, in: ctxt))
+
+		/* Define: write */
+		let writefunc: @convention(block) (_ ident: JSValue, _ value: JSValue) -> JSValue = {
+			(_ ident: JSValue, _ value: JSValue) -> JSValue in
+			return self.write(identifier: ident, value: value)
+		}
+		set(KLDatabase.WriteItem,  JSValue(object: writefunc, in: ctxt))
+
+		/* Define: delete */
+		let deletefunc: @convention(block) (_ ident: JSValue) -> JSValue = {
+			(_ ident: JSValue) -> JSValue in
+			return self.delete(identifier: ident)
+		}
+		set(KLDatabase.DeleteItem,  JSValue(object: deletefunc, in: ctxt))
+
+		/* Define: commit */
+		let commitfunc: @convention(block) () -> Void = {
+			() -> Void in
+			self.commit()
+		}
+		set(KLDatabase.CommitItem,  JSValue(object: commitfunc, in: ctxt))
+	}
+
+	public func read(identifier identval: JSValue) -> JSValue {
 		/* Check parameters */
 		guard let identifier = valueToIdentifier(value: identval) else {
-			return JSValue(undefinedIn: mContext)
+			return JSValue(undefinedIn: self.context)
 		}
 		/* Call database */
 		let retval: JSValue
 		if let natval = mDatabase.read(identifier: identifier) {
-			retval = natval.toJSValue(context: mContext)
+			retval = natval.toJSValue(context: self.context)
 		} else {
-			retval = JSValue(undefinedIn: mContext)
+			retval = JSValue(undefinedIn: self.context)
 		}
 		/* Return result */
 		return retval
 	}
 
-	public func write(_ identval: JSValue, _ value: JSValue) -> JSValue {
+	public func write(identifier identval: JSValue, value val: JSValue) -> JSValue {
 		/* Check parameters */
 		guard let identifier = valueToIdentifier(value: identval) else {
-			return JSValue(bool: false, in: mContext)
+			return JSValue(bool: false, in: self.context)
 		}
-		let native = value.toNativeValue()
+		let native = val.toNativeValue()
 		/* Call database */
 		let _ = mDatabase.write(identifier: identifier, value: native)
 		/* Return result */
-		return JSValue(bool: true, in: mContext)
+		return JSValue(bool: true, in: self.context)
 	}
 
-	public func delete(_ identval: JSValue) -> JSValue {
+	public func delete(identifier identval: JSValue) -> JSValue {
 		/* Check parameters */
 		guard let identifier = valueToIdentifier(value: identval) else {
-			return JSValue(bool: false, in: mContext)
+			return JSValue(bool: false, in: self.context)
 		}
 		/* Call database */
 		mDatabase.delete(identifier: identifier)
 		/* Return result */
-		return JSValue(bool: true, in: mContext)
+		return JSValue(bool: true, in: self.context)
 	}
 
 	public func commit() {
@@ -79,4 +106,5 @@ import Foundation
 		}
 	}
 }
+
 

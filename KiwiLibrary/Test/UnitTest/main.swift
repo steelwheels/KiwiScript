@@ -35,7 +35,14 @@ public func main()
 		console.print(string: "  -> Compiler: NG\n")
 	}
 
-	console.print(string: "[Bye]\n")
+	/* Database */
+	let result = UTDatabase(context: context, console: console)
+
+	if result {
+		console.print(string: "Summary: OK\n")
+	} else {
+		console.print(string: "Summary: NG\n")
+	}
 }
 
 main()

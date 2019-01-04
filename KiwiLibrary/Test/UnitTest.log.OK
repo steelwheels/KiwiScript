@@ -124,6 +124,9 @@ class Rect {
 	}
 }
   -> Compiler: OK
-[Bye]
+read(d0) -> 1234
+write(d2, -5) -> true
+read(d2) -> -5
+Summary: OK
 [UnitTest]
 

@@ -10,6 +10,7 @@
 		050EC60B20CBE8CD00FCF21F /* KLURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050EC60A20CBE8CD00FCF21F /* KLURL.swift */; };
 		051E36FB21A18506007194FC /* KLConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051E36FA21A18506007194FC /* KLConfig.swift */; };
 		051E36FC21A18958007194FC /* graphics.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 051E36F921A184E7007194FC /* graphics.js */; };
+		0524961B21DEEA98009CB3E3 /* UTDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0524961A21DEEA98009CB3E3 /* UTDatabase.swift */; };
 		0525C946204C4BB50058CCBF /* KLPipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525C945204C4BB50058CCBF /* KLPipe.swift */; };
 		052B154220C3833800BAF41B /* Math.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 052B153F20C382E500BAF41B /* Math.js */; };
 		05341CC220BDCB73001E2173 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05341CC120BDCB73001E2173 /* main.swift */; };
@@ -99,6 +100,7 @@
 		050EC60A20CBE8CD00FCF21F /* KLURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLURL.swift; sourceTree = "<group>"; };
 		051E36F921A184E7007194FC /* graphics.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = graphics.js; sourceTree = "<group>"; };
 		051E36FA21A18506007194FC /* KLConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLConfig.swift; sourceTree = "<group>"; };
+		0524961A21DEEA98009CB3E3 /* UTDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTDatabase.swift; sourceTree = "<group>"; };
 		0525C945204C4BB50058CCBF /* KLPipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLPipe.swift; sourceTree = "<group>"; };
 		052B153F20C382E500BAF41B /* Math.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Math.js; sourceTree = "<group>"; };
 		05341CBF20BDCB73001E2173 /* UnitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				05341CC120BDCB73001E2173 /* main.swift */,
+				0524961A21DEEA98009CB3E3 /* UTDatabase.swift */,
 			);
 			path = UnitTest;
 			sourceTree = "<group>";
@@ -482,6 +485,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05341CC220BDCB73001E2173 /* main.swift in Sources */,
+				0524961B21DEEA98009CB3E3 /* UTDatabase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
