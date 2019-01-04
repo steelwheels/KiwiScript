@@ -11,7 +11,7 @@ import Foundation
 @objc protocol KEObjectProtocol: JSExport
 {
 	func set(_ name: String, _ value: JSValue) -> Void
-	func get(_ name: String) -> JSValue
+	func get(_ name: String) -> NSObject
 }
 
 private enum Function {
@@ -107,26 +107,6 @@ open class KEObject: NSObject, KEObjectProtocol
 		listener.add(listener: lsfunc)
 	}
 
-	public func set(_ name: String, _ value: JSValue) {
-		mTable.setValue(value, forKey: name)
-	}
-
-	public func get(_ name: String) -> JSValue {
-		if let value = mTable.value(forKey: name) as? JSValue {
-			return value
-		} else {
-			return JSValue(undefinedIn: mContext)
-		}
-	}
-
-	public func check(_ name: String) -> JSValue? {
-		if let value = mTable.value(forKey: name) as? JSValue {
-			return value
-		} else {
-			return nil
-		}
-	}
-
 	public var context: KEContext {
 		get { return mContext }
 	}
@@ -140,12 +120,31 @@ open class KEObject: NSObject, KEObjectProtocol
 		}
 	}
 
-	public func getBoolean(name nm: String) -> Bool {
-		let val = get(nm)
-		if val.isBoolean {
-			return val.toBool()
+	public func set(_ name: String, _ value: JSValue) {
+		mTable.setValue(value, forKey: name)
+	}
+
+	public func get(_ name: String) -> NSObject {
+		if let value = mTable.value(forKey: name) as? NSObject {
+			return value
 		} else {
-			fatalError("Invalid object at \(#function)")
+			return JSValue(undefinedIn: mContext)
+		}
+	}
+
+	public func getValue(name nm: String) -> JSValue? {
+		if let value = mTable.value(forKey: nm) as? JSValue {
+			return value
+		} else {
+			return nil
+		}
+	}
+
+	public func check(_ name: String) -> JSValue? {
+		if let value = mTable.value(forKey: name) as? JSValue {
+			return value
+		} else {
+			return nil
 		}
 	}
 
@@ -155,13 +154,38 @@ open class KEObject: NSObject, KEObjectProtocol
 		}
 	}
 
-	public func getInt32(name nm: String) -> Int32 {
-		let val = get(nm)
-		if val.isNumber {
-			return val.toInt32()
-		} else {
-			fatalError("Invalid object at \(#function)")
+	public func set(name nm: String, objectValue value: AnyObject){
+		if let valobj = JSValue(object: value, in: context) {
+			set(nm, valobj)
 		}
+	}
+
+	public func set(name nm: String, exportedObject object: JSExport){
+		mTable.setValue(object, forKey: nm)
+	}
+
+	public func getBoolean(name nm: String) -> Bool {
+		if let val = getValue(name: nm) {
+			if val.isBoolean {
+				return val.toBool()
+			}
+		}
+		fatalError("Invalid object at \(#function)")
+	}
+
+	public func set(name nm: String, boolValue value: Bool) {
+		if let valobj = JSValue(bool: value, in: context) {
+			set(nm, valobj)
+		}
+	}
+
+	public func getInt32(name nm: String) -> Int32 {
+		if let val = getValue(name: nm) {
+			if val.isNumber {
+				return val.toInt32()
+			}
+		}
+		fatalError("Invalid object at \(#function)")
 	}
 
 	public func set(name nm: String, int32Value value: Int32) {
@@ -171,12 +195,12 @@ open class KEObject: NSObject, KEObjectProtocol
 	}
 
 	public func getDouble(name nm: String) -> Double {
-		let val = get(nm)
-		if val.isNumber {
-			return val.toDouble()
-		} else {
-			fatalError("Invalid object at \(#function)")
+		if let val = getValue(name: nm) {
+			if val.isNumber {
+				return val.toDouble()
+			}
 		}
+		fatalError("Invalid object at \(#function)")
 	}
 
 	public func set(name nm: String, doubleValue value: Double) {
@@ -186,19 +210,14 @@ open class KEObject: NSObject, KEObjectProtocol
 	}
 
 	public func getObject<T>(name nm: String) -> T? {
-		let val = get(nm)
-		if val.isObject {
-			if let obj = val.toObject() as? T {
-				return obj
+		if let val = getValue(name: nm) {
+			if val.isObject {
+				if let obj = val.toObject() as? T {
+					return obj
+				}
 			}
 		}
 		return nil
-	}
-
-	public func set(name nm: String, objectValue value: AnyObject){
-		if let valobj = JSValue(object: value, in: context) {
-			set(nm, valobj)
-		}
 	}
 }
 

@@ -31,7 +31,7 @@ private func readdb(database db: KLDatabase, identifier ident: String, context c
 {
 	cons.print(string: "read(\(ident)) -> ")
 	let identval = JSValue(object: ident, in: ctxt)
-	let retval = db.read(identifier: identval!)
+	let retval = db.read(identval!)
 	retval.toText().print(console: cons)
 }
 
@@ -40,7 +40,7 @@ private func writedb(database db: KLDatabase, identifier ident: String, value in
 	cons.print(string: "write(\(ident), \(intval)) -> ")
 	let identval = JSValue(object: ident, in: ctxt)
 	let wrtval = JSValue(int32: intval, in: ctxt)
-	let retval = db.write(identifier: identval!, value: wrtval!)
+	let retval = db.write(identval!, wrtval!)
 	retval.toText().print(console: cons)
 }
 
