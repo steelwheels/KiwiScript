@@ -62,6 +62,7 @@ public class KEEnumTable
 			KEEnumType.Member(name: "fillEqually",	value: CNDistribution.fillEqually.rawValue),
 			KEEnumType.Member(name: "equalSpacing",	value: CNDistribution.equalSpacing.rawValue),
 		])
+		mEnumTypes[distribution.typeName] = distribution
 
 		let textalign = KEEnumType(typeName: "TextAlign")
 		textalign.add(members: [
