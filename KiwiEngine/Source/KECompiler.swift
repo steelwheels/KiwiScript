@@ -161,6 +161,21 @@ open class KECompiler
 		let _ = compile(context: ctxt, statement: enumstmt)
 	}
 
+	public func compile(context ctxt: KEContext, destination dst: String, dictionary dict: Dictionary<String, String>){
+		var stmt  = "\(dst) = {\n"
+		var is1st = true
+		for (key, value) in dict {
+			if is1st {
+				is1st = false
+			} else {
+				stmt = ",\n"
+			}
+			stmt += "\t\(key): \(value)"
+		}
+		stmt += "\n};\n"
+		let _ = compile(context: ctxt, statement: stmt)
+	}
+
 	public func compile(context ctxt: KEContext, sourceFiles srcfiles: Array<URL>) -> Bool {
 		var result = true
 		for srcfile in srcfiles {

@@ -56,6 +56,13 @@ public class KEEnumTable
 		])
 		mEnumTypes[alignment.typeName] = alignment
 
+		let distribution = KEEnumType(typeName: "Distribution")
+		distribution.add(members: [
+			KEEnumType.Member(name: "fill",		value: CNDistribution.fill.rawValue),
+			KEEnumType.Member(name: "fillEqually",	value: CNDistribution.fillEqually.rawValue),
+			KEEnumType.Member(name: "equalSpacing",	value: CNDistribution.equalSpacing.rawValue),
+		])
+
 		let textalign = KEEnumType(typeName: "TextAlign")
 		textalign.add(members: [
 			KEEnumType.Member(name: "left",		value: Int32(NSTextAlignment.left.rawValue)),
