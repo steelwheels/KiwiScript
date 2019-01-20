@@ -36,6 +36,12 @@ let Color = {
 	min : 0,
 	max : 7
 };
+/* Define Enum: Distribution */
+let Distribution = {
+	fill : 0,
+	fillEqually : 1,
+	equalSpacing : 2
+};
 /* Define Enum: ExitCode */
 let ExitCode = {
 	noError : 0,
