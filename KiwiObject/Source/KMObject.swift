@@ -5,6 +5,7 @@
  *   Copyright (C) 2017 Steel Wheels Project
  */
 
+import CoconutData
 import KiwiEngine
 import JavaScriptCore
 import Foundation
@@ -88,7 +89,7 @@ open class KMDefaultObject: NSObject, KMObject
 			if let prop = JSValue(object: obj.propertyTable, in: context) {
 				propertyTable.set(nm, prop)
 			} else {
-				NSLog("Failed to allocate value at \(#function)")
+				CNLog(type: .Error, message: "Failed to allocate value", place: #file)
 			}
 		case .Function(let obj):
 			propertyTable.set(nm, obj.functionObject)

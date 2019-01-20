@@ -35,7 +35,7 @@ public class KMEnumType: KMDefaultObject
 		if let val = JSValue(int32: v, in: context) {
 			self.propertyTable.set(name, val)
 		} else {
-			NSLog("Failed to allocate value at #(function)")
+			CNLog(type: .Error, message: "Failed to allocate value", place: #file)
 		}
 	}
 
