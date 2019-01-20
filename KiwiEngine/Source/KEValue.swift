@@ -131,7 +131,7 @@ extension JSValue
 		let result: CNNativeValue
 		switch self.type {
 		case .UndefinedType:
-			NSLog("Undefined value is not supported \(#function)")
+			CNLog(type: .Error, message: "Undefined value is not supported", place: #file)
 			result = .nullValue
 		case .NullType:
 			result = .nullValue
@@ -150,21 +150,21 @@ extension JSValue
 			if let point = valueToPoint(value: self) {
 				result = .pointValue(point)
 			} else {
-				NSLog("Failed to convert point")
+				CNLog(type: .Error, message: "Failed to convert: point", place: #file)
 				result = .nullValue
 			}
 		case .SizeType:
 			if let size = valueToSize(value: self) {
 				result = .sizeValue(size)
 			} else {
-				NSLog("Failed to convert size")
+				CNLog(type: .Error, message: "Failed to convert: size", place: #file)
 				result = .nullValue
 			}
 		case .RectType:
 			if let rect = valueToRect(value: self) {
 				result = .rectValue(rect)
 			} else {
-				NSLog("Failed to convert rect")
+				CNLog(type: .Error, message: "Failed to convert: rect", place: #file)
 				result = .nullValue
 			}
 		case .ArrayType:
@@ -174,7 +174,7 @@ extension JSValue
 				if let object = CNNativeValue.anyToValue(object: elm) {
 					dstarr.append(object)
 				} else {
-					NSLog("Failed to convert at \(#function)")
+					CNLog(type: .Error, message: "Failed to convert: array", place: #file)
 				}
 			}
 			result = .arrayValue(dstarr)
@@ -185,18 +185,18 @@ extension JSValue
 					if let obj = CNNativeValue.anyToValue(object: value) {
 						dstdict[key] = obj
 					} else {
-						NSLog("Failed to convert at \(#function)")
+						CNLog(type: .Error, message: "Failed to convert: dictionary", place: #file)
 					}
 				}
 			} else {
-				NSLog("Failed to convert at \(#function)")
+				CNLog(type: .Error, message: "Failed to convert: dictionary", place: #file)
 			}
 			result = CNNativeValue.dictionaryToValue(dictionary: dstdict)
 		case .ObjectType:
 			if let obj = self.toObject() as? NSObject {
 				result = .objectValue(obj)
 			} else {
-				NSLog("Unknown object type")
+				CNLog(type: .Error, message: "Failed to convert: unknown", place: #file)
 				result = .nullValue
 			}
 		}
@@ -265,7 +265,7 @@ extension JSValue
 					if let obj = CNNativeValue.anyToValue(object: elm) {
 						section.add(text: obj.toText())
 					} else {
-						NSLog("Unknown object at \(#function)")
+						CNLog(type: .Error, message: "Unknown object", place: #file)
 						section.add(text: CNTextLine(string: "?"))
 					}
 				}
@@ -290,11 +290,11 @@ extension JSValue
 								section.add(text: txt)
 							}
 						} else {
-							NSLog("Unknown object at \(#function)")
+							CNLog(type: .Error, message: "Unknown object", place: #file)
 							section.add(text: CNTextLine(string: "?"))
 						}
 					} else {
-						NSLog("Unknown object at \(#function)")
+						CNLog(type: .Error, message: "Unknown object", place: #file)
 						section.add(text: CNTextLine(string: "?"))
 					}
 				}

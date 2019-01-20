@@ -5,6 +5,7 @@
  *   Copyright (C) 2017,2018 Steel Wheels Project
  */
 
+import CoconutData
 import JavaScriptCore
 import Foundation
 
@@ -85,7 +86,7 @@ open class KEObject: NSObject, KEObjectProtocol
 			if let propname = property.toString()  {
 				self.addListener(property: propname, reference: Function.value(listenerfunc))
 			} else {
-				NSLog("[Error] Invalid parameters\n")
+				CNLog(type: .Error, message: "Invalid parameters", place: #file)
 			}
 		}
 		 set("addListener", JSValue(object: listnerfunc, in: ctxt))
