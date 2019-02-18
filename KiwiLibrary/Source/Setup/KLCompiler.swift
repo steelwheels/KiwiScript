@@ -181,14 +181,8 @@ open class KLCompiler: KECompiler
 		/* URL */
 		let urlFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in
-			if value.isString {
-				if let str = value.toString() {
-					if let urlobj = KLURL.constructor(filePath: str, context: ctxt) {
-						return JSValue(object: urlobj, in: ctxt)
-					}
-				}
-			}
-			return JSValue(nullIn: ctxt)
+			let urlobj = KLURL(value: value, ctxt: ctxt)
+			return JSValue(object: urlobj, in: ctxt)
 		}
 		ctxt.set(name: "URL", function: urlFunc)
 	}

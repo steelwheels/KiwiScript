@@ -6,6 +6,7 @@
  */
 
 import KiwiEngine
+import KiwiLibrary
 import CoconutData
 import JavaScriptCore
 import Foundation
@@ -50,6 +51,15 @@ public class KMPrimitiveFactory: KMDefaultObject
 			(_ value: CNValue, _ context: KEContext) -> JSValue? in
 			if let v = value.stringValue {
 				return JSValue(object: String(v), in: context)
+			}
+			return nil
+		})
+		/* URL */
+		self.addAllocator(typeName: "URL", parameterType: .URLType, allocator: {
+			(_ value: CNValue, _ context: KEContext) -> JSValue? in
+			if let v = value.URLValue {
+				let urlobj = KLURL(URL: v, context: context)
+				return JSValue(object: urlobj, in: context)
 			}
 			return nil
 		})

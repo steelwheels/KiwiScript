@@ -17,35 +17,49 @@ import Foundation
 
 @objc public class KLURL: NSObject, KLURLProtocol
 {
-	private var mURL:	URL
+	private var mURL:	URL?
 	private var mContext:	KEContext
-
-	public class func constructor(filePath path: String, context ctxt: KEContext) -> KLURL? {
-		if let url = URL(string: path) {
-			return KLURL(URL: url, context: ctxt)
-		} else {
-			return nil
-		}
-	}
 	
 	public init(URL u: URL, context ctxt: KEContext){
-		mURL	 = u
-		mContext = ctxt
+		mURL	 	= u
+		mContext 	= ctxt
 	}
 
-	public var url: URL { get { return mURL }}
+	public init(string str: String, context ctxt: KEContext){
+		mURL		= URL(string: str)
+		mContext	= ctxt
+	}
+
+	public init(value val: JSValue, ctxt: KEContext) {
+		let url: URL?
+		if val.isString {
+			url = URL(string: val.toString())
+		} else {
+			url = nil
+		}
+		mURL		= url
+		mContext	= ctxt
+	}
+
+	public var url: URL? { get { return mURL }}
 
 	public var absoluteString: JSValue {
 		get {
-			let str = mURL.absoluteString
-			return JSValue(object: str, in: mContext)
+			if let url = mURL {
+				return JSValue(object: url.absoluteString, in: mContext)
+			} else {
+				return JSValue(nullIn: mContext)
+			}
 		}
 	}
 
 	public var path: JSValue {
 		get {
-			let str = mURL.path
-			return JSValue(object: str, in: mContext)
+			if let url = mURL {
+				return JSValue(object: url.path, in: mContext)
+			} else {
+				return JSValue(nullIn: mContext)
+			}
 		}
 	}
 }
