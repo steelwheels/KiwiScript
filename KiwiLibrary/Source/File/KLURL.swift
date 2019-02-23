@@ -11,6 +11,7 @@ import Foundation
 
 @objc public protocol KLURLProtocol: JSExport
 {
+	var isValid: JSValue { get }
 	var absoluteString: JSValue { get }
 	var path: JSValue { get }
 }
@@ -20,28 +21,16 @@ import Foundation
 	private var mURL:	URL?
 	private var mContext:	KEContext
 	
-	public init(URL u: URL, context ctxt: KEContext){
+	public init(URL u: URL?, context ctxt: KEContext){
 		mURL	 	= u
 		mContext 	= ctxt
 	}
 
-	public init(string str: String, context ctxt: KEContext){
-		mURL		= URL(string: str)
-		mContext	= ctxt
-	}
-
-	public init(value val: JSValue, ctxt: KEContext) {
-		let url: URL?
-		if val.isString {
-			url = URL(string: val.toString())
-		} else {
-			url = nil
-		}
-		mURL		= url
-		mContext	= ctxt
-	}
-
 	public var url: URL? { get { return mURL }}
+
+	public var isValid: JSValue {
+		return JSValue(bool: mURL != nil, in: mContext)
+	}
 
 	public var absoluteString: JSValue {
 		get {

@@ -57,9 +57,14 @@ public class KMPrimitiveFactory: KMDefaultObject
 		/* URL */
 		self.addAllocator(typeName: "URL", parameterType: .URLType, allocator: {
 			(_ value: CNValue, _ context: KEContext) -> JSValue? in
-			if let v = value.URLValue {
-				let urlobj = KLURL(URL: v, context: context)
+			if value.type == .URLType {
+				let urlobj = KLURL(URL: value.URLValue, context: context)
 				return JSValue(object: urlobj, in: context)
+			} else if let v = value.stringValue {
+				let urlobj = KLURL(URL: URL(string: v), context: context)
+				return JSValue(object: urlobj, in: context)
+			} else {
+				CNLog(type: .Error, message: "Not URL value: \(value.type.description) \"\(value.description)\"", place: #function)
 			}
 			return nil
 		})
