@@ -107,7 +107,7 @@ open class KLCompiler: KECompiler
 				if value.isNumber {
 					ecode = value.toInt32()
 				} else {
-					CNLog(type: .Error, message: "Invalid parameter for exit() function", place: #file)
+					CNLog(type: .Error, message: "Invalid parameter for exit() function", file: #file, line: #line, function: #function)
 					ecode = 1
 				}
 				Darwin.exit(ecode)

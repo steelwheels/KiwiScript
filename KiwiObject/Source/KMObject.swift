@@ -89,7 +89,7 @@ open class KMDefaultObject: NSObject, KMObject
 			if let prop = JSValue(object: obj.propertyTable, in: context) {
 				propertyTable.set(nm, prop)
 			} else {
-				CNLog(type: .Error, message: "Failed to allocate value", place: #file)
+				CNLog(type: .Error, message: "Failed to allocate value", file: #file, line: #line, function: #function)
 			}
 		case .Function(let obj):
 			propertyTable.set(nm, obj.functionObject)

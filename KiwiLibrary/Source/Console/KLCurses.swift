@@ -130,7 +130,7 @@ import Foundation
 				return
 			}
 		}
-		CNLog(type: .Error, message: "Failed to set color: \(fval.description) \(bval.description)", place: #file)
+		CNLog(type: .Error, message: "Failed to set color: \(fval.description) \(bval.description)", file: #file, line: #line, function: #function)
 	}
 
 	public func moveTo(_ x: JSValue, _ y:JSValue) {
@@ -139,7 +139,7 @@ import Foundation
 			let yval = y.toInt32()
 			mCurses.moveTo(x: Int(xval), y: Int(yval))
 		} else {
-			CNLog(type: .Error, message: "Invalid parameters", place: #file)
+			CNLog(type: .Error, message: "Invalid parameters", file: #file, line: #line, function: #function)
 		}
 	}
 

@@ -64,7 +64,7 @@ public class KMPrimitiveFactory: KMDefaultObject
 				let urlobj = KLURL(URL: URL(string: v), context: context)
 				return JSValue(object: urlobj, in: context)
 			} else {
-				CNLog(type: .Error, message: "Not URL value: \(value.type.description) \"\(value.description)\"", place: #function)
+				CNLog(type: .Error, message: "Not URL value: \(value.type.description) \"\(value.description)\"", file: #file, line: #line, function: #function)
 			}
 			return nil
 		})

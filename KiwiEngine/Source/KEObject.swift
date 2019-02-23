@@ -86,7 +86,7 @@ open class KEObject: NSObject, KEObjectProtocol
 			if let propname = property.toString()  {
 				self.addListener(property: propname, reference: Function.value(listenerfunc))
 			} else {
-				CNLog(type: .Error, message: "Invalid parameters", place: #file)
+				CNLog(type: .Error, message: "Invalid parameters", file: #file, line: #line, function: #function)
 			}
 		}
 		 set("addListener", JSValue(object: listnerfunc, in: ctxt))

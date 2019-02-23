@@ -49,7 +49,7 @@ import Foundation
 				return pipe.pipe.pipe
 			}
 		}
-		CNLog(type: .Error, message: "Invalid object: \(val)", place: #file)
+		CNLog(type: .Error, message: "Invalid object: \(val)", file: #file, line: #line, function: #function)
 		return nil
 	}
 
@@ -59,7 +59,7 @@ import Foundation
 			let process = KLProcess(process: shell, context: mContext)
 			return JSValue(object: process, in: mContext)
 		} else {
-			CNLog(type: .Error, message: "Invalid object: \(cmd) or \(console)", place: #file)
+			CNLog(type: .Error, message: "Invalid object: \(cmd) or \(console)", file: #file, line: #line, function: #function)
 			return JSValue(nullIn: mContext)
 		}
 	}
@@ -70,7 +70,7 @@ import Foundation
 		} else if let cons = val.toObject() as? KLConsole {
 			return cons.console
 		}
-		CNLog(type: .Error, message: "Invalid object: \(val)", place: #file)
+		CNLog(type: .Error, message: "Invalid object: \(val)", file: #file, line: #line, function: #function)
 		return nil
 	}
 

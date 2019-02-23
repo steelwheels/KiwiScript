@@ -18,7 +18,7 @@ public class KEContext : JSContext
 	public override init(virtualMachine vm: JSVirtualMachine) {
 		exceptionCallback = {
 			(_ exception: KEException) -> Void in
-			CNLog(type: .Error, message: exception.description, place: #file)
+			CNLog(type: .Error, message: exception.description, file: #file, line: #line, function: #function)
 		}
 		super.init(virtualMachine: vm)
 
@@ -29,7 +29,7 @@ public class KEContext : JSContext
 				let except = KEException(context: ctxt, value: exception)
 				self.exceptionCallback(except)
 			} else {
-				CNLog(type: .Error, message: "Internal error", place: #file)
+				CNLog(type: .Error, message: "Internal error", file: #file, line: #line, function: #function)
 			}
 		}
 	}
@@ -52,7 +52,7 @@ public class KEContext : JSContext
 		if let val = JSValue(object: obj, in: self){
 			set(name: n, value: val)
 		} else {
-			CNLog(type: .Error, message: "Can not allocate value", place: #file)
+			CNLog(type: .Error, message: "Can not allocate value", file: #file, line: #line, function: #function)
 		}
 	}
 
