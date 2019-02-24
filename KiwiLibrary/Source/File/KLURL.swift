@@ -29,7 +29,7 @@ import Foundation
 	public var url: URL? { get { return mURL }}
 
 	public var isValid: JSValue {
-		return JSValue(bool: mURL != nil, in: mContext)
+		get { return JSValue(bool: mURL != nil, in: mContext) }
 	}
 
 	public var absoluteString: JSValue {
