@@ -14,14 +14,15 @@ import Foundation
 
 public func main()
 {
-	let config  = KLConfig(kind: .Terminal)
+	let config  = KLConfig(kind: .Terminal, doStrict: true, doVerbose: true)
 	config.doStrict  = true
 	config.doVerbose = true
 
 	let console = CNFileConsole()
 	let context = KEContext(virtualMachine: JSVirtualMachine())
 	let compiler = KLCompiler(console: console, config: config)
-	guard compiler.compile(context: context) else {
+	let process  = KEProcess(context: context, config: config)
+	guard compiler.compile(context: context, process: process) else {
 		console.error(string: "Compilation was failed.\n")
 		return
 	}
