@@ -12,9 +12,9 @@ import KiwiEngine
 
 public func testExec(console cons: CNConsole) -> Bool
 {
-	var result = true
+	let result = true
 
-	let config   = KEConfig(kind: .Terminal, doStrict: true, doVerbose: true)
+	//let config   = KEConfig(kind: .Terminal, doStrict: true, doVerbose: true)
 
 	let context  = KEContext(virtualMachine: JSVirtualMachine())
 	context.exceptionCallback = {
@@ -22,57 +22,6 @@ public func testExec(console cons: CNConsole) -> Bool
 		cons.error(string: exception.description + "\n")
 	}
 
-	let process = KEProcess(context: context, config: config)
-
-	console.print(string: "* Setup compiler\n")
-	let compiler = KECompiler(console: cons, config: config)
-	if compiler.compile(context: context, process: process) {
-		cons.print(string: "Compile: OK\n")
-
-		/* Test "Process.isExecuting" */
-		let scriptp  = "isexec = Process.isExecuting ;\n"
-		let _        = compiler.compile(context: context, statement: scriptp)
-		var resultp: Bool = false
-		if let retvalp = context.objectForKeyedSubscript("isexec") {
-			if retvalp.isBoolean && retvalp.toBool() {
-				cons.print(string: "// Process.isExecuting == true\n")
-				resultp = true
-			} else {
-				cons.print(string: "[Error] Process.isExecuting is NOT true\n")
-			}
-		} else {
-			cons.print(string: "[Error] No \"isexec\" variable\n")
-		}
-
-		/* Test "_exec" */
-		let script0  = "_exec_cancelable(function(){ return 0 ; }) ;\n"
-		let compres0 = compiler.compile(context: context, statement: script0)
-		let retval0  = valueToInt(value: compres0)
-		let result0: Bool
-		if let rval0 = retval0 {
-			result0 = rval0 == CNExitCode.NoError.rawValue
-			cons.print(string: "* retval0 = \(rval0)\n")
-		} else {
-			result0 = false
-		}
-
-		/* Test "_cancel" */
-		let script1  = "_exec_cancelable(function(){ _cancel() ; return 0 ;}) ;\n"
-		let compres1 = compiler.compile(context: context, statement: script1)
-		let retval1  = valueToInt(value: compres1)
-		let result1: Bool
-		if let rval1 = retval1 {
-			result1 = rval1 == CNExitCode.Exception.rawValue
-			cons.print(string: "* retval1 = \(rval1)\n")
-		} else {
-			result1 = false
-		}
-
-		result = resultp && result0 && result1
-	} else {
-		cons.print(string: "Compile: NG\n")
-		result = false
-	}
 	return result
 }
 

@@ -19,12 +19,12 @@ open class KLCompiler: KECompiler
 		super.init(console: cons, config: conf)
 	}
 
-	open override func compile(context ctxt: KEContext, process proc: KEProcess) -> Bool {
-		guard super.compile(context: ctxt, process: proc) else {
+	open override func compile(context ctxt: KEContext) -> Bool {
+		guard super.compile(context: ctxt) else {
 			return false
 		}
 
-		defineFunctions(context: ctxt, process: proc)
+		defineFunctions(context: ctxt)
 		defineClassObjects(context: ctxt)
 		defineConstructors(context: ctxt)
 		importLibrary(context: ctxt)
@@ -32,7 +32,7 @@ open class KLCompiler: KECompiler
 		return true
 	}
 
-	private func defineFunctions(context ctxt: KEContext, process proc: KEProcess) {
+	private func defineFunctions(context ctxt: KEContext) {
 		/* isUndefined */
 		let isUndefinedFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in
@@ -112,6 +112,7 @@ open class KLCompiler: KECompiler
 				}
 				Darwin.exit(ecode)
 			}
+			ctxt.set(name: "exit", function: exitFunc)
 		case .Window:
 			#if os(OSX)
 				exitFunc = {
@@ -125,14 +126,11 @@ open class KLCompiler: KECompiler
 					return JSValue(undefinedIn: ctxt)
 				}
 			#endif
+			ctxt.set(name: "exit", function: exitFunc)
 		case .Operation:
-			exitFunc = {
-				(_ value: JSValue) -> JSValue in
-				proc.isCanceled = true
-				return JSValue(undefinedIn: ctxt)
-			}
+			/* The exit function is defined in KLOperation.swift */
+			break
 		}
-		ctxt.set(name: "exit", function: exitFunc)
 	}
 
 	private func defineClassObjects(context ctxt: KEContext) {

@@ -1,0 +1,181 @@
+/**
+ * @file	KLOperation.swift
+ * @brief	Define KLOperation class
+ * @par Copyright
+ *   Copyright (C) 2019 Steel Wheels Project
+ */
+
+import KiwiEngine
+import CoconutData
+import JavaScriptCore
+import Foundation
+
+@objc public protocol KLOperationProtocol: JSExport
+{
+	var isExecuting:	Bool { get }		// -> Bool
+	var isFinished:		Bool { get }		// -> Bool
+	var isCancelled:	Bool { get }		// -> Bool
+
+	func compile(_ program: JSValue, _ mainfunc: JSValue) -> JSValue
+}
+
+@objc public class KLOperation: CNOperation, KLOperationProtocol
+{
+	private var mContext:		KEContext
+	private var mConsole:		CNConsole
+	private var mConfig:		KLConfig
+	private var mPropertyTable:	KEObject
+	private var mMainFunc:		JSValue?
+
+	public var context: KEContext		{ get { return mContext }}
+	public var propertyTable: KEObject	{ get { return mPropertyTable }}
+
+	public init(virtualMachine vm: JSVirtualMachine, console cons: CNConsole, config conf: KLConfig) {
+		mContext        = KEContext(virtualMachine: vm)
+		mConsole	= cons
+		mConfig		= conf
+		mPropertyTable  = KEObject(context: mContext)
+		mMainFunc	= nil
+		super.init()
+
+		defineProperties()
+		defineMainFunction()
+		defineConsole()
+	}
+
+	private func defineProperties() {
+		mPropertyTable.set(name: CNOperation.isExecutingItem, boolValue: isExecuting)
+		mPropertyTable.set(name: CNOperation.isFinishedItem,  boolValue: isFinished)
+		mPropertyTable.set(name: CNOperation.isCanceledItem,  boolValue: isCancelled)
+
+		/* Add listener function to update property */
+		self.addIsExecutingListener(listnerFunction: {
+			(_ anyval: Any?) -> Void in
+			if let num = anyval as? NSNumber {
+				self.mPropertyTable.set(name: CNOperation.isExecutingItem, boolValue: num.boolValue)
+			} else {
+				CNLog(type: .Error, message: "Not number", file: #file, line: #line, function: #function)
+			}
+		})
+		self.addIsFinishedListener(listnerFunction: {
+			(_ anyval: Any?) -> Void in
+			if let num = anyval as? NSNumber {
+				self.mPropertyTable.set(name: CNOperation.isFinishedItem, boolValue: num.boolValue)
+			} else {
+				CNLog(type: .Error, message: "Not number", file: #file, line: #line, function: #function)
+			}
+		})
+		self.addIsCanceledListener(listnerFunction: {
+			(_ anyval: Any?) -> Void in
+			if let num = anyval as? NSNumber {
+				self.mPropertyTable.set(name: CNOperation.isCanceledItem, boolValue: num.boolValue)
+			} else {
+				CNLog(type: .Error, message: "Not number", file: #file, line: #line, function: #function)
+			}
+		})
+	}
+
+	private func defineMainFunction() {
+		super.mainFunction = {
+			() -> Void in
+			if let mainfunc = self.mMainFunc {
+				mainfunc.call(withArguments: [])
+			}
+		}
+	}
+
+	private func defineConsole() {
+		/* Define console */
+		let newcons = KLConsole(context: mContext, console: mConsole)
+		mContext.set(name: "console", object: newcons)
+	}
+
+	public func compile(_ program: JSValue, _ mainstmt: JSValue) -> JSValue {
+		let compiler = KLOperationCompiler(console: mConsole, config: mConfig)
+		if let mainfunc = compiler.compile(operation: self, program: program, mainStatement: mainstmt) {
+			CNLog(type: .Flow, message: "Success to compile operation", file: #file, line: #line, function: #function)
+			mMainFunc = mainfunc
+		} else {
+			CNLog(type: .Error, message: "Failed to compile operation", file: #file, line: #line, function: #function)
+		}
+		return JSValue(bool: mMainFunc != nil, in: mContext)
+	}
+}
+
+private class KLOperationCompiler: KLCompiler
+{
+	public func compile(operation op: KLOperation, program progval: JSValue, mainStatement mainval: JSValue) -> JSValue? {
+		if super.compile(context: op.context) {
+			compileOperation(operation: op)
+			defineOperationInstance(operation: op)
+			defineExitFunction(operation: op)
+			return compileSource(operation: op, program: progval, mainStatement: mainval)
+		} else {
+			return nil
+		}
+	}
+
+	private func compileOperation(operation op: KLOperation) {
+		/* Compile "Operation.js" */
+		if let script = readResource(fileName: "Operation", fileExtension: "js", forClass: KLOperationCompiler.self) {
+			let _ = compile(context: op.context, statement: script)
+		} else {
+			CNLog(type: .Error, message: "Failed to read Operation.js", file: #file, line: #line, function: #function)
+		}
+	}
+
+	private func defineOperationInstance(operation op: KLOperation){
+		let context = op.context
+
+		/* Define global variable: Process */
+		let opname = "Operation"
+		context.set(name: opname, object: op.propertyTable)
+		compile(context: context, instance: opname, object: op.propertyTable)
+
+		/* Define special method for each applications */
+		let procstmt = "\(opname).addListener(\"\(KLOperation.isCanceledItem)\", function(newval){ if(newval){ _cancel() ; }}) ;\n"
+		let _ = compile(context: context, statement: procstmt)
+	}
+
+	private func defineExitFunction(operation op: KLOperation) {
+		/* Define exit function */
+		let exitFunc = {
+			(_ value: JSValue) -> JSValue in
+			op.cancel()
+			return JSValue(undefinedIn: op.context)
+		}
+		op.context.set(name: "exit", function: exitFunc)
+	}
+
+	private func compileSource(operation op: KLOperation, program progval: JSValue, mainStatement mainval: JSValue) -> JSValue? {
+		let context = op.context
+
+		/* Compile program */
+		if let program = valueToString(value: progval) {
+			let _ = super.compile(context: context, statement: program)
+		}
+		/* Compile main function */
+		var mainfunc: JSValue? = nil
+		if let mainstmt = valueToString(value: mainval) {
+			let mainprog: String = "_main = function() { \(mainstmt) } ;\n"
+			let _ = super.compile(context: context, statement: mainprog)
+
+			if let funcval = context.objectForKeyedSubscript("_main") {
+				mainfunc = funcval
+			} else {
+				CNLog(type: .Error, message: "Can not get main function", file: #file, line: #line, function: #function)
+			}
+		}
+		return mainfunc
+	}
+
+	private func valueToString(value val: JSValue) -> String? {
+		if val.isString {
+			if let str = val.toString() {
+				return str
+			}
+		}
+		return nil
+	}
+}
+

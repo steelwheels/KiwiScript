@@ -22,17 +22,11 @@ open class KECompiler
 	public var console: CNConsole { get { return mConsole }}
 	public var config:   KEConfig { get { return mConfig }}
 
-	open func compile(context ctxt: KEContext, process proc: KEProcess) -> Bool {
+	open func compile(context ctxt: KEContext) -> Bool {
 		/* Set strict */
 		setStrictMode(context: ctxt)
 		/* Define Enum Types */
 		defineEnumTypes(context: ctxt)
-		/* Compile "boot.js" */
-		if let script = readResource(fileName: "boot", fileExtension: "js", forClass: KECompiler.self) {
-			let _ = compile(context: ctxt, statement: script)
-		}
-		/* Define "Process" instance. This must be executed after compiling "boot.js" */
-		defineProcessInstance(context: ctxt, process: proc)
 		return true
 	}
 
@@ -48,22 +42,6 @@ open class KECompiler
 			if let etype = table.search(by: typename) {
 				compile(context: ctxt, enumType: etype)
 			}
-		}
-	}
-
-	private func defineProcessInstance(context ctxt: KEContext, process proc: KEProcess){
-		/* Define global variable: Process */
-		let procname = "Process"
-		ctxt.set(name: procname, object: proc)
-		compile(context: ctxt, instance: procname, object: proc)
-
-		/* Define special method for each applications */
-		switch mConfig.kind {
-		case .Terminal, .Window:
-			break
-		case .Operation:
-			let procstmt = "Process.addListener(\"isCanceled\", function(newval){ if(newval){ _cancel() ; }}) ;\n"
-			let _ = compile(context: ctxt, statement: procstmt)
 		}
 	}
 	

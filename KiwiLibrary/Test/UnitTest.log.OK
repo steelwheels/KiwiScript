@@ -58,41 +58,6 @@ let TextAlign = {
 	justfied : 3,
 	normal : 4
 };
-/* boot.js */
-
-class CancelException extends Error
-{
-	constructor (code){
-		super("CancelException") ;
-		this.code = code ;
-	}
-}
-
-function _cancel()
-{
-	throw new CancelException(ExitCode.exception) ;
-}
-
-function _exec_cancelable(fn, ...args)
-{
-	try {
-		return fn(...args) ;
-	} catch(err) {
-		return err.code ;
-	}
-}
-
-
-Process.__defineGetter__("isExecuting", function(   ){ return this.get("isExecuting"     ); }) ;
-Process.__defineSetter__("isExecuting", function(val){ return this.set("isExecuting", val); }) ;
-Process.__defineGetter__("isFinished", function(   ){ return this.get("isFinished"     ); }) ;
-Process.__defineSetter__("isFinished", function(val){ return this.set("isFinished", val); }) ;
-Process.__defineGetter__("kind", function(   ){ return this.get("kind"     ); }) ;
-Process.__defineSetter__("kind", function(val){ return this.set("kind", val); }) ;
-Process.__defineGetter__("isCanceled", function(   ){ return this.get("isCanceled"     ); }) ;
-Process.__defineSetter__("isCanceled", function(val){ return this.set("isCanceled", val); }) ;
-Process.__defineGetter__("addListener", function(   ){ return this.get("addListener"     ); }) ;
-Process.__defineSetter__("addListener", function(val){ return this.set("addListener", val); }) ;
 /*
  * GraphicsPrimitive.js
  */
@@ -130,9 +95,151 @@ class Rect {
 	}
 }
   -> Compiler: OK
+/* Unit test for Database */
 read(d0) -> 1234
 write(d2, -5) -> true
 read(d2) -> -5
+/* Unit test for Operation */
+// Allocate operation
+'use strict' ;
+/* Define Enum: Alignment */
+let Alignment = {
+	leading : 0,
+	trailing : 1,
+	fill : 2,
+	center : 3
+};
+/* Define Enum: ApplicationKind */
+let ApplicationKind = {
+	terminal : 0,
+	window : 1,
+	operation : 2
+};
+/* Define Enum: Authorize */
+let Authorize = {
+	undetermined : 0,
+	denied : 2,
+	authorized : 3
+};
+/* Define Enum: Axis */
+let Axis = {
+	horizontal : 0,
+	vertical : 1
+};
+/* Define Enum: Color */
+let Color = {
+	black : 0,
+	red : 1,
+	green : 2,
+	yellow : 3,
+	blue : 4,
+	magenta : 5,
+	cyan : 6,
+	white : 7,
+	min : 0,
+	max : 7
+};
+/* Define Enum: Distribution */
+let Distribution = {
+	fill : 0,
+	fillEqually : 1,
+	equalSpacing : 2
+};
+/* Define Enum: ExitCode */
+let ExitCode = {
+	noError : 0,
+	internalError : 1,
+	commaneLineError : 2,
+	syntaxError : 3,
+	exception : 4
+};
+/* Define Enum: TextAlign */
+let TextAlign = {
+	left : 0,
+	center : 2,
+	right : 1,
+	justfied : 3,
+	normal : 4
+};
+/*
+ * GraphicsPrimitive.js
+ */
+
+class Point {
+	constructor(x, y) {		// (Double, Double)
+		this.x = x ;
+		this.y = y ;
+	}
+
+	get description() {
+		return "(x:" + this.x + ", y:"+ this.y + ")" ;
+	}
+}
+
+class Size {
+	constructor(width, height) {	// (Double, Double)
+		this.width  = width ;
+		this.height = height ;
+	}
+
+	get description() {
+		return "(w:" + this.width + ", h:"+ this.height + ")" ;
+	}
+}
+
+class Rect {
+	constructor(origin, size) {	// (Point, Size)
+		this.origin = origin ;
+		this.size   = size ;
+	}
+
+	get description() {
+		return "(" + this.origin.description + ", " + this.size.description + ")" ;
+	}
+}
+/*
+ * Operation.js : Define Operation class
+ */
+
+ class CancelException extends Error
+ {
+ 	constructor (code){
+ 		super("CancelException") ;
+ 		this.code = code ;
+ 	}
+ }
+
+ function _cancel()
+ {
+ 	throw new CancelException(ExitCode.exception) ;
+ }
+
+ function _exec_cancelable(fn, ...args)
+ {
+ 	try {
+ 		return fn(...args) ;
+ 	} catch(err) {
+ 		return err.code ;
+ 	}
+ }
+ 
+Operation.__defineGetter__("isExecuting", function(   ){ return this.get("isExecuting"     ); }) ;
+Operation.__defineSetter__("isExecuting", function(val){ return this.set("isExecuting", val); }) ;
+Operation.__defineGetter__("isFinished", function(   ){ return this.get("isFinished"     ); }) ;
+Operation.__defineSetter__("isFinished", function(val){ return this.set("isFinished", val); }) ;
+Operation.__defineGetter__("isCanceled", function(   ){ return this.get("isCanceled"     ); }) ;
+Operation.__defineSetter__("isCanceled", function(val){ return this.set("isCanceled", val); }) ;
+Operation.__defineGetter__("addListener", function(   ){ return this.get("addListener"     ); }) ;
+Operation.__defineSetter__("addListener", function(val){ return this.set("addListener", val); }) ;
+Operation.addListener("isCanceled", function(newval){ if(newval){ _cancel() ; }}) ;
+console.log("***** Program *****\n");
+***** Program *****
+_main = function() { console.log("***** MainFunc *****\n");
+ } ;
+[Flow   ] Success to compile operation at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/96/compile
+// Execute the operation
+// Wait operations are finished
+***** MainFunc *****
 Summary: OK
 [UnitTest]
 

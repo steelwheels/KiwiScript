@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0517CAD4219FA4AC00C2B120 /* KEOperationQueues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0517CAD2219FA4AC00C2B120 /* KEOperationQueues.swift */; };
 		052251EC1EAB852F0021A8B5 /* KiwiEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 052251EA1EAB852F0021A8B5 /* KiwiEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0529B4F92189F1B800926331 /* KEConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0529B4F82189F1B800926331 /* KEConfig.swift */; };
 		0529B4FB2189F1BF00926331 /* KEObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0529B4FA2189F1BF00926331 /* KEObject.swift */; };
@@ -17,7 +16,6 @@
 		0573D08F218D792500915EA1 /* KEError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0573D08E218D792500915EA1 /* KEError.swift */; };
 		058699F21F93BAF900F21555 /* KEValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058699F11F93BAF900F21555 /* KEValue.swift */; };
 		05BF0BCA1EAC978D003C8DF3 /* KEContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BF0BC81EAC978D003C8DF3 /* KEContext.swift */; };
-		05CA70F3218603040029592D /* KEOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CA70F2218603040029592D /* KEOperation.swift */; };
 		05CFAB9820349158001623BC /* KEException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CFAB9720349158001623BC /* KEException.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,7 +30,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0517CAD2219FA4AC00C2B120 /* KEOperationQueues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEOperationQueues.swift; sourceTree = "<group>"; };
 		052251E71EAB852F0021A8B5 /* KiwiEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		052251EA1EAB852F0021A8B5 /* KiwiEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiEngine.h; sourceTree = "<group>"; };
 		052251EB1EAB852F0021A8B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -44,7 +41,6 @@
 		0573D08E218D792500915EA1 /* KEError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEError.swift; sourceTree = "<group>"; };
 		058699F11F93BAF900F21555 /* KEValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEValue.swift; sourceTree = "<group>"; };
 		05BF0BC81EAC978D003C8DF3 /* KEContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEContext.swift; sourceTree = "<group>"; };
-		05CA70F2218603040029592D /* KEOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEOperation.swift; sourceTree = "<group>"; };
 		05CFAB9720349158001623BC /* KEException.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEException.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,8 +89,6 @@
 				052A63E121A1028E00E07006 /* KEProcess.swift */,
 				05473C92218B4AAA006B1AB2 /* KEEnumTable.swift */,
 				0529B4F82189F1B800926331 /* KEConfig.swift */,
-				05CA70F2218603040029592D /* KEOperation.swift */,
-				0517CAD2219FA4AC00C2B120 /* KEOperationQueues.swift */,
 				055A479720688CAE00D297FC /* KECompiler.swift */,
 				0573D08E218D792500915EA1 /* KEError.swift */,
 				05CFAB9720349158001623BC /* KEException.swift */,
@@ -212,13 +206,11 @@
 				05BF0BCA1EAC978D003C8DF3 /* KEContext.swift in Sources */,
 				05473C93218B4AAA006B1AB2 /* KEEnumTable.swift in Sources */,
 				0529B4F92189F1B800926331 /* KEConfig.swift in Sources */,
-				0517CAD4219FA4AC00C2B120 /* KEOperationQueues.swift in Sources */,
 				052A63E221A1028E00E07006 /* KEProcess.swift in Sources */,
 				055A479820688CAE00D297FC /* KECompiler.swift in Sources */,
 				0529B4FB2189F1BF00926331 /* KEObject.swift in Sources */,
 				058699F21F93BAF900F21555 /* KEValue.swift in Sources */,
 				05CFAB9820349158001623BC /* KEException.swift in Sources */,
-				05CA70F3218603040029592D /* KEOperation.swift in Sources */,
 				0573D08F218D792500915EA1 /* KEError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -16,6 +16,7 @@ public func main()
 	Swift.print("[UnitTest]\n")
 
 	let console = CNFileConsole()
+	CNLogSetup(console: console, logLevel: .Flow)
 
 	let config = KLConfig(kind: .Terminal, doStrict: true, doVerbose: true)
 	config.doUseGraphicsPrimitive = true
@@ -26,19 +27,22 @@ public func main()
 		console.error(string: exception.description)
 	}
 
-	let process = KEProcess(context: context, config: config)
-
 	let compiler = KLCompiler(console: console, config: config)
-	if(compiler.compile(context: context, process: process)){
+	if(compiler.compile(context: context)){
 		console.print(string: "  -> Compiler: OK\n")
 	} else {
 		console.print(string: "  -> Compiler: NG\n")
 	}
-
+	
 	/* Database */
-	let result = UTDatabase(context: context, console: console)
+	console.print(string: "/* Unit test for Database */\n")
+	let result0 = UTDatabase(context: context, console: console)
 
-	if result {
+	/* Operation*/
+	console.print(string: "/* Unit test for Operation */\n")
+	let result1 = UTOperation(console: console, config: config)
+
+	if result0 && result1 {
 		console.print(string: "Summary: OK\n")
 	} else {
 		console.print(string: "Summary: NG\n")
