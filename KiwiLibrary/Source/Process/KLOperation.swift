@@ -30,8 +30,8 @@ import Foundation
 	public var context: KEContext		{ get { return mContext }}
 	public var propertyTable: KEObject	{ get { return mPropertyTable }}
 
-	public init(virtualMachine vm: JSVirtualMachine, console cons: CNConsole, config conf: KLConfig) {
-		mContext        = KEContext(virtualMachine: vm)
+	public init(console cons: CNConsole, config conf: KLConfig) {
+		mContext        = KEContext(virtualMachine: JSVirtualMachine())
 		mConsole	= cons
 		mConfig		= conf
 		mPropertyTable  = KEObject(context: mContext)
@@ -79,7 +79,11 @@ import Foundation
 		super.mainFunction = {
 			() -> Void in
 			if let mainfunc = self.mMainFunc {
-				mainfunc.call(withArguments: [])
+				if let execfunc = self.mContext.getValue(name: "_exec_cancelable") {
+					execfunc.call(withArguments: [mainfunc])
+				} else {
+					CNLog(type: .Error, message: "No exec func", file: #file, line: #line, function: #function)
+				}
 			}
 		}
 	}
@@ -90,9 +94,9 @@ import Foundation
 		mContext.set(name: "console", object: newcons)
 	}
 
-	public func compile(_ program: JSValue, _ mainstmt: JSValue) -> JSValue {
+	public func compile(_ program: JSValue, _ mainfunc: JSValue) -> JSValue {
 		let compiler = KLOperationCompiler(console: mConsole, config: mConfig)
-		if let mainfunc = compiler.compile(operation: self, program: program, mainStatement: mainstmt) {
+		if let mainfunc = compiler.compile(operation: self, program: program, mainFunction: mainfunc) {
 			CNLog(type: .Flow, message: "Success to compile operation", file: #file, line: #line, function: #function)
 			mMainFunc = mainfunc
 		} else {
@@ -104,12 +108,12 @@ import Foundation
 
 private class KLOperationCompiler: KLCompiler
 {
-	public func compile(operation op: KLOperation, program progval: JSValue, mainStatement mainval: JSValue) -> JSValue? {
+	public func compile(operation op: KLOperation, program progval: JSValue, mainFunction mainval: JSValue) -> JSValue? {
 		if super.compile(context: op.context) {
 			compileOperation(operation: op)
 			defineOperationInstance(operation: op)
 			defineExitFunction(operation: op)
-			return compileSource(operation: op, program: progval, mainStatement: mainval)
+			return compileSource(operation: op, program: progval, mainFunction: mainval)
 		} else {
 			return nil
 		}
@@ -147,7 +151,7 @@ private class KLOperationCompiler: KLCompiler
 		op.context.set(name: "exit", function: exitFunc)
 	}
 
-	private func compileSource(operation op: KLOperation, program progval: JSValue, mainStatement mainval: JSValue) -> JSValue? {
+	private func compileSource(operation op: KLOperation, program progval: JSValue, mainFunction mainval: JSValue) -> JSValue? {
 		let context = op.context
 
 		/* Compile program */
@@ -156,9 +160,9 @@ private class KLOperationCompiler: KLCompiler
 		}
 		/* Compile main function */
 		var mainfunc: JSValue? = nil
-		if let mainstmt = valueToString(value: mainval) {
-			let mainprog: String = "_main = function() { \(mainstmt) } ;\n"
-			let _ = super.compile(context: context, statement: mainprog)
+		if let maindecl = valueToString(value: mainval) {
+			let mainexp: String = "_main = \(maindecl) ;\n"
+			let _ = super.compile(context: context, statement: mainexp)
 
 			if let funcval = context.objectForKeyedSubscript("_main") {
 				mainfunc = funcval

@@ -187,6 +187,23 @@ open class KLCompiler: KECompiler
 			}
 		}
 		ctxt.set(name: "URL", function: urlFunc)
+
+		/* Operaion */
+		let opfunc: @convention(block) () -> JSValue = {
+			() -> JSValue in
+			let conf = KLConfig(kind: .Operation, doStrict: true, doVerbose: self.config.doVerbose)
+			let op   = KLOperation(console: self.console, config: conf)
+			return JSValue(object: op, in: ctxt)
+		}
+		ctxt.set(name: "Operation", function: opfunc)
+
+		/* OperaionQueue */
+		let queuefunc: @convention(block) () -> JSValue = {
+			() -> JSValue in
+			let queue = KLOperationQueue()
+			return JSValue(object: queue, in: ctxt)
+		}
+		ctxt.set(name: "OperationQueue", function: queuefunc)
 	}
 
 	private func importLibrary(context ctxt: KEContext) {

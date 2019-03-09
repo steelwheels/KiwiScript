@@ -234,9 +234,8 @@ Operation.__defineSetter__("addListener", function(val){ return this.set("addLis
 Operation.addListener("isCanceled", function(newval){ if(newval){ _cancel() ; }}) ;
 console.log("***** Program *****\n");
 ***** Program *****
-_main = function() { console.log("***** MainFunc *****\n");
- } ;
-[Flow   ] Success to compile operation at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/96/compile
+_main = function(){ console.log("***** MainFunc *****\n"); } ;
+[Flow   ] Success to compile operation at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/100/compile
 // Execute the operation
 // Wait operations are finished
 ***** MainFunc *****

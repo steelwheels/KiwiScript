@@ -18,23 +18,21 @@ import Foundation
 
 @objc public class KLOperationQueue: NSObject, KLOperationQueueProtocol
 {
-	private var mContext:	KEContext
 	private var mQueue: 	CNOperationQueue
 
-	public init(context ctxt: KEContext) {
-		mContext = ctxt
+	public override init() {
 		mQueue   = CNOperationQueue()
 	}
 
 	public func execute(_ operation: JSValue, _ timelimit: JSValue) -> JSValue {
 		let result: Bool
 		if let op = valueToOperation(operation: operation) {
-			let limit = valueToInterval(time: timelimit)
+			let limit  = valueToInterval(time: timelimit)
 			result = mQueue.execute(operations: [op], timeLimit: limit)
 		} else {
 			result = false
 		}
-		return JSValue(bool: result, in: mContext)
+		return JSValue(bool: result, in: operation.context)
 	}
 
 	public func waitOperations() {

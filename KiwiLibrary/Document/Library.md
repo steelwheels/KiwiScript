@@ -41,6 +41,8 @@ Class objects to operate objects.
 ## Classes
 * [URL](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md): Data representation of URL. The constructor function is also defined.
 * [process](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Process.md): The instance of the `Process` class.
+* [operation](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Operation.md): The engine to execute JavaScript on the thread.
+* [operation queue](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/OperationQueue.md): The queue to execute the `operation` instance.
 * [Window](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Window.md): CLI window allocated by [Curses](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Curses.md) object.
 * [`Database`](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Database.md): This has the interface to access database in the component.
 
