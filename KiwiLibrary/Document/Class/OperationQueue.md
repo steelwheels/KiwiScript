@@ -1,24 +1,35 @@
-# Operation Class
+# OperationQueue Class
 
 ## Introduction
-The `Operation` object is used to execute JavaScript code on the 
-operation queue. 
+The `OperationQueue` object is engine to execute the context of [operation instance](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Operation.md).
 
-In usually, the object will be allocated by process creation function.
+## Class Method
+### `OperationQueue`
+Allocate new `OperationQueue` instance.
+````
+let operation = OperationQueue() ;
+````
 
 ## Methods
-### `isRunning`
-This method returns true when the process is still running and returns false when the process is already finished.
+### `execute`
+Execute the [operation](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Operation.md) instance on the queue.
 ````
-process.isRunning() ;
+let result = queue.execute(operation, time_limit) ;
 ````
 
-### `waitUntilExit`
-Wait until the process is finished.
+#### Parameters
+|Parameter    |Type           |Description    |
+|:--          |:--            |:--            |
+|operation    |[Operation](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Operation.md) |The operation to execute it's context |
+|time_limit   |Double or `nil` |The time limit of the execution of the operation. If the `time_limit` is NOT nil, the execution of the operation is cancelled after `time_limit` seconds. |
+
+When the operation is stopped by time limit, it is *cancelled* and the `isCancelled` flag is set.
+
+### `waitOperations`
+Wait until all operations are finished or cancelled.
 ````
-process.waitUntilExit()
+queue.waitOperations()
 ````
 
 ## References
 * [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library
-
