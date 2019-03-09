@@ -26,6 +26,7 @@ open class KLCompiler: KECompiler
 
 		defineFunctions(context: ctxt)
 		defineClassObjects(context: ctxt)
+		defineGlobalObjects(context: ctxt)
 		defineConstructors(context: ctxt)
 		importLibrary(context: ctxt)
 
@@ -173,6 +174,18 @@ open class KLCompiler: KECompiler
 			let shellobj = KLShell(context: ctxt)
 			ctxt.set(name: "Shell", object: shellobj)
 		#endif
+	}
+
+	private func defineGlobalObjects(context ctxt: KEContext) {
+		/* console */
+		switch config.kind {
+		case .Terminal, .Operation:
+			/* Define console */
+			let newcons = KLConsole(context: ctxt, console: console)
+			ctxt.set(name: "console", object: newcons)
+		case .Window:
+			break
+		}
 	}
 
 	private func defineConstructors(context ctxt: KEContext) {

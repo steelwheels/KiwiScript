@@ -235,7 +235,7 @@ Operation.addListener("isCanceled", function(newval){ if(newval){ _cancel() ; }}
 console.log("***** Program *****\n");
 ***** Program *****
 _main = function(){ console.log("***** MainFunc *****\n"); } ;
-[Flow   ] Success to compile operation at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/100/compile
+[Flow   ] Success to compile operation at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/93/compile
 // Execute the operation
 // Wait operations are finished
 ***** MainFunc *****

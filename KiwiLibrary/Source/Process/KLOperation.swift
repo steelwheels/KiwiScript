@@ -40,7 +40,6 @@ import Foundation
 
 		defineProperties()
 		defineMainFunction()
-		defineConsole()
 	}
 
 	private func defineProperties() {
@@ -86,12 +85,6 @@ import Foundation
 				}
 			}
 		}
-	}
-
-	private func defineConsole() {
-		/* Define console */
-		let newcons = KLConsole(context: mContext, console: mConsole)
-		mContext.set(name: "console", object: newcons)
 	}
 
 	public func compile(_ program: JSValue, _ mainfunc: JSValue) -> JSValue {
