@@ -96,6 +96,26 @@ extension JSValue
 		}
 	}
 
+	public func duplicate(context ctxt: KEContext) -> JSValue {
+		let dupval: JSValue
+		switch self.type {
+		case .UndefinedType:	dupval = JSValue(undefinedIn: ctxt)
+		case .NullType:		dupval = JSValue(nullIn: ctxt)
+		case .BooleanType:	dupval = JSValue(bool: self.toBool(), in: ctxt)
+		case .NumberType:	dupval = JSValue(object: self.toNumber(), in: ctxt)
+		case .StringType:	dupval = JSValue(object: self.toString(), in: ctxt)
+		case .DateType:		dupval = JSValue(object: self.toDate(), in: ctxt)
+		case .ArrayType:	dupval = JSValue(object: self.toArray(), in: ctxt)
+		case .DictionaryType:	dupval = JSValue(object: self.toDictionary(), in: ctxt)
+		case .RangeType:	dupval = JSValue(range: self.toRange(), in: ctxt)
+		case .PointType:	dupval = JSValue(point: self.toPoint(), in: ctxt)
+		case .SizeType:		dupval = JSValue(size: self.toSize(), in: ctxt)
+		case .RectType:		dupval = JSValue(rect: self.toRect(), in: ctxt)
+		case .ObjectType:	dupval = JSValue(object: self.toObject(), in: ctxt)
+		}
+		return dupval
+	}
+
 	private func isPointObject(object obj: Dictionary<String, AnyObject>) -> Bool {
 		if obj.count == 2 {
 			if obj["x"] != nil && obj["y"] != nil {

@@ -223,6 +223,10 @@ class Rect {
  	}
  }
  
+Operation.__defineGetter__("output", function(   ){ return this.get("output"     ); }) ;
+Operation.__defineSetter__("output", function(val){ return this.set("output", val); }) ;
+Operation.__defineGetter__("input", function(   ){ return this.get("input"     ); }) ;
+Operation.__defineSetter__("input", function(val){ return this.set("input", val); }) ;
 Operation.__defineGetter__("isExecuting", function(   ){ return this.get("isExecuting"     ); }) ;
 Operation.__defineSetter__("isExecuting", function(val){ return this.set("isExecuting", val); }) ;
 Operation.__defineGetter__("isFinished", function(   ){ return this.get("isFinished"     ); }) ;
@@ -234,11 +238,16 @@ Operation.__defineSetter__("addListener", function(val){ return this.set("addLis
 Operation.addListener("isCanceled", function(newval){ if(newval){ _cancel() ; }}) ;
 console.log("***** Program *****\n");
 ***** Program *****
-_main = function(){ console.log("***** MainFunc *****\n"); } ;
-[Flow   ] Success to compile operation at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/93/compile
+_main = function(){
+  Operation.output = 5678 ; 
+  console.log("[MainFunc] " + Operation.input + ", " + Operation.output + "\n") ;
+} ;
+[Flow   ] Success to compile operation at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/126/compile
 // Execute the operation
 // Wait operations are finished
-***** MainFunc *****
+[MainFunc] 1234, 5678
+// Check output parameter
+Result = 5678
 Summary: OK
 [UnitTest]
 

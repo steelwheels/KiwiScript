@@ -30,6 +30,15 @@ public func UTOperation(console cons: CNConsole, config conf: KLConfig) -> Bool
 
 	cons.print(string: "// Wait operations are finished\n")
 	queue.waitOperations()
+
+	cons.print(string: "// Check output parameter\n")
+	let outstr: String
+	if let s = op.outputParameter.toString() {
+		outstr = s
+	} else {
+		outstr = "<null>"
+	}
+	cons.print(string: "Result = \(outstr)\n")
 	
 	return true
 }
@@ -38,14 +47,23 @@ private func allocateOperation(console cons: CNConsole, config conf: KLConfig) -
 {
 	let op = KLOperation(console: cons, config: conf)
 
+	
+	let maindecl =  "function(){\n" +
+			"  Operation.output = 5678 ; \n" +
+			"  console.log(\"[MainFunc] \" + Operation.input + \", \" + Operation.output + \"\\n\") ;\n" +
+			"}"
 	let program  = JSValue(object: "console.log(\"***** Program *****\\n\");\n", in: op.context)
-	let mainfunc = JSValue(object: "function(){ console.log(\"***** MainFunc *****\\n\"); }", in: op.context)
+	let mainfunc = JSValue(object: maindecl, in: op.context)
+
+	/* Set input parameter */
+	op.inputParameter = JSValue(int32: 1234, in: op.context)
+
 	let retval   = op.compile(program!, mainfunc!)
 	guard retval.isBoolean && retval.toBool() else {
 		cons.error(string: "Failed to compile operation\n")
 		return nil
 	}
-
+	
 	return op
 }
 

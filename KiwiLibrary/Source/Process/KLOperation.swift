@@ -15,12 +15,17 @@ import Foundation
 	var isExecuting:	Bool { get }		// -> Bool
 	var isFinished:		Bool { get }		// -> Bool
 	var isCancelled:	Bool { get }		// -> Bool
+	var inputParameter:	JSValue { get set }
+	var outputParameter:	JSValue { get }
 
 	func compile(_ program: JSValue, _ mainfunc: JSValue) -> JSValue
 }
 
 @objc public class KLOperation: CNOperation, KLOperationProtocol
 {
+	private static let inputParameterItem	= "input"
+	private static let outputParameterItem	= "output"
+
 	private var mContext:		KEContext
 	private var mConsole:		CNConsole
 	private var mConfig:		KLConfig
@@ -46,6 +51,9 @@ import Foundation
 		mPropertyTable.set(name: CNOperation.isExecutingItem, boolValue: isExecuting)
 		mPropertyTable.set(name: CNOperation.isFinishedItem,  boolValue: isFinished)
 		mPropertyTable.set(name: CNOperation.isCanceledItem,  boolValue: isCancelled)
+
+		mPropertyTable.set(KLOperation.inputParameterItem,  JSValue(nullIn: mContext))
+		mPropertyTable.set(KLOperation.outputParameterItem, JSValue(nullIn: mContext))
 
 		/* Add listener function to update property */
 		self.addIsExecutingListener(listnerFunction: {
@@ -83,6 +91,31 @@ import Foundation
 				} else {
 					CNLog(type: .Error, message: "No exec func", file: #file, line: #line, function: #function)
 				}
+			}
+		}
+	}
+
+	public var inputParameter: JSValue {
+		get {
+			if let val = mPropertyTable.get(KLOperation.inputParameterItem) as? JSValue {
+				return val
+			} else {
+				CNLog(type: .Error, message: "Unexpected value", file: #file, line: #line, function: #function)
+				return JSValue(undefinedIn: mContext)
+			}
+		}
+		set(val){
+			mPropertyTable.set(KLOperation.inputParameterItem, val)
+		}
+	}
+
+	public var outputParameter: JSValue {
+		get {
+			if let val = mPropertyTable.get(KLOperation.outputParameterItem) as? JSValue {
+				return val
+			} else {
+				CNLog(type: .Error, message: "Unexpected value", file: #file, line: #line, function: #function)
+				return JSValue(undefinedIn: mContext)
 			}
 		}
 	}

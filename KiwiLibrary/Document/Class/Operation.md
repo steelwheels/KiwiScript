@@ -10,6 +10,7 @@ There are following steps to execute operation:
 1. Allocate operation object by `Operation` function
 2. Compile the source code by `compile` method of operation instance.
 3. Execute the operation by the operation queue. About operation queue, see [OperationQueue class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/OperationQueue.md).
+4. Get result value from `result` property. The value is valid after execution.
 
 ## Class method
 ### `Operation`
@@ -17,6 +18,12 @@ Allocate new `Operation` instance. The instance must be *compiled* before enteri
 ````
 let operation = Operation() ;
 ````
+## Properties
+### `input`
+Set input parameter for the operation.
+
+### `output`
+The output parameter. This value is set by the `main_function` passed by the `compile` method.
 
 ## Methods
 ### `compile`

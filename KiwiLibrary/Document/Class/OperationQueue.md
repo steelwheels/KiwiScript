@@ -25,6 +25,9 @@ let result = queue.execute(operation, time_limit) ;
 
 When the operation is stopped by time limit, it is *cancelled* and the `isCancelled` flag is set.
 
+#### Return value
+The return value is true when the operation is started without any errors.
+
 ### `waitOperations`
 Wait until all operations are finished or cancelled.
 ````
