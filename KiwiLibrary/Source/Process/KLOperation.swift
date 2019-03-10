@@ -15,31 +15,32 @@ import Foundation
 	var isExecuting:	Bool { get }		// -> Bool
 	var isFinished:		Bool { get }		// -> Bool
 	var isCancelled:	Bool { get }		// -> Bool
-	var inputParameter:	JSValue { get set }
-	var outputParameter:	JSValue { get }
+	var input:		JSValue { get set }
+	var output:		JSValue { get }
 
 	func compile(_ program: JSValue, _ mainfunc: JSValue) -> JSValue
 }
 
 @objc public class KLOperation: CNOperation, KLOperationProtocol
 {
-	private static let inputParameterItem	= "input"
-	private static let outputParameterItem	= "output"
+	private static let inputItem	= "input"
+	private static let outputItem	= "output"
 
-	private var mContext:		KEContext
-	private var mConsole:		CNConsole
-	private var mConfig:		KLConfig
-	private var mPropertyTable:	KEObject
-	private var mMainFunc:		JSValue?
+	private var	mOwnerContext:	KEContext
+	fileprivate var	mSelfContext:	KEContext
+	private var	mConsole:	CNConsole
+	private var	mConfig:	KLConfig
+	private var	mPropertyTable:	KEObject
+	private var	mMainFunc:	JSValue?
 
-	public var context: KEContext		{ get { return mContext }}
 	public var propertyTable: KEObject	{ get { return mPropertyTable }}
 
-	public init(console cons: CNConsole, config conf: KLConfig) {
-		mContext        = KEContext(virtualMachine: JSVirtualMachine())
+	public init(ownerContext octxt: KEContext, console cons: CNConsole, config conf: KLConfig) {
+		mOwnerContext	= octxt
+		mSelfContext    = KEContext(virtualMachine: JSVirtualMachine())
 		mConsole	= cons
 		mConfig		= conf
-		mPropertyTable  = KEObject(context: mContext)
+		mPropertyTable  = KEObject(context: mSelfContext)
 		mMainFunc	= nil
 		super.init()
 
@@ -52,8 +53,8 @@ import Foundation
 		mPropertyTable.set(name: CNOperation.isFinishedItem,  boolValue: isFinished)
 		mPropertyTable.set(name: CNOperation.isCanceledItem,  boolValue: isCancelled)
 
-		mPropertyTable.set(KLOperation.inputParameterItem,  JSValue(nullIn: mContext))
-		mPropertyTable.set(KLOperation.outputParameterItem, JSValue(nullIn: mContext))
+		mPropertyTable.set(KLOperation.inputItem,  JSValue(nullIn: mSelfContext))
+		mPropertyTable.set(KLOperation.outputItem, JSValue(nullIn: mSelfContext))
 
 		/* Add listener function to update property */
 		self.addIsExecutingListener(listnerFunction: {
@@ -86,7 +87,7 @@ import Foundation
 		super.mainFunction = {
 			() -> Void in
 			if let mainfunc = self.mMainFunc {
-				if let execfunc = self.mContext.getValue(name: "_exec_cancelable") {
+				if let execfunc = self.mSelfContext.getValue(name: "_exec_cancelable") {
 					execfunc.call(withArguments: [mainfunc])
 				} else {
 					CNLog(type: .Error, message: "No exec func", file: #file, line: #line, function: #function)
@@ -95,27 +96,28 @@ import Foundation
 		}
 	}
 
-	public var inputParameter: JSValue {
+	public var input: JSValue {
 		get {
-			if let val = mPropertyTable.get(KLOperation.inputParameterItem) as? JSValue {
+			if let val = mPropertyTable.get(KLOperation.inputItem) as? JSValue {
 				return val
 			} else {
 				CNLog(type: .Error, message: "Unexpected value", file: #file, line: #line, function: #function)
-				return JSValue(undefinedIn: mContext)
+				return JSValue(undefinedIn: mSelfContext)
 			}
 		}
 		set(val){
-			mPropertyTable.set(KLOperation.inputParameterItem, val)
+			let dupval = val.duplicate(context: mSelfContext)
+			mPropertyTable.set(KLOperation.inputItem, dupval)
 		}
 	}
 
-	public var outputParameter: JSValue {
+	public var output: JSValue {
 		get {
-			if let val = mPropertyTable.get(KLOperation.outputParameterItem) as? JSValue {
-				return val
+			if let val = mPropertyTable.get(KLOperation.outputItem) as? JSValue {
+				return val.duplicate(context: mOwnerContext)
 			} else {
 				CNLog(type: .Error, message: "Unexpected value", file: #file, line: #line, function: #function)
-				return JSValue(undefinedIn: mContext)
+				return JSValue(undefinedIn: mOwnerContext)
 			}
 		}
 	}
@@ -128,14 +130,14 @@ import Foundation
 		} else {
 			CNLog(type: .Error, message: "Failed to compile operation", file: #file, line: #line, function: #function)
 		}
-		return JSValue(bool: mMainFunc != nil, in: mContext)
+		return JSValue(bool: mMainFunc != nil, in: mSelfContext)
 	}
 }
 
 private class KLOperationCompiler: KLCompiler
 {
 	public func compile(operation op: KLOperation, program progval: JSValue, mainFunction mainval: JSValue) -> JSValue? {
-		if super.compile(context: op.context) {
+		if super.compile(context: op.mSelfContext) {
 			compileOperation(operation: op)
 			defineOperationInstance(operation: op)
 			defineExitFunction(operation: op)
@@ -148,14 +150,14 @@ private class KLOperationCompiler: KLCompiler
 	private func compileOperation(operation op: KLOperation) {
 		/* Compile "Operation.js" */
 		if let script = readResource(fileName: "Operation", fileExtension: "js", forClass: KLOperationCompiler.self) {
-			let _ = compile(context: op.context, statement: script)
+			let _ = compile(context: op.mSelfContext, statement: script)
 		} else {
 			CNLog(type: .Error, message: "Failed to read Operation.js", file: #file, line: #line, function: #function)
 		}
 	}
 
 	private func defineOperationInstance(operation op: KLOperation){
-		let context = op.context
+		let context = op.mSelfContext
 
 		/* Define global variable: Process */
 		let opname = "Operation"
@@ -172,13 +174,13 @@ private class KLOperationCompiler: KLCompiler
 		let exitFunc = {
 			(_ value: JSValue) -> JSValue in
 			op.cancel()
-			return JSValue(undefinedIn: op.context)
+			return JSValue(undefinedIn: op.mSelfContext)
 		}
-		op.context.set(name: "exit", function: exitFunc)
+		op.mSelfContext.set(name: "exit", function: exitFunc)
 	}
 
 	private func compileSource(operation op: KLOperation, program progval: JSValue, mainFunction mainval: JSValue) -> JSValue? {
-		let context = op.context
+		let context = op.mSelfContext
 
 		/* Compile program */
 		if let program = valueToString(value: progval) {

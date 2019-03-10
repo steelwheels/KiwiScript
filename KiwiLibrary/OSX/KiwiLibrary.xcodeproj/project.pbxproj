@@ -21,6 +21,7 @@
 		058735D620C2C7F700797EFD /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 058735D520C2C7F700797EFD /* KiwiEngine.framework */; };
 		058735D820C2C82100797EFD /* KiwiEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058735D520C2C7F700797EFD /* KiwiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		058735D920C2C82700797EFD /* KiwiLibrary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B12283203F0734009DDBEF /* KiwiLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		059E8AFA2234EDEB005EE9B8 /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 058735D520C2C7F700797EFD /* KiwiEngine.framework */; };
 		05AFD991217F6FCC0015524B /* KLCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AFD990217F6FCC0015524B /* KLCompiler.swift */; };
 		05B18F75222EA6AB006E9A31 /* KLOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B18F74222EA6AB006E9A31 /* KLOperation.swift */; };
 		05C49214204ABF3800C5D910 /* KLShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C49213204ABF3800C5D910 /* KLShell.swift */; };
@@ -136,6 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				059E8AFA2234EDEB005EE9B8 /* KiwiEngine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

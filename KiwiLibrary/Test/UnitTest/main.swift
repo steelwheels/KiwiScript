@@ -40,7 +40,7 @@ public func main()
 
 	/* Operation*/
 	console.print(string: "/* Unit test for Operation */\n")
-	let result1 = UTOperation(console: console, config: config)
+	let result1 = UTOperation(context: context, console: console, config: config)
 
 	if result0 && result1 {
 		console.print(string: "Summary: OK\n")

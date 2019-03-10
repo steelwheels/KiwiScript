@@ -6,22 +6,22 @@
  */
 
 import KiwiLibrary
+import KiwiEngine
 import CoconutData
 import JavaScriptCore
 import Foundation
 
-public func UTOperation(console cons: CNConsole, config conf: KLConfig) -> Bool
+public func UTOperation(context ctxt: KEContext, console cons: CNConsole, config conf: KLConfig) -> Bool
 {
 	cons.print(string: "// Allocate operation\n")
-	guard let op = allocateOperation(console: cons, config: conf) else {
+	guard let op = allocateOperation(context: ctxt, console: cons, config: conf) else {
 		cons.error(string: "Could not allocate operation\n")
 		return false
 	}
 	cons.print(string: "// Execute the operation\n")
-	let context = op.context
 	let queue   = KLOperationQueue()
-	let opval   = JSValue(object: op, in: context)
-	let limval  = JSValue(nullIn: context)
+	let opval   = JSValue(object: op, in: ctxt)
+	let limval  = JSValue(nullIn: ctxt)
 	let retval  = queue.execute(opval!, limval!)
 	guard retval.isBoolean && retval.toBool() else {
 		cons.error(string: "Failed to execute operation\n")
@@ -33,7 +33,7 @@ public func UTOperation(console cons: CNConsole, config conf: KLConfig) -> Bool
 
 	cons.print(string: "// Check output parameter\n")
 	let outstr: String
-	if let s = op.outputParameter.toString() {
+	if let s = op.output.toString() {
 		outstr = s
 	} else {
 		outstr = "<null>"
@@ -43,20 +43,19 @@ public func UTOperation(console cons: CNConsole, config conf: KLConfig) -> Bool
 	return true
 }
 
-private func allocateOperation(console cons: CNConsole, config conf: KLConfig) -> KLOperation?
+private func allocateOperation(context ctxt: KEContext, console cons: CNConsole, config conf: KLConfig) -> KLOperation?
 {
-	let op = KLOperation(console: cons, config: conf)
+	let op = KLOperation(ownerContext: ctxt, console: cons, config: conf)
 
-	
 	let maindecl =  "function(){\n" +
 			"  Operation.output = 5678 ; \n" +
 			"  console.log(\"[MainFunc] \" + Operation.input + \", \" + Operation.output + \"\\n\") ;\n" +
 			"}"
-	let program  = JSValue(object: "console.log(\"***** Program *****\\n\");\n", in: op.context)
-	let mainfunc = JSValue(object: maindecl, in: op.context)
+	let program  = JSValue(object: "console.log(\"***** Program *****\\n\");\n", in: ctxt)
+	let mainfunc = JSValue(object: maindecl, in: ctxt)
 
 	/* Set input parameter */
-	op.inputParameter = JSValue(int32: 1234, in: op.context)
+	op.input = JSValue(int32: 1234, in: ctxt)
 
 	let retval   = op.compile(program!, mainfunc!)
 	guard retval.isBoolean && retval.toBool() else {

@@ -205,7 +205,7 @@ open class KLCompiler: KECompiler
 		let opfunc: @convention(block) () -> JSValue = {
 			() -> JSValue in
 			let conf = KLConfig(kind: .Operation, doStrict: true, doVerbose: self.config.doVerbose)
-			let op   = KLOperation(console: self.console, config: conf)
+			let op   = KLOperation(ownerContext: ctxt, console: self.console, config: conf)
 			return JSValue(object: op, in: ctxt)
 		}
 		ctxt.set(name: "Operation", function: opfunc)
