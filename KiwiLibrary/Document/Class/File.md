@@ -20,7 +20,7 @@ var file = File.open(<file-name>, <access-type>) ;
 ### Parameter(s)
 |Parameter    |Type   |Description                    |
 |:---         |:---   |:---                           |
-|file-name    |String |The path of the file to access.|
+|file-name    |String or [URL](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md) |The path or URL of the file to access.|
 |access-type  |String |"r" for read, "w" to write new file . and "w+" to write to append.|
 
 ### Return value
@@ -117,4 +117,3 @@ If the write operation is succeeded, the size　(unit: byte) of parameter string
 
 # References
 * [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library
-

@@ -55,8 +55,18 @@ import Foundation
 
 	public func open(_ pathval: JSValue, _ accval: JSValue) -> JSValue
 	{
-		if let pathstr = decodePathString(pathval), let acctype = decodeAccessType(accval) {
+		guard let acctype = decodeAccessType(accval) else {
+			return JSValue(nullIn: mContext)
+		}
+
+		if let pathstr = decodePathString(pathval) {
 			let (file, _) = CNOpenFile(filePath: pathstr, accessType: acctype)
+			if let f = file {
+				let fileobj = KLFileObject(file: f, context: mContext)
+				return JSValue(object: fileobj, in: mContext)
+			}
+		} else if let pathurl = decodePathURL(pathval) {
+			let (file, _) = CNOpenFile(URL: pathurl, accessType: acctype)
 			if let f = file {
 				let fileobj = KLFileObject(file: f, context: mContext)
 				return JSValue(object: fileobj, in: mContext)
@@ -75,13 +85,6 @@ import Foundation
 		return result
 	}
 
-	private func decodePathString(_ pathval: JSValue) -> String? {
-		if pathval.isString {
-			return pathval.toString()
-		}
-		return nil
-	}
-
 	private func decodeAccessType(_ accval: JSValue) -> CNFileAccessType? {
 		if accval.isString {
 			if let accstr = accval.toString() {
@@ -93,6 +96,22 @@ import Foundation
 				default:   result = nil
 				}
 				return result
+			}
+		}
+		return nil
+	}
+
+	private func decodePathString(_ pathval: JSValue) -> String? {
+		if pathval.isString {
+			return pathval.toString()
+		}
+		return nil
+	}
+
+	private func decodePathURL(_ pathval: JSValue) -> URL? {
+		if pathval.isObject {
+			if let urlobj = pathval.toObject() as? KLURL {
+				return urlobj.url
 			}
 		}
 		return nil
