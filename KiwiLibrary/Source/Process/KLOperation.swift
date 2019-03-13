@@ -15,6 +15,7 @@ import Foundation
 	var isExecuting:	Bool { get }		// -> Bool
 	var isFinished:		Bool { get }		// -> Bool
 	var isCancelled:	Bool { get }		// -> Bool
+	var parameter:		JSValue { get set }
 	var input:		JSValue { get set }
 	var output:		JSValue { get }
 
@@ -23,8 +24,9 @@ import Foundation
 
 @objc public class KLOperation: CNOperation, KLOperationProtocol
 {
-	private static let inputItem	= "input"
-	private static let outputItem	= "output"
+	private static let parameterItem	= "parameter"
+	private static let inputItem		= "input"
+	private static let outputItem		= "output"
 
 	private var	mOwnerContext:	KEContext
 	fileprivate var	mSelfContext:	KEContext
@@ -44,8 +46,16 @@ import Foundation
 		mMainFunc	= nil
 		super.init()
 
+		setExceptionHandler()
 		defineProperties()
 		defineMainFunction()
+	}
+
+	private func setExceptionHandler(){
+		mSelfContext.exceptionCallback = {
+			(_ exception: KEException) -> Void in
+			self.mConsole.error(string: exception.description + "\n")
+		}
 	}
 
 	private func defineProperties() {
@@ -53,8 +63,9 @@ import Foundation
 		mPropertyTable.set(name: CNOperation.isFinishedItem,  boolValue: isFinished)
 		mPropertyTable.set(name: CNOperation.isCanceledItem,  boolValue: isCancelled)
 
-		mPropertyTable.set(KLOperation.inputItem,  JSValue(nullIn: mSelfContext))
-		mPropertyTable.set(KLOperation.outputItem, JSValue(nullIn: mSelfContext))
+		mPropertyTable.set(KLOperation.parameterItem,	JSValue(nullIn: mSelfContext))
+		mPropertyTable.set(KLOperation.inputItem,  	JSValue(nullIn: mSelfContext))
+		mPropertyTable.set(KLOperation.outputItem, 	JSValue(nullIn: mSelfContext))
 
 		/* Add listener function to update property */
 		self.addIsExecutingListener(listnerFunction: {
@@ -93,6 +104,21 @@ import Foundation
 					CNLog(type: .Error, message: "No exec func", file: #file, line: #line, function: #function)
 				}
 			}
+		}
+	}
+
+	public var parameter: JSValue {
+		get {
+			if let val = mPropertyTable.get(KLOperation.parameterItem) as? JSValue {
+				return val
+			} else {
+				CNLog(type: .Error, message: "Unexpected value", file: #file, line: #line, function: #function)
+				return JSValue(undefinedIn: mSelfContext)
+			}
+		}
+		set(val){
+			let dupval = val.duplicate(context: mSelfContext)
+			mPropertyTable.set(KLOperation.parameterItem, dupval)
 		}
 	}
 

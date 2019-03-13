@@ -2,7 +2,7 @@
 
 ## Introduction
 The `Operation` object is used to execute JavaScript code on the
-[operation queue](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/OperationQueue.md).
+[operation queue](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/OperationQueue.md) as the thread.
 The code which is entered into the queue is executed as a thread.
 
 There are following steps to execute operation:
@@ -16,8 +16,11 @@ There are following steps to execute operation:
 ### `Operation`
 Allocate new `Operation` instance. The instance must be *compiled* before entering into the queue.
 ````
-let operation = Operation() ;
+let operation = Operation(param) ;
 ````
+#### Parameter
+A single object to pass to the thread. You can get this value by referring `parameter` property.
+
 ## Properties
 ### `input`
 Set input parameter for the operation.

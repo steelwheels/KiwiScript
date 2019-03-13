@@ -227,6 +227,8 @@ Operation.__defineGetter__("output", function(   ){ return this.get("output"    
 Operation.__defineSetter__("output", function(val){ return this.set("output", val); }) ;
 Operation.__defineGetter__("input", function(   ){ return this.get("input"     ); }) ;
 Operation.__defineSetter__("input", function(val){ return this.set("input", val); }) ;
+Operation.__defineGetter__("parameter", function(   ){ return this.get("parameter"     ); }) ;
+Operation.__defineSetter__("parameter", function(val){ return this.set("parameter", val); }) ;
 Operation.__defineGetter__("isExecuting", function(   ){ return this.get("isExecuting"     ); }) ;
 Operation.__defineSetter__("isExecuting", function(val){ return this.set("isExecuting", val); }) ;
 Operation.__defineGetter__("isFinished", function(   ){ return this.get("isFinished"     ); }) ;
@@ -242,7 +244,7 @@ _main = function(){
   Operation.output = 5678 ; 
   console.log("[MainFunc] " + Operation.input + ", " + Operation.output + "\n") ;
 } ;
-[Flow   ] Success to compile operation at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/126/compile
+[Flow   ] Success to compile operation at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/154/compile
 // Execute the operation
 // Wait operations are finished
 [MainFunc] 1234, 5678

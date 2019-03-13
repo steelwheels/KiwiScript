@@ -202,10 +202,14 @@ open class KLCompiler: KECompiler
 		ctxt.set(name: "URL", function: urlFunc)
 
 		/* Operaion */
-		let opfunc: @convention(block) () -> JSValue = {
-			() -> JSValue in
+		let opfunc: @convention(block) (_ param: JSValue) -> JSValue = {
+			(_ param: JSValue) -> JSValue in
+			//CNLog(type: .Flow, message: "Allocate Operation method", file: #file, line: #line, function: #function)
 			let conf = KLConfig(kind: .Operation, doStrict: true, doVerbose: self.config.doVerbose)
 			let op   = KLOperation(ownerContext: ctxt, console: self.console, config: conf)
+			if !param.isUndefined {
+				op.parameter = param
+			}
 			return JSValue(object: op, in: ctxt)
 		}
 		ctxt.set(name: "Operation", function: opfunc)
@@ -213,7 +217,7 @@ open class KLCompiler: KECompiler
 		/* OperaionQueue */
 		let queuefunc: @convention(block) () -> JSValue = {
 			() -> JSValue in
-			let queue = KLOperationQueue()
+			let queue = KLOperationQueue(console: self.console)
 			return JSValue(object: queue, in: ctxt)
 		}
 		ctxt.set(name: "OperationQueue", function: queuefunc)

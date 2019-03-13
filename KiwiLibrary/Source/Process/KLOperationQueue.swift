@@ -19,9 +19,11 @@ import Foundation
 @objc public class KLOperationQueue: NSObject, KLOperationQueueProtocol
 {
 	private var mQueue: 	CNOperationQueue
+	private var mConsole:	CNConsole
 
-	public override init() {
+	public init(console cons: CNConsole) {
 		mQueue   = CNOperationQueue()
+		mConsole = cons
 	}
 
 	public func execute(_ operation: JSValue, _ timelimit: JSValue) -> JSValue {
@@ -30,6 +32,7 @@ import Foundation
 			let limit  = valueToInterval(time: timelimit)
 			result = mQueue.execute(operations: [op], timeLimit: limit)
 		} else {
+			mConsole.error(string: "Unexcected object (Operation object is required)\n")
 			result = false
 		}
 		return JSValue(bool: result, in: operation.context)
