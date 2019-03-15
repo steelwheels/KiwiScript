@@ -25,6 +25,7 @@ open class KLCompiler: KECompiler
 		}
 
 		defineFunctions(context: ctxt)
+		definePrimitiveObjects(context: ctxt)
 		defineClassObjects(context: ctxt)
 		defineGlobalObjects(context: ctxt)
 		defineConstructors(context: ctxt)
@@ -134,6 +135,34 @@ open class KLCompiler: KECompiler
 		}
 	}
 
+	private func definePrimitiveObjects(context ctxt: KEContext) {
+		/* Point */
+		let pointFunc: @convention(block) (_ xval: JSValue, _ yval: JSValue) -> JSValue = {
+			(_ xval: JSValue, _ yval: JSValue) -> JSValue in
+			if xval.isNumber && yval.isNumber {
+				let x = xval.toDouble()
+				let y = yval.toDouble()
+				return JSValue(point: CGPoint(x: x, y: y), in: ctxt)
+			}
+			self.console.error(string: "Invalid parameter for Point constructor\n")
+			return JSValue(undefinedIn: ctxt)
+		}
+		ctxt.set(name: "Point", function: pointFunc)
+
+		/* Size */
+		let sizeFunc: @convention(block) (_ wval: JSValue, _ hval: JSValue) -> JSValue = {
+			(_ wval: JSValue, _ hval: JSValue) -> JSValue in
+			if wval.isNumber && hval.isNumber {
+				let width  = wval.toDouble()
+				let height = hval.toDouble()
+				return JSValue(size: CGSize(width: width, height: height), in: ctxt)
+			}
+			self.console.error(string: "Invalid parameter for Size constructor\n")
+			return JSValue(undefinedIn: ctxt)
+		}
+		ctxt.set(name: "Size", function: sizeFunc)
+	}
+
 	private func defineClassObjects(context ctxt: KEContext) {
 		switch config.kind {
 		case .Terminal:
@@ -196,7 +225,8 @@ open class KLCompiler: KECompiler
 				let urlobj = KLURL(URL: URL(string: str), context: ctxt)
 				return JSValue(object: urlobj, in: ctxt)
 			} else {
-				return JSValue(nullIn: ctxt)
+				self.console.error(string: "Invalid parameter for URL constructor\n")
+				return JSValue(undefinedIn: ctxt)
 			}
 		}
 		ctxt.set(name: "URL", function: urlFunc)
