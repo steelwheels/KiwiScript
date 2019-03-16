@@ -11,7 +11,7 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-public func UTOperation(context ctxt: KEContext, console cons: CNConsole, config conf: KLConfig) -> Bool
+public func UTOperation(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) -> Bool
 {
 	cons.print(string: "// Allocate operation\n")
 	guard let op = allocateOperation(context: ctxt, console: cons, config: conf) else {
@@ -43,7 +43,7 @@ public func UTOperation(context ctxt: KEContext, console cons: CNConsole, config
 	return true
 }
 
-private func allocateOperation(context ctxt: KEContext, console cons: CNConsole, config conf: KLConfig) -> KLOperation?
+private func allocateOperation(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) -> KLOperation?
 {
 	let op = KLOperation(ownerContext: ctxt, console: cons, config: conf)
 

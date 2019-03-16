@@ -31,13 +31,13 @@ import Foundation
 	private var	mOwnerContext:	KEContext
 	fileprivate var	mSelfContext:	KEContext
 	private var	mConsole:	CNConsole
-	private var	mConfig:	KLConfig
+	private var	mConfig:	KEConfig
 	private var	mPropertyTable:	KEObject
 	private var	mMainFunc:	JSValue?
 
 	public var propertyTable: KEObject	{ get { return mPropertyTable }}
 
-	public init(ownerContext octxt: KEContext, console cons: CNConsole, config conf: KLConfig) {
+	public init(ownerContext octxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
 		mOwnerContext	= octxt
 		mSelfContext    = KEContext(virtualMachine: JSVirtualMachine())
 		mConsole	= cons

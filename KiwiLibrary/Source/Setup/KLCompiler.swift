@@ -12,9 +12,9 @@ import Foundation
 
 open class KLCompiler: KECompiler
 {
-	public var	libConfig: KLConfig
+	public var	libConfig: KEConfig
 
-	public init(console cons: CNConsole, config conf: KLConfig) {
+	public override init(console cons: CNConsole, config conf: KEConfig) {
 		libConfig = conf
 		super.init(console: cons, config: conf)
 	}
@@ -283,8 +283,7 @@ open class KLCompiler: KECompiler
 		let opfunc: @convention(block) (_ param: JSValue) -> JSValue = {
 			(_ param: JSValue) -> JSValue in
 			//CNLog(type: .Flow, message: "Allocate Operation method", file: #file, line: #line, function: #function)
-			let conf = KLConfig(kind: .Operation, doStrict: true, doVerbose: self.config.doVerbose)
-			let op   = KLOperation(ownerContext: ctxt, console: self.console, config: conf)
+			let op   = KLOperation(ownerContext: ctxt, console: self.console, config: self.config)
 			if !param.isUndefined {
 				op.parameter = param
 			}
@@ -301,10 +300,25 @@ open class KLCompiler: KECompiler
 		ctxt.set(name: "OperationQueue", function: queuefunc)
 	}
 
-	private func importLibrary(context ctxt: KEContext) {
-		if libConfig.doUseGraphicsPrimitive {
-			if let script = readResource(fileName: "Library/graphics", fileExtension: "js", forClass: KLCompiler.self) {
-				let _ = compile(context: ctxt, statement: script)
+	private func importLibrary(context ctxt: KEContext)
+	{
+		/* Get built-in scripts */
+		if let scr = readResource(fileName: "Math", fileExtension: "js", forClass: KLCompiler.self) {
+			let _ = compile(context: ctxt, statement: scr)
+		} else {
+			CNLog(type: .Error, message: "Failed to get URL for Math.js", file: #file, line: #line, function: #function)
+			console.error(string: "Failed to find file: Math.js\n")
+		}
+
+		/* Load built-in scripts */
+		let filemgr = KLLibraryFiles.shared
+		for url in filemgr.libraryFiles {
+			let (script, _) = url.loadContents()
+			if let scr = script {
+				let _ = compile(context: ctxt, statement: scr as String)
+			} else {
+				let path = url.absoluteString
+				console.error(string: "Failed to read script from \(path)\n")
 			}
 		}
 	}

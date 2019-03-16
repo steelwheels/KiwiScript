@@ -18,8 +18,7 @@ public func main()
 	let console = CNFileConsole()
 	CNLogSetup(console: console, logLevel: .Flow)
 
-	let config = KLConfig(kind: .Terminal, doStrict: true, doVerbose: true)
-	config.doUseGraphicsPrimitive = true
+	let config = KEConfig(kind: .Terminal, doStrict: true, doVerbose: true)
 
 	let context  = KEContext(virtualMachine: JSVirtualMachine())
 	context.exceptionCallback = {
