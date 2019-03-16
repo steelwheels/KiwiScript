@@ -99,6 +99,54 @@ open class KLCompiler: KECompiler
 		}
 		ctxt.set(name: "isDate", function: isDateFunc)
 
+		/* sin */
+		let sinFunc: @convention(block) (_ value: JSValue) -> JSValue = {
+			(_ value: JSValue) -> JSValue in
+			if value.isNumber {
+				let result = sin(value.toDouble())
+				return JSValue(double: result, in: ctxt)
+			}
+			self.console.error(string: "Invalid parameter for sin function\n")
+			return JSValue(undefinedIn: ctxt)
+		}
+		ctxt.set(name: "sin", function: sinFunc)
+
+		/* cos */
+		let cosFunc: @convention(block) (_ value: JSValue) -> JSValue = {
+			(_ value: JSValue) -> JSValue in
+			if value.isNumber {
+				let result = cos(value.toDouble())
+				return JSValue(double: result, in: ctxt)
+			}
+			self.console.error(string: "Invalid parameter for cos function\n")
+			return JSValue(undefinedIn: ctxt)
+		}
+		ctxt.set(name: "cos", function: cosFunc)
+
+		/* tan */
+		let tanFunc: @convention(block) (_ value: JSValue) -> JSValue = {
+			(_ value: JSValue) -> JSValue in
+			if value.isNumber {
+				let result = tan(value.toDouble())
+				return JSValue(double: result, in: ctxt)
+			}
+			self.console.error(string: "Invalid parameter for tan function\n")
+			return JSValue(undefinedIn: ctxt)
+		}
+		ctxt.set(name: "tan", function: tanFunc)
+
+		/* atan2 */
+		let atan2Func: @convention(block) (_ yval: JSValue, _ xval: JSValue) -> JSValue = {
+			(_ yval: JSValue, _ xval: JSValue) -> JSValue in
+			if yval.isNumber && xval.isNumber {
+				let result = atan2(yval.toDouble(), xval.toDouble())
+				return JSValue(double: result, in: ctxt)
+			}
+			self.console.error(string: "Invalid parameter for atan2 function\n")
+			return JSValue(undefinedIn: ctxt)
+		}
+		ctxt.set(name: "atan2", function: atan2Func)
+
 		/* exit */
 		let exitFunc: @convention(block) (_ value: JSValue) -> JSValue
 		switch config.kind {
