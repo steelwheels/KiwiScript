@@ -1,19 +1,16 @@
 # About KiwiScript
-Repository for the package of frameworks to implement/support JavaScript runtime ([JavaScriptCore](https://developer.apple.com/documentation/javascriptcore)) for iOS and macOS.
+The *KiwiScript* is the package of frameworks to support JavaScript runtime on macOS.iOS application. The [JavaScriptCore](https://developer.apple.com/documentation/javascriptcore) is used as the infrastructure.
 
 # Copyright
-Copyright (C) 2015-2018 [Steel Wheels Project](https://sites.google.com/site/steelwheelsproject/).
+Copyright (C) 2015-2019 [Steel Wheels Project](https://sites.google.com/site/steelwheelsproject/).
 This software is distributed under [GNU LESSER GENERAL PUBLIC LICENSE Version 2.1](https://www.gnu.org/licenses/lgpl-2.1-standalone.html).
 
 # Contents
-This package contains:
+This package contains following frameworks:
 - [Kiwi Engine](https://github.com/steelwheels/KiwiScript/blob/master/KiwiEngine/README.md): Define JavaScript execution environment based on [JavaScriptCore](https://developer.apple.com/documentation/javascriptcore).
 - [KiwiLibrary](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/README.md): Built-in libraries to be used in the JavaScript.
 - [KiwiComponents](): Define Application object model.
 - [Kiwi Shell](https://github.com/steelwheels/KiwiScript/blob/master/KiwiShell/README.md): Shell program programmed by the JavaScript language.
-
-# documentation
-- [Application Object Model]()
 
 # Related links
 * [Steel Wheels Project](http://steelwheels.github.io/): The developer of this software.
