@@ -28,6 +28,8 @@ import Foundation
 	private static let inputItem		= "input"
 	private static let outputItem		= "output"
 
+	public static var mLibraryScripts: Array<String> 	= []
+
 	private var	mOwnerContext:	KEContext
 	fileprivate var	mSelfContext:	KEContext
 	private var	mConsole:	CNConsole
@@ -36,6 +38,14 @@ import Foundation
 	private var	mMainFunc:	JSValue?
 
 	public var propertyTable: KEObject	{ get { return mPropertyTable }}
+
+	public static var libraryScripts: Array<String> {
+		get { return mLibraryScripts }
+	}
+
+	public static func addLibraryScript(script scr: String) {
+		mLibraryScripts.append(scr)
+	}
 
 	public init(ownerContext octxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
 		mOwnerContext	= octxt
@@ -208,11 +218,20 @@ private class KLOperationCompiler: KLCompiler
 	private func compileSource(operation op: KLOperation, program progval: JSValue, mainFunction mainval: JSValue) -> JSValue? {
 		let context = op.mSelfContext
 
+		/* Compile user defined script */
+		CNLog(type: .Flow, message: "Operaion: Compile library scripts", file: #file, line: #line, function: #function)
+		for script in KLOperation.libraryScripts {
+			let _ = super.compile(context: context, statement: script)
+		}
+
 		/* Compile program */
+		CNLog(type: .Flow, message: "Operaion: Compile program", file: #file, line: #line, function: #function)
 		if let program = valueToString(value: progval) {
 			let _ = super.compile(context: context, statement: program)
 		}
+
 		/* Compile main function */
+		CNLog(type: .Flow, message: "Operaion: Compile main function", file: #file, line: #line, function: #function)
 		var mainfunc: JSValue? = nil
 		if let maindecl = valueToString(value: mainval) {
 			let mainexp: String = "_main = \(maindecl) ;\n"

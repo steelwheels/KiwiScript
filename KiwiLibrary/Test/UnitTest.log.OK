@@ -182,13 +182,16 @@ Operation.__defineSetter__("isCanceled", function(val){ return this.set("isCance
 Operation.__defineGetter__("addListener", function(   ){ return this.get("addListener"     ); }) ;
 Operation.__defineSetter__("addListener", function(val){ return this.set("addListener", val); }) ;
 Operation.addListener("isCanceled", function(newval){ if(newval){ _cancel() ; }}) ;
+[Flow   ] Operaion: Compile library scripts at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/222/compileSource(operation:program:mainFunction:)
+[Flow   ] Operaion: Compile program at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/228/compileSource(operation:program:mainFunction:)
 console.log("***** Program *****\n");
 ***** Program *****
+[Flow   ] Operaion: Compile main function at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/234/compileSource(operation:program:mainFunction:)
 _main = function(){
   Operation.output = 5678 ; 
   console.log("[MainFunc] " + Operation.input + ", " + Operation.output + "\n") ;
 } ;
-[Flow   ] Success to compile operation at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/154/compile
+[Flow   ] Success to compile operation at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/164/compile
 // Execute the operation
 // Wait operations are finished
 [MainFunc] 1234, 5678
