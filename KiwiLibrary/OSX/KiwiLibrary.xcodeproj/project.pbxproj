@@ -32,7 +32,6 @@
 		05F02032203F095000B430F5 /* KLProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F02031203F095000B430F5 /* KLProcess.swift */; };
 		05F100A522300F8100B399BE /* KLOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F100A422300F8100B399BE /* KLOperationQueue.swift */; };
 		05FE42A5204164B90094D971 /* KiwiLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 05B12286203F0734009DDBEF /* KiwiLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		05FF2A63223D2ABB002065AC /* KLLibraryFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FF2A62223D2ABB002065AC /* KLLibraryFiles.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,7 +115,6 @@
 		05F0202A203F091100B430F5 /* KLConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLConsole.swift; sourceTree = "<group>"; };
 		05F02031203F095000B430F5 /* KLProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLProcess.swift; sourceTree = "<group>"; };
 		05F100A422300F8100B399BE /* KLOperationQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLOperationQueue.swift; sourceTree = "<group>"; };
-		05FF2A62223D2ABB002065AC /* KLLibraryFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLLibraryFiles.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -307,7 +305,6 @@
 			isa = PBXGroup;
 			children = (
 				05AFD990217F6FCC0015524B /* KLCompiler.swift */,
-				05FF2A62223D2ABB002065AC /* KLLibraryFiles.swift */,
 			);
 			path = Setup;
 			sourceTree = "<group>";
@@ -520,7 +517,6 @@
 				050EC60B20CBE8CD00FCF21F /* KLURL.swift in Sources */,
 				05F0202E203F091100B430F5 /* KLConsole.swift in Sources */,
 				05F0202D203F091100B430F5 /* KLJSONFile.swift in Sources */,
-				05FF2A63223D2ABB002065AC /* KLLibraryFiles.swift in Sources */,
 				05610E5121B3C12800535D06 /* KLDatabase.swift in Sources */,
 				05F100A522300F8100B399BE /* KLOperationQueue.swift in Sources */,
 				05F0202C203F091100B430F5 /* KLFile.swift in Sources */,

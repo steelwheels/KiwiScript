@@ -29,7 +29,7 @@ open class KLCompiler: KECompiler
 		defineClassObjects(context: ctxt)
 		defineGlobalObjects(context: ctxt)
 		defineConstructors(context: ctxt)
-		importLibrary(context: ctxt)
+		importBuiltinLibrary(context: ctxt)
 
 		return true
 	}
@@ -300,7 +300,7 @@ open class KLCompiler: KECompiler
 		ctxt.set(name: "OperationQueue", function: queuefunc)
 	}
 
-	private func importLibrary(context ctxt: KEContext)
+	private func importBuiltinLibrary(context ctxt: KEContext)
 	{
 		/* Get built-in scripts */
 		if let scr = readResource(fileName: "Math", fileExtension: "js", forClass: KLCompiler.self) {
@@ -308,18 +308,6 @@ open class KLCompiler: KECompiler
 		} else {
 			CNLog(type: .Error, message: "Failed to get URL for Math.js", file: #file, line: #line, function: #function)
 			console.error(string: "Failed to find file: Math.js\n")
-		}
-
-		/* Load built-in scripts */
-		let filemgr = KLLibraryFiles.shared
-		for url in filemgr.libraryFiles {
-			let (script, _) = url.loadContents()
-			if let scr = script {
-				let _ = compile(context: ctxt, statement: scr as String)
-			} else {
-				let path = url.absoluteString
-				console.error(string: "Failed to read script from \(path)\n")
-			}
 		}
 	}
 }
