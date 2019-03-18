@@ -21,6 +21,7 @@ open class KLCompiler: KECompiler
 
 	open override func compile(context ctxt: KEContext) -> Bool {
 		guard super.compile(context: ctxt) else {
+			CNLog(type: .Error, message: "Failed to compile", file: #file, line: #line, function: #function)
 			return false
 		}
 
@@ -282,8 +283,9 @@ open class KLCompiler: KECompiler
 		/* Operaion */
 		let opfunc: @convention(block) (_ param: JSValue) -> JSValue = {
 			(_ param: JSValue) -> JSValue in
-			//CNLog(type: .Flow, message: "Allocate Operation method", file: #file, line: #line, function: #function)
-			let op   = KLOperation(ownerContext: ctxt, console: self.console, config: self.config)
+			let console = self.currentConsole(context: ctxt)
+			let config  = KEConfig(kind: .Terminal, doStrict: self.config.doStrict, doVerbose: self.config.doVerbose)
+			let op      = KLOperation(ownerContext: ctxt, console: console, config: config)
 			if !param.isUndefined {
 				op.parameter = param
 			}
@@ -294,7 +296,8 @@ open class KLCompiler: KECompiler
 		/* OperaionQueue */
 		let queuefunc: @convention(block) () -> JSValue = {
 			() -> JSValue in
-			let queue = KLOperationQueue(console: self.console)
+			let console = self.currentConsole(context: ctxt)
+			let queue   = KLOperationQueue(console: console)
 			return JSValue(object: queue, in: ctxt)
 		}
 		ctxt.set(name: "OperationQueue", function: queuefunc)
@@ -309,6 +312,19 @@ open class KLCompiler: KECompiler
 			CNLog(type: .Error, message: "Failed to get URL for Math.js", file: #file, line: #line, function: #function)
 			console.error(string: "Failed to find file: Math.js\n")
 		}
+	}
+
+	private func currentConsole(context ctxt: KEContext) -> CNConsole {
+		if let consval = ctxt.getValue(name: "console") {
+			if consval.isObject {
+				if let consobj = consval.toObject() as? KLConsole {
+					CNLog(type: .Flow, message: "Use current console", file: #file, line: #line, function: #function)
+					return consobj.console
+				}
+			}
+		}
+		CNLog(type: .Flow, message: "Use default console", file: #file, line: #line, function: #function)
+		return self.console
 	}
 }
 
