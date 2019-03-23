@@ -22,20 +22,21 @@ import Foundation
 	func get(_ cmdid: JSValue) -> JSValue
 }
 
-@objc public class KLOperation: CNOperation, KLOperationProtocol
+@objc public class KLOperation: NSObject, KLOperationProtocol
 {
 	public static var mLibraryScripts: Array<String> 	= []
 
-	private var	mOwnerContext:	KEContext
-	fileprivate var	mSelfContext:	KEContext
-	private var	mConsole:	CNConsole
-	private var	mConfig:	KEConfig
-	private var	mPropertyTable:	KEObject
+	private var 	mOperation:		CNOperation?
+	private var	mOwnerContext:		KEContext
+	fileprivate var	mSelfContext:		KEContext
+	private var	mConsole:		CNConsole
+	private var	mConfig:		KEConfig
+	private var	mPropertyTable:		KEObject
 
-	private var 	mOperation:	JSValue?
-	private var	mSetFunction:	JSValue?
-	private var	mGetFunction:	JSValue?
-	private var	mExecFunction:	JSValue?
+	private var 	mOperationObject:	JSValue?
+	private var	mSetFunction:		JSValue?
+	private var	mGetFunction:		JSValue?
+	private var	mExecFunction:		JSValue?
 
 
 	public var propertyTable: KEObject	{ get { return mPropertyTable }}
@@ -49,21 +50,22 @@ import Foundation
 	}
 
 	public init(ownerContext octxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
-		mOwnerContext	= octxt
-		mSelfContext    = KEContext(virtualMachine: JSVirtualMachine())
-		mConsole	= cons
-		mConfig		= conf
-		mPropertyTable  = KEObject(context: mSelfContext)
+		mOperation		= CNOperation()
+		mOwnerContext		= octxt
+		mSelfContext    	= KEContext(virtualMachine: JSVirtualMachine())
+		mConsole		= cons
+		mConfig			= conf
+		mPropertyTable  	= KEObject(context: mSelfContext)
 
-		mOperation 	= nil
-		mSetFunction	= nil
-		mGetFunction	= nil
-		mExecFunction	= nil
+		mOperationObject 	= nil
+		mSetFunction		= nil
+		mGetFunction		= nil
+		mExecFunction		= nil
 		super.init()
 
 		setExceptionHandler()
 		defineProperties()
-		defineMainFunction()
+		updateOperation()
 	}
 
 	private func setExceptionHandler(){
@@ -73,13 +75,29 @@ import Foundation
 		}
 	}
 
+	public var operation: CNOperation {
+		if let op = mOperation {
+			return op
+		} else {
+			fatalError("No operation")
+		}
+	}
+
+	public func shiftOutOperation() -> CNOperation {
+		let orgop  = operation
+		mOperation = CNOperation()
+		updateOperation()
+		return orgop
+	}
+
 	private func defineProperties() {
 		mPropertyTable.set(name: CNOperation.isExecutingItem, boolValue: isExecuting)
 		mPropertyTable.set(name: CNOperation.isFinishedItem,  boolValue: isFinished)
 		mPropertyTable.set(name: CNOperation.isCanceledItem,  boolValue: isCancelled)
+	}
 
-		/* Add listener function to update property */
-		self.addIsExecutingListener(listnerFunction: {
+	private func updateOperation() {
+		operation.addIsExecutingListener(listnerFunction: {
 			(_ anyval: Any?) -> Void in
 			if let num = anyval as? NSNumber {
 				self.mPropertyTable.set(name: CNOperation.isExecutingItem, boolValue: num.boolValue)
@@ -87,7 +105,7 @@ import Foundation
 				CNLog(type: .Error, message: "Not number", file: #file, line: #line, function: #function)
 			}
 		})
-		self.addIsFinishedListener(listnerFunction: {
+		operation.addIsFinishedListener(listnerFunction: {
 			(_ anyval: Any?) -> Void in
 			if let num = anyval as? NSNumber {
 				self.mPropertyTable.set(name: CNOperation.isFinishedItem, boolValue: num.boolValue)
@@ -95,7 +113,7 @@ import Foundation
 				CNLog(type: .Error, message: "Not number", file: #file, line: #line, function: #function)
 			}
 		})
-		self.addIsCanceledListener(listnerFunction: {
+		operation.addIsCanceledListener(listnerFunction: {
 			(_ anyval: Any?) -> Void in
 			if let num = anyval as? NSNumber {
 				self.mPropertyTable.set(name: CNOperation.isCanceledItem, boolValue: num.boolValue)
@@ -103,12 +121,9 @@ import Foundation
 				CNLog(type: .Error, message: "Not number", file: #file, line: #line, function: #function)
 			}
 		})
-	}
-
-	private func defineMainFunction() {
-		self.mainFunction = {
+		operation.mainFunction = {
 			() -> Void in
-			if let op = self.mOperation, let execfunc = self.mExecFunction {
+			if let op = self.mOperationObject, let execfunc = self.mExecFunction {
 				let _ = execfunc.call(withArguments: [op])
 			} else {
 				CNLog(type: .Error, message: "No built-in object for exec", file: #file, line: #line, function: #function)
@@ -116,16 +131,20 @@ import Foundation
 		}
 	}
 
+	public var isExecuting: Bool { get { return operation.isExecuting }}
+	public var isFinished:	Bool { get { return operation.isFinished  }}
+	public var isCancelled: Bool { get { return operation.isCancelled }}
+
 	public func compile(_ program: JSValue) -> JSValue {
 		let compiler = KLOperationCompiler(console: mConsole, config: mConfig)
 
 		let result: Bool
 		if compiler.compile(operation: self, program: program) {
 			CNLog(type: .Flow, message: "Success to compile operation", file: #file, line: #line, function: #function)
-			mOperation 	= compiler.operation
-			mSetFunction	= compiler.setFunction
-			mGetFunction	= compiler.getFunction
-			mExecFunction	= compiler.execFunction
+			mOperationObject 	= compiler.operation
+			mSetFunction		= compiler.setFunction
+			mGetFunction		= compiler.getFunction
+			mExecFunction		= compiler.execFunction
 			result = true
 		} else {
 			CNLog(type: .Error, message: "Failed to compile operation", file: #file, line: #line, function: #function)
@@ -137,7 +156,7 @@ import Foundation
 	public func set(_ cmdval: JSValue, _ paramval: JSValue) {
 		let cmddup   = cmdval.duplicate(context: mSelfContext)
 		let paramdup = paramval.duplicate(context: mSelfContext)
-		if let op = mOperation, let setfunc = mSetFunction {
+		if let op = mOperationObject, let setfunc = mSetFunction {
 			CNLog(type: .Flow, message: "operation.set", file: #file, line: #line, function: #function)
 			let _ = setfunc.call(withArguments: [op, cmddup, paramdup])
 		} else {
@@ -147,7 +166,7 @@ import Foundation
 
 	public func get(_ cmdval: JSValue) -> JSValue {
 		let cmddup   = cmdval.duplicate(context: mSelfContext)
-		if let op = mOperation, let getfunc = mGetFunction {
+		if let op = mOperationObject, let getfunc = mGetFunction {
 			CNLog(type: .Flow, message: "operation.get", file: #file, line: #line, function: #function)
 			if let retval = getfunc.call(withArguments: [op, cmddup]) {
 				return retval.duplicate(context: mOwnerContext)
@@ -158,6 +177,10 @@ import Foundation
 			CNLog(type: .Error, message: "No built-in object for get", file: #file, line: #line, function: #function)
 			return JSValue(undefinedIn: mOwnerContext)
 		}
+	}
+
+	public func cancel() {
+		operation.cancel()
 	}
 }
 
@@ -188,7 +211,7 @@ private class KLOperationCompiler: KLCompiler
 		let _ = compile(context: context, instance: "_operation_core", object: op.propertyTable)
 
 		/* Define listner for cancel operation */
-		let procstmt = "_operation_core.addListener(\"\(KLOperation.isCanceledItem)\", function(newval){ if(newval){ _cancel() ; }}) ;\n"
+		let procstmt = "_operation_core.addListener(\"\(CNOperation.isCanceledItem)\", function(newval){ if(newval){ _cancel() ; }}) ;\n"
 		let _ = compile(context: context, statement: procstmt)
 	}
 

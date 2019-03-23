@@ -30,7 +30,7 @@ import Foundation
 		let result: Bool
 		if let op = valueToOperation(operation: operation) {
 			let limit  = valueToInterval(time: timelimit)
-			result = mQueue.execute(operations: [op], timeLimit: limit)
+			result = mQueue.execute(operations: [op.shiftOutOperation()], timeLimit: limit)
 		} else {
 			mConsole.error(string: "Unexcected object (Operation object is required)\n")
 			result = false
