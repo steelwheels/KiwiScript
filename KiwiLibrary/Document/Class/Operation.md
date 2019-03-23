@@ -5,41 +5,47 @@ The `Operation` object is used to execute JavaScript code on the
 [operation queue](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/OperationQueue.md) as the thread.
 The code which is entered into the queue is executed as a thread.
 
+Each instances of `Operation` has user defined script to execute the target operation. It must be implemented as a class which inherit the `Operation` built-in JavaScript class.
+
 There are following steps to execute operation:
 
 1. Allocate operation object by `Operation` function
-2. Compile the source code by `compile` method of operation instance.
-3. Execute the operation by the operation queue. About operation queue, see [OperationQueue class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/OperationQueue.md).
-4. Get result value from `result` property. The value is valid after execution.
+2. Compile the user defined script by `compile` method of operation instance.
+3. Use `set` method to set input values.
+4. Execute the operation by the operation queue. About operation queue, see [OperationQueue class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/OperationQueue.md).
+5. You can check the state of the operation by `isExecuting`, `isFinished` and `isCancelled` methods.
+6. Use `get` method to get execution results.
 
 ## Class method
 ### `Operation`
 Allocate new `Operation` instance. The instance must be *compiled* before entering into the queue.
 ````
-let operation = Operation(param) ;
+let operation = Operation() ;
 ````
-#### Parameter
-A single object to pass to the thread. You can get this value by referring `parameter` property.
-
-## Properties
-### `input`
-Set input parameter for the operation.
-
-### `output`
-The output parameter. This value is set by the `main_function` passed by the `compile` method.
 
 ## Methods
+### `set`
+Set value to operation context.
+````
+set(command: Int, value: Object) -> Void
+````
+
+### `get`
+Get value from operation context.
+````
+get(command: Int) -> Object
+````
+
 ### `compile`
 Compile the source code and generate result into the context.
 ````
-let result = operation.compile(program, main_function) ;
+let result = operation.compile(program) ;
 ````
 
 #### Parameters
 |Parameter  |Type     |Description          |
 |:---       |:---     |:---                 |
 |program    |String   |The entire program to execute on the queue. |
-|main       |String   |The main function. The execution of the program is started by this function call.|
 
 #### Return value
 Boolean type value.

@@ -23,6 +23,8 @@
 		0547EBCC217E41980078FB32 /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0547EBCB217E41980078FB32 /* CoconutData.framework */; };
 		0547EBCD217E41B20078FB32 /* CoconutData.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0547EBCB217E41980078FB32 /* CoconutData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		055EA18D218D89FD00EE019D /* KMProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055EA18C218D89FD00EE019D /* KMProgram.swift */; };
+		05E303612246064500DB1236 /* KiwiLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0531C7A3218B4E0200E084C6 /* KiwiLibrary.framework */; };
+		05E30362224606AB00DB1236 /* KiwiLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0531C7A3218B4E0200E084C6 /* KiwiLibrary.framework */; };
 		05E9124B217E1CD300FA24EC /* KiwiObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E91249217E1CD300FA24EC /* KiwiObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -99,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05E30362224606AB00DB1236 /* KiwiLibrary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,6 +120,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0547EBCC217E41980078FB32 /* CoconutData.framework in Frameworks */,
+				05E303612246064500DB1236 /* KiwiLibrary.framework in Frameworks */,
 				0547EBCA217E41720078FB32 /* KiwiEngine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,6 +418,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = ../UnitTest/UnitTestBundle/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UnitTestBundle;
@@ -430,6 +438,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = ../UnitTest/UnitTestBundle/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UnitTestBundle;

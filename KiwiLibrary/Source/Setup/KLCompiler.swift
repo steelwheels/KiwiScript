@@ -281,14 +281,11 @@ open class KLCompiler: KECompiler
 		ctxt.set(name: "URL", function: urlFunc)
 
 		/* Operaion */
-		let opfunc: @convention(block) (_ param: JSValue) -> JSValue = {
-			(_ param: JSValue) -> JSValue in
+		let opfunc: @convention(block) () -> JSValue = {
+			() -> JSValue in
 			let console = self.currentConsole(context: ctxt)
 			let config  = KEConfig(kind: .Terminal, doStrict: self.config.doStrict, doVerbose: self.config.doVerbose)
 			let op      = KLOperation(ownerContext: ctxt, console: console, config: config)
-			if !param.isUndefined {
-				op.parameter = param
-			}
 			return JSValue(object: op, in: ctxt)
 		}
 		ctxt.set(name: "Operation", function: opfunc)

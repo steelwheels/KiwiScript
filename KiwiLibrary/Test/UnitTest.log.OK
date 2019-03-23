@@ -141,6 +141,15 @@ Math.randomInt = function(min, max) {
   const rval  = Math.floor(Math.random() * range) ;
   return rval + min ;
 }
+_operation_core.__defineGetter__("isExecuting", function(   ){ return this.get("isExecuting"     ); }) ;
+_operation_core.__defineSetter__("isExecuting", function(val){ return this.set("isExecuting", val); }) ;
+_operation_core.__defineGetter__("isFinished", function(   ){ return this.get("isFinished"     ); }) ;
+_operation_core.__defineSetter__("isFinished", function(val){ return this.set("isFinished", val); }) ;
+_operation_core.__defineGetter__("isCanceled", function(   ){ return this.get("isCanceled"     ); }) ;
+_operation_core.__defineSetter__("isCanceled", function(val){ return this.set("isCanceled", val); }) ;
+_operation_core.__defineGetter__("addListener", function(   ){ return this.get("addListener"     ); }) ;
+_operation_core.__defineSetter__("addListener", function(val){ return this.set("addListener", val); }) ;
+_operation_core.addListener("isCanceled", function(newval){ if(newval){ _cancel() ; }}) ;
 /*
  * Operation.js : Define Operation class
  */
@@ -153,50 +162,80 @@ Math.randomInt = function(min, max) {
  	}
  }
 
- function _cancel()
- {
- 	throw new CancelException(ExitCode.exception) ;
- }
+function _cancel() {
+	throw new CancelException(ExitCode.exception) ;
+}
 
- function _exec_cancelable(fn, ...args)
- {
- 	try {
- 		return fn(...args) ;
- 	} catch(err) {
- 		return err.code ;
- 	}
- }
- 
-Operation.__defineGetter__("output", function(   ){ return this.get("output"     ); }) ;
-Operation.__defineSetter__("output", function(val){ return this.set("output", val); }) ;
-Operation.__defineGetter__("input", function(   ){ return this.get("input"     ); }) ;
-Operation.__defineSetter__("input", function(val){ return this.set("input", val); }) ;
-Operation.__defineGetter__("parameter", function(   ){ return this.get("parameter"     ); }) ;
-Operation.__defineSetter__("parameter", function(val){ return this.set("parameter", val); }) ;
-Operation.__defineGetter__("isExecuting", function(   ){ return this.get("isExecuting"     ); }) ;
-Operation.__defineSetter__("isExecuting", function(val){ return this.set("isExecuting", val); }) ;
-Operation.__defineGetter__("isFinished", function(   ){ return this.get("isFinished"     ); }) ;
-Operation.__defineSetter__("isFinished", function(val){ return this.set("isFinished", val); }) ;
-Operation.__defineGetter__("isCanceled", function(   ){ return this.get("isCanceled"     ); }) ;
-Operation.__defineSetter__("isCanceled", function(val){ return this.set("isCanceled", val); }) ;
-Operation.__defineGetter__("addListener", function(   ){ return this.get("addListener"     ); }) ;
-Operation.__defineSetter__("addListener", function(val){ return this.set("addListener", val); }) ;
-Operation.addListener("isCanceled", function(newval){ if(newval){ _cancel() ; }}) ;
-[Flow   ] Operaion: Compile library scripts at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/222/compileSource(operation:program:mainFunction:)
-[Flow   ] Operaion: Compile program at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/228/compileSource(operation:program:mainFunction:)
-console.log("***** Program *****\n");
-***** Program *****
-[Flow   ] Operaion: Compile main function at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/234/compileSource(operation:program:mainFunction:)
-_main = function(){
-  Operation.output = 5678 ; 
-  console.log("[MainFunc] " + Operation.input + ", " + Operation.output + "\n") ;
-} ;
-[Flow   ] Success to compile operation at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/164/compile
+/* This class must be inherited */
+class Operation
+{
+	constructor(){
+	}
+
+	get(command){
+		console.log("Operation.get(" + command + ");\n") ;
+		return null ;
+	}
+
+	set(command, value){
+		console.log("Operation.set(" + command + ", " + value + ");\n") ;
+	}
+
+	execute(){
+		try {
+			this.main() ;
+		} catch(err){
+			return err.code
+		}
+	}
+
+	main(){
+		console.log("Operation.main()\n") ;
+		return 0 ;
+	}
+
+	cancel(){
+		_cancel() ;
+	}
+
+	get core() {
+		return _operation_core ;
+	}
+}
+
+/* Called by KLOperation class */
+function _operation_set(operation, command, value)
+{
+	operation.set(command, value) ;
+}
+
+/* Called by KLOperation class */
+function _operation_get(operation, command)
+{
+	return operation.get(command) ;
+}
+
+/* Called by KLOperation class */
+function _operation_exec()
+{
+	operation.execute() ;
+}
+[Flow   ] Operaion: Compile library scripts at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/209/compileUserScripts(operation:program:)
+[Flow   ] Operaion: Compile program at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/230/compileUserScripts(operation:program:)
+class Task extends Operation
+{
+  main(){ console.log("Hello, World !!\n") ;}
+}
+operation = new Task() ;
+[Flow   ] Operaion: Get operation at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/236/compileUserScripts(operation:program:)
+[Flow   ] Operaion: "operation" variable is found at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/238/compileUserScripts(operation:program:)
+[Flow   ] Success to compile operation at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/124/compile
+// Set input
+[Flow   ] operation.set at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/141/set
+Operation.set(0, 1.23);
 // Execute the operation
 // Wait operations are finished
-[MainFunc] 1234, 5678
-// Check output parameter
-Result = 5678
+Hello, World !!
 Summary: OK
 [UnitTest]
 
