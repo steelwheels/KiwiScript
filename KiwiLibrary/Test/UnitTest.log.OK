@@ -220,18 +220,18 @@ function _operation_exec()
 {
 	operation.execute() ;
 }
-[Flow   ] Operaion: Compile library scripts at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/209/compileUserScripts(operation:program:)
-[Flow   ] Operaion: Compile program at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/230/compileUserScripts(operation:program:)
+[Flow   ] Operaion: Compile library scripts at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/232/compileUserScripts(operation:program:)
+[Flow   ] Operaion: Compile program at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/253/compileUserScripts(operation:program:)
 class Task extends Operation
 {
   main(){ console.log("Hello, World !!\n") ;}
 }
 operation = new Task() ;
-[Flow   ] Operaion: Get operation at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/236/compileUserScripts(operation:program:)
-[Flow   ] Operaion: "operation" variable is found at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/238/compileUserScripts(operation:program:)
-[Flow   ] Success to compile operation at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/124/compile
+[Flow   ] Operaion: Get operation at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/259/compileUserScripts(operation:program:)
+[Flow   ] Operaion: "operation" variable is found at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/261/compileUserScripts(operation:program:)
+[Flow   ] Success to compile operation at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/143/compile
 // Set input
-[Flow   ] operation.set at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/141/set
+[Flow   ] operation.set at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/160/set
 Operation.set(0, 1.23);
 // Execute the operation
 // Wait operations are finished
