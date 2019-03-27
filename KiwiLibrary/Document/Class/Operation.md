@@ -1,11 +1,11 @@
 # Operation Class
 
 ## Introduction
-The `Operation` object is used to execute JavaScript code on the
-[operation queue](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/OperationQueue.md) as the thread.
-The code which is entered into the queue is executed as a thread.
+The `Operation object` is used to execute JavaScript code on the
+[operation queue](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/OperationQueue.md).
+The task on the queue is executed as a thread.
 
-Each instances of `Operation` has user defined script to execute the target operation. It must be implemented as a class which inherit the `Operation` built-in JavaScript class.
+The `Operation object` has user defined script to execute. The operation is implemented as the sub class of the `Operation class`
 
 There are following steps to execute operation:
 
@@ -30,16 +30,27 @@ Set value to operation context.
 set(command: Int, value: Object) -> Void
 ````
 
+#### Parameters
+|Parameter  |Type     |Description          |
+|:---       |:---     |:---                 |
+|command    |Int      |Command to select object |
+|value      |Object   |The `value` _must be_ the data structure which can be presented by the JSON.|
+
 ### `get`
 Get value from operation context.
 ````
 get(command: Int) -> Object
 ````
 
+#### Parameters
+|Parameter  |Type     |Description          |
+|:---       |:---     |:---                 |
+|command    |Int      |Command to select object |
+
 ### `compile`
 Compile the source code and generate result into the context.
 ````
-let result = operation.compile(program) ;
+operation.compile(program: String) -> Bool
 ````
 
 #### Parameters
@@ -71,6 +82,8 @@ This method returns true when the execution of the operation is cancelled. The r
 ````
 process.isFinished
 ````
+
+## User script
 
 ## References
 * [OperationQueue Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/OperationQueue.md)

@@ -30,6 +30,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		05779C4A224BBA9200C0DD4F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 054536B71B78021500FE978C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 054536BF1B78021500FE978C;
+			remoteInfo = KiwiEngine;
+		};
 		058735CB20C29B9200797EFD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 054536B71B78021500FE978C /* Project object */;
@@ -50,13 +57,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 058B53221BA41A6C009522DF;
 			remoteInfo = UnitTestExec;
-		};
-		05DCE61B1B78430D005E9D53 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 054536B71B78021500FE978C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 054536BF1B78021500FE978C;
-			remoteInfo = KiwiEngine;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -279,7 +279,7 @@
 			buildToolPath = /usr/bin/make;
 			buildWorkingDirectory = "";
 			dependencies = (
-				05DCE61C1B78430D005E9D53 /* PBXTargetDependency */,
+				05779C4B224BBA9200C0DD4F /* PBXTargetDependency */,
 			);
 			name = Install;
 			passBuildSettingsInEnvironment = 1;
@@ -354,16 +354,20 @@
 				TargetAttributes = {
 					0507B17D1BA41D850048D325 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = TR2DNF3P93;
+						ProvisioningStyle = Automatic;
 					};
 					054536BF1B78021500FE978C = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = TR2DNF3P93;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					058B53221BA41A6C009522DF = {
 						CreatedOnToolsVersion = 7.0;
-						LastSwiftMigration = 0900;
+						DevelopmentTeam = TR2DNF3P93;
+						LastSwiftMigration = 1020;
+						ProvisioningStyle = Automatic;
 					};
 					05B40EE71BE5A40800AA8525 = {
 						CreatedOnToolsVersion = 7.1;
@@ -375,7 +379,7 @@
 			};
 			buildConfigurationList = 054536BA1B78021500FE978C /* Build configuration list for PBXProject "KiwiEngine" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -434,6 +438,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		05779C4B224BBA9200C0DD4F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 054536BF1B78021500FE978C /* KiwiEngine */;
+			targetProxy = 05779C4A224BBA9200C0DD4F /* PBXContainerItemProxy */;
+		};
 		058735CC20C29B9200797EFD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 05DCE6171B784305005E9D53 /* Install */;
@@ -449,11 +458,6 @@
 			target = 058B53221BA41A6C009522DF /* UnitTestExec */;
 			targetProxy = 058735CF20C29BA400797EFD /* PBXContainerItemProxy */;
 		};
-		05DCE61C1B78430D005E9D53 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 054536BF1B78021500FE978C /* KiwiEngine */;
-			targetProxy = 05DCE61B1B78430D005E9D53 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -461,7 +465,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Frameworks",
@@ -471,6 +478,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UnitTest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "^O";
 				WRAPPER_EXTENSION = bundle;
@@ -481,7 +489,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Frameworks",
@@ -490,6 +501,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UnitTest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "^O";
 				WRAPPER_EXTENSION = bundle;
@@ -632,9 +644,8 @@
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -667,15 +678,17 @@
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
 		058B53281BA41A6C009522DF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Frameworks",
@@ -685,16 +698,19 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/UnitTest.bundle/Contents/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		058B53291BA41A6C009522DF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Frameworks",
@@ -704,10 +720,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/UnitTest.bundle/Contents/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

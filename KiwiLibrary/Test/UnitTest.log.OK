@@ -229,9 +229,9 @@ class Task extends Operation
 operation = new Task() ;
 [Flow   ] Operaion: Get operation at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/259/compileUserScripts(operation:program:)
 [Flow   ] Operaion: "operation" variable is found at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/261/compileUserScripts(operation:program:)
-[Flow   ] Success to compile operation at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/143/compile
+[Flow   ] Success to compile operation at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/143/compile(_:)
 // Set input
-[Flow   ] operation.set at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/160/set
+[Flow   ] operation.set at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/160/set(_:_:)
 Operation.set(0, 1.23);
 // Execute the operation
 // Wait operations are finished
