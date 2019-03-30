@@ -64,7 +64,7 @@ function _operation_get(operation, command)
 }
 
 /* Called by KLOperation class */
-function _operation_exec()
+function _operation_exec(operation)
 {
 	operation.execute() ;
 }

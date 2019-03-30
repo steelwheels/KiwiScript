@@ -25,6 +25,7 @@ open class KLCompiler: KECompiler
 			return false
 		}
 
+		defineConstants(context: ctxt)
 		defineFunctions(context: ctxt)
 		definePrimitiveObjects(context: ctxt)
 		defineClassObjects(context: ctxt)
@@ -33,6 +34,13 @@ open class KLCompiler: KECompiler
 		importBuiltinLibrary(context: ctxt)
 
 		return true
+	}
+
+	private func defineConstants(context ctxt: KEContext) {
+		/* PI */
+		if let pival = JSValue(double: Double.pi, in: ctxt){
+			ctxt.set(name: "PI", value: pival)
+		}
 	}
 
 	private func defineFunctions(context ctxt: KEContext) {

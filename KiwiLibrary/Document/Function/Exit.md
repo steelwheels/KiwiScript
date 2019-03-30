@@ -9,4 +9,4 @@ exit(code: Int32) -> Void
 |code |Int32  |Exit code                        |
 
 ## References
-* [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library
+* [Kiwi Standard Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library
