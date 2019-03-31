@@ -310,12 +310,20 @@ open class KLCompiler: KECompiler
 
 	private func importBuiltinLibrary(context ctxt: KEContext)
 	{
-		/* Get built-in scripts */
+		/* Get built-in scripts: Math.js */
 		if let scr = readResource(fileName: "Math", fileExtension: "js", forClass: KLCompiler.self) {
 			let _ = compile(context: ctxt, statement: scr)
 		} else {
 			CNLog(type: .Error, message: "Failed to get URL for Math.js", file: #file, line: #line, function: #function)
 			console.error(string: "Failed to find file: Math.js\n")
+		}
+
+		/* Get built-in scripts: Debug.js */
+		if let scr = readResource(fileName: "Debug", fileExtension: "js", forClass: KLCompiler.self) {
+			let _ = compile(context: ctxt, statement: scr)
+		} else {
+			CNLog(type: .Error, message: "Failed to get URL for Debug.js", file: #file, line: #line, function: #function)
+			console.error(string: "Failed to find file: Debug.js\n")
 		}
 	}
 
