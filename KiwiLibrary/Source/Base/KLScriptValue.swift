@@ -78,6 +78,33 @@ extension JSValue
 		return URL(string: "file:/dev/null")!
 	}
 
+	public convenience init(image img: CNImage, in context: KEContext){
+		let imgobj = KLImage(context: context)
+		imgobj.coreImage = img
+		self.init(object: imgobj, in: context)
+	}
+
+	public var isImage: Bool {
+		get {
+			if let imgobj = self.toObject() as? KLImage {
+				if let _ = imgobj.coreImage {
+					return true
+				}
+			}
+			return false
+		}
+	}
+
+	public func toImage() -> CNImage {
+		if let imgobj = self.toObject() as? KLImage {
+			if let img = imgobj.coreImage {
+				return img
+			}
+		}
+		CNLog(type: .Error, message: "Failed to convert to image", file: #file, line: #line, function: #function)
+		return CNImage(data: Data(capacity: 16))!
+	}
+
 	public var type: JSValueType {
 		get {
 			var result: JSValueType
@@ -270,6 +297,11 @@ extension JSValue
 			}
 		}
 		return nil
+	}
+
+	public func toText() -> CNText {
+		let native = self.toNativeValue()
+		return native.toText()
 	}
 }
 

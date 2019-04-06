@@ -83,7 +83,7 @@ function checkVariables(place, ...vars)
   -> Compiler: OK
 /* Unit test for Database */
 read(d0) -> 1234
-write(d2, -5) -> true
+write(d2, -5) -> 1
 read(d2) -> -5
 /* Unit test for Operation */
 // Allocate operation
