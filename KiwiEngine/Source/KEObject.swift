@@ -161,10 +161,6 @@ open class KEObject: NSObject, KEObjectProtocol
 		}
 	}
 
-	public func set(name nm: String, exportedObject object: JSExport){
-		mTable.setValue(object, forKey: nm)
-	}
-
 	public func getBoolean(name nm: String) -> Bool {
 		if let val = getValue(name: nm) {
 			if val.isBoolean {

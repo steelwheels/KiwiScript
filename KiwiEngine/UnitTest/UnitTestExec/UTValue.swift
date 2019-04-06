@@ -82,25 +82,7 @@ private class UTCompiler: KECompiler
 	}
 
 	private func printValue(value val: JSValue?, context ctxt: KEContext){
-		if let v = val {
-			let type = v.type
-			console.print(string: "* JSType = \(type.description)\n")
-
-			/* Convert to native value */
-			console.print(string: "* NativeValue = ")
-			let ntval = v.toNativeValue()
-			let nttxt = ntval.toText()
-			nttxt.print(console: console)
-
-			/* Backto JSValue */
-			console.print(string: "* JSValue = ")
-			let jsval = ntval.toJSValue(context: ctxt)
-			let jstxt = jsval.toText()
-			jstxt.print(console: console)
-
-		} else {
-			console.print(string: "[Error] No value\n")
-		}
+		console.print(string: "\(String(describing: val?.description))")
 	}
 }
 

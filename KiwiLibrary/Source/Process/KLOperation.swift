@@ -18,7 +18,7 @@ import Foundation
 
 	func compile(_ program: JSValue) -> JSValue
 
-	func set(_ cmdid: JSValue, _ param: JSValue)
+	func set(_ cmdid: JSValue, _ param: Any)
 	func get(_ cmdid: JSValue) -> JSValue
 }
 
@@ -153,23 +153,28 @@ import Foundation
 		return JSValue(bool: result, in: mSelfContext)
 	}
 
-	public func set(_ cmdval: JSValue, _ paramval: JSValue) {
-		let cmddup   = cmdval.duplicate(context: mSelfContext)
-		let paramdup = paramval.duplicate(context: mSelfContext)
+	public func set(_ cmdval: JSValue, _ paramref: Any) {
+		let cmddup   = cmdval.copy(context: mSelfContext)
+		let paramdata: Any
+		if let paramval = paramref as? JSValue {
+			paramdata = paramval.copy(context: mSelfContext)
+		} else if let paramval = paramref as? KLEmbeddedObject {
+			paramdata = paramval.copy(context: mSelfContext)
+		} else {
+			paramdata = paramref
+		}
 		if let op = mOperationObject, let setfunc = mSetFunction {
-			CNLog(type: .Flow, message: "operation.set", file: #file, line: #line, function: #function)
-			let _ = setfunc.call(withArguments: [op, cmddup, paramdup])
+			let _ = setfunc.call(withArguments: [op, cmddup, paramdata])
 		} else {
 			CNLog(type: .Error, message: "No built-in object for set", file: #file, line: #line, function: #function)
 		}
 	}
 
 	public func get(_ cmdval: JSValue) -> JSValue {
-		let cmddup   = cmdval.duplicate(context: mSelfContext)
+		let cmddup   = cmdval.copy(context: mSelfContext)
 		if let op = mOperationObject, let getfunc = mGetFunction {
-			CNLog(type: .Flow, message: "operation.get", file: #file, line: #line, function: #function)
 			if let retval = getfunc.call(withArguments: [op, cmddup]) {
-				return retval.duplicate(context: mOwnerContext)
+				return retval.copy(context: mOwnerContext)
 			} else {
 				return JSValue(undefinedIn: mOwnerContext)
 			}

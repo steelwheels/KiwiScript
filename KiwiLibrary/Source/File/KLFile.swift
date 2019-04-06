@@ -109,10 +109,8 @@ import Foundation
 	}
 
 	private func decodePathURL(_ pathval: JSValue) -> URL? {
-		if pathval.isObject {
-			if let urlobj = pathval.toObject() as? KLURL {
-				return urlobj.url
-			}
+		if pathval.isURL {
+			return pathval.toURL()
 		}
 		return nil
 	}

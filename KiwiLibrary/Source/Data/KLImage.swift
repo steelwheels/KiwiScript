@@ -20,12 +20,12 @@ public typealias KLImageCore = NSImage
 public typealias KLImageCore = UIImage
 #endif
 
-@objc public protocol KLImageProtocol
+@objc public protocol KLImageProtocol: JSExport
 {
 	func size() -> JSValue
 }
 
-@objc public class KLImage: NSObject, KLImageProtocol
+@objc public class KLImage: NSObject, KLImageProtocol, KLEmbeddedObject
 {
 	public var  coreImage:	KLImageCore?
 	private var mContext:	KEContext
@@ -33,6 +33,12 @@ public typealias KLImageCore = UIImage
 	public init(context ctxt: KEContext) {
 		coreImage = nil
 		mContext  = ctxt
+	}
+
+	public func copy(context ctxt: KEContext) -> KLEmbeddedObject {
+		let newimg = KLImage(context: ctxt)
+		newimg.coreImage = self.coreImage
+		return newimg
 	}
 
 	public func size() -> JSValue {

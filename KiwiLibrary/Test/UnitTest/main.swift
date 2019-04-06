@@ -41,7 +41,11 @@ public func main()
 	console.print(string: "/* Unit test for Operation */\n")
 	let result1 = UTOperation(context: context, console: console, config: config)
 
-	if result0 && result1 {
+	/* Operation*/
+	console.print(string: "/* Unit test for Operation2 */\n")
+	let result2 = UTOperation2(console: console, config: config)
+
+	if result0 && result1 && result2 {
 		console.print(string: "Summary: OK\n")
 	} else {
 		console.print(string: "Summary: NG\n")

@@ -66,6 +66,20 @@ Math.randomInt = function(min, max) {
   const rval  = Math.floor(Math.random() * range) ;
   return rval + min ;
 }
+/**
+ * Debug.js
+ */
+
+function checkVariables(place, ...vars)
+{
+	vars.forEach(function(value, index){
+	    if(isUndefined(value)){
+		     console.log("check at " + place + ": Undefined at index " + index + "\n") ;
+	    } else if(isNull(value)) {
+		     console.log("check at " + place + ": Null at index " + index + "\n") ;
+	    }
+	}) ;
+}
   -> Compiler: OK
 /* Unit test for Database */
 read(d0) -> 1234
@@ -140,6 +154,20 @@ Math.randomInt = function(min, max) {
   const range = max - min + 1 ;
   const rval  = Math.floor(Math.random() * range) ;
   return rval + min ;
+}
+/**
+ * Debug.js
+ */
+
+function checkVariables(place, ...vars)
+{
+	vars.forEach(function(value, index){
+	    if(isUndefined(value)){
+		     console.log("check at " + place + ": Undefined at index " + index + "\n") ;
+	    } else if(isNull(value)) {
+		     console.log("check at " + place + ": Null at index " + index + "\n") ;
+	    }
+	}) ;
 }
 _operation_core.__defineGetter__("isExecuting", function(   ){ return this.get("isExecuting"     ); }) ;
 _operation_core.__defineSetter__("isExecuting", function(val){ return this.set("isExecuting", val); }) ;
@@ -220,22 +248,316 @@ function _operation_exec(operation)
 {
 	operation.execute() ;
 }
-[Flow   ] Operaion: Compile library scripts at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/232/compileUserScripts(operation:program:)
-[Flow   ] Operaion: Compile program at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/253/compileUserScripts(operation:program:)
+[Flow   ] Operaion: Compile library scripts at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/237/compileUserScripts(operation:program:)
+[Flow   ] Operaion: Compile program at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/258/compileUserScripts(operation:program:)
 class Task extends Operation
 {
   main(){ console.log("Hello, World !!\n") ;}
 }
 operation = new Task() ;
-[Flow   ] Operaion: Get operation at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/259/compileUserScripts(operation:program:)
-[Flow   ] Operaion: "operation" variable is found at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/261/compileUserScripts(operation:program:)
+[Flow   ] Operaion: Get operation at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/264/compileUserScripts(operation:program:)
+[Flow   ] Operaion: "operation" variable is found at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/266/compileUserScripts(operation:program:)
 [Flow   ] Success to compile operation at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/143/compile(_:)
 // Set input
-[Flow   ] operation.set at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/160/set(_:_:)
 Operation.set(0, 1.23);
 // Execute the operation
 // Wait operations are finished
 Hello, World !!
+/* Unit test for Operation2 */
+'use strict' ;
+/* Define Enum: Alignment */
+let Alignment = {
+	leading : 0,
+	trailing : 1,
+	fill : 2,
+	center : 3
+};
+/* Define Enum: ApplicationKind */
+let ApplicationKind = {
+	terminal : 0,
+	window : 1,
+	operation : 2
+};
+/* Define Enum: Authorize */
+let Authorize = {
+	undetermined : 0,
+	denied : 2,
+	authorized : 3
+};
+/* Define Enum: Axis */
+let Axis = {
+	horizontal : 0,
+	vertical : 1
+};
+/* Define Enum: Color */
+let Color = {
+	black : 0,
+	red : 1,
+	green : 2,
+	yellow : 3,
+	blue : 4,
+	magenta : 5,
+	cyan : 6,
+	white : 7,
+	min : 0,
+	max : 7
+};
+/* Define Enum: Distribution */
+let Distribution = {
+	fill : 0,
+	fillEqually : 1,
+	equalSpacing : 2
+};
+/* Define Enum: ExitCode */
+let ExitCode = {
+	noError : 0,
+	internalError : 1,
+	commaneLineError : 2,
+	syntaxError : 3,
+	exception : 4
+};
+/* Define Enum: TextAlign */
+let TextAlign = {
+	left : 0,
+	center : 2,
+	right : 1,
+	justfied : 3,
+	normal : 4
+};
+/* Math.js */
+
+/* randomInt: Get random integer value between min and max */
+Math.randomInt = function(min, max) {
+  const range = max - min + 1 ;
+  const rval  = Math.floor(Math.random() * range) ;
+  return rval + min ;
+}
+/**
+ * Debug.js
+ */
+
+function checkVariables(place, ...vars)
+{
+	vars.forEach(function(value, index){
+	    if(isUndefined(value)){
+		     console.log("check at " + place + ": Undefined at index " + index + "\n") ;
+	    } else if(isNull(value)) {
+		     console.log("check at " + place + ": Null at index " + index + "\n") ;
+	    }
+	}) ;
+}
+MainThread: Compile OK
+'use strict' ;
+/* Define Enum: Alignment */
+let Alignment = {
+	leading : 0,
+	trailing : 1,
+	fill : 2,
+	center : 3
+};
+/* Define Enum: ApplicationKind */
+let ApplicationKind = {
+	terminal : 0,
+	window : 1,
+	operation : 2
+};
+/* Define Enum: Authorize */
+let Authorize = {
+	undetermined : 0,
+	denied : 2,
+	authorized : 3
+};
+/* Define Enum: Axis */
+let Axis = {
+	horizontal : 0,
+	vertical : 1
+};
+/* Define Enum: Color */
+let Color = {
+	black : 0,
+	red : 1,
+	green : 2,
+	yellow : 3,
+	blue : 4,
+	magenta : 5,
+	cyan : 6,
+	white : 7,
+	min : 0,
+	max : 7
+};
+/* Define Enum: Distribution */
+let Distribution = {
+	fill : 0,
+	fillEqually : 1,
+	equalSpacing : 2
+};
+/* Define Enum: ExitCode */
+let ExitCode = {
+	noError : 0,
+	internalError : 1,
+	commaneLineError : 2,
+	syntaxError : 3,
+	exception : 4
+};
+/* Define Enum: TextAlign */
+let TextAlign = {
+	left : 0,
+	center : 2,
+	right : 1,
+	justfied : 3,
+	normal : 4
+};
+/* Math.js */
+
+/* randomInt: Get random integer value between min and max */
+Math.randomInt = function(min, max) {
+  const range = max - min + 1 ;
+  const rval  = Math.floor(Math.random() * range) ;
+  return rval + min ;
+}
+/**
+ * Debug.js
+ */
+
+function checkVariables(place, ...vars)
+{
+	vars.forEach(function(value, index){
+	    if(isUndefined(value)){
+		     console.log("check at " + place + ": Undefined at index " + index + "\n") ;
+	    } else if(isNull(value)) {
+		     console.log("check at " + place + ": Null at index " + index + "\n") ;
+	    }
+	}) ;
+}
+_operation_core.__defineGetter__("isExecuting", function(   ){ return this.get("isExecuting"     ); }) ;
+_operation_core.__defineSetter__("isExecuting", function(val){ return this.set("isExecuting", val); }) ;
+_operation_core.__defineGetter__("isFinished", function(   ){ return this.get("isFinished"     ); }) ;
+_operation_core.__defineSetter__("isFinished", function(val){ return this.set("isFinished", val); }) ;
+_operation_core.__defineGetter__("isCanceled", function(   ){ return this.get("isCanceled"     ); }) ;
+_operation_core.__defineSetter__("isCanceled", function(val){ return this.set("isCanceled", val); }) ;
+_operation_core.__defineGetter__("addListener", function(   ){ return this.get("addListener"     ); }) ;
+_operation_core.__defineSetter__("addListener", function(val){ return this.set("addListener", val); }) ;
+_operation_core.addListener("isCanceled", function(newval){ if(newval){ _cancel() ; }}) ;
+/*
+ * Operation.js : Define Operation class
+ */
+
+ class CancelException extends Error
+ {
+ 	constructor (code){
+ 		super("CancelException") ;
+ 		this.code = code ;
+ 	}
+ }
+
+function _cancel() {
+	throw new CancelException(ExitCode.exception) ;
+}
+
+/* This class must be inherited */
+class Operation
+{
+	constructor(){
+	}
+
+	get(command){
+		console.log("Operation.get(" + command + ");\n") ;
+		return null ;
+	}
+
+	set(command, value){
+		console.log("Operation.set(" + command + ", " + value + ");\n") ;
+	}
+
+	execute(){
+		try {
+			this.main() ;
+		} catch(err){
+			return err.code
+		}
+	}
+
+	main(){
+		console.log("Operation.main()\n") ;
+		return 0 ;
+	}
+
+	cancel(){
+		_cancel() ;
+	}
+
+	get core() {
+		return _operation_core ;
+	}
+}
+
+/* Called by KLOperation class */
+function _operation_set(operation, command, value)
+{
+	operation.set(command, value) ;
+}
+
+/* Called by KLOperation class */
+function _operation_get(operation, command)
+{
+	return operation.get(command) ;
+}
+
+/* Called by KLOperation class */
+function _operation_exec(operation)
+{
+	operation.execute() ;
+}
+[Flow   ] Operaion: Compile library scripts at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/237/compileUserScripts(operation:program:)
+[Flow   ] Operaion: Compile program at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/258/compileUserScripts(operation:program:)
+class Machine extends Operation {
+  constructor(){
+    super();
+    this.kind   = 0 ;
+    this.object = null ;
+  }
+  set(command, value){
+    this.print(command, value) ;
+    this.kind   = command ;
+    this.object = value ;
+  }
+
+  main(){
+    console.log("Operaion: main function\n");
+    this.print(this.kind, this.object) ;
+  }
+
+  print(kind, object){
+    if(kind == 0){
+      console.log("Operation: command = " + kind + ", value = " + object + "\n") ;
+    } else if(kind == 1){
+      console.log("Operation: command = " + kind + ", value = " + object.size().width + "\n") ;
+    } else if(kind == 2){
+      console.log("Operation: command = " + kind + ", value = " + object.url.absoluteString + "\n") ;
+    }
+  }
+} ;
+operation = new Machine(); 
+[Flow   ] Operaion: Get operation at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/264/compileUserScripts(operation:program:)
+[Flow   ] Operaion: "operation" variable is found at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/266/compileUserScripts(operation:program:)
+[Flow   ] Success to compile operation at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/143/compile(_:)
+MainThread: [Compile] OK
+* Test1
+MainThread: Set command: 0
+Operation: command = 0, value = true
+* Test2
+MainThread: Set command: 0
+Operation: command = 0, value = [object Object]
+* Test3
+MainThread: Set command: 1
+Operation: command = 1, value = 0
+* Test4
+MainThread: Set command: 2
+Operation: command = 2, value = http://steelwheels.com
+* Test5
+exec result: OK
+Operaion: main function
+Operation: command = 2, value = http://steelwheels.com
 Summary: OK
 [UnitTest]
 

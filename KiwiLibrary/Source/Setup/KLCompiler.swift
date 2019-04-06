@@ -279,12 +279,12 @@ open class KLCompiler: KECompiler
 		let urlFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in
 			if let str = value.toString() {
-				let urlobj = KLURL(URL: URL(string: str), context: ctxt)
-				return JSValue(object: urlobj, in: ctxt)
-			} else {
-				self.console.error(string: "Invalid parameter for URL constructor\n")
-				return JSValue(undefinedIn: ctxt)
+				if let url = URL(string: str) {
+					return JSValue(URL: url, in: ctxt)
+				}
 			}
+			self.console.error(string: "Invalid parameter for URL()")
+			return JSValue(nullIn: ctxt)
 		}
 		ctxt.set(name: "URL", function: urlFunc)
 

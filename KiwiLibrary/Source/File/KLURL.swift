@@ -16,7 +16,7 @@ import Foundation
 	var path: JSValue { get }
 }
 
-@objc public class KLURL: NSObject, KLURLProtocol
+@objc public class KLURL: NSObject, KLURLProtocol, KLEmbeddedObject
 {
 	private var mURL:	URL?
 	private var mContext:	KEContext
@@ -24,6 +24,10 @@ import Foundation
 	public init(URL u: URL?, context ctxt: KEContext){
 		mURL	 	= u
 		mContext 	= ctxt
+	}
+
+	public func copy(context ctxt: KEContext) -> KLEmbeddedObject {
+		return KLURL(URL: self.mURL, context: ctxt)
 	}
 
 	public var url: URL? { get { return mURL }}
