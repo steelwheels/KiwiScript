@@ -49,8 +49,6 @@ extension CNNativeValue {
 			result = JSValue(URL: val, in: ctxt)
 		case .imageValue(let val):
 			result = JSValue(image: val, in: ctxt)
-		case .objectValue(let val):
-			result = JSValue(object: val, in: ctxt)
 		}
 		return result
 	}

@@ -18,6 +18,7 @@ public enum JSValueType {
 	case StringType
 	case DateType
 	case URLType
+	case ImageType
 	case ArrayType
 	case DictionaryType
 	case RangeType
@@ -37,6 +38,7 @@ public enum JSValueType {
 			case .StringType:	result = "string"
 			case .DateType:		result = "date"
 			case .URLType:		result = "URL"
+			case .ImageType:	result = "image"
 			case .ArrayType:	result = "array"
 			case .DictionaryType:	result = "dictionary"
 			case .RangeType:	result = "range"
@@ -124,6 +126,8 @@ extension JSValue
 				result = .DateType
 			} else if self.isURL {
 				result = .URLType
+			} else if self.isImage {
+				result = .ImageType
 			} else if self.isObject {
 				if let dict = self.toObject() as? Dictionary<String, AnyObject> {
 					if isPointObject(object: dict) {
@@ -195,6 +199,8 @@ extension JSValue
 			result = .dateValue(self.toDate())
 		case .URLType:
 			result = .URLValue(self.toURL())
+		case .ImageType:
+			result = .imageValue(self.toImage())
 		case .RangeType:
 			result = .rangeValue(self.toRange())
 		case .PointType:
@@ -222,7 +228,7 @@ extension JSValue
 			let srcarr = self.toArray()!
 			var dstarr: Array<CNNativeValue> = []
 			for elm in srcarr {
-				if let object = CNNativeValue.anyToValue(object: elm) {
+				if let object = elementToValue(any: elm) {
 					dstarr.append(object)
 				} else {
 					CNLog(type: .Error, message: "Failed to convert: array", file: #file, line: #line, function: #function)
@@ -233,7 +239,7 @@ extension JSValue
 			var dstdict: Dictionary<String, CNNativeValue> = [:]
 			if let srcdict = self.toDictionary() as? Dictionary<String, Any> {
 				for (key, value) in srcdict {
-					if let obj = CNNativeValue.anyToValue(object: value) {
+					if let obj = elementToValue(any: value) {
 						dstdict[key] = obj
 					} else {
 						CNLog(type: .Error, message: "Failed to convert: dictionary", file: #file, line: #line, function: #function)
@@ -244,12 +250,8 @@ extension JSValue
 			}
 			result = CNNativeValue.dictionaryToValue(dictionary: dstdict)
 		case .ObjectType:
-			if let obj = self.toObject() as? NSObject {
-				result = .objectValue(obj)
-			} else {
-				CNLog(type: .Error, message: "Failed to convert: unknown", file: #file, line: #line, function: #function)
-				result = .nullValue
-			}
+			CNLog(type: .Error, message: "Failed to convert: unknown", file: #file, line: #line, function: #function)
+			result = .nullValue
 		}
 		return result
 	}
@@ -275,6 +277,28 @@ extension JSValue
 			return valueToSize(dictionary: dict)
 		}
 		return nil
+	}
+
+	private func elementToValue(any value: Any) -> CNNativeValue? {
+		if let val = value as? JSValue {
+			return val.toNativeValue()
+		} else if let val = value as? KLURL {
+			if let url = val.url {
+				return CNNativeValue.anyToValue(object: url)
+			} else {
+				CNLog(type: .Error, message: "Null URL", file: #file, line: #line, function: #function)
+				return .nullValue
+			}
+		} else if let val = value as? KLImage {
+			if let image = val.coreImage {
+				return CNNativeValue.anyToValue(object: image)
+			} else {
+				CNLog(type: .Error, message: "Null image", file: #file, line: #line, function: #function)
+				return .nullValue
+			}
+		} else {
+			return CNNativeValue.anyToValue(object: value)
+		}
 	}
 
 	private func valueToSize(dictionary dict: Dictionary<String, AnyObject>) -> CGSize? {

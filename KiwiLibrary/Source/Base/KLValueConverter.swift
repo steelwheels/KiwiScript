@@ -36,6 +36,7 @@ private class KLValueDuplicator
 		case .StringType:	dupval = JSValue(object: src.toString(), in: mTargetContext)
 		case .DateType:		dupval = JSValue(object: src.toDate(), in: mTargetContext)
 		case .URLType:		dupval = JSValue(URL: src.toURL(), in: mTargetContext)
+		case .ImageType:	dupval = JSValue(image: src.toImage(), in: mTargetContext)
 		case .ArrayType:	dupval = duplicateArray(array: src.toArray())
 		case .DictionaryType:	dupval = duplicateDictionary(dictionary: src.toDictionary())
 		case .RangeType:	dupval = JSValue(range: src.toRange(), in: mTargetContext)
