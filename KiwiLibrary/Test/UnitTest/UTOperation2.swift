@@ -87,7 +87,7 @@ public func UTOperation2(console cons: CNConsole, config conf: KEConfig) -> Bool
 	}
 
 	cons.print(string: "* Test5\n")
-	let queue   = KLOperationQueue(console: cons)
+	let queue   = KLOperationQueue(context: ctxt, console: cons)
 	let opval   = JSValue(object: op, in: ctxt)
 	let limval  = JSValue(nullIn: ctxt)
 	let retval2  = queue.execute(opval!, limval!)

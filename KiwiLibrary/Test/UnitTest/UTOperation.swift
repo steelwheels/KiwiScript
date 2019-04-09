@@ -37,7 +37,7 @@ public func UTOperation(context ctxt: KEContext, console cons: CNConsole, config
 	}
 
 	cons.print(string: "// Execute the operation\n")
-	let queue   = KLOperationQueue(console: cons)
+	let queue   = KLOperationQueue(context: ctxt, console: cons)
 	let opval   = JSValue(object: op, in: ctxt)
 	let limval  = JSValue(nullIn: ctxt)
 	let retval  = queue.execute(opval!, limval!)

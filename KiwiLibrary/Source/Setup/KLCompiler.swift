@@ -302,7 +302,7 @@ open class KLCompiler: KECompiler
 		let queuefunc: @convention(block) () -> JSValue = {
 			() -> JSValue in
 			let console = self.currentConsole(context: ctxt)
-			let queue   = KLOperationQueue(console: console)
+			let queue   = KLOperationQueue(context: ctxt, console: console)
 			return JSValue(object: queue, in: ctxt)
 		}
 		ctxt.set(name: "OperationQueue", function: queuefunc)

@@ -14,14 +14,17 @@ import Foundation
 {
 	func execute(_ operation: JSValue, _ timelimit: JSValue) -> JSValue
 	func waitOperations()
+	var operationCount: JSValue { get }
 }
 
 @objc public class KLOperationQueue: NSObject, KLOperationQueueProtocol
 {
+	private var mContext:	KEContext
 	private var mQueue: 	CNOperationQueue
 	private var mConsole:	CNConsole
 
-	public init(console cons: CNConsole) {
+	public init(context ctxt: KEContext, console cons: CNConsole) {
+		mContext = ctxt
 		mQueue   = CNOperationQueue()
 		mConsole = cons
 	}
@@ -35,11 +38,18 @@ import Foundation
 			mConsole.error(string: "Unexcected object (Operation object is required)\n")
 			result = false
 		}
-		return JSValue(bool: result, in: operation.context)
+		return JSValue(bool: result, in: mContext)
 	}
 
 	public func waitOperations() {
 		mQueue.waitOperations()
+	}
+
+	public var operationCount: JSValue {
+		get {
+			let count = mQueue.operationCount
+			return JSValue(int32: Int32(count), in: mContext)
+		}
 	}
 
 	private func valueToOperation(operation opval: JSValue) -> KLOperation? {
