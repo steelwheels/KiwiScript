@@ -11,36 +11,29 @@ import Foundation
 
 open class KECompiler
 {
-	private var mConsole:		CNConsole
-	private var mConfig:		KEConfig
+	public init(){
 
-	public init(console cons: CNConsole, config conf: KEConfig){
-		mConsole	= cons
-		mConfig		= conf
 	}
-
-	public var console: CNConsole { get { return mConsole }}
-	public var config:   KEConfig { get { return mConfig }}
-
-	open func compile(context ctxt: KEContext) -> Bool {
+	
+	open func compile(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) -> Bool {
 		/* Set strict */
-		setStrictMode(context: ctxt)
+		setStrictMode(context: ctxt, console: cons, config: conf)
 		/* Define Enum Types */
-		defineEnumTypes(context: ctxt)
+		defineEnumTypes(context: ctxt, console: cons, config: conf)
 		return true
 	}
 
-	private func setStrictMode(context ctxt: KEContext){
-		if mConfig.doStrict {
-			let _ = compile(context: ctxt, statement: "'use strict' ;\n")
+	private func setStrictMode(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig){
+		if conf.doStrict {
+			let _ = compile(context: ctxt, statement: "'use strict' ;\n", console: cons, config: conf)
 		}
 	}
 
-	private func defineEnumTypes(context ctxt: KEContext){
+	private func defineEnumTypes(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig){
 		let table = KEEnumTable.shared
 		for typename in table.typeNames.sorted() {
 			if let etype = table.search(by: typename) {
-				compile(context: ctxt, enumType: etype)
+				compile(context: ctxt, enumType: etype, console: cons, config: conf)
 			}
 		}
 	}
@@ -66,64 +59,60 @@ open class KECompiler
 		}
 	}
 
-	public func readFromURL(URL url: URL) -> String? {
+	public func readFromURL(URL url: URL, console cons: CNConsole) -> String? {
 		let (scriptp, errorp) = url.loadContents()
 		if let script = scriptp {
 			return script as String
 		} else if let error = errorp {
-			log(string: "[Error] " + error.description)
+			cons.error(string: "[Error] " + error.description)
 		} else {
-			log(string: "[Error] Unknown")
+			cons.error(string: "[Error] Unknown")
 		}
 		return nil
 	}
 
-	public func log(string str: String) {
-		if mConfig.doVerbose {
-			mConsole.print(string: str)
-		}
-	}
-
-	public func error(string str: String) {
-		mConsole.print(string: str)
-	}
-
-	public func defineSetter(context ctxt: KEContext, instance inst:String, accessType access: CNAccessType, propertyName name:String){
+	public func defineSetter(context ctxt: KEContext, instance inst:String, accessType access: CNAccessType, propertyName name:String, console cons: CNConsole, config conf: KEConfig){
 		if access.isReadable {
 			let stmt = "\(inst).__defineGetter__(\"\(name)\", function(   ){ return this.get(\"\(name)\"     ); }) ;\n"
-			let _ = compile(context: ctxt, statement: stmt)
+			let _ = compile(context: ctxt, statement: stmt, console: cons, config: conf)
 		}
 		if access.isWritable {
 			let stmt = "\(inst).__defineSetter__(\"\(name)\", function(val){ return this.set(\"\(name)\", val); }) ;\n"
-			let _ = compile(context: ctxt, statement: stmt)
+			let _ = compile(context: ctxt, statement: stmt, console: cons, config: conf)
 		}
 	}
 
-	public func compile(context ctxt: KEContext, instance inst: String, object obj: KEObject) {
+	public func compile(context ctxt: KEContext, instance inst: String, object obj: KEObject, console cons: CNConsole, config conf: KEConfig) {
 		/* Define setter and getter */
 		for pname in obj.propertyNames {
-			defineSetter(context: ctxt, instance: inst, accessType: .ReadWriteAccess, propertyName: pname)
+			defineSetter(context: ctxt, instance: inst, accessType: .ReadWriteAccess, propertyName: pname, console: cons, config: conf)
 		}
 	}
 
-	public func compile(context ctxt: KEContext, statement stmt: String) -> JSValue? {
-		log(string: stmt)
+	public func compile(context ctxt: KEContext, statement stmt: String, console cons: CNConsole, config conf: KEConfig) -> JSValue? {
+		if conf.doVerbose {
+			cons.print(string: stmt)
+		}
 		return ctxt.evaluateScript(stmt)
 	}
 
-	public func compile(context ctxt: KEContext, statements stmts: Array<String>) -> JSValue? {
+	public func compile(context ctxt: KEContext, statements stmts: Array<String>, console cons: CNConsole, config conf: KEConfig) -> JSValue? {
 		var addedstmt: String = ""
 		for stmt in stmts {
-			log(string: stmt)
+			if conf.doVerbose {
+				cons.print(string: stmt)
+			}
 			addedstmt = addedstmt + stmt + "\n"
 		}
 		return ctxt.evaluateScript(addedstmt)
 	}
 
-	public func compile(context ctxt: KEContext, enumType etype: KEEnumType){
+	public func compile(context ctxt: KEContext, enumType etype: KEEnumType, console cons: CNConsole, config conf: KEConfig){
 		/* Compile */
 		let typename = etype.typeName
-		log(string: "/* Define Enum: \(typename) */\n")
+		if conf.doVerbose {
+			cons.print(string: "/* Define Enum: \(typename) */\n")
+		}
 
 		var enumstmt = "let \(typename) = {\n"
 		var is1st = true
@@ -136,10 +125,10 @@ open class KECompiler
 		}
 		enumstmt += "\n};\n"
 
-		let _ = compile(context: ctxt, statement: enumstmt)
+		let _ = compile(context: ctxt, statement: enumstmt, console: cons, config: conf)
 	}
 
-	public func compile(context ctxt: KEContext, destination dst: String, dictionary dict: Dictionary<String, String>){
+	public func compile(context ctxt: KEContext, destination dst: String, dictionary dict: Dictionary<String, String>, console cons: CNConsole, config conf: KEConfig){
 		var stmt  = "\(dst) = {\n"
 		var is1st = true
 		for (key, value) in dict {
@@ -151,18 +140,18 @@ open class KECompiler
 			stmt += "\t\(key): \(value)"
 		}
 		stmt += "\n};\n"
-		let _ = compile(context: ctxt, statement: stmt)
+		let _ = compile(context: ctxt, statement: stmt, console: cons, config: conf)
 	}
 
-	public func compile(context ctxt: KEContext, sourceFiles srcfiles: Array<URL>) -> Bool {
+	public func compile(context ctxt: KEContext, sourceFiles srcfiles: Array<URL>, console cons: CNConsole, config conf: KEConfig) -> Bool {
 		var result = true
 		for srcfile in srcfiles {
 			let (script, error) = srcfile.loadContents()
 			if let scr = script {
-				let _ = compile(context: ctxt, statement: scr as String)
+				let _ = compile(context: ctxt, statement: scr as String, console: cons, config: conf)
 			} else {
 				let desc = message(fromError: error)
-				mConsole.error(string: "[Error] \(desc)\n")
+				cons.error(string: "[Error] \(desc)\n")
 				result = false
 			}
 		}

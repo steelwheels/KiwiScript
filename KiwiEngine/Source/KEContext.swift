@@ -24,10 +24,10 @@ public class KEContext : JSContext
 
 		/* Set handler */
 		self.exceptionHandler = {
-			(context, exception) in
-			if let ctxt = context as? KEContext {
+			[weak self] (context, exception) in
+			if let myself = self, let ctxt = context as? KEContext {
 				let except = KEException(context: ctxt, value: exception)
-				self.exceptionCallback(except)
+				myself.exceptionCallback(except)
 			} else {
 				CNLog(type: .Error, message: "Internal error", file: #file, line: #line, function: #function)
 			}

@@ -21,11 +21,11 @@ public func testCompiler(console cons: CNConsole) -> Bool
 	}
 
 	console.print(string: "* Setup compiler\n")
-	let compiler = KECompiler(console: cons, config: config)
+	let compiler = KECompiler()
 
 	let result: Bool
 	console.print(string: "* compile\n")
-	if compiler.compile(context: context) {
+	if compiler.compile(context: context, console: cons, config: config) {
 		console.print(string: "Compile ... OK\n")
 		result = true
 	} else {

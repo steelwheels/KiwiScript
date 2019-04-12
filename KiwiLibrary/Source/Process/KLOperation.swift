@@ -136,10 +136,10 @@ import Foundation
 	public var isCancelled: Bool { get { return operation.isCancelled }}
 
 	public func compile(_ program: JSValue) -> JSValue {
-		let compiler = KLOperationCompiler(console: mConsole, config: mConfig)
+		let compiler = KLOperationCompiler()
 
 		let result: Bool
-		if compiler.compile(operation: self, program: program) {
+		if compiler.compile(operation: self, program: program, console: mConsole, config: mConfig) {
 			CNLog(type: .Flow, message: "Success to compile operation", file: #file, line: #line, function: #function)
 			mOperationObject 	= compiler.operation
 			mSetFunction		= compiler.setFunction
@@ -196,11 +196,11 @@ private class KLOperationCompiler: KLCompiler
 	public var	getFunction:	JSValue?
 	public var	execFunction:	JSValue?
 
-	public func compile(operation op: KLOperation, program progval: JSValue) -> Bool {
-		if super.compile(context: op.mSelfContext) {
-			defineCoreObject(operation: op)
-			compileOperationClass(operation: op)
-			let res0 = compileUserScripts(operation: op, program: progval)
+	public func compile(operation op: KLOperation, program progval: JSValue, console cons: CNConsole, config conf: KEConfig) -> Bool {
+		if super.compile(context: op.mSelfContext, console: cons, config: conf) {
+			defineCoreObject(operation: op, console: cons, config: conf)
+			compileOperationClass(operation: op, console: cons, config: conf)
+			let res0 = compileUserScripts(operation: op, program: progval, console: cons, config: conf)
 			defineBuiltinFunction(operation: op)
 			return res0
 		} else {
@@ -208,47 +208,47 @@ private class KLOperationCompiler: KLCompiler
 		}
 	}
 
-	private func defineCoreObject(operation op: KLOperation) {
+	private func defineCoreObject(operation op: KLOperation, console cons: CNConsole, config conf: KEConfig) {
 		let context = op.mSelfContext
 
 		/* Define Operation */
 		context.set(name: "_operation_core", object: op.propertyTable)
-		let _ = compile(context: context, instance: "_operation_core", object: op.propertyTable)
+		let _ = compile(context: context, instance: "_operation_core", object: op.propertyTable, console: cons, config: conf)
 
 		/* Define listner for cancel operation */
 		let procstmt = "_operation_core.addListener(\"\(CNOperation.isCanceledItem)\", function(newval){ if(newval){ _cancel() ; }}) ;\n"
-		let _ = compile(context: context, statement: procstmt)
+		let _ = compile(context: context, statement: procstmt, console: cons, config: conf)
 	}
 
-	private func compileOperationClass(operation op: KLOperation) {
+	private func compileOperationClass(operation op: KLOperation, console cons: CNConsole, config conf: KEConfig) {
 		/* Compile "Operation.js" */
 		if let script = readResource(fileName: "Operation", fileExtension: "js", forClass: KLOperationCompiler.self) {
-			let _ = compile(context: op.mSelfContext, statement: script)
+			let _ = compile(context: op.mSelfContext, statement: script, console: cons, config: conf)
 		} else {
 			CNLog(type: .Error, message: "Failed to read Operation.js", file: #file, line: #line, function: #function)
 		}
 	}
 
-	private func compileUserScripts(operation op: KLOperation, program progval: JSValue) -> Bool {
+	private func compileUserScripts(operation op: KLOperation, program progval: JSValue, console cons: CNConsole, config conf: KEConfig) -> Bool {
 		var result  = true
 		let context = op.mSelfContext
 
 		/* Compile user defined library */
 		CNLog(type: .Flow, message: "Operaion: Compile library scripts", file: #file, line: #line, function: #function)
 		for script in KLOperation.libraryScripts {
-			let _ = super.compile(context: context, statement: script)
+			let _ = super.compile(context: context, statement: script, console: cons, config: conf)
 		}
-		if let sym = getSymbol(symbol: "_operation_set", in: context) {
+		if let sym = getSymbol(symbol: "_operation_set", in: context, console: cons) {
 			setFunction = sym
 		} else {
 			result = false
 		}
-		if let sym = getSymbol(symbol: "_operation_get", in: context) {
+		if let sym = getSymbol(symbol: "_operation_get", in: context, console: cons) {
 			getFunction = sym
 		} else {
 			result = false
 		}
-		if let sym = getSymbol(symbol: "_operation_exec", in: context) {
+		if let sym = getSymbol(symbol: "_operation_exec", in: context, console: cons) {
 			execFunction = sym
 		} else {
 			result = false
@@ -256,8 +256,13 @@ private class KLOperationCompiler: KLCompiler
 
 		/* Compile program */
 		CNLog(type: .Flow, message: "Operaion: Compile program", file: #file, line: #line, function: #function)
-		if let program = valueToString(value: progval) {
-			let _ = super.compile(context: context, statement: program)
+		let scripts = valueToScripts(value: progval, console: cons)
+		if scripts.count > 0 {
+			for script in scripts {
+				let _ = super.compile(context: context, statement: script, console: cons, config: conf)
+			}
+		} else {
+			CNLog(type: .Error, message: "No user script", file: #file, line: #line, function: #function)
 		}
 
 		/* Get "operation" object */
@@ -267,12 +272,12 @@ private class KLOperationCompiler: KLCompiler
 			operation = opval
 		} else {
 			CNLog(type: .Flow, message: "Operaion: No \"operation\" variable, define it", file: #file, line: #line, function: #function)
-			let _ = super.compile(context: context, statement: "operation = new Operation(); \n")
+			let _ = super.compile(context: context, statement: "operation = new Operation(); \n", console: cons, config: conf)
 			operation = getOperationSymbol(context: context)
 		}
 
 		if !checkValue(value: operation) {
-			console.error(string: "No operation object\n")
+			cons.error(string: "No operation object\n")
 			result = false
 		}
 
@@ -300,22 +305,33 @@ private class KLOperationCompiler: KLCompiler
 		return nil
 	}
 
-	private func getSymbol(symbol sym: String, in context: KEContext) -> JSValue? {
+	private func getSymbol(symbol sym: String, in context: KEContext, console cons: CNConsole) -> JSValue? {
 		if let val = context.objectForKeyedSubscript(sym) {
 			return val
 		} else {
-			console.error(string: "Can not get variable: \"\(sym)\"\n")
+			cons.error(string: "Can not get variable: \"\(sym)\"\n")
 			return nil
 		}
 	}
 
-	private func valueToString(value val: JSValue) -> String? {
-		if val.isString {
+	private func valueToScripts(value val: JSValue, console cons: CNConsole) -> Array<String> {
+		var scripts: Array<String> = []
+		if val.isArray {
+			if let arrval = val.toArray() {
+				for elmval in arrval {
+					if let elmstr = elmval as? String {
+						scripts.append(elmstr)
+					} else {
+						cons.error(string: "Invalid data for script: \"\(elmval)\"")
+					}
+				}
+			}
+		} else if val.isString {
 			if let str = val.toString() {
-				return str
+				scripts.append(str)
 			}
 		}
-		return nil
+		return scripts
 	}
 
 	private func checkValue(value val: JSValue?) -> Bool {

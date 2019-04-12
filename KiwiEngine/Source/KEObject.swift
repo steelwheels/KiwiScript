@@ -82,9 +82,9 @@ open class KEObject: NSObject, KEObjectProtocol
 
 	private func setup(context ctxt: KEContext) {
 		let listnerfunc: @convention(block) (_ property: JSValue, _ listenerfunc: JSValue) -> Void = {
-			(_ property: JSValue, _ listenerfunc: JSValue) -> Void in
-			if let propname = property.toString()  {
-				self.addListener(property: propname, reference: Function.value(listenerfunc))
+			[weak self] (_ property: JSValue, _ listenerfunc: JSValue) -> Void in
+			if let myself = self, let propname = property.toString()  {
+				myself.addListener(property: propname, reference: Function.value(listenerfunc))
 			} else {
 				CNLog(type: .Error, message: "Invalid parameters", file: #file, line: #line, function: #function)
 			}

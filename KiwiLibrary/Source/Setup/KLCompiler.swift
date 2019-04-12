@@ -12,26 +12,19 @@ import Foundation
 
 open class KLCompiler: KECompiler
 {
-	public var	libConfig: KEConfig
-
-	public override init(console cons: CNConsole, config conf: KEConfig) {
-		libConfig = conf
-		super.init(console: cons, config: conf)
-	}
-
-	open override func compile(context ctxt: KEContext) -> Bool {
-		guard super.compile(context: ctxt) else {
+	open override func compile(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) -> Bool {
+		guard super.compile(context: ctxt, console: cons, config: conf) else {
 			CNLog(type: .Error, message: "Failed to compile", file: #file, line: #line, function: #function)
 			return false
 		}
 
 		defineConstants(context: ctxt)
-		defineFunctions(context: ctxt)
-		definePrimitiveObjects(context: ctxt)
-		defineClassObjects(context: ctxt)
-		defineGlobalObjects(context: ctxt)
-		defineConstructors(context: ctxt)
-		importBuiltinLibrary(context: ctxt)
+		defineFunctions(context: ctxt, console: cons, config: conf)
+		definePrimitiveObjects(context: ctxt, console: cons, config: conf)
+		defineClassObjects(context: ctxt, console: cons, config: conf)
+		defineGlobalObjects(context: ctxt, console: cons, config: conf)
+		defineConstructors(context: ctxt, console: cons, config: conf)
+		importBuiltinLibrary(context: ctxt, console: cons, config: conf)
 
 		return true
 	}
@@ -43,7 +36,7 @@ open class KLCompiler: KECompiler
 		}
 	}
 
-	private func defineFunctions(context ctxt: KEContext) {
+	private func defineFunctions(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
 		/* isUndefined */
 		let isUndefinedFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in
@@ -115,7 +108,7 @@ open class KLCompiler: KECompiler
 				let result = sin(value.toDouble())
 				return JSValue(double: result, in: ctxt)
 			}
-			self.console.error(string: "Invalid parameter for sin function\n")
+			cons.error(string: "Invalid parameter for sin function\n")
 			return JSValue(undefinedIn: ctxt)
 		}
 		ctxt.set(name: "sin", function: sinFunc)
@@ -127,7 +120,7 @@ open class KLCompiler: KECompiler
 				let result = cos(value.toDouble())
 				return JSValue(double: result, in: ctxt)
 			}
-			self.console.error(string: "Invalid parameter for cos function\n")
+			cons.error(string: "Invalid parameter for cos function\n")
 			return JSValue(undefinedIn: ctxt)
 		}
 		ctxt.set(name: "cos", function: cosFunc)
@@ -139,7 +132,7 @@ open class KLCompiler: KECompiler
 				let result = tan(value.toDouble())
 				return JSValue(double: result, in: ctxt)
 			}
-			self.console.error(string: "Invalid parameter for tan function\n")
+			cons.error(string: "Invalid parameter for tan function\n")
 			return JSValue(undefinedIn: ctxt)
 		}
 		ctxt.set(name: "tan", function: tanFunc)
@@ -151,14 +144,14 @@ open class KLCompiler: KECompiler
 				let result = atan2(yval.toDouble(), xval.toDouble())
 				return JSValue(double: result, in: ctxt)
 			}
-			self.console.error(string: "Invalid parameter for atan2 function\n")
+			cons.error(string: "Invalid parameter for atan2 function\n")
 			return JSValue(undefinedIn: ctxt)
 		}
 		ctxt.set(name: "atan2", function: atan2Func)
 
 		/* exit */
 		let exitFunc: @convention(block) (_ value: JSValue) -> JSValue
-		switch config.kind {
+		switch conf.kind {
 		case .Terminal:
 			exitFunc = {
 				(_ value: JSValue) -> JSValue in
@@ -175,8 +168,10 @@ open class KLCompiler: KECompiler
 		case .Window:
 			#if os(OSX)
 				exitFunc = {
-					(_ value: JSValue) -> JSValue in
-					NSApplication.shared.terminate(self)
+					[weak self] (_ value: JSValue) -> JSValue in
+					if let myself = self {
+						NSApplication.shared.terminate(myself)
+					}
 					return JSValue(undefinedIn: ctxt)
 				}
 			#else
@@ -192,7 +187,7 @@ open class KLCompiler: KECompiler
 		}
 	}
 
-	private func definePrimitiveObjects(context ctxt: KEContext) {
+	private func definePrimitiveObjects(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
 		/* Point */
 		let pointFunc: @convention(block) (_ xval: JSValue, _ yval: JSValue) -> JSValue = {
 			(_ xval: JSValue, _ yval: JSValue) -> JSValue in
@@ -201,7 +196,7 @@ open class KLCompiler: KECompiler
 				let y = yval.toDouble()
 				return JSValue(point: CGPoint(x: x, y: y), in: ctxt)
 			}
-			self.console.error(string: "Invalid parameter for Point constructor\n")
+			cons.error(string: "Invalid parameter for Point constructor\n")
 			return JSValue(undefinedIn: ctxt)
 		}
 		ctxt.set(name: "Point", function: pointFunc)
@@ -214,14 +209,14 @@ open class KLCompiler: KECompiler
 				let height = hval.toDouble()
 				return JSValue(size: CGSize(width: width, height: height), in: ctxt)
 			}
-			self.console.error(string: "Invalid parameter for Size constructor\n")
+			cons.error(string: "Invalid parameter for Size constructor\n")
 			return JSValue(undefinedIn: ctxt)
 		}
 		ctxt.set(name: "Size", function: sizeFunc)
 	}
 
-	private func defineClassObjects(context ctxt: KEContext) {
-		switch config.kind {
+	private func defineClassObjects(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
+		switch conf.kind {
 		case .Terminal:
 			#if os(OSX)
 				/* Pipe */
@@ -262,19 +257,19 @@ open class KLCompiler: KECompiler
 		#endif
 	}
 
-	private func defineGlobalObjects(context ctxt: KEContext) {
+	private func defineGlobalObjects(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
 		/* console */
-		switch config.kind {
+		switch conf.kind {
 		case .Terminal, .Operation:
 			/* Define console */
-			let newcons = KLConsole(context: ctxt, console: console)
+			let newcons = KLConsole(context: ctxt, console: cons)
 			ctxt.set(name: "console", object: newcons)
 		case .Window:
 			break
 		}
 	}
 
-	private func defineConstructors(context ctxt: KEContext) {
+	private func defineConstructors(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
 		/* URL */
 		let urlFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in
@@ -283,7 +278,7 @@ open class KLCompiler: KECompiler
 					return JSValue(URL: url, in: ctxt)
 				}
 			}
-			self.console.error(string: "Invalid parameter for URL()")
+			cons.error(string: "Invalid parameter for URL()")
 			return JSValue(nullIn: ctxt)
 		}
 		ctxt.set(name: "URL", function: urlFunc)
@@ -291,9 +286,9 @@ open class KLCompiler: KECompiler
 		/* Operaion */
 		let opfunc: @convention(block) () -> JSValue = {
 			() -> JSValue in
-			let console = self.currentConsole(context: ctxt)
-			let config  = KEConfig(kind: .Terminal, doStrict: self.config.doStrict, doVerbose: self.config.doVerbose)
-			let op      = KLOperation(ownerContext: ctxt, console: console, config: config)
+			let opconsole = KLCompiler.currentConsole(context: ctxt)
+			let opconfig  = KEConfig(kind: .Terminal, doStrict: conf.doStrict, doVerbose: conf.doVerbose)
+			let op        = KLOperation(ownerContext: ctxt, console: opconsole, config: opconfig)
 			return JSValue(object: op, in: ctxt)
 		}
 		ctxt.set(name: "Operation", function: opfunc)
@@ -301,33 +296,33 @@ open class KLCompiler: KECompiler
 		/* OperaionQueue */
 		let queuefunc: @convention(block) () -> JSValue = {
 			() -> JSValue in
-			let console = self.currentConsole(context: ctxt)
+			let console = KLCompiler.currentConsole(context: ctxt)
 			let queue   = KLOperationQueue(context: ctxt, console: console)
 			return JSValue(object: queue, in: ctxt)
 		}
 		ctxt.set(name: "OperationQueue", function: queuefunc)
 	}
 
-	private func importBuiltinLibrary(context ctxt: KEContext)
+	private func importBuiltinLibrary(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig)
 	{
 		/* Get built-in scripts: Math.js */
 		if let scr = readResource(fileName: "Math", fileExtension: "js", forClass: KLCompiler.self) {
-			let _ = compile(context: ctxt, statement: scr)
+			let _ = compile(context: ctxt, statement: scr, console: cons, config: conf)
 		} else {
 			CNLog(type: .Error, message: "Failed to get URL for Math.js", file: #file, line: #line, function: #function)
-			console.error(string: "Failed to find file: Math.js\n")
+			cons.error(string: "Failed to find file: Math.js\n")
 		}
 
 		/* Get built-in scripts: Debug.js */
 		if let scr = readResource(fileName: "Debug", fileExtension: "js", forClass: KLCompiler.self) {
-			let _ = compile(context: ctxt, statement: scr)
+			let _ = compile(context: ctxt, statement: scr, console: cons, config: conf)
 		} else {
 			CNLog(type: .Error, message: "Failed to get URL for Debug.js", file: #file, line: #line, function: #function)
-			console.error(string: "Failed to find file: Debug.js\n")
+			cons.error(string: "Failed to find file: Debug.js\n")
 		}
 	}
 
-	private func currentConsole(context ctxt: KEContext) -> CNConsole {
+	private class func currentConsole(context ctxt: KEContext) -> CNConsole {
 		if let consval = ctxt.getValue(name: "console") {
 			if consval.isObject {
 				if let consobj = consval.toObject() as? KLConsole {
@@ -337,7 +332,7 @@ open class KLCompiler: KECompiler
 			}
 		}
 		CNLog(type: .Flow, message: "Use default console", file: #file, line: #line, function: #function)
-		return self.console
+		return CNConsole()
 	}
 }
 

@@ -70,73 +70,27 @@ testCompiler : OK
 testExec : OK
 /* Bool: true */
 b0 = true ;
-* JSType = bool
-* NativeValue = 1
-* JSValue = 1
+Optional("true")
 /* Number: 123 */
 i0 = 123 ;
-* JSType = number
-* NativeValue = 123
-* JSValue = 123
+Optional("123")
 /* Number: 123.4 */
 f0 = 123.4 ;
-* JSType = number
-* NativeValue = 123.4
-* JSValue = 123.4
+Optional("123.4")
 /* String: "hello" */
 s0 = "hello" ;
-* JSType = string
-* NativeValue = "hello"
-* JSValue = hello
+Optional("hello")
 p0 = {x:10.0, y:11.1} ;
-* JSType = point
-* NativeValue = {x:10.0, y:11.1}
-* JSValue = {
-  x: 10
-  y: 11.1
-}
+Optional("[object Object]")
 /* Array: [0, 1, 2, 3, 3.1] */
 a0 = [0, 1, 2, 3, 3.1] ;
-* JSType = array
-* NativeValue = [
-  0
-  1
-  2
-  3
-  3.1
-]
-* JSValue = [
-  0
-  1
-  2
-  3
-  3.1
-]
+Optional("0,1,2,3,3.1")
 /* Dictionary: {a:0, b:1, c:2, d:3, e:3.1} */
 d0 = {a:0, b:1, c:2, d:3, e:3.1} ;
-* JSType = dictionary
-* NativeValue = {
-  a: 0
-  b: 1
-  c: 2
-  d: 3
-  e: 3.1
-}
-* JSValue = {
-  a: 0
-  b: 1
-  c: 2
-  d: 3
-  e: 3.1
-}
+Optional("[object Object]")
 /* Dictionary: {origin: {x:10.0, y:11.0}, size: {width:20.0, height: 21.0}} */
 d1 = {origin: {x:10.0, y:11.0}, size: {width:20.0, height: 21.0}};
-* JSType = rect
-* NativeValue = {origin:{x:10.0, y:11.0}, size:{width:20.0, height:21.0}}
-* JSValue = {
-  origin: {x:10.0, y:11.0}
-  size: {width:20.0, height:21.0}
-}
+Optional("[object Object]")
 /* Dictionary: d2 = {
   imageFile:      "Images/blue-symbol.png",
   scale:          0.5,
@@ -152,23 +106,7 @@ d2 = {
   position:       {x:10.0, y:10.0},
   rotation:       0.5,
   duration:       1.0
-}* JSType = dictionary
-* NativeValue = {
-  alpha: 1
-  duration: 1
-  imageFile: "Images/blue-symbol.png"
-  position: {x:10.0, y:10.0}
-  rotation: 0.5
-  scale: 0.5
-}
-* JSValue = {
-  alpha: 1
-  duration: 1
-  imageFile: "Images/blue-symbol.png"
-  position: {x:10.0, y:10.0}
-  rotation: 0.5
-  scale: 0.5
-}
+}Optional("[object Object]")
 /* class A { 
  constructor(){ this.x = 10 ; }
  funcA(){ return 1 ; }
@@ -179,12 +117,6 @@ class A {
  funcA(){ return 1 ; }
 } ; 
 aobject = new A() ;
-* JSType = dictionary
-* NativeValue = {
-  x: 10
-}
-* JSValue = {
-  x: 10
-}
+Optional("[object Object]")
 testValue : OK
 SUMMARY: OK
