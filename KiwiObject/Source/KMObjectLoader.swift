@@ -20,14 +20,14 @@ public class KMObjectLoader: KMDefaultObject
 		mAllocatorTable[name] = alloc
 	}
 
-	public func require(modelName name: String, in owner: AnyClass) -> JSValue? {
+	public func require(modelName name: String, in owner: AnyClass, console cons: CNConsole) -> JSValue? {
 		if let val = propertyTable.check(name) {
 			return val
 		} else {
 			if let val = allocate(modelName: name) {
 				self.set(name: name, value: val)
 				return val
-			} else if let val = load(scriptFileName: name, in: owner) {
+			} else if let val = load(scriptFileName: name, in: owner, console: cons) {
 				self.set(name: name, value: val)
 				return val
 			}
@@ -43,16 +43,16 @@ public class KMObjectLoader: KMDefaultObject
 		return nil
 	}
 
-	private func load(scriptFileName name: String, in owner: AnyClass) -> JSValue? {
+	private func load(scriptFileName name: String, in owner: AnyClass, console cons: CNConsole) -> JSValue? {
 		if let url = CNFilePath.URLForResourceFile(fileName: name, fileExtension: "js", subdirectory: "Library", forClass: owner) {
 			do {
 				let script = try String(contentsOf: url)
 				return context.evaluateScript(script)
 			} catch _ {
-				CNLog(type: .Error, message: "Can not compile for class \"\(name)\"", file: #file, line: #line, function: #function)
+				cons.error(string: "Could not compile for class \"\(name)\"")
 			}
 		} else {
-			CNLog(type: .Error, message: "Can not find library] \(name)", file: #file, line: #line, function: #function)
+			cons.error(string: "Can not load Library.js")
 		}
 		return nil
 	}

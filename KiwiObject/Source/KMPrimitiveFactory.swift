@@ -18,7 +18,7 @@ public class KMPrimitiveFactory: KMDefaultObject
 	private var mParameterTypeTable:	Dictionary<String, CNValueType> 	= [:]
 	private var mAllocatorTable:		Dictionary<String, AllocatorMethod>	= [:]
 
-	public override init(instanceName iname: String, context ctxt: KEContext) {
+	public init(instanceName iname: String, context ctxt: KEContext, console cons: CNConsole) {
 		super.init(instanceName: iname, context: ctxt)
 
 		/* Add default factory */
@@ -66,7 +66,7 @@ public class KMPrimitiveFactory: KMDefaultObject
 					return JSValue(URL: url, in: context)
 				}
 			} else {
-				CNLog(type: .Error, message: "Not URL value: \(value.type.description) \"\(value.description)\"", file: #file, line: #line, function: #function)
+				cons.error(string: "Not URL value: \(value.type.description) \"\(value.description)\"")
 			}
 			return nil
 		})

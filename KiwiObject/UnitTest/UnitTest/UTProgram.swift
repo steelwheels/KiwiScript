@@ -13,7 +13,7 @@ import Foundation
 
 public func testProgram(context ctxt: KEContext, console cons: CNConsole) -> Bool
 {
-	let _ = KMProgram(instanceName: "program", context: ctxt)
+	let _ = KMProgram(instanceName: "program", context: ctxt, console: cons)
 	cons.print(string: "program is allocated\n")
 	return true
 }

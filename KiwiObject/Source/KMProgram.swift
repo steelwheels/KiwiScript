@@ -18,10 +18,10 @@ public class KMProgram: KMDefaultObject
 	private var mPrimitiveFactory:	KMPrimitiveFactory
 	private var mEnumTable:		KMEnumTable
 
-	public override init(instanceName iname: String, context ctxt: KEContext) {
+	public init(instanceName iname: String, context ctxt: KEContext, console cons: CNConsole) {
 		mObjectFactory    = KMObjectFactory(instanceName: "objectFactory", context: ctxt)
 		mObjectLoader     = KMObjectLoader(instanceName: "objectLoader", context: ctxt)
-		mPrimitiveFactory = KMPrimitiveFactory(instanceName: "primitiveFactory", context: ctxt)
+		mPrimitiveFactory = KMPrimitiveFactory(instanceName: "primitiveFactory", context: ctxt, console: cons)
 		mEnumTable	  = KMEnumTable(instanceName: "enumTable", context: ctxt)
 		super.init(instanceName: iname, context: ctxt)
 

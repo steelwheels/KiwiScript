@@ -19,8 +19,8 @@ public func main()
 	let console = CNFileConsole()
 	let context = KEContext(virtualMachine: JSVirtualMachine())
 
-	let compiler = KLCompiler(console: console, config: config)
-	if compiler.compile(context: context) {
+	let compiler = KLCompiler()
+	if compiler.compile(context: context, console: console, config: config) {
 		console.error(string: "Compile: OK\n")
 	} else {
 		console.error(string: "Compile: NG\n")
