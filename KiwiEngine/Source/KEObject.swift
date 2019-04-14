@@ -61,7 +61,7 @@ open class KEObject: NSObject, KEObjectProtocol
 	private var mTable:		NSMutableDictionary // Key:String, value:JSValue
 	private var mListeners:		Dictionary<String, KEListener>
 
-	public weak var owner:		AnyObject? = nil
+	public weak var owner:		AnyObject?    = nil
 
 	public init(context ctxt: KEContext){
 		mContext   	= ctxt
@@ -86,7 +86,7 @@ open class KEObject: NSObject, KEObjectProtocol
 			if let myself = self, let propname = property.toString()  {
 				myself.addListener(property: propname, reference: Function.value(listenerfunc))
 			} else {
-				CNLog(type: .Error, message: "Invalid parameters", file: #file, line: #line, function: #function)
+				NSLog("Invalid parameters")
 			}
 		}
 		 set("addListener", JSValue(object: listnerfunc, in: ctxt))
