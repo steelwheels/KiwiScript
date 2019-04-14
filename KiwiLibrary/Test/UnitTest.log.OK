@@ -248,16 +248,11 @@ function _operation_exec(operation)
 {
 	operation.execute() ;
 }
-[Flow   ] Operaion: Compile library scripts at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/237/compileUserScripts(operation:program:)
-[Flow   ] Operaion: Compile program at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/258/compileUserScripts(operation:program:)
 class Task extends Operation
 {
   main(){ console.log("Hello, World !!\n") ;}
 }
 operation = new Task() ;
-[Flow   ] Operaion: Get operation at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/264/compileUserScripts(operation:program:)
-[Flow   ] Operaion: "operation" variable is found at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/266/compileUserScripts(operation:program:)
-[Flow   ] Success to compile operation at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/143/compile(_:)
 // Set input
 Operation.set(0, 1.23);
 // Execute the operation
@@ -508,8 +503,6 @@ function _operation_exec(operation)
 {
 	operation.execute() ;
 }
-[Flow   ] Operaion: Compile library scripts at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/237/compileUserScripts(operation:program:)
-[Flow   ] Operaion: Compile program at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/258/compileUserScripts(operation:program:)
 class Machine extends Operation {
   constructor(){
     super();
@@ -538,9 +531,6 @@ class Machine extends Operation {
   }
 } ;
 operation = new Machine(); 
-[Flow   ] Operaion: Get operation at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/264/compileUserScripts(operation:program:)
-[Flow   ] Operaion: "operation" variable is found at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/266/compileUserScripts(operation:program:)
-[Flow   ] Success to compile operation at /Users/tomoo/Project/KiwiScript/KiwiLibrary/Source/Process/KLOperation.swift/143/compile(_:)
 MainThread: [Compile] OK
 * Test1
 MainThread: Set command: 0

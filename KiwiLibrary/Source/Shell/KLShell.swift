@@ -23,15 +23,18 @@ import Foundation
 @objc public class KLShell: NSObject, KLShellProtocol
 {
 	private var mContext:	KEContext
+	private var mConsole:	CNConsole
 
-	public init(context ctxt: KEContext){
+
+	public init(context ctxt: KEContext, console cons: CNConsole){
 		mContext = ctxt
+		mConsole = cons
 	}
 
 	public func execute(_ cmd: JSValue, _ input: JSValue, _ output: JSValue, _ error: JSValue) -> JSValue {
-		let inpipe 	= valueToPipe(value: input)
-		let outpipe	= valueToPipe(value: output)
-		let errpipe	= valueToPipe(value: error)
+		let inpipe 	= valueToPipe(value: input,  for: "input")
+		let outpipe	= valueToPipe(value: output, for: "output")
+		let errpipe	= valueToPipe(value: error,  for: "error")
 		if let cmdstr = cmd.toString() {
 			let shell = CNShell.execute(command: cmdstr, input: inpipe, output: outpipe, error: errpipe, terminateHandler: nil)
 			let process = KLProcess(process: shell, context: mContext)
@@ -41,7 +44,7 @@ import Foundation
 		}
 	}
 
-	private func valueToPipe(value val: JSValue) -> Pipe? {
+	private func valueToPipe(value val: JSValue, for target: String) -> Pipe? {
 		if val.isNull {
 			return nil
 		} else if let obj = val.toObject() {
@@ -49,7 +52,7 @@ import Foundation
 				return pipe.pipe.pipe
 			}
 		}
-		CNLog(type: .Error, message: "Invalid object: \(val)", file: #file, line: #line, function: #function)
+		mConsole.error(string: "Invalid connection for \(target) port for Shell execution\n")
 		return nil
 	}
 
@@ -59,7 +62,7 @@ import Foundation
 			let process = KLProcess(process: shell, context: mContext)
 			return JSValue(object: process, in: mContext)
 		} else {
-			CNLog(type: .Error, message: "Invalid object: \(cmd) or \(console)", file: #file, line: #line, function: #function)
+			mConsole.error(string: "Invalid command \(cmd) for shell execution")
 			return JSValue(nullIn: mContext)
 		}
 	}
@@ -70,7 +73,7 @@ import Foundation
 		} else if let cons = val.toObject() as? KLConsole {
 			return cons.console
 		}
-		CNLog(type: .Error, message: "Invalid object: \(val)", file: #file, line: #line, function: #function)
+		mConsole.print(string: "Invalid console object \(val) for console for shell execution")
 		return nil
 	}
 

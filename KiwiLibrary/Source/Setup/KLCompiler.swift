@@ -14,7 +14,7 @@ open class KLCompiler: KECompiler
 {
 	open override func compile(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) -> Bool {
 		guard super.compile(context: ctxt, console: cons, config: conf) else {
-			CNLog(type: .Error, message: "Failed to compile", file: #file, line: #line, function: #function)
+			cons.error(string: "Failed to compile")
 			return false
 		}
 
@@ -159,7 +159,7 @@ open class KLCompiler: KECompiler
 				if value.isNumber {
 					ecode = value.toInt32()
 				} else {
-					CNLog(type: .Error, message: "Invalid parameter for exit() function", file: #file, line: #line, function: #function)
+					cons.error(string: "Invalid parameter for exit() function")
 					ecode = 1
 				}
 				Darwin.exit(ecode)
@@ -236,7 +236,7 @@ open class KLCompiler: KECompiler
 				let stderrobj = file.standardFile(fileType: .error, context: ctxt)
 				ctxt.set(name: "stderr", object: stderrobj)
 
-				let cursesobj = KLCurses(context: ctxt)
+				let cursesobj = KLCurses(context: ctxt, console: cons)
 				ctxt.set(name: "Curses", object: cursesobj)
 			#endif /* if os(OSX) */
 			break
@@ -252,7 +252,7 @@ open class KLCompiler: KECompiler
 
 		/* Shell (OSX) */
 		#if os(OSX)
-			let shellobj = KLShell(context: ctxt)
+			let shellobj = KLShell(context: ctxt, console: cons)
 			ctxt.set(name: "Shell", object: shellobj)
 		#endif
 	}
@@ -286,7 +286,7 @@ open class KLCompiler: KECompiler
 		/* Operaion */
 		let opfunc: @convention(block) () -> JSValue = {
 			() -> JSValue in
-			let opconsole = KLCompiler.currentConsole(context: ctxt)
+			let opconsole = KLCompiler.currentConsole(context: ctxt, console: cons)
 			let opconfig  = KEConfig(kind: .Terminal, doStrict: conf.doStrict, doVerbose: conf.doVerbose)
 			let op        = KLOperation(ownerContext: ctxt, console: opconsole, config: opconfig)
 			return JSValue(object: op, in: ctxt)
@@ -296,8 +296,8 @@ open class KLCompiler: KECompiler
 		/* OperaionQueue */
 		let queuefunc: @convention(block) () -> JSValue = {
 			() -> JSValue in
-			let console = KLCompiler.currentConsole(context: ctxt)
-			let queue   = KLOperationQueue(context: ctxt, console: console)
+			let curcons = KLCompiler.currentConsole(context: ctxt, console: cons)
+			let queue   = KLOperationQueue(context: ctxt, console: curcons)
 			return JSValue(object: queue, in: ctxt)
 		}
 		ctxt.set(name: "OperationQueue", function: queuefunc)
@@ -309,7 +309,6 @@ open class KLCompiler: KECompiler
 		if let scr = readResource(fileName: "Math", fileExtension: "js", forClass: KLCompiler.self) {
 			let _ = compile(context: ctxt, statement: scr, console: cons, config: conf)
 		} else {
-			CNLog(type: .Error, message: "Failed to get URL for Math.js", file: #file, line: #line, function: #function)
 			cons.error(string: "Failed to find file: Math.js\n")
 		}
 
@@ -317,22 +316,20 @@ open class KLCompiler: KECompiler
 		if let scr = readResource(fileName: "Debug", fileExtension: "js", forClass: KLCompiler.self) {
 			let _ = compile(context: ctxt, statement: scr, console: cons, config: conf)
 		} else {
-			CNLog(type: .Error, message: "Failed to get URL for Debug.js", file: #file, line: #line, function: #function)
 			cons.error(string: "Failed to find file: Debug.js\n")
 		}
 	}
 
-	private class func currentConsole(context ctxt: KEContext) -> CNConsole {
+	private class func currentConsole(context ctxt: KEContext, console logcons: CNConsole) -> CNConsole {
 		if let consval = ctxt.getValue(name: "console") {
 			if consval.isObject {
 				if let consobj = consval.toObject() as? KLConsole {
-					CNLog(type: .Flow, message: "Use current console", file: #file, line: #line, function: #function)
 					return consobj.console
 				}
 			}
 		}
-		CNLog(type: .Flow, message: "Use default console", file: #file, line: #line, function: #function)
-		return CNConsole()
+		logcons.error(string: "Failed to find \"console\" object. Use default console\n")
+		return CNDefaultConsole()
 	}
 }
 

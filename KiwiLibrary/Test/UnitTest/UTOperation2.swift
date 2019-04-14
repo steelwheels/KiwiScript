@@ -16,8 +16,8 @@ public func UTOperation2(console cons: CNConsole, config conf: KEConfig) -> Bool
 	var result  = true
 
 	let ctxt     = KEContext(virtualMachine: JSVirtualMachine())
-	let compiler = KLCompiler(console: cons, config: conf)
-	if compiler.compile(context: ctxt) {
+	let compiler = KLCompiler()
+	if compiler.compile(context: ctxt, console: cons, config: conf) {
 		cons.error(string: "MainThread: Compile OK\n")
 	} else {
 		cons.error(string: "MainThread: Compile failed\n")

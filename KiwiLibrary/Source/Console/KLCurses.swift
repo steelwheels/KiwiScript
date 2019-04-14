@@ -39,10 +39,12 @@ import Foundation
 {
 	private var mCurses:	CNCurses
 	private var mContext:	KEContext
+	private var mConsole:	CNConsole
 
-	public init(context ctxt: KEContext){
+	public init(context ctxt: KEContext, console cons: CNConsole){
 		mCurses 	= CNCurses()
 		mContext	= ctxt
+		mConsole	= cons
 	}
 
 	public func mode(_ value: JSValue){
@@ -130,7 +132,7 @@ import Foundation
 				return
 			}
 		}
-		CNLog(type: .Error, message: "Failed to set color: \(fval.description) \(bval.description)", file: #file, line: #line, function: #function)
+		mConsole.error(string: "Failed to set color for curses: \(fval.description) \(bval.description)")
 	}
 
 	public func moveTo(_ x: JSValue, _ y:JSValue) {
@@ -139,7 +141,7 @@ import Foundation
 			let yval = y.toInt32()
 			mCurses.moveTo(x: Int(xval), y: Int(yval))
 		} else {
-			CNLog(type: .Error, message: "Invalid parameters", file: #file, line: #line, function: #function)
+			mConsole.error(string: "Invalid parameters for moveTo function for curses object")
 		}
 	}
 
