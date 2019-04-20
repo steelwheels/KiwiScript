@@ -101,6 +101,10 @@ public class KEEnumTable
 	public func search(by typename: String) -> KEEnumType? {
 		return mEnumTypes[typename]
 	}
+
+	public func add(typeName name: String, enumType etype: KEEnumType) {
+		mEnumTypes[name] = etype
+	}
 }
 
 public class KEEnumType

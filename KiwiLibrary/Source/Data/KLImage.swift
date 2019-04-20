@@ -22,7 +22,7 @@ public typealias KLImageCore = UIImage
 
 @objc public protocol KLImageProtocol: JSExport
 {
-	func size() -> JSValue
+	var size: JSValue { get }
 }
 
 @objc public class KLImage: NSObject, KLImageProtocol, KLEmbeddedObject
@@ -41,8 +41,11 @@ public typealias KLImageCore = UIImage
 		return newimg
 	}
 
-	public func size() -> JSValue {
-		return JSValue(size: imageSize(), in: mContext)
+	public var size: JSValue {
+		get {
+			let height = imageSize().height
+			return JSValue(double: Double(height), in: mContext)
+		}
 	}
 
 	public func imageSize() -> CGSize {

@@ -17,7 +17,20 @@ const flag = isUndefined(value) ;
 |isObject       |Object                     |
 |isArray        |Array                      |
 |isDate         |Date                       |
+|isURL          |URL                        |
+|isImage        |Image                      |
+
+## Type obtaining function
+### `typeID` function
+The `typeID` function returns identifier value for the type of the given value. The identifier is presented as signed integer value.
+````
+typeID(val: AnyValue) -> Int
+````
+#### Parameter
+`AnyValue`: Source parameter to get the type identifier.
+
+#### Return value
+The type id of source value. The list of type ids are defined in [TypeID type](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/TypeID.md). 
 
 ## References
 * [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library
-

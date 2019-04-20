@@ -10,7 +10,7 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-public enum JSValueType {
+public enum JSValueType: Int {
 	case UndefinedType
 	case NullType
 	case BooleanType

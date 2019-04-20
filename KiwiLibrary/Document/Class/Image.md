@@ -4,7 +4,7 @@ The *Image* class has image data such as `jpeg`, `png`.
 ## `size` property
 Get the size of image
 ````
-var size = image.size() ;
+var size = image.size ;
 ````
 The `size` is an object which has `width` and `height` property.
 
