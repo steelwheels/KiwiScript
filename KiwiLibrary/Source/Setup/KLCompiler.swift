@@ -248,6 +248,22 @@ open class KLCompiler: KECompiler
 			return JSValue(undefinedIn: ctxt)
 		}
 		ctxt.set(name: "Size", function: sizeFunc)
+
+		/* Rect */
+		let rectFunc: @convention(block) (_ xval: JSValue, _ yval: JSValue, _ widthval: JSValue, _ heightval: JSValue) -> JSValue = {
+			(_ xval: JSValue, _ yval: JSValue, _ widthval: JSValue, _ heightval: JSValue) -> JSValue in
+			if xval.isNumber && yval.isNumber && widthval.isNumber && heightval.isNumber {
+				let x      = xval.toDouble()
+				let y	   = yval.toDouble()
+				let width  = widthval.toDouble()
+				let height = heightval.toDouble()
+				let rect   = CGRect(x: x, y: y, width: width, height: height)
+				return JSValue(rect: rect, in: ctxt)
+			}
+			cons.error(string: "Invalid parameter for Rect constructor\n")
+			return JSValue(undefinedIn: ctxt)
+		}
+		ctxt.set(name: "Rect", function: rectFunc)
 	}
 
 	private func defineClassObjects(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
