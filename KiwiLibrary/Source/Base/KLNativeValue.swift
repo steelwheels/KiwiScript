@@ -23,7 +23,8 @@ extension CNNativeValue {
 		case .dateValue(let val):
 			result = JSValue(object: val, in: ctxt)
 		case .rangeValue(let val):
-			result = JSValue(object: val, in: ctxt)
+			let range = rangeToObject(range: val)
+			result = JSValue(object: range, in: ctxt)
 		case .pointValue(let val):
 			let dict = pointToObject(point: val)
 			result = JSValue(object: dict, in: ctxt)
@@ -50,6 +51,14 @@ extension CNNativeValue {
 		case .imageValue(let val):
 			result = JSValue(image: val, in: ctxt)
 		}
+		return result
+	}
+
+	private func rangeToObject(range val: NSRange) -> Dictionary<String, Any> {
+		let result: Dictionary<String, Any> = [
+			"location":	NSNumber(value: Int(val.location)),
+			"length":	NSNumber(value: Int(val.length))
+		]
 		return result
 	}
 

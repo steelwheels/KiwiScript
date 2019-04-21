@@ -146,34 +146,33 @@ import Foundation
 			mExecFunction		= compiler.execFunction
 			result = true
 		} else {
-			mConsole.error(string: "Failed to compile operation")
+			mConsole.error(string: "Failed to compile operation\n")
 			result = false
 		}
 		return JSValue(bool: result, in: mSelfContext)
 	}
 
 	public func set(_ cmdval: JSValue, _ paramref: Any) {
-		let cmddup   = cmdval.copy(context: mSelfContext)
-		let paramdata: Any
-		if let paramval = paramref as? JSValue {
-			paramdata = paramval.copy(context: mSelfContext)
-		} else if let paramval = paramref as? KLEmbeddedObject {
-			paramdata = paramval.copy(context: mSelfContext)
-		} else {
-			paramdata = paramref
+		let duplicator = KLValueDuplicator(targetContext: mSelfContext)
+		let dupcmd     = duplicator.duplicate(value: cmdval)
+		guard let dupparam = duplicator.duplicate(any: paramref) as? JSValue else {
+			mConsole.error(string: "Failed to duplicate parameters\n")
+			return
 		}
 		if let op = mOperationObject, let setfunc = mSetFunction {
-			let _ = setfunc.call(withArguments: [op, cmddup, paramdata])
+			let _ = setfunc.call(withArguments: [op, dupcmd, dupparam])
 		} else {
-			mConsole.error(string: "No built-in object for set")
+			mConsole.error(string: "No built-in object for set\n")
 		}
 	}
 
 	public func get(_ cmdval: JSValue) -> JSValue {
-		let cmddup   = cmdval.copy(context: mSelfContext)
+		let duplicator = KLValueDuplicator(targetContext: mSelfContext)
+		let dupcmd     = duplicator.duplicate(value: cmdval)
 		if let op = mOperationObject, let getfunc = mGetFunction {
-			if let retval = getfunc.call(withArguments: [op, cmddup]) {
-				return retval.copy(context: mOwnerContext)
+			if let retval = getfunc.call(withArguments: [op, dupcmd]) {
+				let dupret = duplicator.duplicate(value: retval)
+				return dupret
 			} else {
 				return JSValue(undefinedIn: mOwnerContext)
 			}

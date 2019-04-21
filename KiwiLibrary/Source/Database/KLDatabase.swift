@@ -18,7 +18,7 @@ import Foundation
 	func commit() -> Void
 }
 
-@objc public class KLDatabase: NSObject, KLDatabaseProtocol
+@objc public class KLDatabase: NSObject, KLDatabaseProtocol, KLEmbeddedObject
 {
 	private var mDatabase: CNDatabaseProtocol
 	private var mContext:  KEContext
@@ -26,6 +26,10 @@ import Foundation
 	public init(database db: CNDatabaseProtocol, context ctxt: KEContext) {
 		mDatabase = db
 		mContext  = ctxt
+	}
+
+	public func copy(context ctxt: KEContext) -> KLEmbeddedObject {
+		return KLDatabase(database: mDatabase, context: ctxt)
 	}
 
 	public func read(_ identval: JSValue) -> JSValue {

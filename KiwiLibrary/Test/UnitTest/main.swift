@@ -30,7 +30,11 @@ public func main()
 	} else {
 		filecons.print(string: "  -> Compiler: NG\n")
 	}
-	
+
+	/* Type */
+	filecons.print(string: "/* Unit test for Type operation */\n")
+	let result3 = UTType(context: context, console: filecons)
+
 	/* Database */
 	filecons.print(string: "/* Unit test for Database */\n")
 	let result0 = UTDatabase(context: context, console: filecons)
@@ -43,7 +47,7 @@ public func main()
 	filecons.print(string: "/* Unit test for Operation2 */\n")
 	let result2 = UTOperation2(console: filecons, config: config)
 
-	if result0 && result1 && result2 {
+	if result0 && result1 && result2 && result3 {
 		filecons.print(string: "Summary: OK\n")
 	} else {
 		filecons.print(string: "Summary: NG\n")

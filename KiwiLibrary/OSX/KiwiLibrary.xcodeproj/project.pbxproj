@@ -22,6 +22,7 @@
 		058735D620C2C7F700797EFD /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 058735D520C2C7F700797EFD /* KiwiEngine.framework */; };
 		058735D820C2C82100797EFD /* KiwiEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058735D520C2C7F700797EFD /* KiwiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		058735D920C2C82700797EFD /* KiwiLibrary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B12283203F0734009DDBEF /* KiwiLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05929406226BDA0A00B2B403 /* UTType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05929405226BDA0A00B2B403 /* UTType.swift */; };
 		059E8AFA2234EDEB005EE9B8 /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 058735D520C2C7F700797EFD /* KiwiEngine.framework */; };
 		05A593892245FE0500001E4C /* Operation.js in Resources */ = {isa = PBXBuildFile; fileRef = 0562E07A222C1A0300761F70 /* Operation.js */; };
 		05A5938A2245FE0700001E4C /* Math.js in Resources */ = {isa = PBXBuildFile; fileRef = 052B153F20C382E500BAF41B /* Math.js */; };
@@ -112,6 +113,7 @@
 		0562E07A222C1A0300761F70 /* Operation.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Operation.js; sourceTree = "<group>"; };
 		057F73B7208E3EE700D7CF57 /* KLCurses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLCurses.swift; sourceTree = "<group>"; };
 		058735D520C2C7F700797EFD /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../Library/Frameworks/KiwiEngine.framework; sourceTree = "<group>"; };
+		05929405226BDA0A00B2B403 /* UTType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTType.swift; sourceTree = "<group>"; };
 		05AD1F4722579DC400B36C34 /* KLScriptValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLScriptValue.swift; sourceTree = "<group>"; };
 		05AFD990217F6FCC0015524B /* KLCompiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLCompiler.swift; sourceTree = "<group>"; };
 		05B12283203F0734009DDBEF /* KiwiLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -181,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				05341CC120BDCB73001E2173 /* main.swift */,
+				05929405226BDA0A00B2B403 /* UTType.swift */,
 				0524961A21DEEA98009CB3E3 /* UTDatabase.swift */,
 				05D5128722315C0E00AD95EE /* UTOperation.swift */,
 				0546C40E2253B0D2001686B8 /* UTOperation2.swift */,
@@ -519,6 +522,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05341CC220BDCB73001E2173 /* main.swift in Sources */,
+				05929406226BDA0A00B2B403 /* UTType.swift in Sources */,
 				0546C40F2253B0D2001686B8 /* UTOperation2.swift in Sources */,
 				05D5128822315C0E00AD95EE /* UTOperation.swift in Sources */,
 				0524961B21DEEA98009CB3E3 /* UTDatabase.swift in Sources */,

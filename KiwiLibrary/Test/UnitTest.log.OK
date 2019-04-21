@@ -58,6 +58,24 @@ let TextAlign = {
 	justfied : 3,
 	normal : 4
 };
+/* Define Enum: TypeID */
+let TypeID = {
+	Undefined : 0,
+	Null : 1,
+	Boolean : 2,
+	Number : 3,
+	String : 4,
+	Date : 5,
+	URL : 6,
+	Image : 7,
+	Array : 8,
+	Dictionary : 9,
+	Range : 10,
+	Rect : 13,
+	Point : 11,
+	Size : 12,
+	Object : 14
+};
 /* Math.js */
 
 /* randomInt: Get random integer value between min and max */
@@ -81,6 +99,120 @@ function checkVariables(place, ...vars)
 	}) ;
 }
   -> Compiler: OK
+/* Unit test for Type operation */
+* Test: JSValue(bool):
+type = bool
+native: 1
+native -> js: 1
+duplicate: 1
+* Test: JSValue(Int32):
+type = number
+native: 1
+native -> js: 1
+duplicate: 1
+* Test: JSValue(Double):
+type = number
+native: 1.23
+native -> js: 1.23
+duplicate: 1.23
+* Test: JSValue(String):
+type = string
+native: "Hello, world"
+native -> js: "Hello, world"
+duplicate: "Hello, world"
+* Test: JSValue(Date):
+type = date
+native: 1970-01-01 00:00:00 +0000
+native -> js: 1970-01-01 00:00:00 +0000
+duplicate: 1970-01-01 00:00:00 +0000
+* Test: JSValue(URL):
+type = URL
+native: https://github.com/steelwheels
+native -> js: https://github.com/steelwheels
+duplicate: https://github.com/steelwheels
+* Test: JSValue(Image):
+type = image
+native: {image: name:<unknown>, size:0.0 x 0.0}
+native -> js: {image: name:<unknown>, size:0.0 x 0.0}
+duplicate: {image: name:<unknown>, size:0.0 x 0.0}
+* Test: JSValue(Array):
+type = array
+native: [
+  1
+  1
+  1.23
+  "Hello, world"
+  1970-01-01 00:00:00 +0000
+  https://github.com/steelwheels
+  {image: name:<unknown>, size:0.0 x 0.0}
+]
+native -> js: [
+  1
+  1
+  1.23
+  "Hello, world"
+  1970-01-01 00:00:00 +0000
+  https://github.com/steelwheels
+  {image: name:<unknown>, size:0.0 x 0.0}
+]
+duplicate: [
+  1
+  1
+  1.23
+  "Hello, world"
+  1970-01-01 00:00:00 +0000
+  https://github.com/steelwheels
+  {image: name:<unknown>, size:0.0 x 0.0}
+]
+* Test: JSValue(Dictionary):
+type = dictionary
+native: {
+  bool: 1
+  date: 1970-01-01 00:00:00 +0000
+  double: 1.23
+  image: {image: name:<unknown>, size:0.0 x 0.0}
+  int32: 1
+  string: "Hello, world"
+  url: https://github.com/steelwheels
+}
+native -> js: {
+  bool: 1
+  date: 1970-01-01 00:00:00 +0000
+  double: 1.23
+  image: {image: name:<unknown>, size:0.0 x 0.0}
+  int32: 1
+  string: "Hello, world"
+  url: https://github.com/steelwheels
+}
+duplicate: {
+  bool: 1
+  date: 1970-01-01 00:00:00 +0000
+  double: 1.23
+  image: {image: name:<unknown>, size:0.0 x 0.0}
+  int32: 1
+  string: "Hello, world"
+  url: https://github.com/steelwheels
+}
+* Test: JSValue(Range):
+type = range
+native: {10, 3}
+native -> js: {10, 3}
+duplicate: {10, 3}
+* Test: JSValue(Point):
+type = point
+native: {x:1.0, y:2.0}
+native -> js: {x:1.0, y:2.0}
+duplicate: {x:1.0, y:2.0}
+* Test: JSValue(Size):
+type = size
+native: {width:3.0, height:4.0}
+native -> js: {width:3.0, height:4.0}
+duplicate: {width:3.0, height:4.0}
+* Test: JSValue(Rect):
+type = rect
+native: {origin:{x:1.0, y:2.0}, size:{width:3.0, height:4.0}}
+native -> js: {origin:{x:1.0, y:2.0}, size:{width:3.0, height:4.0}}
+duplicate: {origin:{x:1.0, y:2.0}, size:{width:3.0, height:4.0}}
 /* Unit test for Database */
 read(d0) -> 1234
 write(d2, -5) -> 1
@@ -146,6 +278,24 @@ let TextAlign = {
 	right : 1,
 	justfied : 3,
 	normal : 4
+};
+/* Define Enum: TypeID */
+let TypeID = {
+	Undefined : 0,
+	Null : 1,
+	Boolean : 2,
+	Number : 3,
+	String : 4,
+	Date : 5,
+	URL : 6,
+	Image : 7,
+	Array : 8,
+	Dictionary : 9,
+	Range : 10,
+	Rect : 13,
+	Point : 11,
+	Size : 12,
+	Object : 14
 };
 /* Math.js */
 
@@ -319,6 +469,24 @@ let TextAlign = {
 	justfied : 3,
 	normal : 4
 };
+/* Define Enum: TypeID */
+let TypeID = {
+	Undefined : 0,
+	Null : 1,
+	Boolean : 2,
+	Number : 3,
+	String : 4,
+	Date : 5,
+	URL : 6,
+	Image : 7,
+	Array : 8,
+	Dictionary : 9,
+	Range : 10,
+	Rect : 13,
+	Point : 11,
+	Size : 12,
+	Object : 14
+};
 /* Math.js */
 
 /* randomInt: Get random integer value between min and max */
@@ -401,6 +569,24 @@ let TextAlign = {
 	right : 1,
 	justfied : 3,
 	normal : 4
+};
+/* Define Enum: TypeID */
+let TypeID = {
+	Undefined : 0,
+	Null : 1,
+	Boolean : 2,
+	Number : 3,
+	String : 4,
+	Date : 5,
+	URL : 6,
+	Image : 7,
+	Array : 8,
+	Dictionary : 9,
+	Range : 10,
+	Rect : 13,
+	Point : 11,
+	Size : 12,
+	Object : 14
 };
 /* Math.js */
 
@@ -524,7 +710,7 @@ class Machine extends Operation {
     if(kind == 0){
       console.log("Operation: command = " + kind + ", value = " + object + "\n") ;
     } else if(kind == 1){
-      console.log("Operation: command = " + kind + ", value = " + object.size().width + "\n") ;
+      console.log("Operation: command = " + kind + ", value = " + object.size.width + "\n") ;
     } else if(kind == 2){
       console.log("Operation: command = " + kind + ", value = " + object.url.absoluteString + "\n") ;
     }

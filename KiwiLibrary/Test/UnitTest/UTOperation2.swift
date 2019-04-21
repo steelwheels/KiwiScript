@@ -49,7 +49,7 @@ public func UTOperation2(console cons: CNConsole, config conf: KEConfig) -> Bool
 		"    if(kind == 0){\n" +
 		"      console.log(\"Operation: command = \" + kind + \", value = \" + object + \"\\n\") ;\n" +
 		"    } else if(kind == 1){\n" +
-		"      console.log(\"Operation: command = \" + kind + \", value = \" + object.size().width + \"\\n\") ;\n" +
+		"      console.log(\"Operation: command = \" + kind + \", value = \" + object.size.width + \"\\n\") ;\n" +
 		"    } else if(kind == 2){\n" +
 		"      console.log(\"Operation: command = \" + kind + \", value = \" + object.url.absoluteString + \"\\n\") ;\n" +
 		"    }\n" +
@@ -78,8 +78,8 @@ public func UTOperation2(console cons: CNConsole, config conf: KEConfig) -> Bool
 	}
 
 	cons.print(string: "* Test3\n")
-	let img = KLImage(context: ctxt)
-	opSet(operation: op, command: 1, value: JSValue(object: img, in: ctxt), context: ctxt, console: cons)
+	let img = CNImage(byReferencing: URL(fileURLWithPath: "https://github.com/steelwheels/Amber/blob/master/Document/Images/AmberLogo.png"))
+	opSet(operation: op, command: 1, value: JSValue(image: img, in: ctxt), context: ctxt, console: cons)
 
 	cons.print(string: "* Test4\n")
 	if let val = ctxt.evaluateScript("val = { url: URL(\"http://steelwheels.com\") } ;") {

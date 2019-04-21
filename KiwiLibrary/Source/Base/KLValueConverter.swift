@@ -10,20 +10,35 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-extension JSValue
-{
-	public func copy(context ctxt: KEContext) -> JSValue {
-		let duplicator = KLValueDuplicator(targetContext: ctxt)
-		return duplicator.duplicate(value: self)
-	}
-}
-
-private class KLValueDuplicator
+public class KLValueDuplicator
 {
 	private var mTargetContext: KEContext
 
 	public init(targetContext tgtctxt: KEContext) {
 		mTargetContext = tgtctxt
+	}
+
+	public func duplicate(any aval: Any) -> Any {
+		if let val = aval as? JSValue {
+			return duplicate(value: val)
+		} else if let val = aval as? Array<Any> {
+			return duplicate(array: val)
+		} else if let val = aval as? Dictionary<AnyHashable, Any> {
+			return duplicate(dictionary: val)
+		} else if let val = aval as? KLEmbeddedObject {
+			return val.copy(context: mTargetContext)
+		} else if let _ = aval as? String {
+			return aval
+		} else if let _ = aval as? NSNumber {
+			return aval
+		} else if let _ = aval as? NSRange {
+			return aval
+		} else if let _ = aval as? Date {
+			return aval
+		} else {
+			NSLog("Failed to duplicate (1): \(String(describing: type(of: aval)))")
+			return aval
+		}
 	}
 
 	public func duplicate(value src: JSValue) -> JSValue {
@@ -37,59 +52,47 @@ private class KLValueDuplicator
 		case .DateType:		dupval = JSValue(object: src.toDate(), in: mTargetContext)
 		case .URLType:		dupval = JSValue(URL: src.toURL(), in: mTargetContext)
 		case .ImageType:	dupval = JSValue(image: src.toImage(), in: mTargetContext)
-		case .ArrayType:	dupval = duplicateArray(array: src.toArray())
-		case .DictionaryType:	dupval = duplicateDictionary(dictionary: src.toDictionary())
+		case .ArrayType:	dupval = duplicate(array: src.toArray())
+		case .DictionaryType:	dupval = duplicate(dictionary: src.toDictionary())
 		case .RangeType:	dupval = JSValue(range: src.toRange(), in: mTargetContext)
 		case .PointType:	dupval = JSValue(point: src.toPoint(), in: mTargetContext)
 		case .SizeType:		dupval = JSValue(size: src.toSize(), in: mTargetContext)
 		case .RectType:		dupval = JSValue(rect: src.toRect(), in: mTargetContext)
-		case .ObjectType:	dupval = duplicateObject(object: src.toObject())
+		case .ObjectType:	dupval = duplicate(object: src.toObject())
 		}
 		return dupval
 	}
 
-	private func duplicateArray(array arrp: Array<Any>?) -> JSValue {
+	private func duplicate(array arrp: Array<Any>?) -> JSValue {
 		var result: Array<Any> = []
 		if let arr = arrp {
 			for elm in arr {
-				if let eval = elm as? JSValue {
-					result.append(duplicate(value: eval))
-				} else if let eobj = elm as? KLEmbeddedObject {
-					result.append(eobj.copy(context: mTargetContext))
-				} else {
-					result.append(elm)
-				}
+				let dupval = duplicate(any: elm)
+				result.append(dupval)
 			}
 		}
 		return JSValue(object: result, in: mTargetContext)
 	}
 
-	private func duplicateDictionary(dictionary dictp: Dictionary<AnyHashable, Any>?) -> JSValue {
+	private func duplicate(dictionary dictp: Dictionary<AnyHashable, Any>?) -> JSValue {
 		var result: Dictionary<AnyHashable, Any> = [:]
 		if let dict = dictp {
 			for (key, val) in dict {
-				if let eval = val as? JSValue {
-					result[key] = duplicate(value: eval)
-				} else if let eobj = val as? KLEmbeddedObject {
-					result[key] = eobj.copy(context: mTargetContext)
-				} else {
-					result[key] = val
-				}
+				let dupval = duplicate(any: val)
+				result[key] = dupval
 			}
 		}
 		return JSValue(object: result, in: mTargetContext)
 	}
 
-	private func duplicateObject(object objp: Any?) -> JSValue {
-		var result: Any?
-		if let obj = objp as? JSValue {
-			result = duplicate(value: obj)
-		} else if let obj = objp as? KLEmbeddedObject {
-			result = obj.copy(context: mTargetContext)
-		} else {
-			result = objp
+	private func duplicate(object obj: Any?) -> JSValue {
+		if let aval = obj {
+			if let val = duplicate(any: aval) as? JSValue {
+				return val
+			}
 		}
-		return JSValue(object: result, in: mTargetContext)
+		NSLog("Failed to duplicate (2)")
+		return JSValue(undefinedIn: mTargetContext)
 	}
 }
 

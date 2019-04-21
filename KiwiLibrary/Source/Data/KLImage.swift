@@ -43,8 +43,9 @@ public typealias KLImageCore = UIImage
 
 	public var size: JSValue {
 		get {
-			let height = imageSize().height
-			return JSValue(double: Double(height), in: mContext)
+			//let height = imageSize().height
+			//return JSValue(double: Double(height), in: mContext)
+			return JSValue(size: imageSize(), in: mContext)
 		}
 	}
 
