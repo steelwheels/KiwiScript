@@ -20,8 +20,13 @@ There are following steps to execute operation:
 ### `Operation`
 Allocate new `Operation` instance. The instance must be *compiled* before entering into the queue.
 ````
-let operation = Operation() ;
+let operation = Operation(console) ;
 ````
+
+#### Parameters
+|Name   |Type                  |Description                     |
+|:---   |:---                  |:---                            |
+|console |[Console](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Console.md) | The console to output from the operation. If you pass `null` as this parameter, the current console is used. |
 
 ## Methods
 ### `set`

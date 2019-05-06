@@ -335,9 +335,18 @@ open class KLCompiler: KECompiler
 		ctxt.set(name: "URL", function: urlFunc)
 
 		/* Operaion */
-		let opfunc: @convention(block) () -> JSValue = {
-			() -> JSValue in
-			let opconsole = KLCompiler.currentConsole(context: ctxt, console: cons)
+		let opfunc: @convention(block) (_ consval: JSValue) -> JSValue = {
+			(_ consval: JSValue) -> JSValue in
+			let opconsole: CNConsole
+			if consval.isObject {
+				if let consobj = consval.toObject() as? KLConsole {
+					opconsole = consobj.console
+				} else {
+					opconsole = KLCompiler.currentConsole(context: ctxt, console: cons)
+				}
+			} else {
+				opconsole = KLCompiler.currentConsole(context: ctxt, console: cons)
+			}
 			let opconfig  = KEConfig(kind: .Terminal, doStrict: conf.doStrict, doVerbose: conf.doVerbose)
 			let op        = KLOperation(ownerContext: ctxt, console: opconsole, config: opconfig)
 			return JSValue(object: op, in: ctxt)
