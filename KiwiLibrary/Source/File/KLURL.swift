@@ -14,6 +14,8 @@ import Foundation
 	var isValid: JSValue { get }
 	var absoluteString: JSValue { get }
 	var path: JSValue { get }
+
+	func loadText() -> JSValue
 }
 
 @objc public class KLURL: NSObject, KLURLProtocol, KLEmbeddedObject
@@ -62,6 +64,19 @@ import Foundation
 				return JSValue(nullIn: mContext)
 			}
 		}
+	}
+
+	public func loadText() -> JSValue {
+		if let url = mURL {
+			let (textp, errp) = url.loadContents()
+			if let text = textp {
+				return JSValue(object: text, in: mContext)
+			}
+			if let err = errp {
+				NSLog("KLURL: Failed to load contents: \(err.description)")
+			}
+		}
+		return JSValue(nullIn: mContext)
 	}
 }
 

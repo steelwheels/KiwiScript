@@ -53,7 +53,7 @@ get(command: Int) -> Object
 |command    |Int      |Command to select object |
 
 ### `compile`
-Compile the source code and generate result into the context.
+Compile the source files and generate result into the context.
 ````
 operation.compile(program: String) -> Bool
 ````
@@ -61,7 +61,7 @@ operation.compile(program: String) -> Bool
 #### Parameters
 |Parameter  |Type     |Description          |
 |:---       |:---     |:---                 |
-|program    |String   |The entire program to execute on the queue. |
+|program    |Array<String>   |The array of scripts be compiled. |
 
 #### Return value
 Boolean type value.

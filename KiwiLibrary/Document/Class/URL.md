@@ -46,6 +46,16 @@ If the object has invalid value, this value will be `null`.
 let str = url.path ;
 ````
 
+## Methods
+### `loadText` method
+Load contents of the text file which pointed by the URL.
+````
+  let text = url.loadText() ;
+````
+
+#### Return value
+The `string` is returned when the loading is succeeded. If it was failed, the value will be `null`.
+
 ## References
 * [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library
 * [Steel Wheels Project](http://steelwheels.github.io)
