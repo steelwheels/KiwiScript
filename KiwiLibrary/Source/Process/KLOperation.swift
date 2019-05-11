@@ -200,7 +200,7 @@ private class KLOperationCompiler: KLCompiler
 			compileOperationClass(operation: op, console: cons, config: conf)
 			let res0 = compileUserScripts(operation: op, program: progval, console: cons, config: conf)
 			defineBuiltinFunction(operation: op)
-			return res0
+			return res0 && (op.mSelfContext.errorCount == 0)
 		} else {
 			return false
 		}
@@ -275,7 +275,7 @@ private class KLOperationCompiler: KLCompiler
 			result = false
 		}
 
-		return result
+		return result && (context.errorCount == 0)
 	}
 
 	private func defineBuiltinFunction(operation op: KLOperation) {

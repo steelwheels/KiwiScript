@@ -13,13 +13,15 @@ public class KEContext : JSContext
 {
 	public typealias ExceptionCallback =  (_ exception: KEException) -> Void
 
-	public var exceptionCallback: ExceptionCallback
+	public var exceptionCallback	: ExceptionCallback
+	private var mErrorCount		: Int
 
 	public override init(virtualMachine vm: JSVirtualMachine) {
 		exceptionCallback = {
 			(_ exception: KEException) -> Void in
 			NSLog("JavaScriptCore [Exception] \(exception.description)")
 		}
+		mErrorCount = 0
 		super.init(virtualMachine: vm)
 
 		/* Set handler */
@@ -28,6 +30,7 @@ public class KEContext : JSContext
 			if let myself = self, let ctxt = context as? KEContext {
 				let except = KEException(context: ctxt, value: exception)
 				myself.exceptionCallback(except)
+				myself.mErrorCount += 1
 			} else {
 				NSLog("Internal error")
 			}
@@ -39,6 +42,8 @@ public class KEContext : JSContext
 		let jsfunc : JSValue = self.objectForKeyedSubscript(funcname)
 		return jsfunc.call(withArguments: args)
 	}
+
+	public var errorCount: Int { get { return mErrorCount }}
 
 	public func set(name n: String, object o: JSExport){
 		self.setObject(o, forKeyedSubscript: NSString(string: n))

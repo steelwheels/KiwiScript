@@ -29,7 +29,7 @@ open class KLCompiler: KECompiler
 		defineConstructors(context: ctxt, console: cons, config: conf)
 		importBuiltinLibrary(context: ctxt, console: cons, config: conf)
 
-		return true
+		return (ctxt.errorCount == 0)
 	}
 
 	private func addEnumTypes() {
