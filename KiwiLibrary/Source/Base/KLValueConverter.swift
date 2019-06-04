@@ -87,9 +87,7 @@ public class KLValueDuplicator
 
 	private func duplicate(object obj: Any?) -> JSValue {
 		if let aval = obj {
-			if let val = duplicate(any: aval) as? JSValue {
-				return val
-			}
+			return JSValue(object: aval, in: mTargetContext)
 		}
 		NSLog("Failed to duplicate (2)")
 		return JSValue(undefinedIn: mTargetContext)
