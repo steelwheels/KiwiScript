@@ -25,65 +25,34 @@ public func UTOperation2(console cons: CNConsole, config conf: KEConfig) -> Bool
 	}
 
 	let opconf = KEConfig(kind: .Operation, doStrict: true, doVerbose: true)
-	let op     = KLOperation(ownerContext: ctxt, console: cons, config: opconf)
+	let op     = KLOperationContext(ownerContext: ctxt, console: cons, config: opconf)
 
-	let program =
-		"class Machine extends Operation {\n" +
-		"  constructor(){\n" +
-	        "    super();\n" +
-		"    this.kind   = 0 ;\n" +
-		"    this.object = null ;\n" +
-		"  }\n" +
-		"  set(command, value){\n" +
-		"    this.print(command, value) ;\n" +
-		"    this.kind   = command ;\n" +
-		"    this.object = value ;\n" +
-		"  }\n" +
-		"\n" +
-		"  main(){\n" +
-		"    console.log(\"Operaion: main function\\n\");\n" +
-		"    this.print(this.kind, this.object) ;\n" +
- 		"  }\n" +
-		"\n" +
-		"  print(kind, object){\n" +
-		"    if(kind == 0){\n" +
-		"      console.log(\"Operation: command = \" + kind + \", value = \" + object + \"\\n\") ;\n" +
-		"    } else if(kind == 1){\n" +
-		"      console.log(\"Operation: command = \" + kind + \", value = \" + object.size.width + \"\\n\") ;\n" +
-		"    } else if(kind == 2){\n" +
-		"      console.log(\"Operation: command = \" + kind + \", value = \" + object.url.absoluteString + \"\\n\") ;\n" +
-		"    }\n" +
-		"  }\n" +
-		"} ;\n" +
-		"operation = new Machine(); \n"
-	let retval = op.compile(JSValue(object: program, in: ctxt))
-	if retval.isBoolean {
-		if retval.toBool() {
+	let (urlp, errorp) = CNFilePath.URLForBundleFile(bundleName: "UnitTest", fileName: "unit-test-1", ofType: "js")
+	if let url = urlp {
+		if op.compile(userScripts: [url]) {
 			cons.print(string: "MainThread: [Compile] OK\n")
 		} else {
 			cons.error(string: "MainThread: [Error] compile failed\n")
-			result = false
 		}
-	} else {
-		cons.error(string: "MainThread: [Error] boolean value is required\n")
-		result = false
+	} else if let err = errorp {
+		cons.error(string: "[Error] \(err.description)")
 	}
 
 	cons.print(string: "* Test1\n")
-	opSet(operation: op, command: 0, value: JSValue(bool: true, in: ctxt), context: ctxt, console: cons)
+	opSet(operation: op, parameter: "param0", value: JSValue(bool: true, in: ctxt), context: ctxt, console: cons)
 
 	cons.print(string: "* Test2\n")
 	if let val = ctxt.evaluateScript("val = {a:10, b:20};") {
-		opSet(operation: op, command: 0, value: val, context: ctxt, console: cons)
+		opSet(operation: op, parameter: "param1", value: val, context: ctxt, console: cons)
 	}
 
 	cons.print(string: "* Test3\n")
 	let img = CNImage(byReferencing: URL(fileURLWithPath: "https://github.com/steelwheels/Amber/blob/master/Document/Images/AmberLogo.png"))
-	opSet(operation: op, command: 1, value: JSValue(image: img, in: ctxt), context: ctxt, console: cons)
+	opSet(operation: op, parameter: "param2", value: JSValue(image: img, in: ctxt), context: ctxt, console: cons)
 
 	cons.print(string: "* Test4\n")
 	if let val = ctxt.evaluateScript("val = { url: URL(\"http://steelwheels.com\") } ;") {
-		opSet(operation: op, command: 2, value: val, context: ctxt, console: cons)
+		opSet(operation: op, parameter: "param3", value: val, context: ctxt, console: cons)
 	}
 
 	cons.print(string: "* Test5\n")
@@ -107,12 +76,14 @@ public func UTOperation2(console cons: CNConsole, config conf: KEConfig) -> Bool
 	return result
 }
 
-private func opSet(operation op: KLOperation, command cmd: Int, value val: JSValue, context ctxt: KEContext, console cons: CNConsole)
+private func opSet(operation op: KLOperationContext, parameter param: String, value val: JSValue, context ctxt: KEContext, console cons: CNConsole)
 {
-	if let cmdval = JSValue(int32: Int32(cmd), in: ctxt) {
-		cons.print(string: "MainThread: Set command: \(cmd)\n")
-		op.set(cmdval, val)
+	if let nameval = JSValue(object: param, in: ctxt) {
+		let text = val.toText()
+		cons.print(string: "MainThread: Set command: \(param) <- ")
+		text.print(console: cons)
+		op.set(nameval, val)
 	} else {
-		cons.error(string: "MainThread: [Error] Failed to set command: \(cmd)\n")
+		cons.error(string: "MainThread: [Error] Failed to set command: \(param)\n")
 	}
 }

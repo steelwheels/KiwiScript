@@ -11,15 +11,6 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-private enum Command: Int {
-	case setInput		= 0
-	case getOutput		= 1
-
-	public func toValue(context ctxt: KEContext) -> JSValue {
-		return JSValue(int32: Int32(self.rawValue), in: ctxt)
-	}
-}
-
 public func UTOperation(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) -> Bool
 {
 	cons.print(string: "// Allocate operation\n")
@@ -30,9 +21,24 @@ public func UTOperation(context ctxt: KEContext, console cons: CNConsole, config
 
 	cons.print(string: "// Set input\n")
 	if let inval = JSValue(double: 1.23, in: ctxt) {
-		op.set(Command.setInput.toValue(context: ctxt), inval)
+		op.set(JSValue(object: "input", in: ctxt), inval)
 	} else {
 		cons.error(string: "Could not allocate input value\n")
+		return false
+	}
+
+	cons.print(string: "// Get input\n")
+	let outval = op.get(JSValue(object: "input", in: ctxt))
+	if outval.isNumber {
+		let val = outval.toDouble()
+		if val == 1.23 {
+			cons.error(string: "Input value: \(val)\n")
+		} else {
+			cons.error(string: "Input value is not 1.23\n")
+			return false
+		}
+	} else {
+		cons.error(string: "Could not get input value\n")
 		return false
 	}
 
@@ -61,23 +67,19 @@ public func UTOperation(context ctxt: KEContext, console cons: CNConsole, config
 	return true
 }
 
-private func allocateOperation(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) -> KLOperation?
+private func allocateOperation(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) -> KLOperationContext?
 {
-	let op       = KLOperation(ownerContext: ctxt, console: cons, config: conf)
-	let script   =
-		"class Task extends Operation\n" +
-		"{\n" +
-		"  main(){ console.log(\"Hello, World !!\\n\") ;}\n" +
-		"}\n" +
-		"operation = new Task() ;\n"
-	let program  = JSValue(object: script, in: ctxt)
-
-	let retval   = op.compile(program!)
-	guard retval.isBoolean && retval.toBool() else {
-		cons.error(string: "Failed to compile operation\n")
-		return nil
+	let op     = KLOperationContext(ownerContext: ctxt, console: cons, config: conf)
+	let (urlp, errorp) = CNFilePath.URLForBundleFile(bundleName: "UnitTest", fileName: "unit-test-0", ofType: "js")
+	if let url = urlp {
+		if op.compile(userScripts: [url]) {
+			return op
+		} else {
+			cons.error(string: "Failed to compile operation\n")
+		}
+	} else if let err = errorp {
+		cons.error(string: "[Error] \(err.description)")
 	}
-	
-	return op
+	return nil
 }
 

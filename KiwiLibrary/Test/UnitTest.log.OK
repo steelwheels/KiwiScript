@@ -319,15 +319,7 @@ function checkVariables(place, ...vars)
 	    }
 	}) ;
 }
-_operation_core.__defineGetter__("isExecuting", function(   ){ return this.get("isExecuting"     ); }) ;
-_operation_core.__defineSetter__("isExecuting", function(val){ return this.set("isExecuting", val); }) ;
-_operation_core.__defineGetter__("isFinished", function(   ){ return this.get("isFinished"     ); }) ;
-_operation_core.__defineSetter__("isFinished", function(val){ return this.set("isFinished", val); }) ;
-_operation_core.__defineGetter__("isCanceled", function(   ){ return this.get("isCanceled"     ); }) ;
-_operation_core.__defineSetter__("isCanceled", function(val){ return this.set("isCanceled", val); }) ;
-_operation_core.__defineGetter__("addListener", function(   ){ return this.get("addListener"     ); }) ;
-_operation_core.__defineSetter__("addListener", function(val){ return this.set("addListener", val); }) ;
-_operation_core.addListener("isCanceled", function(newval){ if(newval){ _cancel() ; }}) ;
+/* Define _operation_core */
 /*
  * Operation.js : Define Operation class
  */
@@ -350,34 +342,29 @@ class Operation
 	constructor(){
 	}
 
-	get(command){
-		console.log("Operation.get(" + command + ");\n") ;
-		return null ;
+	get(name){
+		return _operation_core.get(name) ;
 	}
 
-	set(command, value){
-		console.log("Operation.set(" + command + ", " + value + ");\n") ;
+	set(name, value){
+		return _operation_core.set(name, value) ;
 	}
 
-	execute(){
+	main(){
 		try {
-			this.main() ;
+			this.execute() ;
 		} catch(err){
 			return err.code
 		}
 	}
 
-	main(){
-		console.log("Operation.main()\n") ;
+	execute(){
+		console.log("Operation.execute()\n") ;
 		return 0 ;
 	}
 
 	cancel(){
 		_cancel() ;
-	}
-
-	get core() {
-		return _operation_core ;
 	}
 }
 
@@ -394,17 +381,24 @@ function _operation_get(operation, command)
 }
 
 /* Called by KLOperation class */
-function _operation_exec(operation)
+function _operation_main(operation)
 {
-	operation.execute() ;
+	operation.main() ;
 }
+/* unit-test-0.js */
+
 class Task extends Operation
 {
-  main(){ console.log("Hello, World !!\n") ;}
+	execute(){
+		console.log("Hello, World !!\n") ;
+	}
 }
+
 operation = new Task() ;
+
 // Set input
-Operation.set(0, 1.23);
+// Get input
+Input value: 1.23
 // Execute the operation
 // Wait operations are finished
 Hello, World !!
@@ -610,15 +604,7 @@ function checkVariables(place, ...vars)
 	    }
 	}) ;
 }
-_operation_core.__defineGetter__("isExecuting", function(   ){ return this.get("isExecuting"     ); }) ;
-_operation_core.__defineSetter__("isExecuting", function(val){ return this.set("isExecuting", val); }) ;
-_operation_core.__defineGetter__("isFinished", function(   ){ return this.get("isFinished"     ); }) ;
-_operation_core.__defineSetter__("isFinished", function(val){ return this.set("isFinished", val); }) ;
-_operation_core.__defineGetter__("isCanceled", function(   ){ return this.get("isCanceled"     ); }) ;
-_operation_core.__defineSetter__("isCanceled", function(val){ return this.set("isCanceled", val); }) ;
-_operation_core.__defineGetter__("addListener", function(   ){ return this.get("addListener"     ); }) ;
-_operation_core.__defineSetter__("addListener", function(val){ return this.set("addListener", val); }) ;
-_operation_core.addListener("isCanceled", function(newval){ if(newval){ _cancel() ; }}) ;
+/* Define _operation_core */
 /*
  * Operation.js : Define Operation class
  */
@@ -641,34 +627,29 @@ class Operation
 	constructor(){
 	}
 
-	get(command){
-		console.log("Operation.get(" + command + ");\n") ;
-		return null ;
+	get(name){
+		return _operation_core.get(name) ;
 	}
 
-	set(command, value){
-		console.log("Operation.set(" + command + ", " + value + ");\n") ;
+	set(name, value){
+		return _operation_core.set(name, value) ;
 	}
 
-	execute(){
+	main(){
 		try {
-			this.main() ;
+			this.execute() ;
 		} catch(err){
 			return err.code
 		}
 	}
 
-	main(){
-		console.log("Operation.main()\n") ;
+	execute(){
+		console.log("Operation.execute()\n") ;
 		return 0 ;
 	}
 
 	cancel(){
 		_cancel() ;
-	}
-
-	get core() {
-		return _operation_core ;
 	}
 }
 
@@ -685,55 +666,37 @@ function _operation_get(operation, command)
 }
 
 /* Called by KLOperation class */
-function _operation_exec(operation)
+function _operation_main(operation)
 {
-	operation.execute() ;
+	operation.main() ;
 }
+/* unit-test-1.js */
+
 class Machine extends Operation {
-  constructor(){
-    super();
-    this.kind   = 0 ;
-    this.object = null ;
-  }
-  set(command, value){
-    this.print(command, value) ;
-    this.kind   = command ;
-    this.object = value ;
-  }
-
-  main(){
-    console.log("Operaion: main function\n");
-    this.print(this.kind, this.object) ;
-  }
-
-  print(kind, object){
-    if(kind == 0){
-      console.log("Operation: command = " + kind + ", value = " + object + "\n") ;
-    } else if(kind == 1){
-      console.log("Operation: command = " + kind + ", value = " + object.size.width + "\n") ;
-    } else if(kind == 2){
-      console.log("Operation: command = " + kind + ", value = " + object.url.absoluteString + "\n") ;
-    }
-  }
+	execute(){
+		console.log("[Operaion.execute] Hello, world\n");
+	}
 } ;
-operation = new Machine(); 
+
+operation = new Machine();
+
 MainThread: [Compile] OK
 * Test1
-MainThread: Set command: 0
-Operation: command = 0, value = true
+MainThread: Set command: param0 <- 1
 * Test2
-MainThread: Set command: 0
-Operation: command = 0, value = [object Object]
+MainThread: Set command: param1 <- {
+  a: 10
+  b: 20
+}
 * Test3
-MainThread: Set command: 1
-Operation: command = 1, value = 0
+MainThread: Set command: param2 <- {image: name:<unknown>, size:0.0 x 0.0}
 * Test4
-MainThread: Set command: 2
-Operation: command = 2, value = http://steelwheels.com
+MainThread: Set command: param3 <- {
+  url: http://steelwheels.com
+}
 * Test5
 exec result: OK
-Operaion: main function
-Operation: command = 2, value = http://steelwheels.com
+[Operaion.execute] Hello, world
 Summary: OK
 [UnitTest]
 

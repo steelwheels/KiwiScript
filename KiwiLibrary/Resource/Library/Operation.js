@@ -20,34 +20,29 @@ class Operation
 	constructor(){
 	}
 
-	get(command){
-		console.log("Operation.get(" + command + ");\n") ;
-		return null ;
+	get(name){
+		return _operation_core.get(name) ;
 	}
 
-	set(command, value){
-		console.log("Operation.set(" + command + ", " + value + ");\n") ;
+	set(name, value){
+		return _operation_core.set(name, value) ;
 	}
 
-	execute(){
+	main(){
 		try {
-			this.main() ;
+			this.execute() ;
 		} catch(err){
 			return err.code
 		}
 	}
 
-	main(){
-		console.log("Operation.main()\n") ;
+	execute(){
+		console.log("Operation.execute()\n") ;
 		return 0 ;
 	}
 
 	cancel(){
 		_cancel() ;
-	}
-
-	get core() {
-		return _operation_core ;
 	}
 }
 
@@ -64,7 +59,7 @@ function _operation_get(operation, command)
 }
 
 /* Called by KLOperation class */
-function _operation_exec(operation)
+function _operation_main(operation)
 {
-	operation.execute() ;
+	operation.main() ;
 }

@@ -29,11 +29,17 @@ import Foundation
 		mConsole = cons
 	}
 
-	public func execute(_ operation: JSValue, _ timelimit: JSValue) -> JSValue {
+	public func execute(_ operations: JSValue, _ timelimit: JSValue) -> JSValue {
 		let result: Bool
-		if let op = valueToOperation(operation: operation) {
-			let limit  = valueToInterval(time: timelimit)
-			result = mQueue.execute(operations: [op.shiftOutOperation()], timeLimit: limit)
+		if let ops = valueToOperations(operations: operations) {
+			let limit   = valueToInterval(time: timelimit)
+			let noexecs = mQueue.execute(operations: ops, timeLimit: limit)
+			if noexecs.count == 0 {
+				result = true
+			} else {
+				mConsole.error(string: "Failed to execute some operations")
+				result = false
+			}
 		} else {
 			mConsole.error(string: "Unexcected object (Operation object is required)\n")
 			result = false
@@ -52,13 +58,14 @@ import Foundation
 		}
 	}
 
-	private func valueToOperation(operation opval: JSValue) -> KLOperation? {
-		if opval.isObject {
-			if let op = opval.toObject() as? KLOperation {
-				return op
-			}
+	private func valueToOperations(operations opsval: JSValue) -> Array<CNOperationContext>? {
+		if let op = opsval.toObject() as? CNOperationContext {
+			return [op]
+		} else if let ops = opsval.toArray() as? Array<CNOperationContext> {
+			return ops
+		} else {
+			return nil
 		}
-		return nil
 	}
 
 	private func valueToInterval(time tm: JSValue) -> TimeInterval? {

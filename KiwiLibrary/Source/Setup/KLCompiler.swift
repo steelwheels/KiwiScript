@@ -335,21 +335,17 @@ open class KLCompiler: KECompiler
 		ctxt.set(name: "URL", function: urlFunc)
 
 		/* Operaion */
-		let opfunc: @convention(block) (_ consval: JSValue) -> JSValue = {
-			(_ consval: JSValue) -> JSValue in
-			let opconsole: CNConsole
-			if consval.isObject {
-				if let consobj = consval.toObject() as? KLConsole {
-					opconsole = consobj.console
-				} else {
-					opconsole = KLCompiler.currentConsole(context: ctxt, console: cons)
-				}
-			} else {
-				opconsole = KLCompiler.currentConsole(context: ctxt, console: cons)
-			}
+		let opfunc: @convention(block) (_ urlsval: JSValue, _ consval: JSValue) -> JSValue = {
+			(_ urlsval: JSValue, _ consval: JSValue) -> JSValue in
+			let opconsole = KLCompiler.valueToConsole(consoleValue: consval, context: ctxt, logConsole: cons)
 			let opconfig  = KEConfig(kind: .Terminal, doStrict: conf.doStrict, doVerbose: conf.doVerbose)
-			let op        = KLOperation(ownerContext: ctxt, console: opconsole, config: opconfig)
-			return JSValue(object: op, in: ctxt)
+			let op        = KLOperationContext(ownerContext: ctxt, console: opconsole, config: opconfig)
+			if let urls = KLCompiler.valueToURLs(URLvalues: urlsval, console: opconsole) {
+				if op.compile(userScripts: urls) {
+					return JSValue(object: op, in: ctxt)
+				}
+			}
+			return JSValue(undefinedIn: ctxt)
 		}
 		ctxt.set(name: "Operation", function: opfunc)
 
@@ -378,6 +374,54 @@ open class KLCompiler: KECompiler
 		} else {
 			cons.error(string: "Failed to find file: Debug.js\n")
 		}
+	}
+
+	private class func valueToConsole(consoleValue consval: JSValue, context ctxt: KEContext, logConsole logcons: CNConsole) -> CNConsole {
+		let opconsole: CNConsole
+		if consval.isObject {
+			if let consobj = consval.toObject() as? KLConsole {
+				opconsole = consobj.console
+			} else {
+				opconsole = KLCompiler.currentConsole(context: ctxt, console: logcons)
+			}
+		} else {
+			opconsole = KLCompiler.currentConsole(context: ctxt, console: logcons)
+		}
+		return opconsole
+	}
+
+	private class func valueToURLs(URLvalues urlval: JSValue, console cons: CNConsole) -> Array<URL>? {
+		if urlval.isArray {
+			var result: Array<URL> = []
+			for val in urlval.toArray() {
+				if let url = anyToURL(anyValue: val) {
+					result.append(url)
+				} else {
+					let classname = type(of: val)
+					cons.error(string: "Failed to get url: \(classname)\n")
+					return nil
+				}
+			}
+			return result
+		}
+		cons.error(string: "Invalid URL parameters\n")
+		return nil
+	}
+
+	private class func anyToURL(anyValue val: Any) -> URL? {
+		var result: URL? = nil
+		if let urlobj = val as? KLURL {
+			if let url = urlobj.url {
+				result = url
+			}
+		} else if let urlval = val as? JSValue {
+			if let urlobj = urlval.toObject() as? KLURL {
+				if let url = urlobj.url {
+					result = url
+				}
+			}
+		}
+		return result
 	}
 
 	private class func currentConsole(context ctxt: KEContext, console logcons: CNConsole) -> CNConsole {

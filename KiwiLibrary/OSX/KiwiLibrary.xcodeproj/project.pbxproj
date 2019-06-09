@@ -23,13 +23,15 @@
 		058735D820C2C82100797EFD /* KiwiEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058735D520C2C7F700797EFD /* KiwiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		058735D920C2C82700797EFD /* KiwiLibrary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B12283203F0734009DDBEF /* KiwiLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05929406226BDA0A00B2B403 /* UTType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05929405226BDA0A00B2B403 /* UTType.swift */; };
+		0596C2CF22AD0675002DB33C /* unit-test-0.js in Resources */ = {isa = PBXBuildFile; fileRef = 055957F122ACFFDD00DCD0E7 /* unit-test-0.js */; };
+		0596C2D022AD0677002DB33C /* unit-test-1.js in Resources */ = {isa = PBXBuildFile; fileRef = 055957F322AD015B00DCD0E7 /* unit-test-1.js */; };
 		059E8AFA2234EDEB005EE9B8 /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 058735D520C2C7F700797EFD /* KiwiEngine.framework */; };
 		05A593892245FE0500001E4C /* Operation.js in Resources */ = {isa = PBXBuildFile; fileRef = 0562E07A222C1A0300761F70 /* Operation.js */; };
 		05A5938A2245FE0700001E4C /* Math.js in Resources */ = {isa = PBXBuildFile; fileRef = 052B153F20C382E500BAF41B /* Math.js */; };
 		05AD1F4822579DC400B36C34 /* KLScriptValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AD1F4722579DC400B36C34 /* KLScriptValue.swift */; };
 		05AFD991217F6FCC0015524B /* KLCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AFD990217F6FCC0015524B /* KLCompiler.swift */; };
 		05B176A92250E4B2001216F2 /* Debug.js in Resources */ = {isa = PBXBuildFile; fileRef = 05B176A82250E4B1001216F2 /* Debug.js */; };
-		05B18F75222EA6AB006E9A31 /* KLOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B18F74222EA6AB006E9A31 /* KLOperation.swift */; };
+		05B18F75222EA6AB006E9A31 /* KLOperationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B18F74222EA6AB006E9A31 /* KLOperationContext.swift */; };
 		05C49214204ABF3800C5D910 /* KLShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C49213204ABF3800C5D910 /* KLShell.swift */; };
 		05D5128822315C0E00AD95EE /* UTOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D5128722315C0E00AD95EE /* UTOperation.swift */; };
 		05D6BF8421D3D3E4001D737A /* KLImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D6BF8321D3D3E4001D737A /* KLImage.swift */; };
@@ -62,6 +64,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 05456C2F203F187900942254;
 			remoteInfo = Install;
+		};
+		0596C2D122AD0782002DB33C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05B1227A203F0734009DDBEF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0551CEA520BDC8A100615229;
+			remoteInfo = UnitTestBundle;
 		};
 		05D6EA3120CCAAA900C58802 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -109,6 +118,8 @@
 		0551CEA620BDC8A100615229 /* UnitTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		0551CEA820BDC8A100615229 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		055560F2211B4A4B009DB8F8 /* CoconutData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutData.framework; path = ../../../../Library/Frameworks/CoconutData.framework; sourceTree = "<group>"; };
+		055957F122ACFFDD00DCD0E7 /* unit-test-0.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "unit-test-0.js"; path = "../UnitTest/unit-test-0.js"; sourceTree = "<group>"; };
+		055957F322AD015B00DCD0E7 /* unit-test-1.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "unit-test-1.js"; path = "../UnitTest/unit-test-1.js"; sourceTree = "<group>"; };
 		05610E5021B3C12800535D06 /* KLDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLDatabase.swift; sourceTree = "<group>"; };
 		0562E07A222C1A0300761F70 /* Operation.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Operation.js; sourceTree = "<group>"; };
 		057F73B7208E3EE700D7CF57 /* KLCurses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLCurses.swift; sourceTree = "<group>"; };
@@ -120,7 +131,7 @@
 		05B12286203F0734009DDBEF /* KiwiLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiLibrary.h; sourceTree = "<group>"; };
 		05B12287203F0734009DDBEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05B176A82250E4B1001216F2 /* Debug.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Debug.js; sourceTree = "<group>"; };
-		05B18F74222EA6AB006E9A31 /* KLOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLOperation.swift; sourceTree = "<group>"; };
+		05B18F74222EA6AB006E9A31 /* KLOperationContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLOperationContext.swift; sourceTree = "<group>"; };
 		05C49213204ABF3800C5D910 /* KLShell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLShell.swift; sourceTree = "<group>"; };
 		05D5128722315C0E00AD95EE /* UTOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTOperation.swift; sourceTree = "<group>"; };
 		05D6BF8321D3D3E4001D737A /* KLImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLImage.swift; sourceTree = "<group>"; };
@@ -204,6 +215,8 @@
 		0551CEA720BDC8A100615229 /* UnitTestBundle */ = {
 			isa = PBXGroup;
 			children = (
+				055957F122ACFFDD00DCD0E7 /* unit-test-0.js */,
+				055957F322AD015B00DCD0E7 /* unit-test-1.js */,
 				0551CEA820BDC8A100615229 /* Info.plist */,
 			);
 			path = UnitTestBundle;
@@ -324,7 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				05F02031203F095000B430F5 /* KLProcess.swift */,
-				05B18F74222EA6AB006E9A31 /* KLOperation.swift */,
+				05B18F74222EA6AB006E9A31 /* KLOperationContext.swift */,
 				05F100A422300F8100B399BE /* KLOperationQueue.swift */,
 			);
 			path = Process;
@@ -377,6 +390,7 @@
 			buildWorkingDirectory = "";
 			dependencies = (
 				05D6EA3220CCAAA900C58802 /* PBXTargetDependency */,
+				0596C2D222AD0782002DB33C /* PBXTargetDependency */,
 			);
 			name = Check;
 			passBuildSettingsInEnvironment = 1;
@@ -409,8 +423,8 @@
 			buildPhases = (
 				0551CEA220BDC8A100615229 /* Sources */,
 				0551CEA320BDC8A100615229 /* Frameworks */,
-				0551CEA420BDC8A100615229 /* Resources */,
 				0551CEAE20BDC8B800615229 /* CopyFiles */,
+				0596C2CE22AD0664002DB33C /* Resources */,
 			);
 			buildRules = (
 			);
@@ -497,10 +511,12 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		0551CEA420BDC8A100615229 /* Resources */ = {
+		0596C2CE22AD0664002DB33C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0596C2CF22AD0675002DB33C /* unit-test-0.js in Resources */,
+				0596C2D022AD0677002DB33C /* unit-test-1.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,7 +559,7 @@
 				05C49214204ABF3800C5D910 /* KLShell.swift in Sources */,
 				0506861522565BF600641F95 /* KLValueConverter.swift in Sources */,
 				05F02032203F095000B430F5 /* KLProcess.swift in Sources */,
-				05B18F75222EA6AB006E9A31 /* KLOperation.swift in Sources */,
+				05B18F75222EA6AB006E9A31 /* KLOperationContext.swift in Sources */,
 				05D6BF8421D3D3E4001D737A /* KLImage.swift in Sources */,
 				057F73B8208E3EE700D7CF57 /* KLCurses.swift in Sources */,
 				0525C946204C4BB50058CCBF /* KLPipe.swift in Sources */,
@@ -577,6 +593,11 @@
 			isa = PBXTargetDependency;
 			target = 05456C2F203F187900942254 /* Install */;
 			targetProxy = 0551CEAC20BDC8AD00615229 /* PBXContainerItemProxy */;
+		};
+		0596C2D222AD0782002DB33C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0551CEA520BDC8A100615229 /* UnitTestBundle */;
+			targetProxy = 0596C2D122AD0782002DB33C /* PBXContainerItemProxy */;
 		};
 		05D6EA3220CCAAA900C58802 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
