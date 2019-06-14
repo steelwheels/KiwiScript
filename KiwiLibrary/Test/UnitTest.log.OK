@@ -319,7 +319,6 @@ function checkVariables(place, ...vars)
 	    }
 	}) ;
 }
-/* Define _operation_core */
 /*
  * Operation.js : Define Operation class
  */
@@ -342,24 +341,17 @@ class Operation
 	constructor(){
 	}
 
-	get(name){
-		return _operation_core.get(name) ;
-	}
-
-	set(name, value){
-		return _operation_core.set(name, value) ;
-	}
-
 	main(){
 		try {
 			this.execute() ;
 		} catch(err){
+			this.core.cancel() ;
 			return err.code
 		}
 	}
 
 	execute(){
-		console.log("Operation.execute()\n") ;
+		this.console.log("[Error] Operation.execute must be override\n") ;
 		return 0 ;
 	}
 
@@ -368,29 +360,17 @@ class Operation
 	}
 }
 
-/* Called by KLOperation class */
-function _operation_set(operation, command, value)
+function _exec_operation(op)
 {
-	operation.set(command, value) ;
+	op.main() ;
 }
 
-/* Called by KLOperation class */
-function _operation_get(operation, command)
-{
-	return operation.get(command) ;
-}
-
-/* Called by KLOperation class */
-function _operation_main(operation)
-{
-	operation.main() ;
-}
 /* unit-test-0.js */
 
 class Task extends Operation
 {
 	execute(){
-		console.log("Hello, World !!\n") ;
+		console.log("Task: Hello, World !!\n") ;
 	}
 }
 
@@ -401,7 +381,7 @@ operation = new Task() ;
 Input value: 1.23
 // Execute the operation
 // Wait operations are finished
-Hello, World !!
+Task: Hello, World !!
 /* Unit test for Operation2 */
 'use strict' ;
 /* Define Enum: Alignment */
@@ -604,7 +584,6 @@ function checkVariables(place, ...vars)
 	    }
 	}) ;
 }
-/* Define _operation_core */
 /*
  * Operation.js : Define Operation class
  */
@@ -627,24 +606,17 @@ class Operation
 	constructor(){
 	}
 
-	get(name){
-		return _operation_core.get(name) ;
-	}
-
-	set(name, value){
-		return _operation_core.set(name, value) ;
-	}
-
 	main(){
 		try {
 			this.execute() ;
 		} catch(err){
+			this.core.cancel() ;
 			return err.code
 		}
 	}
 
 	execute(){
-		console.log("Operation.execute()\n") ;
+		this.console.log("[Error] Operation.execute must be override\n") ;
 		return 0 ;
 	}
 
@@ -653,32 +625,21 @@ class Operation
 	}
 }
 
-/* Called by KLOperation class */
-function _operation_set(operation, command, value)
+function _exec_operation(op)
 {
-	operation.set(command, value) ;
+	op.main() ;
 }
 
-/* Called by KLOperation class */
-function _operation_get(operation, command)
-{
-	return operation.get(command) ;
-}
-
-/* Called by KLOperation class */
-function _operation_main(operation)
-{
-	operation.main() ;
-}
 /* unit-test-1.js */
 
-class Machine extends Operation {
+class Machine extends Operation
+{
 	execute(){
-		console.log("[Operaion.execute] Hello, world\n");
+		console.log("[Machine] Hello, world\n");
 	}
 } ;
 
-operation = new Machine();
+operation = new Machine() ;
 
 MainThread: [Compile] OK
 * Test1
@@ -696,7 +657,7 @@ MainThread: Set command: param3 <- {
 }
 * Test5
 exec result: OK
-[Operaion.execute] Hello, world
+[Machine] Hello, world
 Summary: OK
 [UnitTest]
 

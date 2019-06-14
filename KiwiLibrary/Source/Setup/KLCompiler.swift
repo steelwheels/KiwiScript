@@ -345,6 +345,7 @@ open class KLCompiler: KECompiler
 					return JSValue(object: op, in: ctxt)
 				}
 			}
+			cons.error(string: "Failed to allocate Operation object\n")
 			return JSValue(undefinedIn: ctxt)
 		}
 		ctxt.set(name: "Operation", function: opfunc)

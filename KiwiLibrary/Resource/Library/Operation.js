@@ -20,14 +20,6 @@ class Operation
 	constructor(){
 	}
 
-	get(name){
-		return _operation_core.get(name) ;
-	}
-
-	set(name, value){
-		return _operation_core.set(name, value) ;
-	}
-
 	main(){
 		try {
 			this.execute() ;
@@ -37,7 +29,7 @@ class Operation
 	}
 
 	execute(){
-		console.log("Operation.execute()\n") ;
+		console.log("[Error] Operation.execute must be override\n") ;
 		return 0 ;
 	}
 
@@ -46,20 +38,8 @@ class Operation
 	}
 }
 
-/* Called by KLOperation class */
-function _operation_set(operation, command, value)
+function _exec_operation(op)
 {
-	operation.set(command, value) ;
+	op.main() ;
 }
 
-/* Called by KLOperation class */
-function _operation_get(operation, command)
-{
-	return operation.get(command) ;
-}
-
-/* Called by KLOperation class */
-function _operation_main(operation)
-{
-	operation.main() ;
-}

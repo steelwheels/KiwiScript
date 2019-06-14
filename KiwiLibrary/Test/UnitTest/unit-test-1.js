@@ -1,10 +1,11 @@
 /* unit-test-1.js */
 
-class Machine extends Operation {
+class Machine extends Operation
+{
 	execute(){
-		console.log("[Operaion.execute] Hello, world\n");
+		console.log("[Machine] Hello, world\n");
 	}
 } ;
 
-operation = new Machine();
+operation = new Machine() ;
 
