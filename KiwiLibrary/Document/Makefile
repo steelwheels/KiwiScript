@@ -1,0 +1,7 @@
+#
+#
+#
+
+all:
+	(cd Class && make)
+
