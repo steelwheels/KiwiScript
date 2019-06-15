@@ -12,8 +12,8 @@ import Foundation
 
 @objc public protocol KLOperationContextProtocol: JSExport
 {
-	func set(_ name: JSValue, _ value: JSValue)
-	func get(_ name: JSValue) -> JSValue
+	func setParameter(_ name: JSValue, _ value: JSValue)
+	func parameter(_ name: JSValue) -> JSValue
 
 	func isCancelled() -> JSValue
 
@@ -42,6 +42,8 @@ import Foundation
 	private var	mSelfContext:		KEContext
 	private var	mConfig:		KEConfig
 	private var	mOperationInstance:	JSValue?
+	private var	mGetFunction:		JSValue?
+	private var	mSetFunction:		JSValue?
 	private var 	mExecFunction:		JSValue?
 
 	public init(ownerContext octxt: KEContext, console cons: CNConsole, config conf: KEConfig){
@@ -49,6 +51,8 @@ import Foundation
 		mSelfContext		= KEContext(virtualMachine: JSVirtualMachine())
 		mConfig			= conf
 		mOperationInstance	= nil
+		mGetFunction		= nil
+		mSetFunction		= nil
 		mExecFunction		= nil
 		super.init(console: cons)
 
@@ -73,22 +77,30 @@ import Foundation
 		return JSValue(bool: value, in: mOwnerContext)
 	}
 
-	public func set(_ nameval: JSValue, _ value: JSValue) {
-		if let name = nameval.toString() {
-			let nval = value.toNativeValue()
-			super.setParameter(name: name, value: nval)
-			return
+	public func setParameter(_ nameval: JSValue, _ value: JSValue) {
+		if let op = mOperationInstance, let setfunc = mSetFunction {
+			let duplicator = KLValueDuplicator(targetContext: mSelfContext)
+			let dupname = duplicator.duplicate(value: nameval)
+			let dupval  = duplicator.duplicate(value: value)
+			setfunc.call(withArguments: [op, dupname, dupval])
+		} else {
+			log(type: .Error, string: "No _set_operation method", file: #file, line: #line, function: #function)
 		}
-		log(type: .Error, string: "Invalid parameter", file: #file, line: #line, function: #function)
 	}
 
-	public func get(_ nameval: JSValue) -> JSValue {
-		if let name = nameval.toString() {
-			if let param = super.parameter(name: name) {
-				return param.toJSValue(context: mOwnerContext)
+	public func parameter(_ nameval: JSValue) -> JSValue {
+		if let op = mOperationInstance, let getfunc = mGetFunction {
+			let duplicator = KLValueDuplicator(targetContext: mSelfContext)
+			let dupname    = duplicator.duplicate(value: nameval)
+			if let retval = getfunc.call(withArguments: [op, dupname]) {
+				let revduplicator = KLValueDuplicator(targetContext: mOwnerContext)
+				return revduplicator.duplicate(value: retval)
+			} else {
+				log(type: .Error, string: "No result value", file: #file, line: #line, function: #function)
 			}
+		} else {
+			log(type: .Error, string: "No _get_operation method", file: #file, line: #line, function: #function)
 		}
-		log(type: .Error, string: "Invalid parameter", file: #file, line: #line, function: #function)
 		return JSValue(undefinedIn: mOwnerContext)
 	}
 	
@@ -129,6 +141,16 @@ import Foundation
 		} else {
 			cons.error(string: "The \"operation\" global variable must be defined.\n")
 			return false
+		}
+		if let getfunc = ctxt.getValue(name: "_get_operation") {
+			mGetFunction = getfunc
+		} else {
+			cons.error(string: "The built-in function \"_set_operation\" is NOT found\n")
+		}
+		if let setfunc = ctxt.getValue(name: "_set_operation") {
+			mSetFunction = setfunc
+		} else {
+			cons.error(string: "The built-in function \"_set_operation\" is NOT found\n")
 		}
 		if let execfunc = ctxt.getValue(name: "_exec_operation") {
 			mExecFunction = execfunc

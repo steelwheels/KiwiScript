@@ -18,6 +18,15 @@ function _cancel() {
 class Operation
 {
 	constructor(){
+		this.parameters = {} ;
+	}
+
+	setParameter(name, value){
+		this.parameters[name] = value ;
+	}
+
+	parameter(name){
+		return this.parameters[name] ;
 	}
 
 	main(){
@@ -36,6 +45,16 @@ class Operation
 	cancel(){
 		_cancel() ;
 	}
+}
+
+function _set_operation(op, name, value)
+{
+	op.setParameter(name, value) ;
+}
+
+function _get_operation(op, name)
+{
+	return op.parameter(name) ;
 }
 
 function _exec_operation(op)

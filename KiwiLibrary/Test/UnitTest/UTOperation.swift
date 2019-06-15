@@ -21,14 +21,14 @@ public func UTOperation(context ctxt: KEContext, console cons: CNConsole, config
 
 	cons.print(string: "// Set input\n")
 	if let inval = JSValue(double: 1.23, in: ctxt) {
-		op.set(JSValue(object: "input", in: ctxt), inval)
+		op.setParameter(JSValue(object: "input", in: ctxt), inval)
 	} else {
 		cons.error(string: "Could not allocate input value\n")
 		return false
 	}
 
 	cons.print(string: "// Get input\n")
-	let outval = op.get(JSValue(object: "input", in: ctxt))
+	let outval = op.parameter(JSValue(object: "input", in: ctxt))
 	if outval.isNumber {
 		let val = outval.toDouble()
 		if val == 1.23 {
@@ -38,7 +38,7 @@ public func UTOperation(context ctxt: KEContext, console cons: CNConsole, config
 			return false
 		}
 	} else {
-		cons.error(string: "Could not get input value\n")
+		cons.error(string: "Could not get input value: \"\(outval.description)\"\n")
 		return false
 	}
 

@@ -50,7 +50,7 @@ public func main()
 	if result0 && result1 && result2 && result3 {
 		filecons.print(string: "Summary: OK\n")
 	} else {
-		filecons.print(string: "Summary: NG\n")
+		filecons.print(string: "Summary: NG (\(result0) \(result1) \(result2) \(result3))\n")
 	}
 }
 
