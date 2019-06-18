@@ -39,21 +39,13 @@ public func UTOperation2(console cons: CNConsole, config conf: KEConfig) -> Bool
 	}
 
 	cons.print(string: "* Test1\n")
-	opSet(operation: op, parameter: "param0", value: JSValue(bool: true, in: ctxt), context: ctxt, console: cons)
-
-	cons.print(string: "* Test2\n")
-	if let val = ctxt.evaluateScript("val = {a:10, b:20};") {
-		opSet(operation: op, parameter: "param1", value: val, context: ctxt, console: cons)
-	}
+	let boolval = CNNativeValue.numberValue(NSNumber(booleanLiteral: true))
+	opSet(operation: op, parameter: "param0", value: boolval, console: cons)
 
 	cons.print(string: "* Test3\n")
-	let img = CNImage(byReferencing: URL(fileURLWithPath: "https://github.com/steelwheels/Amber/blob/master/Document/Images/AmberLogo.png"))
-	opSet(operation: op, parameter: "param2", value: JSValue(image: img, in: ctxt), context: ctxt, console: cons)
-
-	cons.print(string: "* Test4\n")
-	if let val = ctxt.evaluateScript("val = { url: URL(\"http://steelwheels.com\") } ;") {
-		opSet(operation: op, parameter: "param3", value: val, context: ctxt, console: cons)
-	}
+	let img    = CNImage(byReferencing: URL(fileURLWithPath: "https://github.com/steelwheels/Amber/blob/master/Document/Images/AmberLogo.png"))
+	let imgval = CNNativeValue.imageValue(img)
+	opSet(operation: op, parameter: "param2", value: imgval, console: cons)
 
 	cons.print(string: "* Test5\n")
 	let queue   = KLOperationQueue(context: ctxt, console: cons)
@@ -76,14 +68,10 @@ public func UTOperation2(console cons: CNConsole, config conf: KEConfig) -> Bool
 	return result
 }
 
-private func opSet(operation op: KLOperationContext, parameter param: String, value val: JSValue, context ctxt: KEContext, console cons: CNConsole)
+private func opSet(operation op: KLOperationContext, parameter param: String, value val: CNNativeValue, console cons: CNConsole)
 {
-	if let nameval = JSValue(object: param, in: ctxt) {
-		let text = val.toText()
-		cons.print(string: "MainThread: Set command: \(param) <- ")
-		text.print(console: cons)
-		op.setParameter(nameval, val)
-	} else {
-		cons.error(string: "MainThread: [Error] Failed to set command: \(param)\n")
-	}
+	let text = val.toText()
+	cons.print(string: "MainThread: Set command: \(param) <- ")
+	text.print(console: cons)
+	op.setParameter(name: param, value: val)
 }

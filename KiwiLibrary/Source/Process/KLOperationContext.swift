@@ -12,9 +12,6 @@ import Foundation
 
 @objc public protocol KLOperationContextProtocol: JSExport
 {
-	func setParameter(_ name: JSValue, _ value: JSValue)
-	func parameter(_ name: JSValue) -> JSValue
-
 	func isCancelled() -> JSValue
 
 	func setConsole(_ cons: JSValue)
@@ -77,31 +74,20 @@ import Foundation
 		return JSValue(bool: value, in: mOwnerContext)
 	}
 
-	public func setParameter(_ nameval: JSValue, _ value: JSValue) {
+	open override func setParameter(name nm: String, value val: CNNativeValue){
+		super.setParameter(name: nm, value: val)
 		if let op = mOperationInstance, let setfunc = mSetFunction {
-			let duplicator = KLValueDuplicator(targetContext: mSelfContext)
-			let dupname = duplicator.duplicate(value: nameval)
-			let dupval  = duplicator.duplicate(value: value)
-			setfunc.call(withArguments: [op, dupname, dupval])
-		} else {
-			log(type: .Error, string: "No _set_operation method", file: #file, line: #line, function: #function)
+			if let nameobj = JSValue(object: nm, in: mSelfContext) {
+				let valobj  = val.toJSValue(context: mSelfContext)
+				setfunc.call(withArguments: [op, nameobj, valobj])
+				return
+			}
 		}
+		log(type: .Error, string: "No _set_operation method", file: #file, line: #line, function: #function)
 	}
 
-	public func parameter(_ nameval: JSValue) -> JSValue {
-		if let op = mOperationInstance, let getfunc = mGetFunction {
-			let duplicator = KLValueDuplicator(targetContext: mSelfContext)
-			let dupname    = duplicator.duplicate(value: nameval)
-			if let retval = getfunc.call(withArguments: [op, dupname]) {
-				let revduplicator = KLValueDuplicator(targetContext: mOwnerContext)
-				return revduplicator.duplicate(value: retval)
-			} else {
-				log(type: .Error, string: "No result value", file: #file, line: #line, function: #function)
-			}
-		} else {
-			log(type: .Error, string: "No _get_operation method", file: #file, line: #line, function: #function)
-		}
-		return JSValue(undefinedIn: mOwnerContext)
+	open override func parameter(name nm: String) -> CNNativeValue? {
+		return super.parameter(name: nm)
 	}
 	
 	public func setConsole(_ newcons: JSValue){
@@ -146,16 +132,19 @@ import Foundation
 			mGetFunction = getfunc
 		} else {
 			cons.error(string: "The built-in function \"_set_operation\" is NOT found\n")
+			return false
 		}
 		if let setfunc = ctxt.getValue(name: "_set_operation") {
 			mSetFunction = setfunc
 		} else {
 			cons.error(string: "The built-in function \"_set_operation\" is NOT found\n")
+			return false
 		}
 		if let execfunc = ctxt.getValue(name: "_exec_operation") {
 			mExecFunction = execfunc
 		} else {
 			cons.error(string: "The built-in function \"_exec_operation\" is NOT found\n")
+			return false
 		}
 		return true
 	}

@@ -362,6 +362,13 @@ open class KLCompiler: KECompiler
 
 	private func importBuiltinLibrary(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig)
 	{
+		/* Get built-in scripts: Debug.js */
+		if let scr = readResource(fileName: "Debug", fileExtension: "js", forClass: KLCompiler.self) {
+			let _ = compile(context: ctxt, statement: scr, console: cons, config: conf)
+		} else {
+			cons.error(string: "Failed to find file: Debug.js\n")
+		}
+
 		/* Get built-in scripts: Math.js */
 		if let scr = readResource(fileName: "Math", fileExtension: "js", forClass: KLCompiler.self) {
 			let _ = compile(context: ctxt, statement: scr, console: cons, config: conf)
@@ -369,11 +376,11 @@ open class KLCompiler: KECompiler
 			cons.error(string: "Failed to find file: Math.js\n")
 		}
 
-		/* Get built-in scripts: Debug.js */
-		if let scr = readResource(fileName: "Debug", fileExtension: "js", forClass: KLCompiler.self) {
+		/* Get built-in scripts: Graphics.js */
+		if let scr = readResource(fileName: "Graphics", fileExtension: "js", forClass: KLCompiler.self) {
 			let _ = compile(context: ctxt, statement: scr, console: cons, config: conf)
 		} else {
-			cons.error(string: "Failed to find file: Debug.js\n")
+			cons.error(string: "Failed to find file: Graphics.js\n")
 		}
 	}
 

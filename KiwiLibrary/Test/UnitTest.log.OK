@@ -76,6 +76,24 @@ let TypeID = {
 	Size : 12,
 	Object : 14
 };
+/**
+ * Debug.js
+ */
+
+function checkVariables(place, ...vars)
+{
+	let result = true ;
+	vars.forEach(function(value, index){
+	    if(isUndefined(value)){
+		     console.log("check at " + place + ": Undefined at index " + index + "\n") ;
+		     result = false ;
+	    } else if(isNull(value)) {
+		     console.log("check at " + place + ": Null at index " + index + "\n") ;
+		     result = false ;
+	    }
+	}) ;
+	return result ;
+}
 /* Math.js */
 
 /* randomInt: Get random integer value between min and max */
@@ -84,20 +102,30 @@ Math.randomInt = function(min, max) {
   const rval  = Math.floor(Math.random() * range) ;
   return rval + min ;
 }
-/**
- * Debug.js
+/*
+ * Graphics.js
  */
 
-function checkVariables(place, ...vars)
-{
-	vars.forEach(function(value, index){
-	    if(isUndefined(value)){
-		     console.log("check at " + place + ": Undefined at index " + index + "\n") ;
-	    } else if(isNull(value)) {
-		     console.log("check at " + place + ": Null at index " + index + "\n") ;
-	    }
-	}) ;
+class NodeAction {
+	constructor(visible, speed, angle){
+		this.mVisible	= visible ;	// Bool
+		this.mSpeed	= speed ;	// Double [m/sec]
+		this.mAngle	= angle ;	// Double [radian]
+	}
+	get visible()	{ return this.mVisible ;	}
+	get speed()	{ return this.mSpeed ;		}
+	get angle()	{ return this.mAngle ;		}
 }
+
+class NodeStatus {
+	constructor(pos, size){
+		this.mPosition	= pos ;		// Point
+		this.mSize	= size ;	// Size
+	}
+	get position()	{ return this.mPosition ;	}
+	get size()	{ return this.mSize ;		}
+}
+
   -> Compiler: OK
 /* Unit test for Type operation */
 * Test: JSValue(bool):
@@ -297,6 +325,24 @@ let TypeID = {
 	Size : 12,
 	Object : 14
 };
+/**
+ * Debug.js
+ */
+
+function checkVariables(place, ...vars)
+{
+	let result = true ;
+	vars.forEach(function(value, index){
+	    if(isUndefined(value)){
+		     console.log("check at " + place + ": Undefined at index " + index + "\n") ;
+		     result = false ;
+	    } else if(isNull(value)) {
+		     console.log("check at " + place + ": Null at index " + index + "\n") ;
+		     result = false ;
+	    }
+	}) ;
+	return result ;
+}
 /* Math.js */
 
 /* randomInt: Get random integer value between min and max */
@@ -305,20 +351,30 @@ Math.randomInt = function(min, max) {
   const rval  = Math.floor(Math.random() * range) ;
   return rval + min ;
 }
-/**
- * Debug.js
+/*
+ * Graphics.js
  */
 
-function checkVariables(place, ...vars)
-{
-	vars.forEach(function(value, index){
-	    if(isUndefined(value)){
-		     console.log("check at " + place + ": Undefined at index " + index + "\n") ;
-	    } else if(isNull(value)) {
-		     console.log("check at " + place + ": Null at index " + index + "\n") ;
-	    }
-	}) ;
+class NodeAction {
+	constructor(visible, speed, angle){
+		this.mVisible	= visible ;	// Bool
+		this.mSpeed	= speed ;	// Double [m/sec]
+		this.mAngle	= angle ;	// Double [radian]
+	}
+	get visible()	{ return this.mVisible ;	}
+	get speed()	{ return this.mSpeed ;		}
+	get angle()	{ return this.mAngle ;		}
 }
+
+class NodeStatus {
+	constructor(pos, size){
+		this.mPosition	= pos ;		// Point
+		this.mSize	= size ;	// Size
+	}
+	get position()	{ return this.mPosition ;	}
+	get size()	{ return this.mSize ;		}
+}
+
 /*
  * Operation.js : Define Operation class
  */
@@ -479,6 +535,24 @@ let TypeID = {
 	Size : 12,
 	Object : 14
 };
+/**
+ * Debug.js
+ */
+
+function checkVariables(place, ...vars)
+{
+	let result = true ;
+	vars.forEach(function(value, index){
+	    if(isUndefined(value)){
+		     console.log("check at " + place + ": Undefined at index " + index + "\n") ;
+		     result = false ;
+	    } else if(isNull(value)) {
+		     console.log("check at " + place + ": Null at index " + index + "\n") ;
+		     result = false ;
+	    }
+	}) ;
+	return result ;
+}
 /* Math.js */
 
 /* randomInt: Get random integer value between min and max */
@@ -487,20 +561,30 @@ Math.randomInt = function(min, max) {
   const rval  = Math.floor(Math.random() * range) ;
   return rval + min ;
 }
-/**
- * Debug.js
+/*
+ * Graphics.js
  */
 
-function checkVariables(place, ...vars)
-{
-	vars.forEach(function(value, index){
-	    if(isUndefined(value)){
-		     console.log("check at " + place + ": Undefined at index " + index + "\n") ;
-	    } else if(isNull(value)) {
-		     console.log("check at " + place + ": Null at index " + index + "\n") ;
-	    }
-	}) ;
+class NodeAction {
+	constructor(visible, speed, angle){
+		this.mVisible	= visible ;	// Bool
+		this.mSpeed	= speed ;	// Double [m/sec]
+		this.mAngle	= angle ;	// Double [radian]
+	}
+	get visible()	{ return this.mVisible ;	}
+	get speed()	{ return this.mSpeed ;		}
+	get angle()	{ return this.mAngle ;		}
 }
+
+class NodeStatus {
+	constructor(pos, size){
+		this.mPosition	= pos ;		// Point
+		this.mSize	= size ;	// Size
+	}
+	get position()	{ return this.mPosition ;	}
+	get size()	{ return this.mSize ;		}
+}
+
 MainThread: Compile OK
 'use strict' ;
 /* Define Enum: Alignment */
@@ -580,6 +664,24 @@ let TypeID = {
 	Size : 12,
 	Object : 14
 };
+/**
+ * Debug.js
+ */
+
+function checkVariables(place, ...vars)
+{
+	let result = true ;
+	vars.forEach(function(value, index){
+	    if(isUndefined(value)){
+		     console.log("check at " + place + ": Undefined at index " + index + "\n") ;
+		     result = false ;
+	    } else if(isNull(value)) {
+		     console.log("check at " + place + ": Null at index " + index + "\n") ;
+		     result = false ;
+	    }
+	}) ;
+	return result ;
+}
 /* Math.js */
 
 /* randomInt: Get random integer value between min and max */
@@ -588,20 +690,30 @@ Math.randomInt = function(min, max) {
   const rval  = Math.floor(Math.random() * range) ;
   return rval + min ;
 }
-/**
- * Debug.js
+/*
+ * Graphics.js
  */
 
-function checkVariables(place, ...vars)
-{
-	vars.forEach(function(value, index){
-	    if(isUndefined(value)){
-		     console.log("check at " + place + ": Undefined at index " + index + "\n") ;
-	    } else if(isNull(value)) {
-		     console.log("check at " + place + ": Null at index " + index + "\n") ;
-	    }
-	}) ;
+class NodeAction {
+	constructor(visible, speed, angle){
+		this.mVisible	= visible ;	// Bool
+		this.mSpeed	= speed ;	// Double [m/sec]
+		this.mAngle	= angle ;	// Double [radian]
+	}
+	get visible()	{ return this.mVisible ;	}
+	get speed()	{ return this.mSpeed ;		}
+	get angle()	{ return this.mAngle ;		}
 }
+
+class NodeStatus {
+	constructor(pos, size){
+		this.mPosition	= pos ;		// Point
+		this.mSize	= size ;	// Size
+	}
+	get position()	{ return this.mPosition ;	}
+	get size()	{ return this.mSize ;		}
+}
+
 /*
  * Operation.js : Define Operation class
  */
@@ -680,17 +792,8 @@ operation = new Machine() ;
 MainThread: [Compile] OK
 * Test1
 MainThread: Set command: param0 <- 1
-* Test2
-MainThread: Set command: param1 <- {
-  a: 10
-  b: 20
-}
 * Test3
 MainThread: Set command: param2 <- {image: name:<unknown>, size:0.0 x 0.0}
-* Test4
-MainThread: Set command: param3 <- {
-  url: http://steelwheels.com
-}
 * Test5
 exec result: OK
 [Machine] Hello, world
