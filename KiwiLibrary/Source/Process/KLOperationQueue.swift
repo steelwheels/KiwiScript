@@ -12,7 +12,7 @@ import Foundation
 
 @objc public protocol KLOperationQueueProtocol: JSExport
 {
-	func execute(_ operation: JSValue, _ timelimit: JSValue) -> JSValue
+	func execute(_ operation: JSValue, _ timelimit: JSValue,  _ finalOperation: JSValue) -> JSValue
 	func waitOperations()
 	var operationCount: JSValue { get }
 }
@@ -29,11 +29,14 @@ import Foundation
 		mConsole = cons
 	}
 
-	public func execute(_ operations: JSValue, _ timelimit: JSValue) -> JSValue {
+	public func execute(_ operations: JSValue, _ timelimit: JSValue, _ finop: JSValue) -> JSValue {
 		let result: Bool
 		if let ops = valueToOperations(operations: operations) {
 			let limit   = valueToInterval(time: timelimit)
-			let noexecs = mQueue.execute(operations: ops, timeLimit: limit)
+			let noexecs = mQueue.execute(operations: ops, timeLimit: limit, finalOperation: {
+				(_ cxt: CNOperationContext) -> Void in
+				self.executeFinalOperation(finalOperation: finop)
+			})
 			if noexecs.count == 0 {
 				result = true
 			} else {
@@ -45,6 +48,12 @@ import Foundation
 			result = false
 		}
 		return JSValue(bool: result, in: mContext)
+	}
+
+	private func executeFinalOperation(finalOperation finop: JSValue) {
+		if !finop.isNull && !finop.isUndefined {
+			finop.call(withArguments: [self])
+		}
 	}
 
 	public func waitOperations() {

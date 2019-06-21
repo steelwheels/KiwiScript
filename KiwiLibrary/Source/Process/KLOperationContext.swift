@@ -149,7 +149,7 @@ import Foundation
 		return true
 	}
 
-	open override func main() {
+	open override func mainOperation() {
 		if let execfunc = mExecFunction, let op = mOperationInstance {
 			/* Execute main method in Operation class */
 			execfunc.call(withArguments: [op])
