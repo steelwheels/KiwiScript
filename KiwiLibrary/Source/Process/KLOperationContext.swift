@@ -75,19 +75,26 @@ import Foundation
 	}
 
 	open override func setParameter(name nm: String, value val: CNNativeValue){
-		super.setParameter(name: nm, value: val)
 		if let op = mOperationInstance, let setfunc = mSetFunction {
-			if let nameobj = JSValue(object: nm, in: mSelfContext) {
+			if let nameval = JSValue(object: nm, in: mSelfContext) {
 				let valobj  = val.toJSValue(context: mSelfContext)
-				setfunc.call(withArguments: [op, nameobj, valobj])
+				setfunc.call(withArguments: [op, nameval, valobj])
 				return
 			}
 		}
-		log(type: .Error, string: "No _set_operation method", file: #file, line: #line, function: #function)
+		log(type: .Error, string: "Failed to exec _set_operation method", file: #file, line: #line, function: #function)
 	}
 
 	open override func parameter(name nm: String) -> CNNativeValue? {
-		return super.parameter(name: nm)
+		if let op = mOperationInstance, let getfunc = mGetFunction {
+			if let nameval = JSValue(object: nm, in: mSelfContext) {
+				if let retval = getfunc.call(withArguments: [op, nameval]) {
+					return retval.toNativeValue()
+				}
+			}
+		}
+		log(type: .Error, string: "Failed to exec _get_operation method", file: #file, line: #line, function: #function)
+		return nil
 	}
 	
 	public func setConsole(_ newcons: JSValue){
@@ -149,7 +156,7 @@ import Foundation
 		return true
 	}
 
-	open override func mainOperation() {
+	open override func main() {
 		if let execfunc = mExecFunction, let op = mOperationInstance {
 			/* Execute main method in Operation class */
 			execfunc.call(withArguments: [op])

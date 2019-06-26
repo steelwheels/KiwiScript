@@ -51,8 +51,7 @@ public func UTOperation2(console cons: CNConsole, config conf: KEConfig) -> Bool
 	let queue   = KLOperationQueue(context: ctxt, console: cons)
 	let opval   = JSValue(object: op, in: ctxt)
 	let limval  = JSValue(nullIn: ctxt)
-	let finop   = JSValue(nullIn: ctxt)
-	let retval2  = queue.execute(opval!, limval!, finop!)
+	let retval2  = queue.execute(opval!, limval!)
 	if retval2.isBoolean {
 		if retval2.toBool() {
 			cons.print(string: "exec result: OK\n")

@@ -45,8 +45,7 @@ public func UTOperation(context ctxt: KEContext, console cons: CNConsole, config
 	let queue   = KLOperationQueue(context: ctxt, console: cons)
 	let opval   = JSValue(object: op, in: ctxt)
 	let limval  = JSValue(nullIn: ctxt)
-	let finop   = JSValue(nullIn: ctxt)
-	let retval  = queue.execute(opval!, limval!, finop!)
+	let retval  = queue.execute(opval!, limval!)
 	guard retval.isBoolean && retval.toBool() else {
 		cons.error(string: "Failed to execute operation\n")
 		return false

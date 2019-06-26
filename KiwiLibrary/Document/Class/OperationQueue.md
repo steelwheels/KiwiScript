@@ -14,7 +14,7 @@ let operation = OperationQueue() ;
 ### `execute`
 Execute the [operation](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Operation.md) instance on the queue.
 ````
-let result = queue.execute(operation, time_limit, finalop) ;
+let result = queue.execute(operation, time_limit) ;
 ````
 
 #### Parameters
@@ -22,7 +22,6 @@ let result = queue.execute(operation, time_limit, finalop) ;
 |:--          |:--            |:--            |
 |operation    |[Operation](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Operation.md) |The operation to execute it's context |
 |time_limit   |Double or `nil` |The time limit of the execution of the operation. If the `time_limit` is NOT nil, the execution of the operation is cancelled after `time_limit` seconds. |
-|finalop      | (op: Operation) -> Void | Callback function which is called after the main operation is finished. You can pass `null` to skip this operation.|
 
 When the operation is stopped by time limit, it is *cancelled* and the `isCancelled` flag is set.
 

@@ -2,18 +2,18 @@
  * Graphics.js
  */
 
-class NodeAction {
-	constructor(visible, speed, angle){
-		this.mVisible	= visible ;	// Bool
+class SpriteNodeAction {
+	constructor(active, speed, angle){
+		this.mActive	= active ;	// Bool
 		this.mSpeed	= speed ;	// Double [m/sec]
 		this.mAngle	= angle ;	// Double [radian]
 	}
-	get visible()	{ return this.mVisible ;	}
+	get active()	{ return this.mActive ;	}
 	get speed()	{ return this.mSpeed ;		}
 	get angle()	{ return this.mAngle ;		}
 }
 
-class NodeStatus {
+class SpriteNodeStatus {
 	constructor(pos, size){
 		this.mPosition	= pos ;		// Point
 		this.mSize	= size ;	// Size
