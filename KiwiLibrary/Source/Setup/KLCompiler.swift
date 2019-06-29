@@ -28,6 +28,7 @@ open class KLCompiler: KECompiler
 		defineGlobalObjects(context: ctxt, console: cons, config: conf)
 		defineConstructors(context: ctxt, console: cons, config: conf)
 		importBuiltinLibrary(context: ctxt, console: cons, config: conf)
+		defineOperationObjects(context: ctxt, console: cons, config: conf)
 
 		return (ctxt.errorCount == 0)
 	}
@@ -333,31 +334,6 @@ open class KLCompiler: KECompiler
 			return JSValue(nullIn: ctxt)
 		}
 		ctxt.set(name: "URL", function: urlFunc)
-
-		/* Operaion */
-		let opfunc: @convention(block) (_ urlsval: JSValue, _ consval: JSValue) -> JSValue = {
-			(_ urlsval: JSValue, _ consval: JSValue) -> JSValue in
-			let opconsole = KLCompiler.valueToConsole(consoleValue: consval, context: ctxt, logConsole: cons)
-			let opconfig  = KEConfig(kind: .Terminal, doStrict: conf.doStrict, doVerbose: conf.doVerbose)
-			let op        = KLOperationContext(ownerContext: ctxt, console: opconsole, config: opconfig)
-			if let urls = KLCompiler.valueToURLs(URLvalues: urlsval, console: opconsole) {
-				if op.compile(userScripts: urls) {
-					return JSValue(object: op, in: ctxt)
-				}
-			}
-			cons.error(string: "Failed to allocate Operation object\n")
-			return JSValue(undefinedIn: ctxt)
-		}
-		ctxt.set(name: "Operation", function: opfunc)
-
-		/* OperaionQueue */
-		let queuefunc: @convention(block) () -> JSValue = {
-			() -> JSValue in
-			let curcons = KLCompiler.currentConsole(context: ctxt, console: cons)
-			let queue   = KLOperationQueue(context: ctxt, console: curcons)
-			return JSValue(object: queue, in: ctxt)
-		}
-		ctxt.set(name: "OperationQueue", function: queuefunc)
 	}
 
 	private func importBuiltinLibrary(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig)
@@ -382,6 +358,45 @@ open class KLCompiler: KECompiler
 		} else {
 			cons.error(string: "Failed to find file: Graphics.js\n")
 		}
+	}
+
+	private func defineOperationObjects(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
+		/* Operaion */
+		let opfunc: @convention(block) (_ urlsval: JSValue, _ consval: JSValue) -> JSValue = {
+			(_ urlsval: JSValue, _ consval: JSValue) -> JSValue in
+			let opconsole = KLCompiler.valueToConsole(consoleValue: consval, context: ctxt, logConsole: cons)
+			let opconfig  = KEConfig(kind: .Terminal, doStrict: conf.doStrict, doVerbose: conf.doVerbose)
+			let op        = KLOperationContext(ownerContext: ctxt, console: opconsole, config: opconfig)
+
+			/* Built-in scripts */
+			var urls: Array<URL> = []
+			if let spriteurl = CNFilePath.URLForResourceFile(fileName: "SpriteOperation", fileExtension: "js", forClass: KLCompiler.self) {
+				urls.append(spriteurl)
+			} else {
+				cons.error(string: "Failed to load SpriteOperation.js\n")
+			}
+			/* User scripts */
+			if let users = KLCompiler.valueToURLs(URLvalues: urlsval, console: opconsole) {
+				urls.append(contentsOf: users)
+			}
+			/* Compile */
+			if op.compile(userScripts: urls) {
+				return JSValue(object: op, in: ctxt)
+			} else {
+				cons.error(string: "Failed to allocate Operation object\n")
+				return JSValue(undefinedIn: ctxt)
+			}
+		}
+		ctxt.set(name: "Operation", function: opfunc)
+
+		/* OperaionQueue */
+		let queuefunc: @convention(block) () -> JSValue = {
+			() -> JSValue in
+			let curcons = KLCompiler.currentConsole(context: ctxt, console: cons)
+			let queue   = KLOperationQueue(context: ctxt, console: curcons)
+			return JSValue(object: queue, in: ctxt)
+		}
+		ctxt.set(name: "OperationQueue", function: queuefunc)
 	}
 
 	private class func valueToConsole(consoleValue consval: JSValue, context ctxt: KEContext, logConsole logcons: CNConsole) -> CNConsole {

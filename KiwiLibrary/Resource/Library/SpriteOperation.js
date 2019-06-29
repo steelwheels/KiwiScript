@@ -1,0 +1,83 @@
+/*
+ * Node.js
+ */
+
+class SpriteNodeOperation extends Operation
+{
+        constructor(){
+                super() ;
+        }
+
+        // action: SpriteNodeAction
+        get action() {
+                let action  = super.parameter("action") ;
+                let active  = action.active ;
+                let speed   = action.speed ;
+                let angle   = action.angle ;
+                checkVariables("SpriteNodeOperation.action (get)", active, active, speed, action) ;
+                return new SpriteNodeAction(active, speed, angle) ;
+        }
+        set action(newact){ // SpriteNodeAction
+                if(checkVariables("SpriteNodeOperation.action (set)", newact, newact.active, newact.speed, newact.angle)){
+                        let action = {
+                                active:  newact.active,
+                                speed:   newact.speed,
+                                angle:   newact.angle
+                        } ;
+                        super.setParameter("action", action) ;
+                }
+        }
+
+        // result: SpriteNodeAction
+        get result() {
+                let action  = super.parameter("result") ;
+                let active  = action.active ;
+                let speed   = action.speed ;
+                let angle   = action.angle ;
+                checkVariables("SpriteNodeOperation.result (get)", action, active, speed, action) ;
+                return new SpriteNodeAction(active, speed, angle) ;
+        }
+        set result(newact){ // SpriteNodeAction
+                if(checkVariables("SpriteNodeOperation.result (set)", newact, newact.active, newact.speed, newact.angle)){
+                        let action = {
+                                active:  newact.active,
+                                speed:   newact.speed,
+                                angle:   newact.angle
+                        } ;
+                        super.setParameter("result", action) ;
+                }
+        }
+
+        // status: NodeStatus
+        get status() {
+                let status   = super.parameter("status") ;
+                let position = status.position ;
+                let size     = status.size ;
+                let energy   = status.energy ;
+                checkVariables("SpriteNodeOperation.statuc (get)", status, position, size, energy) ;
+                return new SpriteNodeStatus(position, size, energy) ;
+        }
+        set status(newstat){ // SpriteNodeStatus
+                if(checkVariables("SpriteNodeOperation.status (set)", newstat, newstat.position, newstat.size, newstat.energy)){
+                        let status = {
+                                position: newstat.position,
+                                size:     newstat.size,
+                                energy:   newstat.energy
+                        } ;
+                        super.setParameter("status", status) ;
+                }
+        }
+
+        execute(){
+                let status  = this.status ;
+                let action  = this.action ;
+                let newact  = this.decideAction(status, action) ;
+                this.result = newact ;
+        }
+
+        // decideAction(status: Status, action: Action)
+        decideAction(status, action){
+                console.log("[Error] SpriteNodeOperation.decideAction\n") ;
+                return action ;
+        }
+}
