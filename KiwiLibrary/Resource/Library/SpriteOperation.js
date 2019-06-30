@@ -48,13 +48,13 @@ class SpriteNodeOperation extends Operation
                 }
         }
 
-        // status: NodeStatus
+        // status: SpriteNodeStatus
         get status() {
                 let status   = super.parameter("status") ;
                 let position = status.position ;
                 let size     = status.size ;
                 let energy   = status.energy ;
-                checkVariables("SpriteNodeOperation.statuc (get)", status, position, size, energy) ;
+                checkVariables("SpriteNodeOperation.status (get)", status, position, size, energy) ;
                 return new SpriteNodeStatus(position, size, energy) ;
         }
         set status(newstat){ // SpriteNodeStatus
@@ -68,7 +68,23 @@ class SpriteNodeOperation extends Operation
                 }
         }
 
-        execute(){
+	// condition: SpriteCondition
+	get conditions() {
+		let cond    = super.parameter("conditions") ;
+		let cdamage = cond.collisionDamage ;
+		checkVariables("SpriteNodeOperation.conditions (get)", cond, cdamage) ;
+		return new SpriteCondition(cdamage) ;
+	}
+	set conditions(newcond) {
+		 if(checkVariables("SpriteNodeOperation.conditions (set)", newcond, newcond.collisionDamage)){
+			 let cond = {
+			 	collisionDamage: newcond.collisionDamage
+			 } ;
+			 super.setParameter("conditions", cond) ;
+		 }
+	}
+
+	execute(){
                 let status  = this.status ;
                 let action  = this.action ;
                 let newact  = this.decideAction(status, action) ;

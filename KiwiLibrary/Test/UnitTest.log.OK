@@ -150,6 +150,28 @@ class SpriteNodeStatus {
 	}
 }
 
+class SpriteCondition {
+	constructor(cdamage){
+		checkVariables("SpriteCondition.constructor", cdamage)
+		this.mCollisionDamage = cdamage ;
+	}
+
+	// collosionDamage -> Double
+	get collisionDamage() { return this.mCollisionDamage ; }
+	set collisionDamage(newval) {
+		if(checkVariables(newval)) {
+			this.mCollisionDamage = newval ;
+		}
+	}
+
+	// toParameter() -> Object
+	toParameter() {
+		let obj = {
+			collisionDamage: this.mCollisionDamage
+		} ;
+		return obj ;
+	}
+}
   -> Compiler: OK
 /* Unit test for Type operation */
 * Test: JSValue(bool):
@@ -423,6 +445,28 @@ class SpriteNodeStatus {
 	}
 }
 
+class SpriteCondition {
+	constructor(cdamage){
+		checkVariables("SpriteCondition.constructor", cdamage)
+		this.mCollisionDamage = cdamage ;
+	}
+
+	// collosionDamage -> Double
+	get collisionDamage() { return this.mCollisionDamage ; }
+	set collisionDamage(newval) {
+		if(checkVariables(newval)) {
+			this.mCollisionDamage = newval ;
+		}
+	}
+
+	// toParameter() -> Object
+	toParameter() {
+		let obj = {
+			collisionDamage: this.mCollisionDamage
+		} ;
+		return obj ;
+	}
+}
 /*
  * Operation.js : Define Operation class
  */
@@ -657,6 +701,28 @@ class SpriteNodeStatus {
 	}
 }
 
+class SpriteCondition {
+	constructor(cdamage){
+		checkVariables("SpriteCondition.constructor", cdamage)
+		this.mCollisionDamage = cdamage ;
+	}
+
+	// collosionDamage -> Double
+	get collisionDamage() { return this.mCollisionDamage ; }
+	set collisionDamage(newval) {
+		if(checkVariables(newval)) {
+			this.mCollisionDamage = newval ;
+		}
+	}
+
+	// toParameter() -> Object
+	toParameter() {
+		let obj = {
+			collisionDamage: this.mCollisionDamage
+		} ;
+		return obj ;
+	}
+}
 MainThread: Compile OK
 'use strict' ;
 /* Define Enum: Alignment */
@@ -810,6 +876,28 @@ class SpriteNodeStatus {
 	}
 }
 
+class SpriteCondition {
+	constructor(cdamage){
+		checkVariables("SpriteCondition.constructor", cdamage)
+		this.mCollisionDamage = cdamage ;
+	}
+
+	// collosionDamage -> Double
+	get collisionDamage() { return this.mCollisionDamage ; }
+	set collisionDamage(newval) {
+		if(checkVariables(newval)) {
+			this.mCollisionDamage = newval ;
+		}
+	}
+
+	// toParameter() -> Object
+	toParameter() {
+		let obj = {
+			collisionDamage: this.mCollisionDamage
+		} ;
+		return obj ;
+	}
+}
 /*
  * Operation.js : Define Operation class
  */
