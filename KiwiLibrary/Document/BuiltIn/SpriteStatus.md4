@@ -1,0 +1,10 @@
+# SpriteAction class
+This is a built-in JavaScript library defined in the [KiwiFramework](https://github.com/steelwheels/KiwiScript/tree/master/KiwiLibrary).
+
+````
+m4_include(SpriteAction.js)
+````
+
+## References
+* [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library
+
