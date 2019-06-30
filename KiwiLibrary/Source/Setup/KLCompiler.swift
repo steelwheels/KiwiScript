@@ -352,11 +352,14 @@ open class KLCompiler: KECompiler
 			cons.error(string: "Failed to find file: Math.js\n")
 		}
 
-		/* Get built-in scripts: Graphics.js */
-		if let scr = readResource(fileName: "Graphics", fileExtension: "js", forClass: KLCompiler.self) {
-			let _ = compile(context: ctxt, statement: scr, console: cons, config: conf)
-		} else {
-			cons.error(string: "Failed to find file: Graphics.js\n")
+		/* Get built-in scripts: SpriteAction.js, SpriteStatus.js, SpriteCondition */
+		let spritefiles: Array<String> = ["SpriteAction", "SpriteStatus", "SpriteCondition"]
+		for spritefile in spritefiles {
+			if let scr = readResource(fileName: spritefile, fileExtension: "js", forClass: KLCompiler.self) {
+				let _ = compile(context: ctxt, statement: scr, console: cons, config: conf)
+			} else {
+				cons.error(string: "Failed to find file: Graphics.js\n")
+			}
 		}
 	}
 

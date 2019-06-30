@@ -24,6 +24,10 @@
 		05BCE6732068BDD7007B0559 /* KLShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCE6722068BDD7007B0559 /* KLShell.swift */; };
 		05C6E07920688F30000E8A13 /* KiwiLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 05C6E06B20688F2F000E8A13 /* KiwiLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05D6BF8721D3E269001D737A /* KLImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D6BF8621D3E269001D737A /* KLImage.swift */; };
+		05E112E822C8630200AD5703 /* SpriteOperation.js in Resources */ = {isa = PBXBuildFile; fileRef = 05E112E422C8630100AD5703 /* SpriteOperation.js */; };
+		05E112E922C8630200AD5703 /* SpriteAction.js in Resources */ = {isa = PBXBuildFile; fileRef = 05E112E522C8630100AD5703 /* SpriteAction.js */; };
+		05E112EA22C8630200AD5703 /* SpriteCondition.js in Resources */ = {isa = PBXBuildFile; fileRef = 05E112E622C8630100AD5703 /* SpriteCondition.js */; };
+		05E112EB22C8630200AD5703 /* SpriteStatus.js in Resources */ = {isa = PBXBuildFile; fileRef = 05E112E722C8630100AD5703 /* SpriteStatus.js */; };
 		05F100A722300F9C00B399BE /* KLOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F100A622300F9C00B399BE /* KLOperationQueue.swift */; };
 		05F6EAF02258B16E00C18E3E /* KLNativeValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F6EAEF2258B16E00C18E3E /* KLNativeValue.swift */; };
 		05F6EAF22258B17600C18E3E /* KLValueConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F6EAF12258B17600C18E3E /* KLValueConverter.swift */; };
@@ -60,6 +64,10 @@
 		05C6E06B20688F2F000E8A13 /* KiwiLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiLibrary.h; sourceTree = "<group>"; };
 		05C6E06C20688F30000E8A13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05D6BF8621D3E269001D737A /* KLImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLImage.swift; sourceTree = "<group>"; };
+		05E112E422C8630100AD5703 /* SpriteOperation.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = SpriteOperation.js; sourceTree = "<group>"; };
+		05E112E522C8630100AD5703 /* SpriteAction.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = SpriteAction.js; sourceTree = "<group>"; };
+		05E112E622C8630100AD5703 /* SpriteCondition.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = SpriteCondition.js; sourceTree = "<group>"; };
+		05E112E722C8630100AD5703 /* SpriteStatus.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = SpriteStatus.js; sourceTree = "<group>"; };
 		05F100A622300F9C00B399BE /* KLOperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLOperationQueue.swift; sourceTree = "<group>"; };
 		05F6EAEF2258B16E00C18E3E /* KLNativeValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLNativeValue.swift; sourceTree = "<group>"; };
 		05F6EAF12258B17600C18E3E /* KLValueConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLValueConverter.swift; sourceTree = "<group>"; };
@@ -106,6 +114,10 @@
 		051FA32820C381A9009037F1 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				05E112E522C8630100AD5703 /* SpriteAction.js */,
+				05E112E622C8630100AD5703 /* SpriteCondition.js */,
+				05E112E422C8630100AD5703 /* SpriteOperation.js */,
+				05E112E722C8630100AD5703 /* SpriteStatus.js */,
 				05B176AA2250E4D6001216F2 /* Debug.js */,
 				05549B38222C1A41009130E2 /* Operation.js */,
 				051FA32920C381C5009037F1 /* Math.js */,
@@ -307,8 +319,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				059EA91E223D4D1100BF229C /* Operation.js in Resources */,
+				05E112E822C8630200AD5703 /* SpriteOperation.js in Resources */,
 				059EA91F223D4D1300BF229C /* Math.js in Resources */,
+				05E112EB22C8630200AD5703 /* SpriteStatus.js in Resources */,
+				05E112EA22C8630200AD5703 /* SpriteCondition.js in Resources */,
 				05B176AB2250E4D6001216F2 /* Debug.js in Resources */,
+				05E112E922C8630200AD5703 /* SpriteAction.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

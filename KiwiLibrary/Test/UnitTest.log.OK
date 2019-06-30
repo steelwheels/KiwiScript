@@ -103,10 +103,11 @@ Math.randomInt = function(min, max) {
   return rval + min ;
 }
 /*
- * Graphics.js
+ * SpriteAction.js
  */
 
-class SpriteNodeAction {
+class SpriteNodeAction
+{
 	constructor(active, speed, angle){
 		checkVariables("SpriteNodeAction.constructor", active, speed, angle) ;
 		this.mActive	= active ;	// Bool
@@ -127,8 +128,12 @@ class SpriteNodeAction {
 		return obj ;
 	}
 }
+/*
+ * SpriteStatus.js
+ */
 
-class SpriteNodeStatus {
+class SpriteNodeStatus
+{
 	constructor(pos, size, energy){
 		checkVariables("SpriteNodeStatus.constructor", pos, size, energy) ;
 		this.mPosition	= pos ;		// Point
@@ -149,6 +154,9 @@ class SpriteNodeStatus {
 		return obj ;
 	}
 }
+/*
+ * SpriteCondition.js
+ */
 
 class SpriteCondition {
 	constructor(cdamage){
@@ -398,10 +406,11 @@ Math.randomInt = function(min, max) {
   return rval + min ;
 }
 /*
- * Graphics.js
+ * SpriteAction.js
  */
 
-class SpriteNodeAction {
+class SpriteNodeAction
+{
 	constructor(active, speed, angle){
 		checkVariables("SpriteNodeAction.constructor", active, speed, angle) ;
 		this.mActive	= active ;	// Bool
@@ -422,8 +431,12 @@ class SpriteNodeAction {
 		return obj ;
 	}
 }
+/*
+ * SpriteStatus.js
+ */
 
-class SpriteNodeStatus {
+class SpriteNodeStatus
+{
 	constructor(pos, size, energy){
 		checkVariables("SpriteNodeStatus.constructor", pos, size, energy) ;
 		this.mPosition	= pos ;		// Point
@@ -444,6 +457,9 @@ class SpriteNodeStatus {
 		return obj ;
 	}
 }
+/*
+ * SpriteCondition.js
+ */
 
 class SpriteCondition {
 	constructor(cdamage){
@@ -654,10 +670,11 @@ Math.randomInt = function(min, max) {
   return rval + min ;
 }
 /*
- * Graphics.js
+ * SpriteAction.js
  */
 
-class SpriteNodeAction {
+class SpriteNodeAction
+{
 	constructor(active, speed, angle){
 		checkVariables("SpriteNodeAction.constructor", active, speed, angle) ;
 		this.mActive	= active ;	// Bool
@@ -678,8 +695,12 @@ class SpriteNodeAction {
 		return obj ;
 	}
 }
+/*
+ * SpriteStatus.js
+ */
 
-class SpriteNodeStatus {
+class SpriteNodeStatus
+{
 	constructor(pos, size, energy){
 		checkVariables("SpriteNodeStatus.constructor", pos, size, energy) ;
 		this.mPosition	= pos ;		// Point
@@ -700,6 +721,9 @@ class SpriteNodeStatus {
 		return obj ;
 	}
 }
+/*
+ * SpriteCondition.js
+ */
 
 class SpriteCondition {
 	constructor(cdamage){
@@ -829,10 +853,11 @@ Math.randomInt = function(min, max) {
   return rval + min ;
 }
 /*
- * Graphics.js
+ * SpriteAction.js
  */
 
-class SpriteNodeAction {
+class SpriteNodeAction
+{
 	constructor(active, speed, angle){
 		checkVariables("SpriteNodeAction.constructor", active, speed, angle) ;
 		this.mActive	= active ;	// Bool
@@ -853,8 +878,12 @@ class SpriteNodeAction {
 		return obj ;
 	}
 }
+/*
+ * SpriteStatus.js
+ */
 
-class SpriteNodeStatus {
+class SpriteNodeStatus
+{
 	constructor(pos, size, energy){
 		checkVariables("SpriteNodeStatus.constructor", pos, size, energy) ;
 		this.mPosition	= pos ;		// Point
@@ -875,6 +904,9 @@ class SpriteNodeStatus {
 		return obj ;
 	}
 }
+/*
+ * SpriteCondition.js
+ */
 
 class SpriteCondition {
 	constructor(cdamage){
