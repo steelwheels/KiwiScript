@@ -5,6 +5,7 @@
  *   Copyright (C) 2018 Steel Wheels Project
  */
 
+import CoconutData
 import Foundation
 
 public enum KEApplicationKind: Int32 {
@@ -23,16 +24,15 @@ public enum KEApplicationKind: Int32 {
 	}
 }
 
-open class KEConfig
+open class KEConfig: CNConfig
 {
 	public var	kind:		KEApplicationKind
 	public var	doStrict:	Bool
-	public var 	doVerbose:	Bool
 
 	public init(kind knd: KEApplicationKind, doStrict strict: Bool, doVerbose verbose: Bool) {
 		kind	  = knd
 		doStrict  = strict
-		doVerbose = verbose
+		super.init(doVerbose: verbose)
 	}
 }
 

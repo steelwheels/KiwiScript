@@ -13,6 +13,7 @@ import Foundation
 @objc public protocol KLConsoleProtocol: JSExport
 {
 	func log(_ value: JSValue)
+	func debug(_ value: JSValue)
 	func print(_ value: JSValue)
 	func error(_ value: JSValue)
 }
@@ -33,6 +34,13 @@ import Foundation
 
 	public func log(_ value: JSValue){
 		mConsole.print(string: value.toString())
+	}
+
+	public func debug(_ value: JSValue){
+		let pref = CNPreference.shared.systemPreference
+		if pref.doVerbose {
+			log(value)
+		}
 	}
 
 	public func print(_ value: JSValue){
