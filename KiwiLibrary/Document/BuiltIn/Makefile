@@ -16,7 +16,7 @@ m4_cmd	= m4 --prefix-builtins \
 all: SpriteAction.md SpriteStatus.md SpriteCondition.md
 
 clean:
-	rm -f SpriteAction.md
+	rm -f SpriteAction.md SpriteStatus.md SpriteCondition.md
 
 SpriteAction.md: SpriteAction.md4 $(library_dir)/SpriteAction.js
 

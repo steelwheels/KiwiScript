@@ -11,16 +11,14 @@ class SpriteNodeOperation extends Operation
         // action: SpriteNodeAction
         get action() {
                 let action  = super.parameter("action") ;
-                let active  = action.active ;
                 let speed   = action.speed ;
                 let angle   = action.angle ;
-                checkVariables("SpriteNodeOperation.action (get)", active, active, speed, action) ;
-                return new SpriteNodeAction(active, speed, angle) ;
+                checkVariables("SpriteNodeOperation.action (get)", action, speed, action) ;
+                return new SpriteNodeAction(speed, angle) ;
         }
         set action(newact){ // SpriteNodeAction
-                if(checkVariables("SpriteNodeOperation.action (set)", newact, newact.active, newact.speed, newact.angle)){
+                if(checkVariables("SpriteNodeOperation.action (set)", newact, newact.speed, newact.angle)){
                         let action = {
-                                active:  newact.active,
                                 speed:   newact.speed,
                                 angle:   newact.angle
                         } ;
@@ -31,16 +29,14 @@ class SpriteNodeOperation extends Operation
         // result: SpriteNodeAction
         get result() {
                 let action  = super.parameter("result") ;
-                let active  = action.active ;
                 let speed   = action.speed ;
                 let angle   = action.angle ;
-                checkVariables("SpriteNodeOperation.result (get)", action, active, speed, action) ;
-                return new SpriteNodeAction(active, speed, angle) ;
+                checkVariables("SpriteNodeOperation.result (get)", action, speed, action) ;
+                return new SpriteNodeAction(speed, angle) ;
         }
         set result(newact){ // SpriteNodeAction
-                if(checkVariables("SpriteNodeOperation.result (set)", newact, newact.active, newact.speed, newact.angle)){
+                if(checkVariables("SpriteNodeOperation.result (set)", newact, newact.speed, newact.angle)){
                         let action = {
-                                active:  newact.active,
                                 speed:   newact.speed,
                                 angle:   newact.angle
                         } ;
