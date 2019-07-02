@@ -47,15 +47,19 @@ class SpriteNodeOperation extends Operation
         // status: SpriteNodeStatus
         get status() {
                 let status   = super.parameter("status") ;
+		let uniqid   = status.uniqueId ;
+		let teamid   = status.teamId ;
                 let position = status.position ;
                 let size     = status.size ;
                 let energy   = status.energy ;
-                checkVariables("SpriteNodeOperation.status (get)", status, position, size, energy) ;
-                return new SpriteNodeStatus(position, size, energy) ;
+                checkVariables("SpriteNodeOperation.status (get)", uniqid, teamid, status, position, size, energy) ;
+                return new SpriteNodeStatus(uniqid, teamid, position, size, energy) ;
         }
         set status(newstat){ // SpriteNodeStatus
                 if(checkVariables("SpriteNodeOperation.status (set)", newstat, newstat.position, newstat.size, newstat.energy)){
                         let status = {
+			        uniqueId: newstat.uniqueId,
+				teamId:   newstat.teamId,
                                 position: newstat.position,
                                 size:     newstat.size,
                                 energy:   newstat.energy
