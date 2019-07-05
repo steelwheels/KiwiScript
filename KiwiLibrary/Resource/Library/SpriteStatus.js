@@ -13,7 +13,7 @@ class SpriteNodeStatus
 		this.mSize	= size ;
 		this.mEnergy	= energy ;
 	}
-	get uniqueId()  { return this.mUniqueId ;		}
+	get uniqueId()  { return this.mUniqueId ;	}
 	get teamId()    { return this.mTeamId ;		}
 	get position()	{ return this.mPosition ;	}
 	get size()	{ return this.mSize ;		}

@@ -13,9 +13,10 @@ import Foundation
 @objc public protocol KLConsoleProtocol: JSExport
 {
 	func log(_ value: JSValue)
-	func debug(_ value: JSValue)
 	func print(_ value: JSValue)
 	func error(_ value: JSValue)
+	func debug(_ value: JSValue)
+	func dump(_ value: JSValue)
 }
 
 @objc public class KLConsole: NSObject, KLConsoleProtocol
@@ -36,6 +37,14 @@ import Foundation
 		mConsole.print(string: value.toString())
 	}
 
+	public func print(_ value: JSValue){
+		mConsole.print(string: value.toString())
+	}
+
+	public func error(_ value: JSValue){
+		mConsole.error(string: value.toString())
+	}
+
 	public func debug(_ value: JSValue){
 		let pref = CNPreference.shared.systemPreference
 		if pref.doVerbose {
@@ -43,12 +52,9 @@ import Foundation
 		}
 	}
 
-	public func print(_ value: JSValue){
-		mConsole.print(string: value.toString())
-	}
-
-	public func error(_ value: JSValue){
-		mConsole.error(string: value.toString())
+	public func dump(_ value: JSValue){
+		let native = value.toText()
+		native.print(console: mConsole)
 	}
 }
 
