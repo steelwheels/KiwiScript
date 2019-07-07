@@ -1,111 +1,80 @@
-
-
-# Operation Class
+# Operation class
 
 ## Introduction
-The `Operation` class is used to execute JavaScript code on a thread. This is the sequence to execute the operation thread:
-1. Allocate operation object. The URL of user script is passed as a parameter of the constructor.
+The `Operation` class is used to execute JavaScript code on a thread.
+There is rule to describe JavaScript code on the queue.
 
-## Boot sequence
-### 0. User script
-The operation is implemented as a sub class of `Operation class`.
-Your code will be implemented as the sub class of this class.
-
+## The constructor method
+This method allocates the instance of `Operation` class.
 ````
-/*
- * Operation.js : Define Operation class
- */
-
- class CancelException extends Error
- {
- 	constructor (code){
- 		super("CancelException") ;
- 		this.code = code ;
- 	}
- }
-
-function _cancel() {
-	throw new CancelException(ExitCode.exception) ;
-}
-
-/* This class must be inherited */
-class Operation
-{
-	constructor(){
-		this.parameters = {} ;
-	}
-
-	setParameter(name, value){
-		this.parameters[name] = value ;
-	}
-
-	parameter(name){
-		return this.parameters[name] ;
-	}
-
-	main(){
-		try {
-			this.execute() ;
-		} catch(err){
-			return err.code
-		}
-	}
-
-	execute(){
-		console.log("[Error] Operation.execute must be override\n") ;
-		return 0 ;
-	}
-
-	cancel(){
-		_cancel() ;
-	}
-}
-
-function _set_operation(op, name, value)
-{
-	op.setParameter(name, value) ;
-}
-
-function _get_operation(op, name)
-{
-	return op.parameter(name) ;
-}
-
-function _exec_operation(op)
-{
-	op.main() ;
-}
-
-
-````
-You must override `execute` method to execute it in a unique thread.
-This method is called when the operation is put into the operation queue.
-
-### 1. Allocate `Operation` instance
-You put your JavaScript code into the application package.
-The location of the file must be defined in the
-[manifest file](https://github.com/steelwheels/Amber/blob/master/Document/ManifestFile.md).
-
-````
-let newoperation = Operation([url], console) ;
+const operation = Operation(URLs, console) ;
 ````
 
-#### Parameters
+### Parameters
 |Name   |Type                  |Description                     |
 |:---   |:---                  |:---                            |
 |URLs    |Array<[URL](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md)> | Array of the URLs for user scripts. |
-|console |[Console](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Console.md) | The console to output from the operation. If you pass `null` as this parameter, the current console is used. |
+|console |[Console](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Console.md) | The console to output from the operation. If you pass `null` as this parameter, the caller's console is used. |
+
+You can give some URLs which has the user scripts.
+The script must be described by the following rules:
+
+1. The class which inherits the `Operation` class is defined.
+2. The class has `main` method in it. The method will be executed as a thread in the operation queue.
+3. Define the `operation` instance of the class.
+
+If you don't define the `operation` instance, the compilation will be failed.
+
+## Methods
+### `isFinished` method
+````
+  let flag = operation.isFinished() ;
+````
 
 #### Return value
-The operation object. When the allocation is failed,
-`undefined` value will be returned.
+Boolean value. This value become *true* after the operation is finished with or without `cancel`.
+This value is kept until the operation is executed again.
 
-### 2. Setup the `operation` object.
-Set some properties before execute before executing main operation.
+### `isCancelled` method
+````
+  let flag = operation.isCancelled() ;
+````
 
-### 3. Enter the operation into the operation queue
+#### Return value
+Boolean value. This value become *true* after the operation was terminated by `cancel` command.
+This value is kept until the operation is executed again.
 
+### `setConsole` method
+Change the output target. After this method call, the output of `console` object will be switched to the new one.
+````
+  operation.setConsole(console) ;
+````
+
+#### Parameters
+|Parameter    |Type   |Description                    |
+|:---         |:---   |:---                           |
+|console      |[Console](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Console.md) |New output target             |
+
+#### Return value
+none
+
+### `executionCount` method
+````
+  let count = operation.executionCount() :
+````
+
+#### Return value
+Integer value. This value presents the execution count of the operation.
+
+### `totalExecutionTime` method
+````
+  let count = operation.totalExecutionTime() :
+````
+
+#### Return value
+Double value. The unit is `msec`.
+This value is the total execution time of the operation.
 
 ## References
-* [OperationQueue Class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/OperationQueue.md)
+* [OperationQueue](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/OperationQueue.md): The queue to execute the operation.
 * [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library

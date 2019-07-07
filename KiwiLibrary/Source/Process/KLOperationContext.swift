@@ -12,9 +12,13 @@ import Foundation
 
 @objc public protocol KLOperationContextProtocol: JSExport
 {
+	func isFinished()  -> JSValue
 	func isCancelled() -> JSValue
 
 	func setConsole(_ cons: JSValue)
+
+	func executionCount() -> JSValue
+	func totalExecutionTime() -> JSValue
 }
 
 @objc open class KLOperationContext: CNOperationContext, KLOperationContextProtocol
@@ -67,6 +71,19 @@ import Foundation
 			}
 			NSLog("Internal error")
 		}
+	}
+
+	public func executionCount() -> JSValue {
+		return JSValue(int32: Int32(super.executionCount), in: mOwnerContext)
+	}
+
+	public func totalExecutionTime() -> JSValue {
+		return JSValue(double: super.totalExecutionTime, in: mOwnerContext)
+	}
+
+	public func isFinished() -> JSValue {
+		let value = super.isFinished
+		return JSValue(bool: value, in: mOwnerContext)
 	}
 
 	public func isCancelled() -> JSValue {
