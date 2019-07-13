@@ -15,6 +15,8 @@ import Foundation
 	func isFinished()  -> JSValue
 	func isCancelled() -> JSValue
 
+	func get(_ name: JSValue) -> JSValue
+	func set(_ name: JSValue, _ val: JSValue)
 	func setConsole(_ cons: JSValue)
 
 	func executionCount() -> JSValue
@@ -113,7 +115,29 @@ import Foundation
 		log(type: .Error, string: "Failed to exec _get_operation method", file: #file, line: #line, function: #function)
 		return nil
 	}
-	
+
+	public func set(_ name: JSValue, _ val: JSValue){
+		if name.isString {
+			if let nstr = name.toString() {
+				let nval = val.toNativeValue()
+				self.setParameter(name: nstr, value: nval)
+				return
+			}
+		}
+		log(type: .Error, string: "Failed to set parameter", file: #file, line: #line, function: #function)
+	}
+
+	public func get(_ name: JSValue) -> JSValue {
+		if name.isString {
+			if let nstr = name.toString() {
+				if let val = self.parameter(name: nstr) {
+					return val.toJSValue(context: mOwnerContext)
+				}
+			}
+		}
+		return JSValue(nullIn: mOwnerContext)
+	}
+
 	public func setConsole(_ newcons: JSValue){
 		if let newobj = newcons.toObject() as? KLConsole {
 			if let newval = JSValue(object: newobj, in: mSelfContext){

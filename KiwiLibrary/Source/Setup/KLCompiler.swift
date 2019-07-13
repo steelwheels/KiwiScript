@@ -326,11 +326,17 @@ open class KLCompiler: KECompiler
 		let urlFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in
 			if let str = value.toString() {
-				if let url = URL(string: str) {
-					return JSValue(URL: url, in: ctxt)
+				let url: URL?
+				if let _ = CNFilePath.schemeInString(string: str) {
+					url = URL(string: str)
+				} else {
+					url = URL(fileURLWithPath: str)
+				}
+				if let u = url {
+					return JSValue(URL: u, in: ctxt)
 				}
 			}
-			cons.error(string: "Invalid parameter for URL()")
+			cons.error(string: "Invalid parameter for URL: \(value.description)")
 			return JSValue(nullIn: ctxt)
 		}
 		ctxt.set(name: "URL", function: urlFunc)
