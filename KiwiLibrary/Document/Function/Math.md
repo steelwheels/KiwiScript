@@ -39,5 +39,20 @@ atan2(y, x) ;
 Result of calculation typed `Double`.
 When the parameter is NOT number, the return value is `undefined`.
 
+### `sqrt`
+Returns the square root of the value.
+````
+sqrt(src) ;
+````
+
+#### Parameter
+|Name       |Type             |Description                  |
+|:--        |:--              |:--                          |
+|src        |Double           |Source value                  |
+
+#### Return value
+The square root of the source value.
+When the parameter is NOT number, the return value is `undefined`.
+
 ## References
 * [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library

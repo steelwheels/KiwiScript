@@ -185,6 +185,18 @@ open class KLCompiler: KECompiler
 		}
 		ctxt.set(name: "atan2", function: atan2Func)
 
+		/* sqrt */
+		let sqrtFunc: @convention(block) (_ val: JSValue) -> JSValue = {
+			(_ val: JSValue) -> JSValue in
+			if val.isNumber {
+				let dval   = val.toDouble()
+				let result = dval.squareRoot()
+				return JSValue(double: result, in: ctxt)
+			}
+			return JSValue(undefinedIn: ctxt)
+		}
+		ctxt.set(name: "sqrt", function: sqrtFunc)
+
 		/* exit */
 		let exitFunc: @convention(block) (_ value: JSValue) -> JSValue
 		switch conf.kind {

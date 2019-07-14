@@ -299,6 +299,8 @@ type = rect
 native: {origin:{x:1.0, y:2.0}, size:{width:3.0, height:4.0}}
 native -> js: {origin:{x:1.0, y:2.0}, size:{width:3.0, height:4.0}}
 duplicate: {origin:{x:1.0, y:2.0}, size:{width:3.0, height:4.0}}
+/* Unit test for Math operation */
+sqrt(4.0) = 2.0
 /* Unit test for Database */
 read(d0) -> 1234
 write(d2, -5) -> 1
