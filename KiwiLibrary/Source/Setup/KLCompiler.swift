@@ -266,7 +266,7 @@ open class KLCompiler: KECompiler
 		let rectFunc: @convention(block) (_ xval: JSValue, _ yval: JSValue, _ widthval: JSValue, _ heightval: JSValue) -> JSValue = {
 			(_ xval: JSValue, _ yval: JSValue, _ widthval: JSValue, _ heightval: JSValue) -> JSValue in
 			if xval.isNumber && yval.isNumber && widthval.isNumber && heightval.isNumber {
-				let x      = xval.toDouble()
+				let x	   = xval.toDouble()
 				let y	   = yval.toDouble()
 				let width  = widthval.toDouble()
 				let height = heightval.toDouble()

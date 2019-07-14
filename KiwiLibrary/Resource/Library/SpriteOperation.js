@@ -51,17 +51,19 @@ class SpriteNodeOperation extends Operation
 		let teamid   = status.teamId ;
                 let position = status.position ;
                 let size     = status.size ;
+		let bounds   = status.bounds ;
                 let energy   = status.energy ;
-                checkVariables("SpriteNodeOperation.status (get)", name, teamid, status, position, size, energy) ;
-                return new SpriteNodeStatus(name, teamid, position, size, energy) ;
+                checkVariables("SpriteNodeOperation.status (get)", name, teamid, status, position, size, bounds, energy) ;
+                return new SpriteNodeStatus(name, teamid, position, size, bounds, energy) ;
         }
         set status(newstat){ // SpriteNodeStatus
-                if(checkVariables("SpriteNodeOperation.status (set)", newstat, newstat.name, newstat.teamId, newstat.position, newstat.size, newstat.energy)){
+                if(checkVariables("SpriteNodeOperation.status (set)", newstat, newstat.name, newstat.teamId, newstat.position, newstat.size, newstat.bounds, newstat.energy)){
                         let status = {
 			        name:     newstat.name,
 				teamId:   newstat.teamId,
                                 position: newstat.position,
                                 size:     newstat.size,
+				bounds:	  newstat.bounds,
                                 energy:   newstat.energy
                         } ;
                         super.setParameter("status", status) ;

@@ -82,8 +82,10 @@ extension CNNativeValue {
 
 	private func rectToObject(point val: CGRect) -> Dictionary<String, Any> {
 		let result: Dictionary<String, Any> = [
-			"origin":	pointToObject(point: val.origin),
-			"size":		sizeToObject(size: val.size)
+			"x":		NSNumber(value: Double(val.origin.x)),
+			"y":		NSNumber(value: Double(val.origin.y)),
+			"width":	NSNumber(value: Double(val.size.width)),
+			"height":	NSNumber(value: Double(val.size.height))
 		]
 		return result
 	}
