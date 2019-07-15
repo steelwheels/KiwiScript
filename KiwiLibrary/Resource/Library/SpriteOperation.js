@@ -8,6 +8,12 @@ class SpriteNodeOperation extends Operation
                 super() ;
         }
 
+	get interval(){
+		let interval = super.parameter("interval") ;
+		checkVariables("SpriteNodeOperation.interval (get)", interval) ;
+		return interval ;
+	}
+
         // action: SpriteNodeAction
         get action() {
                 let action  = super.parameter("action") ;
@@ -87,14 +93,15 @@ class SpriteNodeOperation extends Operation
 	}
 
 	execute(){
-                let status  = this.status ;
-                let action  = this.action ;
-                let newact  = this.decideAction(status, action) ;
-                this.result = newact ;
+                let status   = this.status ;
+		let interval = this.interval ;
+                let action   = this.action ;
+                let newact   = this.decideAction(interval, status, action) ;
+                this.result  = newact ;
         }
 
-        // decideAction(status: Status, action: Action)
-        decideAction(status, action){
+	// decideAction(interval:TimeInterval, status: Status, action: Action)
+        decideAction(interval, status, action){
                 console.log("[Error] SpriteNodeOperation.decideAction\n") ;
                 return action ;
         }
