@@ -304,6 +304,8 @@ native -> js: {x:1.0, y:2.0, width:3.0, height:4.0}
 duplicate: {x:1.0, y:2.0, width:3.0, height:4.0}
 /* Unit test for Math operation */
 sqrt(4.0) = 2.0
+asin(1.0/1.41421) = 0.25PI
+acos(1.41421/2.0) = 0.25PI
 /* Unit test for Database */
 read(d0) -> 1234
 write(d2, -5) -> 1

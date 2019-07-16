@@ -14,7 +14,6 @@ sin(rad) ;
 ````
 
 #### Parameter
-
 |Name       |Type             |Description                  |
 |:--        |:--              |:--                          |
 |rad        |Double [radian]  |Angle value                  |
@@ -22,6 +21,24 @@ sin(rad) ;
 #### Return value
 Result of calculation typed `Double`.
 When the parameter is NOT number, the return value is `undefined`.
+
+### `asin`, `acos`
+The `asin()` function computes the principal value of the arc sine of x.
+The result is in the range [-pi/2, +pi/2].
+The `acos()` function computes the principle value of the arc cosine of x.
+The result is in the range [0, pi].
+
+````
+asin(x) ;
+````
+
+#### Parameter
+|Name       |Type             |Description                  |
+|:--        |:--              |:--                          |
+|x          |Source value     |The value must be \|x\| <= 1.0 |
+
+#### Return value
+arc sine/arc cosine of parameter. The result is in the range [-pi/2, +pi/2] for arcsine and range [0, pi] for cosine.
 
 ### `atan2`
 ````
@@ -56,3 +73,4 @@ When the parameter is NOT number, the return value is `undefined`.
 
 ## References
 * [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library
+* BSD Library Reference Manual: Manual page on macOS.

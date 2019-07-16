@@ -173,6 +173,36 @@ open class KLCompiler: KECompiler
 		}
 		ctxt.set(name: "tan", function: tanFunc)
 
+		/* asin */
+		let asinFunc: @convention(block) (_ val: JSValue) -> JSValue = {
+			(_ val: JSValue) -> JSValue in
+			if val.isNumber {
+				let x = val.toDouble()
+				if -1.0 <= x && x <= 1.0 {
+					let result = asin(x)
+					return JSValue(double: result, in: ctxt)
+				}
+			}
+			cons.error(string: "Invalid parameter for asin function\n")
+			return JSValue(undefinedIn: ctxt)
+		}
+		ctxt.set(name: "asin", function: asinFunc)
+
+		/* acos */
+		let acosFunc: @convention(block) (_ val: JSValue) -> JSValue = {
+			(_ val: JSValue) -> JSValue in
+			if val.isNumber {
+				let x = val.toDouble()
+				if -1.0 <= x && x <= 1.0 {
+					let result = acos(x)
+					return JSValue(double: result, in: ctxt)
+				}
+			}
+			cons.error(string: "Invalid parameter for acos function\n")
+			return JSValue(undefinedIn: ctxt)
+		}
+		ctxt.set(name: "acos", function: acosFunc)
+
 		/* atan2 */
 		let atan2Func: @convention(block) (_ yval: JSValue, _ xval: JSValue) -> JSValue = {
 			(_ yval: JSValue, _ xval: JSValue) -> JSValue in
