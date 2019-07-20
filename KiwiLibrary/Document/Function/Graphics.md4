@@ -1,0 +1,10 @@
+# Graphics Library
+
+This document describes about functions for graphics.
+They are implemented as class methods of `Graphics` class.
+
+## Graphics Functions
+````
+m4_include(Graphics.js)
+````
+
