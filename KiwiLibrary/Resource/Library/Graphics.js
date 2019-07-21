@@ -1,6 +1,14 @@
 /* Graphics.js */
 
 class Graphics {
+	// func distanceBetween2Points(p0:Point, p1:Point) -> Double
+	static distanceBetween2Points(p0, p1) {
+		const dx = p1.x - p0.x ;
+		const dy = p1.y - p0.y ;
+		return sqrt(dx*dx + dy*dy) ;
+	}
+
+
 	// func InsetRect(rect: Rect, dx:Double, dy:Double) -> Rect
 	static insetRect(rect, dx, dy) {
 		if(checkVariables("insetRect", rect, dx, dy)){

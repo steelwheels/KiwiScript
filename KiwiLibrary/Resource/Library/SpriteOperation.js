@@ -65,11 +65,11 @@ class SpriteNodeOperation extends Operation
         set status(newstat){ // SpriteNodeStatus
                 if(checkVariables("SpriteNodeOperation.status (set)", newstat, newstat.name, newstat.teamId, newstat.position, newstat.size, newstat.bounds, newstat.energy)){
                         let status = {
-			        name:     newstat.name,
-				teamId:   newstat.teamId,
+                                name:     newstat.name,
+                                teamId:   newstat.teamId,
                                 position: newstat.position,
                                 size:     newstat.size,
-				bounds:	  newstat.bounds,
+                                bounds:	  newstat.bounds,
                                 energy:   newstat.energy
                         } ;
                         super.setParameter("status", status) ;
@@ -84,17 +84,17 @@ class SpriteNodeOperation extends Operation
 		return new SpriteCondition(cdamage) ;
 	}
 	set conditions(newcond) {
-		 if(checkVariables("SpriteNodeOperation.conditions (set)", newcond, newcond.collisionDamage)){
-			 let cond = {
-			 	collisionDamage: newcond.collisionDamage
-			 } ;
-			 super.setParameter("conditions", cond) ;
-		 }
+                if(checkVariables("SpriteNodeOperation.conditions (set)", newcond, newcond.collisionDamage)){
+                         let cond = {
+                                 collisionDamage: newcond.collisionDamage
+                         } ;
+                        super.setParameter("conditions", cond) ;
+                }
 	}
 
 	execute(){
                 let status   = this.status ;
-		let interval = this.interval ;
+                let interval = this.interval ;
                 let action   = this.action ;
                 let newact   = this.decideAction(interval, status, action) ;
                 this.result  = newact ;

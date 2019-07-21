@@ -1,0 +1,31 @@
+{
+    "extends": ["eslint:recommended"],
+    "plugins": [],
+    "parserOptions": {},
+    "env": {"es6":true},
+    "globals": {
+	"console":	false,
+	"PI":		false,
+	"isUndefined":	false,
+	"isNull":	false,
+	"isBoolean":	false,
+	"isString":	false,
+	"isObject":	false,
+	"isArray":	false,
+	"isDate":	false,
+	"typeID":	false,
+	"sin":		false,
+	"cos":		false,
+	"tan":		false,
+	"asin":		false,
+	"acos":		false,
+	"atan2":	false,
+	"sqrt":		false,
+	"Rect":		false,
+	"Point":	false
+    },
+    "rules": {
+	"semi":		"error"
+    }
+}
+

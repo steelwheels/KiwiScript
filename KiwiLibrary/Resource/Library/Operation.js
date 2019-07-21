@@ -4,10 +4,10 @@
 
  class CancelException extends Error
  {
- 	constructor (code){
- 		super("CancelException") ;
- 		this.code = code ;
- 	}
+        constructor (code){
+                super("CancelException") ;
+                this.code = code ;
+        }
  }
 
 function _cancel() {
@@ -33,7 +33,7 @@ class Operation
 		try {
 			this.execute() ;
 		} catch(err){
-			return err.code
+			return err.code ;
 		}
 	}
 
@@ -61,4 +61,3 @@ function _exec_operation(op)
 {
 	op.main() ;
 }
-

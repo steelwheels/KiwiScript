@@ -4,7 +4,7 @@
 
 class SpriteCondition {
 	constructor(cdamage){
-		checkVariables("SpriteCondition.constructor", cdamage)
+		checkVariables("SpriteCondition.constructor", cdamage) ;
 		this.mCollisionDamage = cdamage ;
 	}
 
