@@ -1,25 +1,36 @@
 /*
- * SpriteCondition.js
+ * SpriteNodeCondition.js
  */
 
-class SpriteCondition {
-	constructor(cdamage){
-		checkVariables("SpriteCondition.constructor", cdamage) ;
-		this.mCollisionDamage = cdamage ;
+class SpriteNodeCondition {
+	// func constructor(givingCollisionDamage:Double, receivingCollisionDamage:Double)
+	constructor(gcdamage, rcdamage){
+		checkVariables("SpriteNodeCondition.constructor", gcdamage, rcdamage) ;
+		this.mGivingCollisionDamage    = gcdamage ;
+		this.mReceivingCollisionDamage = rcdamage ;
 	}
 
-	// collosionDamage -> Double
-	get collisionDamage() { return this.mCollisionDamage ; }
-	set collisionDamage(newval) {
+	// givingCollosionDamage -> Double
+	get givingCollisionDamage() { return this.mGivingCollisionDamage ; }
+	set givingCollisionDamage(newval) {
 		if(checkVariables(newval)) {
-			this.mCollisionDamage = newval ;
+			this.mGivingCollisionDamage = newval ;
+		}
+	}
+
+	// receivingCollosionDamage -> Double
+	get receivingCollisionDamage() { return this.mReceivingCollisionDamage ; }
+	set receivingCollisionDamage(newval) {
+		if(checkVariables(newval)) {
+			this.mReceivingCollisionDamage = newval ;
 		}
 	}
 
 	// toParameter() -> Object
 	toParameter() {
 		let obj = {
-			collisionDamage: this.mCollisionDamage
+			givingCollisionDamage:    this.mGivingCollisionDamage,
+			receivingCollisionDamage: this.mReceivingCollisionDamage
 		} ;
 		return obj ;
 	}

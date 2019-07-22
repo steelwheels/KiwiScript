@@ -395,7 +395,7 @@ open class KLCompiler: KECompiler
 			}
 		}
 
-		/* Get built-in scripts: SpriteAction.js, SpriteStatus.js, SpriteCondition */
+		/* Get built-in scripts: SpriteNodeAction.js, SpriteNodeStatus.js, SpriteNodeCondition */
 		let spritefiles: Array<String> = ["SpriteAction", "SpriteStatus", "SpriteCondition"]
 		for spritefile in spritefiles {
 			if let scr = readResource(fileName: spritefile, fileExtension: "js", forClass: KLCompiler.self) {

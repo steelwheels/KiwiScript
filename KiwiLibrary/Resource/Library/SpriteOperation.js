@@ -76,17 +76,19 @@ class SpriteNodeOperation extends Operation
                 }
         }
 
-	// condition: SpriteCondition
+	// condition: SpriteNodeCondition
 	get conditions() {
-		let cond    = super.parameter("conditions") ;
-		let cdamage = cond.collisionDamage ;
-		checkVariables("SpriteNodeOperation.conditions (get)", cond, cdamage) ;
-		return new SpriteCondition(cdamage) ;
+		let cond     = super.parameter("conditions") ;
+		let gcdamage = cond.givingCollisionDamage ;
+		let rcdamage = cond.receivingCollisionDamage ;
+		checkVariables("SpriteNodeOperation.conditions (get)", cond, gcdamage, rcdamage) ;
+		return new SpriteNodeCondition(gcdamage, rcdamage) ;
 	}
 	set conditions(newcond) {
-                if(checkVariables("SpriteNodeOperation.conditions (set)", newcond, newcond.collisionDamage)){
+                if(checkVariables("SpriteNodeOperation.conditions (set)", newcond, newcond.givingCollisionDamage, newcond.receivingCollisionDamage)){
                          let cond = {
-                                 collisionDamage: newcond.collisionDamage
+			 	givingCollisionDamage:		newcond.givingCollisionDamage,
+			 	receivingCollisionDamage:	newcond.receivingCollisionDamage
                          } ;
                         super.setParameter("conditions", cond) ;
                 }
