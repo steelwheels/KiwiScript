@@ -1,13 +1,14 @@
 /*
- * SpriteNodeCondition.js
+ * SpriteCondition.js
  */
 
-class SpriteNodeCondition {
+class SpriteCondition {
 	// func constructor(givingCollisionDamage:Double, receivingCollisionDamage:Double)
-	constructor(gcdamage, rcdamage){
-		checkVariables("SpriteNodeCondition.constructor", gcdamage, rcdamage) ;
+	constructor(gcdamage, rcdamage, rrange){
+		checkVariables("SpriteCondition.constructor", gcdamage, rcdamage, rrange) ;
 		this.mGivingCollisionDamage    = gcdamage ;
 		this.mReceivingCollisionDamage = rcdamage ;
+		this.mRaderRange	       = rrange ;
 	}
 
 	// givingCollosionDamage -> Double
@@ -26,12 +27,22 @@ class SpriteNodeCondition {
 		}
 	}
 
+	// raderRange -> Double
+	get raderRange() { return this.mRaderRange ; }
+	set raderRange(newval) {
+		if(checkVariables(newval)) {
+			this.mRaderRange = newval ;
+		}
+	}
+
 	// toParameter() -> Object
 	toParameter() {
 		let obj = {
 			givingCollisionDamage:    this.mGivingCollisionDamage,
-			receivingCollisionDamage: this.mReceivingCollisionDamage
+			receivingCollisionDamage: this.mReceivingCollisionDamage,
+			raderRange:		  this.mRaderRange
 		} ;
 		return obj ;
 	}
 }
+
