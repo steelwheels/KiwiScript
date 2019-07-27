@@ -22,6 +22,7 @@
 		055560F5211B4A82009DB8F8 /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 055560F2211B4A4B009DB8F8 /* CoconutData.framework */; };
 		05610E5121B3C12800535D06 /* KLDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05610E5021B3C12800535D06 /* KLDatabase.swift */; };
 		0578143422DE18CB00B50279 /* Graphics.js in Resources */ = {isa = PBXBuildFile; fileRef = 0578143322DE18CB00B50279 /* Graphics.js */; };
+		057B697522EB539100C53AFD /* SpriteRadar.js in Resources */ = {isa = PBXBuildFile; fileRef = 057B697422EB539100C53AFD /* SpriteRadar.js */; };
 		057F73B8208E3EE700D7CF57 /* KLCurses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F73B7208E3EE700D7CF57 /* KLCurses.swift */; };
 		058735D620C2C7F700797EFD /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 058735D520C2C7F700797EFD /* KiwiEngine.framework */; };
 		058735D820C2C82100797EFD /* KiwiEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058735D520C2C7F700797EFD /* KiwiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -132,6 +133,7 @@
 		05610E5021B3C12800535D06 /* KLDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLDatabase.swift; sourceTree = "<group>"; };
 		0562E07A222C1A0300761F70 /* Operation.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Operation.js; sourceTree = "<group>"; };
 		0578143322DE18CB00B50279 /* Graphics.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Graphics.js; sourceTree = "<group>"; };
+		057B697422EB539100C53AFD /* SpriteRadar.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = SpriteRadar.js; sourceTree = "<group>"; };
 		057F73B7208E3EE700D7CF57 /* KLCurses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLCurses.swift; sourceTree = "<group>"; };
 		058735D520C2C7F700797EFD /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../Library/Frameworks/KiwiEngine.framework; sourceTree = "<group>"; };
 		05929405226BDA0A00B2B403 /* UTType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTType.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				0512B54A22C8614500C9EF82 /* SpriteAction.js */,
+				057B697422EB539100C53AFD /* SpriteRadar.js */,
 				0512B54C22C8617500C9EF82 /* SpriteStatus.js */,
 				059EFF9F22B924D70086533F /* SpriteCondition.js */,
 				05276B3D22C6E26E00C76F43 /* SpriteOperation.js */,
@@ -542,14 +545,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05B176A92250E4B2001216F2 /* Debug.js in Resources */,
+				05A5938A2245FE0700001E4C /* Math.js in Resources */,
+				0578143422DE18CB00B50279 /* Graphics.js in Resources */,
 				05A593892245FE0500001E4C /* Operation.js in Resources */,
 				0512B54B22C8614500C9EF82 /* SpriteAction.js in Resources */,
 				05276B3E22C6E26F00C76F43 /* SpriteOperation.js in Resources */,
 				0512B54D22C8617500C9EF82 /* SpriteStatus.js in Resources */,
-				05A5938A2245FE0700001E4C /* Math.js in Resources */,
-				05B176A92250E4B2001216F2 /* Debug.js in Resources */,
+				057B697522EB539100C53AFD /* SpriteRadar.js in Resources */,
 				059EFFA022B924D70086533F /* SpriteCondition.js in Resources */,
-				0578143422DE18CB00B50279 /* Graphics.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

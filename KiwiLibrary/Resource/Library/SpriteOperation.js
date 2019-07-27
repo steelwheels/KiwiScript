@@ -96,6 +96,24 @@ class SpriteNodeOperation extends Operation
                 }
 	}
 
+	// radar: SpriteRadar
+	get radar() {
+		let rinfo  = super.parameter("radar") ;
+		let result = new SpriteRadar() ;
+		if(rinfo.isArray){
+			for(var ninfo of rinfo){
+				let name   = ninfo.name ;
+				let teamid = ninfo.teamId ;
+				let pos    = ninfo.position ;
+				result.addNodeInfo(name, teamid, pos) ;
+			}
+		} else {
+			console.error("[Error] SpriteNodeOperation.radar.get: Not array") ;
+		}
+		return result ;
+	}
+
+
 	execute(){
                 let status   = this.status ;
                 let interval = this.interval ;

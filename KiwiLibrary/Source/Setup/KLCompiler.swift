@@ -391,17 +391,17 @@ open class KLCompiler: KECompiler
 			if let scr = readResource(fileName: libname, fileExtension: "js", forClass: KLCompiler.self) {
 				let _ = compile(context: ctxt, statement: scr, console: cons, config: conf)
 			} else {
-				cons.error(string: "Failed to find file: \(libname).js\n")
+				cons.error(string: "Failed to read file: \(libname).js\n")
 			}
 		}
 
-		/* Get built-in scripts: SpriteNodeAction.js, SpriteNodeStatus.js, SpriteNodeCondition */
-		let spritefiles: Array<String> = ["SpriteAction", "SpriteStatus", "SpriteCondition"]
+		/* Get built-in scripts: SpriteNodeAction.js, SpriteNodeStatus.js, SpriteRange.js, SpriteNodeCondition */
+		let spritefiles: Array<String> = ["SpriteAction", "SpriteStatus", "SpriteRadar", "SpriteCondition"]
 		for spritefile in spritefiles {
 			if let scr = readResource(fileName: spritefile, fileExtension: "js", forClass: KLCompiler.self) {
 				let _ = compile(context: ctxt, statement: scr, console: cons, config: conf)
 			} else {
-				cons.error(string: "Failed to find file: Graphics.js\n")
+				cons.error(string: "Failed to read file:\(spritefile)\n")
 			}
 		}
 	}
