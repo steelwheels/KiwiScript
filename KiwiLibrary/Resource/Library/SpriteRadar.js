@@ -26,5 +26,4 @@ class SpriteRadar
 			this.nodes.push(ninfo) ;
 		}
 	}
-
 }

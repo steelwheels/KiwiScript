@@ -100,7 +100,7 @@ class SpriteNodeOperation extends Operation
 	get radar() {
 		let rinfo  = super.parameter("radar") ;
 		let result = new SpriteRadar() ;
-		if(rinfo.isArray){
+		if(isArray(rinfo)){
 			for(var ninfo of rinfo){
 				let name   = ninfo.name ;
 				let teamid = ninfo.teamId ;
@@ -109,6 +109,7 @@ class SpriteNodeOperation extends Operation
 			}
 		} else {
 			console.error("[Error] SpriteNodeOperation.radar.get: Not array") ;
+			console.dump(rinfo) ;
 		}
 		return result ;
 	}
@@ -118,12 +119,13 @@ class SpriteNodeOperation extends Operation
                 let status   = this.status ;
                 let interval = this.interval ;
                 let action   = this.action ;
-                let newact   = this.decideAction(interval, status, action) ;
+		let radar    = this.radar ;
+                let newact   = this.decideAction(interval, status, radar, action) ;
                 this.result  = newact ;
         }
 
-	// decideAction(interval:TimeInterval, status: Status, action: Action)
-        decideAction(interval, status, action){
+	// decideAction(interval:TimeInterval, status: Status, radat: SpriteRadar, action: Action)
+        decideAction(interval, status, radar, action){
                 console.log("[Error] SpriteNodeOperation.decideAction\n") ;
                 return action ;
         }
