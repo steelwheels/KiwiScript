@@ -84,13 +84,13 @@ function checkVariables(place, ...vars)
 {
 	let result = true ;
 	vars.forEach(function(value, index){
-	    if(isUndefined(value)){
-		     console.log("check at " + place + ": Undefined at index " + index + "\n") ;
-		     result = false ;
-	    } else if(isNull(value)) {
-		     console.log("check at " + place + ": Null at index " + index + "\n") ;
-		     result = false ;
-	    }
+		if(isUndefined(value)){
+			console.log("check at " + place + ": Undefined at index " + index + "\n") ;
+			result = false ;
+		} else if(isNull(value)) {
+			console.log("check at " + place + ": Null at index " + index + "\n") ;
+			result = false ;
+		}
 	}) ;
 	return result ;
 }
@@ -101,16 +101,54 @@ Math.randomInt = function(min, max) {
   const range = max - min + 1 ;
   const rval  = Math.floor(Math.random() * range) ;
   return rval + min ;
-}
+} ;
 /* Graphics.js */
 
-// func InsetRect(rect: Rect, dx:Double, dy:Double) -> Rect
-function insetRect(rect, dx, dy) {
-	const newx      = rect.x + dx ;
-	const newy      = rect.y + dy ;
-	const newwidth  = max(rect.width  - 2.0 * dx, 0.0) ;
-	const newheight = max(rect.height - 2.0 * dy, 0.0) ;
-	return Rect(newx, newy, newwidth, newheight) ;
+class Graphics {
+	// func distanceBetween2Points(p0:Point, p1:Point) -> Double
+	static distanceBetween2Points(p0, p1) {
+		const dx = p1.x - p0.x ;
+		const dy = p1.y - p0.y ;
+		return sqrt(dx*dx + dy*dy) ;
+	}
+
+
+	// func InsetRect(rect: Rect, dx:Double, dy:Double) -> Rect
+	static insetRect(rect, dx, dy) {
+		if(checkVariables("insetRect", rect, dx, dy)){
+			const newx      = rect.x + dx ;
+			const newy      = rect.y + dy ;
+			const newwidth  = Math.max(rect.width  - 2.0 * dx, 0.0) ;
+			const newheight = Math.max(rect.height - 2.0 * dy, 0.0) ;
+			return Rect(newx, newy, newwidth, newheight) ;
+		} else {
+			return Rect(0.0, 0.0, 0.0, 0.0) ;
+		}
+	}
+
+	// func centerOfRect(rect: Rect) -> Point
+	static centerOfRect(rect){
+		const x = rect.x + (rect.width  / 2.0) ;
+		const y = rect.y + (rect.height / 2.0) ;
+		return Point(x, y) ;
+	}
+
+	// func pointInFrame(point: Point, frame: Rect) -> Point
+	static pointInFrame(point, frame){
+		let x = point.x ;
+		if(x < frame.x){
+			x = frame.x ;
+		} else if(frame.x + frame.width < x){
+			x = frame.x + frame.width ;
+		}
+		let y = point.y ;
+		if(y < frame.y){
+			y = frame.y ;
+		} else if(frame.y + frame.height < y){
+			y = frame.y + frame.height ;
+		}
+		return Point(x, y) ;
+	}
 }
 /*
  * SpriteAction.js
@@ -171,32 +209,83 @@ class SpriteNodeStatus
 		return obj ;
 	}
 }
+/* SpriteRange.js */
+
+class SpriteNodeInfo
+{
+	// constructor(name: String, teamid: Int, position: Point)
+	constructor(name, teamid, position){
+		this.mName 	= name ;
+		this.mTeamId 	= teamid ;
+		this.mPoisition	= position ;
+	}
+
+	get name()     { return this.mName ; 		}
+	get teamId()   { return this.mTeamId ;		}
+	get position() { return this.mPoisition ;	}
+}
+
+class SpriteRadar
+{
+	constructor(){
+		this.nodes = [] ;
+	}
+
+	addNodeInfo(name, teamid, position){
+		if(checkVariables("SpriteRadar.addNode", name, teamid, position)) {
+			let ninfo = new SpriteNodeInfo(name, teamid, position) ;
+			this.nodes.push(ninfo) ;
+		}
+	}
+}
 /*
  * SpriteCondition.js
  */
 
 class SpriteCondition {
-	constructor(cdamage){
-		checkVariables("SpriteCondition.constructor", cdamage)
-		this.mCollisionDamage = cdamage ;
+	// func constructor(givingCollisionDamage:Double, receivingCollisionDamage:Double)
+	constructor(gcdamage, rcdamage, rrange){
+		checkVariables("SpriteCondition.constructor", gcdamage, rcdamage, rrange) ;
+		this.mGivingCollisionDamage    = gcdamage ;
+		this.mReceivingCollisionDamage = rcdamage ;
+		this.mRaderRange	       = rrange ;
 	}
 
-	// collosionDamage -> Double
-	get collisionDamage() { return this.mCollisionDamage ; }
-	set collisionDamage(newval) {
+	// givingCollosionDamage -> Double
+	get givingCollisionDamage() { return this.mGivingCollisionDamage ; }
+	set givingCollisionDamage(newval) {
 		if(checkVariables(newval)) {
-			this.mCollisionDamage = newval ;
+			this.mGivingCollisionDamage = newval ;
+		}
+	}
+
+	// receivingCollosionDamage -> Double
+	get receivingCollisionDamage() { return this.mReceivingCollisionDamage ; }
+	set receivingCollisionDamage(newval) {
+		if(checkVariables(newval)) {
+			this.mReceivingCollisionDamage = newval ;
+		}
+	}
+
+	// raderRange -> Double
+	get raderRange() { return this.mRaderRange ; }
+	set raderRange(newval) {
+		if(checkVariables(newval)) {
+			this.mRaderRange = newval ;
 		}
 	}
 
 	// toParameter() -> Object
 	toParameter() {
 		let obj = {
-			collisionDamage: this.mCollisionDamage
+			givingCollisionDamage:    this.mGivingCollisionDamage,
+			receivingCollisionDamage: this.mReceivingCollisionDamage,
+			raderRange:		  this.mRaderRange
 		} ;
 		return obj ;
 	}
 }
+
   -> Compiler: OK
 /* Unit test for Type operation */
 * Test: JSValue(bool):
@@ -408,13 +497,13 @@ function checkVariables(place, ...vars)
 {
 	let result = true ;
 	vars.forEach(function(value, index){
-	    if(isUndefined(value)){
-		     console.log("check at " + place + ": Undefined at index " + index + "\n") ;
-		     result = false ;
-	    } else if(isNull(value)) {
-		     console.log("check at " + place + ": Null at index " + index + "\n") ;
-		     result = false ;
-	    }
+		if(isUndefined(value)){
+			console.log("check at " + place + ": Undefined at index " + index + "\n") ;
+			result = false ;
+		} else if(isNull(value)) {
+			console.log("check at " + place + ": Null at index " + index + "\n") ;
+			result = false ;
+		}
 	}) ;
 	return result ;
 }
@@ -425,16 +514,54 @@ Math.randomInt = function(min, max) {
   const range = max - min + 1 ;
   const rval  = Math.floor(Math.random() * range) ;
   return rval + min ;
-}
+} ;
 /* Graphics.js */
 
-// func InsetRect(rect: Rect, dx:Double, dy:Double) -> Rect
-function insetRect(rect, dx, dy) {
-	const newx      = rect.x + dx ;
-	const newy      = rect.y + dy ;
-	const newwidth  = max(rect.width  - 2.0 * dx, 0.0) ;
-	const newheight = max(rect.height - 2.0 * dy, 0.0) ;
-	return Rect(newx, newy, newwidth, newheight) ;
+class Graphics {
+	// func distanceBetween2Points(p0:Point, p1:Point) -> Double
+	static distanceBetween2Points(p0, p1) {
+		const dx = p1.x - p0.x ;
+		const dy = p1.y - p0.y ;
+		return sqrt(dx*dx + dy*dy) ;
+	}
+
+
+	// func InsetRect(rect: Rect, dx:Double, dy:Double) -> Rect
+	static insetRect(rect, dx, dy) {
+		if(checkVariables("insetRect", rect, dx, dy)){
+			const newx      = rect.x + dx ;
+			const newy      = rect.y + dy ;
+			const newwidth  = Math.max(rect.width  - 2.0 * dx, 0.0) ;
+			const newheight = Math.max(rect.height - 2.0 * dy, 0.0) ;
+			return Rect(newx, newy, newwidth, newheight) ;
+		} else {
+			return Rect(0.0, 0.0, 0.0, 0.0) ;
+		}
+	}
+
+	// func centerOfRect(rect: Rect) -> Point
+	static centerOfRect(rect){
+		const x = rect.x + (rect.width  / 2.0) ;
+		const y = rect.y + (rect.height / 2.0) ;
+		return Point(x, y) ;
+	}
+
+	// func pointInFrame(point: Point, frame: Rect) -> Point
+	static pointInFrame(point, frame){
+		let x = point.x ;
+		if(x < frame.x){
+			x = frame.x ;
+		} else if(frame.x + frame.width < x){
+			x = frame.x + frame.width ;
+		}
+		let y = point.y ;
+		if(y < frame.y){
+			y = frame.y ;
+		} else if(frame.y + frame.height < y){
+			y = frame.y + frame.height ;
+		}
+		return Point(x, y) ;
+	}
 }
 /*
  * SpriteAction.js
@@ -495,42 +622,93 @@ class SpriteNodeStatus
 		return obj ;
 	}
 }
+/* SpriteRange.js */
+
+class SpriteNodeInfo
+{
+	// constructor(name: String, teamid: Int, position: Point)
+	constructor(name, teamid, position){
+		this.mName 	= name ;
+		this.mTeamId 	= teamid ;
+		this.mPoisition	= position ;
+	}
+
+	get name()     { return this.mName ; 		}
+	get teamId()   { return this.mTeamId ;		}
+	get position() { return this.mPoisition ;	}
+}
+
+class SpriteRadar
+{
+	constructor(){
+		this.nodes = [] ;
+	}
+
+	addNodeInfo(name, teamid, position){
+		if(checkVariables("SpriteRadar.addNode", name, teamid, position)) {
+			let ninfo = new SpriteNodeInfo(name, teamid, position) ;
+			this.nodes.push(ninfo) ;
+		}
+	}
+}
 /*
  * SpriteCondition.js
  */
 
 class SpriteCondition {
-	constructor(cdamage){
-		checkVariables("SpriteCondition.constructor", cdamage)
-		this.mCollisionDamage = cdamage ;
+	// func constructor(givingCollisionDamage:Double, receivingCollisionDamage:Double)
+	constructor(gcdamage, rcdamage, rrange){
+		checkVariables("SpriteCondition.constructor", gcdamage, rcdamage, rrange) ;
+		this.mGivingCollisionDamage    = gcdamage ;
+		this.mReceivingCollisionDamage = rcdamage ;
+		this.mRaderRange	       = rrange ;
 	}
 
-	// collosionDamage -> Double
-	get collisionDamage() { return this.mCollisionDamage ; }
-	set collisionDamage(newval) {
+	// givingCollosionDamage -> Double
+	get givingCollisionDamage() { return this.mGivingCollisionDamage ; }
+	set givingCollisionDamage(newval) {
 		if(checkVariables(newval)) {
-			this.mCollisionDamage = newval ;
+			this.mGivingCollisionDamage = newval ;
+		}
+	}
+
+	// receivingCollosionDamage -> Double
+	get receivingCollisionDamage() { return this.mReceivingCollisionDamage ; }
+	set receivingCollisionDamage(newval) {
+		if(checkVariables(newval)) {
+			this.mReceivingCollisionDamage = newval ;
+		}
+	}
+
+	// raderRange -> Double
+	get raderRange() { return this.mRaderRange ; }
+	set raderRange(newval) {
+		if(checkVariables(newval)) {
+			this.mRaderRange = newval ;
 		}
 	}
 
 	// toParameter() -> Object
 	toParameter() {
 		let obj = {
-			collisionDamage: this.mCollisionDamage
+			givingCollisionDamage:    this.mGivingCollisionDamage,
+			receivingCollisionDamage: this.mReceivingCollisionDamage,
+			raderRange:		  this.mRaderRange
 		} ;
 		return obj ;
 	}
 }
+
 /*
  * Operation.js : Define Operation class
  */
 
  class CancelException extends Error
  {
- 	constructor (code){
- 		super("CancelException") ;
- 		this.code = code ;
- 	}
+        constructor (code){
+                super("CancelException") ;
+                this.code = code ;
+        }
  }
 
 function _cancel() {
@@ -556,7 +734,7 @@ class Operation
 		try {
 			this.execute() ;
 		} catch(err){
-			return err.code
+			return err.code ;
 		}
 	}
 
@@ -584,7 +762,6 @@ function _exec_operation(op)
 {
 	op.main() ;
 }
-
 /* unit-test-0.js */
 
 class Task extends Operation
@@ -689,13 +866,13 @@ function checkVariables(place, ...vars)
 {
 	let result = true ;
 	vars.forEach(function(value, index){
-	    if(isUndefined(value)){
-		     console.log("check at " + place + ": Undefined at index " + index + "\n") ;
-		     result = false ;
-	    } else if(isNull(value)) {
-		     console.log("check at " + place + ": Null at index " + index + "\n") ;
-		     result = false ;
-	    }
+		if(isUndefined(value)){
+			console.log("check at " + place + ": Undefined at index " + index + "\n") ;
+			result = false ;
+		} else if(isNull(value)) {
+			console.log("check at " + place + ": Null at index " + index + "\n") ;
+			result = false ;
+		}
 	}) ;
 	return result ;
 }
@@ -706,16 +883,54 @@ Math.randomInt = function(min, max) {
   const range = max - min + 1 ;
   const rval  = Math.floor(Math.random() * range) ;
   return rval + min ;
-}
+} ;
 /* Graphics.js */
 
-// func InsetRect(rect: Rect, dx:Double, dy:Double) -> Rect
-function insetRect(rect, dx, dy) {
-	const newx      = rect.x + dx ;
-	const newy      = rect.y + dy ;
-	const newwidth  = max(rect.width  - 2.0 * dx, 0.0) ;
-	const newheight = max(rect.height - 2.0 * dy, 0.0) ;
-	return Rect(newx, newy, newwidth, newheight) ;
+class Graphics {
+	// func distanceBetween2Points(p0:Point, p1:Point) -> Double
+	static distanceBetween2Points(p0, p1) {
+		const dx = p1.x - p0.x ;
+		const dy = p1.y - p0.y ;
+		return sqrt(dx*dx + dy*dy) ;
+	}
+
+
+	// func InsetRect(rect: Rect, dx:Double, dy:Double) -> Rect
+	static insetRect(rect, dx, dy) {
+		if(checkVariables("insetRect", rect, dx, dy)){
+			const newx      = rect.x + dx ;
+			const newy      = rect.y + dy ;
+			const newwidth  = Math.max(rect.width  - 2.0 * dx, 0.0) ;
+			const newheight = Math.max(rect.height - 2.0 * dy, 0.0) ;
+			return Rect(newx, newy, newwidth, newheight) ;
+		} else {
+			return Rect(0.0, 0.0, 0.0, 0.0) ;
+		}
+	}
+
+	// func centerOfRect(rect: Rect) -> Point
+	static centerOfRect(rect){
+		const x = rect.x + (rect.width  / 2.0) ;
+		const y = rect.y + (rect.height / 2.0) ;
+		return Point(x, y) ;
+	}
+
+	// func pointInFrame(point: Point, frame: Rect) -> Point
+	static pointInFrame(point, frame){
+		let x = point.x ;
+		if(x < frame.x){
+			x = frame.x ;
+		} else if(frame.x + frame.width < x){
+			x = frame.x + frame.width ;
+		}
+		let y = point.y ;
+		if(y < frame.y){
+			y = frame.y ;
+		} else if(frame.y + frame.height < y){
+			y = frame.y + frame.height ;
+		}
+		return Point(x, y) ;
+	}
 }
 /*
  * SpriteAction.js
@@ -776,32 +991,83 @@ class SpriteNodeStatus
 		return obj ;
 	}
 }
+/* SpriteRange.js */
+
+class SpriteNodeInfo
+{
+	// constructor(name: String, teamid: Int, position: Point)
+	constructor(name, teamid, position){
+		this.mName 	= name ;
+		this.mTeamId 	= teamid ;
+		this.mPoisition	= position ;
+	}
+
+	get name()     { return this.mName ; 		}
+	get teamId()   { return this.mTeamId ;		}
+	get position() { return this.mPoisition ;	}
+}
+
+class SpriteRadar
+{
+	constructor(){
+		this.nodes = [] ;
+	}
+
+	addNodeInfo(name, teamid, position){
+		if(checkVariables("SpriteRadar.addNode", name, teamid, position)) {
+			let ninfo = new SpriteNodeInfo(name, teamid, position) ;
+			this.nodes.push(ninfo) ;
+		}
+	}
+}
 /*
  * SpriteCondition.js
  */
 
 class SpriteCondition {
-	constructor(cdamage){
-		checkVariables("SpriteCondition.constructor", cdamage)
-		this.mCollisionDamage = cdamage ;
+	// func constructor(givingCollisionDamage:Double, receivingCollisionDamage:Double)
+	constructor(gcdamage, rcdamage, rrange){
+		checkVariables("SpriteCondition.constructor", gcdamage, rcdamage, rrange) ;
+		this.mGivingCollisionDamage    = gcdamage ;
+		this.mReceivingCollisionDamage = rcdamage ;
+		this.mRaderRange	       = rrange ;
 	}
 
-	// collosionDamage -> Double
-	get collisionDamage() { return this.mCollisionDamage ; }
-	set collisionDamage(newval) {
+	// givingCollosionDamage -> Double
+	get givingCollisionDamage() { return this.mGivingCollisionDamage ; }
+	set givingCollisionDamage(newval) {
 		if(checkVariables(newval)) {
-			this.mCollisionDamage = newval ;
+			this.mGivingCollisionDamage = newval ;
+		}
+	}
+
+	// receivingCollosionDamage -> Double
+	get receivingCollisionDamage() { return this.mReceivingCollisionDamage ; }
+	set receivingCollisionDamage(newval) {
+		if(checkVariables(newval)) {
+			this.mReceivingCollisionDamage = newval ;
+		}
+	}
+
+	// raderRange -> Double
+	get raderRange() { return this.mRaderRange ; }
+	set raderRange(newval) {
+		if(checkVariables(newval)) {
+			this.mRaderRange = newval ;
 		}
 	}
 
 	// toParameter() -> Object
 	toParameter() {
 		let obj = {
-			collisionDamage: this.mCollisionDamage
+			givingCollisionDamage:    this.mGivingCollisionDamage,
+			receivingCollisionDamage: this.mReceivingCollisionDamage,
+			raderRange:		  this.mRaderRange
 		} ;
 		return obj ;
 	}
 }
+
 MainThread: Compile OK
 'use strict' ;
 /* Define Enum: Alignment */
@@ -889,13 +1155,13 @@ function checkVariables(place, ...vars)
 {
 	let result = true ;
 	vars.forEach(function(value, index){
-	    if(isUndefined(value)){
-		     console.log("check at " + place + ": Undefined at index " + index + "\n") ;
-		     result = false ;
-	    } else if(isNull(value)) {
-		     console.log("check at " + place + ": Null at index " + index + "\n") ;
-		     result = false ;
-	    }
+		if(isUndefined(value)){
+			console.log("check at " + place + ": Undefined at index " + index + "\n") ;
+			result = false ;
+		} else if(isNull(value)) {
+			console.log("check at " + place + ": Null at index " + index + "\n") ;
+			result = false ;
+		}
 	}) ;
 	return result ;
 }
@@ -906,16 +1172,54 @@ Math.randomInt = function(min, max) {
   const range = max - min + 1 ;
   const rval  = Math.floor(Math.random() * range) ;
   return rval + min ;
-}
+} ;
 /* Graphics.js */
 
-// func InsetRect(rect: Rect, dx:Double, dy:Double) -> Rect
-function insetRect(rect, dx, dy) {
-	const newx      = rect.x + dx ;
-	const newy      = rect.y + dy ;
-	const newwidth  = max(rect.width  - 2.0 * dx, 0.0) ;
-	const newheight = max(rect.height - 2.0 * dy, 0.0) ;
-	return Rect(newx, newy, newwidth, newheight) ;
+class Graphics {
+	// func distanceBetween2Points(p0:Point, p1:Point) -> Double
+	static distanceBetween2Points(p0, p1) {
+		const dx = p1.x - p0.x ;
+		const dy = p1.y - p0.y ;
+		return sqrt(dx*dx + dy*dy) ;
+	}
+
+
+	// func InsetRect(rect: Rect, dx:Double, dy:Double) -> Rect
+	static insetRect(rect, dx, dy) {
+		if(checkVariables("insetRect", rect, dx, dy)){
+			const newx      = rect.x + dx ;
+			const newy      = rect.y + dy ;
+			const newwidth  = Math.max(rect.width  - 2.0 * dx, 0.0) ;
+			const newheight = Math.max(rect.height - 2.0 * dy, 0.0) ;
+			return Rect(newx, newy, newwidth, newheight) ;
+		} else {
+			return Rect(0.0, 0.0, 0.0, 0.0) ;
+		}
+	}
+
+	// func centerOfRect(rect: Rect) -> Point
+	static centerOfRect(rect){
+		const x = rect.x + (rect.width  / 2.0) ;
+		const y = rect.y + (rect.height / 2.0) ;
+		return Point(x, y) ;
+	}
+
+	// func pointInFrame(point: Point, frame: Rect) -> Point
+	static pointInFrame(point, frame){
+		let x = point.x ;
+		if(x < frame.x){
+			x = frame.x ;
+		} else if(frame.x + frame.width < x){
+			x = frame.x + frame.width ;
+		}
+		let y = point.y ;
+		if(y < frame.y){
+			y = frame.y ;
+		} else if(frame.y + frame.height < y){
+			y = frame.y + frame.height ;
+		}
+		return Point(x, y) ;
+	}
 }
 /*
  * SpriteAction.js
@@ -976,42 +1280,93 @@ class SpriteNodeStatus
 		return obj ;
 	}
 }
+/* SpriteRange.js */
+
+class SpriteNodeInfo
+{
+	// constructor(name: String, teamid: Int, position: Point)
+	constructor(name, teamid, position){
+		this.mName 	= name ;
+		this.mTeamId 	= teamid ;
+		this.mPoisition	= position ;
+	}
+
+	get name()     { return this.mName ; 		}
+	get teamId()   { return this.mTeamId ;		}
+	get position() { return this.mPoisition ;	}
+}
+
+class SpriteRadar
+{
+	constructor(){
+		this.nodes = [] ;
+	}
+
+	addNodeInfo(name, teamid, position){
+		if(checkVariables("SpriteRadar.addNode", name, teamid, position)) {
+			let ninfo = new SpriteNodeInfo(name, teamid, position) ;
+			this.nodes.push(ninfo) ;
+		}
+	}
+}
 /*
  * SpriteCondition.js
  */
 
 class SpriteCondition {
-	constructor(cdamage){
-		checkVariables("SpriteCondition.constructor", cdamage)
-		this.mCollisionDamage = cdamage ;
+	// func constructor(givingCollisionDamage:Double, receivingCollisionDamage:Double)
+	constructor(gcdamage, rcdamage, rrange){
+		checkVariables("SpriteCondition.constructor", gcdamage, rcdamage, rrange) ;
+		this.mGivingCollisionDamage    = gcdamage ;
+		this.mReceivingCollisionDamage = rcdamage ;
+		this.mRaderRange	       = rrange ;
 	}
 
-	// collosionDamage -> Double
-	get collisionDamage() { return this.mCollisionDamage ; }
-	set collisionDamage(newval) {
+	// givingCollosionDamage -> Double
+	get givingCollisionDamage() { return this.mGivingCollisionDamage ; }
+	set givingCollisionDamage(newval) {
 		if(checkVariables(newval)) {
-			this.mCollisionDamage = newval ;
+			this.mGivingCollisionDamage = newval ;
+		}
+	}
+
+	// receivingCollosionDamage -> Double
+	get receivingCollisionDamage() { return this.mReceivingCollisionDamage ; }
+	set receivingCollisionDamage(newval) {
+		if(checkVariables(newval)) {
+			this.mReceivingCollisionDamage = newval ;
+		}
+	}
+
+	// raderRange -> Double
+	get raderRange() { return this.mRaderRange ; }
+	set raderRange(newval) {
+		if(checkVariables(newval)) {
+			this.mRaderRange = newval ;
 		}
 	}
 
 	// toParameter() -> Object
 	toParameter() {
 		let obj = {
-			collisionDamage: this.mCollisionDamage
+			givingCollisionDamage:    this.mGivingCollisionDamage,
+			receivingCollisionDamage: this.mReceivingCollisionDamage,
+			raderRange:		  this.mRaderRange
 		} ;
 		return obj ;
 	}
 }
+
 /*
  * Operation.js : Define Operation class
  */
 
  class CancelException extends Error
  {
- 	constructor (code){
- 		super("CancelException") ;
- 		this.code = code ;
- 	}
+        constructor (code){
+                super("CancelException") ;
+                this.code = code ;
+        }
  }
 
 function _cancel() {
@@ -1037,7 +1392,7 @@ class Operation
 		try {
 			this.execute() ;
 		} catch(err){
-			return err.code
+			return err.code ;
 		}
 	}
 
@@ -1065,7 +1420,6 @@ function _exec_operation(op)
 {
 	op.main() ;
 }
-
 /* unit-test-1.js */
 
 class Machine extends Operation

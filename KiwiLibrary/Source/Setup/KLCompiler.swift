@@ -394,16 +394,6 @@ open class KLCompiler: KECompiler
 				cons.error(string: "Failed to read file: \(libname).js\n")
 			}
 		}
-
-		/* Get built-in scripts: SpriteNodeAction.js, SpriteNodeStatus.js, SpriteRange.js, SpriteNodeCondition */
-		let spritefiles: Array<String> = ["SpriteAction", "SpriteStatus", "SpriteRadar", "SpriteCondition"]
-		for spritefile in spritefiles {
-			if let scr = readResource(fileName: spritefile, fileExtension: "js", forClass: KLCompiler.self) {
-				let _ = compile(context: ctxt, statement: scr, console: cons, config: conf)
-			} else {
-				cons.error(string: "Failed to read file:\(spritefile)\n")
-			}
-		}
 	}
 
 	private func defineOperationObjects(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
@@ -414,14 +404,8 @@ open class KLCompiler: KECompiler
 			let opconfig  = KEConfig(kind: .Terminal, doStrict: conf.doStrict, doVerbose: conf.doVerbose)
 			let op        = KLOperationContext(ownerContext: ctxt, console: opconsole, config: opconfig)
 
-			/* Built-in scripts */
-			var urls: Array<URL> = []
-			if let spriteurl = CNFilePath.URLForResourceFile(fileName: "SpriteOperation", fileExtension: "js", forClass: KLCompiler.self) {
-				urls.append(spriteurl)
-			} else {
-				cons.error(string: "Failed to load SpriteOperation.js\n")
-			}
 			/* User scripts */
+			var urls: Array<URL> = []
 			if let users = KLCompiler.valueToURLs(URLvalues: urlsval, console: opconsole) {
 				urls.append(contentsOf: users)
 			}
@@ -438,8 +422,7 @@ open class KLCompiler: KECompiler
 		/* OperaionQueue */
 		let queuefunc: @convention(block) () -> JSValue = {
 			() -> JSValue in
-			let curcons = KLCompiler.currentConsole(context: ctxt, console: cons)
-			let queue   = KLOperationQueue(context: ctxt, console: curcons)
+			let queue   = KLOperationQueue(context: ctxt, console: ctxt.console)
 			return JSValue(object: queue, in: ctxt)
 		}
 		ctxt.set(name: "OperationQueue", function: queuefunc)
@@ -451,10 +434,10 @@ open class KLCompiler: KECompiler
 			if let consobj = consval.toObject() as? KLConsole {
 				opconsole = consobj.console
 			} else {
-				opconsole = KLCompiler.currentConsole(context: ctxt, console: logcons)
+				opconsole = ctxt.console
 			}
 		} else {
-			opconsole = KLCompiler.currentConsole(context: ctxt, console: logcons)
+			opconsole = ctxt.console
 		}
 		return opconsole
 	}
@@ -491,18 +474,6 @@ open class KLCompiler: KECompiler
 			}
 		}
 		return result
-	}
-
-	private class func currentConsole(context ctxt: KEContext, console logcons: CNConsole) -> CNConsole {
-		if let consval = ctxt.getValue(name: "console") {
-			if consval.isObject {
-				if let consobj = consval.toObject() as? KLConsole {
-					return consobj.console
-				}
-			}
-		}
-		logcons.error(string: "Failed to find \"console\" object. Use default console\n")
-		return CNDefaultConsole()
 	}
 }
 
