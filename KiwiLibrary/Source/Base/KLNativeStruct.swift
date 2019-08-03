@@ -13,7 +13,7 @@ extension CNNativeStruct
 {
 	public func JSClassDefinition() -> String {
 		var stmts: Array<String> = []
-		stmts.append("class \(self.name) {\n")
+		stmts.append("class \(self.structName) {\n")
 
 		/* Define constructor */
 		let members = self.members
