@@ -51,10 +51,14 @@ public func main()
 	filecons.print(string: "/* Unit test for Operation2 */\n")
 	let result2 = UTOperation2(console: filecons, config: config)
 
-	if result0 && result1 && result2 && result3 && result4 {
+	/* NativeValue */
+	filecons.print(string: "/* Unit test for native value */\n")
+	let result5 = UTNativeValue(context: context, console: filecons)
+
+	if result0 && result1 && result2 && result3 && result4 && result5 {
 		filecons.print(string: "Summary: OK\n")
 	} else {
-		filecons.print(string: "Summary: NG (\(result0) \(result1) \(result2) \(result3))\n")
+		filecons.print(string: "Summary: NG (\(result0) \(result1) \(result2) \(result3) \(result4) \(result5))\n")
 	}
 }
 

@@ -28,7 +28,6 @@ summary = test(funcName: "testError", result: testError(console: console)) && su
 summary = test(funcName: "testCompiler", result: testCompiler(console: console)) && summary
 summary = test(funcName: "testExec", result: testExec(console: console)) && summary
 summary = test(funcName: "testValue", result: testValue(console: console, config: config)) && summary
-summary = test(funcName: "testStruct", result: testStruct(console: console, config: config)) && summary
 
 if summary {
 	console.print(string: "SUMMARY: OK\n")

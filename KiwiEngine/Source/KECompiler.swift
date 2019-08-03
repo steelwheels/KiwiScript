@@ -128,10 +128,6 @@ open class KECompiler
 		let _ = compile(context: ctxt, statement: enumstmt, console: cons, config: conf)
 	}
 
-	public func compile(context ctxt: KEContext, structType stype: KEStruct, console cons: CNConsole, config conf: KEConfig){
-		let _ = compile(context: ctxt, statement: stype.JSClassDefinition(), console: cons, config: conf)
-	}
-
 	public func compile(context ctxt: KEContext, destination dst: String, dictionary dict: Dictionary<String, String>, console cons: CNConsole, config conf: KEConfig){
 		var stmt  = "\(dst) = {\n"
 		var is1st = true

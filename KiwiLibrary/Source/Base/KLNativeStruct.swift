@@ -1,6 +1,6 @@
 /**
- * @file	KEStruct.swift
- * @brief	Define KEStruct class
+ * @file	KLNativeStruct.swift
+ * @brief	Extend CNNativeStruct class
  * @par Copyright
  *   Copyright (C) 2019 Steel Wheels Project
  */
@@ -9,38 +9,24 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-public class KEStruct
+extension CNNativeStruct
 {
-	private var mStructName:	String
-	private var mMembers:		Dictionary<String, CNNativeValue>
-
-	public init(name nm: String){
-		mStructName = nm
-		mMembers    = [:]
-	}
-
-	public func member(name nm: String) -> CNNativeValue? {
-		return mMembers[nm]
-	}
-
-	public func setMember(name nm: String, value val: CNNativeValue){
-		mMembers[nm] = val
-	}
-
 	public func JSClassDefinition() -> String {
 		var stmts: Array<String> = []
-		stmts.append("class \(mStructName) {\n")
+		stmts.append("class \(self.name) {\n")
 
 		/* Define constructor */
+		let members = self.members
+
 		stmts.append("  constructor(object) {\n")
-		for ident in mMembers.keys.sorted() {
+		for ident in members.keys.sorted() {
 			let stmt = "    this._\(ident) = object.\(ident) ;\n"
 			stmts.append(stmt)
 		}
 		stmts.append("  }\n")
 
 		/* Define getter */
-		for ident in mMembers.keys.sorted() {
+		for ident in members.keys.sorted() {
 			let getter = "  get \(ident)() { return this._\(ident) ; }\n"
 			let setter = "  set \(ident)(newval) { this._\(ident) = newval ; }\n"
 			stmts.append(getter)
@@ -50,7 +36,7 @@ public class KEStruct
 		/* Defint to object method */
 		stmts.append("  toObject(){\n")
 		stmts.append("    let object = {\n")
-		for ident in mMembers.keys.sorted() {
+		for ident in members.keys.sorted() {
 			stmts.append("    \(ident): this._\(ident),\n")
 		}
 		stmts.append("    } ;\n")
@@ -63,4 +49,5 @@ public class KEStruct
 		return stmts.joined(separator: "")
 	}
 }
+
 

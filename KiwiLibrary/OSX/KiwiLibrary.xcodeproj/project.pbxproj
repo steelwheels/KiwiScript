@@ -23,6 +23,8 @@
 		058735D620C2C7F700797EFD /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 058735D520C2C7F700797EFD /* KiwiEngine.framework */; };
 		058735D820C2C82100797EFD /* KiwiEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058735D520C2C7F700797EFD /* KiwiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		058735D920C2C82700797EFD /* KiwiLibrary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B12283203F0734009DDBEF /* KiwiLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		058EEBBB22F4FB3E0095012B /* KLNativeStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058EEBBA22F4FB3E0095012B /* KLNativeStruct.swift */; };
+		058EEBBF22F5066B0095012B /* UTNativeValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058EEBBE22F5066B0095012B /* UTNativeValue.swift */; };
 		05929406226BDA0A00B2B403 /* UTType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05929405226BDA0A00B2B403 /* UTType.swift */; };
 		0596C2CF22AD0675002DB33C /* unit-test-0.js in Resources */ = {isa = PBXBuildFile; fileRef = 055957F122ACFFDD00DCD0E7 /* unit-test-0.js */; };
 		0596C2D022AD0677002DB33C /* unit-test-1.js in Resources */ = {isa = PBXBuildFile; fileRef = 055957F322AD015B00DCD0E7 /* unit-test-1.js */; };
@@ -128,6 +130,8 @@
 		0578143322DE18CB00B50279 /* Graphics.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Graphics.js; sourceTree = "<group>"; };
 		057F73B7208E3EE700D7CF57 /* KLCurses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLCurses.swift; sourceTree = "<group>"; };
 		058735D520C2C7F700797EFD /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../Library/Frameworks/KiwiEngine.framework; sourceTree = "<group>"; };
+		058EEBBA22F4FB3E0095012B /* KLNativeStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLNativeStruct.swift; sourceTree = "<group>"; };
+		058EEBBE22F5066B0095012B /* UTNativeValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTNativeValue.swift; sourceTree = "<group>"; };
 		05929405226BDA0A00B2B403 /* UTType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTType.swift; sourceTree = "<group>"; };
 		05AD1F4722579DC400B36C34 /* KLScriptValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLScriptValue.swift; sourceTree = "<group>"; };
 		05AEED6A22F1DAA0006A8A02 /* KLContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLContext.swift; sourceTree = "<group>"; };
@@ -206,6 +210,7 @@
 				0524961A21DEEA98009CB3E3 /* UTDatabase.swift */,
 				05D5128722315C0E00AD95EE /* UTOperation.swift */,
 				0546C40E2253B0D2001686B8 /* UTOperation2.swift */,
+				058EEBBE22F5066B0095012B /* UTNativeValue.swift */,
 			);
 			path = UnitTest;
 			sourceTree = "<group>";
@@ -253,6 +258,7 @@
 				05068610225659DA00641F95 /* KLType.swift */,
 				05AD1F4722579DC400B36C34 /* KLScriptValue.swift */,
 				0526A61D2258A3DA003F7399 /* KLNativeValue.swift */,
+				058EEBBA22F4FB3E0095012B /* KLNativeStruct.swift */,
 				0506861422565BF600641F95 /* KLValueConverter.swift */,
 				05AEED6A22F1DAA0006A8A02 /* KLContext.swift */,
 			);
@@ -549,6 +555,7 @@
 			files = (
 				05341CC220BDCB73001E2173 /* main.swift in Sources */,
 				05929406226BDA0A00B2B403 /* UTType.swift in Sources */,
+				058EEBBF22F5066B0095012B /* UTNativeValue.swift in Sources */,
 				05E166A622DAB85A00AC6C4E /* UTMath.swift in Sources */,
 				0546C40F2253B0D2001686B8 /* UTOperation2.swift in Sources */,
 				05D5128822315C0E00AD95EE /* UTOperation.swift in Sources */,
@@ -567,6 +574,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				058EEBBB22F4FB3E0095012B /* KLNativeStruct.swift in Sources */,
 				05C49214204ABF3800C5D910 /* KLShell.swift in Sources */,
 				0506861522565BF600641F95 /* KLValueConverter.swift in Sources */,
 				05F02032203F095000B430F5 /* KLProcess.swift in Sources */,

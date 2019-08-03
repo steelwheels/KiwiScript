@@ -20,8 +20,6 @@
 		058735CA20C29B7700797EFD /* KiwiEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 054536C01B78021500FE978C /* KiwiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		058735D220C2BF9200797EFD /* UTCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058735D120C2BF9200797EFD /* UTCompiler.swift */; };
 		058B53261BA41A6C009522DF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058B53251BA41A6C009522DF /* main.swift */; };
-		05A6DABC22F0755400FB6415 /* KEStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A6DABB22F0755400FB6415 /* KEStruct.swift */; };
-		05A6DABE22F075C400FB6415 /* UTStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A6DABD22F075C400FB6415 /* UTStruct.swift */; };
 		05A8144A22EF2B8F0004EB77 /* KEEnumType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A8144922EF2B8F0004EB77 /* KEEnumType.swift */; };
 		05B3D56A21A0F6AC00D54D02 /* KEProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B3D56921A0F6AC00D54D02 /* KEProcess.swift */; };
 		05BEA50B2189F80A00F9A4C6 /* KEEnumTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BEA50A2189F80A00F9A4C6 /* KEEnumTable.swift */; };
@@ -108,8 +106,6 @@
 		058735D120C2BF9200797EFD /* UTCompiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTCompiler.swift; sourceTree = "<group>"; };
 		058B53231BA41A6C009522DF /* UnitTestExec */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTestExec; sourceTree = BUILT_PRODUCTS_DIR; };
 		058B53251BA41A6C009522DF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		05A6DABB22F0755400FB6415 /* KEStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEStruct.swift; sourceTree = "<group>"; };
-		05A6DABD22F075C400FB6415 /* UTStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTStruct.swift; sourceTree = "<group>"; };
 		05A8144922EF2B8F0004EB77 /* KEEnumType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEEnumType.swift; sourceTree = "<group>"; };
 		05B3D56921A0F6AC00D54D02 /* KEProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEProcess.swift; sourceTree = "<group>"; };
 		05B40EED1BE5A4AE00AA8525 /* check.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = check.mk; sourceTree = SOURCE_ROOT; };
@@ -197,7 +193,6 @@
 				05B3D56921A0F6AC00D54D02 /* KEProcess.swift */,
 				05A8144922EF2B8F0004EB77 /* KEEnumType.swift */,
 				05BEA50A2189F80A00F9A4C6 /* KEEnumTable.swift */,
-				05A6DABB22F0755400FB6415 /* KEStruct.swift */,
 				05E0242621874C4900AD4728 /* KEConfig.swift */,
 				05DFA828206865800032EC5B /* KECompiler.swift */,
 				05CFAB952034875F001623BC /* KEException.swift */,
@@ -234,7 +229,6 @@
 				058735D120C2BF9200797EFD /* UTCompiler.swift */,
 				052B0F781BE8A33400E3BFEE /* UTExec.swift */,
 				056EF13221B29105001EE449 /* UTValue.swift */,
-				05A6DABD22F075C400FB6415 /* UTStruct.swift */,
 			);
 			path = UnitTestExec;
 			sourceTree = "<group>";
@@ -419,7 +413,6 @@
 			files = (
 				05DFA829206865800032EC5B /* KECompiler.swift in Sources */,
 				05BEA50B2189F80A00F9A4C6 /* KEEnumTable.swift in Sources */,
-				05A6DABC22F0755400FB6415 /* KEStruct.swift in Sources */,
 				05B3D56A21A0F6AC00D54D02 /* KEProcess.swift in Sources */,
 				057F881F1B78031B0029AB4F /* KEContext.swift in Sources */,
 				05E8C6282188BCAE008CAAF8 /* KEObject.swift in Sources */,
@@ -435,7 +428,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				054637F21BB05FE400DEE12F /* UTError.swift in Sources */,
-				05A6DABE22F075C400FB6415 /* UTStruct.swift in Sources */,
 				052B0F7A1BE8A3A400E3BFEE /* UTExec.swift in Sources */,
 				058B53261BA41A6C009522DF /* main.swift in Sources */,
 				056EF13321B29105001EE449 /* UTValue.swift in Sources */,
