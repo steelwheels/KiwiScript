@@ -149,7 +149,7 @@ import Foundation
 		log(type: .Error, string: "Failed to set console", file: #file, line: #line, function: #function)
 	}
 
-	public func compile(userScripts scripts: Array<URL>) -> Bool {
+	public func compile(userStructs structs: Array<CNNativeStruct>, userScripts scripts: Array<URL>) -> Bool {
 		guard let cons = console else {
 			NSLog("No console")
 			return false
@@ -157,7 +157,7 @@ import Foundation
 
 		let compiler = KLOperationCompiler()
 		let result: Bool
-		if compiler.compile(context: mSelfContext, operation: self, userScripts: scripts, console: cons, config: mConfig) {
+		if compiler.compile(context: mSelfContext, operation: self, userStructs: structs, userScripts: scripts, console: cons, config: mConfig) {
 			result = getGlobalVariables(context: mSelfContext)
 		} else {
 			result = false
@@ -207,12 +207,19 @@ import Foundation
 
 private class KLOperationCompiler: KLCompiler
 {
-	public func compile(context ctxt: KEContext, operation op: KLOperationContext, userScripts scripts:  Array<URL>, console cons: CNConsole, config conf: KEConfig) -> Bool {
+	public func compile(context ctxt: KEContext, operation op: KLOperationContext, userStructs structs: Array<CNNativeStruct>, userScripts scripts:  Array<URL>, console cons: CNConsole, config conf: KEConfig) -> Bool {
 		if super.compile(context: ctxt, console: cons, config: conf) {
 			compileOperationClass(context: ctxt, operation: op, console: cons, config: conf)
-			let res0 = compileUserScripts(context: ctxt, userScripts: scripts, console: cons, config: conf)
+
+			/* Compile user defined library */
+			for script in KLOperationContext.libraryScripts {
+				let _ = super.compile(context: ctxt, statement: script, console: cons, config: conf)
+			}
+
+			let res0 = compileUserStructs(context: ctxt, userStructs: structs, console: cons, config: conf)
+			let res1 = compileUserScripts(context: ctxt, userScripts: scripts, console: cons, config: conf)
 			defineBuiltinFunction(context: ctxt, operation: op)
-			return res0 && (ctxt.errorCount == 0)
+			return res0 && res1 && (ctxt.errorCount == 0)
 		} else {
 			return false
 		}
@@ -227,12 +234,15 @@ private class KLOperationCompiler: KLCompiler
 		}
 	}
 
-	private func compileUserScripts(context ctxt: KEContext, userScripts scripts: Array<URL>, console cons: CNConsole, config conf: KEConfig) -> Bool {
-		/* Compile user defined library */
-		for script in KLOperationContext.libraryScripts {
-			let _ = super.compile(context: ctxt, statement: script, console: cons, config: conf)
+	private func compileUserStructs(context ctxt: KEContext, userStructs structs: Array<CNNativeStruct>, console cons: CNConsole, config conf: KEConfig) -> Bool {
+		/* Compile structs */
+		for strct in structs {
+			let _ = compile(context: ctxt, statement: strct.JSClassDefinition(), console: cons, config: conf)
 		}
+		return (ctxt.errorCount == 0)
+	}
 
+	private func compileUserScripts(context ctxt: KEContext, userScripts scripts: Array<URL>, console cons: CNConsole, config conf: KEConfig) -> Bool {
 		/* Compile program */
 		let scripts = URLsToScripts(URLs: scripts, console: cons)
 		if scripts.count > 0 {
@@ -242,7 +252,6 @@ private class KLOperationCompiler: KLCompiler
 		} else {
 			cons.error(string: "Failed to compile: No user script\n")
 		}
-
 		return (ctxt.errorCount == 0)
 	}
 

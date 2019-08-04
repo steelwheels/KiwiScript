@@ -68,10 +68,14 @@ public func UTOperation(context ctxt: KEContext, console cons: CNConsole, config
 
 private func allocateOperation(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) -> KLOperationContext?
 {
+	let strct = CNNativeStruct(name: "UTStruct")
+	strct.setMember(name: "a", value: CNNativeValue.numberValue(NSNumber(floatLiteral: 0.12)))
+	strct.setMember(name: "b", value: CNNativeValue.stringValue("Hello"))
+
 	let op     = KLOperationContext(ownerContext: ctxt, console: cons, config: conf)
 	let (urlp, errorp) = CNFilePath.URLForBundleFile(bundleName: "UnitTest", fileName: "unit-test-0", ofType: "js")
 	if let url = urlp {
-		if op.compile(userScripts: [url]) {
+		if op.compile(userStructs:[strct], userScripts: [url]) {
 			return op
 		} else {
 			cons.error(string: "Failed to compile operation\n")

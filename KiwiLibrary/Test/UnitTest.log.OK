@@ -490,6 +490,23 @@ function _exec_operation(op)
 {
 	op.main() ;
 }
+class UTStruct {
+  constructor(object) {
+    this._a = object.a ;
+    this._b = object.b ;
+  }
+  get a() { return this._a ; }
+  set a(newval) { this._a = newval ; }
+  get b() { return this._b ; }
+  set b(newval) { this._b = newval ; }
+  toObject(){
+    let object = {
+    a: this._a,
+    b: this._b,
+    } ;
+    return object ;
+  }
+}
 /* unit-test-0.js */
 
 class Task extends Operation

@@ -410,7 +410,7 @@ open class KLCompiler: KECompiler
 				urls.append(contentsOf: users)
 			}
 			/* Compile */
-			if op.compile(userScripts: urls) {
+			if op.compile(userStructs: [], userScripts: urls) {
 				return JSValue(object: op, in: ctxt)
 			} else {
 				cons.error(string: "Failed to allocate Operation object\n")

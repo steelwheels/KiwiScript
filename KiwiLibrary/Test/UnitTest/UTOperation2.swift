@@ -29,7 +29,7 @@ public func UTOperation2(console cons: CNConsole, config conf: KEConfig) -> Bool
 
 	let (urlp, errorp) = CNFilePath.URLForBundleFile(bundleName: "UnitTest", fileName: "unit-test-1", ofType: "js")
 	if let url = urlp {
-		if op.compile(userScripts: [url]) {
+		if op.compile(userStructs:[], userScripts: [url]) {
 			cons.print(string: "MainThread: [Compile] OK\n")
 		} else {
 			cons.error(string: "MainThread: [Error] compile failed\n")

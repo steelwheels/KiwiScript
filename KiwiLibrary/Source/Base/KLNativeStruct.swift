@@ -34,7 +34,7 @@ extension CNNativeStruct
 		}
 
 		/* Defint to object method */
-		stmts.append("  toObject(){\n")
+		stmts.append("  toParameter(){\n")
 		stmts.append("    let object = {\n")
 		for ident in members.keys.sorted() {
 			stmts.append("    \(ident): this._\(ident),\n")
