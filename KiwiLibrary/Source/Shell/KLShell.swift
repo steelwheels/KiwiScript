@@ -36,7 +36,7 @@ import Foundation
 		let outpipe	= valueToPipe(value: output, for: "output")
 		let errpipe	= valueToPipe(value: error,  for: "error")
 		if let cmdstr = cmd.toString() {
-			let shell = CNShell.execute(command: cmdstr, input: inpipe, output: outpipe, error: errpipe, terminateHandler: nil)
+			let shell = CNShellUtil.execute(command: cmdstr, input: inpipe, output: outpipe, error: errpipe, terminateHandler: nil)
 			let process = KLProcess(process: shell, context: mContext)
 			return JSValue(object: process, in: mContext)
 		} else {
@@ -58,7 +58,7 @@ import Foundation
 
 	public func executeOnConsole(_ cmd: JSValue, _ console: JSValue) -> JSValue {
 		if let cmdstr = cmd.toString(), let cons = valueToConsole(value: console) {
-			let shell   = CNShell.execute(command: cmdstr, console: cons, terminateHandler: nil)
+			let shell   = CNShellUtil.execute(command: cmdstr, console: cons, terminateHandler: nil)
 			let process = KLProcess(process: shell, context: mContext)
 			return JSValue(object: process, in: mContext)
 		} else {
@@ -80,7 +80,7 @@ import Foundation
 	public func searchCommand(_ cmd: JSValue) -> JSValue {
 		if cmd.isString {
 			if let cmdstr = cmd.toString() {
-				if let retstr = CNShell.searchCommand(commandName: cmdstr) {
+				if let retstr = CNShellUtil.searchCommand(commandName: cmdstr) {
 					return JSValue(object: retstr, in: mContext)
 				}
 			}

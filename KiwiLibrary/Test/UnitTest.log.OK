@@ -499,7 +499,7 @@ class UTStruct {
   set a(newval) { this._a = newval ; }
   get b() { return this._b ; }
   set b(newval) { this._b = newval ; }
-  toObject(){
+  toParameter(){
     let object = {
     a: this._a,
     b: this._b,
@@ -923,7 +923,7 @@ class UTStruct {
   set a(newval) { this._a = newval ; }
   get b() { return this._b ; }
   set b(newval) { this._b = newval ; }
-  toObject(){
+  toParameter(){
     let object = {
     a: this._a,
     b: this._b,
