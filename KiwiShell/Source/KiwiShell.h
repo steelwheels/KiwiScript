@@ -1,12 +1,16 @@
-//
-//  KiwiShell.h
-//  KiwiShell
-//
-//  Created by Tomoo Hamada on 2018/02/18.
-//  Copyright © 2018年 Tomoo Hamada. All rights reserved.
-//
+/**
+ * @file	KiwiShell.h
+ * @brief	Bridge header for Objective-C
+ * @par Copyright
+ *   Copyright (C) 2018-2019 Steel Wheels Project
+ */
 
-#import <Cocoa/Cocoa.h>
+#import "TargetConditionals.h"
+#if TARGET_OS_IPHONE
+#       import <UIKit/UIKit.h>
+#else
+#       import <Cocoa/Cocoa.h>
+#endif
 
 //! Project version number for KiwiShell.
 FOUNDATION_EXPORT double KiwiShellVersionNumber;
