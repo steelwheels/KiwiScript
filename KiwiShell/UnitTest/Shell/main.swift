@@ -9,62 +9,43 @@ import KiwiShell
 import KiwiEngine
 import KiwiLibrary
 import CoconutData
+import CoconutShell
 import JavaScriptCore
 import Foundation
 
 public func main()
 {
-	let config  = KLConfig(kind: .Terminal, doStrict: true, doVerbose: true)
-	config.doStrict  = true
-	config.doVerbose = true
-
+	let config  = KEConfig(kind: .Terminal, doStrict: true, doVerbose: true)
 	let console = CNFileConsole()
 	let context = KEContext(virtualMachine: JSVirtualMachine())
-	let compiler = KLCompiler(console: console, config: config)
-	let process  = KEProcess(context: context, config: config)
-	guard compiler.compile(context: context, process: process) else {
-		console.error(string: "Compilation was failed.\n")
+	let compiler = KLCompiler()
+	guard compiler.compile(context: context, console: console, config: config) else {
+		NSLog("Failed to compile")
 		return
 	}
 
-	let shell    = KHShellConsole(context: context, console: console)
-	let result   = shell.repl()
-	print(" -> result = \(result)")
+	let intf  = CNShellInterface()
+	intf.output.setReader(handler: {
+		(_ str: String) -> Void in
+		console.print(string: str)
+	})
+	intf.error.setReader(handler: {
+		(_ str: String) -> Void in
+		console.error(string: str)
+	})
 
+	let shell = KHShell(shellInterface: intf, console: console)
+	shell.start()
+
+	sleep(1)
+
+	var docont = true
+	while docont {
+		docont = !shell.isExecuting
+	}
+	
 	console.print(string: "[Bye]\n")
 }
 
 main()
-
-/*
-import KiwiShell
-
-
-let args    = CommandLine.arguments
-let appname = args[0]
-print("Hello, World! from \(appname)")
-
-guard let vm = JSVirtualMachine() else {
-	fatalError("Could not allocate VM")
-}
-
-let application = KMApplication(kind: .Terminal)
-//application.name = appname
-
-
-
-let editline = CNEditLine()
-editline.setup(programName: "Shell", console: console)
-editline.doBuffering = true
-
-var input: String? = nil
-while input == nil {
-	if let instr = editline.gets() {
-		input = instr
-	}
-}
-print("input -> \(input!)")
-*/
-
-
 

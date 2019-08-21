@@ -37,21 +37,22 @@ import Foundation
 
 @objc public class KLPipeObject: NSObject, KLPipeObjectProtocol
 {
-	private var mPipe:	CNPipe
+	private var mPipe:	Pipe
 	private var mContext:	KEContext
 	private var mInput:	JSValue
 	private var mOutput:	JSValue
 
 	public init(context ctxt: KEContext) {
-		mPipe	 = CNPipe()
+		mPipe	 = Pipe()
 		mContext = ctxt
-		let input = KLFileObject(file: mPipe.inputFile, context: mContext)
+
+		let input = KLFileObject(file: CNOpenFile(fileHandle: mPipe.fileHandleForReading), context: mContext)
 		mInput = JSValue(object: input, in: mContext)
-		let output = KLFileObject(file: mPipe.outputFile, context: mContext)
+		let output = KLFileObject(file: CNOpenFile(fileHandle: mPipe.fileHandleForWriting), context: mContext)
 		mOutput = JSValue(object: output, in: mContext)
 	}
 
-	public var pipe:   CNPipe  { get { return mPipe   }}
+	public var pipe:   Pipe    { get { return mPipe   }}
 	public var input:  JSValue { get { return mInput  }}
 	public var output: JSValue { get { return mOutput }}
 }

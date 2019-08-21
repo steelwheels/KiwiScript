@@ -49,7 +49,7 @@ import Foundation
 			return nil
 		} else if let obj = val.toObject() {
 			if let pipe = obj as? KLPipeObject {
-				return pipe.pipe.pipe
+				return pipe.pipe
 			}
 		}
 		mConsole.error(string: "Invalid connection for \(target) port for Shell execution\n")
