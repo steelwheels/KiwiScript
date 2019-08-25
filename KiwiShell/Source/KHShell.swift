@@ -21,8 +21,13 @@ import Foundation
 
 @objc public class KHShell: CNShell, KHShellProtocol
 {
-	public init(shellInterface intf: CNShellInterface, console cons: CNConsole){
-		super.init(interface: intf, console: cons)
+	public static let EnvironmentItem	= "_env"
+
+	private var mContext: 		KEContext
+
+	public init(context ctxt: KEContext, shellInterface intf: CNShellInterface, environment env: CNShellEnvironment, console cons: CNConsole, config conf: KEConfig){
+		mContext 	= ctxt
+		super.init(interface: intf, environment: env, console: cons, config: conf)
 	}
 
 	public override func promptString() -> String {

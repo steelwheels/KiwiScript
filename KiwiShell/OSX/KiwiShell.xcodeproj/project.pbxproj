@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		050A0D7423113C0600D3823F /* KHShellEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050A0D7323113C0600D3823F /* KHShellEnvironment.swift */; };
+		050C3625231158770015F557 /* KHShellCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050C3624231158770015F557 /* KHShellCompiler.swift */; };
 		050DBEA320C2D47A00F0E133 /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050DBEA220C2D47A00F0E133 /* CoconutData.framework */; };
 		050DBEA520C2D49A00F0E133 /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050DBEA420C2D49A00F0E133 /* KiwiEngine.framework */; };
 		050DBEA720C2D4A800F0E133 /* KiwiLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050DBEA620C2D4A800F0E133 /* KiwiLibrary.framework */; };
@@ -72,6 +74,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		050A0D7323113C0600D3823F /* KHShellEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KHShellEnvironment.swift; sourceTree = "<group>"; };
+		050C3624231158770015F557 /* KHShellCompiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KHShellCompiler.swift; sourceTree = "<group>"; };
 		050DBEA220C2D47A00F0E133 /* CoconutData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutData.framework; path = ../../../../Library/Frameworks/CoconutData.framework; sourceTree = "<group>"; };
 		050DBEA420C2D49A00F0E133 /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../Library/Frameworks/KiwiEngine.framework; sourceTree = "<group>"; };
 		050DBEA620C2D4A800F0E133 /* KiwiLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiLibrary.framework; path = ../../../../Library/Frameworks/KiwiLibrary.framework; sourceTree = "<group>"; };
@@ -166,6 +170,8 @@
 			children = (
 				055AAA902039A319008018A8 /* KiwiShell.h */,
 				05D049D42039AA9000642E6A /* KHShell.swift */,
+				050A0D7323113C0600D3823F /* KHShellEnvironment.swift */,
+				050C3624231158770015F557 /* KHShellCompiler.swift */,
 			);
 			name = Source;
 			path = ../Source;
@@ -349,7 +355,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				050C3625231158770015F557 /* KHShellCompiler.swift in Sources */,
 				05D049D52039AA9000642E6A /* KHShell.swift in Sources */,
+				050A0D7423113C0600D3823F /* KHShellEnvironment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,14 +15,7 @@ import Foundation
 
 public func main()
 {
-	let config  = KEConfig(kind: .Terminal, doStrict: true, doVerbose: true)
 	let console = CNFileConsole()
-	let context = KEContext(virtualMachine: JSVirtualMachine())
-	let compiler = KLCompiler()
-	guard compiler.compile(context: context, console: console, config: config) else {
-		NSLog("Failed to compile")
-		return
-	}
 
 	let intf  = CNShellInterface()
 	intf.output.setReader(handler: {
@@ -34,7 +27,21 @@ public func main()
 		console.error(string: str)
 	})
 
-	let shell = KHShell(shellInterface: intf, console: console)
+	guard let vm = JSVirtualMachine() else {
+		console.error(string: "Failed to allocate VM\n")
+		return 
+	}
+
+	let env      = CNShellEnvironment()
+	let config   = KEConfig(kind: .Terminal, doStrict: true, doVerbose: true)
+	let context  = KEContext(virtualMachine: vm)
+	let compiler = KHShellCompiler()
+	guard compiler.compile(context: context, environment: env, console: console, config: config) else {
+		console.error(string: "Failed to compiler\n")
+		return
+	}
+
+	let shell   = KHShell(context: context, shellInterface: intf, environment: env, console: console, config: config)
 	shell.start()
 
 	sleep(1)
