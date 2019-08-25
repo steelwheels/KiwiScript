@@ -343,12 +343,6 @@ open class KLCompiler: KECompiler
 		/* JSON */
 		let json = KLJSON(context: ctxt)
 		ctxt.set(name: "JSON", object: json)
-
-		/* Shell (OSX) */
-		#if os(OSX)
-			let shellobj = KLShell(context: ctxt, console: cons)
-			ctxt.set(name: "Shell", object: shellobj)
-		#endif
 	}
 
 	private func defineGlobalObjects(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
