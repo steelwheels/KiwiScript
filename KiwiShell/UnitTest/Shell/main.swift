@@ -32,16 +32,9 @@ public func main()
 		return 
 	}
 
-	let env      = CNShellEnvironment()
-	let config   = KEConfig(kind: .Terminal, doStrict: true, doVerbose: true)
-	let context  = KEContext(virtualMachine: vm)
-	let compiler = KHShellCompiler()
-	guard compiler.compile(context: context, environment: env, console: console, config: config) else {
-		console.error(string: "Failed to compiler\n")
-		return
-	}
-
-	let shell   = KHShell(context: context, shellInterface: intf, environment: env, console: console, config: config)
+	let env     = CNShellEnvironment()
+	let config  = KEConfig(kind: .Terminal, doStrict: true, doVerbose: true)
+	let shell   = KHShellThread(virtualMachine: vm, shellInterface: intf, environment: env, console: console, config: config)
 	shell.start()
 
 	sleep(1)
