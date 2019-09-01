@@ -46,7 +46,7 @@ import Foundation
 		return "jsh$ "
 	}
 
-	open override func parse(line str: String){
+	open override func input(string str: String){
 		if !isEmpty(line: str) {
 			//super.output(string: "[\(line)]\n")
 			if let retval = mContext.evaluateScript(str) {
