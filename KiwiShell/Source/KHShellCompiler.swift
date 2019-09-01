@@ -17,7 +17,6 @@ open class KHShellCompiler: KLCompiler
 	open func compile(context ctxt: KEContext, environment env: CNShellEnvironment, console cons: CNConsole, config conf: KEConfig) -> Bool {
 		if super.compile(context: ctxt, console: cons, config: conf) {
 			setEnvironment(context: ctxt, environment: env)
-			defineFunctions(context: ctxt, environment: env, console: cons, config: conf)
 			return true
 		} else {
 			return false
@@ -29,42 +28,67 @@ open class KHShellCompiler: KLCompiler
 		ctxt.set(name: KHScriptThread.EnvironmentItem, object: envval)
 	}
 
-	private func defineFunctions(context ctxt: KEContext, environment env: CNShellEnvironment, console cons: CNConsole, config conf: KEConfig){
-		/* Define "system" command */
+	open func defineBuiltinFunctions(parentThread parent: CNPipeThread, context ctxt: KEContext) {
 		#if os(OSX)
-		let systemFunc: @convention(block) (_ cmdval: JSValue, _ funcval: JSValue) -> JSValue = {
-			(_ cmdval: JSValue, _ funcval: JSValue) -> JSValue in
-			if cmdval.isString {
-				if let cmdname = cmdval.toString() {
-					/* Check callback function */
-					let funcobj: JSValue?
-					if funcval.isNull || funcval.isUndefined {
-						funcobj = nil
-					} else {
-						funcobj = funcval
-					}
-
-					let intf    = CNShellInterface()
-					let process = CNPipeProcess(interface: intf, environment: env, console: cons, config: conf, terminationHander: {
-						(_ proc: Process) -> Void in
-						if let funcobj = funcobj {
-							let procobj = KLProcess(process: proc, context: ctxt)
-							if let procval = JSValue(object: procobj, in: ctxt) {
-								funcobj.call(withArguments: [procval])
-							} else {
-								NSLog("Failed to allocate process object")
-							}
-						}
-					})
-					process.execute(command: cmdname)
-					let procobj = KLProcess(process: process.core, context: ctxt)
-					return JSValue(object: procobj, in: ctxt)
-				}
-				return JSValue(nullIn: ctxt)
-			}
-			return JSValue(nullIn: ctxt)
-		}
-		ctxt.set(name: "system", function: systemFunc)
+			defineSystemFunction(parentThread: parent, context: ctxt)
 		#endif
 	}
+
+	/* Define "system" built-in command */
+	#if os(OSX)
+	private func defineSystemFunction(parentThread parent: CNPipeThread, context ctxt: KEContext) {
+		/* system */
+		let systemfunc: @convention(block) (_ cmdval: JSValue, _ cbval: JSValue) -> JSValue = {
+			(_ cmdval: JSValue, _ cbval: JSValue) -> JSValue in
+			return KHShellCompiler.executeSystemCommand(parentThread: parent, context: ctxt, commandValue: cmdval, functionValue: cbval)
+		}
+		ctxt.set(name: "system", function: systemfunc)
+	}
+	#endif
+
+	#if os(OSX)
+	private static func executeSystemCommand(parentThread parent: CNPipeThread, context ctxt: KEContext, commandValue cmdval: JSValue, functionValue cbval: JSValue) -> JSValue {
+		if let command = valueToString(value: cmdval) {
+			let callback = valueToFunction(value: cbval)
+			let cbfunc = { (_ proc: Process) -> Void in
+				if let cbfunc = callback {
+					let procobj = KLProcess(process: proc, context: ctxt)
+					if let procval = JSValue(object: procobj, in: ctxt) {
+						cbfunc.call(withArguments: [procval])
+					}
+				}
+			}
+			let process = CNPipeProcess(interface:   parent.interface,
+						    environment: parent.environment,
+						    console:     parent.console,
+						    config:      parent.config,
+						    terminationHander: cbfunc)
+			process.execute(command: command)
+			let procval = KLProcess(process: process.core, context: ctxt)
+			return JSValue(object: procval, in: ctxt)
+		}
+		return JSValue(nullIn: ctxt)
+	}
+	#endif
+
+	#if os(OSX)
+	private static func valueToString(value val: JSValue) -> String? {
+		if val.isString {
+			if let str = val.toString() {
+				return str
+			}
+		}
+		return nil
+	}
+	#endif
+
+	#if os(OSX)
+	private static func valueToFunction(value val: JSValue) -> JSValue? {
+		if !(val.isNull || val.isUndefined) {
+			return val
+		} else {
+			return nil
+		}
+	}
+	#endif
 }

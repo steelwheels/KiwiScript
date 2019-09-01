@@ -40,6 +40,15 @@ import Foundation
 			cons.error(string: "Failed to compile script thread context\n")
 			return
 		}
+		/* Set exception handler */
+		mContext.exceptionCallback = {
+			[weak self]  (_ excep: KEException) -> Void in
+			if let myself = self {
+				myself.output(string: excep.description)
+			}
+		}
+		/* Define built-in functions */
+		compiler.defineBuiltinFunctions(parentThread: self, context: mContext)
 	}
 
 	public override var terminationStatus: Int32 {

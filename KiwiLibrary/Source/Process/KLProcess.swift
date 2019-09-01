@@ -11,7 +11,7 @@ import KiwiEngine
 import JavaScriptCore
 import Foundation
 
-@objc public protocol KLProcessProtocol {
+@objc public protocol KLProcessProtocol: JSExport {
 	func isRunning() -> Bool
 	func waitUntilExit()
 }

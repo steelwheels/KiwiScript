@@ -8,6 +8,7 @@
 import CoconutShell
 import CoconutData
 import KiwiEngine
+import KiwiLibrary
 import JavaScriptCore
 import Foundation
 
@@ -29,10 +30,42 @@ import Foundation
 			cons.error(string: "Failed to compile script thread context\n")
 			return
 		}
+		/* Set exception handler */
+		mContext.exceptionCallback = {
+			[weak self]  (_ excep: KEException) -> Void in
+			if let myself = self {
+				let desc = excep.description
+				myself.output(string: "[Exception] \(desc)\n")
+			}
+		}
+		/* Define built-in functions */
+		compiler.defineBuiltinFunctions(parentThread: self, context: mContext)
 	}
 
 	public override func promptString() -> String {
 		return "jsh$ "
+	}
+
+	open override func parse(line str: String){
+		if !isEmpty(line: str) {
+			//super.output(string: "[\(line)]\n")
+			if let retval = mContext.evaluateScript(str) {
+				if !retval.isUndefined, let retstr = retval.toString() {
+					super.output(string: "\(retstr)\n")
+				}
+			}
+		}
+	}
+
+	private func isEmpty(line str: String) -> Bool {
+		var result = true
+		for c in str {
+			if !c.isSpace() {
+				result = false
+				break
+			}
+		}
+		return result
 	}
 }
 
