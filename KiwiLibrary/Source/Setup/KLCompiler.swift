@@ -318,8 +318,8 @@ open class KLCompiler: KECompiler
 				ctxt.set(name: "Pipe", object: pipe)
 
 				/* File */
-				let file = KLFile(context: ctxt)
-				ctxt.set(name: "File", object: file)
+				let file = KLFileManager(context: ctxt)
+				ctxt.set(name: "FileManager", object: file)
 
 				let stdinobj = file.standardFile(fileType: .input, context: ctxt)
 				ctxt.set(name: "stdin", object: stdinobj)

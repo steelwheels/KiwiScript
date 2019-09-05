@@ -40,7 +40,7 @@ You can allocate [Window](https://github.com/steelwheels/KiwiScript/blob/master/
 ## Class objects
 Class objects to operate objects.
 * [`Process`](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Process.md): This has interface to control the main process such as `exit` method.
-* [`File`](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/File.md): The object to access the text file.
+* [`FileManager`](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/File.md): The object to access the text file.
 *  [Pipe](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Pipe.md): The object to present the pipe. This will be used as a parameter for the other method.
 *  [Shell](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Shell.md): The object to execute the shell script.
 * [JSON](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/JSON.md): The object to operate JSON file.

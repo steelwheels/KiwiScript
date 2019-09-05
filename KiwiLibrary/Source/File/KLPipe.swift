@@ -46,9 +46,9 @@ import Foundation
 		mPipe	 = Pipe()
 		mContext = ctxt
 
-		let input = KLFileObject(file: CNOpenFile(fileHandle: mPipe.fileHandleForReading), context: mContext)
+		let input = KLFile(file: CNOpenFile(fileHandle: mPipe.fileHandleForReading), context: mContext)
 		mInput = JSValue(object: input, in: mContext)
-		let output = KLFileObject(file: CNOpenFile(fileHandle: mPipe.fileHandleForWriting), context: mContext)
+		let output = KLFile(file: CNOpenFile(fileHandle: mPipe.fileHandleForWriting), context: mContext)
 		mOutput = JSValue(object: output, in: mContext)
 	}
 

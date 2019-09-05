@@ -12,16 +12,6 @@ import Foundation
 
 @objc public protocol KLFileProtocol: JSExport
 {
-	func open(_ pathstr: JSValue, _ acctype: JSValue) -> JSValue
-
-	var type: JSValue { get }
-
-	func checkFileType(_ pathstr: JSValue) -> JSValue
-	func uti(_ pathstr: JSValue) -> JSValue
-}
-
-@objc public protocol KLFileObjectProtocol: JSExport
-{
 	func close() -> JSValue
 	func getc() -> JSValue
 	func getl() -> JSValue
@@ -35,120 +25,8 @@ import Foundation
 	var Directory:	JSValue { get }
 }
 
+
 @objc public class KLFile: NSObject, KLFileProtocol
-{
-	private var mContext:	KEContext
-	private var mFileType:	KLFileTypeObject
-	private var mFileValue:	JSValue
-	private var mStdin:	KLFileObject
-	private var mStdout:	KLFileObject
-	private var mStderr:	KLFileObject
-
-	public init(context ctxt: KEContext){
-		mContext   = ctxt
-		mFileType  = KLFileTypeObject(context: ctxt)
-		mFileValue = JSValue(object: mFileType, in: ctxt)
-		mStdin	   = KLFileObject(file: CNStandardFile(type: .input),  context: ctxt)
-		mStdout	   = KLFileObject(file: CNStandardFile(type: .output), context: ctxt)
-		mStderr    = KLFileObject(file: CNStandardFile(type: .error),  context: ctxt)
-	}
-
-	public func open(_ pathval: JSValue, _ accval: JSValue) -> JSValue
-	{
-		guard let acctype = decodeAccessType(accval) else {
-			return JSValue(nullIn: mContext)
-		}
-
-		if let pathstr = decodePathString(pathval) {
-			let (file, _) = CNOpenFile(filePath: pathstr, accessType: acctype)
-			if let f = file {
-				let fileobj = KLFileObject(file: f, context: mContext)
-				return JSValue(object: fileobj, in: mContext)
-			}
-		} else if let pathurl = decodePathURL(pathval) {
-			let (file, _) = CNOpenFile(URL: pathurl, accessType: acctype)
-			if let f = file {
-				let fileobj = KLFileObject(file: f, context: mContext)
-				return JSValue(object: fileobj, in: mContext)
-			}
-		}
-		return JSValue(nullIn: mContext)
-	}
-
-	public func standardFile(fileType type: CNStandardFileType, context ctxt: KEContext) -> KLFileObject {
-		let result: KLFileObject
-		switch type {
-		case .input:	result = mStdin
-		case .output:	result = mStdout
-		case .error:	result = mStderr
-		}
-		return result
-	}
-
-	private func decodeAccessType(_ accval: JSValue) -> CNFileAccessType? {
-		if accval.isString {
-			if let accstr = accval.toString() {
-				let result : CNFileAccessType?
-				switch accstr {
-				case "r":  result = .ReadAccess
-				case "w":  result = .WriteAccess
-				case "w+": result = .AppendAccess
-				default:   result = nil
-				}
-				return result
-			}
-		}
-		return nil
-	}
-
-	private func decodePathString(_ pathval: JSValue) -> String? {
-		if pathval.isString {
-			return pathval.toString()
-		}
-		return nil
-	}
-
-	private func decodePathURL(_ pathval: JSValue) -> URL? {
-		if pathval.isURL {
-			return pathval.toURL()
-		}
-		return nil
-	}
-
-	public var type: JSValue {
-		get { return mFileValue }
-	}
-
-	public func uti(_ pathval: JSValue) -> JSValue {
-		if pathval.isString {
-			if let pathstr = pathval.toString() {
-				let pathurl = URL(fileURLWithPath: pathstr)
-				if let uti = CNFilePath.UTIForFile(URL: pathurl) {
-					return JSValue(object: uti, in: mContext)
-				}
-			}
-		}
-		return JSValue(nullIn: mContext)
-	}
-
-	public func checkFileType(_ pathval: JSValue) -> JSValue {
-		if pathval.isString {
-			if let pathstr = pathval.toString() {
-				let fmanager = FileManager.default
-				var result: JSValue
-				switch fmanager.checkFileType(pathString: pathstr) {
-				case .NotExist:		result = mFileType.NotExist
-				case .File:		result = mFileType.File
-				case .Directory:	result = mFileType.Directory
-				}
-				return result
-			}
-		}
-		return mFileType.NotExist
-	}
-}
-
-@objc public class KLFileObject: NSObject, KLFileObjectProtocol
 {
 	private var mFile:	CNTextFile
 	private var mContext:	KEContext

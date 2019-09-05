@@ -1,16 +1,16 @@
 # File Class
-The *File* class is used to allocate *FileObject* class.
-The FileObject is used to read and/or write the file.
+The *FileManager* class is used to allocate *File* class.
+The File is used to read and/or write the file.
 
 ## Global variables
 Following global variables are defined when this class is imported.
 
 |Variable   |Class  | Description                     |
 |:---       |:---   |:---                             |
-|File       |File   |Singleton object of File class   |
-|stdin      |FileObject   | Standard input            |
-|stdout     |FileObject   | Standard output           |
-|stderr     |FileObject   | Standard error output     |
+|FileManager  |FileManager   |Singleton object of File class   |
+|stdin      |File | Standard input            |
+|stdout     |File | Standard output           |
+|stderr     |File | Standard error output     |
 
 ## `open` class method
 Allocate file object by the file name and access method.
@@ -24,7 +24,7 @@ var file = File.open(<file-name>, <access-type>) ;
 |access-type  |String |"r" for read, "w" to write new file . and "w+" to write to append.|
 
 ### Return value
-If the opening the file is succeeded, the *FileObject* object is returned. The file-object is built-in object. It can be accessed by following methods. On the other hand, when the opening file is failed, the return value will be nil.
+If the opening the file is succeeded, the *File* object is returned. The file-object is built-in object. It can be accessed by following methods. On the other hand, when the opening file is failed, the return value will be nil.
 
 ## `type` property
 Type property has following constant values to present type of the file.
@@ -72,7 +72,7 @@ If the file pointed by "path" is exist,
 the UTI of the file is returned as string.
 It it is not, the return value will be *null*.
 
-# FileObject class
+# File class
 ## `close` method
 Close the file. After the file was closed, it can not access the file.
 ````

@@ -47,9 +47,12 @@ import Foundation
 	}
 
 	open override func input(string str: String){
-		if !isEmpty(line: str) {
-			//super.output(string: "[\(line)]\n")
-			if let retval = mContext.evaluateScript(str) {
+		if !isEmpty(string: str) {
+			/* Translate built-in function */
+			let tstr = translate(string: str)
+			super.output(string: "*\(tstr)*\n")
+			/* Execute as JavaScript code */
+			if let retval = mContext.evaluateScript(tstr) {
 				if !retval.isUndefined, let retstr = retval.toString() {
 					super.output(string: "\(retstr)\n")
 				}
@@ -57,7 +60,42 @@ import Foundation
 		}
 	}
 
-	private func isEmpty(line str: String) -> Bool {
+	private func translate(string str: String) -> String {
+		/* Divide by ";" */
+		let lines = str.components(separatedBy: ";")
+		var newlines: Array<String> = []
+		for line in lines {
+			if let newline = translate(line: line) {
+				newlines.append(newline)
+			} else {
+				newlines.append(line)
+			}
+		}
+		return newlines.joined(separator: ";")
+	}
+
+	private func translate(line str: String) -> String? {
+		let (err, tokens) = CNStringToToken(string: str)
+		switch err {
+		case .NoError:
+			if tokens.count > 0 {
+				switch tokens[0].type {
+				case .IdentifierToken(let cmdname):
+					if let info = CNUnixCommandTable.shared.search(byName: cmdname) {
+						let path = info.path + "/" + cmdname
+						return "system(\"\(path)\")"
+					}
+				default:
+					break
+				}
+			}
+		default:
+			break
+		}
+		return nil
+	}
+
+	private func isEmpty(string str: String) -> Bool {
 		var result = true
 		for c in str {
 			if !c.isSpace() {

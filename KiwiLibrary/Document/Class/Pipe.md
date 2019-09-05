@@ -13,9 +13,9 @@ The *PipeObject* object allocated by this method.
 
 ## `PipeObject` class
 #### `input` property
-The input file (instance of *FileObject*).
+The input file (instance of *File*).
 #### `output` property
-The output file (instance of *FileObject*).
+The output file (instance of *File*).
 
 ## References
 * [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library
