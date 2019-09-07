@@ -14,8 +14,6 @@ import Foundation
 {
 	func open(_ pathstr: JSValue, _ acctype: JSValue) -> JSValue
 
-	var type: JSValue { get }
-
 	func checkFileType(_ pathstr: JSValue) -> JSValue
 	func uti(_ pathstr: JSValue) -> JSValue
 }
@@ -23,16 +21,12 @@ import Foundation
 @objc public class KLFileManager: NSObject, KLFileManagerProtocol
 {
 	private var mContext:	KEContext
-	private var mFileType:	KLFileTypeObject
-	private var mFileValue:	JSValue
 	private var mStdin:	KLFile
 	private var mStdout:	KLFile
 	private var mStderr:	KLFile
 
 	public init(context ctxt: KEContext){
 		mContext   = ctxt
-		mFileType  = KLFileTypeObject(context: ctxt)
-		mFileValue = JSValue(object: mFileType, in: ctxt)
 		mStdin	   = KLFile(file: CNStandardFile(type: .input),  context: ctxt)
 		mStdout	   = KLFile(file: CNStandardFile(type: .output), context: ctxt)
 		mStderr    = KLFile(file: CNStandardFile(type: .error),  context: ctxt)
@@ -100,10 +94,6 @@ import Foundation
 		return nil
 	}
 
-	public var type: JSValue {
-		get { return mFileValue }
-	}
-
 	public func uti(_ pathval: JSValue) -> JSValue {
 		if pathval.isString {
 			if let pathstr = pathval.toString() {
@@ -120,15 +110,15 @@ import Foundation
 		if pathval.isString {
 			if let pathstr = pathval.toString() {
 				let fmanager = FileManager.default
-				var result: JSValue
+				var result: Int32
 				switch fmanager.checkFileType(pathString: pathstr) {
-				case .NotExist:		result = mFileType.NotExist
-				case .File:		result = mFileType.File
-				case .Directory:	result = mFileType.Directory
+				case .NotExist:		result = CNFileType.NotExist.rawValue
+				case .File:		result = CNFileType.File.rawValue
+				case .Directory:	result = CNFileType.Directory.rawValue
 				}
-				return result
+				return JSValue(int32: result, in: self.mContext)
 			}
 		}
-		return mFileType.NotExist
+		return JSValue(int32: CNFileType.NotExist.rawValue, in: self.mContext)
 	}
 }

@@ -40,6 +40,14 @@ public class KEEnumTable
 			])
 		mEnumTypes[exitcode.typeName] = exitcode
 
+		let filetype = KEEnumType(typeName: "FileType")
+		filetype.add(members: [
+			KEEnumType.Member(name: "notExist", 		value: CNFileType.NotExist.rawValue),
+			KEEnumType.Member(name: "file", 		value: CNFileType.File.rawValue),
+			KEEnumType.Member(name: "directory", 		value: CNFileType.Directory.rawValue),
+		])
+		mEnumTypes[filetype.typeName] = filetype
+
 		let axis = KEEnumType(typeName: "Axis")
 		axis.add(members: [
 			KEEnumType.Member(name: "horizontal",	value: CNAxis.horizontal.rawValue),

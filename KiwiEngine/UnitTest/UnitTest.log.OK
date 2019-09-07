@@ -57,6 +57,12 @@ let ExitCode = {
 	syntaxError : 3,
 	exception : 4
 };
+/* Define Enum: FileType */
+let FileType = {
+	notExist : 0,
+	file : 1,
+	directory : 2
+};
 /* Define Enum: TextAlign */
 let TextAlign = {
 	left : 0,

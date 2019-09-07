@@ -82,22 +82,3 @@ import Foundation
 	}
 }
 
-@objc public class KLFileTypeObject: NSObject, KLFileTypeProtocol
-{
-	private var	mContext:		KEContext
-	private var	mNotExitValue:		JSValue
-	private var 	mFileValue:		JSValue
-	private var 	mDirectoryValue:	JSValue
-
-	public init(context ctxt: KEContext){
-		mContext 	= ctxt
-		mNotExitValue	= JSValue(int32: CNFileType.NotExist.rawValue,	in: mContext)
-		mFileValue	= JSValue(int32: CNFileType.File.rawValue,	in: mContext)
-		mDirectoryValue	= JSValue(int32: CNFileType.Directory.rawValue,	in: mContext)
-	}
-
-	public var NotExist:	JSValue { get { return mNotExitValue	}}
-	public var File:	JSValue { get { return mFileValue	}}
-	public var Directory:	JSValue { get { return mDirectoryValue 	}}
-}
-
