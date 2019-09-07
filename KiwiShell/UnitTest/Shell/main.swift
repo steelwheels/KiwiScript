@@ -15,17 +15,16 @@ import Foundation
 
 public func main()
 {
-	let console = CNFileConsole()
+	let inhdl   = FileHandle.standardInput
+	let outhdl  = FileHandle.standardOutput
+	let errhdl  = FileHandle.standardError
+	let console = CNFileConsole(input: inhdl, output: outhdl, error: errhdl)
 
-	let intf  = CNShellInterface()
-	intf.output.setReader(handler: {
-		(_ str: String) -> Void in
-		console.print(string: str)
-	})
-	intf.error.setReader(handler: {
-		(_ str: String) -> Void in
-		console.error(string: str)
-	})
+	/* Set output listenner */
+	outhdl.readabilityHandler = {
+		(_ hdl: FileHandle) -> Void in
+		console.print(string: hdl.availableString)
+	}
 
 	guard let vm = JSVirtualMachine() else {
 		console.error(string: "Failed to allocate VM\n")
@@ -34,7 +33,7 @@ public func main()
 
 	let env     = CNShellEnvironment()
 	let config  = KEConfig(kind: .Terminal, doStrict: true, doVerbose: true)
-	let shell   = KHShellThread(virtualMachine: vm, shellInterface: intf, environment: env, console: console, config: config)
+	let shell   = KHShellThread(virtualMachine: vm, input: inhdl, output: outhdl, error: errhdl, environment: env, config: config)
 	shell.start()
 
 	sleep(1)

@@ -1,5 +1,5 @@
 /**
- * @file	KHShell.swift
+ * @file	KHShellThread.swift
  * @brief	Define KHShell class
  * @par Copyright
  *   Copyright (C) 2018 Steel Wheels Project
@@ -20,14 +20,14 @@ import Foundation
 {
 	private var mContext:		KEContext
 
-	public init(virtualMachine vm: JSVirtualMachine, shellInterface intf: CNShellInterface, environment env: CNShellEnvironment, console cons: CNConsole, config conf: KEConfig){
+	public init(virtualMachine vm: JSVirtualMachine, input inhdl: FileHandle, output outhdl: FileHandle, error errhdl: FileHandle, environment env: CNShellEnvironment, config conf: KEConfig){
 		mContext	= KEContext(virtualMachine: vm)
-		super.init(interface: intf, environment: env, console: cons, config: conf)
+		super.init(input: inhdl, output: outhdl, error: errhdl, environment: env, config: conf, terminationHander: nil)
 
 		/* Compile the context */
 		let compiler = KHShellCompiler()
-		guard compiler.compile(context: mContext, environment: env, console: cons, config: conf) else {
-			cons.error(string: "Failed to compile script thread context\n")
+		guard compiler.compile(context: mContext, environment: env, console: console, config: conf) else {
+			console.error(string: "Failed to compile script thread context\n")
 			return
 		}
 		/* Set exception handler */
@@ -35,26 +35,26 @@ import Foundation
 			[weak self]  (_ excep: KEException) -> Void in
 			if let myself = self {
 				let desc = excep.description
-				myself.output(string: "[Exception] \(desc)\n")
+				myself.console.error(string: "[Exception] \(desc)\n")
 			}
 		}
 		/* Define built-in functions */
-		compiler.defineBuiltinFunctions(parentThread: self, context: mContext)
+		compiler.defineBuiltinFunctions(input: inhdl, output: outhdl, error: errhdl, context: mContext)
 	}
 
 	public override func promptString() -> String {
 		return "jsh$ "
 	}
 
-	open override func input(string str: String){
+	open override func inputLine(line str: String){
 		if !isEmpty(string: str) {
 			/* Translate built-in function */
 			let tstr = translate(string: str)
-			super.output(string: "*\(tstr)*\n")
+			self.outputFileHandle.write(string: "*\(tstr)*\n")
 			/* Execute as JavaScript code */
 			if let retval = mContext.evaluateScript(tstr) {
 				if !retval.isUndefined, let retstr = retval.toString() {
-					super.output(string: "\(retstr)\n")
+					self.outputFileHandle.write(string: retstr)
 				}
 			}
 		}

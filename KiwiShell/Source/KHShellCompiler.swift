@@ -28,26 +28,26 @@ open class KHShellCompiler: KLCompiler
 		ctxt.set(name: KHScriptThread.EnvironmentItem, object: envval)
 	}
 
-	open func defineBuiltinFunctions(parentThread parent: CNPipeThread, context ctxt: KEContext) {
+	open func defineBuiltinFunctions(input inhdl: FileHandle, output outhdl: FileHandle, error errhdl: FileHandle, context ctxt: KEContext) {
 		#if os(OSX)
-			defineSystemFunction(parentThread: parent, context: ctxt)
+			defineSystemFunction(input: inhdl, output: outhdl, error: errhdl, context: ctxt)
 		#endif
 	}
 
 	/* Define "system" built-in command */
 	#if os(OSX)
-	private func defineSystemFunction(parentThread parent: CNPipeThread, context ctxt: KEContext) {
+	private func defineSystemFunction(input inhdl: FileHandle, output outhdl: FileHandle, error errhdl: FileHandle, context ctxt: KEContext) {
 		/* system */
 		let systemfunc: @convention(block) (_ cmdval: JSValue, _ cbval: JSValue) -> JSValue = {
 			(_ cmdval: JSValue, _ cbval: JSValue) -> JSValue in
-			return KHShellCompiler.executeSystemCommand(parentThread: parent, context: ctxt, commandValue: cmdval, functionValue: cbval)
+			return KHShellCompiler.executeSystemCommand(input: inhdl, output: outhdl, error: errhdl, context: ctxt, commandValue: cmdval, functionValue: cbval)
 		}
 		ctxt.set(name: "system", function: systemfunc)
 	}
 	#endif
 
 	#if os(OSX)
-	private static func executeSystemCommand(parentThread parent: CNPipeThread, context ctxt: KEContext, commandValue cmdval: JSValue, functionValue cbval: JSValue) -> JSValue {
+	private static func executeSystemCommand(input inhdl: FileHandle, output outhdl: FileHandle, error errhdl: FileHandle, context ctxt: KEContext, commandValue cmdval: JSValue, functionValue cbval: JSValue) -> JSValue {
 		if let command = valueToString(value: cmdval) {
 			let callback = valueToFunction(value: cbval)
 			let cbfunc = { (_ proc: Process) -> Void in
@@ -58,11 +58,7 @@ open class KHShellCompiler: KLCompiler
 					}
 				}
 			}
-			let process = CNPipeProcess(interface:   parent.interface,
-						    environment: parent.environment,
-						    console:     parent.console,
-						    config:      parent.config,
-						    terminationHander: cbfunc)
+			let process = CNProcess(input: inhdl, output: outhdl, error:  errhdl, terminationHander: cbfunc)
 			process.execute(command: command)
 			let procval = KLProcess(process: process.core, context: ctxt)
 			return JSValue(object: procval, in: ctxt)

@@ -18,86 +18,77 @@ import Foundation
 	func start()
 }
 
-@objc public class KHScriptThread: CNPipeThread, KHThreadProtocol
+@objc public class KHScriptThread: CNShellThread, KHThreadProtocol
 {
-	public enum ThreadState {
-		case Initial
-		case Running
-		case Finished
-	}
-
 	public static let EnvironmentItem	= "_env"
 
 	private var mContext:			KEContext
 	private var mScripts:			Array<URL>
 	private var mArguments:			Array<String>
-	private var mTerminationStatus:		Int32
-	private var mThreadState:		ThreadState
+	private var mResultValue:		Int32?
 
-	public init(virtualMachine vm: JSVirtualMachine, shellInterface intf: CNShellInterface, environment env: CNShellEnvironment, console cons: CNConsole, config conf: KHConfig){
+	open override var terminationStatus: Int32 { get {
+		if let val = mResultValue {
+			return val
+		} else {
+			return super.terminationStatus
+		}
+	}}
+
+	public init(virtualMachine vm: JSVirtualMachine, input inhdl: FileHandle, output outhdl: FileHandle, error errhdl: FileHandle, environment env: CNShellEnvironment, config conf: KHConfig){
 		mContext		= KEContext(virtualMachine: vm)
 		mScripts		= []
 		mArguments		= []
-		mTerminationStatus	= 1
-		mThreadState		= .Initial
-		super.init(interface: intf, environment: env, console: cons, config: conf)
+		mResultValue		= nil
+		super.init(input: inhdl, output: outhdl, error: errhdl, environment: env, config: conf, terminationHander: nil)
 
 		/* Compile the context */
 		let compiler = KHShellCompiler()
-		guard compiler.compile(context: mContext, environment: env, console: cons, config: conf) else {
-			cons.error(string: "Failed to compile script thread context\n")
+		guard compiler.compile(context: mContext, environment: env, console: self.console, config: conf) else {
+			errhdl.write(string: "Failed to compile script thread context\n")
 			return
 		}
 		/* Set exception handler */
 		mContext.exceptionCallback = {
 			[weak self]  (_ excep: KEException) -> Void in
 			if let myself = self {
-				myself.output(string: excep.description)
+				myself.errorFileHandle.write(string: excep.description + "\n")
 			}
 		}
 		/* Define built-in functions */
-		compiler.defineBuiltinFunctions(parentThread: self, context: mContext)
-	}
-
-	public var threadState: ThreadState {
-		get { return mThreadState }
-	}
-
-	public override var terminationStatus: Int32 {
-		get { return mTerminationStatus }
+		compiler.defineBuiltinFunctions(input: inhdl, output: outhdl, error: errhdl, context: mContext)
 	}
 
 	public func start(userScripts scripts: Array<URL>, arguments args: Array<String>) {
 		mScripts   	= scripts
 		mArguments 	= args
-		mThreadState	= .Running
 		super.start()
 	}
 
-	public override func main() {
+	public override func mainOperation() -> Int32 {
+		/* Initialize */
+		mResultValue = nil
+
 		guard let conf = config as? KHConfig else {
 			NSLog("Can not happen")
-			mThreadState = .Finished
-			return
+			return -1
 		}
 
 		/* Compile user scripts */
 		let compiler = KHShellCompiler()
 		guard compiler.compile(context: mContext, sourceFiles: mScripts, console: console, config: conf) else {
 			console.error(string: "Failed to compile  user scripts")
-			mTerminationStatus = 1
-			mThreadState       = .Finished
-			return
+			return -1
 		}
 
 		/* Execute main function */
+		var result: Int32 = 0
 		if conf.hasMainFunction {
 			/* Call main function */
-			mTerminationStatus = 1
 			if let mainfunc = mContext.objectForKeyedSubscript("main") {
 				if let retval = mainfunc.call(withArguments: [mArguments]) {
 					if retval.isNumber {
-						mTerminationStatus = retval.toInt32()
+						result = retval.toInt32()
 					}
 				} else {
 					console.error(string: "[Error] No Return value.\n")
@@ -105,16 +96,9 @@ import Foundation
 			} else {
 				console.error(string: "Can not find main function.\n")
 			}
-		} else {
-			mTerminationStatus = 0
 		}
-		mThreadState = .Finished
-	}
-
-	public func waitUntilExit() {
-		while self.threadState != .Finished {
-			Thread.sleep(forTimeInterval: 1/10000.0) // 0.1ms
-		}
+		mResultValue = result
+		return result
 	}
 }
 
