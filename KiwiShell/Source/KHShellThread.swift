@@ -14,6 +14,7 @@ import Foundation
 
 @objc public protocol KHShellThreadProtocol: KHThreadProtocol
 {
+	func start()
 }
 
 @objc public class KHShellThread: CNShellThread, KHShellThreadProtocol

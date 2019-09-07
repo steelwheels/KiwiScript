@@ -49,12 +49,12 @@ open class KHShellCompiler: KLCompiler
 	#if os(OSX)
 	private static func executeSystemCommand(input inhdl: FileHandle, output outhdl: FileHandle, error errhdl: FileHandle, context ctxt: KEContext, commandValue cmdval: JSValue, functionValue cbval: JSValue) -> JSValue {
 		if let command = valueToString(value: cmdval) {
-			let callback = valueToFunction(value: cbval)
-			let cbfunc = { (_ proc: Process) -> Void in
-				if let cbfunc = callback {
+			var cbfunc: CNProcess.TerminationHandler? = nil
+			if let callback = valueToFunction(value: cbval) {
+				cbfunc = { (_ proc: Process) -> Void in
 					let procobj = KLProcess(process: proc, context: ctxt)
 					if let procval = JSValue(object: procobj, in: ctxt) {
-						cbfunc.call(withArguments: [procval])
+						callback.call(withArguments: [procval])
 					}
 				}
 			}
