@@ -27,9 +27,9 @@ import Foundation
 
 	public init(context ctxt: KEContext){
 		mContext   = ctxt
-		mStdin	   = KLFile(file: CNStandardFile(type: .input),  context: ctxt)
-		mStdout	   = KLFile(file: CNStandardFile(type: .output), context: ctxt)
-		mStderr    = KLFile(file: CNStandardFile(type: .error),  context: ctxt)
+		mStdin	   = KLFile(file: CNTextFileObject(fileHandle: FileHandle.standardInput),  context: ctxt)
+		mStdout	   = KLFile(file: CNTextFileObject(fileHandle: FileHandle.standardOutput), context: ctxt)
+		mStderr    = KLFile(file: CNTextFileObject(fileHandle: FileHandle.standardError),  context: ctxt)
 	}
 
 	public func open(_ pathval: JSValue, _ accval: JSValue) -> JSValue
