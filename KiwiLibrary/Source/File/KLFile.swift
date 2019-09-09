@@ -37,7 +37,11 @@ import Foundation
 	}
 
 	public var file: CNTextFile {
-		return mFile
+		get { return mFile }
+	}
+
+	public var fileHandle: FileHandle {
+		get { return mFile.fileHandle }
 	}
 
 	public func close() -> JSValue {

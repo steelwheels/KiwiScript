@@ -28,46 +28,39 @@ open class KHShellCompiler: KLCompiler
 		ctxt.set(name: KHScriptThread.EnvironmentItem, object: envval)
 	}
 
-	open func defineBuiltinFunctions(input inhdl: FileHandle, output outhdl: FileHandle, error errhdl: FileHandle, context ctxt: KEContext) {
+	open func defineBuiltinFunctions(context ctxt: KEContext) {
 		#if os(OSX)
-			defineSystemFunction(input: inhdl, output: outhdl, error: errhdl, context: ctxt)
+			defineSystemFunction(context: ctxt)
 		#endif
 	}
 
 	/* Define "system" built-in command */
 	#if os(OSX)
-	private func defineSystemFunction(input inhdl: FileHandle, output outhdl: FileHandle, error errhdl: FileHandle, context ctxt: KEContext) {
+	private func defineSystemFunction(context ctxt: KEContext) {
 		/* system */
-		let systemfunc: @convention(block) (_ cmdval: JSValue, _ cbval: JSValue) -> JSValue = {
-			(_ cmdval: JSValue, _ cbval: JSValue) -> JSValue in
-			return KHShellCompiler.executeSystemCommand(input: inhdl, output: outhdl, error: errhdl, context: ctxt, commandValue: cmdval, functionValue: cbval)
+		let systemfunc: @convention(block) (_ cmdval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue = {
+			(_ cmdval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue in
+			return KHShellCompiler.executeSystemCommand(commandValue: cmdval, inputValue: inval, outputValue: outval, errorValue: errval, context: ctxt)
 		}
 		ctxt.set(name: "system", function: systemfunc)
 	}
-	#endif
 
-	#if os(OSX)
-	private static func executeSystemCommand(input inhdl: FileHandle, output outhdl: FileHandle, error errhdl: FileHandle, context ctxt: KEContext, commandValue cmdval: JSValue, functionValue cbval: JSValue) -> JSValue {
-		if let command = valueToString(value: cmdval) {
-			var cbfunc: CNProcess.TerminationHandler? = nil
-			if let callback = valueToFunction(value: cbval) {
-				cbfunc = { (_ proc: Process) -> Void in
-					let procobj = KLProcess(process: proc, context: ctxt)
-					if let procval = JSValue(object: procobj, in: ctxt) {
-						callback.call(withArguments: [procval])
-					}
-				}
-			}
-			let process = CNProcess(input: inhdl, output: outhdl, error:  errhdl, terminationHander: cbfunc)
+	private static func executeSystemCommand(commandValue cmdval: JSValue, inputValue inval: JSValue, outputValue outval: JSValue, errorValue errval: JSValue, context ctxt: KEContext) -> JSValue {
+		if let command = valueToString(value: cmdval),
+		   let infile  = valueToFile(value: inval),
+		   let outfile = valueToFile(value: outval),
+		   let errfile = valueToFile(value: errval) {
+			let inhdl   = infile.fileHandle
+			let outhdl  = outfile.fileHandle
+			let errhdl  = errfile.fileHandle
+			let process = CNProcess(input: inhdl, output: outhdl, error:  errhdl, terminationHander: nil)
 			process.execute(command: command)
 			let procval = KLProcess(process: process.core, context: ctxt)
 			return JSValue(object: procval, in: ctxt)
 		}
 		return JSValue(nullIn: ctxt)
 	}
-	#endif
 
-	#if os(OSX)
 	private static func valueToString(value val: JSValue) -> String? {
 		if val.isString {
 			if let str = val.toString() {
@@ -76,9 +69,16 @@ open class KHShellCompiler: KLCompiler
 		}
 		return nil
 	}
-	#endif
 
-	#if os(OSX)
+	private static func valueToFile(value val: JSValue) -> KLFile? {
+		if val.isObject {
+			if let file = val.toObject() as? KLFile {
+				return file
+			}
+		}
+		return nil
+	}
+
 	private static func valueToFunction(value val: JSValue) -> JSValue? {
 		if !(val.isNull || val.isUndefined) {
 			return val

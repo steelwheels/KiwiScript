@@ -56,7 +56,7 @@ import Foundation
 			}
 		}
 		/* Define built-in functions */
-		compiler.defineBuiltinFunctions(input: inhdl, output: outhdl, error: errhdl, context: mContext)
+		compiler.defineBuiltinFunctions(context: mContext)
 	}
 
 	public func start(userScripts scripts: Array<URL>, arguments args: Array<String>) {

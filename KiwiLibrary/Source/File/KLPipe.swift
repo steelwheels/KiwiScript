@@ -12,47 +12,48 @@ import Foundation
 
 @objc public protocol KLPipeProtocol: JSExport
 {
-	func open() -> JSValue
-}
-
-@objc public protocol KLPipeObjectProtocol: JSExport
-{
 	var input: 	JSValue { get }
 	var output:	JSValue { get }
 }
 
 @objc public class KLPipe: NSObject, KLPipeProtocol
 {
-	private var mContext:	KEContext
-
-	public init(context ctxt: KEContext){
-		mContext = ctxt
-	}
-
-	public func open() -> JSValue {
-		let pipe = KLPipeObject(context: mContext)
-		return JSValue(object: pipe, in: mContext)
-	}
-}
-
-@objc public class KLPipeObject: NSObject, KLPipeObjectProtocol
-{
 	private var mPipe:	Pipe
 	private var mContext:	KEContext
-	private var mInput:	JSValue
-	private var mOutput:	JSValue
+	private var mInput:	KLFile?
+	private var mOutput:	KLFile?
 
-	public init(context ctxt: KEContext) {
-		mPipe	 = Pipe()
+	public init(context ctxt: KEContext){
+		mPipe    = Pipe()
 		mContext = ctxt
-
-		let input = KLFile(file: CNOpenFile(fileHandle: mPipe.fileHandleForReading), context: mContext)
-		mInput = JSValue(object: input, in: mContext)
-		let output = KLFile(file: CNOpenFile(fileHandle: mPipe.fileHandleForWriting), context: mContext)
-		mOutput = JSValue(object: output, in: mContext)
+		mInput   = nil
+		mOutput	 = nil
 	}
 
-	public var pipe:   Pipe    { get { return mPipe   }}
-	public var input:  JSValue { get { return mInput  }}
-	public var output: JSValue { get { return mOutput }}
+	public var input: JSValue {
+		get {
+			if let file = mInput {
+				return JSValue(object: file, in: mContext)
+			} else {
+				let newfile = CNTextFileObject(fileHandle: mPipe.fileHandleForReading)
+				let fileobj = KLFile(file: newfile, context: mContext)
+				mInput = fileobj
+				return JSValue(object: fileobj, in: mContext)
+			}
+		}
+	}
+
+	public var output: JSValue {
+		get {
+			if let file = mOutput {
+				return JSValue(object: file, in: mContext)
+			} else {
+				let newfile = CNTextFileObject(fileHandle: mPipe.fileHandleForWriting)
+				let fileobj = KLFile(file: newfile, context: mContext)
+				mInput = fileobj
+				return JSValue(object: fileobj, in: mContext)
+			}
+		}
+	}
 }
+

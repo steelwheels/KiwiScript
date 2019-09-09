@@ -310,13 +310,17 @@ open class KLCompiler: KECompiler
 	}
 
 	private func defineClassObjects(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
+		/* Pipe() */
+		let pipeFunc:  @convention(block) () -> JSValue = {
+			() -> JSValue in
+			let pipe = KLPipe(context: ctxt)
+			return JSValue(object: pipe, in: ctxt)
+		}
+		ctxt.set(name: "Pipe", function: pipeFunc)
+
 		switch conf.kind {
 		case .Terminal:
 			#if os(OSX)
-				/* Pipe */
-				let pipe = KLPipe(context: ctxt)
-				ctxt.set(name: "Pipe", object: pipe)
-
 				/* File */
 				let file = KLFileManager(context: ctxt)
 				ctxt.set(name: "FileManager", object: file)
