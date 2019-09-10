@@ -57,6 +57,7 @@ import Foundation
 			case .finished(let stmts):
 				/* Execute as JavaScript code */
 				let script = stmts.joined(separator: "\n")
+				self.errorFileHandle.write(string: "SCRIPT=\"\(script)\"\n")
 				if let retval = mContext.evaluateScript(script) {
 					if !retval.isUndefined, let retstr = retval.toString() {
 						self.outputFileHandle.write(string: retstr)

@@ -20,30 +20,14 @@ public func main()
 	let errhdl  = FileHandle.standardError
 	let console = CNFileConsole(input: inhdl, output: outhdl, error: errhdl)
 
-	/* Set output listenner */
-	outhdl.readabilityHandler = {
-		(_ hdl: FileHandle) -> Void in
-		console.print(string: hdl.availableString)
+	let res0 = UTShell(input: inhdl, output: outhdl, error: errhdl, console: console)
+	let res1 = UTPreProcessor(console: console)
+
+	if res0 && res1 {
+		console.print(string: "Summary: OK\n")
+	} else {
+		console.print(string: "Summary: NG\n")
 	}
-
-	guard let vm = JSVirtualMachine() else {
-		console.error(string: "Failed to allocate VM\n")
-		return 
-	}
-
-	let env     = CNShellEnvironment()
-	let config  = KEConfig(kind: .Terminal, doStrict: true, doVerbose: true)
-	let shell   = KHShellThread(virtualMachine: vm, input: inhdl, output: outhdl, error: errhdl, environment: env, config: config)
-	shell.start()
-
-	sleep(1)
-
-	var docont = true
-	while docont {
-		docont = !shell.isExecuting
-	}
-	
-	console.print(string: "[Bye]\n")
 }
 
 main()
