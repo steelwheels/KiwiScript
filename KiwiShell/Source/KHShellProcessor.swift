@@ -11,12 +11,6 @@ import Foundation
 
 public class KHShellProcessor
 {
-	private var mContext:	KEContext
-
-	public init(context ctxt: KEContext){
-		mContext = ctxt
-	}
-
 	public enum CompileError: Error {
 		case noError
 		case unknownError
@@ -34,6 +28,11 @@ public class KHShellProcessor
 	public enum Result {
 		case finished(_ stmts: Array<String>)
 		case error(_ code: CompileError)
+	}
+
+
+	public init(){
+
 	}
 
 	public func convert(statements stmts: Array<String>) -> Result {

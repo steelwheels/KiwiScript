@@ -15,14 +15,7 @@ import Foundation
 
 public func UTPreProcessor(console cons: CNConsole) -> Bool
 {
-	guard let vm = JSVirtualMachine() else {
-		cons.error(string: "Failed to allocate VM\n")
-		return false
-	}
-
-	let context   = KEContext(virtualMachine: vm)
-	let processor = KHShellProcessor(context: context)
-
+	let processor = KHShellProcessor()
 	convert(processor: processor, statements: ["hello, world"], console: cons)
 	convert(processor: processor, statements: ["> ls -l"], console: cons)
 	return true

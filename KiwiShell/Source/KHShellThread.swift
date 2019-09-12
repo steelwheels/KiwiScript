@@ -24,7 +24,7 @@ import Foundation
 
 	public init(virtualMachine vm: JSVirtualMachine, input inhdl: FileHandle, output outhdl: FileHandle, error errhdl: FileHandle, environment env: CNShellEnvironment, config conf: KEConfig){
 		mContext	= KEContext(virtualMachine: vm)
-		mProcessor	= KHShellProcessor(context: mContext)
+		mProcessor	= KHShellProcessor()
 		super.init(input: inhdl, output: outhdl, error: errhdl, environment: env, config: conf, terminationHander: nil)
 
 		/* Compile the context */

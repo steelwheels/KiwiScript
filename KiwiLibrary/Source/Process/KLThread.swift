@@ -5,31 +5,24 @@
  *   Copyright (C) 2019 Steel Wheels Project
  */
 
-import CoconutData
 import KiwiEngine
+import CoconutData
 import JavaScriptCore
 import Foundation
 
-@objc public protocol KLProcessProtocol: JSExport {
-	func isRunning() -> Bool
-	func waitUntilExit()
-}
-
-#if os(OSX)
-
-@objc public class KLProcess: NSObject, KLProcessProtocol
+@objc public class KLThread: NSObject, KLProcessProtocol
 {
-	private var mProcess:	CNProcess
+	private var mThread:	CNThread
 	private var mContext:	KEContext
 
-	public init(process proc: CNProcess, context ctxt: KEContext){
-		mProcess = proc
+	public init(thread thrd: CNThread, context ctxt: KEContext){
+		mThread  = thrd
 		mContext = ctxt
 	}
 
 	public func isRunning() -> Bool {
 		var result: Bool
-		switch mProcess.status {
+		switch mThread.status {
 		case .Idle:	result = false
 		case .Running:	result = true
 		case .Finished:	result = false
@@ -38,9 +31,8 @@ import Foundation
 	}
 
 	public func waitUntilExit() {
-		mProcess.waitUntilExit()
+		mThread.waitUntilExit()
 	}
 }
 
-#endif // os(OSX)
 

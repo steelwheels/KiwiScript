@@ -55,7 +55,7 @@ open class KHShellCompiler: KLCompiler
 			let errhdl  = errfile.fileHandle
 			let process = CNProcess(input: inhdl, output: outhdl, error:  errhdl, terminationHander: nil)
 			process.execute(command: command)
-			let procval = KLProcess(process: process.core, context: ctxt)
+			let procval = KLProcess(process: process, context: ctxt)
 			return JSValue(object: procval, in: ctxt)
 		}
 		return JSValue(nullIn: ctxt)
