@@ -18,6 +18,7 @@ public func UTPreProcessor(console cons: CNConsole) -> Bool
 	let processor = KHShellProcessor()
 	convert(processor: processor, statements: ["hello, world"], console: cons)
 	convert(processor: processor, statements: ["> ls -l"], console: cons)
+	convert(processor: processor, statements: ["> echo \"hello, world!!\""], console: cons)
 	return true
 }
 
@@ -31,7 +32,7 @@ private func convert(processor proc: KHShellProcessor, statements stmts: Array<S
 	switch proc.convert(statements: stmts) {
 	case .finished(let results):
 		for res in results {
-			cons.print(string: " \"\(res)\"\n")
+			cons.print(string: "[\(res)]\n")
 		}
 	case .error(let err):
 		let errmsg = err.descriotion()

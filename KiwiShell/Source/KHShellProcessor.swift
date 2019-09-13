@@ -91,6 +91,18 @@ public class KHShellProcessor
 	}
 
 	private func convert(shellLine line: String) throws -> String {
-		return "system(\"\(line)\", stdin, stdout, stderr)"
+		/* Escape " symbol
+		 *   `  -> \`
+		 *   \` -> \\`"
+		 */
+		var newsublines: Array<String> = []
+		let sublines = line.components(separatedBy: "\\`")
+		for subline in sublines {
+			let newsubline = subline.replacingOccurrences(of: "`", with: "\\`")
+			newsublines.append(newsubline)
+		}
+		let newline = newsublines.joined(separator: "\\\\`")
+
+		return "system(`\(newline)`, stdin, stdout, stderr)"
 	}
 }

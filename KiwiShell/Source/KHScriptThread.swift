@@ -23,7 +23,7 @@ import Foundation
 	public static let EnvironmentItem	= "_env"
 
 	private var mContext:			KEContext
-	private var mScripts:			Array<URL>
+	private var mStatements:		Array<String>
 	private var mArguments:			Array<String>
 	private var mResultValue:		Int32?
 
@@ -37,7 +37,7 @@ import Foundation
 
 	public init(virtualMachine vm: JSVirtualMachine, input inhdl: FileHandle, output outhdl: FileHandle, error errhdl: FileHandle, environment env: CNShellEnvironment, config conf: KHConfig){
 		mContext		= KEContext(virtualMachine: vm)
-		mScripts		= []
+		mStatements		= []
 		mArguments		= []
 		mResultValue		= nil
 		super.init(input: inhdl, output: outhdl, error: errhdl, environment: env, config: conf, terminationHander: nil)
@@ -59,8 +59,8 @@ import Foundation
 		compiler.defineBuiltinFunctions(context: mContext)
 	}
 
-	public func start(userScripts scripts: Array<URL>, arguments args: Array<String>) {
-		mScripts   	= scripts
+	public func start(statements stmts: Array<String>, arguments args: Array<String>) {
+		mStatements	= stmts
 		mArguments 	= args
 		super.start()
 	}
@@ -74,9 +74,11 @@ import Foundation
 			return -1
 		}
 
+
 		/* Compile user scripts */
 		let compiler = KHShellCompiler()
-		guard compiler.compile(context: mContext, sourceFiles: mScripts, console: console, config: conf) else {
+		let _ = compiler.compile(context: mContext, statements: mStatements, console: console, config: conf)
+		if mContext.errorCount != 0 {
 			console.error(string: "Failed to compile  user scripts")
 			return -1
 		}

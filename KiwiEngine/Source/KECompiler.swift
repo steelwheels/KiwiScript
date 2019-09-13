@@ -97,14 +97,11 @@ open class KECompiler
 	}
 
 	public func compile(context ctxt: KEContext, statements stmts: Array<String>, console cons: CNConsole, config conf: KEConfig) -> JSValue? {
-		var addedstmt: String = ""
-		for stmt in stmts {
-			if conf.doVerbose {
-				cons.print(string: stmt)
-			}
-			addedstmt = addedstmt + stmt + "\n"
+		let script = stmts.joined(separator: "\n")
+		if conf.doVerbose {
+			cons.print(string: script)
 		}
-		return ctxt.evaluateScript(addedstmt)
+		return ctxt.evaluateScript(script)
 	}
 
 	public func compile(context ctxt: KEContext, enumType etype: KEEnumType, console cons: CNConsole, config conf: KEConfig){
