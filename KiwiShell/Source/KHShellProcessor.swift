@@ -91,18 +91,33 @@ public class KHShellProcessor
 	}
 
 	private func convert(shellLine line: String) throws -> String {
+		/* Escape "`" because the string will be enclosed by it */
+		let eline = escapeSymbols(shellLine: line)
+
+		let procname = uniqueProcessInstance()
+		let jsline   = "let \(procname) = system(`\(eline)`, stdin, stdout, stderr) ;\n"
+			       + "\(procname).waitUntilExit() ; "
+		return jsline
+	}
+
+	private func escapeSymbols(shellLine line: String) -> String {
 		/* Escape " symbol
-		 *   `  -> \`
-		 *   \` -> \\`"
-		 */
+		*   `  -> \`
+		*   \` -> \\`"
+		*/
 		var newsublines: Array<String> = []
 		let sublines = line.components(separatedBy: "\\`")
 		for subline in sublines {
 			let newsubline = subline.replacingOccurrences(of: "`", with: "\\`")
 			newsublines.append(newsubline)
 		}
-		let newline = newsublines.joined(separator: "\\\\`")
+		return newsublines.joined(separator: "\\\\`")
+	}
 
-		return "system(`\(newline)`, stdin, stdout, stderr)"
+	private var mUniqueProcessID: Int = 0
+	private func uniqueProcessInstance() -> String {
+		let procid = mUniqueProcessID
+		mUniqueProcessID += 1
+		return "_process\(procid)"
 	}
 }
