@@ -52,7 +52,7 @@ public class KHShellProcessor
 
 	private func convert(statements stmts: String) throws -> String {
 		if let shstmt = getShellStatement(statement: stmts) {
-			return try convert(shellStatements: shstmt)
+			return try convert(shellStatement: shstmt)
 		} else {
 			return stmts
 		}
@@ -78,21 +78,9 @@ public class KHShellProcessor
 		return nil
 	}
 
-	private func convert(shellStatements stmts: String) throws -> String {
-		/* Divide by ";" */
-		let lines = stmts.components(separatedBy: ";")
-		var result: Array<String> = []
-		for line in lines {
-			let res = try convert(shellLine: line)
-			result.append(res)
-		}
-		/* join by ";" */
-		return result.joined(separator: ";")
-	}
-
-	private func convert(shellLine line: String) throws -> String {
+	private func convert(shellStatement stmt: String) throws -> String {
 		/* Escape "`" because the string will be enclosed by it */
-		let eline = escapeSymbols(shellLine: line)
+		let eline = escapeSymbols(shellLine: stmt)
 
 		let procname = uniqueProcessInstance()
 		let jsline   = "let \(procname) = system(`\(eline)`, stdin, stdout, stderr) ;\n"

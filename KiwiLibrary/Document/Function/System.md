@@ -12,7 +12,7 @@ exit(code: Int32) -> Void
 |:--- |:----  |:----                            |
 |code |Int32  |Exit code                        |
 
-## `System` functions
+## `system` function
 Execute shell command.
 
 ### Prototype
@@ -28,8 +28,28 @@ system(command: String, input: File, output: File, error: File) -> Process
 |error          |[File](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/File.md) |Output error stream |
 
 ### Return value
-When the process to execute the command launched with no errors,
+When the process to execute the command has been launched with no errors,
 the return value is instance of [Process class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Process.md).
+When it failed, the return value will be `null`.
+
+## `thread` function
+Execute JavaScript callback function on the other thread.
+
+### Prototype
+````
+thread(func: Function(), input: File, output: File, error: File) -> Thread
+````
+### Parameter(s)
+|Name           |Type   |Description                    |
+|:---           |:----  |:----                          |
+|func           |Function() |Function to execute on the thread.    |      
+|input          |[File](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/File.md) |Input file stream |
+|output         |[File](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/File.md) |Output file stream |
+|error          |[File](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/File.md) |Output error stream |
+
+### Return value
+When the thread has been launched with no errors,
+the return value is instance of [Thread class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Thread.md).
 When it failed, the return value will be `null`.
 
 ## References

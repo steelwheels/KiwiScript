@@ -12,45 +12,45 @@ import Foundation
 
 @objc public protocol KLPipeProtocol: JSExport
 {
-	var input: 	JSValue { get }
-	var output:	JSValue { get }
+	var reading: 	JSValue { get }
+	var writing:	JSValue { get }
 }
 
 @objc public class KLPipe: NSObject, KLPipeProtocol
 {
 	private var mPipe:	Pipe
 	private var mContext:	KEContext
-	private var mInput:	KLFile?
-	private var mOutput:	KLFile?
+	private var mWriting:	KLFile?
+	private var mReading:	KLFile?
 
 	public init(context ctxt: KEContext){
 		mPipe    = Pipe()
 		mContext = ctxt
-		mInput   = nil
-		mOutput	 = nil
+		mWriting = nil
+		mReading = nil
 	}
 
-	public var input: JSValue {
+	public var reading: JSValue {
 		get {
-			if let file = mInput {
+			if let file = mReading {
 				return JSValue(object: file, in: mContext)
 			} else {
 				let newfile = CNTextFileObject(fileHandle: mPipe.fileHandleForReading)
 				let fileobj = KLFile(file: newfile, context: mContext)
-				mInput = fileobj
+				mReading = fileobj
 				return JSValue(object: fileobj, in: mContext)
 			}
 		}
 	}
 
-	public var output: JSValue {
+	public var writing: JSValue {
 		get {
-			if let file = mOutput {
+			if let file = mWriting {
 				return JSValue(object: file, in: mContext)
 			} else {
 				let newfile = CNTextFileObject(fileHandle: mPipe.fileHandleForWriting)
 				let fileobj = KLFile(file: newfile, context: mContext)
-				mInput = fileobj
+				mWriting = fileobj
 				return JSValue(object: fileobj, in: mContext)
 			}
 		}

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		05068611225659DA00641F95 /* KLType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05068610225659DA00641F95 /* KLType.swift */; };
 		0506861522565BF600641F95 /* KLValueConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0506861422565BF600641F95 /* KLValueConverter.swift */; };
-		050CD9AF2327EBCC006EF355 /* KLThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050CD9AE2327EBCC006EF355 /* KLThread.swift */; };
 		050EC60B20CBE8CD00FCF21F /* KLURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050EC60A20CBE8CD00FCF21F /* KLURL.swift */; };
 		0524961B21DEEA98009CB3E3 /* UTDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0524961A21DEEA98009CB3E3 /* UTDatabase.swift */; };
 		0525C946204C4BB50058CCBF /* KLPipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525C945204C4BB50058CCBF /* KLPipe.swift */; };
@@ -113,7 +112,6 @@
 /* Begin PBXFileReference section */
 		05068610225659DA00641F95 /* KLType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLType.swift; sourceTree = "<group>"; };
 		0506861422565BF600641F95 /* KLValueConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLValueConverter.swift; sourceTree = "<group>"; };
-		050CD9AE2327EBCC006EF355 /* KLThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLThread.swift; sourceTree = "<group>"; };
 		050EC60A20CBE8CD00FCF21F /* KLURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLURL.swift; sourceTree = "<group>"; };
 		0524961A21DEEA98009CB3E3 /* UTDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTDatabase.swift; sourceTree = "<group>"; };
 		0525C945204C4BB50058CCBF /* KLPipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLPipe.swift; sourceTree = "<group>"; };
@@ -348,7 +346,6 @@
 				05B18F74222EA6AB006E9A31 /* KLOperationContext.swift */,
 				05F100A422300F8100B399BE /* KLOperationQueue.swift */,
 				058414AA231583FF002F731E /* KLProcess.swift */,
-				050CD9AE2327EBCC006EF355 /* KLThread.swift */,
 			);
 			path = Process;
 			sourceTree = "<group>";
@@ -585,7 +582,6 @@
 				05F0202D203F091100B430F5 /* KLJSONFile.swift in Sources */,
 				05610E5121B3C12800535D06 /* KLDatabase.swift in Sources */,
 				05F100A522300F8100B399BE /* KLOperationQueue.swift in Sources */,
-				050CD9AF2327EBCC006EF355 /* KLThread.swift in Sources */,
 				05068611225659DA00641F95 /* KLType.swift in Sources */,
 				058414AB231583FF002F731E /* KLProcess.swift in Sources */,
 				05F0202C203F091100B430F5 /* KLFile.swift in Sources */,

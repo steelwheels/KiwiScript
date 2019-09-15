@@ -27,7 +27,6 @@
 		05C6E07920688F30000E8A13 /* KiwiLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 05C6E06B20688F2F000E8A13 /* KiwiLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05D6BF8721D3E269001D737A /* KLImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D6BF8621D3E269001D737A /* KLImage.swift */; };
 		05DCD870232143AB004955CC /* KLFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DCD86F232143AA004955CC /* KLFileManager.swift */; };
-		05DE6DA42327EBEE003B9B0B /* KLThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DE6DA32327EBEE003B9B0B /* KLThread.swift */; };
 		05F100A722300F9C00B399BE /* KLOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F100A622300F9C00B399BE /* KLOperationQueue.swift */; };
 		05F6EAF02258B16E00C18E3E /* KLNativeValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F6EAEF2258B16E00C18E3E /* KLNativeValue.swift */; };
 		05F6EAF22258B17600C18E3E /* KLValueConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F6EAF12258B17600C18E3E /* KLValueConverter.swift */; };
@@ -67,7 +66,6 @@
 		05C6E06C20688F30000E8A13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05D6BF8621D3E269001D737A /* KLImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLImage.swift; sourceTree = "<group>"; };
 		05DCD86F232143AA004955CC /* KLFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLFileManager.swift; sourceTree = "<group>"; };
-		05DE6DA32327EBEE003B9B0B /* KLThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLThread.swift; sourceTree = "<group>"; };
 		05F100A622300F9C00B399BE /* KLOperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLOperationQueue.swift; sourceTree = "<group>"; };
 		05F6EAEF2258B16E00C18E3E /* KLNativeValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLNativeValue.swift; sourceTree = "<group>"; };
 		05F6EAF12258B17600C18E3E /* KLValueConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLValueConverter.swift; sourceTree = "<group>"; };
@@ -143,7 +141,6 @@
 				0554464822ACC13100ABB9B4 /* KLOperationContext.swift */,
 				05F100A622300F9C00B399BE /* KLOperationQueue.swift */,
 				058414AC2315856E002F731E /* KLProcess.swift */,
-				05DE6DA32327EBEE003B9B0B /* KLThread.swift */,
 			);
 			path = Process;
 			sourceTree = "<group>";
@@ -341,7 +338,6 @@
 				05F6EAF22258B17600C18E3E /* KLValueConverter.swift in Sources */,
 				05473C91218B4A39006B1AB2 /* KLCompiler.swift in Sources */,
 				0523F39321B3C19A0074DA14 /* KLDatabase.swift in Sources */,
-				05DE6DA42327EBEE003B9B0B /* KLThread.swift in Sources */,
 				05F100A722300F9C00B399BE /* KLOperationQueue.swift in Sources */,
 				058414AD2315856E002F731E /* KLProcess.swift in Sources */,
 				0506861322565A2300641F95 /* KLType.swift in Sources */,

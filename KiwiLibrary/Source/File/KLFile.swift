@@ -45,16 +45,8 @@ import Foundation
 	}
 
 	public func close() -> JSValue {
-		let result: Int32
-		if mFile.isClosed() {
-			/* Already closed */
-			result = 1
-		} else {
-			/* Not closed yet */
-			mFile.close()
-			result = 0
-		}
-		return JSValue(int32: result, in: mContext)
+		mFile.close()
+		return JSValue(int32: 0, in: mContext)
 	}
 
 	public func getc() -> JSValue {

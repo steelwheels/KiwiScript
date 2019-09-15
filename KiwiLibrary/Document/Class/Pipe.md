@@ -1,22 +1,20 @@
 # Pipe class
 
-## `Pipe` class
-### `open` class method
-Allocate Pipe object. It has input and input file.
+## Constructor
+Allocate `Pipe` class instance.
 ````
-var pipe   = Pipe.open() ;
+var pipe   = Pipe() ;
 ````
 #### Parameters(s)
 None
 #### Return value
-The *PipeObject* object allocated by this method.
+The instance of *Pipe* object.
 
-## `PipeObject` class
-#### `input` property
-The input file (instance of *File*).
-#### `output` property
-The output file (instance of *File*).
+## Properties
+#### `reading` property
+The instance of [File](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/File.md) class to read the pipe. This will be an input of the other process.
+#### `writing` property
+The instance of [File](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/File.md) class to write the pipe. This will be an output of the other process.
 
 ## References
 * [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library
-
