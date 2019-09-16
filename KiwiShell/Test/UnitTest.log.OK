@@ -1,0 +1,75 @@
+Hello, world ===> Not interface
+> echo "Hello" ===> {
+	inputFileName          : nil
+	outputFileName         : nil
+	errorFileName          : nil
+	enviromentVariableName : nil
+	exitVariableName       : nil
+	shellStatement         :  echo "Hello"
+}
+()> echo "Hello" ===> {
+	inputFileName          : nil
+	outputFileName         : nil
+	errorFileName          : nil
+	enviromentVariableName : nil
+	exitVariableName       : nil
+	shellStatement         :  echo "Hello"
+}
+(a)> echo "Hello" ===> {
+	inputFileName          : a
+	outputFileName         : nil
+	errorFileName          : nil
+	enviromentVariableName : nil
+	exitVariableName       : nil
+	shellStatement         :  echo "Hello"
+}
+(a b)> echo "Hello" ===> Not interface
+(a, b)> echo "Hello" ===> {
+	inputFileName          : a
+	outputFileName         : b
+	errorFileName          : nil
+	enviromentVariableName : nil
+	exitVariableName       : nil
+	shellStatement         :  echo "Hello"
+}
+(a, b, c)> echo "Hello" ===> {
+	inputFileName          : a
+	outputFileName         : b
+	errorFileName          : c
+	enviromentVariableName : nil
+	exitVariableName       : nil
+	shellStatement         :  echo "Hello"
+}
+(a, b, c, d)> echo "Hello" ===> {
+	inputFileName          : a
+	outputFileName         : b
+	errorFileName          : c
+	enviromentVariableName : d
+	exitVariableName       : nil
+	shellStatement         :  echo "Hello"
+}
+(a, b, c, d, e)> echo "Hello" ===> Not interface
+(a, b, c, d): > echo "Hello" ===> Not interface
+(a, b, c, d): e > echo "Hello" ===> {
+	inputFileName          : a
+	outputFileName         : b
+	errorFileName          : c
+	enviromentVariableName : d
+	exitVariableName       : e
+	shellStatement         :  echo "Hello"
+}
+<Source>
+ "hello, world"
+<Convert>
+[hello, world]
+<Source>
+ "> ls -l"
+<Convert>
+[let _process0 = system(` ls -l`, stdin, stdout, stderr) ;
+_process0.waitUntilExit() ; ]
+<Source>
+ "> echo "hello, world!!""
+<Convert>
+[let _process1 = system(` echo "hello, world!!"`, stdin, stdout, stderr) ;
+_process1.waitUntilExit() ; ]
+Summary: OK

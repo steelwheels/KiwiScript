@@ -20,10 +20,11 @@ public func main()
 	let errhdl  = FileHandle.standardError
 	let console = CNFileConsole(input: inhdl, output: outhdl, error: errhdl)
 
-	let res0 = UTShell(input: inhdl, output: outhdl, error: errhdl, console: console)
-	let res1 = UTPreProcessor(console: console)
+	//let res0 = UTShell(input: inhdl, output: outhdl, error: errhdl, console: console)
+	let res1 = UTShellInterface(console: console)
+	let res2 = UTPreProcessor(console: console)
 
-	if res0 && res1 {
+	if res1 && res2 {
 		console.print(string: "Summary: OK\n")
 	} else {
 		console.print(string: "Summary: NG\n")

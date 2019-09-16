@@ -33,11 +33,12 @@ public func UTShell(input inhdl: FileHandle, output outhdl: FileHandle, error er
 
 	sleep(1)
 
-	var docont = true
-	while docont {
-		docont = !shell.isExecuting
-	}
+	//var docont = true
+	//while docont {
+	//	docont = !shell.isExecuting
+	//}
 
+	shell.cancel()
 	cons.print(string: "[Bye]\n")
 
 	return true
