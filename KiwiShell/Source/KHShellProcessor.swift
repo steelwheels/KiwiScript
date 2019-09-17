@@ -51,41 +51,54 @@ public class KHShellProcessor
 	}
 
 	private func convert(statements stmts: String) throws -> String {
-		if let shstmt = getShellStatement(statement: stmts) {
-			return try convert(shellStatement: shstmt)
+		if let intf = KHShellInterface.parse(string: stmts) {
+			return try convert(shellInterface: intf)
 		} else {
+			/* Normal script */
 			return stmts
 		}
 	}
 
-	private func getShellStatement(statement stmt: String) -> String? {
-		var idx = stmt.startIndex
-		let end = stmt.endIndex
-		while idx < end {
-			let c = stmt[idx]
-			if c == ">" {
-				let fidx = stmt.index(after: idx)
-				if fidx < end {
-					return String(stmt[fidx..<end])
-				} else {
-					return nil
-				}
-			} else if !c.isSpace() {
-				return nil
-			}
-			idx = stmt.index(after: idx)
+	private func convert(shellInterface intf: KHShellInterface) throws -> String {
+		/* get input file name */
+		let inputstr: String
+		if let str = intf.inputFileName {
+			inputstr = str
+		} else {
+			inputstr = "stdin"
 		}
-		return nil
-	}
 
-	private func convert(shellStatement stmt: String) throws -> String {
-		/* Escape "`" because the string will be enclosed by it */
-		let eline = escapeSymbols(shellLine: stmt)
+		/* get output file name */
+		let outputstr: String
+		if let str = intf.outputFileName {
+			outputstr = str
+		} else {
+			outputstr = "stdout"
+		}
 
+		/* get error file name */
+		let errorstr: String
+		if let str = intf.errorFileName {
+			errorstr = str
+		} else {
+			errorstr = "stderr"
+		}
+
+		/* get command line: Escape "`" because the string will be enclosed by it */
+		let cmdline: String
+		if let line = intf.shellStatement {
+			cmdline = escapeSymbols(shellLine: line)
+		} else {
+			cmdline = "echo \"Error\""
+		}
+
+		/* Get process instance name */
 		let procname = uniqueProcessInstance()
-		let jsline   = "let \(procname) = system(`\(eline)`, stdin, stdout, stderr) ;\n"
-			       + "\(procname).waitUntilExit() ; "
-		return jsline
+
+		/* Make script */
+		let script =   "let \(procname) = system(`\(cmdline)`, \(inputstr), \(outputstr), \(errorstr)) ;\n"
+			     + "\(procname).waitUntilExit() ;\n"
+		return script
 	}
 
 	private func escapeSymbols(shellLine line: String) -> String {
