@@ -57,7 +57,8 @@ public class KHShellInterface
 		let stream = CNStringStream(string: str)
 		if let (strmA, strmB) = stream.splitByFirstCharacter(characters: [">"]) {
 			let result: KHShellInterface?
-			let (err, tokens) = CNStringStreamToToken(stream: strmA)
+			let config = CNParserConfig(allowIdentiferHasPeriod: true)
+			let (err, tokens) = CNStringStreamToToken(stream: strmA, config: config)
 			switch err {
 			case .NoError:
 				if let intf = parse(tokens: tokens) {
