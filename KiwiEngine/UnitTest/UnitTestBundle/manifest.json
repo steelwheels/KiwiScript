@@ -1,0 +1,11 @@
+{
+	"application": "main.js",
+	"libraries": [
+		"liba", "libb"
+	],
+	"scripts": {
+		"script-a": "scriptA.js",
+		"script-b": "scriptB.js"
+	}
+}
+

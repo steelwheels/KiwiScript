@@ -15,6 +15,7 @@
 		054AB63922EF2D9500E7A862 /* KEEnumType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054AB63822EF2D9500E7A862 /* KEEnumType.swift */; };
 		055A479820688CAE00D297FC /* KECompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055A479720688CAE00D297FC /* KECompiler.swift */; };
 		0573D08F218D792500915EA1 /* KEError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0573D08E218D792500915EA1 /* KEError.swift */; };
+		059C154823359E15003EF230 /* KEResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C154723359E15003EF230 /* KEResource.swift */; };
 		05BF0BCA1EAC978D003C8DF3 /* KEContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BF0BC81EAC978D003C8DF3 /* KEContext.swift */; };
 		05CFAB9820349158001623BC /* KEException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CFAB9720349158001623BC /* KEException.swift */; };
 /* End PBXBuildFile section */
@@ -40,6 +41,7 @@
 		054AB63822EF2D9500E7A862 /* KEEnumType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEEnumType.swift; sourceTree = "<group>"; };
 		055A479720688CAE00D297FC /* KECompiler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KECompiler.swift; sourceTree = "<group>"; };
 		0573D08E218D792500915EA1 /* KEError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEError.swift; sourceTree = "<group>"; };
+		059C154723359E15003EF230 /* KEResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEResource.swift; sourceTree = "<group>"; };
 		05BF0BC81EAC978D003C8DF3 /* KEContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEContext.swift; sourceTree = "<group>"; };
 		05CFAB9720349158001623BC /* KEException.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEException.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -92,6 +94,7 @@
 				05473C92218B4AAA006B1AB2 /* KEEnumTable.swift */,
 				055A479720688CAE00D297FC /* KECompiler.swift */,
 				0573D08E218D792500915EA1 /* KEError.swift */,
+				059C154723359E15003EF230 /* KEResource.swift */,
 				05CFAB9720349158001623BC /* KEException.swift */,
 			);
 			name = Source;
@@ -213,6 +216,7 @@
 				0529B4FB2189F1BF00926331 /* KEObject.swift in Sources */,
 				05CFAB9820349158001623BC /* KEException.swift in Sources */,
 				0573D08F218D792500915EA1 /* KEError.swift in Sources */,
+				059C154823359E15003EF230 /* KEResource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
