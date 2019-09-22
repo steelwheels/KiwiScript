@@ -38,17 +38,22 @@ import Foundation
 			return JSValue(nullIn: mContext)
 		}
 
+		let fmanager = FileManager.default
 		if let pathstr = decodePathString(pathval) {
-			let (file, _) = CNOpenFile(filePath: pathstr, accessType: acctype)
-			if let f = file {
-				let fileobj = KLFile(file: f, context: mContext)
+			switch fmanager.openFile(filePath: pathstr, accessType: acctype) {
+			case .ok(let file):
+				let fileobj = KLFile(file: file, context: mContext)
 				return JSValue(object: fileobj, in: mContext)
+			case .error(_):
+				mStderr.fileHandle.write(string: "Failed to write \(pathval)")
 			}
 		} else if let pathurl = decodePathURL(pathval) {
-			let (file, _) = CNOpenFile(URL: pathurl, accessType: acctype)
-			if let f = file {
-				let fileobj = KLFile(file: f, context: mContext)
+			switch fmanager.openFile(URL: pathurl, accessType: acctype) {
+			case .ok(let file):
+				let fileobj = KLFile(file: file, context: mContext)
 				return JSValue(object: fileobj, in: mContext)
+			case .error(_):
+				mStderr.fileHandle.write(string: "Failed to write \(pathval)")
 			}
 		}
 		return JSValue(nullIn: mContext)
