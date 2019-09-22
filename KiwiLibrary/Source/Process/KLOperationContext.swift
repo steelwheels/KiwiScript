@@ -258,14 +258,11 @@ private class KLOperationCompiler: KLCompiler
 	private func URLsToScripts(URLs urls: Array<URL>, console cons: CNConsole) -> Array<String> {
 		var scripts: Array<String> = []
 		for url in urls {
-			let (scriptp,errorp) = url.loadContents()
-			if let err = errorp {
-				cons.error(string: "[Error] \(err.description)\n")
-			} else if let script = scriptp {
+			if let script = url.loadContents() {
 				/* Load suceeded */
 				scripts.append(script as String)
 			} else {
-				fatalError("Can not reach here")
+				cons.error(string: "Failed to load contents from \(url.absoluteString)\n")
 			}
 		}
 		return scripts

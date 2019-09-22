@@ -60,15 +60,12 @@ open class KECompiler
 	}
 
 	public func readFromURL(URL url: URL, console cons: CNConsole) -> String? {
-		let (scriptp, errorp) = url.loadContents()
-		if let script = scriptp {
-			return script as String
-		} else if let error = errorp {
-			cons.error(string: "[Error] " + error.description)
+		if let str = url.loadContents() {
+			return str as String
 		} else {
-			cons.error(string: "[Error] Unknown")
+			cons.error(string: "Failed to load")
+			return nil
 		}
-		return nil
 	}
 
 	public func defineSetter(context ctxt: KEContext, instance inst:String, accessType access: CNAccessType, propertyName name:String, console cons: CNConsole, config conf: KEConfig){
@@ -143,12 +140,10 @@ open class KECompiler
 	public func compile(context ctxt: KEContext, sourceFiles srcfiles: Array<URL>, console cons: CNConsole, config conf: KEConfig) -> Bool {
 		var result = true
 		for srcfile in srcfiles {
-			let (script, error) = srcfile.loadContents()
-			if let scr = script {
+			if let scr = srcfile.loadContents() {
 				let _ = compile(context: ctxt, statement: scr as String, console: cons, config: conf)
 			} else {
-				let desc = message(fromError: error)
-				cons.error(string: "[Error] \(desc)\n")
+				cons.error(string: "Failed to load file: \(srcfile.absoluteString)")
 				result = false
 			}
 		}

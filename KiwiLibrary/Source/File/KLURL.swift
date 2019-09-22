@@ -68,12 +68,10 @@ import Foundation
 
 	public func loadText() -> JSValue {
 		if let url = mURL {
-			let (textp, errp) = url.loadContents()
-			if let text = textp {
+			if let text = url.loadContents() {
 				return JSValue(object: text, in: mContext)
-			}
-			if let err = errp {
-				NSLog("KLURL: Failed to load contents: \(err.description)")
+			} else {
+				NSLog("Failed to load text at \(url.absoluteString)\n")
 			}
 		}
 		return JSValue(nullIn: mContext)
