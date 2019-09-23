@@ -73,7 +73,7 @@ open class KEManifestLoader
 		}
 	}
 
-	private func decodeFileMap(json data: Dictionary<String, CNNativeValue>) throws -> Dictionary<String, String> {
+	public func decodeFileMap(json data: Dictionary<String, CNNativeValue>) throws -> Dictionary<String, String> {
 		var result: Dictionary<String, String> = [:]
 		for key in data.keys {
 			if let val = data[key] {
@@ -89,7 +89,7 @@ open class KEManifestLoader
 		return result
 	}
 
-	private func decodeFileArray(json data: Array<CNNativeValue>) throws -> Array<String> {
+	public func decodeFileArray(json data: Array<CNNativeValue>) throws -> Array<String> {
 		var result: Array<String> = []
 		for elm in data {
 			if let path = elm.toString() {
