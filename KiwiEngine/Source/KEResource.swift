@@ -8,7 +8,7 @@
 import CoconutData
 import Foundation
 
-public class KEResource
+open class KEResource: CNResource
 {
 	public static let ApplicationCategory		= "application"
 	public static let LibrariesCategory		= "libraries"
@@ -18,13 +18,11 @@ public class KEResource
 
 	public typealias LoaderFunc	= CNResource.LoaderFunc
 
-	private var mResource:		CNResource
 	private var mFileLoader:	LoaderFunc
 
-	public var baseURL: URL { get { return mResource.baseURL }}
+	public var fileLoader: LoaderFunc	{ get { return mFileLoader }}
 
-	public init(baseURL url: URL){
-		mResource = CNResource(baseURL: url)
+	public override init(baseURL url: URL){
 		mFileLoader = {
 			(_ url: URL) -> Any? in
 			do {
@@ -33,26 +31,31 @@ public class KEResource
 				return nil
 			}
 		}
+		super.init(baseURL: url)
 
 		/* Setup categories */
-		mResource.allocate(category: KEResource.ApplicationCategory, loader: mFileLoader)
-		mResource.allocate(category: KEResource.LibrariesCategory, loader: mFileLoader)
-		mResource.allocate(category: KEResource.ScriptsCategory, loader: mFileLoader)
+		addCategory(category: KEResource.ApplicationCategory, loader: mFileLoader)
+		addCategory(category: KEResource.LibrariesCategory, loader: mFileLoader)
+		addCategory(category: KEResource.ScriptsCategory, loader: mFileLoader)
 	}
 
-	public func toText() -> CNTextSection {
-		return mResource.toText()
+	public func addCategory(category cname: String, loader ldr: @escaping LoaderFunc) {
+		super.allocate(category: cname, loader: ldr)
 	}
 
 	/*
 	 * application section
 	 */
-	public func setApplicationScriptPath(localPath path: String){
-		mResource.set(category: KEResource.ApplicationCategory, identifier: KEResource.DefaultIdentifier, path: path)
+	public func addApplicationScriptMap(path pathstr: String){
+		super.add(category: KEResource.ApplicationCategory, identifier: KEResource.DefaultIdentifier, path: pathstr)
 	}
 
-	public func loadApplicationScript() -> String? {
-		if let script: String = mResource.load(category: KEResource.ApplicationCategory, identifier: KEResource.DefaultIdentifier, index: 0) {
+	public func countOfApplicationScripts() -> Int? {
+		return super.count(category: KEResource.ApplicationCategory, identifier: KEResource.DefaultIdentifier)
+	}
+
+	public func loadApplicationScript(index idx: Int) -> String? {
+		if let script:String = super.load(category: KEResource.ApplicationCategory, identifier: KEResource.DefaultIdentifier, index: idx) {
 			return script
 		} else {
 			return nil
@@ -63,15 +66,15 @@ public class KEResource
 	 * library section
 	 */
 	public func addLibraryScriptMap(path pathstr: String){
-		mResource.add(category: KEResource.LibrariesCategory, identifier: KEResource.DefaultIdentifier, path: pathstr)
+		super.add(category: KEResource.LibrariesCategory, identifier: KEResource.DefaultIdentifier, path: pathstr)
 	}
 
 	public func countOfLibraryScripts() -> Int? {
-		return mResource.count(category: KEResource.LibrariesCategory, identifier: KEResource.DefaultIdentifier)
+		return super.count(category: KEResource.LibrariesCategory, identifier: KEResource.DefaultIdentifier)
 	}
 
 	public func loadLibraryScript(index idx: Int) -> String? {
-		if let script:String = mResource.load(category: KEResource.LibrariesCategory, identifier: KEResource.DefaultIdentifier, index: idx) {
+		if let script:String = super.load(category: KEResource.LibrariesCategory, identifier: KEResource.DefaultIdentifier, index: idx) {
 			return script
 		} else {
 			return nil
@@ -82,15 +85,15 @@ public class KEResource
 	 * scripts
 	 */
 	public func identifiersOfScript() -> Array<String>? {
-		return mResource.identifiers(category: KEResource.ScriptsCategory)
+		return super.identifiers(category: KEResource.ScriptsCategory)
 	}
 
 	public func addScript(identifier ident: String, path pathstr: String){
-		mResource.set(category: KEResource.ScriptsCategory, identifier: ident, path: pathstr)
+		super.set(category: KEResource.ScriptsCategory, identifier: ident, path: pathstr)
 	}
 
 	public func URLOfScript(identifier ident: String) -> URL? {
-		if let url = mResource.fullPathURL(category: KEResource.ScriptsCategory, identifier: ident, index: 0) {
+		if let url = super.fullPathURL(category: KEResource.ScriptsCategory, identifier: ident, index: 0) {
 			return url
 		} else {
 			return nil

@@ -8,7 +8,7 @@
 import CoconutData
 import Foundation
 
-public class KEManifestLoader
+open class KEManifestLoader
 {
 	public init() {
 
@@ -44,7 +44,7 @@ public class KEManifestLoader
 		/* Decode: "application" */
 		if let appval = data["application"] {
 			if let appstr = appval.toString() {
-				res.setApplicationScriptPath(localPath: appstr)
+				res.addApplicationScriptMap(path: appstr)
 			} else {
 				throw NSError.parseError(message: "application must has string property")
 			}
