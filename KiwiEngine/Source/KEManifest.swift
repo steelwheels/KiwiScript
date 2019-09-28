@@ -41,14 +41,6 @@ open class KEManifestLoader
 	}
 
 	open func decode(resource res: KEResource, json data: Dictionary<String, CNNativeValue>) throws {
-		/* Decode: "application" */
-		if let appval = data["application"] {
-			if let appstr = appval.toString() {
-				res.addApplicationScriptMap(path: appstr)
-			} else {
-				throw NSError.parseError(message: "application must has string property")
-			}
-		}
 		/* Decode: "libraries" */
 		if let libval = data["libraries"] {
 			if let libarr = libval.toArray() {

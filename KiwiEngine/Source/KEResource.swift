@@ -10,7 +10,6 @@ import Foundation
 
 open class KEResource: CNResource
 {
-	public static let ApplicationCategory		= "application"
 	public static let LibrariesCategory		= "libraries"
 	public static let ScriptsCategory		= "scripts"
 
@@ -34,32 +33,12 @@ open class KEResource: CNResource
 		super.init(baseURL: url)
 
 		/* Setup categories */
-		addCategory(category: KEResource.ApplicationCategory, loader: mFileLoader)
 		addCategory(category: KEResource.LibrariesCategory, loader: mFileLoader)
 		addCategory(category: KEResource.ScriptsCategory, loader: mFileLoader)
 	}
 
 	public func addCategory(category cname: String, loader ldr: @escaping LoaderFunc) {
 		super.allocate(category: cname, loader: ldr)
-	}
-
-	/*
-	 * application section
-	 */
-	public func addApplicationScriptMap(path pathstr: String){
-		super.add(category: KEResource.ApplicationCategory, identifier: KEResource.DefaultIdentifier, path: pathstr)
-	}
-
-	public func countOfApplicationScripts() -> Int? {
-		return super.count(category: KEResource.ApplicationCategory, identifier: KEResource.DefaultIdentifier)
-	}
-
-	public func loadApplicationScript(index idx: Int) -> String? {
-		if let script:String = super.load(category: KEResource.ApplicationCategory, identifier: KEResource.DefaultIdentifier, index: idx) {
-			return script
-		} else {
-			return nil
-		}
 	}
 
 	/*
