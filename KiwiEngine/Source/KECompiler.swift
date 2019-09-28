@@ -56,6 +56,22 @@ open class KECompiler
 		}
 	}
 
+	public func compile(context ctxt: KEContext, resource res: KEResource, console cons: CNConsole, config conf: KEConfig) -> Bool {
+		var result = true
+		/* Import library */
+		if let libnum = res.countOfLibraryScripts() {
+			for i in 0..<libnum {
+				if let script = res.loadLibraryScript(index: i) {
+					let _ = self.compile(context: ctxt, statement: script, console: cons, config: conf)
+				} else {
+					cons.error(string: "[Error] Failed to load user script\n")
+					result = false
+				}
+			}
+		}
+		return result
+	}
+
 	public func compile(context ctxt: KEContext, statement stmt: String, console cons: CNConsole, config conf: KEConfig) -> JSValue? {
 		if conf.doVerbose {
 			cons.print(string: stmt)
