@@ -227,10 +227,15 @@ private class KLOperationCompiler: KLCompiler
 
 	private func compileOperationClass(context ctxt: KEContext, operation op: KLOperationContext, console cons: CNConsole, config conf: KEConfig) {
 		/* Compile "Operation.js" */
-		if let script = readResource(fileName: "Operation", fileExtension: "js", forClass: KLOperationCompiler.self) {
-			let _ = compile(context: ctxt, statement: script, console: cons, config: conf)
-		} else {
-			cons.error(string: "Failed to read Operation.js\n")
+		do {
+			if let url = CNFilePath.URLForResourceFile(fileName: "Operation", fileExtension: "js", forClass: KLOperationCompiler.self) {
+				let script = try String(contentsOf: url, encoding: .utf8)
+				let _ = compile(context: ctxt, statement: script, console: cons, config: conf)
+			} else {
+				NSLog("Failed to read Operation.js")
+			}
+		} catch {
+			NSLog("Failed to read Operation.js")
 		}
 	}
 

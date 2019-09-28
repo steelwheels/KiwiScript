@@ -385,12 +385,17 @@ open class KLCompiler: KECompiler
 	private func importBuiltinLibrary(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig)
 	{
 		let libnames = ["Debug", "Math", "Graphics"]
-		for libname in libnames {
-			if let scr = readResource(fileName: libname, fileExtension: "js", forClass: KLCompiler.self) {
-				let _ = compile(context: ctxt, statement: scr, console: cons, config: conf)
-			} else {
-				cons.error(string: "Failed to read file: \(libname).js\n")
+		do {
+			for libname in libnames {
+				if let url = CNFilePath.URLForResourceFile(fileName: libname, fileExtension: "js", forClass: KLCompiler.self) {
+					let script = try String(contentsOf: url, encoding: .utf8)
+					let _ = compile(context: ctxt, statement: script, console: cons, config: conf)
+				} else {
+					NSLog("Failed to read built-in script")
+				}
 			}
+		} catch {
+			NSLog("Failed to read built-in script")
 		}
 	}
 

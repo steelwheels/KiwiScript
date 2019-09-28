@@ -38,36 +38,6 @@ open class KECompiler
 		}
 	}
 	
-	public func readUserScript(scriptFile file: String) -> String? {
-		do {
-			let url  = URL(fileURLWithPath: file)
-			return try String(contentsOf: url, encoding: .utf8)
-		} catch _ {
-			return nil
-		}
-	}
-
-	public func readResource(fileName file: String, fileExtension ext: String, forClass fclass: AnyClass) -> String? {
-		do {
-			if let url = CNFilePath.URLForResourceFile(fileName: file, fileExtension: ext, forClass: fclass) {
-				return try String(contentsOf: url, encoding: .utf8)
-			} else {
-				return nil
-			}
-		} catch _ {
-			return nil
-		}
-	}
-
-	public func readFromURL(URL url: URL, console cons: CNConsole) -> String? {
-		if let str = url.loadContents() {
-			return str as String
-		} else {
-			cons.error(string: "Failed to load")
-			return nil
-		}
-	}
-
 	public func defineSetter(context ctxt: KEContext, instance inst:String, accessType access: CNAccessType, propertyName name:String, console cons: CNConsole, config conf: KEConfig){
 		if access.isReadable {
 			let stmt = "\(inst).__defineGetter__(\"\(name)\", function(   ){ return this.get(\"\(name)\"     ); }) ;\n"
@@ -79,7 +49,7 @@ open class KECompiler
 		}
 	}
 
-	public func compile(context ctxt: KEContext, instance inst: String, object obj: KEObject, console cons: CNConsole, config conf: KEConfig) {
+	public func defineSetters(context ctxt: KEContext, instance inst: String, object obj: KEObject, console cons: CNConsole, config conf: KEConfig) {
 		/* Define setter and getter */
 		for pname in obj.propertyNames {
 			defineSetter(context: ctxt, instance: inst, accessType: .ReadWriteAccess, propertyName: pname, console: cons, config: conf)
@@ -136,20 +106,7 @@ open class KECompiler
 		stmt += "\n};\n"
 		let _ = compile(context: ctxt, statement: stmt, console: cons, config: conf)
 	}
-
-	public func compile(context ctxt: KEContext, sourceFiles srcfiles: Array<URL>, console cons: CNConsole, config conf: KEConfig) -> Bool {
-		var result = true
-		for srcfile in srcfiles {
-			if let scr = srcfile.loadContents() {
-				let _ = compile(context: ctxt, statement: scr as String, console: cons, config: conf)
-			} else {
-				cons.error(string: "Failed to load file: \(srcfile.absoluteString)")
-				result = false
-			}
-		}
-		return result
-	}
-
+	
 	private func message(fromError err: NSError?) -> String {
 		if let e = err {
 			return e.toString()
