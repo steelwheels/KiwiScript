@@ -44,7 +44,7 @@ open class KEResource: CNResource
 	/*
 	 * library section
 	 */
-	public func addLibraryMap(path pathstr: String){
+	public func addLibrary(path pathstr: String){
 		super.add(category: KEResource.LibrariesCategory, identifier: KEResource.DefaultIdentifier, path: pathstr)
 	}
 
