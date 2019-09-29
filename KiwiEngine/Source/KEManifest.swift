@@ -46,7 +46,7 @@ open class KEManifestLoader
 			if let libarr = libval.toArray() {
 				let patharr = try decodeFileArray(json: libarr)
 				for path in patharr {
-					res.addLibraryScriptMap(path: path)
+					res.addLibraryMap(path: path)
 				}
 			} else {
 				throw NSError.parseError(message: "libraries must has array property")

@@ -44,11 +44,11 @@ open class KEResource: CNResource
 	/*
 	 * library section
 	 */
-	public func addLibraryScriptMap(path pathstr: String){
+	public func addLibraryMap(path pathstr: String){
 		super.add(category: KEResource.LibrariesCategory, identifier: KEResource.DefaultIdentifier, path: pathstr)
 	}
 
-	public func countOfLibraryScripts() -> Int? {
+	public func countOfLibraries() -> Int? {
 		return super.count(category: KEResource.LibrariesCategory, identifier: KEResource.DefaultIdentifier)
 	}
 
@@ -56,7 +56,15 @@ open class KEResource: CNResource
 		return super.pathString(category: KEResource.LibrariesCategory, identifier: KEResource.DefaultIdentifier, index: idx)
 	}
 
-	public func loadLibraryScript(index idx: Int) -> String? {
+	public func URLOfLibrary(identifier ident: String, index idx: Int) -> URL? {
+		if let url = super.fullPathURL(category: KEResource.LibrariesCategory, identifier: ident, index: idx) {
+			return url
+		} else {
+			return nil
+		}
+	}
+
+	public func loadLibrary(index idx: Int) -> String? {
 		if let script:String = super.load(category: KEResource.LibrariesCategory, identifier: KEResource.DefaultIdentifier, index: idx) {
 			return script
 		} else {
@@ -72,7 +80,7 @@ open class KEResource: CNResource
 	}
 
 	public func addScript(identifier ident: String, path pathstr: String){
-		super.set(category: KEResource.ScriptsCategory, identifier: ident, path: pathstr)
+		super.add(category: KEResource.ScriptsCategory, identifier: ident, path: pathstr)
 	}
 
 	public func countOfScripts(identifier ident: String) -> Int? {

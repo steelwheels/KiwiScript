@@ -28,14 +28,14 @@ import Foundation
 	/*
 	 * Static library
 	 */
-	public static var mLibraryScripts: Array<String> 	= []
+	public static var mLibraries: Array<String> 	= []
 
-	public static var libraryScripts: Array<String> {
-		get { return mLibraryScripts }
+	public static var libraries: Array<String> {
+		get { return mLibraries }
 	}
 
-	public static func addLibraryScript(script scr: String) {
-		mLibraryScripts.append(scr)
+	public static func addLibrary(script scr: String) {
+		mLibraries.append(scr)
 	}
 
 	/*
@@ -212,7 +212,7 @@ private class KLOperationCompiler: KLCompiler
 			compileOperationClass(context: ctxt, operation: op, console: cons, config: conf)
 
 			/* Compile user defined library */
-			for script in KLOperationContext.libraryScripts {
+			for script in KLOperationContext.libraries {
 				let _ = super.compile(context: ctxt, statement: script, console: cons, config: conf)
 			}
 

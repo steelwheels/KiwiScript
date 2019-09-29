@@ -59,9 +59,9 @@ open class KECompiler
 	public func compile(context ctxt: KEContext, resource res: KEResource, console cons: CNConsole, config conf: KEConfig) -> Bool {
 		var result = true
 		/* Import library */
-		if let libnum = res.countOfLibraryScripts() {
+		if let libnum = res.countOfLibraries() {
 			for i in 0..<libnum {
-				if let script = res.loadLibraryScript(index: i) {
+				if let script = res.loadLibrary(index: i) {
 					let _ = self.compile(context: ctxt, statement: script, console: cons, config: conf)
 				} else {
 					cons.error(string: "[Error] Failed to load user script\n")
