@@ -4,8 +4,8 @@
 		"liba", "libb"
 	],
 	"scripts": {
-		"script-a": "scriptA.js",
-		"script-b": "scriptB.js"
+		"script-a": ["scriptA.js"],
+		"script-b": ["scriptB.js"]
 	}
 }
 

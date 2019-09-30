@@ -55,9 +55,11 @@ open class KEManifestLoader
 		/* Decode: "scripts" */
 		if let scrsval = data["scripts"] {
 			if let scrsdict = scrsval.toDictionary() {
-				let fmap = try decodeFileMap(json: scrsdict)
-				for (ident, path) in fmap {
-					res.addScript(identifier: ident, path: path)
+				let fmap = try decodeFilesMap(json: scrsdict)
+				for (ident, paths) in fmap {
+					for path in paths {
+						res.addScript(identifier: ident, path: path)
+					}
 				}
 			} else {
 				throw NSError.parseError(message: "windows must has object property")
@@ -81,6 +83,29 @@ open class KEManifestLoader
 		return result
 	}
 
+	public func decodeFilesMap(json data: Dictionary<String, CNNativeValue>) throws -> Dictionary<String, Array<String>> {
+		var result: Dictionary<String, Array<String>> = [:]
+		for key in data.keys {
+			result[key] = []
+			if let val = data[key] {
+				if let arr = val.toArray() {
+					for elm in arr {
+						if let str = elm.toString() {
+							result[key]?.append(str)
+						} else {
+							throw NSError.parseError(message: "Invalid value for \"\(key)\" in manifest file")
+						}
+					}
+				} else {
+					throw NSError.parseError(message: "Invalid value for \"\(key)\" in manifest file")
+				}
+			} else {
+				throw NSError.parseError(message: "Can not happen")
+			}
+		}
+		return result
+	}
+
 	public func decodeFileArray(json data: Array<CNNativeValue>) throws -> Array<String> {
 		var result: Array<String> = []
 		for elm in data {
@@ -93,71 +118,5 @@ open class KEManifestLoader
 		return result
 	}
 }
-
-/*
-public class AMCManifest
-{
-
-	private static func decode(resource res: AMCResource, json data: Dictionary<String, CNNativeValue>, console cons: CNConsole) throws {
-
-		/* Decode: "engine" */
-		if let scrsval = data["engine"] {
-			if let scrsarr = scrsval.toArray() {
-				let patharr = try decodeFileArray(json: scrsarr)
-				for path in patharr {
-					res.addEngineScriptMap(path: path)
-				}
-			} else {
-				throw NSError.parseError(message: "libraries must has array property")
-			}
-		}
-		/* Decode: "main_window" */
-		if let mwinval = data["main_window"] {
-			if let mwinstr = mwinval.toString() {
-				res.setMainWindowName(name: mwinstr)
-			} else {
-				throw NSError.parseError(message: "main_window must has string property")
-			}
-		}
-		/* Decode: "windows" */
-		if let winsval = data["windows"] {
-			if let winsdict = winsval.toDictionary() {
-				let fmap = decodeFileMap(json: winsdict, console: cons)
-				for (ident, path) in fmap {
-					res.addWindowScript(identifier: ident, path: path)
-				}
-			} else {
-				throw NSError.parseError(message: "windows must has object property")
-			}
-		}
-		/* Decode: "images" */
-		if let imgsval = data["images"] {
-			if let imgsdict = imgsval.toDictionary() {
-				let fmap = decodeFileMap(json: imgsdict, console: cons)
-				for (ident, path) in fmap {
-					res.setImageFile(identifier: ident, path: path)
-				}
-			} else {
-				throw NSError.parseError(message: "images must has object property")
-			}
-		}
-	}
-
-	private static func decodePreference(json data: Dictionary<String, CNNativeValue>, resource res: AMCResource, console cons: CNConsole) throws {
-		if let scrval = data["preference"] {
-			if let scrstr = scrval.toString() {
-				let prefurl = res.baseURL.appendingPathComponent(scrstr)
-				if let err = CNPreference.parsePreference(from: prefurl, console: cons) {
-					throw err
-				}
-			} else {
-				throw NSError.parseError(message: "File path is required for preference")
-			}
-		}
-	}
-}
-
-*/
-
 
 
