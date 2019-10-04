@@ -27,14 +27,14 @@ public func UTOperation2(console cons: CNConsole, config conf: KEConfig) -> Bool
 	let opconf = KEConfig(kind: .Operation, doStrict: true, doVerbose: true)
 	let op     = KLOperationContext(ownerContext: ctxt, console: cons, config: opconf)
 
-	let (urlp, errorp) = CNFilePath.URLForBundleFile(bundleName: "UnitTest", fileName: "unit-test-1", ofType: "js")
-	if let url = urlp {
+	switch CNFilePath.URLForBundleFile(bundleName: "UnitTest", fileName: "unit-test-1", ofType: "js") {
+	case .ok(let url):
 		if op.compile(userStructs:[], userScripts: [url]) {
 			cons.print(string: "MainThread: [Compile] OK\n")
 		} else {
 			cons.error(string: "MainThread: [Error] compile failed\n")
 		}
-	} else if let err = errorp {
+	case .error(let err):
 		cons.error(string: "[Error] \(err.description)")
 	}
 

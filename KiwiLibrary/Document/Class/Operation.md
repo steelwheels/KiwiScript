@@ -4,7 +4,7 @@
 The `Operation` class is used to execute JavaScript code on a thread.
 There is rule to describe JavaScript code on the queue.
 
-## The constructor method
+## Constructor method
 This method allocates the instance of `Operation` class.
 ````
 const operation = Operation(URLs, console) ;

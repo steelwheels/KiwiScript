@@ -47,6 +47,10 @@ public func main()
 	filecons.print(string: "/* Unit test for Operation */\n")
 	let result1 = UTOperation(context: context, console: filecons, config: config)
 
+	/* Thread */
+	filecons.print(string: "/* Unit test for Thread */\n")
+	let result6 = UTThread(context: context, console: filecons, config: config)
+
 	/* Operation*/
 	filecons.print(string: "/* Unit test for Operation2 */\n")
 	let result2 = UTOperation2(console: filecons, config: config)
@@ -55,10 +59,10 @@ public func main()
 	filecons.print(string: "/* Unit test for native value */\n")
 	let result5 = UTNativeValue(context: context, console: filecons)
 
-	if result0 && result1 && result2 && result3 && result4 && result5 {
+	if result0 && result1 && result2 && result3 && result4 && result5 && result6 {
 		filecons.print(string: "Summary: OK\n")
 	} else {
-		filecons.print(string: "Summary: NG (\(result0) \(result1) \(result2) \(result3) \(result4) \(result5))\n")
+		filecons.print(string: "Summary: NG (\(result0) \(result1) \(result2) \(result3) \(result4) \(result5) \(result6))\n")
 	}
 }
 

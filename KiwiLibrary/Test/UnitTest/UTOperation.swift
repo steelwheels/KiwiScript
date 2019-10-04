@@ -73,14 +73,15 @@ private func allocateOperation(context ctxt: KEContext, console cons: CNConsole,
 	strct.setMember(name: "b", value: CNNativeValue.stringValue("Hello"))
 
 	let op     = KLOperationContext(ownerContext: ctxt, console: cons, config: conf)
-	let (urlp, errorp) = CNFilePath.URLForBundleFile(bundleName: "UnitTest", fileName: "unit-test-0", ofType: "js")
-	if let url = urlp {
+
+	switch CNFilePath.URLForBundleFile(bundleName: "UnitTest", fileName: "unit-test-0", ofType: "js") {
+	case .ok(let url):
 		if op.compile(userStructs:[strct], userScripts: [url]) {
 			return op
 		} else {
 			cons.error(string: "Failed to compile operation\n")
 		}
-	} else if let err = errorp {
+	case .error(let err):
 		cons.error(string: "[Error] \(err.description)")
 	}
 	return nil

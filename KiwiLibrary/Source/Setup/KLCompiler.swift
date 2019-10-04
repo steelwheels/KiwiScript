@@ -33,6 +33,45 @@ open class KLCompiler: KECompiler
 		return (ctxt.errorCount == 0)
 	}
 
+	/* Call this afer above method is called */
+	public func compile(context ctxt: KEContext, scriptName name: String?, resource res: KEResource, console cons: CNConsole, config conf: KEConfig) -> Bool {
+		var result = true
+
+		/* Compile library */
+		if let libnum = res.countOfLibraries() {
+			for i in 0..<libnum {
+				if let scr = res.loadLibrary(index: i) {
+					let _ = super.compile(context: ctxt, statement: scr, console: cons, config: conf)
+				} else {
+					if let fname = res.URLOfLibrary(index: i) {
+						cons.error(string: "Failed to load library: \(fname.absoluteString)")
+					} else {
+						cons.error(string: "Failed to load file in library section")
+					}
+				}
+			}
+		}
+
+		/* Compile script */
+		if let scrname = name {
+			if let scrnum = res.countOfScripts(identifier: scrname) {
+				for i in 0..<scrnum {
+					if let scr = res.loadScript(identifier: scrname, index: i) {
+						let _ = super.compile(context: ctxt, statement: scr, console: cons, config: conf)
+					} else {
+						if let fname = res.URLOfScript(identifier: scrname, index: i) {
+							cons.error(string: "Failed to load script : \(fname.absoluteString)")
+						} else {
+							cons.error(string: "Failed to load file in script section")
+						}
+						result = false
+					}
+				}
+			}
+		}
+		return result && (ctxt.errorCount == 0)
+	}
+
 	private func addEnumTypes() {
 		let etable = KEEnumTable.shared
 

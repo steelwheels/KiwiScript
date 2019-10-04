@@ -56,8 +56,8 @@ open class KEResource: CNResource
 		return super.pathString(category: KEResource.LibrariesCategory, identifier: KEResource.DefaultIdentifier, index: idx)
 	}
 
-	public func URLOfLibrary(identifier ident: String, index idx: Int) -> URL? {
-		if let url = super.fullPathURL(category: KEResource.LibrariesCategory, identifier: ident, index: idx) {
+	public func URLOfLibrary(index idx: Int) -> URL? {
+		if let url = super.fullPathURL(category: KEResource.LibrariesCategory, identifier: KEResource.DefaultIdentifier, index: idx) {
 			return url
 		} else {
 			return nil
