@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		050EF1FB2348C11500B62EB3 /* Sample.jspkg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050EF1F92348C0F000B62EB3 /* Sample.jspkg */; };
 		052B0F7A1BE8A3A400E3BFEE /* UTExec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B0F781BE8A33400E3BFEE /* UTExec.swift */; };
 		054536C61B78021500FE978C /* KiwiEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 054536C51B78021500FE978C /* KiwiEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		054637F21BB05FE400DEE12F /* UTError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054637F01BB05F4500DEE12F /* UTError.swift */; };
@@ -25,7 +26,6 @@
 		05B3D56A21A0F6AC00D54D02 /* KEProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B3D56921A0F6AC00D54D02 /* KEProcess.swift */; };
 		05B573AF2337495B00E20DB4 /* KEManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B573AE2337495B00E20DB4 /* KEManifest.swift */; };
 		05B573B123374E3200E20DB4 /* UTManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B573B023374E3200E20DB4 /* UTManifest.swift */; };
-		05B573B323374F8700E20DB4 /* manifest.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B573B223374F5900E20DB4 /* manifest.json */; };
 		05BEA50B2189F80A00F9A4C6 /* KEEnumTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BEA50A2189F80A00F9A4C6 /* KEEnumTable.swift */; };
 		05CFAB962034875F001623BC /* KEException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CFAB952034875F001623BC /* KEException.swift */; };
 		05DFA829206865800032EC5B /* KECompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DFA828206865800032EC5B /* KECompiler.swift */; };
@@ -76,6 +76,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		050EF1FA2348C0F800B62EB3 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				050EF1FB2348C11500B62EB3 /* Sample.jspkg in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		058B53211BA41A6C009522DF /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -85,20 +95,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
-		05E8C62521889C77008CAAF8 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = Library;
-			dstSubfolderSpec = 7;
-			files = (
-				05B573B323374F8700E20DB4 /* manifest.json in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0507B17E1BA41D850048D325 /* UnitTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		050EF1F92348C0F000B62EB3 /* Sample.jspkg */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sample.jspkg; sourceTree = "<group>"; };
 		052B0F781BE8A33400E3BFEE /* UTExec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTExec.swift; sourceTree = "<group>"; };
 		054536C01B78021500FE978C /* KiwiEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		054536C41B78021500FE978C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
@@ -117,7 +118,6 @@
 		05B40EED1BE5A4AE00AA8525 /* check.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = check.mk; sourceTree = SOURCE_ROOT; };
 		05B573AE2337495B00E20DB4 /* KEManifest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEManifest.swift; sourceTree = "<group>"; };
 		05B573B023374E3200E20DB4 /* UTManifest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTManifest.swift; sourceTree = "<group>"; };
-		05B573B223374F5900E20DB4 /* manifest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
 		05BEA50A2189F80A00F9A4C6 /* KEEnumTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEEnumTable.swift; sourceTree = "<group>"; };
 		05CF6D761BA41EF000BD9D91 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05CFAB952034875F001623BC /* KEException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEException.swift; sourceTree = "<group>"; };
@@ -248,7 +248,7 @@
 		05CF6D751BA41ECE00BD9D91 /* UnitTestBundle */ = {
 			isa = PBXGroup;
 			children = (
-				05B573B223374F5900E20DB4 /* manifest.json */,
+				050EF1F92348C0F000B62EB3 /* Sample.jspkg */,
 				05CF6D761BA41EF000BD9D91 /* Info.plist */,
 			);
 			path = UnitTestBundle;
@@ -308,7 +308,7 @@
 				0507B17A1BA41D850048D325 /* Sources */,
 				0507B17B1BA41D850048D325 /* Frameworks */,
 				0507B1881BA41DC40048D325 /* CopyFiles */,
-				05E8C62521889C77008CAAF8 /* CopyFiles */,
+				050EF1FA2348C0F800B62EB3 /* CopyFiles */,
 			);
 			buildRules = (
 			);
