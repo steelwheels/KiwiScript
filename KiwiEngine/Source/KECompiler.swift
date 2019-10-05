@@ -15,7 +15,7 @@ open class KECompiler
 
 	}
 	
-	open func compile(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) -> Bool {
+	open func compileBase(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) -> Bool {
 		/* Set strict */
 		setStrictMode(context: ctxt, console: cons, config: conf)
 		/* Define Enum Types */
@@ -30,9 +30,9 @@ open class KECompiler
 	}
 
 	private func defineEnumTypes(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig){
-		let table = KEEnumTable.shared
-		for typename in table.typeNames.sorted() {
-			if let etype = table.search(by: typename) {
+		let etable = KEEnumTable.shared
+		for typename in etable.typeNames.sorted() {
+			if let etype = etable.search(by: typename) {
 				compile(context: ctxt, enumType: etype, console: cons, config: conf)
 			}
 		}
@@ -56,20 +56,47 @@ open class KECompiler
 		}
 	}
 
-	public func compile(context ctxt: KEContext, resource res: KEResource, console cons: CNConsole, config conf: KEConfig) -> Bool {
+
+	/* Call this afer "CompileBase" method is called */
+	open func compileResource(context ctxt: KEContext, resource res: KEResource, console cons: CNConsole, config conf: KEConfig) -> Bool {
 		var result = true
-		/* Import library */
+		/* Compile library */
 		if let libnum = res.countOfLibraries() {
 			for i in 0..<libnum {
-				if let script = res.loadLibrary(index: i) {
-					let _ = self.compile(context: ctxt, statement: script, console: cons, config: conf)
+				if let scr = res.loadLibrary(index: i) {
+					let _ = self.compile(context: ctxt, statement: scr, console: cons, config: conf)
 				} else {
-					cons.error(string: "[Error] Failed to load user script\n")
+					if let fname = res.URLOfLibrary(index: i) {
+						cons.error(string: "Failed to load library: \(fname.absoluteString)")
+						result = false
+					} else {
+						cons.error(string: "Failed to load file in library section")
+						result = false
+					}
+				}
+			}
+		}
+		return result && (ctxt.errorCount == 0)
+	}
+
+	public func compileScriptInResource(context ctxt: KEContext, resource res: KEResource, scriptName name: String, console cons: CNConsole, config conf: KEConfig) -> Bool {
+		var result = true
+		/* Compile script */
+		if let scrnum = res.countOfScripts(identifier: name) {
+			for i in 0..<scrnum {
+				if let scr = res.loadScript(identifier: name, index: i) {
+					let _ = self.compile(context: ctxt, statement: scr, console: cons, config: conf)
+				} else {
+					if let fname = res.URLOfScript(identifier: name, index: i) {
+						cons.error(string: "Failed to load script : \(fname.absoluteString)")
+					} else {
+						cons.error(string: "Failed to load file in script section")
+					}
 					result = false
 				}
 			}
 		}
-		return result
+		return result && (ctxt.errorCount == 0)
 	}
 
 	public func compile(context ctxt: KEContext, statement stmt: String, console cons: CNConsole, config conf: KEConfig) -> JSValue? {

@@ -13,24 +13,37 @@ import KiwiEngine
 
 public func testManifest(console cons: CNConsole, config conf: KEConfig) -> Bool
 {
+	/*
 	guard let bundle = Bundle(path: "UnitTest.bundle") else {
 		cons.print(string: "[Error] Can not find bundle\n")
 		return false
-	}
+	}*/
 
-	let url = bundle.bundleURL.appendingPathComponent("Contents/Resources/Library")
-	cons.print(string: "URL = \(url.absoluteString)\n")
-	let resource = KEResource(baseURL: url)
+	switch CNFilePath.URLForBundleFile(bundleName: "UnitTest", fileName: "Sample", ofType: "jspkg") {
+	case .ok(let url):
+		//cons.print(string: "manifest.json is at \(url.description)\n")
+		let resource = KEResource(baseURL: url)
+		let loader   = KEManifestLoader()
+		if let err = loader.load(into: resource) {
+			cons.print(string: "[Error] Failed to load manifest: \(err.toString())\n")
+			return false
+		}
 
-	let loader = KEManifestLoader()
-	if let err = loader.load(into: resource) {
-		cons.print(string: "[Error] Failed to load manifest: \(err.toString())\n")
+		/* dump */
+		cons.print(string: "/* Dump resource */\n")
+		resource.toText().print(console: cons)
+	case .error(let err):
+		cons.print(string: "[Error] \(err.toString())\n")
 		return false
 	}
 
-	/* dump */
-	cons.print(string: "/* Dump resource */\n")
-	resource.toText().print(console: cons)
+	/*
+		bundle.bundleURL.appendingPathComponent("Contents/Resources/Library")
+	cons.print(string: "URL = \(url.absoluteString)\n")
+
+
+
+*/
 
 	return true
 }

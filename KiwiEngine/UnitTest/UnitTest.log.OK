@@ -125,4 +125,23 @@ class A {
 aobject = new A() ;
 Optional("[object Object]")
 testValue : OK
+/* Dump resource */
+{
+  URL: file:///Users/tomoo/build/DerivedData/KiwiEngine-eoeakqjnqhdxnqevjxgsocekhuwr/Build/Products/Debug/UnitTest.bundle/Contents/Resources/Sample.jspkg
+  libraries: {
+    _default: {
+      "liba"
+      "libb"
+    }
+  }
+  scripts: {
+    script-b: {
+      "scriptB.js"
+    }
+    script-a: {
+      "scriptA.js"
+    }
+  }
+}
+testManifest : OK
 SUMMARY: OK
