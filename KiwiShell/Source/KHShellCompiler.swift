@@ -15,7 +15,7 @@ import Foundation
 open class KHShellCompiler: KLCompiler
 {
 	open func compile(context ctxt: KEContext, environment env: CNShellEnvironment, console cons: CNConsole, config conf: KEConfig) -> Bool {
-		if super.compile(context: ctxt, console: cons, config: conf) {
+		if super.compileBase(context: ctxt, console: cons, config: conf) {
 			setEnvironment(context: ctxt, environment: env)
 			return true
 		} else {
