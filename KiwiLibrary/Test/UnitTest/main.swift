@@ -25,7 +25,7 @@ public func main()
 	}
 
 	let compiler = KLCompiler()
-	if(compiler.compile(context: context, console: filecons, config: config)){
+	if(compiler.compileBase(context: context, console: filecons, config: config)){
 		filecons.print(string: "  -> Compiler: OK\n")
 	} else {
 		filecons.print(string: "  -> Compiler: NG\n")

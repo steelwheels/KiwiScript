@@ -37,10 +37,13 @@ private class KLThreadObject: CNThread
 		/* Compile */
 		let compiler = KLCompiler()
 		let config   = KEConfig(kind: .Terminal, doStrict: true, doVerbose: false)
-		guard compiler.compile(context: mContext, console: mConsole, config: config) else {
+		guard compiler.compileBase(context: mContext, console: mConsole, config: config) else {
 			return false
 		}
-		guard compiler.compile(context: mContext, scriptName: name, resource: resource, console: mConsole, config: config) else {
+		guard compiler.compileResource(context: mContext, resource: resource, console: mConsole, config: config) else {
+			return false
+		}
+		guard compiler.compileScriptInResource(context: mContext, resource: resource, scriptName: name, console: mConsole, config: config) else {
 			return false
 		}
 		return true

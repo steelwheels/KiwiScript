@@ -946,8 +946,8 @@ MainThread: Set command: param0 <- 1
 * Test3
 MainThread: Set command: param2 <- {image: name:<unknown>, size:0.0 x 0.0}
 * Test5
-exec result: OK
 [Machine] Hello, world
+exec result: OK
 /* Unit test for native value */
 *** Class definition ***
 class UTStruct {

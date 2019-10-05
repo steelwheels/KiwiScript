@@ -208,7 +208,7 @@ import Foundation
 private class KLOperationCompiler: KLCompiler
 {
 	public func compile(context ctxt: KEContext, operation op: KLOperationContext, userStructs structs: Array<CNNativeStruct>, userScripts scripts:  Array<URL>, console cons: CNConsole, config conf: KEConfig) -> Bool {
-		if super.compile(context: ctxt, console: cons, config: conf) {
+		if super.compileBase(context: ctxt, console: cons, config: conf) {
 			compileOperationClass(context: ctxt, operation: op, console: cons, config: conf)
 
 			/* Compile user defined library */
