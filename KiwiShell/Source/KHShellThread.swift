@@ -22,14 +22,14 @@ import Foundation
 	private var mContext:		KEContext
 	private var mProcessor:		KHShellProcessor
 
-	public init(virtualMachine vm: JSVirtualMachine, input inhdl: FileHandle, output outhdl: FileHandle, error errhdl: FileHandle, environment env: CNShellEnvironment, config conf: KEConfig){
+	public init(virtualMachine vm: JSVirtualMachine, resource res: KEResource, input inhdl: FileHandle, output outhdl: FileHandle, error errhdl: FileHandle, environment env: CNShellEnvironment, config conf: KEConfig){
 		mContext	= KEContext(virtualMachine: vm)
 		mProcessor	= KHShellProcessor()
 		super.init(input: inhdl, output: outhdl, error: errhdl, environment: env, config: conf, terminationHander: nil)
 
 		/* Compile the context */
 		let compiler = KHShellCompiler()
-		guard compiler.compile(context: mContext, environment: env, console: console, config: conf) else {
+		guard compiler.compileShell(context: mContext, environment: env, resource: res, console: console, config: conf) else {
 			console.error(string: "Failed to compile script thread context\n")
 			return
 		}
@@ -41,8 +41,6 @@ import Foundation
 				myself.console.error(string: "[Exception] \(desc)\n")
 			}
 		}
-		/* Define built-in functions */
-		compiler.defineBuiltinFunctions(context: mContext)
 	}
 
 	public override func promptString() -> String {

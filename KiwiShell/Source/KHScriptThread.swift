@@ -35,7 +35,7 @@ import Foundation
 		}
 	}}
 
-	public init(virtualMachine vm: JSVirtualMachine, input inhdl: FileHandle, output outhdl: FileHandle, error errhdl: FileHandle, environment env: CNShellEnvironment, config conf: KHConfig){
+	public init(virtualMachine vm: JSVirtualMachine, resource res: KEResource, input inhdl: FileHandle, output outhdl: FileHandle, error errhdl: FileHandle, environment env: CNShellEnvironment, config conf: KHConfig){
 		mContext		= KEContext(virtualMachine: vm)
 		mStatements		= []
 		mArguments		= []
@@ -44,7 +44,7 @@ import Foundation
 
 		/* Compile the context */
 		let compiler = KHShellCompiler()
-		guard compiler.compile(context: mContext, environment: env, console: self.console, config: conf) else {
+		guard compiler.compileShell(context: mContext, environment: env, resource: res, console: self.console, config: conf) else {
 			errhdl.write(string: "Failed to compile script thread context\n")
 			return
 		}
@@ -55,8 +55,6 @@ import Foundation
 				myself.errorFileHandle.write(string: excep.description + "\n")
 			}
 		}
-		/* Define built-in functions */
-		compiler.defineBuiltinFunctions(context: mContext)
 	}
 
 	public func start(statements stmts: Array<String>, arguments args: Array<String>) {
