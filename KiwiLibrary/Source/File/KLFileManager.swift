@@ -25,11 +25,11 @@ import Foundation
 	private var mStdout:	KLFile
 	private var mStderr:	KLFile
 
-	public init(context ctxt: KEContext){
+	public init(context ctxt: KEContext, input inhdl: FileHandle, output outhdl: FileHandle, error errhdl: FileHandle){
 		mContext   = ctxt
-		mStdin	   = KLFile(file: CNTextFileObject(fileHandle: FileHandle.standardInput),  context: ctxt)
-		mStdout	   = KLFile(file: CNTextFileObject(fileHandle: FileHandle.standardOutput), context: ctxt)
-		mStderr    = KLFile(file: CNTextFileObject(fileHandle: FileHandle.standardError),  context: ctxt)
+		mStdin	   = KLFile(file: CNTextFileObject(fileHandle: inhdl ), context: ctxt)
+		mStdout	   = KLFile(file: CNTextFileObject(fileHandle: outhdl), context: ctxt)
+		mStderr    = KLFile(file: CNTextFileObject(fileHandle: errhdl), context: ctxt)
 	}
 
 	public func open(_ pathval: JSValue, _ accval: JSValue) -> JSValue

@@ -331,7 +331,10 @@ open class KLCompiler: KECompiler
 		case .Terminal:
 			#if os(OSX)
 				/* File */
-				let file = KLFileManager(context: ctxt)
+				let inhdl  = FileHandle.standardInput
+				let outhdl = FileHandle.standardOutput
+				let errhdl = FileHandle.standardError
+				let file = KLFileManager(context: ctxt, input: inhdl, output: outhdl, error: errhdl)
 				ctxt.set(name: "FileManager", object: file)
 
 				let stdinobj = file.standardFile(fileType: .input, context: ctxt)
