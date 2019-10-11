@@ -52,6 +52,7 @@ public func UTOperation2(console cons: CNConsole, config conf: KEConfig) -> Bool
 	let opval   = JSValue(object: op, in: ctxt)
 	let limval  = JSValue(nullIn: ctxt)
 	let retval2  = queue.execute(opval!, limval!)
+	queue.waitOperations()
 	if retval2.isBoolean {
 		if retval2.toBool() {
 			cons.print(string: "exec result: OK\n")
@@ -63,8 +64,7 @@ public func UTOperation2(console cons: CNConsole, config conf: KEConfig) -> Bool
 		cons.error(string: "Invalid return value type\n")
 		result = false
 	}
-	queue.waitOperations()
-	
+
 	return result
 }
 

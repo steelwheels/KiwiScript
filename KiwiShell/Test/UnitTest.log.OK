@@ -66,10 +66,12 @@ Hello, world ===> Not interface
  "> ls -l"
 <Convert>
 [let _process0 = system(` ls -l`, stdin, stdout, stderr) ;
-_process0.waitUntilExit() ; ]
+_process0.waitUntilExit() ;
+]
 <Source>
  "> echo "hello, world!!""
 <Convert>
 [let _process1 = system(` echo "hello, world!!"`, stdin, stdout, stderr) ;
-_process1.waitUntilExit() ; ]
+_process1.waitUntilExit() ;
+]
 Summary: OK

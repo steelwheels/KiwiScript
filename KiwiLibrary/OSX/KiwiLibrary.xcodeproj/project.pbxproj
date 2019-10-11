@@ -17,10 +17,13 @@
 		0534BBED2321405400FC8DEF /* KLFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0534BBEC2321405400FC8DEF /* KLFileManager.swift */; };
 		0546C40F2253B0D2001686B8 /* UTOperation2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0546C40E2253B0D2001686B8 /* UTOperation2.swift */; };
 		055560F3211B4A4C009DB8F8 /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 055560F2211B4A4B009DB8F8 /* CoconutData.framework */; };
-		055560F5211B4A82009DB8F8 /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 055560F2211B4A4B009DB8F8 /* CoconutData.framework */; };
 		05610E5121B3C12800535D06 /* KLDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05610E5021B3C12800535D06 /* KLDatabase.swift */; };
 		0567B9A223462F64008CA9A2 /* UTThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0567B9A123462F64008CA9A2 /* UTThread.swift */; };
 		0578143422DE18CB00B50279 /* Graphics.js in Resources */ = {isa = PBXBuildFile; fileRef = 0578143322DE18CB00B50279 /* Graphics.js */; };
+		057F1343234F82E40043C54B /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 055560F2211B4A4B009DB8F8 /* CoconutData.framework */; };
+		057F1344234F82E40043C54B /* CoconutData.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 055560F2211B4A4B009DB8F8 /* CoconutData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		057F1345234F82E50043C54B /* CoconutShell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05BC6856234E2FD30013C897 /* CoconutShell.framework */; };
+		057F1346234F82E50043C54B /* CoconutShell.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05BC6856234E2FD30013C897 /* CoconutShell.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		057F73B8208E3EE700D7CF57 /* KLCurses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F73B7208E3EE700D7CF57 /* KLCurses.swift */; };
 		057FF82D2344CEDE0044AAE8 /* KLThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057FF82C2344CEDE0044AAE8 /* KLThread.swift */; };
 		058414AB231583FF002F731E /* KLProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058414AA231583FF002F731E /* KLProcess.swift */; };
@@ -32,7 +35,6 @@
 		05929406226BDA0A00B2B403 /* UTType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05929405226BDA0A00B2B403 /* UTType.swift */; };
 		0596C2CF22AD0675002DB33C /* unit-test-0.js in Resources */ = {isa = PBXBuildFile; fileRef = 055957F122ACFFDD00DCD0E7 /* unit-test-0.js */; };
 		0596C2D022AD0677002DB33C /* unit-test-1.js in Resources */ = {isa = PBXBuildFile; fileRef = 055957F322AD015B00DCD0E7 /* unit-test-1.js */; };
-		059E8AFA2234EDEB005EE9B8 /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 058735D520C2C7F700797EFD /* KiwiEngine.framework */; };
 		05A593892245FE0500001E4C /* Operation.js in Resources */ = {isa = PBXBuildFile; fileRef = 0562E07A222C1A0300761F70 /* Operation.js */; };
 		05A5938A2245FE0700001E4C /* Math.js in Resources */ = {isa = PBXBuildFile; fileRef = 052B153F20C382E500BAF41B /* Math.js */; };
 		05AD1F4822579DC400B36C34 /* KLScriptValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AD1F4722579DC400B36C34 /* KLScriptValue.swift */; };
@@ -104,6 +106,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				057F1344234F82E40043C54B /* CoconutData.framework in CopyFiles */,
+				057F1346234F82E50043C54B /* CoconutShell.framework in CopyFiles */,
 				058735D920C2C82700797EFD /* KiwiLibrary.framework in CopyFiles */,
 				058735D820C2C82100797EFD /* KiwiEngine.framework in CopyFiles */,
 			);
@@ -147,6 +151,7 @@
 		05B12287203F0734009DDBEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05B176A82250E4B1001216F2 /* Debug.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Debug.js; sourceTree = "<group>"; };
 		05B18F74222EA6AB006E9A31 /* KLOperationContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLOperationContext.swift; sourceTree = "<group>"; };
+		05BC6856234E2FD30013C897 /* CoconutShell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutShell.framework; path = ../../../../Library/Frameworks/CoconutShell.framework; sourceTree = "<group>"; };
 		05D5128722315C0E00AD95EE /* UTOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTOperation.swift; sourceTree = "<group>"; };
 		05D6BF8321D3D3E4001D737A /* KLImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLImage.swift; sourceTree = "<group>"; };
 		05E166A422DAB85400AC6C4E /* UTMath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTMath.swift; sourceTree = "<group>"; };
@@ -161,7 +166,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				059E8AFA2234EDEB005EE9B8 /* KiwiEngine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,7 +173,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				055560F5211B4A82009DB8F8 /* CoconutData.framework in Frameworks */,
+				057F1343234F82E40043C54B /* CoconutData.framework in Frameworks */,
+				057F1345234F82E50043C54B /* CoconutShell.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,6 +256,7 @@
 		05AAEC9F20C1B9F000694209 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				05BC6856234E2FD30013C897 /* CoconutShell.framework */,
 				055560F2211B4A4B009DB8F8 /* CoconutData.framework */,
 				058735D520C2C7F700797EFD /* KiwiEngine.framework */,
 			);
@@ -474,7 +480,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1110;
 				ORGANIZATIONNAME = "Tomoo Hamada";
 				TargetAttributes = {
 					05341CBE20BDCB73001E2173 = {
@@ -634,6 +640,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
+				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(TARGET_BUILD_DIR)/$(PRODUCT_NAME).bundle/Contents/Frameworks",
 					"$(USER_LIBRARY_DIR)/Frameworks",
@@ -655,6 +662,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
+				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(TARGET_BUILD_DIR)/$(PRODUCT_NAME).bundle/Contents/Frameworks",
 					"$(USER_LIBRARY_DIR)/Frameworks",
@@ -793,7 +801,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -849,7 +857,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -862,7 +870,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -893,7 +901,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;

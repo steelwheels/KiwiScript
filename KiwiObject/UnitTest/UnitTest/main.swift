@@ -20,7 +20,7 @@ public func main()
 	let context = KEContext(virtualMachine: JSVirtualMachine())
 
 	let compiler = KLCompiler()
-	if compiler.compile(context: context, console: console, config: config) {
+	if compiler.compileBase(context: context, console: console, config: config) {
 		console.error(string: "Compile: OK\n")
 	} else {
 		console.error(string: "Compile: NG\n")

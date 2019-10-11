@@ -26,9 +26,10 @@ public func UTShell(input inhdl: FileHandle, output outhdl: FileHandle, error er
 		return false
 	}
 
-	let env     = CNShellEnvironment()
-	let config  = KEConfig(kind: .Terminal, doStrict: true, doVerbose: true)
-	let shell   = KHShellThread(virtualMachine: vm, input: inhdl, output: outhdl, error: errhdl, environment: env, config: config)
+	let resource = KEResource(baseURL: URL(fileURLWithPath: "."))
+	let env      = CNShellEnvironment()
+	let config   = KEConfig(kind: .Terminal, doStrict: true, doVerbose: true)
+	let shell    = KHShellThread(virtualMachine: vm, resource: resource, input: inhdl, output: outhdl, error: errhdl, environment: env, config: config)
 	shell.start()
 
 	sleep(1)

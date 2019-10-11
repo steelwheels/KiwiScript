@@ -135,11 +135,11 @@ testValue : OK
     }
   }
   scripts: {
-    script-b: {
-      "scriptB.js"
-    }
     script-a: {
       "scriptA.js"
+    }
+    script-b: {
+      "scriptB.js"
     }
   }
 }
