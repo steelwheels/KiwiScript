@@ -26,32 +26,21 @@ import Foundation
 @objc open class KLOperationContext: CNOperationContext, KLOperationContextProtocol
 {
 	/*
-	 * Static library
-	 */
-	public static var mLibraries: Array<String> 	= []
-
-	public static var libraries: Array<String> {
-		get { return mLibraries }
-	}
-
-	public static func addLibrary(script scr: String) {
-		mLibraries.append(scr)
-	}
-
-	/*
 	 * Class body
 	 */
 	private var 	mOwnerContext:		KEContext
 	private var	mSelfContext:		KEContext
+	private var	mLibraries:		Array<URL>
 	private var	mConfig:		KEConfig
 	private var	mOperationInstance:	JSValue?
 	private var	mGetFunction:		JSValue?
 	private var	mSetFunction:		JSValue?
 	private var 	mExecFunction:		JSValue?
 
-	public init(ownerContext octxt: KEContext, console cons: CNConsole, config conf: KEConfig){
+	public init(ownerContext octxt: KEContext, libraries libs: Array<URL>, console cons: CNConsole, config conf: KEConfig){
 		mOwnerContext		= octxt
 		mSelfContext		= KEContext(virtualMachine: JSVirtualMachine())
+		mLibraries		= libs
 		mConfig			= conf
 		mOperationInstance	= nil
 		mGetFunction		= nil
@@ -157,7 +146,7 @@ import Foundation
 
 		let compiler = KLOperationCompiler()
 		let result: Bool
-		if compiler.compile(context: mSelfContext, operation: self, userStructs: structs, userScripts: scripts, console: cons, config: mConfig) {
+		if compiler.compile(context: mSelfContext, operation: self, userStructs: structs, libraries: mLibraries, userScripts: scripts, console: cons, config: mConfig) {
 			result = getGlobalVariables(context: mSelfContext)
 		} else {
 			result = false
@@ -207,17 +196,15 @@ import Foundation
 
 private class KLOperationCompiler: KLCompiler
 {
-	public func compile(context ctxt: KEContext, operation op: KLOperationContext, userStructs structs: Array<CNNativeStruct>, userScripts scripts:  Array<URL>, console cons: CNConsole, config conf: KEConfig) -> Bool {
+	public func compile(context ctxt: KEContext, operation op: KLOperationContext, userStructs structs: Array<CNNativeStruct>, libraries libs: Array<URL>, userScripts scripts:  Array<URL>, console cons: CNConsole, config conf: KEConfig) -> Bool {
 		if super.compileBase(context: ctxt, console: cons, config: conf) {
 			compileOperationClass(context: ctxt, operation: op, console: cons, config: conf)
 
-			/* Compile user defined library */
-			for script in KLOperationContext.libraries {
-				let _ = super.compile(context: ctxt, statement: script, console: cons, config: conf)
-			}
+			var bothscripts = libs
+			bothscripts.append(contentsOf: scripts)
 
 			let res0 = compileUserStructs(context: ctxt, userStructs: structs, console: cons, config: conf)
-			let res1 = compileUserScripts(context: ctxt, userScripts: scripts, console: cons, config: conf)
+			let res1 = compileUserScripts(context: ctxt, userScripts: bothscripts, console: cons, config: conf)
 			defineBuiltinFunction(context: ctxt, operation: op)
 			return res0 && res1 && (ctxt.errorCount == 0)
 		} else {

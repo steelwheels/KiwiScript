@@ -25,7 +25,7 @@ public func UTOperation2(console cons: CNConsole, config conf: KEConfig) -> Bool
 	}
 
 	let opconf = KEConfig(kind: .Operation, doStrict: true, doVerbose: true)
-	let op     = KLOperationContext(ownerContext: ctxt, console: cons, config: opconf)
+	let op     = KLOperationContext(ownerContext: ctxt, libraries: [], console: cons, config: opconf)
 
 	switch CNFilePath.URLForBundleFile(bundleName: "UnitTest", fileName: "unit-test-1", ofType: "js") {
 	case .ok(let url):

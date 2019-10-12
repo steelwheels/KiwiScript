@@ -72,7 +72,7 @@ private func allocateOperation(context ctxt: KEContext, console cons: CNConsole,
 	strct.setMember(name: "a", value: CNNativeValue.numberValue(NSNumber(floatLiteral: 0.12)))
 	strct.setMember(name: "b", value: CNNativeValue.stringValue("Hello"))
 
-	let op     = KLOperationContext(ownerContext: ctxt, console: cons, config: conf)
+	let op     = KLOperationContext(ownerContext: ctxt, libraries: [], console: cons, config: conf)
 
 	switch CNFilePath.URLForBundleFile(bundleName: "UnitTest", fileName: "unit-test-0", ofType: "js") {
 	case .ok(let url):

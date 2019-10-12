@@ -417,7 +417,7 @@ open class KLCompiler: KECompiler
 			(_ urlsval: JSValue, _ consval: JSValue) -> JSValue in
 			let opconsole = KLCompiler.valueToConsole(consoleValue: consval, context: ctxt, logConsole: cons)
 			let opconfig  = KEConfig(kind: .Terminal, doStrict: conf.doStrict, doVerbose: conf.doVerbose)
-			let op        = KLOperationContext(ownerContext: ctxt, console: opconsole, config: opconfig)
+			let op        = KLOperationContext(ownerContext: ctxt, libraries:[], console: opconsole, config: opconfig)
 
 			/* User scripts */
 			var urls: Array<URL> = []
