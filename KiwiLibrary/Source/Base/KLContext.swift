@@ -11,7 +11,7 @@ import Foundation
 
 extension KEContext
 {
-	public var console: CNConsole {
+	public var console: CNFileConsole {
 		get {
 			if let consval = self.getValue(name: "console") {
 				if consval.isObject {
@@ -20,7 +20,7 @@ extension KEContext
 					}
 				}
 			}
-			return CNDefaultConsole()
+			return CNFileConsole()
 		}
 	}
 }

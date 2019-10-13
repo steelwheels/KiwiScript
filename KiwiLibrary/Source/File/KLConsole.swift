@@ -22,14 +22,14 @@ import Foundation
 @objc public class KLConsole: NSObject, KLConsoleProtocol
 {
 	private var mContext: KEContext
-	private var mConsole: CNConsole
+	private var mConsole: CNFileConsole
 
-	public init(context ctxt: KEContext, console cons: CNConsole){
+	public init(context ctxt: KEContext, console cons: CNFileConsole){
 		mContext = ctxt
 		mConsole = cons
 	}
 
-	public var console: CNConsole {
+	public var console: CNFileConsole {
 		get { return mConsole }
 	}
 

@@ -12,7 +12,7 @@ import Foundation
 
 open class KLCompiler: KECompiler
 {
-	open override func compileBase(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) -> Bool {
+	open override func compileBase(context ctxt: KEContext, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
 		/* Expand enum table before they are defined */
 		addEnumTypes()
 
@@ -361,7 +361,7 @@ open class KLCompiler: KECompiler
 		ctxt.set(name: "JSON", object: json)
 	}
 
-	private func defineGlobalObjects(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
+	private func defineGlobalObjects(context ctxt: KEContext, console cons: CNFileConsole, config conf: KEConfig) {
 		/* console */
 		switch conf.kind {
 		case .Terminal, .Operation:
@@ -411,13 +411,18 @@ open class KLCompiler: KECompiler
 		}
 	}
 
-	private func defineOperationObjects(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
+	private func defineOperationObjects(context ctxt: KEContext, console cons: CNFileConsole, config conf: KEConfig) {
 		/* Operaion */
 		let opfunc: @convention(block) (_ urlsval: JSValue, _ consval: JSValue) -> JSValue = {
 			(_ urlsval: JSValue, _ consval: JSValue) -> JSValue in
 			let opconsole = KLCompiler.valueToConsole(consoleValue: consval, context: ctxt, logConsole: cons)
 			let opconfig  = KEConfig(kind: .Terminal, doStrict: conf.doStrict, doVerbose: conf.doVerbose)
-			let op        = KLOperationContext(ownerContext: ctxt, libraries:[], console: opconsole, config: opconfig)
+			let op        = KLOperationContext(ownerContext: ctxt,
+							   libraries:[],
+							   input:  cons.inputHandle,
+							   output: cons.outputHandle,
+							   error:  cons.errorHandle,
+							   config: opconfig)
 
 			/* User scripts */
 			var urls: Array<URL> = []
@@ -465,8 +470,8 @@ open class KLCompiler: KECompiler
 		ctxt.set(name: "Thread", function: thfunc)
 	}
 
-	private class func valueToConsole(consoleValue consval: JSValue, context ctxt: KEContext, logConsole logcons: CNConsole) -> CNConsole {
-		let opconsole: CNConsole
+	private class func valueToConsole(consoleValue consval: JSValue, context ctxt: KEContext, logConsole logcons: CNConsole) -> CNFileConsole {
+		let opconsole: CNFileConsole
 		if consval.isObject {
 			if let consobj = consval.toObject() as? KLConsole {
 				opconsole = consobj.console

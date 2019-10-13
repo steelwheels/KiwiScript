@@ -10,7 +10,7 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-public func testCompiler(console cons: CNConsole) -> Bool
+public func testCompiler(console cons: CNFileConsole) -> Bool
 {
 	let config   = KEConfig(kind: .Terminal, doStrict: true, doVerbose: true)
 

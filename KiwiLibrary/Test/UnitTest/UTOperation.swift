@@ -11,7 +11,7 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-public func UTOperation(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) -> Bool
+public func UTOperation(context ctxt: KEContext, console cons: CNFileConsole, config conf: KEConfig) -> Bool
 {
 	cons.print(string: "// Allocate operation\n")
 	guard let op = allocateOperation(context: ctxt, console: cons, config: conf) else {
@@ -66,13 +66,18 @@ public func UTOperation(context ctxt: KEContext, console cons: CNConsole, config
 	return true
 }
 
-private func allocateOperation(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) -> KLOperationContext?
+private func allocateOperation(context ctxt: KEContext, console cons: CNFileConsole, config conf: KEConfig) -> KLOperationContext?
 {
 	let strct = CNNativeStruct(name: "UTStruct")
 	strct.setMember(name: "a", value: CNNativeValue.numberValue(NSNumber(floatLiteral: 0.12)))
 	strct.setMember(name: "b", value: CNNativeValue.stringValue("Hello"))
 
-	let op     = KLOperationContext(ownerContext: ctxt, libraries: [], console: cons, config: conf)
+	let op     = KLOperationContext(ownerContext: ctxt,
+					libraries: [],
+					input:  cons.inputHandle,
+					output: cons.outputHandle,
+					error:  cons.errorHandle,
+					config: conf)
 
 	switch CNFilePath.URLForBundleFile(bundleName: "UnitTest", fileName: "unit-test-0", ofType: "js") {
 	case .ok(let url):

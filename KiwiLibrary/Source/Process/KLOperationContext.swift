@@ -37,7 +37,7 @@ import Foundation
 	private var	mSetFunction:		JSValue?
 	private var 	mExecFunction:		JSValue?
 
-	public init(ownerContext octxt: KEContext, libraries libs: Array<URL>, console cons: CNConsole, config conf: KEConfig){
+	public init(ownerContext octxt: KEContext, libraries libs: Array<URL>, input inhdl: FileHandle, output outhdl: FileHandle, error errhdl: FileHandle, config conf: KEConfig){
 		mOwnerContext		= octxt
 		mSelfContext		= KEContext(virtualMachine: JSVirtualMachine())
 		mLibraries		= libs
@@ -46,7 +46,7 @@ import Foundation
 		mGetFunction		= nil
 		mSetFunction		= nil
 		mExecFunction		= nil
-		super.init(console: cons)
+		super.init(input: inhdl, output: outhdl, error: errhdl)
 
 		setExceptionHandler()
 	}
@@ -55,10 +55,8 @@ import Foundation
 		mSelfContext.exceptionCallback = {
 			[weak self] (_ exception: KEException) -> Void in
 			if let myself = self {
-				if let cons = myself.console {
-					cons.error(string: exception.description + "\n")
-					return
-				}
+				myself.console.error(string: exception.description + "\n")
+				return
 			}
 			NSLog("Internal error")
 		}
@@ -90,7 +88,7 @@ import Foundation
 				return
 			}
 		}
-		log(type: .Error, string: "Failed to exec _set_operation method", file: #file, line: #line, function: #function)
+		self.console.error(string: "Failed to exec _set_operation method")
 	}
 
 	open override func parameter(name nm: String) -> CNNativeValue? {
@@ -101,7 +99,7 @@ import Foundation
 				}
 			}
 		}
-		log(type: .Error, string: "Failed to exec _get_operation method", file: #file, line: #line, function: #function)
+		self.console.error(string: "Failed to exec _get_operation method")
 		return nil
 	}
 
@@ -113,7 +111,7 @@ import Foundation
 				return
 			}
 		}
-		log(type: .Error, string: "Failed to set parameter", file: #file, line: #line, function: #function)
+		self.console.error(string: "Failed to exec _set_parameter")
 	}
 
 	public func get(_ name: JSValue) -> JSValue {
@@ -131,22 +129,17 @@ import Foundation
 		if let newobj = newcons.toObject() as? KLConsole {
 			if let newval = JSValue(object: newobj, in: mSelfContext){
 				mSelfContext.set(name: "console", value: newval)
-				super.console = newobj.console
+				set(console: newobj.console)
 				return
 			}
 		}
-		log(type: .Error, string: "Failed to set console", file: #file, line: #line, function: #function)
+		self.console.error(string: "Failed to set console")
 	}
 
 	public func compile(userStructs structs: Array<CNNativeStruct>, userScripts scripts: Array<URL>) -> Bool {
-		guard let cons = console else {
-			NSLog("No console")
-			return false
-		}
-
 		let compiler = KLOperationCompiler()
 		let result: Bool
-		if compiler.compile(context: mSelfContext, operation: self, userStructs: structs, libraries: mLibraries, userScripts: scripts, console: cons, config: mConfig) {
+		if compiler.compile(context: mSelfContext, operation: self, userStructs: structs, libraries: mLibraries, userScripts: scripts, console: self.console, config: mConfig) {
 			result = getGlobalVariables(context: mSelfContext)
 		} else {
 			result = false
@@ -155,32 +148,28 @@ import Foundation
 	}
 
 	private func getGlobalVariables(context ctxt: KEContext) -> Bool {
-		guard let cons = console else {
-			NSLog("No console")
-			return false
-		}
 		if let opinstance = ctxt.getValue(name: "operation") {
 			mOperationInstance = opinstance
 		} else {
-			cons.error(string: "The \"operation\" global variable must be defined.\n")
+			self.console.error(string: "The \"operation\" global variable must be defined.\n")
 			return false
 		}
 		if let getfunc = ctxt.getValue(name: "_get_operation") {
 			mGetFunction = getfunc
 		} else {
-			cons.error(string: "The built-in function \"_set_operation\" is NOT found\n")
+			self.console.error(string: "The built-in function \"_set_operation\" is NOT found\n")
 			return false
 		}
 		if let setfunc = ctxt.getValue(name: "_set_operation") {
 			mSetFunction = setfunc
 		} else {
-			cons.error(string: "The built-in function \"_set_operation\" is NOT found\n")
+			self.console.error(string: "The built-in function \"_set_operation\" is NOT found\n")
 			return false
 		}
 		if let execfunc = ctxt.getValue(name: "_exec_operation") {
 			mExecFunction = execfunc
 		} else {
-			cons.error(string: "The built-in function \"_exec_operation\" is NOT found\n")
+			self.console.error(string: "The built-in function \"_exec_operation\" is NOT found\n")
 			return false
 		}
 		return true
@@ -196,7 +185,7 @@ import Foundation
 
 private class KLOperationCompiler: KLCompiler
 {
-	public func compile(context ctxt: KEContext, operation op: KLOperationContext, userStructs structs: Array<CNNativeStruct>, libraries libs: Array<URL>, userScripts scripts:  Array<URL>, console cons: CNConsole, config conf: KEConfig) -> Bool {
+	public func compile(context ctxt: KEContext, operation op: KLOperationContext, userStructs structs: Array<CNNativeStruct>, libraries libs: Array<URL>, userScripts scripts:  Array<URL>, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
 		if super.compileBase(context: ctxt, console: cons, config: conf) {
 			compileOperationClass(context: ctxt, operation: op, console: cons, config: conf)
 
