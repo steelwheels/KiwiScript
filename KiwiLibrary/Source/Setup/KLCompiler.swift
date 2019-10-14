@@ -318,7 +318,7 @@ open class KLCompiler: KECompiler
 		ctxt.set(name: "Rect", function: rectFunc)
 	}
 
-	private func defineClassObjects(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
+	private func defineClassObjects(context ctxt: KEContext, console cons: CNFileConsole, config conf: KEConfig) {
 		/* Pipe() */
 		let pipeFunc:  @convention(block) () -> JSValue = {
 			() -> JSValue in
@@ -331,10 +331,10 @@ open class KLCompiler: KECompiler
 		case .Terminal:
 			#if os(OSX)
 				/* File */
-				let inhdl  = FileHandle.standardInput
-				let outhdl = FileHandle.standardOutput
-				let errhdl = FileHandle.standardError
-				let file = KLFileManager(context: ctxt, input: inhdl, output: outhdl, error: errhdl)
+				let file = KLFileManager(context: ctxt,
+							 input:   cons.inputHandle,
+							 output:  cons.outputHandle,
+							 error:   cons.errorHandle)
 				ctxt.set(name: "FileManager", object: file)
 
 				let stdinobj = file.standardFile(fileType: .input, context: ctxt)
