@@ -12,7 +12,7 @@ import Foundation
 
 @objc public protocol KLProcessProtocol: JSExport {
 	func isRunning() -> Bool
-	func waitUntilExit()
+	func waitUntilExit() -> Int32
 }
 
 #if os(OSX)
@@ -37,8 +37,8 @@ import Foundation
 		return result
 	}
 
-	public func waitUntilExit() {
-		mProcess.waitUntilExit()
+	public func waitUntilExit() -> Int32 {
+		return mProcess.waitUntilExit()
 	}
 }
 

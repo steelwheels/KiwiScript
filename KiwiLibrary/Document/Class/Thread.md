@@ -31,15 +31,9 @@ thread.start(arg0, arg1, args) -> Bool
 
 ### `waitUntilExit`
 Wait until the process is finished.
+The return value is exit code of the process.
 ````
-thread.waitUntilExit() -> Void
-````
-
-### `exitCode`
-The return value of the `main` function.
-This value will be valid after the execution finished.
-````
-thread.exitCode() -> Int
+thread.waitUntilExit() -> Int
 ````
 
 ## References

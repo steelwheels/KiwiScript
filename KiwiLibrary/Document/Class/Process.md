@@ -13,10 +13,10 @@ process.isRunning() ;
 
 ### `waitUntilExit`
 Wait until the process is finished.
+The return value is exit code of the process.
 ````
-process.waitUntilExit()
+process.waitUntilExit() -> Int
 ````
 
 ## References
 * [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library
-

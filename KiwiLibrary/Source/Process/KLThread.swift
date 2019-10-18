@@ -13,8 +13,7 @@ import Foundation
 @objc public protocol KLThreadProtocol: JSExport {
 	func start(_ args: JSValue)
 	func isRunning() -> Bool
-	func waitUntilExit()
-	func exitCode() -> Int32
+	func waitUntilExit() -> Int32
 }
 
 private class KLThreadObject: CNThread
@@ -107,12 +106,8 @@ private class KLThreadObject: CNThread
 		return result
 	}
 
-	public func waitUntilExit() {
-		mThread.waitUntilExit()
-	}
-
-	public func exitCode() -> Int32 {
-		return mThread.terminationStatus
+	public func waitUntilExit() -> Int32 {
+		return mThread.waitUntilExit()
 	}
 
 	public func print(string str: String) {

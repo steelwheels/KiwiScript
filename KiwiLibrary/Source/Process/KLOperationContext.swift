@@ -223,9 +223,9 @@ private class KLOperationCompiler: KLCompiler
 		return (ctxt.errorCount == 0)
 	}
 
-	private func compileUserScripts(context ctxt: KEContext, userScripts scripts: Array<URL>, console cons: CNConsole, config conf: KEConfig) -> Bool {
+	private func compileUserScripts(context ctxt: KEContext, userScripts urls: Array<URL>, console cons: CNConsole, config conf: KEConfig) -> Bool {
 		/* Compile program */
-		let scripts = URLsToScripts(URLs: scripts, console: cons)
+		let scripts = URLsToScripts(URLs: urls, console: cons)
 		if scripts.count > 0 {
 			for script in scripts {
 				let _ = super.compile(context: ctxt, statement: script, console: cons, config: conf)
