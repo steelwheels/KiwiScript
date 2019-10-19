@@ -19,12 +19,12 @@ import Foundation
 private class KLThreadObject: CNThread
 {
 	private var mContext:	KEContext
-	private var mArguments:	Array<JSValue>
+	private var mArgument:	CNNativeValue
 	private var mConsole:	CNFileConsole
 
 	public init(virtualMachine vm: JSVirtualMachine, input inhdl: FileHandle, output outhdl: FileHandle, error errhdl: FileHandle) {
 		mContext   = KEContext(virtualMachine: vm)
-		mArguments = []
+		mArgument  = .nullValue
 		mConsole   = CNFileConsole(input: inhdl, output: outhdl, error: errhdl)
 		super.init(input: inhdl, output: outhdl, error: errhdl, terminationHander: {
 			(_ thread: Thread) -> Int32 in
@@ -49,16 +49,7 @@ private class KLThreadObject: CNThread
 	}
 
 	public func start(arguments args: JSValue) {
-		mArguments = []
-		let native = args.toNativeValue()
-		switch native {
-		case .arrayValue(let arr):
-			for elm in arr {
-				mArguments.append(elm.toJSValue(context: mContext))
-			}
-		default:
-			mArguments.append(native.toJSValue(context: mContext))
-		}
+		mArgument = args.toNativeValue()
 		super.start()
 	}
 
@@ -66,7 +57,10 @@ private class KLThreadObject: CNThread
 		/* Search main function */
 		var result: Int32 = 0
 		if let funcval = mContext.getValue(name: "main") {
-			if let retval = funcval.call(withArguments: mArguments) {
+			/* Allocate argument */
+			let arg = mArgument.toJSValue(context: mContext)
+			/* Call main function */
+			if let retval = funcval.call(withArguments: [arg]) {
 				result = retval.toInt32()
 			} else {
 				mConsole.error(string: "Failed to call main function")
