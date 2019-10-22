@@ -19,4 +19,5 @@ process.waitUntilExit() -> Int
 ````
 
 ## References
+* [system function](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/System.md): The function to generate process. 
 * [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library

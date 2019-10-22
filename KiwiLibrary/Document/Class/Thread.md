@@ -37,4 +37,5 @@ thread.waitUntilExit() -> Int
 ````
 
 ## References
+* [Thread function](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Thread.md): The function to generate the thread. 
 * [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library
