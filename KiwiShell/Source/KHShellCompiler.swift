@@ -49,13 +49,10 @@ open class KHShellCompiler: KLCompiler
 
 	private static func executeSystemCommand(commandValue cmdval: JSValue, inputValue inval: JSValue, outputValue outval: JSValue, errorValue errval: JSValue, context ctxt: KEContext) -> JSValue {
 		if let command = valueToString(value: cmdval),
-		   let infile  = valueToFile(value: inval),
-		   let outfile = valueToFile(value: outval),
-		   let errfile = valueToFile(value: errval) {
-			let inhdl   = infile.fileHandle
-			let outhdl  = outfile.fileHandle
-			let errhdl  = errfile.fileHandle
-			let process = CNProcess(input: inhdl, output: outhdl, error:  errhdl, terminationHander: nil)
+		   let instrm  = valueToFileStream(value: inval),
+		   let outstrm = valueToFileStream(value: outval),
+		   let errstrm = valueToFileStream(value: errval) {
+			let process = CNProcess(input: instrm, output: outstrm, error: errstrm, terminationHander: nil)
 			process.execute(command: command)
 			let procval = KLProcess(process: process, context: ctxt)
 			return JSValue(object: procval, in: ctxt)
@@ -72,10 +69,12 @@ open class KHShellCompiler: KLCompiler
 		return nil
 	}
 
-	private static func valueToFile(value val: JSValue) -> KLFile? {
+	private static func valueToFileStream(value val: JSValue) -> CNFileStream? {
 		if val.isObject {
 			if let file = val.toObject() as? KLFile {
-				return file
+				return .fileHandle(file.fileHandle)
+			} else if let pipe = val.toObject() as? KLPipe {
+				return .pipe(pipe.pipe)
 			}
 		}
 		return nil

@@ -536,18 +536,6 @@ Input value: 1.23
 // Execute the operation
 // Wait operations are finished
 Task: Hello, World !!
-/* Unit test for Thread */
-{
-  URL: ../Test/Sample/sample-0.jspkg/
-  libraries: {
-  }
-  scripts: {
-    sample0: {
-      "sample0.js"
-    }
-  }
-}
-Message from thread: Hello, threading !! Thread, 123
 /* Unit test for Operation2 */
 'use strict' ;
 /* Define Enum: Alignment */
@@ -967,6 +955,20 @@ class UTStruct {
     return object ;
   }
 }
+/* Unit test for Thread */
+Source URL: file:///Users/tomoo/Project/KiwiScript/KiwiLibrary/Test/Sample/sample-0.jspkg/
+{
+  URL: ../Test/Sample/sample-0.jspkg/
+  libraries: {
+  }
+  scripts: {
+    sample0: {
+      "sample0.js"
+    }
+  }
+}
+Message from thread: Hello, threading !! Thread,123, undefined
+Thread is finished with error code: 0
 Summary: OK
 [UnitTest]
 

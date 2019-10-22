@@ -35,24 +35,24 @@ import Foundation
 		}
 	}}
 
-	public init(virtualMachine vm: JSVirtualMachine, resource res: KEResource, input inhdl: FileHandle, output outhdl: FileHandle, error errhdl: FileHandle, environment env: CNShellEnvironment, config conf: KHConfig){
+	public init(virtualMachine vm: JSVirtualMachine, resource res: KEResource, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNShellEnvironment, config conf: KHConfig){
 		mContext		= KEContext(virtualMachine: vm)
 		mStatements		= []
 		mArguments		= []
 		mResultValue		= nil
-		super.init(input: inhdl, output: outhdl, error: errhdl, environment: env, config: conf, terminationHander: nil)
+		super.init(input: instrm, output: outstrm, error: errstrm, environment: env, config: conf, terminationHander: nil)
 
 		/* Compile the context */
 		let compiler = KHShellCompiler()
 		guard compiler.compileShell(context: mContext, environment: env, resource: res, console: self.console, config: conf) else {
-			errhdl.write(string: "Failed to compile script thread context\n")
+			console.error(string: "Failed to compile script thread context\n")
 			return
 		}
 		/* Set exception handler */
 		mContext.exceptionCallback = {
 			[weak self]  (_ excep: KEException) -> Void in
 			if let myself = self {
-				myself.errorFileHandle.write(string: excep.description + "\n")
+				myself.console.error(string: excep.description + "\n")
 			}
 		}
 	}

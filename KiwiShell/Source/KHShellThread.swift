@@ -22,10 +22,10 @@ import Foundation
 	private var mContext:		KEContext
 	private var mProcessor:		KHShellProcessor
 
-	public init(virtualMachine vm: JSVirtualMachine, resource res: KEResource, input inhdl: FileHandle, output outhdl: FileHandle, error errhdl: FileHandle, environment env: CNShellEnvironment, config conf: KEConfig){
+	public init(virtualMachine vm: JSVirtualMachine, resource res: KEResource, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNShellEnvironment, config conf: KEConfig){
 		mContext	= KEContext(virtualMachine: vm)
 		mProcessor	= KHShellProcessor()
-		super.init(input: inhdl, output: outhdl, error: errhdl, environment: env, config: conf, terminationHander: nil)
+		super.init(input: instrm, output: outstrm, error: errstrm, environment: env, config: conf, terminationHander: nil)
 
 		/* Compile the context */
 		let shellconf = KEConfig(kind: .Terminal, doStrict: conf.doStrict, doVerbose: conf.doVerbose)

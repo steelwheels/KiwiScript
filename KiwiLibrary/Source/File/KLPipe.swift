@@ -30,6 +30,8 @@ import Foundation
 		mReading = nil
 	}
 
+	public var pipe: Pipe { get { return mPipe }}
+
 	public var reading: JSValue {
 		get {
 			if let file = mReading {

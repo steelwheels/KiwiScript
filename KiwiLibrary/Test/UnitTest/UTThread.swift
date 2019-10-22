@@ -11,11 +11,13 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-public func UTThread(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) -> Bool
+public func UTThread(context ctxt: KEContext, console cons: CNFileConsole, config conf: KEConfig) -> Bool
 {
 	var result = false
 
 	let pkgurl = URL(fileURLWithPath: "../Test/Sample/sample-0.jspkg")
+	cons.print(string: "Source URL: \(pkgurl.absoluteString)\n")
+
 	//cons.print(string: "Package: \(pkgurl.absoluteString)\n")
 
 	let resource = KEResource(baseURL: pkgurl)
@@ -30,17 +32,18 @@ public func UTThread(context ctxt: KEContext, console cons: CNConsole, config co
 
 		/* Allocate thread */
 		guard let vm     = JSVirtualMachine() else {
-			cons.error(string: "[Error] Failed to allocate VM\n")
+			cons.print(string: "[Error] Failed to allocate VM\n")
 			return false
 		}
-		let inhdl  = FileHandle.standardInput
-		let outhdl = FileHandle.standardOutput
-		let errhdl = FileHandle.standardError
-		let thread = KLThread(virtualMachine: vm, input: inhdl, output: outhdl, error: errhdl)
+
+		let instrm:  CNFileStream = .fileHandle(cons.inputHandle)
+		let outstrm: CNFileStream = .fileHandle(cons.outputHandle)
+		let errstrm: CNFileStream = .fileHandle(cons.errorHandle)
+		let thread = KLThread(virtualMachine: vm, input: instrm, output: outstrm, error: errstrm)
 
 		/* Compile the thread */
 		guard thread.compile(scriptName: "sample0", in: resource) else {
-			cons.error(string: "[Error] Failed to compile\n")
+			cons.print(string: "[Error] Failed to compile\n")
 			return false
 		}
 
@@ -48,16 +51,17 @@ public func UTThread(context ctxt: KEContext, console cons: CNConsole, config co
 		let arg0   = JSValue(object: "Thread", in: ctxt)
 		let arg1   = JSValue(int32: 123, in: ctxt)
 		guard let args   = JSValue(object: [arg0, arg1], in: ctxt) else {
-			cons.error(string: "[Error] Failed to allocate arguments\n")
+			cons.print(string: "[Error] Failed to allocate arguments\n")
 			return false
 		}
 		thread.start(args)
 
 		/* Wait until exist */
-		thread.waitUntilExit()
+		let ecode = thread.waitUntilExit()
+		cons.print(string: "Thread is finished with error code: \(ecode)\n")
 
 		/* Test passed */
-		result = true
+		result = (ecode == 0)
 	}
 
 	return result

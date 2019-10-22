@@ -20,13 +20,11 @@ private class KLThreadObject: CNThread
 {
 	private var mContext:	KEContext
 	private var mArgument:	CNNativeValue
-	private var mConsole:	CNFileConsole
 
-	public init(virtualMachine vm: JSVirtualMachine, input inhdl: FileHandle, output outhdl: FileHandle, error errhdl: FileHandle) {
+	public init(virtualMachine vm: JSVirtualMachine, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream) {
 		mContext   = KEContext(virtualMachine: vm)
 		mArgument  = .nullValue
-		mConsole   = CNFileConsole(input: inhdl, output: outhdl, error: errhdl)
-		super.init(input: inhdl, output: outhdl, error: errhdl, terminationHander: {
+		super.init(input: instrm, output: outstrm, error: errstrm, terminationHander: {
 			(_ thread: Thread) -> Int32 in
 			return 0
 		})
@@ -36,13 +34,13 @@ private class KLThreadObject: CNThread
 		/* Compile */
 		let compiler = KLCompiler()
 		let config   = KEConfig(kind: .Terminal, doStrict: true, doVerbose: false)
-		guard compiler.compileBase(context: mContext, console: mConsole, config: config) else {
+		guard compiler.compileBase(context: mContext, console: self.console, config: config) else {
 			return false
 		}
-		guard compiler.compileResource(context: mContext, resource: resource, console: mConsole, config: config) else {
+		guard compiler.compileResource(context: mContext, resource: resource, console: self.console, config: config) else {
 			return false
 		}
-		guard compiler.compileScriptInResource(context: mContext, resource: resource, scriptName: name, console: mConsole, config: config) else {
+		guard compiler.compileScriptInResource(context: mContext, resource: resource, scriptName: name, console: self.console, config: config) else {
 			return false
 		}
 		return true
@@ -63,11 +61,11 @@ private class KLThreadObject: CNThread
 			if let retval = funcval.call(withArguments: [arg]) {
 				result = retval.toInt32()
 			} else {
-				mConsole.error(string: "Failed to call main function")
+				self.console.error(string: "Failed to call main function")
 				result = 1
 			}
 		} else {
-			mConsole.error(string: "main function is NOT found.")
+			self.console.error(string: "main function is NOT found.")
 			result = 1
 		}
 		return result
@@ -78,8 +76,8 @@ private class KLThreadObject: CNThread
 {
 	private var mThread: KLThreadObject
 
-	public init(virtualMachine vm: JSVirtualMachine, input inhdl: FileHandle, output outhdl: FileHandle, error errhdl: FileHandle) {
-		mThread = KLThreadObject(virtualMachine: vm, input: inhdl, output: outhdl, error: errhdl)
+	public init(virtualMachine vm: JSVirtualMachine, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream) {
+		mThread = KLThreadObject(virtualMachine: vm, input: instrm, output: outstrm, error: errstrm)
 	}
 
 	public func compile(scriptName name: String, in resource: KEResource) -> Bool {

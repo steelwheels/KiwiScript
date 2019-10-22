@@ -453,14 +453,11 @@ open class KLCompiler: KECompiler
 		let thfunc: @convention(block) (_ nameval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue = {
 			(_ nameval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue in
 			if let name    = nameval.toString(),
-			   let infile  = inval.toObject() as? KLFile,
-			   let outfile = outval.toObject() as? KLFile,
-			   let errfile = errval.toObject() as? KLFile,
+			   let infile  = KLCompiler.vallueToFileStream(value: inval),
+			   let outfile = KLCompiler.vallueToFileStream(value: outval),
+			   let errfile = KLCompiler.vallueToFileStream(value: errval),
 			   let vm = JSVirtualMachine() {
-				let thread = KLThread(virtualMachine: vm,
-						      input:  infile.fileHandle,
-						      output: outfile.fileHandle,
-						      error:  errfile.fileHandle)
+				let thread = KLThread(virtualMachine: vm, input:  infile, output: outfile, error: errfile)
 				if thread.compile(scriptName: name, in: res) {
 					return JSValue(object: thread, in: ctxt)
 				}
@@ -499,6 +496,17 @@ open class KLCompiler: KECompiler
 			return result
 		}
 		cons.error(string: "Invalid URL parameters\n")
+		return nil
+	}
+
+	private class func vallueToFileStream(value val: JSValue) -> CNFileStream? {
+		if let obj = val.toObject() {
+			if let file = obj as? KLFile {
+				return .fileHandle(file.fileHandle)
+			} else if let pipe = obj as? KLPipe {
+				return .pipe(pipe.pipe)
+			}
+		}
 		return nil
 	}
 
