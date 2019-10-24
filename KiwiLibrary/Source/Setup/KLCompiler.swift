@@ -416,7 +416,7 @@ open class KLCompiler: KECompiler
 		let opfunc: @convention(block) (_ urlsval: JSValue, _ consval: JSValue) -> JSValue = {
 			(_ urlsval: JSValue, _ consval: JSValue) -> JSValue in
 			let opconsole = KLCompiler.valueToConsole(consoleValue: consval, context: ctxt, logConsole: cons)
-			let opconfig  = KEConfig(kind: .Terminal, doStrict: conf.doStrict, doVerbose: conf.doVerbose)
+			let opconfig  = KEConfig(kind: .Terminal, doStrict: conf.doStrict, logLevel: conf.logLevel)
 			let op        = KLOperationContext(ownerContext: ctxt,
 							   libraries:[],
 							   input:  cons.inputHandle,
@@ -458,7 +458,7 @@ open class KLCompiler: KECompiler
 			   let errfile = KLCompiler.vallueToFileStream(value: errval),
 			   let vm = JSVirtualMachine() {
 				let thread = KLThread(virtualMachine: vm, input:  infile, output: outfile, error: errfile)
-				if thread.compile(scriptName: name, in: res) {
+				if thread.compile(scriptName: name, in: res, config: conf) {
 					return JSValue(object: thread, in: ctxt)
 				}
 			}

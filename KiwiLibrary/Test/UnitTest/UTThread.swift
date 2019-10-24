@@ -42,7 +42,7 @@ public func UTThread(context ctxt: KEContext, console cons: CNFileConsole, confi
 		let thread = KLThread(virtualMachine: vm, input: instrm, output: outstrm, error: errstrm)
 
 		/* Compile the thread */
-		guard thread.compile(scriptName: "sample0", in: resource) else {
+		guard thread.compile(scriptName: "sample0", in: resource, config: conf) else {
 			cons.print(string: "[Error] Failed to compile\n")
 			return false
 		}

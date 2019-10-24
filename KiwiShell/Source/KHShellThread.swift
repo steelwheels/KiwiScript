@@ -28,7 +28,7 @@ import Foundation
 		super.init(input: instrm, output: outstrm, error: errstrm, environment: env, config: conf, terminationHander: nil)
 
 		/* Compile the context */
-		let shellconf = KEConfig(kind: .Terminal, doStrict: conf.doStrict, doVerbose: conf.doVerbose)
+		let shellconf = KEConfig(kind: .Terminal, doStrict: conf.doStrict, logLevel: conf.logLevel)
 		let compiler  = KHShellCompiler()
 		guard compiler.compileShell(context: mContext, environment: env, resource: res, console: console, config: shellconf) else {
 			console.error(string: "Failed to compile script thread context\n")

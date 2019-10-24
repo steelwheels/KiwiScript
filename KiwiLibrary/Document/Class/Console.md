@@ -47,23 +47,10 @@ console.error(<message>)
 ### Return value
 none
 
-## `debug` method
-Print log message to standard output when the *verbose mode* is set to true.
-````
-console.debug(<message>)
-````
-#### Parameter(s)
-|Parameter    |Type   |Description                    |
-|:---         |:---   |:---                           |
-|message      |String |Log message string             |
-
-### Return value
-none
-
 ## `dump` method
 Print the context of the variable
 ````
-console.debug(value)
+console.dump(value)
 ````
 #### Parameter(s)
 |Parameter    |Type   |Description                    |
@@ -72,17 +59,6 @@ console.debug(value)
 
 ### Return value
 none
-
-
-
-
-
-
-
-
-
-
-
 
 ## References
 * [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library

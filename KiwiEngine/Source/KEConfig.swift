@@ -29,10 +29,10 @@ open class KEConfig: CNConfig
 	public var	kind:		KEApplicationKind
 	public var	doStrict:	Bool
 
-	public init(kind knd: KEApplicationKind, doStrict strict: Bool, doVerbose verbose: Bool) {
+	public init(kind knd: KEApplicationKind, doStrict strict: Bool, logLevel log: CNConfig.LogLevel) {
 		kind	  = knd
 		doStrict  = strict
-		super.init(doVerbose: verbose)
+		super.init(logLevel: log)
 	}
 }
 

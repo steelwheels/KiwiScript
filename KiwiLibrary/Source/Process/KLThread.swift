@@ -30,10 +30,10 @@ private class KLThreadObject: CNThread
 		})
 	}
 
-	public func compile(scriptName name: String, in resource: KEResource) -> Bool {
+	public func compile(scriptName name: String, in resource: KEResource, config conf: KEConfig) -> Bool {
 		/* Compile */
 		let compiler = KLCompiler()
-		let config   = KEConfig(kind: .Terminal, doStrict: true, doVerbose: false)
+		let config   = KEConfig(kind: .Terminal, doStrict: conf.doStrict, logLevel: conf.logLevel)
 		guard compiler.compileBase(context: mContext, console: self.console, config: config) else {
 			return false
 		}
@@ -80,8 +80,8 @@ private class KLThreadObject: CNThread
 		mThread = KLThreadObject(virtualMachine: vm, input: instrm, output: outstrm, error: errstrm)
 	}
 
-	public func compile(scriptName name: String, in resource: KEResource) -> Bool {
-		return mThread.compile(scriptName: name, in: resource)
+	public func compile(scriptName name: String, in resource: KEResource, config conf: KEConfig) -> Bool {
+		return mThread.compile(scriptName: name, in: resource, config: conf)
 	}
 
 	public func start(_ args: JSValue) {

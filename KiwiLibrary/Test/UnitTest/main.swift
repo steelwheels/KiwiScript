@@ -16,7 +16,7 @@ public func main()
 	Swift.print("[UnitTest]\n")
 
 	let filecons = CNFileConsole()
-	let config   = KEConfig(kind: .Terminal, doStrict: true, doVerbose: true)
+	let config   = KEConfig(kind: .Terminal, doStrict: true, logLevel: .detail)
 
 	let context  = KEContext(virtualMachine: JSVirtualMachine())
 	context.exceptionCallback = {

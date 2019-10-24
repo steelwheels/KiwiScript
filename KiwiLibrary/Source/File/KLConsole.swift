@@ -15,7 +15,6 @@ import Foundation
 	func log(_ value: JSValue)
 	func print(_ value: JSValue)
 	func error(_ value: JSValue)
-	func debug(_ value: JSValue)
 	func dump(_ value: JSValue)
 }
 
@@ -43,13 +42,6 @@ import Foundation
 
 	public func error(_ value: JSValue){
 		mConsole.error(string: value.toString())
-	}
-
-	public func debug(_ value: JSValue){
-		let pref = CNPreference.shared.systemPreference
-		if pref.doVerbose {
-			log(value)
-		}
 	}
 
 	public func dump(_ value: JSValue){

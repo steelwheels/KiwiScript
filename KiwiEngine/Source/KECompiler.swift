@@ -100,7 +100,10 @@ open class KECompiler
 	}
 
 	public func compile(context ctxt: KEContext, statement stmt: String, console cons: CNConsole, config conf: KEConfig) -> JSValue? {
-		if conf.doVerbose {
+		switch conf.logLevel {
+		case .error, .warning, .flow:
+			break
+		case .detail:
 			cons.print(string: stmt)
 		}
 		return ctxt.evaluateScript(stmt)
@@ -108,7 +111,10 @@ open class KECompiler
 
 	public func compile(context ctxt: KEContext, statements stmts: Array<String>, console cons: CNConsole, config conf: KEConfig) -> JSValue? {
 		let script = stmts.joined(separator: "\n")
-		if conf.doVerbose {
+		switch conf.logLevel {
+		case .error, .warning, .flow:
+			break
+		case .detail:
 			cons.print(string: script)
 		}
 		return ctxt.evaluateScript(script)
@@ -117,7 +123,10 @@ open class KECompiler
 	public func compile(context ctxt: KEContext, enumType etype: KEEnumType, console cons: CNConsole, config conf: KEConfig){
 		/* Compile */
 		let typename = etype.typeName
-		if conf.doVerbose {
+		switch conf.logLevel {
+		case .error, .warning, .flow:
+			break
+		case .detail:
 			cons.print(string: "/* Define Enum: \(typename) */\n")
 		}
 
