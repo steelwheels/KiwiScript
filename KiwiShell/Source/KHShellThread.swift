@@ -20,11 +20,9 @@ import Foundation
 @objc public class KHShellThread: CNShellThread, KHShellThreadProtocol
 {
 	private var mContext:		KEContext
-	private var mProcessor:		KHShellProcessor
 
 	public init(virtualMachine vm: JSVirtualMachine, resource res: KEResource, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNShellEnvironment, config conf: KEConfig){
 		mContext	= KEContext(virtualMachine: vm)
-		mProcessor	= KHShellProcessor()
 		super.init(input: instrm, output: outstrm, error: errstrm, environment: env, config: conf, terminationHander: nil)
 
 		/* Compile the context */
@@ -50,21 +48,20 @@ import Foundation
 
 	open override func inputLine(line str: String){
 		if !isEmpty(string: str) {
-			/* Translate built-in function */
-			let procres = mProcessor.convert(statements: [str])
-			switch procres {
-			case .finished(let stmts):
-				/* Execute as JavaScript code */
-				let script = stmts.joined(separator: "\n")
-				self.errorFileHandle.write(string: "SCRIPT=\"\(script)\"\n")
+			/* convert script */
+			let translator = KHShellTranslator()
+			switch translator.translate(lines: [str]) {
+			case .ok(let lines):
+				let script = lines.joined(separator: "\n")
 				if let retval = mContext.evaluateScript(script) {
 					if !retval.isUndefined, let retstr = retval.toString() {
 						self.outputFileHandle.write(string: retstr)
 					}
 				}
 			case .error(let err):
-				let desc = err.descriotion()
-				self.errorFileHandle.write(string: desc + "\n")
+				let errobj = err as NSError
+				let errmsg = errobj.toString()
+				self.errorFileHandle.write(string: errmsg + "\n")
 			}
 		}
 	}

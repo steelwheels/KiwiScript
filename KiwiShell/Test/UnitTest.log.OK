@@ -58,20 +58,14 @@ Hello, world ===> Not interface
 	exitVariableName       : e
 	shellStatement         :  echo "Hello"
 }
-<Source>
- "hello, world"
-<Convert>
-[hello, world]
-<Source>
- "> ls -l"
-<Convert>
-[let _process0 = system(` ls -l`, stdin, stdout, stderr) ;
-_process0.waitUntilExit() ;
-]
-<Source>
- "> echo "hello, world!!""
-<Convert>
-[let _process1 = system(` echo "hello, world!!"`, stdin, stdout, stderr) ;
-_process1.waitUntilExit() ;
-]
+/* Source script 0 */
+/* Translated script 0 */
+/* Source script 1 */
+let a = 1.0;
+> echo "Hello, world !!\n"
+console.log(a)
+/* Translated script 1 */
+let a = 1.0;
+ echo "Hello, world !!\n"
+console.log(a)
 Summary: OK

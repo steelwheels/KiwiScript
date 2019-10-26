@@ -22,7 +22,7 @@ public func main()
 
 	//let res0 = UTShell(input: inhdl, output: outhdl, error: errhdl, console: console)
 	let res1 = UTShellInterface(console: console)
-	let res2 = UTPreProcessor(console: console)
+	let res2 = UTTranslator(console: console)
 
 	if res1 && res2 {
 		console.print(string: "Summary: OK\n")
