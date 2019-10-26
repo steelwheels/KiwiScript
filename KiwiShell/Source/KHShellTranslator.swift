@@ -129,7 +129,13 @@ public class KHShellTranslator
 		let script1 = lines0.joined(separator: "\n")
 		let stmts1  = script1.components(separatedBy: "|")
 
+		/* Allocate statemets object */
 		let shstmts = KHShellStatements(statements: stmts1, indent: idt)
+
+		/* Insert pipes */
+		shstmts.insertPipes()
+
+		/* Generate script */
 		return shstmts.toScript()
 	}
 }
