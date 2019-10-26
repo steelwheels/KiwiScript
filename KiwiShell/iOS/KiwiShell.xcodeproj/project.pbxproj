@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		05193BF9232E6B1600281FD0 /* KHShellInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05193BF8232E6B1500281FD0 /* KHShellInterface.swift */; };
 		0528875B230540A900EB4D9A /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0528875A230540A900EB4D9A /* CoconutData.framework */; };
 		0528875D230540BA00EB4D9A /* CoconutShell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0528875C230540BA00EB4D9A /* CoconutShell.framework */; };
 		055417552318202D005BE0C5 /* KHConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055417542318202D005BE0C5 /* KHConfig.swift */; };
@@ -31,7 +30,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		05193BF8232E6B1500281FD0 /* KHShellInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHShellInterface.swift; sourceTree = "<group>"; };
 		0528875A230540A900EB4D9A /* CoconutData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutData.framework; path = ../../../../local/Frameworks/CoconutData.framework; sourceTree = "<group>"; };
 		0528875C230540BA00EB4D9A /* CoconutShell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutShell.framework; path = ../../../../local/Frameworks/CoconutShell.framework; sourceTree = "<group>"; };
 		055417542318202D005BE0C5 /* KHConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHConfig.swift; sourceTree = "<group>"; };
@@ -66,7 +64,6 @@
 				055417542318202D005BE0C5 /* KHConfig.swift */,
 				05C4BE2523127E340014C2DB /* KHScriptThread.swift */,
 				05C4BE2723127E400014C2DB /* KHShellThread.swift */,
-				05193BF8232E6B1500281FD0 /* KHShellInterface.swift */,
 				05E1A8A3231150E500C7BE92 /* KHShellEnvironment.swift */,
 				05EE1F65231161BD0051C0E9 /* KHShellCompiler.swift */,
 				05B410BB2363CE3700751D9F /* KHShellStatement.swift */,
@@ -215,7 +212,6 @@
 			files = (
 				055417552318202D005BE0C5 /* KHConfig.swift in Sources */,
 				05EE1F66231161BD0051C0E9 /* KHShellCompiler.swift in Sources */,
-				05193BF9232E6B1600281FD0 /* KHShellInterface.swift in Sources */,
 				05B410BC2363CE3700751D9F /* KHShellStatement.swift in Sources */,
 				05C4BE2823127E400014C2DB /* KHShellThread.swift in Sources */,
 				05C4BE2623127E340014C2DB /* KHScriptThread.swift in Sources */,

@@ -5,6 +5,7 @@
  *   Copyright (C) 2019 Steel Wheels Project
  */
 
+import CoconutData
 import Foundation
 
 public class KHShellTranslator
@@ -38,12 +39,14 @@ public class KHShellTranslator
 		var result: Array<String>   = []
 		var buffer: Array<String>   = []
 		var state: TranslationState = .normalStatement
+		var indent: String          = ""
 		for line in lns {
 			switch state {
 			case .normalStatement:
 				if isShellLine(line: line) {
 					/* normal -> shell */
 					result.append(contentsOf: buffer)
+					indent = CNStringUtil.spacePrefix(string: line)
 					buffer = [line]
 					state = .shellStatement
 				} else {
@@ -58,7 +61,7 @@ public class KHShellTranslator
 					state = .shellStatement
 				} else {
 					/* shell -> normal */
-					let modlines = try convert(lines: buffer)
+					let modlines = try convert(lines: buffer, indent: indent)
 					result.append(contentsOf: modlines)
 					buffer = [line]
 					state = .normalStatement
@@ -71,7 +74,7 @@ public class KHShellTranslator
 			case .normalStatement:
 				result.append(contentsOf: buffer)
 			case .shellStatement:
-				let modlines = try convert(lines: buffer)
+				let modlines = try convert(lines: buffer, indent: indent)
 				result.append(contentsOf: modlines)
 			}
 		}
@@ -115,13 +118,19 @@ public class KHShellTranslator
 		return String(ln.suffix(from: idx))
 	}
 
-	private func convert(lines lns: Array<String>) throws -> Array<String> {
+	private func convert(lines lns: Array<String>, indent idt: String) throws -> Array<String> {
 		/* Remove ">" symbol from header */
 		var lines0: Array<String> = []
 		for line in lns {
 			lines0.append(try removeHeader(line: line))
 		}
-		return lines0
+
+		/* Connect lines before splitting and devide by pipe '|' */
+		let script1 = lines0.joined(separator: "\n")
+		let stmts1  = script1.components(separatedBy: "|")
+
+		let shstmts = KHShellStatements(statements: stmts1, indent: idt)
+		return shstmts.toScript()
 	}
 }
 

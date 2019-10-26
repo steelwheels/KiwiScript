@@ -27,7 +27,13 @@ public func UTTranslator(console cons: CNConsole) -> Bool
 	]
 	let result1    = testTrans(translator: translator, testNo: 1, source: script1, console: cons)
 
-	return result0 && result1
+	let script2: Array<String> = [
+		"> a | b | c",
+		"> |d"
+	]
+	let result2    = testTrans(translator: translator, testNo: 2, source: script2, console: cons)
+
+	return result0 && result1 && result2
 }
 
 private func testTrans(translator trans: KHShellTranslator, testNo testno: Int, source srcs: Array<String>, console cons: CNConsole) -> Bool
