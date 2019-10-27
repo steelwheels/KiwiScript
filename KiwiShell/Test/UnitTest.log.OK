@@ -7,7 +7,8 @@ console.log(a)
 /* Translated script 1 */
 let a = 1.0;
 do {
-	system(`echo "Hello, world !!\n"`, stdin, stdout, stderr) ;
+	let _proc0 = system(`echo "Hello, world !!\n"`, stdin, stdout, stderr) ;
+	_proc0.waitUntilExit() ;
 } while(false) ;
 console.log(a)
 /* Source script 2 */
@@ -15,9 +16,29 @@ console.log(a)
 > |d
 /* Translated script 2 */
 do {
-	system(`a`, stdin, stdout, stderr) ;
-	system(`b`, stdin, stdout, stderr) ;
-	system(`c`, stdin, stdout, stderr) ;
-	system(`d`, stdin, stdout, stderr) ;
+	let _pipe0 = Pipe() ;
+	let _pipe1 = Pipe() ;
+	let _pipe2 = Pipe() ;
+	let _proc0 = system(`a`, stdin, _pipe0, stderr) ;
+	let _proc1 = system(`b`, _pipe0, _pipe1, stderr) ;
+	let _proc2 = system(`c`, _pipe1, _pipe2, stderr) ;
+	let _proc3 = system(`d`, _pipe2, stdout, stderr) ;
+	_proc0.waitUntilExit() ;
+	_proc1.waitUntilExit() ;
+	_proc2.waitUntilExit() ;
+	_proc3.waitUntilExit() ;
+} while(false) ;
+/* Source script 3 */
+> cat A | wc -l ; cat B |  wc -l
+/* Translated script 3 */
+do {
+	let _pipe0 = Pipe() ;
+	let _pipe1 = Pipe() ;
+	let _proc0 = system(`cat A`, stdin, _pipe0, stderr) ;
+	let _proc1 = system(`wc -l ; cat B`, _pipe0, _pipe1, stderr) ;
+	let _proc2 = system(`wc -l`, _pipe1, stdout, stderr) ;
+	_proc0.waitUntilExit() ;
+	_proc1.waitUntilExit() ;
+	_proc2.waitUntilExit() ;
 } while(false) ;
 Summary: OK

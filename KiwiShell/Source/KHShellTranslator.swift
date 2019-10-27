@@ -119,24 +119,57 @@ public class KHShellTranslator
 	}
 
 	private func convert(lines lns: Array<String>, indent idt: String) throws -> Array<String> {
+		/* Allocate statemets object */
+		let shstmts = KHShellStatements(indent: idt)
+
 		/* Remove ">" symbol from header */
-		var lines0: Array<String> = []
+		var lines: Array<String> = []
 		for line in lns {
-			lines0.append(try removeHeader(line: line))
+			lines.append(try removeHeader(line: line))
 		}
 
 		/* Connect lines before splitting and devide by pipe '|' */
-		let script1 = lines0.joined(separator: "\n")
-		let stmts1  = script1.components(separatedBy: "|")
+		let script = lines.joined(separator: "\n")
 
-		/* Allocate statemets object */
-		let shstmts = KHShellStatements(statements: stmts1, indent: idt)
+		/* Allocate shell processes */
+		let procs = script.components(separatedBy: "|")
+		for proc in procs {
+			let proc1 = proc.trimmingCharacters(in: .whitespacesAndNewlines)
+			if !proc1.isEmpty {
+				let shproc = try convert(process: proc1)
+				shstmts.add(process: shproc)
+			}
+		}
 
-		/* Insert pipes */
-		shstmts.insertPipes()
+		/* Check the context */
+		if let err = shstmts.check() {
+			throw err
+		}
+
+		/* Compile the context */
+		if let err = shstmts.compile() {
+			throw err
+		}
 
 		/* Generate script */
 		return shstmts.toScript()
+	}
+
+	private func convert(process proc: String) throws -> KHShellProcess {
+		let result = KHShellProcess()
+		let cmds = proc.components(separatedBy: "|")
+		for cmd in cmds {
+			let cmd1 = cmd.trimmingCharacters(in: .whitespacesAndNewlines)
+			if !cmd1.isEmpty {
+				let shcmd = try convert(command: cmd1)
+				result.add(command: shcmd)
+			}
+		}
+		return result
+	}
+
+	private func convert(command cmd: String) throws -> KHShellCommand {
+		return KHShellCommand(command: cmd)
 	}
 }
 
