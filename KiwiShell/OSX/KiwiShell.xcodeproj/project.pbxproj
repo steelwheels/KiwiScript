@@ -25,6 +25,7 @@
 		059A74CE20C3685B00D83E94 /* KiwiLibrary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050DBEA620C2D4A800F0E133 /* KiwiLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05BE576E2327D8160062243B /* UTShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BE576D2327D8160062243B /* UTShell.swift */; };
 		05BE57702327D9910062243B /* UTTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BE576F2327D9910062243B /* UTTranslator.swift */; };
+		05BEBC0623688761003F9ED9 /* UTShellCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BEBC0523688761003F9ED9 /* UTShellCommand.swift */; };
 		05D049D52039AA9000642E6A /* KHShellThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D049D42039AA9000642E6A /* KHShellThread.swift */; };
 		05DBA585231271760061046B /* KHScriptThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DBA584231271760061046B /* KHScriptThread.swift */; };
 		05E688052363BB9B00189BA6 /* KHShellStatement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E688042363BB9B00189BA6 /* KHShellStatement.swift */; };
@@ -102,6 +103,7 @@
 		057D85C923053F360036353D /* CoconutShell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutShell.framework; path = ../../../../Library/Frameworks/CoconutShell.framework; sourceTree = "<group>"; };
 		05BE576D2327D8160062243B /* UTShell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTShell.swift; sourceTree = "<group>"; };
 		05BE576F2327D9910062243B /* UTTranslator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTTranslator.swift; sourceTree = "<group>"; };
+		05BEBC0523688761003F9ED9 /* UTShellCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTShellCommand.swift; sourceTree = "<group>"; };
 		05D049D42039AA9000642E6A /* KHShellThread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KHShellThread.swift; sourceTree = "<group>"; };
 		05D049DA2039AC3C00642E6A /* UnitTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		05D049DC2039AC3C00642E6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				055232D52039AE1100FD002C /* main.swift */,
+				05BEBC0523688761003F9ED9 /* UTShellCommand.swift */,
 				05BE576D2327D8160062243B /* UTShell.swift */,
 				05BE576F2327D9910062243B /* UTTranslator.swift */,
 			);
@@ -417,6 +420,7 @@
 				05BE57702327D9910062243B /* UTTranslator.swift in Sources */,
 				055232D62039AE1100FD002C /* main.swift in Sources */,
 				05BE576E2327D8160062243B /* UTShell.swift in Sources */,
+				05BEBC0623688761003F9ED9 /* UTShellCommand.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

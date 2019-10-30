@@ -5,14 +5,21 @@
  *   Copyright (C) 2019 Steel Wheels Project
  */
 
+import CoconutData
 import Foundation
 
 public class KHShellCommand
 {
 	public var 	command:	String
+	public var	inputName:	String?
+	public var	outputName:	String?
+	public var	errorName:	String?
 
 	public init(command cmd: String) {
-		command = cmd
+		command		= cmd
+		inputName	= nil
+		outputName	= nil
+		errorName	= nil
 	}
 
 	public func check() -> NSError? {
@@ -24,6 +31,80 @@ public class KHShellCommand
 	}
 
 	public func compile() -> NSError? {
+		if let err = decodeRedirect() {
+			return err
+		}
+		return nil
+	}
+
+	private func decodeRedirect() -> NSError? {
+		var modcmd = ""
+		var idx    = command.startIndex
+		let endidx = command.endIndex
+		while idx < endidx {
+			let c = command[idx]
+			switch c {
+			case "2":
+				let nextidx = command.index(after: idx)
+				if nextidx < endidx && command[nextidx] == ">" {
+					if let (next2idx, pipe) = decodePipe(index: nextidx) {
+						idx = next2idx ; errorName = pipe
+						continue
+					}
+				}
+			case ">":
+				if let (nextidx, pipe) = decodePipe(index: idx) {
+					idx = nextidx ; outputName = pipe
+					continue
+				}
+			case "<":
+				if let (nextidx, pipe) = decodePipe(index: idx) {
+					idx = nextidx ; inputName = pipe
+					continue
+				}
+			default:
+				break
+			}
+			/* append 1 char */
+			idx = command.index(after: idx)
+			modcmd.append(c)
+		}
+		/* Replace command */
+		self.command = modcmd
+		return nil
+	}
+
+	private func decodePipe(index startidx: String.Index) -> (String.Index, String)? {
+		var idx    = command.index(after: startidx)
+		let endidx = command.endIndex
+
+		/* Skip idx */
+		while idx<endidx {
+			let c = command[idx]
+			if !c.isSpace() {
+				break
+			}
+			idx = command.index(after: idx)
+		}
+		/* Get "@" */
+		if idx<endidx && command[idx] == "@" {
+			var nidx = command.index(after: idx)
+			if nidx < endidx {
+				var name = ""
+				while nidx < endidx {
+					let c = command[nidx]
+					if c.isAlphaOrNum() {
+						name.append(c)
+					} else {
+						break
+					}
+					nidx = command.index(after: nidx)
+				}
+				if name.lengthOfBytes(using: .utf8) > 0 {
+					return (nidx, name)
+				}
+			}
+		}
 		return nil
 	}
 
@@ -66,11 +147,37 @@ public class KHShellProcess
 	}
 
 	public func compile() -> NSError? {
+		/* Compile for each commands */
 		for cmd in commands {
 			if let err = cmd.compile() {
 				return err
 			}
 		}
+		/* Get pipe names */
+		for cmd in commands {
+			if let inname = cmd.inputName {
+				if let orgname = self.inputName {
+					return NSError.parseError(message: "Multiple input pipe: \(orgname), \(inname)")
+				} else {
+					self.inputName = inname
+				}
+			}
+			if let outname = cmd.outputName {
+				if let orgname = self.outputName {
+					return NSError.parseError(message: "Multiple output pipe: \(orgname), \(outname)")
+				} else {
+					self.outputName = outname
+				}
+			}
+			if let errname = cmd.errorName {
+				if let orgname = self.errorName {
+					return NSError.parseError(message: "Multiple error pipe: \(orgname), \(errname)")
+				} else {
+					self.errorName = errname
+				}
+			}
+		}
+
 		return nil
 	}
 
@@ -98,12 +205,14 @@ public class KHShellProcess
 
 public class KHShellStatements
 {
-	public var processes:	Array<KHShellProcess>
-	public var indent:	String
+	public var processes:		Array<KHShellProcess>
+	public var indent:		String
+	public var insertedPipeNames:	Array<String>
 
 	public init(indent idt: String){
-		processes = []
-		indent    = idt
+		processes 		= []
+		indent    		= idt
+		insertedPipeNames	= []
 	}
 
 	public func add(process proc: KHShellProcess){
@@ -124,12 +233,15 @@ public class KHShellStatements
 	}
 
 	public func compile() -> NSError? {
-		setUniqueIds()
-		insertPipes()
+		/* First, compile processes */
 		for proc in processes {
 			if let err = proc.compile() {
 				return err
 			}
+		}
+		setUniqueIds()
+		if let err = insertPipes() {
+			return err
 		}
 		return nil
 	}
@@ -143,17 +255,28 @@ public class KHShellStatements
 		}
 	}
 
-	private func insertPipes() {
+	private func insertPipes() -> NSError? {
+		insertedPipeNames = []
 		let procnum = processes.count
 		if procnum >= 2 {
 			for i in 0..<procnum-1 {
 				let procA = processes[i  ]
 				let procB = processes[i+1]
 				let pipe  = "_pipe\(procA.processId)"
-				procA.outputName = pipe
-				procB.inputName  = pipe
+				if let name = procA.outputName {
+					return NSError.parseError(message: "The output stream is already defined: \(name)")
+				} else {
+					procA.outputName = pipe
+				}
+				if let name = procB.inputName {
+					return NSError.parseError(message: "The input stream is already defined: \(name)")
+				} else {
+					procB.inputName  = pipe
+				}
+				insertedPipeNames.append(pipe)
 			}
 		}
+		return nil
 	}
 
 	public func toScript() -> Array<String> {
@@ -162,11 +285,9 @@ public class KHShellStatements
 
 		/* Define pipes */
 		let nidt = indent + "\t"
-		for proc in processes {
-			if let outname = proc.outputName {
-				let stmt = "let \(outname) = Pipe() ;"
-				result.append(nidt + stmt)
-			}
+		for name in insertedPipeNames {
+			let stmt = "let \(name) = Pipe() ;"
+			result.append(nidt + stmt)
 		}
 
 		/* Define processes */

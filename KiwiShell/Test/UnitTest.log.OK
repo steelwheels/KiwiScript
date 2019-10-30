@@ -1,3 +1,15 @@
+// command for cat
+{ "cat"/<no inpipe>/<no outpipe>/<no errpipe> }
+// process for cat
+Script1: let _proc0 = system(`cat`, stdin, stdout, stderr) ;
+// command for cat < @inpipe
+{ "cat "/inpipe/<no outpipe>/<no errpipe> }
+// process for cat < @inpipe
+Script1: let _proc0 = system(`cat `, inpipe, stdout, stderr) ;
+// command for cat < inpipe >  @outpipe 2>@errpipe
+{ "cat < inpipe  "/<no inpipe>/outpipe/errpipe }
+// process for cat < inpipe >  @outpipe 2>@errpipe
+Script1: let _proc0 = system(`cat < inpipe  `, stdin, outpipe, errpipe) ;
 /* Source script 0 */
 /* Translated script 0 */
 /* Source script 1 */
