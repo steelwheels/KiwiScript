@@ -38,8 +38,12 @@ public func UTTranslator(console cons: CNConsole) -> Bool
 	]
 	let result3    = testTrans(translator: translator, testNo: 3, source: script3, console: cons)
 
+	let script4: Array<String> = [
+		"> cat A-> exitcode0 "
+	]
+	let result4    = testTrans(translator: translator, testNo: 4, source: script4, console: cons)
 
-	return result0 && result1 && result2 && result3
+	return result0 && result1 && result2 && result3 && result4
 }
 
 private func testTrans(translator trans: KHShellTranslator, testNo testno: Int, source srcs: Array<String>, console cons: CNConsole) -> Bool

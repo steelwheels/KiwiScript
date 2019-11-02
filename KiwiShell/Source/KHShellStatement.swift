@@ -207,11 +207,13 @@ public class KHShellStatements
 {
 	public var processes:		Array<KHShellProcess>
 	public var indent:		String
+	public var exitVariable:	String?
 	public var insertedPipeNames:	Array<String>
 
 	public init(indent idt: String){
 		processes 		= []
 		indent    		= idt
+		exitVariable		= nil
 		insertedPipeNames	= []
 	}
 
@@ -297,11 +299,19 @@ public class KHShellStatements
 		}
 
 		/* Insert waits */
+		let ecodedesc = "let _ecode = 0 ; "
+		result.append(nidt + ecodedesc)
 		for proc in processes {
-			let stmt = "_proc\(proc.processId).waitUntilExit() ;"
-			result.append(nidt + stmt)
+			let pid  = proc.processId
+			let stmt0 = "let _ecode\(pid) = _proc\(pid).waitUntilExit() ;"
+			result.append(nidt + stmt0)
+			let stmt1 = "if(_ecode\(pid) != 0){ _ecode = _ecode\(pid) ; }"
+			result.append(nidt + stmt1)
 		}
-
+		if let evar = exitVariable {
+			let ecodedef = "\(evar) = _ecode ;"
+			result.append(nidt + ecodedef)
+		}
 		result.append(indent + "} while(false) ;")
 		return result
 	}

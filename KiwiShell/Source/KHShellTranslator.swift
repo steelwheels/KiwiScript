@@ -129,7 +129,10 @@ public class KHShellTranslator
 		}
 
 		/* Connect lines before splitting and devide by pipe '|' */
-		let script = lines.joined(separator: "\n")
+		var script = lines.joined(separator: "\n")
+
+		/* Get exit code after '->' */
+		(script, shstmts.exitVariable) = decodeExitCode(script: script)
 
 		/* Allocate shell processes */
 		let procs = script.components(separatedBy: "|")
@@ -155,6 +158,36 @@ public class KHShellTranslator
 		return shstmts.toScript()
 	}
 
+	private func decodeExitCode(script scr: String) -> (String, String?) { // (script, exit-code?)
+		let start = scr.startIndex
+		let end   = scr.endIndex
+		if start < end {
+			/* Skip spaces */
+			let skipspaces = { (_ c: Character) -> Bool in return c.isSpace() }
+			let ptr0 = CNStringUtil.traceBackward(string: scr, pointer: end, doSkipFunc: skipspaces)
+			/* Skip identifier */
+			let skipidents = { (_ c: Character) -> Bool in return c.isAlphaOrNum() }
+			let ptr1 = CNStringUtil.traceBackward(string: scr, pointer: ptr0, doSkipFunc: skipidents)
+			/* Skip spaces*/
+			let ptr2 = CNStringUtil.traceBackward(string: scr, pointer: ptr1, doSkipFunc: skipspaces)
+			if start < ptr2 && ptr2 < ptr0 {
+				/* Check prev '>' */
+				let ptr3 = scr.index(before: ptr2)
+				if start < ptr3 && scr[ptr3] == ">" {
+					let ptr4 = scr.index(before: ptr3)
+					/* Check prev '-' */
+					if scr[ptr4] == "-" {
+						let prevscr = scr.prefix(upTo: ptr4)
+						let aftscr  = scr.suffix(from: ptr1)
+						return (String(prevscr), String(aftscr))
+					}
+				}
+			}
+
+		}
+		return (scr, nil)
+	}
+
 	private func convert(process proc: String) throws -> KHShellProcess {
 		let result = KHShellProcess()
 		let cmds = proc.components(separatedBy: "|")
@@ -170,6 +203,18 @@ public class KHShellTranslator
 
 	private func convert(command cmd: String) throws -> KHShellCommand {
 		return KHShellCommand(command: cmd)
+	}
+
+	private func skipPreviousSpaces(string str: String, startIndex start: String.Index, pointer ptr: String.Index) -> String.Index {
+		var idx = ptr
+		while idx < start {
+			if str[idx].isSpace() {
+				idx = str.index(before: idx)
+			} else {
+				break
+			}
+		}
+		return idx
 	}
 }
 
