@@ -1,20 +1,21 @@
-# Thread function
+# Thread Function
 
 ## `thread` function
-Execute JavaScript callback function on the other thread.
+Allocate thread and execute JavaScript on it.
+The return value is an instance of [Thread class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Thread.md).
 
 ### Prototype
 ````
-thread(func: Function(), input: File, output: File, error: File) -> Thread
+thread(name: String, input: File, output: File, error: File) -> Thread
 ````
 
 ### Description
-The [File](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/File.md) or [Pipe](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Pipe.md) object can be used. If the `Pipe` object is passed for `output` or `error` parameter, the write file handler of the pipe is *closed* when the process is finished.
+The [File](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/File.md) or [Pipe](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Pipe.md) object can be used. If the `Pipe` object is passed for `input`, `output` and `error` parameter, the write file handler of the pipe is *closed* when the process is finished.
 
 ### Parameter(s)
 |Name           |Type   |Description                    |
 |:---           |:----  |:----                          |
-|func           |Function() |Function to execute on the thread.    |      
+|name           |String |The name of the script section in the [manifest file](https://github.com/steelwheels/JSTools/blob/master/Document/manifest-file.md). |     
 |input          |[File](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/File.md) or [Pipe](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Pipe.md) |Input file stream |
 |output         |[File](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/File.md) or [Pipe](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Pipe.md) |Output file stream |
 |error          |[File](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/File.md) or [Pipe](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Pipe.md) |Output error stream |

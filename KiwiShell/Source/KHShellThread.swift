@@ -46,11 +46,11 @@ import Foundation
 		return "jsh$ "
 	}
 
-	open override func inputLine(line str: String){
-		if !isEmpty(string: str) {
+	open override func execute(command cmd: String){
+		if !isEmpty(string: cmd) {
 			/* convert script */
 			let translator = KHShellTranslator()
-			switch translator.translate(lines: [str]) {
+			switch translator.translate(lines: [cmd]) {
 			case .ok(let lines):
 				let script = lines.joined(separator: "\n")
 				if let retval = mContext.evaluateScript(script) {
