@@ -1,4 +1,4 @@
-# Exit functions
+# Exit function
 
 ## `exit` function
 Finish process with exit code.
