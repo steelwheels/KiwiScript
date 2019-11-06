@@ -69,7 +69,7 @@ import Foundation
 	private func isEmpty(string str: String) -> Bool {
 		var result = true
 		for c in str {
-			if !c.isSpace() {
+			if !c.isWhitespace {
 				result = false
 				break
 			}

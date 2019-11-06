@@ -22,7 +22,7 @@ do {
 	let _proc0 = system(`echo "Hello, world !!\n"`, stdin, stdout, stderr) ;
 	let _ecode = 0 ; 
 	let _ecode0 = _proc0.waitUntilExit() ;
-	if(_ecode0 != 0){ _ecode = _ecode0 : }
+	if(_ecode0 != 0){ _ecode = _ecode0 ; }
 } while(false) ;
 console.log(a)
 /* Source script 2 */
@@ -39,13 +39,13 @@ do {
 	let _proc3 = system(`d`, _pipe2, stdout, stderr) ;
 	let _ecode = 0 ; 
 	let _ecode0 = _proc0.waitUntilExit() ;
-	if(_ecode0 != 0){ _ecode = _ecode0 : }
+	if(_ecode0 != 0){ _ecode = _ecode0 ; }
 	let _ecode1 = _proc1.waitUntilExit() ;
-	if(_ecode1 != 0){ _ecode = _ecode1 : }
+	if(_ecode1 != 0){ _ecode = _ecode1 ; }
 	let _ecode2 = _proc2.waitUntilExit() ;
-	if(_ecode2 != 0){ _ecode = _ecode2 : }
+	if(_ecode2 != 0){ _ecode = _ecode2 ; }
 	let _ecode3 = _proc3.waitUntilExit() ;
-	if(_ecode3 != 0){ _ecode = _ecode3 : }
+	if(_ecode3 != 0){ _ecode = _ecode3 ; }
 } while(false) ;
 /* Source script 3 */
 > cat A | wc -l ; cat B |  wc -l
@@ -58,11 +58,11 @@ do {
 	let _proc2 = system(`wc -l`, _pipe1, stdout, stderr) ;
 	let _ecode = 0 ; 
 	let _ecode0 = _proc0.waitUntilExit() ;
-	if(_ecode0 != 0){ _ecode = _ecode0 : }
+	if(_ecode0 != 0){ _ecode = _ecode0 ; }
 	let _ecode1 = _proc1.waitUntilExit() ;
-	if(_ecode1 != 0){ _ecode = _ecode1 : }
+	if(_ecode1 != 0){ _ecode = _ecode1 ; }
 	let _ecode2 = _proc2.waitUntilExit() ;
-	if(_ecode2 != 0){ _ecode = _ecode2 : }
+	if(_ecode2 != 0){ _ecode = _ecode2 ; }
 } while(false) ;
 /* Source script 4 */
 > cat A-> exitcode0 
@@ -71,7 +71,7 @@ do {
 	let _proc0 = system(`cat A`, stdin, stdout, stderr) ;
 	let _ecode = 0 ; 
 	let _ecode0 = _proc0.waitUntilExit() ;
-	if(_ecode0 != 0){ _ecode = _ecode0 : }
+	if(_ecode0 != 0){ _ecode = _ecode0 ; }
 	exitcode0  = _ecode ;
 } while(false) ;
 Summary: OK

@@ -81,7 +81,7 @@ public class KHShellCommand
 		/* Skip idx */
 		while idx<endidx {
 			let c = command[idx]
-			if !c.isSpace() {
+			if !c.isWhitespace {
 				break
 			}
 			idx = command.index(after: idx)
@@ -93,7 +93,7 @@ public class KHShellCommand
 				var name = ""
 				while nidx < endidx {
 					let c = command[nidx]
-					if c.isAlphaOrNum() {
+					if c.isLetterOrNumber {
 						name.append(c)
 					} else {
 						break

@@ -87,7 +87,7 @@ public class KHShellTranslator
 		var idx   = start
 		while idx < end {
 			let c = ln[idx]
-			if c.isSpace() {
+			if c.isWhitespace {
 				/* continue */
 			} else if c == ">" {
 				return true
@@ -105,7 +105,7 @@ public class KHShellTranslator
 		var idx   = start
 		while idx < end {
 			let c = ln[idx]
-			if c.isSpace() {
+			if c.isWhitespace {
 				/* continue */
 				idx = ln.index(after: idx)
 			} else if c == ">" {
@@ -163,10 +163,10 @@ public class KHShellTranslator
 		let end   = scr.endIndex
 		if start < end {
 			/* Skip spaces */
-			let skipspaces = { (_ c: Character) -> Bool in return c.isSpace() }
+			let skipspaces = { (_ c: Character) -> Bool in return c.isWhitespace }
 			let ptr0 = CNStringUtil.traceBackward(string: scr, pointer: end, doSkipFunc: skipspaces)
 			/* Skip identifier */
-			let skipidents = { (_ c: Character) -> Bool in return c.isAlphaOrNum() }
+			let skipidents = { (_ c: Character) -> Bool in return c.isLetterOrNumber }
 			let ptr1 = CNStringUtil.traceBackward(string: scr, pointer: ptr0, doSkipFunc: skipidents)
 			/* Skip spaces*/
 			let ptr2 = CNStringUtil.traceBackward(string: scr, pointer: ptr1, doSkipFunc: skipspaces)
@@ -208,7 +208,7 @@ public class KHShellTranslator
 	private func skipPreviousSpaces(string str: String, startIndex start: String.Index, pointer ptr: String.Index) -> String.Index {
 		var idx = ptr
 		while idx < start {
-			if str[idx].isSpace() {
+			if str[idx].isWhitespace {
 				idx = str.index(before: idx)
 			} else {
 				break
