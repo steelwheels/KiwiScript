@@ -146,6 +146,19 @@ open class KLCompiler: KECompiler
 		}
 		ctxt.set(name: "typeID", function: typeidFunc)
 
+		/* asciiCodeName */
+		let asciiNameFunc: @convention(block) (_ value: JSValue) -> JSValue = {
+			(_ value: JSValue) -> JSValue in
+			if value.isNumber {
+				let code = value.toInt32()
+				if let name = Character.asciiCodeName(code: Int(code)) {
+					return JSValue(object: name, in: ctxt)
+				}
+			}
+			return JSValue(nullIn: ctxt)
+		}
+		ctxt.set(name: "asciiCodeName", function: asciiNameFunc)
+
 		/* sin */
 		let sinFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in
