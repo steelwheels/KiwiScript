@@ -19,10 +19,36 @@ import Foundation
 
 @objc public class KHShellThread: CNShellThread, KHShellThreadProtocol
 {
+	public enum InputMode {
+		case JavaScript
+		case shellScript
+
+		public func toSymbol() -> String {
+			let result: String
+			switch self {
+			case .JavaScript:	result = "%"
+			case .shellScript:	result = ">"
+			}
+			return result
+		}
+
+		public static func decode(char c: Character) -> InputMode? {
+			let result: InputMode?
+			switch c {
+			case "%":	result = .JavaScript
+			case ">":	result = .shellScript
+			default:	result = nil
+			}
+			return result
+		}
+	}
+
 	private var mContext:		KEContext
+	private var mInputMode:		InputMode
 
 	public init(virtualMachine vm: JSVirtualMachine, resource res: KEResource, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNShellEnvironment, config conf: KEConfig){
 		mContext	= KEContext(virtualMachine: vm)
+		mInputMode	= .shellScript
 		super.init(input: instrm, output: outstrm, error: errstrm, environment: env, config: conf, terminationHander: nil)
 
 		/* Compile the context */
@@ -43,14 +69,19 @@ import Foundation
 	}
 
 	public override func promptString() -> String {
-		return "jsh$ "
+		return "jsh" + mInputMode.toSymbol() + " "
 	}
 
 	open override func execute(command cmd: String){
 		if !isEmpty(string: cmd) {
+			/* decode mode */
+			guard let line = decodeMode(command: cmd) else {
+				return
+			}
+
 			/* convert script */
 			let translator = KHShellTranslator()
-			switch translator.translate(lines: [cmd]) {
+			switch translator.translate(lines: [line]) {
 			case .ok(let lines):
 				let script = lines.joined(separator: "\n")
 				if let retval = mContext.evaluateScript(script) {
@@ -64,6 +95,40 @@ import Foundation
 				self.errorFileHandle.write(string: errmsg + "\n")
 			}
 		}
+	}
+
+	private func decodeMode(command cmd: String) -> String? {
+		let result: String?
+		let line = cmd.trimmingCharacters(in: .whitespaces)
+		switch line {
+		case InputMode.JavaScript.toSymbol():
+			mInputMode = .JavaScript
+			result = nil // do not continue
+		case InputMode.shellScript.toSymbol():
+			mInputMode = .shellScript
+			result = nil // do not continue
+		default:
+			if let c = line.first {
+				switch String(c) {
+				case InputMode.JavaScript.toSymbol():
+					var tmp = line			// Select JavaScript
+					tmp.removeFirst()
+					result = tmp
+				case InputMode.shellScript.toSymbol():
+					result = line			// Select Shell
+				default:
+					switch mInputMode {
+					case .JavaScript:
+						result = line		// Select JavaScript
+					case .shellScript:
+						result = "> " + line	// Select Shell
+					}
+				}
+			} else {
+				result = nil // do not cotinue
+			}
+		}
+		return result
 	}
 
 	private func isEmpty(string str: String) -> Bool {
