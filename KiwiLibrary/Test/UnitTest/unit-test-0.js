@@ -3,7 +3,7 @@
 class Task extends Operation
 {
 	execute(){
-		console.log("Task: Hello, World !!\n") ;
+		console.log("Task: Hello, World !!") ;
 	}
 }
 

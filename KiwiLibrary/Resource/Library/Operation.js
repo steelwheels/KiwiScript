@@ -38,7 +38,7 @@ class Operation
 	}
 
 	execute(){
-		console.log("[Error] Operation.execute must be override\n") ;
+		console.error("[Error] Operation.execute must be override\n") ;
 		return 0 ;
 	}
 

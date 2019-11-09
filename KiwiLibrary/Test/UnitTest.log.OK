@@ -91,10 +91,10 @@ function checkVariables(place, ...vars)
 	let result = true ;
 	vars.forEach(function(value, index){
 		if(isUndefined(value)){
-			console.log("check at " + place + ": Undefined at index " + index + "\n") ;
+			console.log("check at " + place + ": Undefined at index " + index) ;
 			result = false ;
 		} else if(isNull(value)) {
-			console.log("check at " + place + ": Null at index " + index + "\n") ;
+			console.log("check at " + place + ": Null at index " + index) ;
 			result = false ;
 		}
 	}) ;
@@ -374,10 +374,10 @@ function checkVariables(place, ...vars)
 	let result = true ;
 	vars.forEach(function(value, index){
 		if(isUndefined(value)){
-			console.log("check at " + place + ": Undefined at index " + index + "\n") ;
+			console.log("check at " + place + ": Undefined at index " + index) ;
 			result = false ;
 		} else if(isNull(value)) {
-			console.log("check at " + place + ": Null at index " + index + "\n") ;
+			console.log("check at " + place + ": Null at index " + index) ;
 			result = false ;
 		}
 	}) ;
@@ -479,7 +479,7 @@ class Operation
 	}
 
 	execute(){
-		console.log("[Error] Operation.execute must be override\n") ;
+		console.error("[Error] Operation.execute must be override\n") ;
 		return 0 ;
 	}
 
@@ -524,7 +524,7 @@ class UTStruct {
 class Task extends Operation
 {
 	execute(){
-		console.log("Task: Hello, World !!\n") ;
+		console.log("Task: Hello, World !!") ;
 	}
 }
 
@@ -630,10 +630,10 @@ function checkVariables(place, ...vars)
 	let result = true ;
 	vars.forEach(function(value, index){
 		if(isUndefined(value)){
-			console.log("check at " + place + ": Undefined at index " + index + "\n") ;
+			console.log("check at " + place + ": Undefined at index " + index) ;
 			result = false ;
 		} else if(isNull(value)) {
-			console.log("check at " + place + ": Null at index " + index + "\n") ;
+			console.log("check at " + place + ": Null at index " + index) ;
 			result = false ;
 		}
 	}) ;
@@ -789,10 +789,10 @@ function checkVariables(place, ...vars)
 	let result = true ;
 	vars.forEach(function(value, index){
 		if(isUndefined(value)){
-			console.log("check at " + place + ": Undefined at index " + index + "\n") ;
+			console.log("check at " + place + ": Undefined at index " + index) ;
 			result = false ;
 		} else if(isNull(value)) {
-			console.log("check at " + place + ": Null at index " + index + "\n") ;
+			console.log("check at " + place + ": Null at index " + index) ;
 			result = false ;
 		}
 	}) ;
@@ -894,7 +894,7 @@ class Operation
 	}
 
 	execute(){
-		console.log("[Error] Operation.execute must be override\n") ;
+		console.error("[Error] Operation.execute must be override\n") ;
 		return 0 ;
 	}
 
@@ -922,7 +922,7 @@ function _exec_operation(op)
 class Machine extends Operation
 {
 	execute(){
-		console.log("[Machine] Hello, world\n");
+		console.log("[Machine] Hello, world");
 	}
 } ;
 
@@ -1060,10 +1060,10 @@ function checkVariables(place, ...vars)
 	let result = true ;
 	vars.forEach(function(value, index){
 		if(isUndefined(value)){
-			console.log("check at " + place + ": Undefined at index " + index + "\n") ;
+			console.log("check at " + place + ": Undefined at index " + index) ;
 			result = false ;
 		} else if(isNull(value)) {
-			console.log("check at " + place + ": Null at index " + index + "\n") ;
+			console.log("check at " + place + ": Null at index " + index) ;
 			result = false ;
 		}
 	}) ;
@@ -1129,7 +1129,7 @@ class Graphics {
 
 function main(arg0, arg1)
 {
-	console.log(`Message from thread: Hello, threading !! ${arg0}, ${arg1}\n`) ;
+	console.log(`Message from thread: Hello, threading !! ${arg0}, ${arg1}`) ;
 }
 Message from thread: Hello, threading !! Thread,123, undefined
 Thread is finished with error code: 0

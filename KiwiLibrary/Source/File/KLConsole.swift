@@ -33,7 +33,7 @@ import Foundation
 	}
 
 	public func log(_ value: JSValue){
-		mConsole.print(string: value.toString())
+		mConsole.print(string: value.toString() + "\n")
 	}
 
 	public func print(_ value: JSValue){

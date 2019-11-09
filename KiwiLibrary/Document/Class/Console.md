@@ -10,6 +10,7 @@ Following global variables are defined for console operation.
 
 ## `log` method
 Print log message to standard output.
+The newline code will be appended to the given message.
 ````
 console.log(<message>)
 ````

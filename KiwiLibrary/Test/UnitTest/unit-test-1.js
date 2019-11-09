@@ -3,7 +3,7 @@
 class Machine extends Operation
 {
 	execute(){
-		console.log("[Machine] Hello, world\n");
+		console.log("[Machine] Hello, world");
 	}
 } ;
 
