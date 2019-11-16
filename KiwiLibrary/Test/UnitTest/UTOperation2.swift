@@ -18,9 +18,9 @@ public func UTOperation2(console cons: CNFileConsole, config conf: KEConfig) -> 
 	let ctxt     = KEContext(virtualMachine: JSVirtualMachine())
 	let compiler = KLCompiler()
 	if compiler.compileBase(context: ctxt, console: cons, config: conf) {
-		cons.error(string: "MainThread: Compile OK\n")
+		cons.print(string: "MainThread: Compile OK\n")
 	} else {
-		cons.error(string: "MainThread: Compile failed\n")
+		cons.print(string: "MainThread: Compile failed\n")
 		result = false
 	}
 
@@ -37,7 +37,7 @@ public func UTOperation2(console cons: CNFileConsole, config conf: KEConfig) -> 
 		if op.compile(userStructs:[], userScripts: [url]) {
 			cons.print(string: "MainThread: [Compile] OK\n")
 		} else {
-			cons.error(string: "MainThread: [Error] compile failed\n")
+			cons.print(string: "MainThread: [Error] compile failed\n")
 		}
 	case .error(let err):
 		cons.error(string: "[Error] \(err.description)")

@@ -12,6 +12,7 @@
 		053C0FF32257AC420086B1CC /* KLScriptValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053C0FF22257AC410086B1CC /* KLScriptValue.swift */; };
 		054069E223480F2000241E58 /* KLThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054069E123480F2000241E58 /* KLThread.swift */; };
 		05473C91218B4A39006B1AB2 /* KLCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05473C90218B4A39006B1AB2 /* KLCompiler.swift */; };
+		0550FD51237FEE0A00B95008 /* KLEscapeCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0550FD50237FEE0A00B95008 /* KLEscapeCode.swift */; };
 		0554464922ACC13100ABB9B4 /* KLOperationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0554464822ACC13100ABB9B4 /* KLOperationContext.swift */; };
 		0578143622DE18F700B50279 /* Graphics.js in Resources */ = {isa = PBXBuildFile; fileRef = 0578143522DE18F700B50279 /* Graphics.js */; };
 		057D603D22F1DE4100021E89 /* KLContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057D603C22F1DE4100021E89 /* KLContext.swift */; };
@@ -51,6 +52,7 @@
 		053C0FF22257AC410086B1CC /* KLScriptValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLScriptValue.swift; sourceTree = "<group>"; };
 		054069E123480F2000241E58 /* KLThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLThread.swift; sourceTree = "<group>"; };
 		05473C90218B4A39006B1AB2 /* KLCompiler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLCompiler.swift; sourceTree = "<group>"; };
+		0550FD50237FEE0A00B95008 /* KLEscapeCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLEscapeCode.swift; sourceTree = "<group>"; };
 		0554464822ACC13100ABB9B4 /* KLOperationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLOperationContext.swift; sourceTree = "<group>"; };
 		05549B38222C1A41009130E2 /* Operation.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Operation.js; sourceTree = "<group>"; };
 		0578143522DE18F700B50279 /* Graphics.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Graphics.js; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 		05D6BF8521D3E24C001D737A /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				0550FD50237FEE0A00B95008 /* KLEscapeCode.swift */,
 				05D6BF8621D3E269001D737A /* KLImage.swift */,
 			);
 			path = Data;
@@ -344,6 +347,7 @@
 				054069E223480F2000241E58 /* KLThread.swift in Sources */,
 				05F100A722300F9C00B399BE /* KLOperationQueue.swift in Sources */,
 				058414AD2315856E002F731E /* KLProcess.swift in Sources */,
+				0550FD51237FEE0A00B95008 /* KLEscapeCode.swift in Sources */,
 				0506861322565A2300641F95 /* KLType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

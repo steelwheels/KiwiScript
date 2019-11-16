@@ -372,6 +372,10 @@ open class KLCompiler: KECompiler
 		/* JSON */
 		let json = KLJSON(context: ctxt)
 		ctxt.set(name: "JSON", object: json)
+
+		/* EscapeCode */
+		let ecode = KLEscapeCode(context: ctxt)
+		ctxt.set(name: "escapeCode", object: ecode)
 	}
 
 	private func defineGlobalObjects(context ctxt: KEContext, console cons: CNFileConsole, config conf: KEConfig) {
@@ -462,7 +466,7 @@ open class KLCompiler: KECompiler
 	}
 
 	private func defineThreadObject(context ctxt: KEContext, resource res: KEResource, console cons: CNConsole, config conf: KEConfig) {
-		/* Operaion */
+		/* Thread */
 		let thfunc: @convention(block) (_ nameval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue = {
 			(_ nameval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue in
 			if let name    = nameval.toString(),

@@ -1,8 +1,8 @@
 # Console class
 The *Console* class is used to print text to console.
 
-## Global variables
-Following global variables are defined for console operation.
+## Global variable
+The singleton object is defined for Console class.
 
 |Variable   |Class    | Description                     |
 |:---       |:---     |:---                             |
