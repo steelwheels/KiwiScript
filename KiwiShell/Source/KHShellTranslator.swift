@@ -190,7 +190,7 @@ public class KHShellTranslator
 
 	private func convert(process proc: String) throws -> KHShellProcess {
 		let result = KHShellProcess()
-		let cmds = proc.components(separatedBy: "|")
+		let cmds = proc.components(separatedBy: ";")
 		for cmd in cmds {
 			let cmd1 = cmd.trimmingCharacters(in: .whitespacesAndNewlines)
 			if !cmd1.isEmpty {
