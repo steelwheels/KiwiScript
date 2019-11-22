@@ -40,10 +40,56 @@ private class KLThreadObject: CNThread
 		guard compiler.compileResource(context: mContext, resource: resource, console: self.console, config: config) else {
 			return false
 		}
+		/* Compile script in the package */
 		guard compiler.compileScriptInResource(context: mContext, resource: resource, scriptName: name, console: self.console, config: config) else {
 			return false
 		}
 		return true
+	}
+
+	public func compile(filePath path: String, in resource: KEResource, config conf: KEConfig) -> Bool {
+		/* Compile */
+		let compiler = KLCompiler()
+		let config   = KEConfig(kind: .Terminal, doStrict: conf.doStrict, logLevel: conf.logLevel)
+		guard compiler.compileBase(context: mContext, console: self.console, config: config) else {
+			return false
+		}
+		guard compiler.compileResource(context: mContext, resource: resource, console: self.console, config: config) else {
+			return false
+		}
+		/* Compile script in the given file */
+		var result: Bool = false
+		switch pathExtension(of: path) {
+		case "js":
+			let url = URL(fileURLWithPath: path, isDirectory: false)
+			if let script = loadScript(from: url) {
+				let _ = compiler.compile(context: mContext, statement: script, console: self.console, config: config)
+				result = true
+			} else {
+				console.error(string: "Filed to load \(path)\n")
+			}
+		case "jspkg":
+			let url = URL(fileURLWithPath: path, isDirectory: true)
+			let res = KEResource(baseURL: url)
+			result  = compile(scriptName: "main", in: res, config: conf) // Compile main
+		default:
+			console.error(string: "File: DEFAULT")
+			//break
+		}
+		return result
+	}
+
+	private func pathExtension(of file: String) -> String {
+		let strobj = NSString(string: file)
+		return strobj.pathExtension
+	}
+
+	private func loadScript(from url: URL) -> String? {
+		do {
+			return try String(contentsOf: url)
+		} catch {
+			return nil
+		}
 	}
 
 	public func start(arguments args: JSValue) {
@@ -82,6 +128,10 @@ private class KLThreadObject: CNThread
 
 	public func compile(scriptName name: String, in resource: KEResource, config conf: KEConfig) -> Bool {
 		return mThread.compile(scriptName: name, in: resource, config: conf)
+	}
+
+	public func compile(filePath path: String, in resource: KEResource, config conf: KEConfig) -> Bool {
+		return mThread.compile(filePath: path, in: resource, config: conf)
 	}
 
 	public func start(_ args: JSValue) {

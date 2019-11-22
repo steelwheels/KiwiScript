@@ -482,6 +482,30 @@ open class KLCompiler: KECompiler
 			return JSValue(nullIn: ctxt)
 		}
 		ctxt.set(name: "Thread", function: thfunc)
+
+		/* Run */
+		let runfunc: @convention(block) (_ pathval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue = {
+			(_ pathval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue in
+			if let infile  = KLCompiler.vallueToFileStream(value: inval),
+			   let outfile = KLCompiler.vallueToFileStream(value: outval),
+			   let errfile = KLCompiler.vallueToFileStream(value: errval),
+			   let vm = JSVirtualMachine() {
+				let path: String
+				if pathval.isString {
+					path = pathval.toString()
+				} else if pathval.isNull {
+					path = ""
+				} else {
+					return JSValue(nullIn: ctxt)
+				}
+				let thread = KLThread(virtualMachine: vm, input:  infile, output: outfile, error: errfile)
+				if thread.compile(filePath: path, in: res, config: conf) {
+					return JSValue(object: thread, in: ctxt)
+				}
+			}
+			return JSValue(nullIn: ctxt)
+		}
+		ctxt.set(name: "run", function: runfunc)
 	}
 
 	private class func valueToConsole(consoleValue consval: JSValue, context ctxt: KEContext, logConsole logcons: CNConsole) -> CNFileConsole {

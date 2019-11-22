@@ -1,12 +1,13 @@
-# Thread Function
+# Run function
 
-## `thread` function
-Allocate thread and execute JavaScript on it.
+## `run` function
+Load or select JavaScript file and execute on the new thread.
+When the file name is `nil`, the file selector panel is opened (macOS only).
 The return value is an instance of [Thread class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Thread.md).
 
 ### Prototype
 ````
-thread(name: String, input: File, output: File, error: File) -> Thread
+run(path: String, input: File, output: File, error: File) -> Thread
 ````
 
 ### Description
@@ -15,7 +16,7 @@ At 2nd, 3rd and 4th parameter. the [File](https://github.com/steelwheels/KiwiScr
 ### Parameter(s)
 |Name           |Type   |Description                    |
 |:---           |:----  |:----                          |
-|name           |String |The name of the script section in the [manifest file](https://github.com/steelwheels/JSTools/blob/master/Document/manifest-file.md). |     
+|path           |String? |The file path of the source script or [package](https://github.com/steelwheels/JSTools/blob/master/Document/jsh-man.md). When this value is *null*, the file open panel is used to select the script (or package).  |     
 |input          |[File](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/File.md) or [Pipe](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Pipe.md) |Input file stream |
 |output         |[File](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/File.md) or [Pipe](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Pipe.md) |Output file stream |
 |error          |[File](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/File.md) or [Pipe](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Pipe.md) |Output error stream |
