@@ -33,8 +33,8 @@ open class KLCompiler: KECompiler
 		return true
 	}
 
-	open override func compileResource(context ctxt: KEContext, resource res: KEResource, console cons: CNConsole, config conf: KEConfig) -> Bool {
-		if super.compileResource(context: ctxt, resource: res, console: cons, config: conf) {
+	open override func compileLibraryInResource(context ctxt: KEContext, resource res: KEResource, console cons: CNConsole, config conf: KEConfig) -> Bool {
+		if super.compileLibraryInResource(context: ctxt, resource: res, console: cons, config: conf) {
 			defineThreadObject(context: ctxt, resource: res, console: cons, config: conf)
 			return (ctxt.errorCount == 0)
 		} else {

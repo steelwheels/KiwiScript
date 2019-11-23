@@ -58,7 +58,7 @@ open class KECompiler
 
 
 	/* Call this afer "CompileBase" method is called */
-	open func compileResource(context ctxt: KEContext, resource res: KEResource, console cons: CNConsole, config conf: KEConfig) -> Bool {
+	open func compileLibraryInResource(context ctxt: KEContext, resource res: KEResource, console cons: CNConsole, config conf: KEConfig) -> Bool {
 		var result = true
 		/* Compile library */
 		if let libnum = res.countOfLibraries() {

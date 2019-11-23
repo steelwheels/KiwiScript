@@ -44,7 +44,7 @@ import Foundation
 
 		/* Compile the context */
 		let compiler = KHShellCompiler()
-		guard compiler.compileShell(context: mContext, environment: env, resource: res, console: self.console, config: conf) else {
+		guard compiler.compileBaseAndLibrary(context: mContext, environment: env, resource: res, console: self.console, config: conf) else {
 			console.error(string: "Failed to compile script thread context\n")
 			return
 		}
@@ -71,7 +71,6 @@ import Foundation
 			NSLog("Can not happen")
 			return -1
 		}
-
 
 		/* Compile user scripts */
 		let compiler = KHShellCompiler()

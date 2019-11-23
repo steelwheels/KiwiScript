@@ -37,7 +37,7 @@ private class KLThreadObject: CNThread
 		guard compiler.compileBase(context: mContext, console: self.console, config: config) else {
 			return false
 		}
-		guard compiler.compileResource(context: mContext, resource: resource, console: self.console, config: config) else {
+		guard compiler.compileLibraryInResource(context: mContext, resource: resource, console: self.console, config: config) else {
 			return false
 		}
 		/* Compile script in the package */
@@ -54,7 +54,7 @@ private class KLThreadObject: CNThread
 		guard compiler.compileBase(context: mContext, console: self.console, config: config) else {
 			return false
 		}
-		guard compiler.compileResource(context: mContext, resource: resource, console: self.console, config: config) else {
+		guard compiler.compileLibraryInResource(context: mContext, resource: resource, console: self.console, config: config) else {
 			return false
 		}
 		/* Compile script in the given file */
