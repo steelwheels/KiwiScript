@@ -11,56 +11,42 @@ import Foundation
 
 public func UTShellCommand(console cons: CNConsole) -> Bool
 {
-	let res0 = testShellCommand(command: "cat", console: cons)
-	let res1 = testShellCommand(command: "cat < @inpipe", console: cons)
-	let res2 = testShellCommand(command: "cat < inpipe >  @outpipe 2>@errpipe", console: cons)
-	return res0 && res1 && res2
-}
+	cons.print(string: "// shell command: 0\n")
+	let cmd0 = KHShellCommand(shellCommand: "command-0")
+	//cons.print(string: cmd0.toScript().joined(separator: "\n") + "\n")
 
-private func testShellCommand(command cmd: String, console cons: CNConsole) -> Bool {
-	cons.print(string: "// command for \(cmd)\n")
-	let cmd0 = KHShellCommand(command: cmd)
-	if let err = cmd0.compile() {
-		cons.print(string: "[Error] 1 " + err.toString() + "\n")
-		return false
-	}
-	dumpShellCommand(command: cmd0, console: cons)
+	cons.print(string: "// script command: 1\n")
+	let cmd1 = KHScriptCommand(scriptName: "script-1")
+	//cons.print(string: cmd1.toScript().joined(separator: "\n") + "\n")
 
-	cons.print(string: "// process for \(cmd)\n")
-	let cmd1  = KHShellCommand(command: cmd)
-	let proc1 = KHShellProcess()
-	proc1.add(command: cmd1)
-	if let err = proc1.compile() {
-		cons.print(string: "[Error] 2 " + err.toString() + "\n")
-		return false
-	}
-	let script1 = proc1.toScript()
-	cons.print(string: "Script1: " + script1 + "\n")
+	cons.print(string: "// command process: 2\n")
+	let cmd2 = KHCommandProcess()
+	cmd2.add(command: cmd0)
+	cmd2.add(command: cmd1)
+	//cons.print(string: cmd2.toScript().joined(separator: "\n") + "\n")
+
+	cons.print(string: "// shell command: 3\n")
+	let cmd3 = KHShellCommand(shellCommand: "command-3")
+	//cons.print(string: cmd3.toScript().joined(separator: "\n") + "\n")
+
+	cons.print(string: "// script command: 4\n")
+	let cmd4 = KHScriptCommand(scriptName: "script-4")
+	//cons.print(string: cmd4.toScript().joined(separator: "\n") + "\n")
+
+	cons.print(string: "// command process: 5\n")
+	let cmd5 = KHCommandProcess()
+	cmd5.add(command: cmd3)
+	cmd5.add(command: cmd4)
+	//cons.print(string: cmd5.toScript().joined(separator: "\n") + "\n")
+
+	cons.print(string: "// command pipeline: 6\n")
+	let cmd6 = KHCommandPipeline()
+	cmd6.add(process: cmd2)
+	cmd6.add(process: cmd5)
+	cmd6.exitName = "extval6"
+	cons.print(string: cmd6.toScript().joined(separator: "\n") + "\n")
 
 	return true
-}
-
-private func dumpShellCommand(command cmd: KHShellCommand, console cons: CNConsole) {
-	let command = cmd.command
-	let inpipe: String
-	if let pipe = cmd.inputName {
-		inpipe = pipe
-	} else {
-		inpipe = "<no inpipe>"
-	}
-	let outpipe: String
-	if let pipe = cmd.outputName {
-		outpipe = pipe
-	} else {
-		outpipe = "<no outpipe>"
-	}
-	let errpipe: String
-	if let pipe = cmd.errorName {
-		errpipe = pipe
-	} else {
-		errpipe = "<no errpipe>"
-	}
-	cons.print(string: "{ \"\(command)\"/\(inpipe)/\(outpipe)/\(errpipe) }\n")
 }
 
 

@@ -20,6 +20,7 @@
 		0561DC5E218CC16400E5A298 /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050DBEA220C2D47A00F0E133 /* CoconutData.framework */; };
 		0561DC60218CC1B300E5A298 /* KiwiShell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0561DC5F218CC1B300E5A298 /* KiwiShell.framework */; };
 		057D85CA23053F360036353D /* CoconutShell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057D85C923053F360036353D /* CoconutShell.framework */; };
+		0582DFE02388F98F005BD011 /* KHShellCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0582DFDF2388F98F005BD011 /* KHShellCommand.swift */; };
 		059A74CC20C3685200D83E94 /* CoconutData.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050DBEA220C2D47A00F0E133 /* CoconutData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		059A74CD20C3685700D83E94 /* KiwiEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050DBEA420C2D49A00F0E133 /* KiwiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		059A74CE20C3685B00D83E94 /* KiwiLibrary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050DBEA620C2D4A800F0E133 /* KiwiLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -28,7 +29,6 @@
 		05BEBC0623688761003F9ED9 /* UTShellCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BEBC0523688761003F9ED9 /* UTShellCommand.swift */; };
 		05D049D52039AA9000642E6A /* KHShellThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D049D42039AA9000642E6A /* KHShellThread.swift */; };
 		05DBA585231271760061046B /* KHScriptThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DBA584231271760061046B /* KHScriptThread.swift */; };
-		05E688052363BB9B00189BA6 /* KHShellStatement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E688042363BB9B00189BA6 /* KHShellStatement.swift */; };
 		05E688072363BCC200189BA6 /* KHShellTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E688062363BCC200189BA6 /* KHShellTranslator.swift */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +101,7 @@
 		055AAA902039A319008018A8 /* KiwiShell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KiwiShell.h; sourceTree = "<group>"; };
 		0561DC5F218CC1B300E5A298 /* KiwiShell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiShell.framework; path = ../../../../Library/Frameworks/KiwiShell.framework; sourceTree = "<group>"; };
 		057D85C923053F360036353D /* CoconutShell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutShell.framework; path = ../../../../Library/Frameworks/CoconutShell.framework; sourceTree = "<group>"; };
+		0582DFDF2388F98F005BD011 /* KHShellCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KHShellCommand.swift; sourceTree = "<group>"; };
 		05BE576D2327D8160062243B /* UTShell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTShell.swift; sourceTree = "<group>"; };
 		05BE576F2327D9910062243B /* UTTranslator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTTranslator.swift; sourceTree = "<group>"; };
 		05BEBC0523688761003F9ED9 /* UTShellCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTShellCommand.swift; sourceTree = "<group>"; };
@@ -108,7 +109,6 @@
 		05D049DA2039AC3C00642E6A /* UnitTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		05D049DC2039AC3C00642E6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05DBA584231271760061046B /* KHScriptThread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KHScriptThread.swift; sourceTree = "<group>"; };
-		05E688042363BB9B00189BA6 /* KHShellStatement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KHShellStatement.swift; sourceTree = "<group>"; };
 		05E688062363BCC200189BA6 /* KHShellTranslator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KHShellTranslator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -195,8 +195,8 @@
 				05D049D42039AA9000642E6A /* KHShellThread.swift */,
 				050A0D7323113C0600D3823F /* KHShellEnvironment.swift */,
 				050C3624231158770015F557 /* KHShellCompiler.swift */,
-				05E688042363BB9B00189BA6 /* KHShellStatement.swift */,
 				05E688062363BCC200189BA6 /* KHShellTranslator.swift */,
+				0582DFDF2388F98F005BD011 /* KHShellCommand.swift */,
 			);
 			name = Source;
 			path = ../Source;
@@ -404,8 +404,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0554175323181982005BE0C5 /* KHConfig.swift in Sources */,
+				0582DFE02388F98F005BD011 /* KHShellCommand.swift in Sources */,
 				050C3625231158770015F557 /* KHShellCompiler.swift in Sources */,
-				05E688052363BB9B00189BA6 /* KHShellStatement.swift in Sources */,
 				05D049D52039AA9000642E6A /* KHShellThread.swift in Sources */,
 				050A0D7423113C0600D3823F /* KHShellEnvironment.swift in Sources */,
 				05DBA585231271760061046B /* KHScriptThread.swift in Sources */,

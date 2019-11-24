@@ -11,16 +11,19 @@ import Foundation
 public class KHShellTranslator
 {
 	public enum Result {
-		case 	ok(Array<String>)
-		case	error(Error)
+		case ok(Array<String>)
+		case error(Error)
+	}
+
+	private enum TranslationState {
+		case normalStatement
+		case shellStatement
 	}
 
 	public init(){
 	}
 
-	/*
-	 * lines:	The array of lines which is terminated by '\n'
-	 */
+	/* lines: The array of lines which is terminated by '\n' */
 	public func translate(lines lns: Array<String>) -> Result {
 		do {
 			let newlns = try mainTranslate(lines: lns)
@@ -28,11 +31,6 @@ public class KHShellTranslator
 		} catch let err {
 			return .error(err)
 		}
-	}
-
-	private enum TranslationState {
-	case normalStatement
-	case shellStatement
 	}
 
 	private func mainTranslate(lines lns: Array<String>) throws -> Array<String> {
@@ -99,6 +97,41 @@ public class KHShellTranslator
 		return false
 	}
 
+	private func convert(lines lns: Array<String>, indent idt: String) throws -> Array<String> {
+		/* Allocate statemets object */
+		let pipeline = KHCommandPipeline()
+
+		/* Remove ">" symbol from header */
+		var lines: Array<String> = []
+		for line in lns {
+			lines.append(try removeHeader(line: line))
+		}
+
+		/* Connect lines before splitting and devide by pipe '|' */
+		var script = lines.joined(separator: "\n")
+
+		/* Get exit code after '->' */
+		(script, pipeline.exitName) = decodeExitCode(script: script)
+
+		/* Allocate shell processes */
+		let procs = script.components(separatedBy: "|")
+		for proc in procs {
+			let proc1 = proc.trimmingCharacters(in: .whitespacesAndNewlines)
+			if !proc1.isEmpty {
+				let shproc = try convert(process: proc1)
+				pipeline.add(process: shproc)
+			}
+		}
+
+		/* Generate script with indent string */
+		var newstmts: Array<String> = []
+		let stmts = pipeline.toScript()
+		for stmt in stmts {
+			newstmts.append(idt + stmt)
+		}
+		return newstmts
+	}
+
 	private func removeHeader(line ln: String) throws -> String {
 		let start = ln.startIndex
 		let end   = ln.endIndex
@@ -116,46 +149,6 @@ public class KHShellTranslator
 			}
 		}
 		return String(ln.suffix(from: idx))
-	}
-
-	private func convert(lines lns: Array<String>, indent idt: String) throws -> Array<String> {
-		/* Allocate statemets object */
-		let shstmts = KHShellStatements(indent: idt)
-
-		/* Remove ">" symbol from header */
-		var lines: Array<String> = []
-		for line in lns {
-			lines.append(try removeHeader(line: line))
-		}
-
-		/* Connect lines before splitting and devide by pipe '|' */
-		var script = lines.joined(separator: "\n")
-
-		/* Get exit code after '->' */
-		(script, shstmts.exitVariable) = decodeExitCode(script: script)
-
-		/* Allocate shell processes */
-		let procs = script.components(separatedBy: "|")
-		for proc in procs {
-			let proc1 = proc.trimmingCharacters(in: .whitespacesAndNewlines)
-			if !proc1.isEmpty {
-				let shproc = try convert(process: proc1)
-				shstmts.add(process: shproc)
-			}
-		}
-
-		/* Check the context */
-		if let err = shstmts.check() {
-			throw err
-		}
-
-		/* Compile the context */
-		if let err = shstmts.compile() {
-			throw err
-		}
-
-		/* Generate script */
-		return shstmts.toScript()
 	}
 
 	private func decodeExitCode(script scr: String) -> (String, String?) { // (script, exit-code?)
@@ -188,33 +181,50 @@ public class KHShellTranslator
 		return (scr, nil)
 	}
 
-	private func convert(process proc: String) throws -> KHShellProcess {
-		let result = KHShellProcess()
-		let cmds = proc.components(separatedBy: ";")
+	private func convert(process procstr: String) throws -> KHCommandProcess {
+		let proc = KHCommandProcess()
+
+		let cmds = procstr.components(separatedBy: ";")
+		/* Check there are built in command or not */
+		var hasbuiltin = false
 		for cmd in cmds {
-			let cmd1 = cmd.trimmingCharacters(in: .whitespacesAndNewlines)
-			if !cmd1.isEmpty {
-				let shcmd = try convert(command: cmd1)
-				result.add(command: shcmd)
-			}
-		}
-		return result
-	}
-
-	private func convert(command cmd: String) throws -> KHShellCommand {
-		return KHShellCommand(command: cmd)
-	}
-
-	private func skipPreviousSpaces(string str: String, startIndex start: String.Index, pointer ptr: String.Index) -> String.Index {
-		var idx = ptr
-		while idx < start {
-			if str[idx].isWhitespace {
-				idx = str.index(before: idx)
-			} else {
+			if isBuiltinCommand(command: cmd) {
+				hasbuiltin = true
 				break
 			}
 		}
-		return idx
+		if hasbuiltin {
+			for cmd in cmds {
+				if isBuiltinCommand(command: cmd) {
+					/* Allocate built-in command */
+					let cmdobj = try convert(builtinCommand: cmd)
+					proc.add(command: cmdobj)
+				} else {
+					/* Allocate shell command */
+					let cmdobj = KHShellCommand(shellCommand: cmd)
+					proc.add(command: cmdobj)
+				}
+			}
+		} else {
+			/* Allocate shell command */
+			let cmdobj = KHShellCommand(shellCommand: procstr)
+			proc.add(command: cmdobj)
+		}
+		return proc
+	}
+
+	private func isBuiltinCommand(command cmd: String) -> Bool {
+		let words = CNStringUtil.divideBySpaces(string: cmd)
+		if words.count >= 1 {
+		}
+		return false
+	}
+
+	private func convert(builtinCommand cmdstr: String) throws -> KHCommand {
+		let newcmd = KHScriptCommand(scriptName: cmdstr)
+		return newcmd
 	}
 }
+
+
 

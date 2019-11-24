@@ -35,7 +35,7 @@ open class KLCompiler: KECompiler
 
 	open override func compileLibraryInResource(context ctxt: KEContext, resource res: KEResource, console cons: CNConsole, config conf: KEConfig) -> Bool {
 		if super.compileLibraryInResource(context: ctxt, resource: res, console: cons, config: conf) {
-			defineThreadObject(context: ctxt, resource: res, console: cons, config: conf)
+			defineThreadFunction(context: ctxt, resource: res, console: cons, config: conf)
 			return (ctxt.errorCount == 0)
 		} else {
 			return false
@@ -285,6 +285,28 @@ open class KLCompiler: KECompiler
 			/* The exit function is defined in KLOperation.swift */
 			break
 		}
+
+		/* _select_exit_code */
+		let selExitFunc: @convention(block) (_ val0: JSValue, _ val1: JSValue) -> JSValue = {
+			(_ val0: JSValue, _ val1: JSValue) -> JSValue in
+			let result: Int32
+			if val0.isNumber && val1.isNumber {
+				let code0 = val0.toInt32()
+				let code1 = val1.toInt32()
+				if code0 != 0 {
+					result = code0
+				} else if code1 != 0 {
+					result = code1
+				} else {
+					result = 0
+				}
+			} else {
+				NSLog("Invalid parameter")
+				result = -1
+			}
+			return JSValue(int32: result, in: ctxt)
+		}
+		ctxt.set(name: "_select_exit_code", function: selExitFunc)
 	}
 
 	private func definePrimitiveObjects(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
@@ -465,7 +487,7 @@ open class KLCompiler: KECompiler
 		ctxt.set(name: "OperationQueue", function: queuefunc)
 	}
 
-	private func defineThreadObject(context ctxt: KEContext, resource res: KEResource, console cons: CNConsole, config conf: KEConfig) {
+	private func defineThreadFunction(context ctxt: KEContext, resource res: KEResource, console cons: CNConsole, config conf: KEConfig) {
 		/* Thread */
 		let thfunc: @convention(block) (_ nameval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue = {
 			(_ nameval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue in
@@ -506,7 +528,40 @@ open class KLCompiler: KECompiler
 			return JSValue(nullIn: ctxt)
 		}
 		ctxt.set(name: "run", function: runfunc)
+
+		/* _waitUtilExitAll */
+		let waitExtFunc: @convention(block) (_ procval: JSValue) -> JSValue = {
+			(_ procval: JSValue) -> JSValue in
+			if procval.isArray {
+				if let procarr = procval.toArray() {
+					/* Collect process object */
+					var procs: Array<KLProcessProtocol> = []
+					for procelm in procarr {
+						if let procelm = KLCompiler.anyToProcess(anyValue: procelm) {
+							procs.append(procelm)
+						} else {
+							cons.error(string: "_waitUntilExitAll: Unexpected type parameter")
+						}
+					}
+					/* Wait all processes */
+					var ecode: Int32 = 0
+					for proc in procs {
+						let code = proc.waitUntilExit()
+						if code != 0 {
+							ecode = code
+							break
+						}
+					}
+					return JSValue(int32: ecode, in: ctxt)
+				}
+			}
+			cons.error(string: "_waitUntilExitAll: Unexpected type parameters")
+			return JSValue(nullIn: ctxt)
+		}
+		ctxt.set(name: "_waitUntilExitAll", function: waitExtFunc)
 	}
+
+
 
 	private class func valueToConsole(consoleValue consval: JSValue, context ctxt: KEContext, logConsole logcons: CNConsole) -> CNFileConsole {
 		let opconsole: CNFileConsole
@@ -565,6 +620,19 @@ open class KLCompiler: KECompiler
 			}
 		}
 		return result
+	}
+
+	private class func anyToProcess(anyValue val: Any) -> KLProcessProtocol? {
+		if let proc = val as? KLProcessProtocol {
+			return proc
+		} else if let procval = val as? JSValue {
+			if procval.isObject {
+				if let procobj = procval.toObject() {
+					return anyToProcess(anyValue: procobj)
+				}
+			}
+		}
+		return nil
 	}
 }
 
