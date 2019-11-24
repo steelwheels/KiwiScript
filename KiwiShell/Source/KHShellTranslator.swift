@@ -125,10 +125,12 @@ public class KHShellTranslator
 
 		/* Generate script with indent string */
 		var newstmts: Array<String> = []
+		newstmts.append(idt + "do {")
 		let stmts = pipeline.toScript()
 		for stmt in stmts {
-			newstmts.append(idt + stmt)
+			newstmts.append(idt + "\t" + stmt)
 		}
+		newstmts.append(idt + "} while(false) ;")
 		return newstmts
 	}
 
@@ -201,16 +203,56 @@ public class KHShellTranslator
 					proc.add(command: cmdobj)
 				} else {
 					/* Allocate shell command */
-					let cmdobj = KHShellCommand(shellCommand: cmd)
+					let cmdobj = convert(shellCommand: cmd)
 					proc.add(command: cmdobj)
 				}
 			}
 		} else {
 			/* Allocate shell command */
-			let cmdobj = KHShellCommand(shellCommand: procstr)
+			let cmdobj = convert(shellCommand: procstr)
 			proc.add(command: cmdobj)
 		}
 		return proc
+	}
+
+	private func convert(shellCommand cmdstr: String) -> KHShellCommand {
+		let (cmdstr1, inname)  = searchRedirect(symbol: "<",  in: cmdstr)
+		let (cmdstr2, errname) = searchRedirect(symbol: "2>", in: cmdstr1)
+		let (cmdstr3, outname) = searchRedirect(symbol: ">",  in: cmdstr2)
+		let newcmd = KHShellCommand(shellCommand: cmdstr3)
+		newcmd.inputName  = inname
+		newcmd.outputName = outname
+		newcmd.errorName  = errname
+		return newcmd
+	}
+
+	private func searchRedirect(symbol symstr: String, in str: String) -> (String, String?) // (str, pipe-name)
+	{
+		if let symrange = str.range(of: symstr) {
+			let head = symrange.lowerBound
+
+			/* Search "@" symbol */
+			/* Skip heading spaces */
+			let start = CNStringUtil.traceForward(string: str, pointer: symrange.upperBound, doSkipFunc: {
+				(_ c: Character) -> Bool in return c.isWhitespace
+			})
+			if start < str.endIndex {
+				/* Find "@" */
+				let c = str[start]
+				if c == "@" {
+					let beginptr = str.index(after: start)
+					let endptr   = CNStringUtil.traceForward(string: str, pointer: beginptr, doSkipFunc: {
+						(_ c: Character) -> Bool in return c.isLetterOrNumber
+					})
+					if beginptr < endptr {
+						let word   = String(str[beginptr..<endptr])
+						let newstr = str.replacingCharacters(in: head..<endptr, with: "")
+						return (newstr, word)
+					}
+				}
+			}
+		}
+		return (str, nil)
 	}
 
 	private func isBuiltinCommand(command cmd: String) -> Bool {
@@ -220,7 +262,7 @@ public class KHShellTranslator
 		return false
 	}
 
-	private func convert(builtinCommand cmdstr: String) throws -> KHCommand {
+	private func convert(builtinCommand cmdstr: String) throws -> KHScriptCommand {
 		let newcmd = KHScriptCommand(scriptName: cmdstr)
 		return newcmd
 	}

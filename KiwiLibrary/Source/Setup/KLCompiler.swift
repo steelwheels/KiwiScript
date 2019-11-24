@@ -499,7 +499,11 @@ open class KLCompiler: KECompiler
 				let thread = KLThread(virtualMachine: vm, input:  infile, output: outfile, error: errfile)
 				if thread.compile(scriptName: name, in: res, config: conf) {
 					return JSValue(object: thread, in: ctxt)
+				} else {
+					cons.error(string: "Failed to compile thread: \(name)\n")
 				}
+			} else {
+				cons.error(string: "Invalid parameters\n")
 			}
 			return JSValue(nullIn: ctxt)
 		}

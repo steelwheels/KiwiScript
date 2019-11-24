@@ -1,15 +1,22 @@
-// command for cat
-{ "cat"/<no inpipe>/<no outpipe>/<no errpipe> }
-// process for cat
-Script1: let _proc0 = system(`cat`, stdin, stdout, stderr) ;
-// command for cat < @inpipe
-{ "cat "/inpipe/<no outpipe>/<no errpipe> }
-// process for cat < @inpipe
-Script1: let _proc0 = system(`cat `, inpipe, stdout, stderr) ;
-// command for cat < inpipe >  @outpipe 2>@errpipe
-{ "cat < inpipe  "/<no inpipe>/outpipe/errpipe }
-// process for cat < inpipe >  @outpipe 2>@errpipe
-Script1: let _proc0 = system(`cat < inpipe  `, stdin, outpipe, errpipe) ;
+// shell command: 0
+// script command: 1
+// command process: 2
+// shell command: 3
+// script command: 4
+// command process: 5
+// command pipeline: 6
+let _extval = 0 ;
+let _pipe1 = Pipe();
+let _proc0 = system(`command-0`, stdin, _pipe1, stderr) ;
+_extval = _select_exit_code(_proc0.waitUntilExit(), _extval) ;
+let _proc1 = run(`"script-1"`, stdin, _pipe1, stderr) ;
+let _proc2 = system(`command-3`, _pipe1, stdout, stderr) ;
+_extval = _select_exit_code(_proc2.waitUntilExit(), _extval) ;
+let _proc3 = run(`"script-4"`, _pipe1, stdout, stderr) ;
+for(let proc of [_proc1, _proc3] ){
+	_extval = _select_exit_code(proc.waitUntilExit(), _extval) ;
+}
+extval6 = _extval ;
 /* Source script 0 */
 /* Translated script 0 */
 /* Source script 1 */
@@ -20,9 +27,7 @@ console.log(a)
 let a = 1.0;
 do {
 	let _proc0 = system(`echo "Hello, world !!\n"`, stdin, stdout, stderr) ;
-	let _ecode = 0 ; 
-	let _ecode0 = _proc0.waitUntilExit() ;
-	if(_ecode0 != 0){ _ecode = _ecode0 ; }
+	_proc0.waitUntilExit() ;
 } while(false) ;
 console.log(a)
 /* Source script 2 */
@@ -30,48 +35,56 @@ console.log(a)
 > |d
 /* Translated script 2 */
 do {
-	let _pipe0 = Pipe() ;
-	let _pipe1 = Pipe() ;
-	let _pipe2 = Pipe() ;
+	let _extval = 0 ;
+	let _pipe0 = Pipe();
 	let _proc0 = system(`a`, stdin, _pipe0, stderr) ;
+	let _pipe1 = Pipe();
 	let _proc1 = system(`b`, _pipe0, _pipe1, stderr) ;
+	let _pipe2 = Pipe();
 	let _proc2 = system(`c`, _pipe1, _pipe2, stderr) ;
 	let _proc3 = system(`d`, _pipe2, stdout, stderr) ;
-	let _ecode = 0 ; 
-	let _ecode0 = _proc0.waitUntilExit() ;
-	if(_ecode0 != 0){ _ecode = _ecode0 ; }
-	let _ecode1 = _proc1.waitUntilExit() ;
-	if(_ecode1 != 0){ _ecode = _ecode1 ; }
-	let _ecode2 = _proc2.waitUntilExit() ;
-	if(_ecode2 != 0){ _ecode = _ecode2 ; }
-	let _ecode3 = _proc3.waitUntilExit() ;
-	if(_ecode3 != 0){ _ecode = _ecode3 ; }
+	for(let proc of [_proc0, _proc1, _proc2, _proc3] ){
+		_extval = _select_exit_code(proc.waitUntilExit(), _extval) ;
+	}
 } while(false) ;
 /* Source script 3 */
 > cat A | wc -l ; cat B |  wc -l
 /* Translated script 3 */
 do {
-	let _pipe0 = Pipe() ;
-	let _pipe1 = Pipe() ;
+	let _extval = 0 ;
+	let _pipe0 = Pipe();
 	let _proc0 = system(`cat A`, stdin, _pipe0, stderr) ;
+	let _pipe1 = Pipe();
 	let _proc1 = system(`wc -l ; cat B`, _pipe0, _pipe1, stderr) ;
 	let _proc2 = system(`wc -l`, _pipe1, stdout, stderr) ;
-	let _ecode = 0 ; 
-	let _ecode0 = _proc0.waitUntilExit() ;
-	if(_ecode0 != 0){ _ecode = _ecode0 ; }
-	let _ecode1 = _proc1.waitUntilExit() ;
-	if(_ecode1 != 0){ _ecode = _ecode1 ; }
-	let _ecode2 = _proc2.waitUntilExit() ;
-	if(_ecode2 != 0){ _ecode = _ecode2 ; }
+	for(let proc of [_proc0, _proc1, _proc2] ){
+		_extval = _select_exit_code(proc.waitUntilExit(), _extval) ;
+	}
 } while(false) ;
 /* Source script 4 */
 > cat A-> exitcode0 
 /* Translated script 4 */
 do {
 	let _proc0 = system(`cat A`, stdin, stdout, stderr) ;
-	let _ecode = 0 ; 
-	let _ecode0 = _proc0.waitUntilExit() ;
-	if(_ecode0 != 0){ _ecode = _ecode0 ; }
-	exitcode0  = _ecode ;
+	exitcode0  = _proc0.waitUntilExit() ;
+} while(false) ;
+/* Source script 5 */
+> cat < @pipein > @pipeout 
+/* Translated script 5 */
+do {
+	let _proc0 = system(`cat  `, pipein, pipeout, stderr) ;
+	_proc0.waitUntilExit() ;
+} while(false) ;
+/* Source script 6 */
+> cat < @pipein | wc -l > @pipeout 
+/* Translated script 6 */
+do {
+	let _extval = 0 ;
+	let _pipe0 = Pipe();
+	let _proc0 = system(`cat `, pipein, _pipe0, stderr) ;
+	let _proc1 = system(`wc -l `, _pipe0, pipeout, stderr) ;
+	for(let proc of [_proc0, _proc1] ){
+		_extval = _select_exit_code(proc.waitUntilExit(), _extval) ;
+	}
 } while(false) ;
 Summary: OK

@@ -267,9 +267,13 @@ public class KHCommandPipeline: KHCommandProtocol
 			let proc0 = mCommandProcesses[0]
 			let pid0  = proc0.processId
 			stmts.append("let _pipe\(pid0) = Pipe();")
-			proc0.inputName	 = self.inputNameString
+			if proc0.inputName == nil {
+				proc0.inputName	 = self.inputNameString
+			}
 			proc0.outputName = "_pipe\(pid0)"
-			proc0.errorName  = self.errorNameString
+			if proc0.errorName == nil {
+				proc0.errorName  = self.errorNameString
+			}
 			stmts.append(contentsOf: proc0.toScript())
 
 			/* 2nd, 3rd process */
@@ -280,7 +284,9 @@ public class KHCommandPipeline: KHCommandProtocol
 				stmts.append("let _pipe\(pidI) = Pipe();")
 				procI.inputName  = "_pipe\(prevpid)"
 				procI.outputName = "_pipe\(pidI)"
-				procI.errorName  = self.errorNameString
+				if procI.errorName == nil {
+					procI.errorName  = self.errorNameString
+				}
 				stmts.append(contentsOf: procI.toScript())
 				prevpid = pidI
 			}
@@ -288,8 +294,12 @@ public class KHCommandPipeline: KHCommandProtocol
 			/* Last process */
 			let procN = mCommandProcesses[count-1]
 			procN.inputName  = "_pipe\(prevpid)"
-			procN.outputName = self.outputNameString
-			procN.errorName  = self.errorNameString
+			if procN.outputName == nil {
+				procN.outputName = self.outputNameString
+			}
+			if procN.errorName == nil {
+				procN.errorName  = self.errorNameString
+			}
 			stmts.append(contentsOf: procN.toScript())
 
 			/* Wait all process */

@@ -10,8 +10,10 @@ import KiwiEngine
 import JavaScriptCore
 import Foundation
 
-@objc public protocol KLThreadProtocol: KLProcessProtocol {
+@objc public protocol KLThreadProtocol: JSExport {
 	func start(_ args: JSValue)
+	func isRunning() -> Bool
+	func waitUntilExit() -> Int32
 }
 
 private class KLThreadObject: CNThread
