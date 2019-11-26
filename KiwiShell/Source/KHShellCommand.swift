@@ -10,7 +10,7 @@ import Foundation
 private let	NoProcessId: Int	= 0
 private let	LocalExitName:String	= "_extval"
 
-public protocol KHCommandProtocol {
+public protocol KHStatementProtocol {
 	var	processId:	Int	 { get 	   }
 	var	inputName:	String?	 { get set }
 	var	outputName:	String?  { get set }
@@ -19,7 +19,7 @@ public protocol KHCommandProtocol {
 	func toScript() -> Array<String>
 }
 
-extension KHCommandProtocol {
+extension KHStatementProtocol {
 	var inputNameString: String {
 		if let str = self.inputName {
 			return str
@@ -43,9 +43,10 @@ extension KHCommandProtocol {
 	}
 }
 
-public class KHCommand: KHCommandProtocol
+public class KHCommandStatement: KHStatementProtocol
 {
 	private var	mProcessId:	Int
+
 	public var	inputName:	String?
 	public var	outputName:	String?
 	public var	errorName:	String?
@@ -70,7 +71,7 @@ public class KHCommand: KHCommandProtocol
 }
 
 
-public class KHShellCommand: KHCommand
+public class KHShellCommandStatement: KHCommandStatement
 {
 	private var shellCommand:	String
 
@@ -85,24 +86,30 @@ public class KHShellCommand: KHCommand
 	}
 }
 
-public class KHScriptCommand: KHCommand
+public class KHRunCommandStatement: KHCommandStatement
 {
-	private var scriptName:	String
+	private var mScriptPath:	String?
 
-	public init(scriptName name: String) {
-		scriptName = name
+	public init(scriptPath path: String?) {
+		mScriptPath = path
 		super.init()
 	}
 
 	public override func toScript() -> Array<String> {
-		let system = "let _proc\(processId) = run(`\"\(scriptName)\"`, \(self.inputNameString), \(self.outputNameString), \(self.errorNameString)) ;"
+		let path: String
+		if let p = mScriptPath {
+			path = "\"\(p)\""
+		} else {
+			path = "null"
+		}
+		let system   = "let _proc\(processId) = run(\(path), \(self.inputNameString), \(self.outputNameString), \(self.errorNameString)) ;"
 		return [system]
 	}
 }
 
-public class KHCommandProcess: KHCommandProtocol
+public class KHProcessStatement: KHStatementProtocol
 {
-	private var mCommandSequence:	Array<KHCommand>
+	private var mCommandSequence:	Array<KHCommandStatement>
 
 	public var processId: Int {
 		get {
@@ -166,7 +173,7 @@ public class KHCommandProcess: KHCommandProtocol
 		}
 	}
 
-	public func add(command cmd: KHCommand){
+	public func add(command cmd: KHCommandStatement){
 		mCommandSequence.append(cmd)
 	}
 
@@ -203,7 +210,7 @@ public class KHCommandProcess: KHCommandProtocol
 	}
 }
 
-public class KHCommandPipeline: KHCommandProtocol
+public class KHPipelineStatement: KHStatementProtocol
 {
 	private var  	mProcessId:	Int
 
@@ -212,7 +219,7 @@ public class KHCommandPipeline: KHCommandProtocol
 	public var	errorName:	String?
 	public var	exitName:	String?
 
-	private var 	mCommandProcesses:	Array<KHCommandProcess>
+	private var 	mCommandProcesses:	Array<KHProcessStatement>
 
 	public var processId: Int { get { return mProcessId }}
 
@@ -224,7 +231,7 @@ public class KHCommandPipeline: KHCommandProtocol
 		mCommandProcesses	= []
 	}
 
-	public func add(process proc: KHCommandProcess){
+	public func add(process proc: KHProcessStatement){
 		mCommandProcesses.append(proc)
 		let _ = updateProcessId(startId: 0)
 	}

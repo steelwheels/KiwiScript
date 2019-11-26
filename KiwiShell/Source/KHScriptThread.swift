@@ -18,11 +18,12 @@ import Foundation
 	func start()
 }
 
-@objc public class KHScriptThread: CNShellThread, KHThreadProtocol
+@objc public class KHScriptThread: CNThread, KHThreadProtocol
 {
 	public static let EnvironmentItem	= "_env"
 
 	private var mContext:			KEContext
+	private var mConfig:			KHConfig
 	private var mStatements:		Array<String>
 	private var mArguments:			Array<String>
 	private var mResultValue:		Int32?
@@ -37,10 +38,11 @@ import Foundation
 
 	public init(virtualMachine vm: JSVirtualMachine, resource res: KEResource, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNShellEnvironment, config conf: KHConfig){
 		mContext		= KEContext(virtualMachine: vm)
+		mConfig			= conf
 		mStatements		= []
 		mArguments		= []
 		mResultValue		= nil
-		super.init(input: instrm, output: outstrm, error: errstrm, environment: env, config: conf, terminationHander: nil)
+		super.init(input: instrm, output: outstrm, error: errstrm, terminationHander: nil)
 
 		/* Compile the context */
 		let compiler = KHShellCompiler()
@@ -67,14 +69,9 @@ import Foundation
 		/* Initialize */
 		mResultValue = nil
 
-		guard let conf = config as? KHConfig else {
-			NSLog("Can not happen")
-			return -1
-		}
-
 		/* Compile user scripts */
 		let compiler = KHShellCompiler()
-		let _ = compiler.compile(context: mContext, statements: mStatements, console: console, config: conf)
+		let _ = compiler.compile(context: mContext, statements: mStatements, console: console, config: mConfig)
 		if mContext.errorCount != 0 {
 			console.error(string: "Failed to compile  user scripts")
 			return -1
@@ -82,7 +79,7 @@ import Foundation
 
 		/* Execute main function */
 		var result: Int32 = 0
-		if conf.hasMainFunction {
+		if mConfig.hasMainFunction {
 			/* Call main function */
 			if let mainfunc = mContext.objectForKeyedSubscript("main") {
 				if let retval = mainfunc.call(withArguments: [mArguments]) {

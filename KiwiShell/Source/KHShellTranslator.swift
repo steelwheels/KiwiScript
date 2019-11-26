@@ -99,7 +99,7 @@ public class KHShellTranslator
 
 	private func convert(lines lns: Array<String>, indent idt: String) throws -> Array<String> {
 		/* Allocate statemets object */
-		let pipeline = KHCommandPipeline()
+		let pipeline = KHPipelineStatement()
 
 		/* Remove ">" symbol from header */
 		var lines: Array<String> = []
@@ -183,8 +183,8 @@ public class KHShellTranslator
 		return (scr, nil)
 	}
 
-	private func convert(process procstr: String) throws -> KHCommandProcess {
-		let proc = KHCommandProcess()
+	private func convert(process procstr: String) throws -> KHProcessStatement {
+		let proc = KHProcessStatement()
 
 		let cmds = procstr.components(separatedBy: ";")
 		/* Check there are built in command or not */
@@ -197,29 +197,27 @@ public class KHShellTranslator
 		}
 		if hasbuiltin {
 			for cmd in cmds {
-				if isBuiltinCommand(command: cmd) {
-					/* Allocate built-in command */
-					let cmdobj = try convert(builtinCommand: cmd)
-					proc.add(command: cmdobj)
+				if let bcmd = convertToBuiltinCommand(command: cmd) {
+					proc.add(command: bcmd)
 				} else {
 					/* Allocate shell command */
-					let cmdobj = convert(shellCommand: cmd)
+					let cmdobj = convertShellCommand(command: cmd)
 					proc.add(command: cmdobj)
 				}
 			}
 		} else {
 			/* Allocate shell command */
-			let cmdobj = convert(shellCommand: procstr)
+			let cmdobj = convertShellCommand(command: procstr)
 			proc.add(command: cmdobj)
 		}
 		return proc
 	}
 
-	private func convert(shellCommand cmdstr: String) -> KHShellCommand {
+	private func convertShellCommand(command cmdstr: String) -> KHShellCommandStatement {
 		let (cmdstr1, inname)  = searchRedirect(symbol: "<",  in: cmdstr)
 		let (cmdstr2, errname) = searchRedirect(symbol: "2>", in: cmdstr1)
 		let (cmdstr3, outname) = searchRedirect(symbol: ">",  in: cmdstr2)
-		let newcmd = KHShellCommand(shellCommand: cmdstr3)
+		let newcmd = KHShellCommandStatement(shellCommand: cmdstr3)
 		newcmd.inputName  = inname
 		newcmd.outputName = outname
 		newcmd.errorName  = errname
@@ -256,15 +254,40 @@ public class KHShellTranslator
 	}
 
 	private func isBuiltinCommand(command cmd: String) -> Bool {
-		let words = CNStringUtil.divideBySpaces(string: cmd)
-		if words.count >= 1 {
+		var result = false
+		let words  = CNStringUtil.divideBySpaces(string: cmd)
+		if words.count > 0 {
+			switch words[0] {
+			case "run":
+				result = true
+			default:
+				break
+			}
 		}
-		return false
+		return result
 	}
 
-	private func convert(builtinCommand cmdstr: String) throws -> KHScriptCommand {
-		let newcmd = KHScriptCommand(scriptName: cmdstr)
-		return newcmd
+	private func convertToBuiltinCommand(command cmd: String) -> KHCommandStatement? {
+		var result: KHCommandStatement? = nil
+		var words = CNStringUtil.divideBySpaces(string: cmd)
+		if words.count >= 1 {
+			let cmdname = words.removeFirst()
+			switch cmdname {
+			case "run":
+				result = convertToRunCommand(parameters: words)
+			default:
+				break
+			}
+		}
+		return result
+	}
+
+	private func convertToRunCommand(parameters params: Array<String>) -> KHCommandStatement? {
+		if params.count >= 1 {
+			return KHRunCommandStatement(scriptPath: params[0])
+		} else {
+			return KHRunCommandStatement(scriptPath: nil)
+		}
 	}
 }
 
