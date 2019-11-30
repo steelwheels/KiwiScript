@@ -9,10 +9,10 @@ let _extval = 0 ;
 let _pipe1 = Pipe();
 let _proc0 = system(`command-0`, stdin, _pipe1, stderr) ;
 _extval = _select_exit_code(_proc0.waitUntilExit(), _extval) ;
-let _proc1 = _builtin_function(["load", "file"], stdin, _pipe1, stderr) ;
+let _proc1 = system(`command-1`, stdin, _pipe1, stderr) ;
 let _proc2 = system(`command-3`, _pipe1, stdout, stderr) ;
 _extval = _select_exit_code(_proc2.waitUntilExit(), _extval) ;
-let _proc3 = _builtin_function(["run", "file"], _pipe1, stdout, stderr) ;
+let _proc3 = system(`command-4`, _pipe1, stdout, stderr) ;
 for(let proc of [_proc1, _proc3] ){
 	_extval = _select_exit_code(proc.waitUntilExit(), _extval) ;
 }
