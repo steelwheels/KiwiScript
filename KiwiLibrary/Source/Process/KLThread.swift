@@ -85,8 +85,27 @@ private class KLThreadObject: CNThread
 		return true
 	}
 
+	private var mDidSelected : Bool = false
+	private var mSelectedURL : URL? = nil
+
 	private func selectInputFile() -> URL? {
-		return nil
+		mSelectedURL	= nil
+		mDidSelected	= false
+		#if os(OSX)
+		if CNPreference.shared.applicationPreference.isWindowApplication {
+			/* open panel to select */
+			CNExecuteInMainThread(doSync: false, execute: {
+				if let url = URL.openPanel(title: "Select script to execute", selection: .SelectFile, fileTypes: ["js", "jspkg"]) {
+					self.mSelectedURL = url
+				}
+				self.mDidSelected = true
+			})
+			while !self.mDidSelected {
+				usleep(100)
+			}
+		}
+		#endif
+		return self.mSelectedURL
 	}
 
 	private func loadMainScript(from url: URL) -> String? {
