@@ -103,7 +103,7 @@ public class KHRunCommandStatement: KHCommandStatement
 			path = "null"
 		}
 		let stmt0 = "let _proc\(processId) = run(\(path), \(self.inputNameString), \(self.outputNameString), \(self.errorNameString)) ;"
-		let stmt1 = "_proc\(processId).start() ;"
+		let stmt1 = "_proc\(processId).start([]) ;"
 		return [stmt0, stmt1]
 	}
 }
