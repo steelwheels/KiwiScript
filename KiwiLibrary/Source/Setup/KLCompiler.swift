@@ -496,12 +496,8 @@ open class KLCompiler: KECompiler
 			   let outfile = KLCompiler.vallueToFileStream(value: outval),
 			   let errfile = KLCompiler.vallueToFileStream(value: errval),
 			   let vm = JSVirtualMachine() {
-				let thread = KLThread(virtualMachine: vm, input:  infile, output: outfile, error: errfile)
-				if thread.compile(scriptName: name, in: res, config: conf) {
-					return JSValue(object: thread, in: ctxt)
-				} else {
-					cons.error(string: "Failed to compile thread: \(name)\n")
-				}
+				let thread = KLThread(virtualMachine: vm, scriptFile: .identifier(name), input:  infile, output: outfile, error: errfile, resource: res, config: conf)
+				return JSValue(object: thread, in: ctxt)
 			} else {
 				cons.error(string: "Invalid parameters\n")
 			}
@@ -516,18 +512,17 @@ open class KLCompiler: KECompiler
 			   let outfile = KLCompiler.vallueToFileStream(value: outval),
 			   let errfile = KLCompiler.vallueToFileStream(value: errval),
 			   let vm = JSVirtualMachine() {
-				let path: String
+				let file: KLThread.ScriptFile
 				if pathval.isString {
-					path = pathval.toString()
+					let url = URL(fileURLWithPath: pathval.toString())
+					file    = .url(url)
 				} else if pathval.isNull {
-					path = ""
+					file    = .unselected
 				} else {
 					return JSValue(nullIn: ctxt)
 				}
-				let thread = KLThread(virtualMachine: vm, input:  infile, output: outfile, error: errfile)
-				if thread.compile(filePath: path, in: res, config: conf) {
-					return JSValue(object: thread, in: ctxt)
-				}
+				let thread = KLThread(virtualMachine: vm, scriptFile: file, input:  infile, output: outfile, error: errfile, resource: res, config: conf)
+				return JSValue(object: thread, in: ctxt)
 			}
 			return JSValue(nullIn: ctxt)
 		}
@@ -564,8 +559,6 @@ open class KLCompiler: KECompiler
 		}
 		ctxt.set(name: "_waitUntilExitAll", function: waitExtFunc)
 	}
-
-
 
 	private class func valueToConsole(consoleValue consval: JSValue, context ctxt: KEContext, logConsole logcons: CNConsole) -> CNFileConsole {
 		let opconsole: CNFileConsole

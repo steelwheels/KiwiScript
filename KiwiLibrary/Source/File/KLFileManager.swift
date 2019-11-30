@@ -14,6 +14,11 @@ import Foundation
 {
 	func open(_ pathstr: JSValue, _ acctype: JSValue) -> JSValue
 
+	func isReadable(_ pathstr: JSValue) -> JSValue
+	func isWritable(_ pathstr: JSValue) -> JSValue
+	func isExecutable(_ pathstr: JSValue) -> JSValue
+	func isDeletable(_ pathstr: JSValue) -> JSValue
+
 	func checkFileType(_ pathstr: JSValue) -> JSValue
 	func uti(_ pathstr: JSValue) -> JSValue
 }
@@ -97,6 +102,38 @@ import Foundation
 			return pathval.toURL()
 		}
 		return nil
+	}
+
+	public func isReadable(_ pathval: JSValue) -> JSValue {
+		var result = false
+		if let path = pathval.toString() {
+			result = FileManager.default.isReadableFile(atPath: path)
+		}
+		return JSValue(bool: result, in: mContext)
+	}
+
+	public func isWritable(_ pathval: JSValue) -> JSValue {
+		var result = false
+		if let path = pathval.toString() {
+			result = FileManager.default.isWritableFile(atPath: path)
+		}
+		return JSValue(bool: result, in: mContext)
+	}
+
+	public func isExecutable(_ pathval: JSValue) -> JSValue {
+		var result = false
+		if let path = pathval.toString() {
+			result = FileManager.default.isExecutableFile(atPath: path)
+		}
+		return JSValue(bool: result, in: mContext)
+	}
+
+	public func isDeletable(_ pathval: JSValue) -> JSValue {
+		var result = false
+		if let path = pathval.toString() {
+			result = FileManager.default.isDeletableFile(atPath: path)
+		}
+		return JSValue(bool: result, in: mContext)
 	}
 
 	public func uti(_ pathval: JSValue) -> JSValue {

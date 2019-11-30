@@ -59,7 +59,11 @@ public func main()
 	filecons.print(string: "/* Unit test for Thread */\n")
 	let result6 = UTThread(context: context, console: filecons, config: config)
 
-	if result0 && result1 && result2 && result3 && result4 && result5 && result6 {
+	/* Thread */
+	filecons.print(string: "/* Unit test for Run */\n")
+	let result7 = UTRun(context: context, console: filecons, config: config)
+
+	if result0 && result1 && result2 && result3 && result4 && result5 && result6 && result7 {
 		filecons.print(string: "Summary: OK\n")
 	} else {
 		filecons.print(string: "Summary: NG (\(result0) \(result1) \(result2) \(result3) \(result4) \(result5) \(result6))\n")

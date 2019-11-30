@@ -36,16 +36,11 @@ public func UTThread(context ctxt: KEContext, console cons: CNFileConsole, confi
 			return false
 		}
 
-		let instrm:  CNFileStream = .fileHandle(cons.inputHandle)
-		let outstrm: CNFileStream = .fileHandle(cons.outputHandle)
-		let errstrm: CNFileStream = .fileHandle(cons.errorHandle)
-		let thread = KLThread(virtualMachine: vm, input: instrm, output: outstrm, error: errstrm)
-
-		/* Compile the thread */
-		guard thread.compile(scriptName: "sample0", in: resource, config: conf) else {
-			cons.print(string: "[Error] Failed to compile\n")
-			return false
-		}
+		let file:    KLThread.ScriptFile = .identifier("sample0")
+		let instrm:  CNFileStream	 = .fileHandle(cons.inputHandle)
+		let outstrm: CNFileStream	 = .fileHandle(cons.outputHandle)
+		let errstrm: CNFileStream	 = .fileHandle(cons.errorHandle)
+		let thread = KLThread(virtualMachine: vm, scriptFile: file, input: instrm, output: outstrm, error: errstrm, resource: resource, config: conf)
 
 		/* Start thread */
 		let arg0   = JSValue(object: "Thread", in: ctxt)

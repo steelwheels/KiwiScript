@@ -12,6 +12,50 @@ Following global variables are defined when this class is imported.
 |stdout     |File | Standard output           |
 |stderr     |File | Standard error output     |
 
+## `isReadable` class method
+Returns a Boolean value that indicates whether the file at the given path is readable or not.
+````
+FileManager.isReadable(fileName: String) -> Bool
+````
+
+### Parameter(s)
+|Parameter      |Type   |Description                    |
+|:---           |:---   |:---                           |
+|fileName       |String |Path of the file to check      |
+
+## `isWritable` class method
+Returns a Boolean value that indicates whether the file at the given path is writable or not.
+````
+FileManager.isWritable(fileName: String) -> Bool
+````
+
+### Parameter(s)
+|Parameter      |Type   |Description                    |
+|:---           |:---   |:---                           |
+|fileName       |String |Path of the file to check      |
+
+## `isExecutable` class method
+Returns a Boolean value that indicates whether the file at the given path is executable or not.
+````
+FileManager.isExecutable(fileName: String) -> Bool
+````
+
+### Parameter(s)
+|Parameter      |Type   |Description                    |
+|:---           |:---   |:---                           |
+|fileName       |String |Path of the file to check      |
+
+## `isDeletable` class method
+Returns a Boolean value that indicates whether the file at the given path is deletable or not.
+````
+FileManager.isDeletable(fileName: String) -> Bool
+````
+
+### Parameter(s)
+|Parameter      |Type   |Description                    |
+|:---           |:---   |:---                           |
+|fileName       |String |Path of the file to check      |
+
 ## `open` class method
 Allocate file object by the file name and access method.
 ````
@@ -26,15 +70,6 @@ var file = File.open(<file-name>, <access-type>) ;
 ### Return value
 If the opening the file is succeeded, the *File* object is returned. The file-object is built-in object. It can be accessed by following methods. On the other hand, when the opening file is failed, the return value will be nil.
 
-## `type` property
-Type property has following constant values to present type of the file.
-
-|Name       |Description            |
-|:---       |:---                   |
-|NotExist   |Not exist              |
-|File       |File                   |
-|Directory  |Directory              |
-
 ## `checkFileType` method
 Check the file type given by path string.
 ````
@@ -47,7 +82,14 @@ const type = File.checkFileType(path) ;
 |path         |String |Path of the file to be checked |
 
 ### Return value
-The constant value which is defined in the `type` property of this class.
+The constant value which is defined in the `type` property of the [File class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/File.md).
+
+|Name       |Description            |
+|:---       |:---                   |
+|NotExist   |Not exist              |
+|File       |File                   |
+|Directory  |Directory              |
+
 The following example checks the file "tmp" is file or not:
 ````
   if(File.checkFileType("tmp") == File.type.File){

@@ -18,63 +18,87 @@ import Foundation
 
 private class KLThreadObject: CNThread
 {
-	private var mContext:	KEContext
-	private var mArgument:	CNNativeValue
+	public typealias ScriptFile = KLThread.ScriptFile
 
-	public init(virtualMachine vm: JSVirtualMachine, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream) {
-		mContext   = KEContext(virtualMachine: vm)
-		mArgument  = .nullValue
+	private var mContext:		KEContext
+	private var mScriptFile:	ScriptFile
+	private var mResource:		KEResource
+	private var mConfig:		KEConfig
+	private var mArgument:		CNNativeValue
+
+	public init(virtualMachine vm: JSVirtualMachine, scriptFile file: ScriptFile, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, resource res: KEResource, config conf: KEConfig) {
+		mContext   	= KEContext(virtualMachine: vm)
+		mScriptFile	= file
+		mResource	= res
+		mConfig		= conf
+		mArgument  	= .nullValue
 		super.init(input: instrm, output: outstrm, error: errstrm, terminationHander: {
 			(_ thread: Thread) -> Int32 in
 			return 0
 		})
 	}
 
-	public func compile(scriptName name: String, in resource: KEResource, config conf: KEConfig) -> Bool {
+	public func start(arguments args: JSValue) {
+		mArgument = args.toNativeValue()
+		super.start()
+	}
+
+	public override func mainOperation() -> Int32 {
+		if compile() {
+			return execOperation()
+		} else {
+			return -1
+		}
+	}
+
+	private func compile() -> Bool {
 		/* Compile */
 		let compiler = KLCompiler()
-		let config   = KEConfig(kind: .Terminal, doStrict: conf.doStrict, logLevel: conf.logLevel)
+		let config   = KEConfig(kind: .Terminal, doStrict: mConfig.doStrict, logLevel: mConfig.logLevel)
 		guard compiler.compileBase(context: mContext, console: self.console, config: config) else {
 			return false
 		}
-		guard compiler.compileLibraryInResource(context: mContext, resource: resource, console: self.console, config: config) else {
+		guard compiler.compileLibraryInResource(context: mContext, resource: mResource, console: self.console, config: config) else {
 			return false
 		}
-		/* Compile script in the package */
-		guard compiler.compileScriptInResource(context: mContext, resource: resource, scriptName: name, console: self.console, config: config) else {
+		/* Load script */
+		let script: String?
+		switch mScriptFile {
+		case .identifier(let ident):
+			script = mResource.loadScript(identifier: ident, index: 0)
+		case .url(let url):
+			script = loadScript(from: url)
+		case .unselected:
+			if let url = selectInputFile() {
+				script = loadMainScript(from: url)
+			} else {
+				console.error(string: "Failed to select script")
+				return false
+			}
+		}
+		if let scr = script {
+			let _ = compiler.compile(context: mContext, statement: scr, console: console, config: mConfig)
+		} else {
+			console.error(string: "Failed to load script: \(mScriptFile.description())")
 			return false
 		}
 		return true
 	}
 
-	public func compile(filePath path: String, in resource: KEResource, config conf: KEConfig) -> Bool {
-		/* Compile */
-		let compiler = KLCompiler()
-		let config   = KEConfig(kind: .Terminal, doStrict: conf.doStrict, logLevel: conf.logLevel)
-		guard compiler.compileBase(context: mContext, console: self.console, config: config) else {
-			return false
-		}
-		guard compiler.compileLibraryInResource(context: mContext, resource: resource, console: self.console, config: config) else {
-			return false
-		}
-		/* Compile script in the given file */
-		var result: Bool = false
-		switch pathExtension(of: path) {
+	private func selectInputFile() -> URL? {
+		return nil
+	}
+
+	private func loadMainScript(from url: URL) -> String? {
+		let result: String?
+		switch pathExtension(of: url.path) {
 		case "js":
-			let url = URL(fileURLWithPath: path, isDirectory: false)
-			if let script = loadScript(from: url) {
-				let _ = compiler.compile(context: mContext, statement: script, console: self.console, config: config)
-				result = true
-			} else {
-				console.error(string: "Filed to load \(path)\n")
-			}
+			result = loadScript(from: url)
 		case "jspkg":
-			let url = URL(fileURLWithPath: path, isDirectory: true)
 			let res = KEResource(baseURL: url)
-			result  = compile(scriptName: "main", in: res, config: conf) // Compile main
+			result = res.loadScript(identifier: "main", index: 0)
 		default:
-			console.error(string: "File: DEFAULT")
-			//break
+			result = nil
 		}
 		return result
 	}
@@ -92,12 +116,7 @@ private class KLThreadObject: CNThread
 		}
 	}
 
-	public func start(arguments args: JSValue) {
-		mArgument = args.toNativeValue()
-		super.start()
-	}
-
-	public override func mainOperation() -> Int32 {
+	private func execOperation() -> Int32 {
 		/* Search main function */
 		var result: Int32 = 0
 		if let funcval = mContext.getValue(name: "main") {
@@ -120,18 +139,29 @@ private class KLThreadObject: CNThread
 
 @objc public class KLThread: NSObject, KLThreadProtocol
 {
+	public enum ScriptFile {
+		case identifier(String)		// script indentifier in package file
+		case url(URL)			// URL of external file
+		case unselected			// Not selected yet
+
+		func description() -> String {
+			let result: String
+			switch self {
+			case .identifier(let ident):
+				result = ident
+			case .url(let url):
+				result = url.path
+			case .unselected:
+				result = "<not defined>"
+			}
+			return result
+		}
+	}
+
 	private var mThread: KLThreadObject
 
-	public init(virtualMachine vm: JSVirtualMachine, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream) {
-		mThread = KLThreadObject(virtualMachine: vm, input: instrm, output: outstrm, error: errstrm)
-	}
-
-	public func compile(scriptName name: String, in resource: KEResource, config conf: KEConfig) -> Bool {
-		return mThread.compile(scriptName: name, in: resource, config: conf)
-	}
-
-	public func compile(filePath path: String, in resource: KEResource, config conf: KEConfig) -> Bool {
-		return mThread.compile(filePath: path, in: resource, config: conf)
+	public init(virtualMachine vm: JSVirtualMachine, scriptFile file: ScriptFile, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, resource res: KEResource, config conf: KEConfig) {
+		mThread = KLThreadObject(virtualMachine: vm, scriptFile: file, input: instrm, output: outstrm, error: errstrm, resource: res, config: conf)
 	}
 
 	public func start(_ args: JSValue) {
