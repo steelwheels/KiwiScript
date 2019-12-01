@@ -19,6 +19,9 @@ import Foundation
 	func isExecutable(_ pathstr: JSValue) -> JSValue
 	func isDeletable(_ pathstr: JSValue) -> JSValue
 
+	func homeDirectory() -> JSValue
+	func temporaryDirectory() -> JSValue
+
 	func checkFileType(_ pathstr: JSValue) -> JSValue
 	func uti(_ pathstr: JSValue) -> JSValue
 }
@@ -106,34 +109,54 @@ import Foundation
 
 	public func isReadable(_ pathval: JSValue) -> JSValue {
 		var result = false
-		if let path = pathval.toString() {
-			result = FileManager.default.isReadableFile(atPath: path)
+		if let url = valueToURL(value: pathval) {
+			result = FileManager.default.isReadableFile(atPath: url.path)
 		}
 		return JSValue(bool: result, in: mContext)
 	}
 
 	public func isWritable(_ pathval: JSValue) -> JSValue {
 		var result = false
-		if let path = pathval.toString() {
-			result = FileManager.default.isWritableFile(atPath: path)
+		if let url = valueToURL(value: pathval) {
+			result = FileManager.default.isWritableFile(atPath: url.path)
 		}
 		return JSValue(bool: result, in: mContext)
 	}
 
 	public func isExecutable(_ pathval: JSValue) -> JSValue {
 		var result = false
-		if let path = pathval.toString() {
-			result = FileManager.default.isExecutableFile(atPath: path)
+		if let url = valueToURL(value: pathval) {
+			result = FileManager.default.isExecutableFile(atPath: url.path)
 		}
 		return JSValue(bool: result, in: mContext)
 	}
 
 	public func isDeletable(_ pathval: JSValue) -> JSValue {
 		var result = false
-		if let path = pathval.toString() {
-			result = FileManager.default.isDeletableFile(atPath: path)
+		if let url = valueToURL(value: pathval) {
+			result = FileManager.default.isDeletableFile(atPath: url.path)
 		}
 		return JSValue(bool: result, in: mContext)
+	}
+
+	private func valueToURL(value val: JSValue) -> URL? {
+		if val.isURL {
+			return val.toURL()
+		} else {
+			return nil
+		}
+	}
+
+	public func homeDirectory() -> JSValue {
+		let dirurl = FileManager.default.homeDirectoryForCurrentUser
+		let urlobj = KLURL(URL: dirurl, context: mContext)
+		return JSValue(object: urlobj, in: mContext)
+	}
+
+	public func temporaryDirectory() -> JSValue {
+		let tmpurl = FileManager.default.temporaryDirectory
+		let urlobj = KLURL(URL: tmpurl, context: mContext)
+		return JSValue(object: urlobj, in: mContext)
 	}
 
 	public func uti(_ pathval: JSValue) -> JSValue {

@@ -13,53 +13,53 @@ Following global variables are defined when this class is imported.
 |stderr     |File | Standard error output     |
 
 ## `isReadable` class method
-Returns a Boolean value that indicates whether the file at the given path is readable or not.
+Returns a Boolean value that indicates whether the file at the given URL is readable or not.
 ````
-FileManager.isReadable(fileName: String) -> Bool
+FileManager.isReadable(file: URL) -> Bool
 ````
 
 ### Parameter(s)
 |Parameter      |Type   |Description                    |
 |:---           |:---   |:---                           |
-|fileName       |String |Path of the file to check      |
+|file           |[URL](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md) |URL of the file to check      |
 
 ## `isWritable` class method
-Returns a Boolean value that indicates whether the file at the given path is writable or not.
+Returns a Boolean value that indicates whether the file at the given URL is writable or not.
 ````
-FileManager.isWritable(fileName: String) -> Bool
+FileManager.isWritable(file: URL) -> Bool
 ````
 
 ### Parameter(s)
 |Parameter      |Type   |Description                    |
 |:---           |:---   |:---                           |
-|fileName       |String |Path of the file to check      |
+|file           |[URL](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md) |URL of the file to check      |
 
 ## `isExecutable` class method
-Returns a Boolean value that indicates whether the file at the given path is executable or not.
+Returns a Boolean value that indicates whether the file at the given URL is executable or not.
 ````
-FileManager.isExecutable(fileName: String) -> Bool
+FileManager.isExecutable(file: URL) -> Bool
 ````
 
 ### Parameter(s)
 |Parameter      |Type   |Description                    |
 |:---           |:---   |:---                           |
-|fileName       |String |Path of the file to check      |
+|file           |[URL](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md) |URL of the file to check      |
 
 ## `isDeletable` class method
-Returns a Boolean value that indicates whether the file at the given path is deletable or not.
+Returns a Boolean value that indicates whether the file at the given URL is deletable or not.
 ````
-FileManager.isDeletable(fileName: String) -> Bool
+FileManager.isDeletable(file: URL) -> Bool
 ````
 
 ### Parameter(s)
 |Parameter      |Type   |Description                    |
 |:---           |:---   |:---                           |
-|fileName       |String |Path of the file to check      |
+|file           |[URL](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md) |URL of the file to check      |
 
 ## `open` class method
 Allocate file object by the file name and access method.
 ````
-var file = File.open(<file-name>, <access-type>) ;
+var file = FileManager.open(<file-name>, <access-type>) ;
 ````
 ### Parameter(s)
 |Parameter    |Type   |Description                    |
@@ -70,10 +70,32 @@ var file = File.open(<file-name>, <access-type>) ;
 ### Return value
 If the opening the file is succeeded, the *File* object is returned. The file-object is built-in object. It can be accessed by following methods. On the other hand, when the opening file is failed, the return value will be nil.
 
+## `homeDirectory` method
+Get the URL of home directory of current user.
+````
+let url = FileManager.homeDirectory() ;
+````
+### Parameter(s)
+none
+
+### Return value
+The [URL object](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md) which presents the current user's home directory.
+
+## `temporaryDirectory` method
+Get the URL of temporary directory of current user.
+````
+let url = FileManager.temporaryDirectory() ;
+````
+### Parameter(s)
+none
+
+### Return value
+The [URL object](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md) which presents the current user's home directory.
+
 ## `checkFileType` method
 Check the file type given by path string.
 ````
-const type = File.checkFileType(path) ;
+const type = FileManager.checkFileType(path) ;
 ````
 
 ### Parameter(s)

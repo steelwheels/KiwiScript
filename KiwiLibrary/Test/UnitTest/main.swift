@@ -13,8 +13,6 @@ import Foundation
 
 public func main()
 {
-	Swift.print("[UnitTest]\n")
-
 	let filecons = CNFileConsole()
 	let config   = KEConfig(kind: .Terminal, doStrict: true, logLevel: .detail)
 
@@ -23,6 +21,8 @@ public func main()
 		(_ exception: KEException) -> Void in
 		filecons.error(string: exception.description)
 	}
+
+	let fmanager = KLFileManager(context: context, input: filecons.inputHandle, output: filecons.outputHandle, error: filecons.errorHandle)
 
 	let compiler = KLCompiler()
 	if(compiler.compileBase(context: context, console: filecons, config: config)){
@@ -59,14 +59,18 @@ public func main()
 	filecons.print(string: "/* Unit test for Thread */\n")
 	let result6 = UTThread(context: context, console: filecons, config: config)
 
-	/* Thread */
+	/* Run */
 	filecons.print(string: "/* Unit test for Run */\n")
 	let result7 = UTRun(context: context, console: filecons, config: config)
 
-	if result0 && result1 && result2 && result3 && result4 && result5 && result6 && result7 {
+	/* FileManager */
+	filecons.print(string: "/* Unit test for FileManager */\n")
+	let result8 = UTFileManager(fileManager: fmanager, context: context, console: filecons)
+
+	if result0 && result1 && result2 && result3 && result4 && result5 && result6 && result7 && result8 {
 		filecons.print(string: "Summary: OK\n")
 	} else {
-		filecons.print(string: "Summary: NG (\(result0) \(result1) \(result2) \(result3) \(result4) \(result5) \(result6))\n")
+		filecons.print(string: "Summary: NG (\(result0) \(result1) \(result2) \(result3) \(result4) \(result5) \(result6) \(result7) \(result8))\n")
 	}
 }
 

@@ -1303,6 +1303,16 @@ function main(args)
 
 Message from run: Hello, running !! 123, Message from UTRun
 Thread is finished with error code: 0
+/* Unit test for FileManager */
+Home directory:
+  * path: <skipped>
+    isReadable:   true
+    isWritable:   true
+    isExecutable: true
+    isDeletable:  false
+  * path: <skipped>
+    isReadable:   true
+    isWritable:   true
+    isExecutable: true
+    isDeletable:  true
 Summary: OK
-[UnitTest]
-
