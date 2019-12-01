@@ -19,7 +19,9 @@ import Foundation
 	func isExecutable(_ pathstr: JSValue) -> JSValue
 	func isDeletable(_ pathstr: JSValue) -> JSValue
 
-	func homeDirectory() -> JSValue
+	#if os(OSX)
+		func homeDirectory() -> JSValue
+	#endif
 	func temporaryDirectory() -> JSValue
 
 	func checkFileType(_ pathstr: JSValue) -> JSValue
@@ -147,11 +149,13 @@ import Foundation
 		}
 	}
 
+	#if os(OSX)
 	public func homeDirectory() -> JSValue {
 		let dirurl = FileManager.default.homeDirectoryForCurrentUser
 		let urlobj = KLURL(URL: dirurl, context: mContext)
 		return JSValue(object: urlobj, in: mContext)
 	}
+	#endif
 
 	public func temporaryDirectory() -> JSValue {
 		let tmpurl = FileManager.default.temporaryDirectory

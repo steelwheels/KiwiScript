@@ -14,20 +14,14 @@ import Foundation
 
 open class KHShellCompiler: KLCompiler
 {
-	open func compileBaseAndLibrary(context ctxt: KEContext, environment env: CNShellEnvironment, resource res: KEResource, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
+	open func compileBaseAndLibrary(context ctxt: KEContext, resource res: KEResource, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
 		if super.compileBase(context: ctxt, console: cons, config: conf) {
 			if super.compileLibraryInResource(context: ctxt, resource: res, console: cons, config: conf) {
-				setEnvironment(context: ctxt, environment: env)
 				defineBuiltinFunctions(context: ctxt, console: cons)
 				return true
 			}
 		}
 		return false
-	}
-
-	private func setEnvironment(context ctxt: KEContext, environment env: CNShellEnvironment) {
-		let envval = KHShellEnvironment(environment: env, context: ctxt)
-		ctxt.set(name: KHScriptThread.EnvironmentItem, object: envval)
 	}
 
 	private func defineBuiltinFunctions(context ctxt: KEContext, console cons: CNConsole) {

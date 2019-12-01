@@ -36,7 +36,7 @@ import Foundation
 		}
 	}}
 
-	public init(virtualMachine vm: JSVirtualMachine, resource res: KEResource, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNShellEnvironment, config conf: KHConfig){
+	public init(virtualMachine vm: JSVirtualMachine, resource res: KEResource, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, config conf: KHConfig){
 		mContext		= KEContext(virtualMachine: vm)
 		mConfig			= conf
 		mStatements		= []
@@ -46,7 +46,7 @@ import Foundation
 
 		/* Compile the context */
 		let compiler = KHShellCompiler()
-		guard compiler.compileBaseAndLibrary(context: mContext, environment: env, resource: res, console: self.console, config: conf) else {
+		guard compiler.compileBaseAndLibrary(context: mContext, resource: res, console: self.console, config: conf) else {
 			console.error(string: "Failed to compile script thread context\n")
 			return
 		}

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		050A0D7423113C0600D3823F /* KHShellEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050A0D7323113C0600D3823F /* KHShellEnvironment.swift */; };
 		050C3625231158770015F557 /* KHShellCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050C3624231158770015F557 /* KHShellCompiler.swift */; };
 		050DBEA320C2D47A00F0E133 /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050DBEA220C2D47A00F0E133 /* CoconutData.framework */; };
 		050DBEA520C2D49A00F0E133 /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050DBEA420C2D49A00F0E133 /* KiwiEngine.framework */; };
@@ -88,7 +87,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		050A0D7323113C0600D3823F /* KHShellEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KHShellEnvironment.swift; sourceTree = "<group>"; };
 		050C3624231158770015F557 /* KHShellCompiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KHShellCompiler.swift; sourceTree = "<group>"; };
 		050DBEA220C2D47A00F0E133 /* CoconutData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutData.framework; path = ../../../../Library/Frameworks/CoconutData.framework; sourceTree = "<group>"; };
 		050DBEA420C2D49A00F0E133 /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../Library/Frameworks/KiwiEngine.framework; sourceTree = "<group>"; };
@@ -193,7 +191,6 @@
 				0554175223181982005BE0C5 /* KHConfig.swift */,
 				05DBA584231271760061046B /* KHScriptThread.swift */,
 				05D049D42039AA9000642E6A /* KHShellThread.swift */,
-				050A0D7323113C0600D3823F /* KHShellEnvironment.swift */,
 				050C3624231158770015F557 /* KHShellCompiler.swift */,
 				05E688062363BCC200189BA6 /* KHShellTranslator.swift */,
 				0582DFDF2388F98F005BD011 /* KHShellCommand.swift */,
@@ -407,7 +404,6 @@
 				0582DFE02388F98F005BD011 /* KHShellCommand.swift in Sources */,
 				050C3625231158770015F557 /* KHShellCompiler.swift in Sources */,
 				05D049D52039AA9000642E6A /* KHShellThread.swift in Sources */,
-				050A0D7423113C0600D3823F /* KHShellEnvironment.swift in Sources */,
 				05DBA585231271760061046B /* KHScriptThread.swift in Sources */,
 				05E688072363BCC200189BA6 /* KHShellTranslator.swift in Sources */,
 			);

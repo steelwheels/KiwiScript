@@ -46,15 +46,15 @@ import Foundation
 	private var mContext:		KEContext
 	private var mInputMode:		InputMode
 
-	public init(virtualMachine vm: JSVirtualMachine, resource res: KEResource, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNShellEnvironment, config conf: KEConfig){
+	public init(virtualMachine vm: JSVirtualMachine, resource res: KEResource, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, config conf: KEConfig){
 		mContext	= KEContext(virtualMachine: vm)
 		mInputMode	= .shellScript
-		super.init(input: instrm, output: outstrm, error: errstrm, environment: env, config: conf, terminationHander: nil)
+		super.init(input: instrm, output: outstrm, error: errstrm, config: conf, terminationHander: nil)
 
 		/* Compile the context */
 		let shellconf = KEConfig(kind: .Terminal, doStrict: conf.doStrict, logLevel: conf.logLevel)
 		let compiler  = KHShellCompiler()
-		guard compiler.compileBaseAndLibrary(context: mContext, environment: env, resource: res, console: console, config: shellconf) else {
+		guard compiler.compileBaseAndLibrary(context: mContext, resource: res, console: console, config: shellconf) else {
 			console.error(string: "Failed to compile script thread context\n")
 			return
 		}
