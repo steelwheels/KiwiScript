@@ -95,10 +95,13 @@ private class KLThreadObject: CNThread
 		if CNPreference.shared.applicationPreference.isWindowApplication {
 			/* open panel to select */
 			CNExecuteInMainThread(doSync: false, execute: {
-				if let url = URL.openPanel(title: "Select script to execute", selection: .SelectFile, fileTypes: ["js", "jspkg"]) {
-					self.mSelectedURL = url
-				}
-				self.mDidSelected = true
+				URL.openPanelWithAsync(title: "Select script to execute", selection: .SelectFile, fileTypes: ["js", "jspkg"], callback: {
+					(_ urls: Array<URL>) -> Void in
+					if urls.count >= 1 {
+						self.mSelectedURL = urls[0]
+					}
+					self.mDidSelected = true
+				})
 			})
 			while !self.mDidSelected {
 				usleep(100)
