@@ -380,9 +380,6 @@ open class KLCompiler: KECompiler
 
 				let stderrobj = file.standardFile(fileType: .error, context: ctxt)
 				ctxt.set(name: "stderr", object: stderrobj)
-
-				let cursesobj = KLCurses(context: ctxt, console: cons)
-				ctxt.set(name: "Curses", object: cursesobj)
 			#endif /* if os(OSX) */
 			break
 		case .Operation:

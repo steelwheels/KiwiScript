@@ -23,6 +23,7 @@ import Foundation
 	public static let EnvironmentItem	= "_env"
 
 	private var mContext:			KEContext
+	private var mTerminalInfo:		CNTerminalInfo
 	private var mConfig:			KHConfig
 	private var mStatements:		Array<String>
 	private var mArguments:			Array<String>
@@ -38,6 +39,7 @@ import Foundation
 
 	public init(virtualMachine vm: JSVirtualMachine, resource res: KEResource, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, config conf: KHConfig){
 		mContext		= KEContext(virtualMachine: vm)
+		mTerminalInfo		= CNTerminalInfo()
 		mConfig			= conf
 		mStatements		= []
 		mArguments		= []
@@ -46,7 +48,7 @@ import Foundation
 
 		/* Compile the context */
 		let compiler = KHShellCompiler()
-		guard compiler.compileBaseAndLibrary(context: mContext, resource: res, console: self.console, config: conf) else {
+		guard compiler.compileBaseAndLibrary(context: mContext, resource: res, console: self.console, terminalInfo: mTerminalInfo, config: conf) else {
 			console.error(string: "Failed to compile script thread context\n")
 			return
 		}

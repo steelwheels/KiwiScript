@@ -14,10 +14,11 @@ import Foundation
 
 open class KHShellCompiler: KLCompiler
 {
-	open func compileBaseAndLibrary(context ctxt: KEContext, resource res: KEResource, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
+	open func compileBaseAndLibrary(context ctxt: KEContext, resource res: KEResource, console cons: CNFileConsole, terminalInfo tinfo: CNTerminalInfo, config conf: KEConfig) -> Bool {
 		if super.compileBase(context: ctxt, console: cons, config: conf) {
 			if super.compileLibraryInResource(context: ctxt, resource: res, console: cons, config: conf) {
 				defineBuiltinFunctions(context: ctxt, console: cons)
+				defineBuiltinObjects(context: ctxt, console: cons, terminalInfo: tinfo)
 				return true
 			}
 		}
@@ -29,6 +30,12 @@ open class KHShellCompiler: KLCompiler
 			defineSystemFunction(context: ctxt)
 			//defineBuiltinFunction(context: ctxt, console: cons)
 		#endif
+	}
+
+	private func defineBuiltinObjects(context ctxt: KEContext, console cons: CNConsole, terminalInfo tinfo: CNTerminalInfo) {
+		let curses  = CNCurses(terminalInfo: tinfo)
+		let cursobj = KLCurses(curses: curses, context: ctxt)
+		ctxt.set(name: "curses", object: cursobj)
 	}
 
 	/* Define "system" built-in command */
@@ -83,37 +90,6 @@ open class KHShellCompiler: KLCompiler
 		}
 	}
 	#endif
-
-	/*
-	private func defineBuiltinFunction(context ctxt: KEContext, console cons: CNConsole) {
-		let builtinfunc: @convention(block) (_ paramval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue = {
-			(_ paramval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue in
-			if paramval.isArray {
-				if let infile  = KHShellCompiler.vallueToFileStream(value: inval),
-				   let outfile = KHShellCompiler.vallueToFileStream(value: outval),
-				   let errfile = KHShellCompiler.vallueToFileStream(value: errval),
-				   let arr     = paramval.toArray() {
-					/* Make parameters */
-					var params: Array<String> = []
-					for elm in arr {
-						if let str = elm as? String {
-							params.append(str)
-						} else {
-							cons.error(string: "built-in: Invalid parameters\n")
-						}
-					}
-					/* Execute function */
-					let result  = KHBuiltinFunctions.shared.execute(parameters: params, input: infile, output: outfile, error: errfile)
-					return JSValue(int32: result, in: ctxt)
-				} else {
-					cons.error(string: "built-in: Invalid parameters\n")
-				}
-			}
-			return JSValue(nullIn: ctxt)
-		}
-		ctxt.set(name: KHBuiltinFunctions.functionName, function: builtinfunc)
-	}
-	*/
 
 	private class func vallueToFileStream(value val: JSValue) -> CNFileStream? {
 		if let obj = val.toObject() {

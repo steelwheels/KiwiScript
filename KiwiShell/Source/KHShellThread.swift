@@ -54,7 +54,7 @@ import Foundation
 		/* Compile the context */
 		let shellconf = KEConfig(kind: .Terminal, doStrict: conf.doStrict, logLevel: conf.logLevel)
 		let compiler  = KHShellCompiler()
-		guard compiler.compileBaseAndLibrary(context: mContext, resource: res, console: console, config: shellconf) else {
+		guard compiler.compileBaseAndLibrary(context: mContext, resource: res, console: console, terminalInfo: self.terminalInfo, config: shellconf) else {
 			console.error(string: "Failed to compile script thread context\n")
 			return
 		}
