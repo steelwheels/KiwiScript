@@ -14,9 +14,11 @@ import Foundation
 {
 	var width:  JSValue { get }
 	var height: JSValue { get }
+
+	func setScreen(_ mode: JSValue) -> JSValue
 }
 
-@objc  public class KLCurses: NSObject, KLCursesProtocol
+@objc public class KLCurses: NSObject, KLCursesProtocol
 {
 	private var mCurses:	CNCurses
 	private var mContext:	KEContext
@@ -24,6 +26,24 @@ import Foundation
 	public init(curses crs: CNCurses, context ctxt: KEContext) {
 		mCurses  = crs
 		mContext = ctxt
+	}
+
+	public func setScreen(_ mode: JSValue) -> JSValue {
+		if mode.isBoolean {
+			if mode.toBool() {
+				mCurses.setup()
+			} else {
+				mCurses.finalize()
+			}
+			return JSValue(bool: true, in: mContext)
+		} else {
+			return JSValue(bool: false, in: mContext)
+		}
+	}
+
+	public func finishScreen() -> JSValue {
+		mCurses.finalize()
+		return JSValue(nullIn: mContext)
 	}
 
 	public var width: JSValue {

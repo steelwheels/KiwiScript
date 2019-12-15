@@ -32,8 +32,8 @@ open class KHShellCompiler: KLCompiler
 		#endif
 	}
 
-	private func defineBuiltinObjects(context ctxt: KEContext, console cons: CNConsole, terminalInfo tinfo: CNTerminalInfo) {
-		let curses  = CNCurses(terminalInfo: tinfo)
+	private func defineBuiltinObjects(context ctxt: KEContext, console cons: CNFileConsole, terminalInfo tinfo: CNTerminalInfo) {
+		let curses  = CNCurses(console: cons, terminalInfo: tinfo)
 		let cursobj = KLCurses(curses: curses, context: ctxt)
 		ctxt.set(name: "curses", object: cursobj)
 	}
