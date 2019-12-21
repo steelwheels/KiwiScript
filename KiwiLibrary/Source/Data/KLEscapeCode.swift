@@ -12,6 +12,14 @@ import Foundation
 
 @objc public protocol KLEscapeCodeProtocol: JSExport
 {
+	func backspace() -> JSValue
+	func delete() -> JSValue
+
+	func cursorUp(_ delta: JSValue) -> JSValue
+	func cursorDown(_ delta: JSValue) -> JSValue
+	func cursorForward(_ delta: JSValue) -> JSValue
+	func cursorBackward(_ delta: JSValue) -> JSValue
+
 	func color(_ type: JSValue, _ color: JSValue) -> JSValue
 }
 
@@ -26,6 +34,55 @@ import Foundation
 
 	public init(context ctxt: KEContext){
 		mContext = ctxt
+	}
+
+	public func backspace() -> JSValue {
+		return escapeCodeToValue(escapeCode: .backspace)
+	}
+
+	public func delete() -> JSValue {
+		return escapeCodeToValue(escapeCode: .delete)
+	}
+
+	public func cursorUp(_ delta: JSValue) -> JSValue {
+		if delta.isNumber {
+			let n = Int(delta.toInt32())
+			return escapeCodeToValue(escapeCode: .cursorUp(n))
+		} else {
+			return JSValue(nullIn: mContext)
+		}
+	}
+
+	public func cursorDown(_ delta: JSValue) -> JSValue {
+		if delta.isNumber {
+			let n = Int(delta.toInt32())
+			return escapeCodeToValue(escapeCode: .cursorDown(n))
+		} else {
+			return JSValue(nullIn: mContext)
+		}
+	}
+
+	public func cursorForward(_ delta: JSValue) -> JSValue {
+		if delta.isNumber {
+			let n = Int(delta.toInt32())
+			return escapeCodeToValue(escapeCode: .cursorForward(n))
+		} else {
+			return JSValue(nullIn: mContext)
+		}
+	}
+
+	public func cursorBackward(_ delta: JSValue) -> JSValue {
+		if delta.isNumber {
+			let n = Int(delta.toInt32())
+			return escapeCodeToValue(escapeCode: .cursorBackward(n))
+		} else {
+			return JSValue(nullIn: mContext)
+		}
+	}
+
+	private func escapeCodeToValue(escapeCode code: CNEscapeCode) -> JSValue {
+		let estr = code.encode()
+		return JSValue(object: estr, in: mContext)
 	}
 
 	public func color(_ type: JSValue, _ color: JSValue) -> JSValue {

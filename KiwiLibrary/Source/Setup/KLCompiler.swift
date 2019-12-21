@@ -392,9 +392,13 @@ open class KLCompiler: KECompiler
 		let json = KLJSON(context: ctxt)
 		ctxt.set(name: "JSON", object: json)
 
+		/* Char */
+		let charobj = KLChar(context: ctxt)
+		ctxt.set(name: "Char", object: charobj)
+
 		/* EscapeCode */
 		let ecode = KLEscapeCode(context: ctxt)
-		ctxt.set(name: "escapeCode", object: ecode)
+		ctxt.set(name: "EscapeCode", object: ecode)
 	}
 
 	private func defineGlobalObjects(context ctxt: KEContext, console cons: CNFileConsole, config conf: KEConfig) {

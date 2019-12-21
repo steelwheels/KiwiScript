@@ -29,6 +29,7 @@
 		05D6BF8721D3E269001D737A /* KLImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D6BF8621D3E269001D737A /* KLImage.swift */; };
 		05DCD870232143AB004955CC /* KLFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DCD86F232143AA004955CC /* KLFileManager.swift */; };
 		05F100A722300F9C00B399BE /* KLOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F100A622300F9C00B399BE /* KLOperationQueue.swift */; };
+		05F34AAD23ACE74C00372050 /* KLChar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F34AAC23ACE74C00372050 /* KLChar.swift */; };
 		05F6EAF02258B16E00C18E3E /* KLNativeValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F6EAEF2258B16E00C18E3E /* KLNativeValue.swift */; };
 		05F6EAF22258B17600C18E3E /* KLValueConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F6EAF12258B17600C18E3E /* KLValueConverter.swift */; };
 		05FC4C2923A28FA400D24FCC /* KLCurses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FC4C2823A28FA400D24FCC /* KLCurses.swift */; };
@@ -70,6 +71,7 @@
 		05D6BF8621D3E269001D737A /* KLImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLImage.swift; sourceTree = "<group>"; };
 		05DCD86F232143AA004955CC /* KLFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLFileManager.swift; sourceTree = "<group>"; };
 		05F100A622300F9C00B399BE /* KLOperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLOperationQueue.swift; sourceTree = "<group>"; };
+		05F34AAC23ACE74C00372050 /* KLChar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLChar.swift; sourceTree = "<group>"; };
 		05F6EAEF2258B16E00C18E3E /* KLNativeValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLNativeValue.swift; sourceTree = "<group>"; };
 		05F6EAF12258B17600C18E3E /* KLValueConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLValueConverter.swift; sourceTree = "<group>"; };
 		05FC4C2823A28FA400D24FCC /* KLCurses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLCurses.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 		05D6BF8521D3E24C001D737A /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				05F34AAC23ACE74C00372050 /* KLChar.swift */,
 				0550FD50237FEE0A00B95008 /* KLEscapeCode.swift */,
 				05D6BF8621D3E269001D737A /* KLImage.swift */,
 			);
@@ -328,6 +331,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05F34AAD23ACE74C00372050 /* KLChar.swift in Sources */,
 				058EEBBD22F505E50095012B /* KLNativeStruct.swift in Sources */,
 				05FC4C2923A28FA400D24FCC /* KLCurses.swift in Sources */,
 				05BCE66D2068BDAE007B0559 /* KLPipe.swift in Sources */,

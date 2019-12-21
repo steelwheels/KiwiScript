@@ -38,7 +38,8 @@ There are some use cases to use JavaScript program in the application:
 ## Objects
 There are some pre-defined objects. They are instance of built-in classes:
 * `console`: An instance of [Console class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Console.md)
-* `escapeCode`: An instance of [EscapeCode class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/EscapeCode.md).
+* `Char`: An instance of [Char class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Char.md).
+* `EscapeCode`: An instance of [EscapeCode class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/EscapeCode.md).
 Generate escape sequence string to be passed to terminal.
 * `Image`: An instance of [Image class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Image.md).
 
