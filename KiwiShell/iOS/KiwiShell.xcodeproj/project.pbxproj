@@ -12,6 +12,7 @@
 		055417552318202D005BE0C5 /* KHConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055417542318202D005BE0C5 /* KHConfig.swift */; };
 		0592776A23B8BF8200844FA4 /* KHShellStatement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0592776923B8BF8200844FA4 /* KHShellStatement.swift */; };
 		05AF0E7F23053F7500375196 /* KiwiShell.h in Headers */ = {isa = PBXBuildFile; fileRef = 05AF0E7D23053F7500375196 /* KiwiShell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		05B3618223B9675200DA0BF3 /* history.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B3617F23B9672B00DA0BF3 /* history.js */; };
 		05B410BE2363CE4100751D9F /* KHShellTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B410BD2363CE4100751D9F /* KHShellTranslator.swift */; };
 		05C4BE2623127E340014C2DB /* KHScriptThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C4BE2523127E340014C2DB /* KHScriptThread.swift */; };
 		05C4BE2823127E400014C2DB /* KHShellThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C4BE2723127E400014C2DB /* KHShellThread.swift */; };
@@ -28,6 +29,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		05B3618123B9674100DA0BF3 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Binary;
+			dstSubfolderSpec = 7;
+			files = (
+				05B3618223B9675200DA0BF3 /* history.js in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0528875A230540A900EB4D9A /* CoconutData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutData.framework; path = ../../../../local/Frameworks/CoconutData.framework; sourceTree = "<group>"; };
 		0528875C230540BA00EB4D9A /* CoconutShell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutShell.framework; path = ../../../../local/Frameworks/CoconutShell.framework; sourceTree = "<group>"; };
@@ -36,6 +50,7 @@
 		05AF0E7A23053F7500375196 /* KiwiShell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiShell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05AF0E7D23053F7500375196 /* KiwiShell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiShell.h; sourceTree = "<group>"; };
 		05AF0E7E23053F7500375196 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05B3617F23B9672B00DA0BF3 /* history.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = history.js; sourceTree = "<group>"; };
 		05B410BD2363CE4100751D9F /* KHShellTranslator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHShellTranslator.swift; sourceTree = "<group>"; };
 		05C4BE2523127E340014C2DB /* KHScriptThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHScriptThread.swift; sourceTree = "<group>"; };
 		05C4BE2723127E400014C2DB /* KHShellThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHShellThread.swift; sourceTree = "<group>"; };
@@ -83,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				05AF0E7C23053F7500375196 /* KiwiShell */,
+				05B3617D23B966EB00DA0BF3 /* Resource */,
 				052887542305403A00EB4D9A /* Source */,
 				05AF0E7B23053F7500375196 /* Products */,
 				05288759230540A900EB4D9A /* Frameworks */,
@@ -103,6 +119,23 @@
 				05AF0E7E23053F7500375196 /* Info.plist */,
 			);
 			name = KiwiShell;
+			sourceTree = "<group>";
+		};
+		05B3617D23B966EB00DA0BF3 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				05B3617E23B9670F00DA0BF3 /* Binary */,
+			);
+			name = Resource;
+			path = ../Resource;
+			sourceTree = "<group>";
+		};
+		05B3617E23B9670F00DA0BF3 /* Binary */ = {
+			isa = PBXGroup;
+			children = (
+				05B3617F23B9672B00DA0BF3 /* history.js */,
+			);
+			path = Binary;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,7 +177,7 @@
 				05AF0E7523053F7500375196 /* Headers */,
 				05AF0E7623053F7500375196 /* Sources */,
 				05AF0E7723053F7500375196 /* Frameworks */,
-				05AF0E7823053F7500375196 /* Resources */,
+				05B3618123B9674100DA0BF3 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -191,16 +224,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		05AF0E7823053F7500375196 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		05AF0E7623053F7500375196 /* Sources */ = {

@@ -11,6 +11,9 @@
 		050DBEA320C2D47A00F0E133 /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050DBEA220C2D47A00F0E133 /* CoconutData.framework */; };
 		050DBEA520C2D49A00F0E133 /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050DBEA420C2D49A00F0E133 /* KiwiEngine.framework */; };
 		050DBEA720C2D4A800F0E133 /* KiwiLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050DBEA620C2D4A800F0E133 /* KiwiLibrary.framework */; };
+		05274FEA23B8F4FD0077E8ED /* history.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05274FE723B8F4E00077E8ED /* history.js */; };
+		05274FED23B8FB8A0077E8ED /* KHScriptManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05274FEC23B8FB8A0077E8ED /* KHScriptManager.swift */; };
+		05274FEF23B8FE7A0077E8ED /* UTScriptManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05274FEE23B8FE7A0077E8ED /* UTScriptManager.swift */; };
 		055232D62039AE1100FD002C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055232D52039AE1100FD002C /* main.swift */; };
 		0554175323181982005BE0C5 /* KHConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0554175223181982005BE0C5 /* KHConfig.swift */; };
 		055AAA912039A319008018A8 /* KiwiShell.h in Headers */ = {isa = PBXBuildFile; fileRef = 055AAA902039A319008018A8 /* KiwiShell.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -63,6 +66,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		05274FE923B8F4F40077E8ED /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Binary;
+			dstSubfolderSpec = 7;
+			files = (
+				05274FEA23B8F4FD0077E8ED /* history.js in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		055232D12039AE1100FD002C /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -93,6 +106,9 @@
 		050DBEA620C2D4A800F0E133 /* KiwiLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiLibrary.framework; path = ../../../../Library/Frameworks/KiwiLibrary.framework; sourceTree = "<group>"; };
 		05100ECC2039A17000C269BB /* KiwiShell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiShell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05100ED02039A17000C269BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05274FE723B8F4E00077E8ED /* history.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = history.js; sourceTree = "<group>"; };
+		05274FEC23B8FB8A0077E8ED /* KHScriptManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KHScriptManager.swift; sourceTree = "<group>"; };
+		05274FEE23B8FE7A0077E8ED /* UTScriptManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTScriptManager.swift; sourceTree = "<group>"; };
 		055232D32039AE1100FD002C /* UnitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		055232D52039AE1100FD002C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		0554175223181982005BE0C5 /* KHConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KHConfig.swift; sourceTree = "<group>"; };
@@ -159,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				055AAA8F2039A244008018A8 /* Source */,
+				05274FE523B8F4B60077E8ED /* Resource */,
 				05100ECE2039A17000C269BB /* OSX */,
 				05D049DB2039AC3C00642E6A /* Test */,
 				05100ECD2039A17000C269BB /* Products */,
@@ -184,6 +201,23 @@
 			name = OSX;
 			sourceTree = "<group>";
 		};
+		05274FE523B8F4B60077E8ED /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				05274FE623B8F4CE0077E8ED /* Binary */,
+			);
+			name = Resource;
+			path = ../Resource;
+			sourceTree = "<group>";
+		};
+		05274FE623B8F4CE0077E8ED /* Binary */ = {
+			isa = PBXGroup;
+			children = (
+				05274FE723B8F4E00077E8ED /* history.js */,
+			);
+			path = Binary;
+			sourceTree = "<group>";
+		};
 		055AAA8F2039A244008018A8 /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +228,7 @@
 				050C3624231158770015F557 /* KHShellCompiler.swift */,
 				05E688062363BCC200189BA6 /* KHShellTranslator.swift */,
 				0582DFDF2388F98F005BD011 /* KHShellStatement.swift */,
+				05274FEC23B8FB8A0077E8ED /* KHScriptManager.swift */,
 			);
 			name = Source;
 			path = ../Source;
@@ -206,6 +241,7 @@
 				05BEBC0523688761003F9ED9 /* UTShellCommand.swift */,
 				05BE576D2327D8160062243B /* UTShell.swift */,
 				05BE576F2327D9910062243B /* UTTranslator.swift */,
+				05274FEE23B8FE7A0077E8ED /* UTScriptManager.swift */,
 			);
 			path = Shell;
 			sourceTree = "<group>";
@@ -274,7 +310,7 @@
 				05100EC72039A17000C269BB /* Sources */,
 				05100EC82039A17000C269BB /* Frameworks */,
 				05100EC92039A17000C269BB /* Headers */,
-				05100ECA2039A17000C269BB /* Resources */,
+				05274FE923B8F4F40077E8ED /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -379,13 +415,6 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		05100ECA2039A17000C269BB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		05D049D82039AC3C00642E6A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -401,6 +430,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0554175323181982005BE0C5 /* KHConfig.swift in Sources */,
+				05274FED23B8FB8A0077E8ED /* KHScriptManager.swift in Sources */,
 				0582DFE02388F98F005BD011 /* KHShellStatement.swift in Sources */,
 				050C3625231158770015F557 /* KHShellCompiler.swift in Sources */,
 				05D049D52039AA9000642E6A /* KHShellThread.swift in Sources */,
@@ -414,6 +444,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05BE57702327D9910062243B /* UTTranslator.swift in Sources */,
+				05274FEF23B8FE7A0077E8ED /* UTScriptManager.swift in Sources */,
 				055232D62039AE1100FD002C /* main.swift in Sources */,
 				05BE576E2327D8160062243B /* UTShell.swift in Sources */,
 				05BEBC0623688761003F9ED9 /* UTShellCommand.swift in Sources */,
