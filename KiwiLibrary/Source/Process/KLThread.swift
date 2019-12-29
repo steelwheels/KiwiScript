@@ -24,28 +24,18 @@ private class KLThreadObject: CNThread
 	private var mScriptFile:	ScriptFile
 	private var mResource:		KEResource
 	private var mConfig:		KEConfig
-	private var mArgument:		CNNativeValue
 
-	public init(virtualMachine vm: JSVirtualMachine, scriptFile file: ScriptFile, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, resource res: KEResource, config conf: KEConfig) {
+	public init(virtualMachine vm: JSVirtualMachine, scriptFile file: ScriptFile, queue disque: DispatchQueue,input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, resource res: KEResource, config conf: KEConfig) {
 		mContext   	= KEContext(virtualMachine: vm)
 		mScriptFile	= file
 		mResource	= res
 		mConfig		= conf
-		mArgument  	= .nullValue
-		super.init(input: instrm, output: outstrm, error: errstrm, terminationHander: {
-			(_ thread: Thread) -> Int32 in
-			return 0
-		})
+		super.init(queue: disque, input: instrm, output: outstrm, error: errstrm, config: conf)
 	}
 
-	public func start(arguments args: JSValue) {
-		mArgument = args.toNativeValue()
-		super.start()
-	}
-
-	public override func mainOperation() -> Int32 {
+	public override func main(arguments args: Array<CNNativeValue>) -> Int32 {
 		if compile() {
-			return execOperation()
+			return execOperation(arguments: args)
 		} else {
 			return -1
 		}
@@ -58,7 +48,7 @@ private class KLThreadObject: CNThread
 		guard compiler.compileBase(context: mContext, console: self.console, config: config) else {
 			return false
 		}
-		guard compiler.compileLibraryInResource(context: mContext, resource: mResource, console: self.console, config: config) else {
+		guard compiler.compileLibraryInResource(context: mContext, queue: self.queue, resource: mResource, console: self.console, config: config) else {
 			return false
 		}
 		/* Load script */
@@ -138,22 +128,27 @@ private class KLThreadObject: CNThread
 		}
 	}
 
-	private func execOperation() -> Int32 {
+	private func execOperation(arguments args: Array<CNNativeValue>) -> Int32 {
 		/* Search main function */
-		var result: Int32 = 0
+		var result: Int32 = -1
 		if let funcval = mContext.getValue(name: "main") {
 			/* Allocate argument */
-			let arg = mArgument.toJSValue(context: mContext)
-			/* Call main function */
-			if let retval = funcval.call(withArguments: [arg]) {
-				result = retval.toInt32()
+			var jsarr: Array<JSValue> = []
+			for arg in args {
+				jsarr.append(arg.toJSValue(context: mContext))
+			}
+			if let jsarg = JSValue(object: jsarr, in: mContext) {
+				/* Call main function */
+				if let retval = funcval.call(withArguments: [jsarg]) {
+					result = retval.toInt32()
+				} else {
+					self.console.error(string: "Failed to call main function\n")
+				}
 			} else {
-				self.console.error(string: "Failed to call main function")
-				result = 1
+				self.console.error(string: "Failed to covert argument\n")
 			}
 		} else {
-			self.console.error(string: "main function is NOT found.")
-			result = 1
+			self.console.error(string: "main function is NOT found\n")
 		}
 		return result
 	}
@@ -182,22 +177,23 @@ private class KLThreadObject: CNThread
 
 	private var mThread: KLThreadObject
 
-	public init(virtualMachine vm: JSVirtualMachine, scriptFile file: ScriptFile, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, resource res: KEResource, config conf: KEConfig) {
-		mThread = KLThreadObject(virtualMachine: vm, scriptFile: file, input: instrm, output: outstrm, error: errstrm, resource: res, config: conf)
+	public init(virtualMachine vm: JSVirtualMachine, scriptFile file: ScriptFile, queue disque: DispatchQueue, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, resource res: KEResource, config conf: KEConfig) {
+		mThread = KLThreadObject(virtualMachine: vm, scriptFile: file, queue: disque, input: instrm, output: outstrm, error: errstrm, resource: res, config: conf)
 	}
 
 	public func start(_ args: JSValue) {
-		mThread.start(arguments: args)
+		let nval = args.toNativeValue()
+		let nargs: Array<CNNativeValue>
+		if let narr = nval.toArray() {
+			nargs = narr
+		} else {
+			nargs = [nval]
+		}
+		mThread.start(arguments: nargs)
 	}
 
 	public func isRunning() -> Bool {
-		let result: Bool
-		switch mThread.status {
-		case .Finished:		result = false
-		case .Idle:		result = false
-		case .Running:		result = true
-		}
-		return result
+		return mThread.isRunning
 	}
 
 	public func waitUntilExit() -> Int32 {

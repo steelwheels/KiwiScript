@@ -14,6 +14,7 @@ import Foundation
 public func main()
 {
 	let filecons = CNFileConsole()
+	let queue    = DispatchQueue(label: "UnitTest", qos: .default, attributes: .concurrent)
 	let config   = KEConfig(kind: .Terminal, doStrict: true, logLevel: .detail)
 
 	let context  = KEContext(virtualMachine: JSVirtualMachine())
@@ -57,11 +58,11 @@ public func main()
 
 	/* Thread */
 	filecons.print(string: "/* Unit test for Thread */\n")
-	let result6 = UTThread(context: context, console: filecons, config: config)
+	let result6 = UTThread(context: context, queue: queue, console: filecons, config: config)
 
 	/* Run */
 	filecons.print(string: "/* Unit test for Run */\n")
-	let result7 = UTRun(context: context, console: filecons, config: config)
+	let result7 = UTRun(context: context, dispatchQueue: queue, console: filecons, config: config)
 
 	/* FileManager */
 	filecons.print(string: "/* Unit test for FileManager */\n")

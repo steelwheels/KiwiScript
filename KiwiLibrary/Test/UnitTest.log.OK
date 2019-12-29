@@ -967,6 +967,10 @@ Source URL: file:///Users/tomoo/Project/KiwiScript/KiwiLibrary/Test/Sample/sampl
     }
   }
 }
+[KLThreadObject] start/start
+[KLThreadObject] start/done
+[KLThreadObject] waitUntilExit/start
+[KLThreadObject] start/async/start
 'use strict' ;
 /* Define Enum: Alignment */
 let Alignment = {
@@ -1132,8 +1136,14 @@ function main(arg0, arg1)
 	console.log(`Message from thread: Hello, threading !! ${arg0}, ${arg1}`) ;
 }
 Message from thread: Hello, threading !! Thread,123, undefined
+[KLThreadObject] main/async/end
+[KLThreadObject] waitUntilExit/done
 Thread is finished with error code: 0
 /* Unit test for Run */
+[KLThreadObject] start/start
+[KLThreadObject] start/done
+[KLThreadObject] waitUntilExit/start
+[KLThreadObject] start/async/start
 'use strict' ;
 /* Define Enum: Alignment */
 let Alignment = {
@@ -1302,6 +1312,8 @@ function main(args)
 }
 
 Message from run: Hello, running !! 123, Message from UTRun
+[KLThreadObject] main/async/end
+[KLThreadObject] waitUntilExit/done
 Thread is finished with error code: 0
 /* Unit test for FileManager */
 Home directory:

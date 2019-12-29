@@ -11,7 +11,7 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-public func UTThread(context ctxt: KEContext, console cons: CNFileConsole, config conf: KEConfig) -> Bool
+public func UTThread(context ctxt: KEContext, queue disque: DispatchQueue, console cons: CNFileConsole, config conf: KEConfig) -> Bool
 {
 	var result = false
 
@@ -40,7 +40,7 @@ public func UTThread(context ctxt: KEContext, console cons: CNFileConsole, confi
 		let instrm:  CNFileStream	 = .fileHandle(cons.inputHandle)
 		let outstrm: CNFileStream	 = .fileHandle(cons.outputHandle)
 		let errstrm: CNFileStream	 = .fileHandle(cons.errorHandle)
-		let thread = KLThread(virtualMachine: vm, scriptFile: file, input: instrm, output: outstrm, error: errstrm, resource: resource, config: conf)
+		let thread = KLThread(virtualMachine: vm, scriptFile: file, queue: disque, input: instrm, output: outstrm, error: errstrm, resource: resource, config: conf)
 
 		/* Start thread */
 		let arg0   = JSValue(object: "Thread", in: ctxt)
