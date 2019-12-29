@@ -76,11 +76,12 @@ public class KHShellThreadObject: CNShellThread
 		return "jsh" + mInputMode.toSymbol() + " "
 	}
 
-	open override func execute(command cmd: String){
+	open override func execute(command cmd: String) -> Bool {
+		var result = false
 		if !isEmpty(string: cmd) {
 			/* decode mode */
 			guard let line = decodeMode(command: cmd) else {
-				return
+				return result
 			}
 
 			/* convert script */
@@ -92,6 +93,7 @@ public class KHShellThreadObject: CNShellThread
 					if !retval.isUndefined, let retstr = retval.toString() {
 						self.outputFileHandle.write(string: retstr)
 					}
+					result = true
 				}
 			case .error(let err):
 				let errobj = err as NSError
@@ -99,6 +101,7 @@ public class KHShellThreadObject: CNShellThread
 				self.errorFileHandle.write(string: errmsg + "\n")
 			}
 		}
+		return result
 	}
 
 	private func decodeMode(command cmd: String) -> String? {
