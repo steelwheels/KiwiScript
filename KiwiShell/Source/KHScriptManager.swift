@@ -15,11 +15,8 @@ public class KHScriptManager
 
 	public class ScriptInfo {
 		var url:	URL
-		var script:	String?
-
 		public init(file furl: URL){
 			url	= furl
-			script	= nil
 		}
 	}
 
@@ -33,16 +30,9 @@ public class KHScriptManager
 		return Array(mScriptTable.keys)
 	}
 
-	public func load(scriptName name: String) -> String? {
+	public func search(scriptName name: String) -> URL? {
 		if let info = mScriptTable[name] {
-			if let ctxt = info.script {
-				return ctxt
-			} else {
-				if let ctxt = info.url.loadContents() {
-					info.script = String(ctxt)
-					return info.script
-				}
-			}
+			return info.url
 		}
 		return nil
 	}

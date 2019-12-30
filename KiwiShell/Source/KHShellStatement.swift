@@ -108,6 +108,22 @@ public class KHRunCommandStatement: KHCommandStatement
 	}
 }
 
+public class KHBuiltinCommandStatement: KHCommandStatement
+{
+	private var mScriptURL:	URL
+
+	public init(scriptURL url: URL) {
+		mScriptURL = url
+		super.init()
+	}
+
+	public override func toScript() -> Array<String> {
+		let stmt0 = "let _proc\(processId) = run(\"\(mScriptURL.path)\", \(self.inputNameString), \(self.outputNameString), \(self.errorNameString)) ;"
+		let stmt1 = "_proc\(processId).start([]) ;"
+		return [stmt0, stmt1]
+	}
+}
+
 public class KHProcessStatement: KHStatementProtocol
 {
 	private var mCommandSequence:	Array<KHCommandStatement>

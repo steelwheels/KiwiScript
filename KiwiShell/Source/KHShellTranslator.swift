@@ -261,7 +261,11 @@ public class KHShellTranslator
 			case "run":
 				result = true
 			default:
-				break
+				if let _ = KHScriptManager.shared.search(scriptName: words[0]) {
+					result = true
+				} else {
+					result = false
+				}
 			}
 		}
 		return result
@@ -274,20 +278,18 @@ public class KHShellTranslator
 			let cmdname = words.removeFirst()
 			switch cmdname {
 			case "run":
-				result = convertToRunCommand(parameters: words)
+				if words.count >= 1 {
+					result = KHRunCommandStatement(scriptPath: words[0])
+				} else {
+					result = KHRunCommandStatement(scriptPath: nil)
+				}
 			default:
-				break
+				if let url = KHScriptManager.shared.search(scriptName: cmdname) {
+					result = KHBuiltinCommandStatement(scriptURL: url)
+				}
 			}
 		}
 		return result
-	}
-
-	private func convertToRunCommand(parameters params: Array<String>) -> KHCommandStatement? {
-		if params.count >= 1 {
-			return KHRunCommandStatement(scriptPath: params[0])
-		} else {
-			return KHRunCommandStatement(scriptPath: nil)
-		}
 	}
 }
 
