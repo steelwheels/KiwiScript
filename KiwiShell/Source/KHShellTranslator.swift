@@ -5,6 +5,7 @@
  *   Copyright (C) 2019 Steel Wheels Project
  */
 
+import KiwiLibrary
 import CoconutData
 import Foundation
 
@@ -261,7 +262,7 @@ public class KHShellTranslator
 			case "run":
 				result = true
 			default:
-				if let _ = KHScriptManager.shared.search(scriptName: words[0]) {
+				if let _ = KLBuiltinScripts.shared.search(scriptName: words[0]) {
 					result = true
 				} else {
 					result = false
@@ -284,7 +285,7 @@ public class KHShellTranslator
 					result = KHRunCommandStatement(scriptPath: nil)
 				}
 			default:
-				if let url = KHScriptManager.shared.search(scriptName: cmdname) {
+				if let url = KLBuiltinScripts.shared.search(scriptName: cmdname) {
 					result = KHBuiltinCommandStatement(scriptURL: url)
 				}
 			}

@@ -89,6 +89,14 @@ do {
 		_extval = _select_exit_code(proc.waitUntilExit(), _extval) ;
 	}
 } while(false) ;
+/* Source script 7 */
+> history 
+/* Translated script 7 */
+do {
+	let _proc0 = run("/Users/tomoo/Library/Frameworks/KiwiShell.framework/Resources/Binary/history.js", stdin, stdout, stderr) ;
+	_proc0.start([]) ;
+	_proc0.waitUntilExit() ;
+} while(false) ;
 ***** UTScriptManager
 names: history 
 Summary: OK

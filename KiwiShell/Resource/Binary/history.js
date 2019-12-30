@@ -4,7 +4,11 @@
 
 function main(args)
 {
-	stdout.put("Hello, world !!\n") ;
+	let i		= 0 ;
+	let items	= commandHistory() ;
+	for(let item of items){
+		stdout.put(i + " " + item + "\n") ;
+		i++ ;
+	}
 	return 0 ;
 }
-

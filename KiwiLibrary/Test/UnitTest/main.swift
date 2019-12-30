@@ -68,7 +68,11 @@ public func main()
 	filecons.print(string: "/* Unit test for FileManager */\n")
 	let result8 = UTFileManager(fileManager: fmanager, context: context, console: filecons)
 
-	if result0 && result1 && result2 && result3 && result4 && result5 && result6 && result7 && result8 {
+	/* ScriptManager */
+	filecons.print(string: "/* Unit test for ScriptManager */\n")
+	let result9 = UTScriptManager(console: filecons)
+
+	if result0 && result1 && result2 && result3 && result4 && result5 && result6 && result7 && result8 && result9 {
 		filecons.print(string: "Summary: OK\n")
 	} else {
 		filecons.print(string: "Summary: NG (\(result0) \(result1) \(result2) \(result3) \(result4) \(result5) \(result6) \(result7) \(result8))\n")

@@ -6,13 +6,14 @@
  */
 
 import KiwiShell
+import KiwiLibrary
 import CoconutData
 import CoconutShell
 import Foundation
 
 public func UTScriptManager(console cons: CNConsole) -> Bool
 {
-	let manager = KHScriptManager.shared
+	let manager = KLBuiltinScripts.shared
 	let names   = manager.scriptNames()
 	cons.print(string: "names: ")
 	for name in names {

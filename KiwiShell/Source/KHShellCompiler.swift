@@ -28,9 +28,7 @@ open class KHShellCompiler: KLCompiler
 	private func defineBuiltinFunctions(context ctxt: KEContext, console cons: CNConsole) {
 		#if os(OSX)
 			defineSystemFunction(context: ctxt)
-			//defineBuiltinFunction(context: ctxt, console: cons)
 		#endif
-		defineHistoryFunction(context: ctxt)
 	}
 
 	private func defineBuiltinObjects(context ctxt: KEContext, console cons: CNFileConsole, terminalInfo tinfo: CNTerminalInfo) {
@@ -91,15 +89,6 @@ open class KHShellCompiler: KLCompiler
 		}
 	}
 	#endif
-
-	private func defineHistoryFunction(context ctxt: KEContext) {
-		let historyfunc: @convention(block) () -> JSValue = {
-			() -> JSValue in
-			let history = CNCommandHistory.shared.history
-			return JSValue(object: history, in: ctxt)
-		}
-		ctxt.set(name: "history", function: historyfunc)
-	}
 
 	private class func vallueToFileStream(value val: JSValue) -> CNFileStream? {
 		if let obj = val.toObject() {

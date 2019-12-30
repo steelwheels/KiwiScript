@@ -1327,4 +1327,8 @@ Home directory:
     isWritable:   true
     isExecutable: true
     isDeletable:  true
+/* Unit test for ScriptManager */
+ScriptManager
+ - script: unit-test-0
+ - script: unit-test-1
 Summary: OK

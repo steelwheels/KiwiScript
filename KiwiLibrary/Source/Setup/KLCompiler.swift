@@ -307,6 +307,14 @@ open class KLCompiler: KECompiler
 			return JSValue(int32: result, in: ctxt)
 		}
 		ctxt.set(name: "_select_exit_code", function: selExitFunc)
+
+		/* history */
+		let historyFunc: @convention(block) () -> JSValue = {
+			() -> JSValue in
+			let history = CNCommandHistory.shared.history
+			return JSValue(object: history, in: ctxt)
+		}
+		ctxt.set(name: "commandHistory", function: historyFunc)
 	}
 
 	private func definePrimitiveObjects(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
@@ -399,6 +407,10 @@ open class KLCompiler: KECompiler
 		/* EscapeCode */
 		let ecode = KLEscapeCode(context: ctxt)
 		ctxt.set(name: "EscapeCode", object: ecode)
+
+		/* Built-in script manager */
+		let scrmgr = KLBuiltinScriptManager(context: ctxt)
+		ctxt.set(name: "ScriptManager", object: scrmgr)
 	}
 
 	private func defineGlobalObjects(context ctxt: KEContext, console cons: CNFileConsole, config conf: KEConfig) {
