@@ -35,6 +35,9 @@ There are some use cases to use JavaScript program in the application:
 * [Graphics](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Graphics.md): Functions for graphics.
 * [Open/Save Panel](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Panel.md): *For macOS only.* Function to display panel to select input/output function.
 
+## Shell programming support
+* [commandHistory](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/CommandHistory.md): Get the command strings which they had been executed.
+
 ## Objects
 There are some pre-defined objects. They are instance of built-in classes:
 * `console`: An instance of [Console class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Console.md)

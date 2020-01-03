@@ -7,6 +7,7 @@
 
 import KiwiLibrary
 import CoconutData
+import CoconutShell
 import Foundation
 
 public class KHShellTranslator
@@ -21,7 +22,10 @@ public class KHShellTranslator
 		case shellStatement
 	}
 
-	public init(){
+	private var mReadline:		CNReadline?
+
+	public init(readline rdln: CNReadline?){
+		mReadline = rdln
 	}
 
 	/* lines: The array of lines which is terminated by '\n' */
@@ -185,24 +189,36 @@ public class KHShellTranslator
 	}
 
 	private func convert(process procstr: String) throws -> KHProcessStatement {
-		let proc = KHProcessStatement()
+		let proc  = KHProcessStatement()
+		let cmds0 = procstr.components(separatedBy: ";")
 
-		let cmds = procstr.components(separatedBy: ";")
+		/* Convert replay command into normal command */
+		var hasreplay = false
+		var cmds1: Array<String> = []
+		for cmd0 in cmds0 {
+			if let cmd1 = convertReplayCommand(command: cmd0) {
+				cmds1.append(cmd1)
+				hasreplay = true
+			} else {
+				cmds1.append(cmd0)
+			}
+		}
+
 		/* Check there are built in command or not */
 		var hasbuiltin = false
-		for cmd in cmds {
-			if isBuiltinCommand(command: cmd) {
+		for cmd1 in cmds1 {
+			if isBuiltinCommand(command: cmd1) {
 				hasbuiltin = true
 				break
 			}
 		}
-		if hasbuiltin {
-			for cmd in cmds {
-				if let bcmd = convertToBuiltinCommand(command: cmd) {
+		if hasreplay || hasbuiltin {
+			for cmd1 in cmds1 {
+				if let bcmd = convertToBuiltinCommand(command: cmd1) {
 					proc.add(command: bcmd)
 				} else {
 					/* Allocate shell command */
-					let cmdobj = convertShellCommand(command: cmd)
+					let cmdobj = convertShellCommand(command: cmd1)
 					proc.add(command: cmdobj)
 				}
 			}
@@ -287,6 +303,22 @@ public class KHShellTranslator
 			default:
 				if let url = KLBuiltinScripts.shared.search(scriptName: cmdname) {
 					result = KHBuiltinCommandStatement(scriptURL: url)
+				}
+			}
+		}
+		return result
+	}
+
+	private func convertReplayCommand(command cmd: String) -> String? {
+		guard let readline = mReadline else {
+			return nil
+		}
+		var result: String? = nil
+		if cmd.count >= 2 {
+			var mcmd = cmd
+			if mcmd.removeFirst() == "!" {
+				if let idx = Int(mcmd) {
+					result = readline.search(byIndex: idx)
 				}
 			}
 		}

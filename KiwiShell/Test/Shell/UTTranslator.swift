@@ -15,7 +15,7 @@ import Foundation
 
 public func UTTranslator(console cons: CNConsole) -> Bool
 {
-	let translator = KHShellTranslator()
+	let translator = KHShellTranslator(readline: nil)
 
 	let script0: Array<String> = []
 	let result0    = testTrans(translator: translator, testNo: 0, source: script0, console: cons)

@@ -88,7 +88,7 @@ public class KHShellThreadObject: CNShellThread
 			}
 
 			/* convert script */
-			let translator = KHShellTranslator()
+			let translator = KHShellTranslator(readline: self.readline)
 			switch translator.translate(lines: [line]) {
 			case .ok(let lines):
 				let script = lines.joined(separator: "\n")
