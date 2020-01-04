@@ -104,7 +104,7 @@ public class KHShellTranslator
 
 	private func convert(lines lns: Array<String>, indent idt: String) throws -> Array<String> {
 		/* Allocate statemets object */
-		let pipeline = KHPipelineStatement()
+		let pipeline = CNPipelineShellStatement()
 
 		/* Remove ">" symbol from header */
 		var lines: Array<String> = []
@@ -188,8 +188,8 @@ public class KHShellTranslator
 		return (scr, nil)
 	}
 
-	private func convert(process procstr: String) throws -> KHProcessStatement {
-		let proc  = KHProcessStatement()
+	private func convert(process procstr: String) throws -> CNProcessShellStatement {
+		let proc  = CNProcessShellStatement()
 		let cmds0 = procstr.components(separatedBy: ";")
 
 		/* Convert replay command into normal command */
@@ -230,11 +230,11 @@ public class KHShellTranslator
 		return proc
 	}
 
-	private func convertShellCommand(command cmdstr: String) -> KHShellCommandStatement {
+	private func convertShellCommand(command cmdstr: String) -> CNSystemShellCommandStatement {
 		let (cmdstr1, inname)  = searchRedirect(symbol: "<",  in: cmdstr)
 		let (cmdstr2, errname) = searchRedirect(symbol: "2>", in: cmdstr1)
 		let (cmdstr3, outname) = searchRedirect(symbol: ">",  in: cmdstr2)
-		let newcmd = KHShellCommandStatement(shellCommand: cmdstr3)
+		let newcmd = CNSystemShellCommandStatement(shellCommand: cmdstr3)
 		newcmd.inputName  = inname
 		newcmd.outputName = outname
 		newcmd.errorName  = errname
@@ -288,21 +288,21 @@ public class KHShellTranslator
 		return result
 	}
 
-	private func convertToBuiltinCommand(command cmd: String) -> KHCommandStatement? {
-		var result: KHCommandStatement? = nil
+	private func convertToBuiltinCommand(command cmd: String) -> CNShellCommandStatement? {
+		var result: CNShellCommandStatement? = nil
 		var words = CNStringUtil.divideBySpaces(string: cmd)
 		if words.count >= 1 {
 			let cmdname = words.removeFirst()
 			switch cmdname {
 			case "run":
 				if words.count >= 1 {
-					result = KHRunCommandStatement(scriptPath: words[0])
+					result = CNRunShellCommandStatement(scriptPath: words[0])
 				} else {
-					result = KHRunCommandStatement(scriptPath: nil)
+					result = CNRunShellCommandStatement(scriptPath: nil)
 				}
 			default:
 				if let url = KLBuiltinScripts.shared.search(scriptName: cmdname) {
-					result = KHBuiltinCommandStatement(scriptURL: url)
+					result = CNBuiltinShellCommandStatement(scriptURL: url)
 				}
 			}
 		}

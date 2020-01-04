@@ -6,41 +6,42 @@
  */
 
 import KiwiShell
+import CoconutShell
 import CoconutData
 import Foundation
 
 public func UTShellCommand(console cons: CNConsole) -> Bool
 {
 	cons.print(string: "// shell command: 0\n")
-	let cmd0 = KHShellCommandStatement(shellCommand: "command-0")
+	let cmd0 = CNSystemShellCommandStatement(shellCommand: "command-0")
 	//cons.print(string: cmd0.toScript().joined(separator: "\n") + "\n")
 
 	cons.print(string: "// script command: 1\n")
-	let cmd1 = KHShellCommandStatement(shellCommand: "command-1")
+	let cmd1 = CNSystemShellCommandStatement(shellCommand: "command-1")
 	//cons.print(string: cmd1.toScript().joined(separator: "\n") + "\n")
 
 	cons.print(string: "// command process: 2\n")
-	let cmd2 = KHProcessStatement()
+	let cmd2 = CNProcessShellStatement()
 	cmd2.add(command: cmd0)
 	cmd2.add(command: cmd1)
 	//cons.print(string: cmd2.toScript().joined(separator: "\n") + "\n")
 
 	cons.print(string: "// shell command: 3\n")
-	let cmd3 = KHShellCommandStatement(shellCommand: "command-3")
+	let cmd3 = CNSystemShellCommandStatement(shellCommand: "command-3")
 	//cons.print(string: cmd3.toScript().joined(separator: "\n") + "\n")
 
 	cons.print(string: "// script command: 4\n")
-	let cmd4 = KHShellCommandStatement(shellCommand: "command-4")
+	let cmd4 = CNSystemShellCommandStatement(shellCommand: "command-4")
 	//cons.print(string: cmd4.toScript().joined(separator: "\n") + "\n")
 
 	cons.print(string: "// command process: 5\n")
-	let cmd5 = KHProcessStatement()
+	let cmd5 = CNProcessShellStatement()
 	cmd5.add(command: cmd3)
 	cmd5.add(command: cmd4)
 	//cons.print(string: cmd5.toScript().joined(separator: "\n") + "\n")
 
 	cons.print(string: "// command pipeline: 6\n")
-	let cmd6 = KHPipelineStatement()
+	let cmd6 = CNPipelineShellStatement()
 	cmd6.add(process: cmd2)
 	cmd6.add(process: cmd5)
 	cmd6.exitName = "extval6"
