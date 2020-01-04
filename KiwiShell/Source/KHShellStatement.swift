@@ -5,57 +5,218 @@
  *   Copyright (C) 2019 Steel Wheels Project
  */
 
-import CoconutShell
 import Foundation
 
+private let	NoProcessId: Int	= 0
 private let	LocalExitName:String	= "_extval"
 
-public extension CNSystemShellCommandStatement
+public protocol KHStatementProtocol {
+	var	processId:	Int	 { get 	   }
+	var	inputName:	String?	 { get set }
+	var	outputName:	String?  { get set }
+	var	errorName:	String?  { get set }
+
+	func toScript() -> Array<String>
+}
+
+extension KHStatementProtocol {
+	var inputNameString: String {
+		if let str = self.inputName {
+			return str
+		} else {
+			return "stdin"
+		}
+	}
+	var outputNameString: String {
+		if let str = self.outputName {
+			return str
+		} else {
+			return "stdout"
+		}
+	}
+	var errorNameString: String {
+		if let str = self.errorName {
+			return str
+		} else {
+			return "stderr"
+		}
+	}
+}
+
+public class KHCommandStatement: KHStatementProtocol
 {
-	func toScript() -> Array<String> {
+	private var	mProcessId:	Int
+
+	public var	inputName:	String?
+	public var	outputName:	String?
+	public var	errorName:	String?
+
+	public var processId: Int { get { return mProcessId }}
+
+	public init() {
+		mProcessId	= NoProcessId
+		inputName	= nil
+		outputName	= nil
+		errorName	= nil
+	}
+
+	public func updateProcessId(startId pid: Int) -> Int {
+		mProcessId = pid
+		return pid + 1
+	}
+
+	open func toScript() -> Array<String> {
+		return ["MUST BE OVERRIDE"]
+	}
+}
+
+
+public class KHShellCommandStatement: KHCommandStatement
+{
+	private var shellCommand:	String
+
+	public init(shellCommand cmd: String){
+		shellCommand	= cmd
+		super.init()
+	}
+
+	public override func toScript() -> Array<String> {
 		let system = "let _proc\(processId) = system(`\(shellCommand)`, \(self.inputNameString), \(self.outputNameString), \(self.errorNameString)) ;"
 		return [system]
 	}
 }
 
-public extension CNRunShellCommandStatement
+public class KHRunCommandStatement: KHCommandStatement
 {
-	func toScript() -> Array<String> {
-		let path  = self.scriptPath
+	private var mScriptPath:	String?
+
+	public init(scriptPath path: String?) {
+		mScriptPath = path
+		super.init()
+	}
+
+	public override func toScript() -> Array<String> {
+		let path: String
+		if let p = mScriptPath {
+			path = "\"\(p)\""
+		} else {
+			path = "null"
+		}
 		let stmt0 = "let _proc\(processId) = run(\(path), \(self.inputNameString), \(self.outputNameString), \(self.errorNameString)) ;"
 		let stmt1 = "_proc\(processId).start([]) ;"
 		return [stmt0, stmt1]
 	}
 }
 
-public extension CNBuiltinShellCommandStatement
+public class KHBuiltinCommandStatement: KHCommandStatement
 {
-	func toScript() -> Array<String> {
-		let url   = self.scriptURL
-		let stmt0 = "let _proc\(processId) = run(\"\(url.path)\", \(self.inputNameString), \(self.outputNameString), \(self.errorNameString)) ;"
+	private var mScriptURL:	URL
+
+	public init(scriptURL url: URL) {
+		mScriptURL = url
+		super.init()
+	}
+
+	public override func toScript() -> Array<String> {
+		let stmt0 = "let _proc\(processId) = run(\"\(mScriptURL.path)\", \(self.inputNameString), \(self.outputNameString), \(self.errorNameString)) ;"
 		let stmt1 = "_proc\(processId).start([]) ;"
 		return [stmt0, stmt1]
 	}
 }
 
-public extension CNProcessShellStatement
+public class KHProcessStatement: KHStatementProtocol
 {
-	func toScript() -> Array<String> {
+	private var mCommandSequence:	Array<KHCommandStatement>
+
+	public var processId: Int {
+		get {
+			/* Get last process id */
+			let count = mCommandSequence.count
+			if count > 0 {
+				return mCommandSequence[count - 1].processId
+			} else {
+				NSLog("No process id")
+				return 0
+			}
+		}
+	}
+
+	public init(){
+		mCommandSequence = []
+	}
+
+	public var inputName: String? {
+		get {
+			if mCommandSequence.count > 0 {
+				return mCommandSequence[0].inputName
+			} else {
+				return nil
+			}
+		}
+		set(newname){
+			for cmd in mCommandSequence {
+				cmd.inputName = newname
+			}
+		}
+	}
+
+	public var outputName: String? {
+		get {
+			if mCommandSequence.count > 0 {
+				return mCommandSequence[0].outputName
+			} else {
+				return nil
+			}
+		}
+		set(newname){
+			for cmd in mCommandSequence {
+				cmd.outputName = newname
+			}
+		}
+	}
+
+	public var errorName: String? {
+		get {
+			if mCommandSequence.count > 0 {
+				return mCommandSequence[0].errorName
+			} else {
+				return nil
+			}
+		}
+		set(newname){
+			for cmd in mCommandSequence {
+				cmd.errorName = newname
+			}
+		}
+	}
+
+	public func add(command cmd: KHCommandStatement){
+		mCommandSequence.append(cmd)
+	}
+
+	public func updateProcessId(startId pid: Int) -> Int {
+		var newpid = pid
+		for cmd in mCommandSequence {
+			newpid = cmd.updateProcessId(startId: newpid)
+		}
+		return newpid
+	}
+
+	public func toScript() -> Array<String> {
 		let result: Array<String>
-		let sequence = self.commandSequence
-		switch sequence.count {
+		switch mCommandSequence.count {
 		case 0:
 			result = []
 		case 1:
-			result = convetToScript(statement: sequence[0])
+			result = mCommandSequence[0].toScript()
 		default:
 			var scr: Array<String> = []
-			let num = sequence.count
+			let num = mCommandSequence.count
 			for i in 0..<num {
-				let subscr = convetToScript(statement: sequence[i])
+				let subscr = mCommandSequence[i].toScript()
 				scr.append(contentsOf: subscr)
 				if i < num-1 {
-					let procid   = sequence[i].processId
+					let procid   = mCommandSequence[i].processId
 					let waitstmt = "\(LocalExitName) = _select_exit_code(_proc\(procid).waitUntilExit(), \(LocalExitName)) ;"
 					scr.append(waitstmt)
 				}
@@ -64,33 +225,51 @@ public extension CNProcessShellStatement
 		}
 		return result
 	}
-
-	private func convetToScript(statement stmt: CNShellCommandStatement) -> Array<String> {
-		let result: Array<String>
-		if let s = stmt as? CNSystemShellCommandStatement {
-			result = s.toScript()
-		} else if let s = stmt as? CNRunShellCommandStatement {
-			result = s.toScript()
-		} else if let s = stmt as? CNBuiltinShellCommandStatement {
-			result = s.toScript()
-		} else {
-			result = ["<<No matched class>>"]
-		}
-		return result
-	}
 }
 
-public extension CNPipelineShellStatement
+public class KHPipelineStatement: KHStatementProtocol
 {
-	func toScript() -> Array<String> {
-		let processes = self.commandProcesses
+	private var  	mProcessId:	Int
+
+	public var	inputName: 	String?
+	public var	outputName:	String?
+	public var	errorName:	String?
+	public var	exitName:	String?
+
+	private var 	mCommandProcesses:	Array<KHProcessStatement>
+
+	public var processId: Int { get { return mProcessId }}
+
+	public init(){
+		mProcessId		= NoProcessId
+		inputName		= nil
+		outputName		= nil
+		errorName		= nil
+		mCommandProcesses	= []
+	}
+
+	public func add(process proc: KHProcessStatement){
+		mCommandProcesses.append(proc)
+		let _ = updateProcessId(startId: 0)
+	}
+
+	public func updateProcessId(startId pid: Int) -> Int {
+		var newpid = pid
+		for proc in mCommandProcesses {
+			newpid = proc.updateProcessId(startId: newpid)
+		}
+		mProcessId = newpid
+		return newpid + 1
+	}
+
+	public func toScript() -> Array<String> {
 		let result: Array<String>
-		switch processes.count {
+		switch mCommandProcesses.count {
 		case 0:
 			result = []
 		case 1:
 			var stmts: Array<String> = []
-			let proc = processes[0]
+			let proc = mCommandProcesses[0]
 			let pid  = proc.processId
 			/* statememt to allocate process */
 			stmts.append(contentsOf: proc.toScript())
@@ -103,13 +282,13 @@ public extension CNPipelineShellStatement
 			result = stmts
 		default: // count >= 2
 			var stmts: Array<String> = []
-			let count  = processes.count
+			let count  = mCommandProcesses.count
 
 			/* Initial exit value */
 			stmts.append("let \(LocalExitName) = 0 ;")
 
 			/* First process */
-			let proc0 = processes[0]
+			let proc0 = mCommandProcesses[0]
 			let pid0  = proc0.processId
 			stmts.append("let _pipe\(pid0) = Pipe();")
 			if proc0.inputName == nil {
@@ -124,7 +303,7 @@ public extension CNPipelineShellStatement
 			/* 2nd, 3rd process */
 			var prevpid = pid0
 			for i in 1..<count-1 {
-				let procI = processes[i]
+				let procI = mCommandProcesses[i]
 				let pidI  = procI.processId
 				stmts.append("let _pipe\(pidI) = Pipe();")
 				procI.inputName  = "_pipe\(prevpid)"
@@ -137,7 +316,7 @@ public extension CNPipelineShellStatement
 			}
 
 			/* Last process */
-			let procN = processes[count-1]
+			let procN = mCommandProcesses[count-1]
 			procN.inputName  = "_pipe\(prevpid)"
 			if procN.outputName == nil {
 				procN.outputName = self.outputNameString
@@ -150,7 +329,7 @@ public extension CNPipelineShellStatement
 			/* Wait all process */
 			var is1stwait = true
 			var waitprocs  = "["
-			for proc in processes {
+			for proc in mCommandProcesses {
 				if is1stwait {
 					is1stwait = false
 				} else {
