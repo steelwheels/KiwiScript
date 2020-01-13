@@ -11,7 +11,7 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-public func UTRun(context ctxt: KEContext, dispatchQueue queue: DispatchQueue, console cons: CNFileConsole, config conf: KEConfig) -> Bool
+public func UTRun(context ctxt: KEContext, dispatchQueue queue: DispatchQueue, console cons: CNFileConsole) -> Bool
 {
 	let instrm:  CNFileStream	 = .fileHandle(cons.inputHandle)
 	let outstrm: CNFileStream	 = .fileHandle(cons.outputHandle)
@@ -32,7 +32,7 @@ public func UTRun(context ctxt: KEContext, dispatchQueue queue: DispatchQueue, c
 	}
 
 	let url    = URL(fileURLWithPath: "../Test/Sample/sample-1.js")
-	let thread = KLThread(virtualMachine: vm, scriptFile: .url(url), queue: queue, input: instrm, output: outstrm, error: errstrm, resource: resource, config: conf)
+	let thread = KLThread(virtualMachine: vm, scriptFile: .url(url), queue: queue, input: instrm, output: outstrm, error: errstrm, resource: resource)
 	thread.start(args)
 
 	/* Wait until exist */

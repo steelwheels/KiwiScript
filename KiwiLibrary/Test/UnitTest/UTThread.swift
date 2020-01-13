@@ -40,7 +40,7 @@ public func UTThread(context ctxt: KEContext, queue disque: DispatchQueue, conso
 		let instrm:  CNFileStream	 = .fileHandle(cons.inputHandle)
 		let outstrm: CNFileStream	 = .fileHandle(cons.outputHandle)
 		let errstrm: CNFileStream	 = .fileHandle(cons.errorHandle)
-		let thread = KLThread(virtualMachine: vm, scriptFile: file, queue: disque, input: instrm, output: outstrm, error: errstrm, resource: resource, config: conf)
+		let thread = KLThread(virtualMachine: vm, scriptFile: file, queue: disque, input: instrm, output: outstrm, error: errstrm, resource: resource)
 
 		/* Start thread */
 		let arg0   = JSValue(object: "Thread", in: ctxt)

@@ -39,7 +39,7 @@ public class KHScriptThreadObject: CNThread
 		mTerminalInfo	= CNTerminalInfo()
 		mConfig		= conf
 		mScript		= .statements([])
-		super.init(queue: disque, input: instrm, output: outstrm, error: errstrm, config: conf)
+		super.init(queue: disque, input: instrm, output: outstrm, error: errstrm)
 
 		/* Compile the context */
 		let compiler = KHShellCompiler()

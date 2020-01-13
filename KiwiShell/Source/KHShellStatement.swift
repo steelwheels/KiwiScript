@@ -5,21 +5,225 @@
  *   Copyright (C) 2019 Steel Wheels Project
  */
 
+import CoconutData
 import Foundation
 
 private let	NoProcessId: Int	= 0
-private let	LocalExitName:String	= "_extval"
 
-public protocol KHStatementProtocol {
-	var	processId:	Int	 { get 	   }
+open class KHStatement
+{
+	public var 	processId:	Int
+
+	public init(){
+		processId = NoProcessId
+	}
+
+	public func copyProperties(toStatement stmt: KHStatement){
+		stmt.processId = self.processId
+	}
+
+	open func dump(indent idt: Int, to console: CNConsole) {
+	}
+
+	public func indentToString(indent idt: Int) -> String {
+		return String(repeating: "  ", count: idt)
+	}
+}
+
+open class KHSingleStatement: KHStatement
+{
+	public var inputName:	String?
+	public var outputName:	String?
+	public var errorName:	String?
+
+	public var inputNameString:  String { get { return select(inputName,  "stdin") }}
+	public var outputNameString: String { get { return select(outputName, "stdout") }}
+	public var errorNameString:  String { get { return select(errorName,  "stderr") }}
+
+	public var exitCodeString: String { get { return "_ecode\(self.processId)" }}
+
+	public override init(){
+		inputName	= nil
+		outputName	= nil
+		errorName	= nil
+	}
+
+	private func select(_ str0: String?, _ str1: String) -> String {
+		if let str = str0 {
+			return str
+		} else {
+			return str1
+		}
+	}
+
+	open override func dump(indent idt: Int, to console: CNConsole) {
+		super.dump(indent: idt, to: console)
+
+		let spaces = indentToString(indent: idt)
+		console.print(string: spaces + "input-file:  \(inputNameString)\n")
+		console.print(string: spaces + "output-file: \(outputNameString)\n")
+		console.print(string: spaces + "error-file:  \(errorNameString)\n")
+	}
+}
+
+public class KHScriptStatement: KHSingleStatement
+{
+	private var mScript:		Array<String>
+
+	public var script: Array<String> { get { return mScript }}
+
+	public init(script scr: Array<String>){
+		mScript 	= scr
+	}
+
+	open override func dump(indent idt: Int, to console: CNConsole) {
+		let spaces0 = indentToString(indent: idt)
+		let spaces1 = indentToString(indent: idt+1)
+		console.print(string: spaces0 + "script: {\n")
+		super.dump(indent: idt+1, to: console)
+		console.print(string: spaces1 + "script:  \"\(mScript)\"\n")
+		console.print(string: spaces0 + "}\n")
+	}
+}
+
+public class KHShellCommandStatement: KHSingleStatement
+{
+	private var mShellCommand:	String
+
+	public var shellCommand: String { get { return mShellCommand }}
+
+	public init(shellCommand cmd: String){
+		mShellCommand	= cmd
+	}
+
+	open override func dump(indent idt: Int, to console: CNConsole) {
+		let spaces0 = indentToString(indent: idt)
+		let spaces1 = indentToString(indent: idt+1)
+		console.print(string: spaces0 + "shell-command: {\n")
+		super.dump(indent: idt+1, to: console)
+		console.print(string: spaces1 + "command:  \"\(mShellCommand)\"\n")
+		console.print(string: spaces0 + "}\n")
+	}
+}
+
+public class KHRunCommandStatement: KHSingleStatement
+{
+	private var mScriptPath:	String?
+
+	public var scriptPath: String? { get { return mScriptPath }}
+
+	public init(scriptPath path: String?) {
+		mScriptPath = path
+	}
+
+	open override func dump(indent idt: Int, to console: CNConsole) {
+		let spaces0 = indentToString(indent: idt)
+		let spaces1 = indentToString(indent: idt)
+		console.print(string: spaces0 + "run-command: {\n")
+		super.dump(indent: idt+1, to: console)
+		let path: String
+		if let p = mScriptPath {
+			path = p
+		} else {
+			path = "<nil>"
+		}
+		console.print(string: spaces1 + "run:  \"\(path)\"\n")
+		console.print(string: spaces0 + "}\n")
+	}
+}
+
+public class KHBuiltinCommandStatement: KHSingleStatement
+{
+	private var mScriptURL:	URL
+
+	public var scriptURL: URL { get { return mScriptURL }}
+
+	public init(scriptURL url: URL) {
+		mScriptURL = url
+	}
+
+	open override func dump(indent idt: Int, to console: CNConsole) {
+		let spaces0 = indentToString(indent: idt)
+		let spaces1 = indentToString(indent: idt)
+		console.print(string: spaces0 + "builtin: {\n")
+		super.dump(indent: idt+1, to: console)
+		console.print(string: spaces1 + "script-url:  \"\(mScriptURL.path)\"\n")
+		console.print(string: spaces0 + "}\n")
+	}
+}
+
+public class KHPipelineStatement: KHSingleStatement
+{
+	private var  mSingleStatements:	Array<KHSingleStatement>
+
+	public var singleStatements: 	Array<KHSingleStatement> { get { return mSingleStatements }}
+	public var exitCode:		String?
+
+	public override init(){
+		mSingleStatements = []
+	}
+
+	public func add(statement stmt: KHSingleStatement){
+		mSingleStatements.append(stmt)
+	}
+
+	public func copyProperties(toPipelineStatement stmt: KHPipelineStatement){
+		super.copyProperties(toStatement: stmt)
+	}
+
+	open override func dump(indent idt: Int, to console: CNConsole) {
+		let spaces = indentToString(indent: idt)
+		console.print(string: spaces + "pipeline: {\n")
+		super.dump(indent: idt+1, to: console)
+		console.print(string: spaces + "exit-code:  \(exitCodeString)\n")
+		for stmt in singleStatements {
+			stmt.dump(indent: idt+1, to: console)
+		}
+		console.print(string: spaces + "}\n")
+	}
+}
+
+public class KHMultiStatements: KHStatement
+{
+	private var mPipelineStatements:	Array<KHPipelineStatement>
+
+	public var pipelineStatements: Array<KHPipelineStatement> { get { return mPipelineStatements }}
+
+	public override init(){
+		mPipelineStatements = []
+	}
+
+	public func add(statement stmt: KHPipelineStatement){
+		mPipelineStatements.append(stmt)
+	}
+
+	public func copyProperties(toMultiStatements stmts: KHMultiStatements){
+		super.copyProperties(toStatement: stmts)
+	}
+
+	open override func dump(indent idt: Int, to console: CNConsole) {
+		let spaces = indentToString(indent: idt)
+		console.print(string: spaces + "multi: {\n")
+		super.dump(indent: idt+1, to: console)
+		for stmt in pipelineStatements {
+			stmt.dump(indent: idt+1, to: console)
+		}
+		console.print(string: spaces + "}\n")
+	}
+}
+
+
+/*
+public protocol KHStatement {
+	var	processId:	Int	 { get set }
 	var	inputName:	String?	 { get set }
 	var	outputName:	String?  { get set }
 	var	errorName:	String?  { get set }
 
-	func toScript() -> Array<String>
+	func toScript(indent idt: String) -> Array<String>
 }
 
-extension KHStatementProtocol {
+extension KHStatement {
 	var inputNameString: String {
 		if let str = self.inputName {
 			return str
@@ -43,46 +247,70 @@ extension KHStatementProtocol {
 	}
 }
 
-public class KHCommandStatement: KHStatementProtocol
-{
-	private var	mProcessId:	Int
+private func insertIndent(statements stmts: Array<String>, indent idt: String) -> Array<String> {
+	var result: Array<String> = []
+	for stmt in stmts {
+		result.append(idt + stmt)
+	}
+	return result
+}
 
+public class KHScriptStatement: KHStatement
+{
+	public var processId:		Int
+	public var inputName:		String?
+	public var outputName:		String?
+	public var errorName:		String?
+
+	private var mScript:		Array<String>
+
+	public init(script scr: Array<String>){
+		inputName	= nil
+		outputName	= nil
+		errorName	= nil
+		processId	= NoProcessId
+		mScript 	= scr
+	}
+
+	public func toScript(indent idt: String) -> Array<String> {
+		return insertIndent(statements: mScript, indent: idt)
+	}
+}
+
+public class KHCommandStatement: KHStatement
+{
+	public var	processId:	Int
 	public var	inputName:	String?
 	public var	outputName:	String?
 	public var	errorName:	String?
 
-	public var processId: Int { get { return mProcessId }}
-
 	public init() {
-		mProcessId	= NoProcessId
+		processId	= NoProcessId
 		inputName	= nil
 		outputName	= nil
 		errorName	= nil
 	}
 
-	public func updateProcessId(startId pid: Int) -> Int {
-		mProcessId = pid
-		return pid + 1
-	}
-
-	open func toScript() -> Array<String> {
-		return ["MUST BE OVERRIDE"]
+	open func toScript(indent idt: String) -> Array<String> {
+		return [idt+"MUST BE OVERRIDE"]
 	}
 }
 
 
 public class KHShellCommandStatement: KHCommandStatement
 {
-	private var shellCommand:	String
+	private var mShellCommand:	String
+
+	public var shellCommand: String { get { return mShellCommand }}
 
 	public init(shellCommand cmd: String){
-		shellCommand	= cmd
+		mShellCommand	= cmd
 		super.init()
 	}
 
-	public override func toScript() -> Array<String> {
-		let system = "let _proc\(processId) = system(`\(shellCommand)`, \(self.inputNameString), \(self.outputNameString), \(self.errorNameString)) ;"
-		return [system]
+	public override func toScript(indent idt: String) -> Array<String> {
+		let system = "let _proc\(processId) = system(`\(mShellCommand)`, \(self.inputNameString), \(self.outputNameString), \(self.errorNameString)) ;"
+		return [idt + system]
 	}
 }
 
@@ -90,12 +318,14 @@ public class KHRunCommandStatement: KHCommandStatement
 {
 	private var mScriptPath:	String?
 
+	public var scriptPath: String? { get { return mScriptPath }}
+
 	public init(scriptPath path: String?) {
 		mScriptPath = path
 		super.init()
 	}
 
-	public override func toScript() -> Array<String> {
+	public override func toScript(indent idt: String) -> Array<String> {
 		let path: String
 		if let p = mScriptPath {
 			path = "\"\(p)\""
@@ -104,7 +334,8 @@ public class KHRunCommandStatement: KHCommandStatement
 		}
 		let stmt0 = "let _proc\(processId) = run(\(path), \(self.inputNameString), \(self.outputNameString), \(self.errorNameString)) ;"
 		let stmt1 = "_proc\(processId).start([]) ;"
-		return [stmt0, stmt1]
+		let stmts = [stmt0, stmt1]
+		return insertIndent(statements: stmts, indent: idt)
 	}
 }
 
@@ -117,44 +348,36 @@ public class KHBuiltinCommandStatement: KHCommandStatement
 		super.init()
 	}
 
-	public override func toScript() -> Array<String> {
+	public override func toScript(indent idt: String) -> Array<String> {
 		let stmt0 = "let _proc\(processId) = run(\"\(mScriptURL.path)\", \(self.inputNameString), \(self.outputNameString), \(self.errorNameString)) ;"
 		let stmt1 = "_proc\(processId).start([]) ;"
-		return [stmt0, stmt1]
+		let stmts = [stmt0, stmt1]
+		return insertIndent(statements: stmts, indent: idt)
 	}
 }
 
-public class KHProcessStatement: KHStatementProtocol
+public class KHProcessStatement: KHStatement
 {
-	private var mCommandSequence:	Array<KHCommandStatement>
+	private var mCommandStatements:	Array<KHCommandStatement>
 
-	public var processId: Int {
-		get {
-			/* Get last process id */
-			let count = mCommandSequence.count
-			if count > 0 {
-				return mCommandSequence[count - 1].processId
-			} else {
-				NSLog("No process id")
-				return 0
-			}
-		}
-	}
+	public var processId: Int
+	public var commandStatements: Array<KHCommandStatement> { get { return mCommandStatements }}
 
 	public init(){
-		mCommandSequence = []
+		processId	   = NoProcessId
+		mCommandStatements = []
 	}
 
 	public var inputName: String? {
 		get {
-			if mCommandSequence.count > 0 {
-				return mCommandSequence[0].inputName
+			if mCommandStatements.count > 0 {
+				return mCommandStatements[0].inputName
 			} else {
 				return nil
 			}
 		}
 		set(newname){
-			for cmd in mCommandSequence {
+			for cmd in mCommandStatements {
 				cmd.inputName = newname
 			}
 		}
@@ -162,14 +385,14 @@ public class KHProcessStatement: KHStatementProtocol
 
 	public var outputName: String? {
 		get {
-			if mCommandSequence.count > 0 {
-				return mCommandSequence[0].outputName
+			if mCommandStatements.count > 0 {
+				return mCommandStatements[0].outputName
 			} else {
 				return nil
 			}
 		}
 		set(newname){
-			for cmd in mCommandSequence {
+			for cmd in mCommandStatements {
 				cmd.outputName = newname
 			}
 		}
@@ -177,102 +400,99 @@ public class KHProcessStatement: KHStatementProtocol
 
 	public var errorName: String? {
 		get {
-			if mCommandSequence.count > 0 {
-				return mCommandSequence[0].errorName
+			if mCommandStatements.count > 0 {
+				return mCommandStatements[0].errorName
 			} else {
 				return nil
 			}
 		}
 		set(newname){
-			for cmd in mCommandSequence {
+			for cmd in mCommandStatements {
 				cmd.errorName = newname
 			}
 		}
 	}
 
 	public func add(command cmd: KHCommandStatement){
-		mCommandSequence.append(cmd)
+		mCommandStatements.append(cmd)
 	}
 
-	public func updateProcessId(startId pid: Int) -> Int {
-		var newpid = pid
-		for cmd in mCommandSequence {
-			newpid = cmd.updateProcessId(startId: newpid)
-		}
-		return newpid
-	}
-
-	public func toScript() -> Array<String> {
+	public func toScript(indent idt: String) -> Array<String> {
 		let result: Array<String>
-		switch mCommandSequence.count {
+		switch mCommandStatements.count {
 		case 0:
 			result = []
 		case 1:
-			result = mCommandSequence[0].toScript()
+			result = mCommandStatements[0].toScript(indent: idt)
 		default:
 			var scr: Array<String> = []
-			let num = mCommandSequence.count
+			let num = mCommandStatements.count
 			for i in 0..<num {
-				let subscr = mCommandSequence[i].toScript()
+				let subscr = mCommandStatements[i].toScript(indent: idt)
 				scr.append(contentsOf: subscr)
 				if i < num-1 {
-					let procid   = mCommandSequence[i].processId
+					let procid   = mCommandStatements[i].processId
 					let waitstmt = "\(LocalExitName) = _select_exit_code(_proc\(procid).waitUntilExit(), \(LocalExitName)) ;"
-					scr.append(waitstmt)
+					scr.append(idt + waitstmt)
 				}
 			}
 			result = scr
 		}
 		return result
 	}
+
+	public func duplicateWithoutSubStatements() -> KHProcessStatement {
+		let newstmt = KHProcessStatement()
+		newstmt.inputName	= self.inputName
+		newstmt.outputName	= self.outputName
+		newstmt.errorName	= self.errorName
+		return newstmt
+	}
 }
 
-public class KHPipelineStatement: KHStatementProtocol
+public class KHPipelineStatement: KHStatement
 {
-	private var  	mProcessId:	Int
-
+	public var  	processId:	Int
 	public var	inputName: 	String?
 	public var	outputName:	String?
 	public var	errorName:	String?
 	public var	exitName:	String?
 
-	private var 	mCommandProcesses:	Array<KHProcessStatement>
+	private var 	mProcessStatements:	Array<KHProcessStatement>
 
-	public var processId: Int { get { return mProcessId }}
+	public var processStatements: Array<KHProcessStatement> { get { return mProcessStatements }}
 
 	public init(){
-		mProcessId		= NoProcessId
+		processId		= NoProcessId
 		inputName		= nil
 		outputName		= nil
 		errorName		= nil
-		mCommandProcesses	= []
+		mProcessStatements	= []
 	}
 
 	public func add(process proc: KHProcessStatement){
-		mCommandProcesses.append(proc)
-		let _ = updateProcessId(startId: 0)
+		mProcessStatements.append(proc)
 	}
 
-	public func updateProcessId(startId pid: Int) -> Int {
-		var newpid = pid
-		for proc in mCommandProcesses {
-			newpid = proc.updateProcessId(startId: newpid)
-		}
-		mProcessId = newpid
-		return newpid + 1
+	public func toScript(indent idt: String) -> Array<String> {
+		var newstmts: Array<String> = []
+		newstmts.append(idt + "do {")
+		newstmts.append(contentsOf: self.toScriptBody(indent: idt + "\t"))
+		newstmts.append(idt + "} while(false) ;")
+		return newstmts
 	}
 
-	public func toScript() -> Array<String> {
+	private func toScriptBody(indent idt: String) -> Array<String> {
 		let result: Array<String>
-		switch mCommandProcesses.count {
+		switch mProcessStatements.count {
 		case 0:
 			result = []
 		case 1:
 			var stmts: Array<String> = []
-			let proc = mCommandProcesses[0]
+			let proc = mProcessStatements[0]
 			let pid  = proc.processId
 			/* statememt to allocate process */
-			stmts.append(contentsOf: proc.toScript())
+			stmts.append(contentsOf: proc.toScript(indent: ""))
 			/* statement to wait process */
 			if let ename = exitName {
 				stmts.append("\(ename) = _proc\(pid).waitUntilExit() ;")
@@ -282,13 +502,13 @@ public class KHPipelineStatement: KHStatementProtocol
 			result = stmts
 		default: // count >= 2
 			var stmts: Array<String> = []
-			let count  = mCommandProcesses.count
+			let count  = mProcessStatements.count
 
 			/* Initial exit value */
 			stmts.append("let \(LocalExitName) = 0 ;")
 
 			/* First process */
-			let proc0 = mCommandProcesses[0]
+			let proc0 = mProcessStatements[0]
 			let pid0  = proc0.processId
 			stmts.append("let _pipe\(pid0) = Pipe();")
 			if proc0.inputName == nil {
@@ -298,12 +518,12 @@ public class KHPipelineStatement: KHStatementProtocol
 			if proc0.errorName == nil {
 				proc0.errorName  = self.errorNameString
 			}
-			stmts.append(contentsOf: proc0.toScript())
+			stmts.append(contentsOf: proc0.toScript(indent: ""))
 
 			/* 2nd, 3rd process */
 			var prevpid = pid0
 			for i in 1..<count-1 {
-				let procI = mCommandProcesses[i]
+				let procI = mProcessStatements[i]
 				let pidI  = procI.processId
 				stmts.append("let _pipe\(pidI) = Pipe();")
 				procI.inputName  = "_pipe\(prevpid)"
@@ -311,12 +531,12 @@ public class KHPipelineStatement: KHStatementProtocol
 				if procI.errorName == nil {
 					procI.errorName  = self.errorNameString
 				}
-				stmts.append(contentsOf: procI.toScript())
+				stmts.append(contentsOf: procI.toScript(indent: ""))
 				prevpid = pidI
 			}
 
 			/* Last process */
-			let procN = mCommandProcesses[count-1]
+			let procN = mProcessStatements[count-1]
 			procN.inputName  = "_pipe\(prevpid)"
 			if procN.outputName == nil {
 				procN.outputName = self.outputNameString
@@ -324,12 +544,12 @@ public class KHPipelineStatement: KHStatementProtocol
 			if procN.errorName == nil {
 				procN.errorName  = self.errorNameString
 			}
-			stmts.append(contentsOf: procN.toScript())
+			stmts.append(contentsOf: procN.toScript(indent: ""))
 
 			/* Wait all process */
 			var is1stwait = true
 			var waitprocs  = "["
-			for proc in mCommandProcesses {
+			for proc in mProcessStatements {
 				if is1stwait {
 					is1stwait = false
 				} else {
@@ -349,6 +569,16 @@ public class KHPipelineStatement: KHStatementProtocol
 
 			result = stmts
 		}
-		return result
+		return insertIndent(statements: result, indent: idt)
+	}
+
+	public func duplicateWithoutSubStatements() -> KHPipelineStatement {
+		let newstmt = KHPipelineStatement()
+		newstmt.inputName	= self.inputName
+		newstmt.outputName	= self.outputName
+		newstmt.errorName	= self.errorName
+		return newstmt
 	}
 }
+*/
+

@@ -53,7 +53,7 @@ public class KHShellThreadObject: CNShellThread
 	public init(virtualMachine vm: JSVirtualMachine, queue disque: DispatchQueue, resource res: KEResource, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, config conf: KEConfig){
 		mContext	= KEContext(virtualMachine: vm)
 		mInputMode	= .shellScript
-		super.init(queue: disque, input: instrm, output: outstrm, error: errstrm, config: conf)
+		super.init(queue: disque, input: instrm, output: outstrm, error: errstrm)
 
 		/* Compile the context */
 		let shellconf = KEConfig(kind: .Terminal, doStrict: conf.doStrict, logLevel: conf.logLevel)
@@ -88,11 +88,13 @@ public class KHShellThreadObject: CNShellThread
 			}
 
 			/* convert script */
-			let translator = KHShellTranslator(readline: self.readline)
-			switch translator.translate(lines: [line]) {
-			case .ok(let lines):
-				let script = lines.joined(separator: "\n")
-				if let retval = mContext.evaluateScript(script) {
+			let parser = KHShellParser()
+			switch parser.parse(lines: [line]) {
+			case .ok(let stmts0):
+				let stmts1  = KHCompileShellStatement(statements: stmts0, readline: self.readline)
+				let script0 = KHGenerateScript(from: stmts1)
+				let script1 = script0.joined(separator: "\n")
+				if let retval = mContext.evaluateScript(script1) {
 					if !retval.isUndefined, let retstr = retval.toString() {
 						self.outputFileHandle.write(string: retstr)
 					}

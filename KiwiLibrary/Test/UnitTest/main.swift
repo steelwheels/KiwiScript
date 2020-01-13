@@ -62,7 +62,7 @@ public func main()
 
 	/* Run */
 	filecons.print(string: "/* Unit test for Run */\n")
-	let result7 = UTRun(context: context, dispatchQueue: queue, console: filecons, config: config)
+	let result7 = UTRun(context: context, dispatchQueue: queue, console: filecons)
 
 	/* FileManager */
 	filecons.print(string: "/* Unit test for FileManager */\n")

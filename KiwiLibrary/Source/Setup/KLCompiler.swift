@@ -35,7 +35,7 @@ open class KLCompiler: KECompiler
 
 	open func compileLibraryInResource(context ctxt: KEContext, queue disque: DispatchQueue, resource res: KEResource, console cons: CNConsole, config conf: KEConfig) -> Bool {
 		if super.compileLibraryInResource(context: ctxt, resource: res, console: cons, config: conf) {
-			defineThreadFunction(context: ctxt, queue: disque, resource: res, console: cons, config: conf)
+			defineThreadFunction(context: ctxt, queue: disque, resource: res, console: cons)
 			return (ctxt.errorCount == 0)
 		} else {
 			return false
@@ -500,7 +500,7 @@ open class KLCompiler: KECompiler
 		ctxt.set(name: "OperationQueue", function: queuefunc)
 	}
 
-	private func defineThreadFunction(context ctxt: KEContext, queue disque: DispatchQueue, resource res: KEResource, console cons: CNConsole, config conf: KEConfig) {
+	private func defineThreadFunction(context ctxt: KEContext, queue disque: DispatchQueue, resource res: KEResource, console cons: CNConsole) {
 		/* Thread */
 		let thfunc: @convention(block) (_ nameval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue = {
 			(_ nameval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue in
@@ -509,7 +509,7 @@ open class KLCompiler: KECompiler
 			   let outfile = KLCompiler.vallueToFileStream(value: outval),
 			   let errfile = KLCompiler.vallueToFileStream(value: errval),
 			   let vm = JSVirtualMachine() {
-				let thread = KLThread(virtualMachine: vm, scriptFile: .identifier(name), queue: disque, input:  infile, output: outfile, error: errfile, resource: res, config: conf)
+				let thread = KLThread(virtualMachine: vm, scriptFile: .identifier(name), queue: disque, input:  infile, output: outfile, error: errfile, resource: res)
 				return JSValue(object: thread, in: ctxt)
 			} else {
 				cons.error(string: "Invalid parameters\n")
@@ -534,7 +534,7 @@ open class KLCompiler: KECompiler
 				} else {
 					return JSValue(nullIn: ctxt)
 				}
-				let thread = KLThread(virtualMachine: vm, scriptFile: file, queue: disque, input:  infile, output: outfile, error: errfile, resource: res, config: conf)
+				let thread = KLThread(virtualMachine: vm, scriptFile: file, queue: disque, input:  infile, output: outfile, error: errfile, resource: res)
 				return JSValue(object: thread, in: ctxt)
 			}
 			return JSValue(nullIn: ctxt)

@@ -6,96 +6,170 @@
 // script command: 4
 // command process: 5
 // command pipeline: 6
-let _extval = 0 ;
-let _pipe1 = Pipe();
-let _proc0 = system(`command-0`, stdin, _pipe1, stderr) ;
-_extval = _select_exit_code(_proc0.waitUntilExit(), _extval) ;
-let _proc1 = system(`command-1`, stdin, _pipe1, stderr) ;
-let _proc2 = system(`command-3`, _pipe1, stdout, stderr) ;
-_extval = _select_exit_code(_proc2.waitUntilExit(), _extval) ;
-let _proc3 = system(`command-4`, _pipe1, stdout, stderr) ;
-for(let proc of [_proc1, _proc3] ){
-	_extval = _select_exit_code(proc.waitUntilExit(), _extval) ;
+multi: {
+  pipeline: {
+    input-file:  stdin
+    output-file: stdout
+    error-file:  stderr
+  exit-code:  _ecode0
+    shell-command: {
+      input-file:  stdin
+      output-file: stdout
+      error-file:  stderr
+      command:  "command-0"
+    }
+    shell-command: {
+      input-file:  stdin
+      output-file: stdout
+      error-file:  stderr
+      command:  "command-1"
+    }
+  }
+  pipeline: {
+    input-file:  stdin
+    output-file: stdout
+    error-file:  stderr
+  exit-code:  _ecode0
+    shell-command: {
+      input-file:  stdin
+      output-file: stdout
+      error-file:  stderr
+      command:  "command-3"
+    }
+    shell-command: {
+      input-file:  stdin
+      output-file: stdout
+      error-file:  stderr
+      command:  "command-4"
+    }
+  }
 }
-extval6 = _extval ;
-***** UTTranslator
-/* Source script 0 */
-/* Translated script 0 */
-/* Source script 1 */
-let a = 1.0;
-> echo "Hello, world !!\n"
-console.log(a)
-/* Translated script 1 */
+***** UTParser
+-- Unit test: 0
+ - Source
+    let a = 10 ;
+ - Script
+let a = 10 ;
+-- Unit test: 1
+ - Source
+    let a = 1.0;
+    > echo "Hello, world !!\n"
+    console.log(a)
+ - Script
 let a = 1.0;
 do {
-	let _proc0 = system(`echo "Hello, world !!\n"`, stdin, stdout, stderr) ;
-	_proc0.waitUntilExit() ;
+	let _proc2 = system(`echo "Hello, world !!\n"`, stdin, stdout, stderr) ;
+	let _ecode3 = _proc2.waitUntilExit() ;
 } while(false) ;
 console.log(a)
-/* Source script 2 */
-> a | b | c
-> |d
-/* Translated script 2 */
+-- Unit test: 2
+ - Source
+    > a | b | c
+    > |d
+ - Script
 do {
-	let _extval = 0 ;
-	let _pipe0 = Pipe();
-	let _proc0 = system(`a`, stdin, _pipe0, stderr) ;
+	let _ecode5 = 0 ;
 	let _pipe1 = Pipe();
-	let _proc1 = system(`b`, _pipe0, _pipe1, stderr) ;
+	let _proc1 = system(`a`, stdin, _pipe1, stderr) ;
 	let _pipe2 = Pipe();
-	let _proc2 = system(`c`, _pipe1, _pipe2, stderr) ;
-	let _proc3 = system(`d`, _pipe2, stdout, stderr) ;
-	for(let proc of [_proc0, _proc1, _proc2, _proc3] ){
-		_extval = _select_exit_code(proc.waitUntilExit(), _extval) ;
+	let _proc2 = system(`b`, _pipe1, _pipe2, stderr) ;
+	let _pipe3 = Pipe();
+	let _proc3 = system(`c`, _pipe2, _pipe3, stderr) ;
+	let _proc4 = system(`d`, _pipe3, stdout, stderr) ;
+	for(let proc of [_proc1, _proc2, _proc3, _proc4] ){
+		_ecode5 = _select_exit_code(proc.waitUntilExit(), _ecode5) ;
 	}
 } while(false) ;
-/* Source script 3 */
-> cat A | wc -l ; cat B |  wc -l
-/* Translated script 3 */
+-- Unit test: 3
+ - Source
+    > cat A ; cat B
+ - Script
 do {
-	let _extval = 0 ;
-	let _pipe0 = Pipe();
-	let _proc0 = system(`cat A`, stdin, _pipe0, stderr) ;
+	let _proc1 = system(`cat A`, stdin, stdout, stderr) ;
+	let _ecode2 = _proc1.waitUntilExit() ;
+	let _proc3 = system(`cat B`, stdin, stdout, stderr) ;
+	let _ecode4 = _proc3.waitUntilExit() ;
+} while(false) ;
+-- Unit test: 4
+ - Source
+    > cat A | wc -l ; cat B |  wc -l
+ - Script
+do {
+	let _ecode3 = 0 ;
 	let _pipe1 = Pipe();
-	let _proc1 = system(`wc -l ; cat B`, _pipe0, _pipe1, stderr) ;
+	let _proc1 = system(`cat A`, stdin, _pipe1, stderr) ;
 	let _proc2 = system(`wc -l`, _pipe1, stdout, stderr) ;
-	for(let proc of [_proc0, _proc1, _proc2] ){
-		_extval = _select_exit_code(proc.waitUntilExit(), _extval) ;
+	for(let proc of [_proc1, _proc2] ){
+		_ecode3 = _select_exit_code(proc.waitUntilExit(), _ecode3) ;
+	}
+	let _ecode6 = 0 ;
+	let _pipe4 = Pipe();
+	let _proc4 = system(`cat B`, stdin, _pipe4, stderr) ;
+	let _proc5 = system(`wc -l`, _pipe4, stdout, stderr) ;
+	for(let proc of [_proc4, _proc5] ){
+		_ecode6 = _select_exit_code(proc.waitUntilExit(), _ecode6) ;
 	}
 } while(false) ;
-/* Source script 4 */
-> cat A-> exitcode0 
-/* Translated script 4 */
+-- Unit test: 5
+ - Source
+    > cat A -> exitcode0 
+ - Script
 do {
-	let _proc0 = system(`cat A`, stdin, stdout, stderr) ;
-	exitcode0  = _proc0.waitUntilExit() ;
+	let _proc1 = system(`cat A`, stdin, stdout, stderr) ;
+	let _ecode2 = _proc1.waitUntilExit() ;
+	exitcode0  = _ecode2 ;
 } while(false) ;
-/* Source script 5 */
-> cat < @pipein > @pipeout 
-/* Translated script 5 */
+-- Unit test: 6
+ - Source
+    > cat < @pipein > @pipeout 
+ - Script
 do {
-	let _proc0 = system(`cat  `, pipein, pipeout, stderr) ;
-	_proc0.waitUntilExit() ;
+	let _proc1 = system(`cat  `, pipein, pipeout, stderr) ;
+	let _ecode2 = _proc1.waitUntilExit() ;
 } while(false) ;
-/* Source script 6 */
-> cat < @pipein | wc -l > @pipeout 
-/* Translated script 6 */
+-- Unit test: 7
+ - Source
+    > cat < filein | wc -l > fileout 
+ - Script
 do {
-	let _extval = 0 ;
-	let _pipe0 = Pipe();
-	let _proc0 = system(`cat `, pipein, _pipe0, stderr) ;
-	let _proc1 = system(`wc -l `, _pipe0, pipeout, stderr) ;
-	for(let proc of [_proc0, _proc1] ){
-		_extval = _select_exit_code(proc.waitUntilExit(), _extval) ;
+	let _ecode3 = 0 ;
+	let _pipe1 = Pipe();
+	let _proc1 = system(`cat < filein`, stdin, _pipe1, stderr) ;
+	let _proc2 = system(`wc -l > fileout`, _pipe1, stdout, stderr) ;
+	for(let proc of [_proc1, _proc2] ){
+		_ecode3 = _select_exit_code(proc.waitUntilExit(), _ecode3) ;
 	}
 } while(false) ;
-/* Source script 7 */
-> history 
-/* Translated script 7 */
+-- Unit test: 8
+ - Source
+    > cat < @pipein | wc -l > @pipeout 
+ - Script
 do {
-	let _proc0 = run("/Users/tomoo/Library/Frameworks/KiwiShell.framework/Resources/Binary/history.js", stdin, stdout, stderr) ;
-	_proc0.start([]) ;
-	_proc0.waitUntilExit() ;
+	let _ecode3 = 0 ;
+	let _pipe1 = Pipe();
+	let _proc1 = system(`cat `, pipein, _pipe1, stderr) ;
+	let _proc2 = system(`wc -l `, _pipe1, pipeout, stderr) ;
+	for(let proc of [_proc1, _proc2] ){
+		_ecode3 = _select_exit_code(proc.waitUntilExit(), _ecode3) ;
+	}
+} while(false) ;
+-- Unit test: 9
+ - Source
+    > run test.js > a
+ - Script
+do {
+	let _proc1 = run("test.js", stdin, stdout, stderr) ;
+	_proc1.start([]) ;
+	let _ecode2 = _proc1.waitUntilExit() ;
+} while(false) ;
+-- Unit test: 10
+ - Source
+    > history 
+ - Script
+do {
+	let _proc1 = run("/Users/tomoo/Library/Frameworks/KiwiShell.framework/Resources/Binary/history.js", stdin, stdout, stderr) ;
+	_proc1.start([]) ;
+	let _ecode2 = _proc1.waitUntilExit() ;
 } while(false) ;
 ***** UTScriptManager
 names: history 

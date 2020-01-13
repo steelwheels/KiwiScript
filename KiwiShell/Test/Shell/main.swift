@@ -26,13 +26,13 @@ public func main()
 	console.print(string: "***** UTShellCommand\n")
 	let res0 = UTShellCommand(console: console)
 
-	console.print(string: "***** UTTranslator\n")
-	let res1 = UTTranslator(console: console)
+	console.print(string: "***** UTParser\n")
+	let res3 = UTParser(console: console)
 
 	console.print(string: "***** UTScriptManager\n")
 	let res2 = UTScriptManager(console: console)
 
-	if res0 && res1 && res2 {
+	if res0 && res2 && res3 {
 		console.print(string: "Summary: OK\n")
 	} else {
 		console.print(string: "Summary: NG\n")
