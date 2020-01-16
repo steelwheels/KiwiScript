@@ -12,19 +12,14 @@ import Foundation
 
 public func KHCompileShellStatement(statements stmts: Array<KHStatement>, readline rdln: CNReadline?) -> Array<KHStatement>
 {
+	/* Setup built-in script location */
+	let manager = KLBuiltinScripts.shared
+	manager.setup(subdirectory: "Binary", forClass: KHShellThreadObject.self)
+
 	var newstmts:		Array<KHStatement>	= []
 	var hasnewstmts: 	Bool			= false
 	for stmt in stmts {
 		var curstmt: KHStatement = stmt
-
-		/*
-		if let readline = rdln {
-			let replayconv = KHReplayCommandConverter(readline: readline)
-			if let newstmt = replayconv.accept(statement: curstmt) {
-				hasnewstmts = true
-				curstmt     = newstmt
-			}
-		}*/
 
 		let builtinconv = KHBuiltinCommandConverter()
 		if let newstmt = builtinconv.accept(statement: curstmt) {
@@ -36,38 +31,6 @@ public func KHCompileShellStatement(statements stmts: Array<KHStatement>, readli
 	}
 	return hasnewstmts ? newstmts : stmts
 }
-
-/*
-private class KHReplayCommandConverter: KHShellStatementConverter
-{
-	private var mReadline: CNReadline
-
-	public init(readline rdln: CNReadline) {
-		mReadline = rdln
-	}
-
-	open override func visit(shellCommandStatement stmt: KHShellCommandStatement) -> KHShellCommandStatement? {
-		if let newcmd = convertToReplayCommand(command: stmt.shellCommand) {
-			return KHShellCommandStatement(shellCommand: newcmd)
-		} else {
-			return nil
-		}
-	}
-
-	private func convertToReplayCommand(command cmd: String) -> String? {
-		var result: String? = nil
-		if cmd.count >= 2 {
-			var mcmd = cmd
-			if mcmd.removeFirst() == "!" {
-				if let idx = Int(mcmd) {
-					result = mReadline.search(byIndex: idx)
-				}
-			}
-		}
-		return result
-	}
-}
-*/
 
 private class KHBuiltinCommandConverter: KHShellStatementConverter
 {

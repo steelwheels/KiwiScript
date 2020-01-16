@@ -70,9 +70,6 @@ public class KHShellThreadObject: CNShellThread
 				myself.console.error(string: "[Exception] \(desc)\n")
 			}
 		}
-		/* Setup built-in script location */
-		let manager = KLBuiltinScripts.shared
-		manager.setup(subdirectory: "Binary", forClass: KHShellThreadObject.self)
 	}
 
 	public override func promptString() -> String {
