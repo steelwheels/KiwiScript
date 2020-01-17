@@ -984,6 +984,8 @@ Home directory:
     isWritable:   true
     isExecutable: true
     isDeletable:  true
+Change directory: ..
+Change directory: OSX
 /* Unit test for ScriptManager */
 ScriptManager
  - script: unit-test-0

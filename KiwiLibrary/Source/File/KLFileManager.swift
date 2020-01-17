@@ -19,6 +19,9 @@ import Foundation
 	func isExecutable(_ pathstr: JSValue) -> JSValue
 	func isDeletable(_ pathstr: JSValue) -> JSValue
 
+	func currentDirectory() -> JSValue
+	func changeCurrentDirectory(_ dir: JSValue) -> JSValue
+
 	#if os(OSX)
 		func homeDirectory() -> JSValue
 	#endif
@@ -149,6 +152,21 @@ import Foundation
 		}
 	}
 
+	public func currentDirectory() -> JSValue {
+		let curdir = FileManager.default.currentDirectoryPath
+		let cururl = URL(fileURLWithPath: curdir)
+		let urlobj = KLURL(URL: cururl, context: mContext)
+		return JSValue(object: urlobj, in: mContext)
+	}
+
+	public func changeCurrentDirectory(_ dir: JSValue) -> JSValue {
+		var result = false
+		if let path = pathString(in: dir) {
+			result = FileManager.default.changeCurrentDirectoryPath(path)
+		}
+		return JSValue(bool: result, in: mContext)
+	}
+
 	#if os(OSX)
 	public func homeDirectory() -> JSValue {
 		let dirurl = FileManager.default.homeDirectoryForCurrentUser
@@ -161,6 +179,19 @@ import Foundation
 		let tmpurl = FileManager.default.temporaryDirectory
 		let urlobj = KLURL(URL: tmpurl, context: mContext)
 		return JSValue(object: urlobj, in: mContext)
+	}
+
+	private func pathString(in val: JSValue) -> String? {
+		if let str = val.toString() {
+			return str
+		} else if let obj = val.toObject() {
+			if let urlobj = obj as? KLURL {
+				if let url = urlobj.url {
+					return url.path
+				}
+			}
+		}
+		return nil
 	}
 
 	public func uti(_ pathval: JSValue) -> JSValue {

@@ -70,6 +70,28 @@ var file = FileManager.open(<file-name>, <access-type>) ;
 ### Return value
 If the opening the file is succeeded, the *File* object is returned. The file-object is built-in object. It can be accessed by following methods. On the other hand, when the opening file is failed, the return value will be nil.
 
+## `currentDirectory` method
+Get the URL of the current directory.
+````
+let url = FileManager.currentDirectory() ;
+````
+### Parameter(s)
+none
+
+## `changeCurrentDirectory` method
+Change the current directory.
+````
+let changed = FileManager.setCurrentDirectory(url)
+````
+
+### Parameter(s)
+|Parameter    |Type   |Description                    |
+|:---         |:---   |:---                           |
+|path         |[URL](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md) or String  |URL (or path string) of new current directory |
+
+### Return value
+The boolean value. The `true` value means changing directory was succeeded.
+
 ## `homeDirectory` method
 Get the URL of home directory of current user.
 ````
