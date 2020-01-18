@@ -156,7 +156,14 @@ private class KHCodeConverter: KHShellStatementVisitor
 		let proc  = processName(stmt)
 		let path  = stmt.scriptURL.path
 		let stmt0 = "let \(proc) = run(\"\(path)\", \(stmt.inputNameString), \(stmt.outputNameString), \(stmt.errorNameString)) ;"
-		let stmt1 = "\(proc).start([]) ;"
+
+		var args: Array<String> = []
+		for arg in stmt.arguments {
+			args.append("\"" + arg + "\"")
+		}
+		let line = args.joined(separator: ", ")
+
+		let stmt1 = "\(proc).start([\(line)]) ;"
 		add(statements: [stmt0, stmt1])
 		return nil
 	}

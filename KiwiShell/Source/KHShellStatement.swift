@@ -135,11 +135,14 @@ public class KHRunCommandStatement: KHSingleStatement
 public class KHBuiltinCommandStatement: KHSingleStatement
 {
 	private var mScriptURL:	URL
+	private var mArguments:	Array<String>
 
 	public var scriptURL: URL { get { return mScriptURL }}
+	public var arguments: Array<String> { get { return mArguments }}
 
-	public init(scriptURL url: URL) {
+	public init(scriptURL url: URL, arguments args: Array<String>) {
 		mScriptURL = url
+		mArguments = args
 	}
 
 	open override func dump(indent idt: Int, to console: CNConsole) {

@@ -30,6 +30,7 @@
 		059D085123C36F05005C2F6E /* KHShellConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059D085023C36F05005C2F6E /* KHShellConverter.swift */; };
 		05BE576E2327D8160062243B /* UTShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BE576D2327D8160062243B /* UTShell.swift */; };
 		05BEBC0623688761003F9ED9 /* UTShellCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BEBC0523688761003F9ED9 /* UTShellCommand.swift */; };
+		05C0FDA223D28EDC00C88984 /* cd.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05C0FDA123D28ECA00C88984 /* cd.js */; };
 		05D049D52039AA9000642E6A /* KHShellThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D049D42039AA9000642E6A /* KHShellThread.swift */; };
 		05DBA585231271760061046B /* KHScriptThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DBA584231271760061046B /* KHScriptThread.swift */; };
 		05E4642123C2276700B82EEE /* UTParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E4642023C2276700B82EEE /* UTParser.swift */; };
@@ -74,6 +75,7 @@
 			dstPath = Binary;
 			dstSubfolderSpec = 7;
 			files = (
+				05C0FDA223D28EDC00C88984 /* cd.js in CopyFiles */,
 				05274FEA23B8F4FD0077E8ED /* history.js in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -122,6 +124,7 @@
 		059D085023C36F05005C2F6E /* KHShellConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KHShellConverter.swift; sourceTree = "<group>"; };
 		05BE576D2327D8160062243B /* UTShell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTShell.swift; sourceTree = "<group>"; };
 		05BEBC0523688761003F9ED9 /* UTShellCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTShellCommand.swift; sourceTree = "<group>"; };
+		05C0FDA123D28ECA00C88984 /* cd.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = cd.js; sourceTree = "<group>"; };
 		05D049D42039AA9000642E6A /* KHShellThread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KHShellThread.swift; sourceTree = "<group>"; };
 		05D049DA2039AC3C00642E6A /* UnitTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		05D049DC2039AC3C00642E6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -217,6 +220,7 @@
 		05274FE623B8F4CE0077E8ED /* Binary */ = {
 			isa = PBXGroup;
 			children = (
+				05C0FDA123D28ECA00C88984 /* cd.js */,
 				05274FE723B8F4E00077E8ED /* history.js */,
 			);
 			path = Binary;

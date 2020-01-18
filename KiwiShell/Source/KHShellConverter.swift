@@ -37,8 +37,8 @@ private class KHBuiltinCommandConverter: KHShellStatementConverter
 	open override func visit(shellCommandStatement stmt: KHShellCommandStatement) -> KHSingleStatement? {
 		if let newcmd = convertToNativeBuiltinCommand(command: stmt.shellCommand) {
 			return newcmd
-		} else if let url = convertToBuiltinScriptCommand(command: stmt.shellCommand) {
-			return KHBuiltinCommandStatement(scriptURL: url)
+		} else if let (url, args) = convertToBuiltinScriptCommand(command: stmt.shellCommand) {
+			return KHBuiltinCommandStatement(scriptURL: url, arguments: args)
 		} else {
 			return nil
 		}
@@ -59,8 +59,15 @@ private class KHBuiltinCommandConverter: KHShellStatementConverter
 		return result
 	}
 
-	private func convertToBuiltinScriptCommand(command cmd: String) -> URL? {
-		return KLBuiltinScripts.shared.search(scriptName: cmd)
+	private func convertToBuiltinScriptCommand(command cmd: String) -> (URL, Array<String>)? {
+		var words = CNStringUtil.divideBySpaces(string: cmd)
+		if words.count > 0 {
+			if let url = KLBuiltinScripts.shared.search(scriptName: words[0]) {
+				words.removeFirst()
+				return (url, words)
+			}
+		}
+		return nil
 	}
 }
 
