@@ -33,7 +33,6 @@
 		05F34AAD23ACE74C00372050 /* KLChar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F34AAC23ACE74C00372050 /* KLChar.swift */; };
 		05F6EAF02258B16E00C18E3E /* KLNativeValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F6EAEF2258B16E00C18E3E /* KLNativeValue.swift */; };
 		05F6EAF22258B17600C18E3E /* KLValueConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F6EAF12258B17600C18E3E /* KLValueConverter.swift */; };
-		05FC4C2923A28FA400D24FCC /* KLCurses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FC4C2823A28FA400D24FCC /* KLCurses.swift */; };
 		05FFA9DE20CBEACE007C662E /* KLURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FFA9DD20CBEACD007C662E /* KLURL.swift */; };
 /* End PBXBuildFile section */
 
@@ -76,7 +75,6 @@
 		05F34AAC23ACE74C00372050 /* KLChar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLChar.swift; sourceTree = "<group>"; };
 		05F6EAEF2258B16E00C18E3E /* KLNativeValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLNativeValue.swift; sourceTree = "<group>"; };
 		05F6EAF12258B17600C18E3E /* KLValueConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLValueConverter.swift; sourceTree = "<group>"; };
-		05FC4C2823A28FA400D24FCC /* KLCurses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLCurses.swift; sourceTree = "<group>"; };
 		05FFA9DD20CBEACD007C662E /* KLURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLURL.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,7 +97,6 @@
 				05E3C4F322578425009D49C5 /* Base */,
 				05BCE65A2068BCFA007B0559 /* Process */,
 				05BCE6662068BD98007B0559 /* File */,
-				05FC4C2723A28F8F00D24FCC /* Terminal */,
 				05D6BF8521D3E24C001D737A /* Data */,
 				0523F39121B3C17D0074DA14 /* Database */,
 			);
@@ -217,14 +214,6 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
-		05FC4C2723A28F8F00D24FCC /* Terminal */ = {
-			isa = PBXGroup;
-			children = (
-				05FC4C2823A28FA400D24FCC /* KLCurses.swift */,
-			);
-			path = Terminal;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -336,7 +325,6 @@
 			files = (
 				05F34AAD23ACE74C00372050 /* KLChar.swift in Sources */,
 				058EEBBD22F505E50095012B /* KLNativeStruct.swift in Sources */,
-				05FC4C2923A28FA400D24FCC /* KLCurses.swift in Sources */,
 				05BCE66D2068BDAE007B0559 /* KLPipe.swift in Sources */,
 				05BCE66C2068BDAE007B0559 /* KLFile.swift in Sources */,
 				05D6BF8721D3E269001D737A /* KLImage.swift in Sources */,

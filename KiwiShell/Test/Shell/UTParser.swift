@@ -16,8 +16,7 @@ import Foundation
 public func UTParser(console cons: CNConsole) -> Bool
 {
 	let parser   = KHShellParser()
-	let terminfo = CNTerminalInfo()
-	let readline = CNReadline(terminalInfo: terminfo)
+	let readline = CNReadline()
 
 	let stmt0 = ["let a = 10 ;"]
 	let res0  = testParser(parser: parser, testNo: 0, source: stmt0, readline: readline, console: cons)

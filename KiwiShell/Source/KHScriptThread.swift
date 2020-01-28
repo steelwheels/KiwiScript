@@ -27,7 +27,6 @@ public class KHScriptThreadObject: CNThread
 	}
 
 	private var mContext:			KEContext
-	private var mTerminalInfo:		CNTerminalInfo
 	private var mConfig:			KHConfig
 
 	private var mScript:			Script
@@ -36,14 +35,13 @@ public class KHScriptThreadObject: CNThread
 
 	public init(virtualMachine vm: JSVirtualMachine, queue disque: DispatchQueue, resource res: KEResource, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, config conf: KHConfig){
 		mContext 	= KEContext(virtualMachine: vm)
-		mTerminalInfo	= CNTerminalInfo()
 		mConfig		= conf
 		mScript		= .statements([])
 		super.init(queue: disque, input: instrm, output: outstrm, error: errstrm)
 
 		/* Compile the context */
 		let compiler = KHShellCompiler()
-		guard compiler.compileBaseAndLibrary(context: mContext, queue: disque, resource: res, console: self.console, terminalInfo: mTerminalInfo, config: conf) else {
+		guard compiler.compileBaseAndLibrary(context: mContext, queue: disque, resource: res, console: self.console, config: conf) else {
 			console.error(string: "Failed to compile script thread context\n")
 			return
 		}

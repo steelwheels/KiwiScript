@@ -14,11 +14,10 @@ import Foundation
 
 open class KHShellCompiler: KLCompiler
 {
-	open func compileBaseAndLibrary(context ctxt: KEContext, queue disque: DispatchQueue, resource res: KEResource, console cons: CNFileConsole, terminalInfo tinfo: CNTerminalInfo, config conf: KEConfig) -> Bool {
+	open func compileBaseAndLibrary(context ctxt: KEContext, queue disque: DispatchQueue, resource res: KEResource, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
 		if super.compileBase(context: ctxt, console: cons, config: conf) {
 			if super.compileLibraryInResource(context: ctxt, queue: disque, resource: res, console: cons, config: conf) {
 				defineBuiltinFunctions(context: ctxt, console: cons)
-				defineBuiltinObjects(context: ctxt, console: cons, terminalInfo: tinfo)
 				return true
 			}
 		}
@@ -29,12 +28,6 @@ open class KHShellCompiler: KLCompiler
 		#if os(OSX)
 			defineSystemFunction(context: ctxt)
 		#endif
-	}
-
-	private func defineBuiltinObjects(context ctxt: KEContext, console cons: CNFileConsole, terminalInfo tinfo: CNTerminalInfo) {
-		let curses  = CNCurses(console: cons, terminalInfo: tinfo)
-		let cursobj = KLCurses(curses: curses, context: ctxt)
-		ctxt.set(name: "curses", object: cursobj)
 	}
 
 	/* Define "system" built-in command */
