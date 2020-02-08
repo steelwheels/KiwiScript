@@ -23,17 +23,20 @@ private class KLThreadObject: CNThread
 	private var mContext:		KEContext
 	private var mScriptFile:	ScriptFile
 	private var mResource:		KEResource
+	private var mConfig:		KEConfig
 
-	public init(virtualMachine vm: JSVirtualMachine, scriptFile file: ScriptFile, queue disque: DispatchQueue,input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, resource res: KEResource) {
+	public init(virtualMachine vm: JSVirtualMachine, scriptFile file: ScriptFile, queue disque: DispatchQueue,input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, resource res: KEResource, config conf: KEConfig) {
 		mContext   	= KEContext(virtualMachine: vm)
 		mScriptFile	= file
 		mResource	= res
+		mConfig		= KEConfig(applicationType: conf.applicationType,
+						  doStrict: conf.doStrict,
+						  logLevel: conf.logLevel)
 		super.init(queue: disque, input: instrm, output: outstrm, error: errstrm)
 	}
 
 	public override func main(arguments args: Array<CNNativeValue>) -> Int32 {
-		let config = KEConfig(kind: .Terminal, doStrict: true, logLevel: .warning)
-		if compile(config: config) {
+		if compile(config: mConfig) {
 			return execOperation(arguments: args)
 		} else {
 			return -1
@@ -80,7 +83,8 @@ private class KLThreadObject: CNThread
 		mSelectedURL	= nil
 		mDidSelected	= false
 		#if os(OSX)
-		if CNPreference.shared.applicationPreference.isWindowApplication {
+		switch mConfig.applicationType {
+		case .window:
 			/* open panel to select */
 			CNExecuteInMainThread(doSync: false, execute: {
 				URL.openPanelWithAsync(title: "Select script to execute", selection: .SelectFile, fileTypes: ["js", "jspkg"], callback: {
@@ -94,6 +98,8 @@ private class KLThreadObject: CNThread
 			while !self.mDidSelected {
 				usleep(100)
 			}
+		case .terminal:
+			break
 		}
 		#endif
 		return self.mSelectedURL
@@ -175,8 +181,8 @@ private class KLThreadObject: CNThread
 
 	private var mThread: KLThreadObject
 
-	public init(virtualMachine vm: JSVirtualMachine, scriptFile file: ScriptFile, queue disque: DispatchQueue, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, resource res: KEResource) {
-		mThread = KLThreadObject(virtualMachine: vm, scriptFile: file, queue: disque, input: instrm, output: outstrm, error: errstrm, resource: res)
+	public init(virtualMachine vm: JSVirtualMachine, scriptFile file: ScriptFile, queue disque: DispatchQueue, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, resource res: KEResource, config conf: KEConfig) {
+		mThread = KLThreadObject(virtualMachine: vm, scriptFile: file, queue: disque, input: instrm, output: outstrm, error: errstrm, resource: res, config: conf)
 	}
 
 	public func start(_ args: JSValue) {

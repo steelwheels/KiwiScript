@@ -10,7 +10,7 @@ import CoconutData
 import Foundation
 
 let console = CNFileConsole()
-let config  = KEConfig(kind: .Terminal, doStrict: true, logLevel: .detail)
+let config  = KEConfig(applicationType: .terminal, doStrict: true, logLevel: .detail)
 
 var summary = true
 

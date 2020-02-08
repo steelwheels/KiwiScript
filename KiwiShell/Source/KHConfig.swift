@@ -11,11 +11,13 @@ import Foundation
 
 open class KHConfig: KEConfig
 {
-	public var hasMainFunction:		Bool
+	private var mHasMainFunction:		Bool
 
-	public init(kind knd: KEApplicationKind, hasMainFunction hasmain: Bool, doStrict strict: Bool, logLevel log: CNConfig.LogLevel) {
-		hasMainFunction = hasmain
-		super.init(kind: knd, doStrict: strict, logLevel: log)
+	public var hasMainFunction: Bool { get { return mHasMainFunction }}
+
+	public init(applicationType atype: KEApplicationType, hasMainFunction hasmain: Bool, doStrict strict: Bool, logLevel log: CNConfig.LogLevel) {
+		mHasMainFunction = hasmain
+		super.init(applicationType: atype, doStrict: strict, logLevel: log)
 	}
 }
 

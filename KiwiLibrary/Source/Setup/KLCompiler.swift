@@ -35,7 +35,7 @@ open class KLCompiler: KECompiler
 
 	open func compileLibraryInResource(context ctxt: KEContext, queue disque: DispatchQueue, resource res: KEResource, console cons: CNConsole, config conf: KEConfig) -> Bool {
 		if super.compileLibraryInResource(context: ctxt, resource: res, console: cons, config: conf) {
-			defineThreadFunction(context: ctxt, queue: disque, resource: res, console: cons)
+			defineThreadFunction(context: ctxt, queue: disque, resource: res, console: cons, config: conf)
 			return (ctxt.errorCount == 0)
 		} else {
 			return false
@@ -251,8 +251,8 @@ open class KLCompiler: KECompiler
 
 		/* exit */
 		let exitFunc: @convention(block) (_ value: JSValue) -> JSValue
-		switch conf.kind {
-		case .Terminal:
+		switch conf.applicationType {
+		case .terminal:
 			exitFunc = {
 				(_ value: JSValue) -> JSValue in
 				let ecode: Int32
@@ -265,7 +265,7 @@ open class KLCompiler: KECompiler
 				Darwin.exit(ecode)
 			}
 			ctxt.set(name: "exit", function: exitFunc)
-		case .Window:
+		case .window:
 			#if os(OSX)
 				exitFunc = {
 					[weak self] (_ value: JSValue) -> JSValue in
@@ -281,9 +281,6 @@ open class KLCompiler: KECompiler
 				}
 			#endif
 			ctxt.set(name: "exit", function: exitFunc)
-		case .Operation:
-			/* The exit function is defined in KLOperation.swift */
-			break
 		}
 
 		/* _select_exit_code */
@@ -370,31 +367,21 @@ open class KLCompiler: KECompiler
 		}
 		ctxt.set(name: "Pipe", function: pipeFunc)
 
-		switch conf.kind {
-		case .Terminal:
-			#if os(OSX)
-				/* File */
-				let file = KLFileManager(context: ctxt,
-							 input:   cons.inputHandle,
-							 output:  cons.outputHandle,
-							 error:   cons.errorHandle)
-				ctxt.set(name: "FileManager", object: file)
+		/* File */
+		let file = KLFileManager(context: ctxt,
+					 input:   cons.inputHandle,
+					 output:  cons.outputHandle,
+					 error:   cons.errorHandle)
+		ctxt.set(name: "FileManager", object: file)
 
-				let stdinobj = file.standardFile(fileType: .input, context: ctxt)
-				ctxt.set(name: "stdin", object: stdinobj)
+		let stdinobj = file.standardFile(fileType: .input, context: ctxt)
+		ctxt.set(name: "stdin", object: stdinobj)
 
-				let stdoutobj = file.standardFile(fileType: .output, context: ctxt)
-				ctxt.set(name: "stdout", object: stdoutobj)
+		let stdoutobj = file.standardFile(fileType: .output, context: ctxt)
+		ctxt.set(name: "stdout", object: stdoutobj)
 
-				let stderrobj = file.standardFile(fileType: .error, context: ctxt)
-				ctxt.set(name: "stderr", object: stderrobj)
-			#endif /* if os(OSX) */
-			break
-		case .Operation:
-			break
-		case .Window:
-			break
-		}
+		let stderrobj = file.standardFile(fileType: .error, context: ctxt)
+		ctxt.set(name: "stderr", object: stderrobj)
 
 		/* JSON */
 		let json = KLJSON(context: ctxt)
@@ -415,12 +402,12 @@ open class KLCompiler: KECompiler
 
 	private func defineGlobalObjects(context ctxt: KEContext, console cons: CNFileConsole, config conf: KEConfig) {
 		/* console */
-		switch conf.kind {
-		case .Terminal, .Operation:
+		switch conf.applicationType {
+		case .terminal:
 			/* Define console */
 			let newcons = KLConsole(context: ctxt, console: cons)
 			ctxt.set(name: "console", object: newcons)
-		case .Window:
+		case .window:
 			break
 		}
 	}
@@ -468,7 +455,9 @@ open class KLCompiler: KECompiler
 		let opfunc: @convention(block) (_ urlsval: JSValue, _ consval: JSValue) -> JSValue = {
 			(_ urlsval: JSValue, _ consval: JSValue) -> JSValue in
 			let opconsole = KLCompiler.valueToConsole(consoleValue: consval, context: ctxt, logConsole: cons)
-			let opconfig  = KEConfig(kind: .Terminal, doStrict: conf.doStrict, logLevel: conf.logLevel)
+			let opconfig  = KEConfig(applicationType: conf.applicationType,
+						 doStrict: conf.doStrict,
+						 logLevel: conf.logLevel)
 			let op        = KLOperationContext(ownerContext: ctxt,
 							   libraries:[],
 							   input:  cons.inputHandle,
@@ -500,7 +489,7 @@ open class KLCompiler: KECompiler
 		ctxt.set(name: "OperationQueue", function: queuefunc)
 	}
 
-	private func defineThreadFunction(context ctxt: KEContext, queue disque: DispatchQueue, resource res: KEResource, console cons: CNConsole) {
+	private func defineThreadFunction(context ctxt: KEContext, queue disque: DispatchQueue, resource res: KEResource, console cons: CNConsole, config conf: KEConfig) {
 		/* Thread */
 		let thfunc: @convention(block) (_ nameval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue = {
 			(_ nameval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue in
@@ -509,7 +498,7 @@ open class KLCompiler: KECompiler
 			   let outfile = KLCompiler.vallueToFileStream(value: outval),
 			   let errfile = KLCompiler.vallueToFileStream(value: errval),
 			   let vm = JSVirtualMachine() {
-				let thread = KLThread(virtualMachine: vm, scriptFile: .identifier(name), queue: disque, input:  infile, output: outfile, error: errfile, resource: res)
+				let thread = KLThread(virtualMachine: vm, scriptFile: .identifier(name), queue: disque, input:  infile, output: outfile, error: errfile, resource: res, config: conf)
 				return JSValue(object: thread, in: ctxt)
 			} else {
 				cons.error(string: "Invalid parameters\n")
@@ -534,7 +523,7 @@ open class KLCompiler: KECompiler
 				} else {
 					return JSValue(nullIn: ctxt)
 				}
-				let thread = KLThread(virtualMachine: vm, scriptFile: file, queue: disque, input:  infile, output: outfile, error: errfile, resource: res)
+				let thread = KLThread(virtualMachine: vm, scriptFile: file, queue: disque, input:  infile, output: outfile, error: errfile, resource: res, config: conf)
 				return JSValue(object: thread, in: ctxt)
 			}
 			return JSValue(nullIn: ctxt)

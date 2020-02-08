@@ -24,7 +24,7 @@ public func UTOperation2(console cons: CNFileConsole, config conf: KEConfig) -> 
 		result = false
 	}
 
-	let opconf = KEConfig(kind: .Operation, doStrict: true, logLevel: .detail)
+	let opconf = KEConfig(applicationType: .terminal, doStrict: true, logLevel: .detail)
 	let op     = KLOperationContext(ownerContext: ctxt,
 					libraries: [],
 					input:  cons.inputHandle,

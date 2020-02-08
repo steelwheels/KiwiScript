@@ -22,14 +22,6 @@ public class KEEnumTable
 	}
 
 	private func setup(){
-		let appkind = KEEnumType(typeName: "ApplicationKind")
-		appkind.add(members: [
-			KEEnumType.Member(name: "terminal",		value: KEApplicationKind.Terminal.rawValue),
-			KEEnumType.Member(name: "window",		value: KEApplicationKind.Window.rawValue),
-			KEEnumType.Member(name: "operation",		value: KEApplicationKind.Operation.rawValue)
-		])
-		mEnumTypes[appkind.typeName] = appkind
-
 		let exitcode = KEEnumType(typeName: "ExitCode")
 		exitcode.add(members: [
 			KEEnumType.Member(name: "noError",		value: CNExitCode.NoError.rawValue),

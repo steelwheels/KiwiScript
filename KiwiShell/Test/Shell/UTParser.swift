@@ -76,8 +76,7 @@ public func UTParser(console cons: CNConsole) -> Bool
 
 	let stmt11: Array<String> = [
 		"> ls | wc -l ;",
-                "> history ;",
-		"> !1 ;"
+                "> history ;"
         ]
 	let res11 = testParser(parser: parser, testNo: 11, source: stmt11, readline: readline, console: cons)
 

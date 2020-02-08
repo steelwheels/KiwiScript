@@ -15,7 +15,7 @@ public func main()
 {
 	let filecons = CNFileConsole()
 	let queue    = DispatchQueue(label: "UnitTest", qos: .default, attributes: .concurrent)
-	let config   = KEConfig(kind: .Terminal, doStrict: true, logLevel: .detail)
+	let config   = KEConfig(applicationType: .terminal, doStrict: true, logLevel: .detail)
 
 	let context  = KEContext(virtualMachine: JSVirtualMachine())
 	context.exceptionCallback = {

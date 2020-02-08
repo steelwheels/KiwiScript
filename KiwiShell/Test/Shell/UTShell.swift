@@ -32,7 +32,7 @@ public func UTShell(input inhdl: FileHandle, output outhdl: FileHandle, error er
 
 	let queue    = DispatchQueue(label: "test", qos: .default, attributes: .concurrent)
 	let resource = KEResource(baseURL: URL(fileURLWithPath: "."))
-	let config   = KEConfig(kind: .Terminal, doStrict: true, logLevel: .detail)
+	let config   = KEConfig(applicationType: .terminal, doStrict: true, logLevel: .detail)
 	let shell    = KHShellThread(virtualMachine: vm, queue: queue, resource: resource, input: instrm, output: outstrm, error: errstrm, config: config)
 	shell.start()
 

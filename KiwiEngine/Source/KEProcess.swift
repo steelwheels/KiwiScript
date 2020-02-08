@@ -8,33 +8,32 @@
 import CoconutData
 import Foundation
 
+/*
 public class KEProcess: KEObject
 {
-	private static let kindItem		= "kind"
+//	private static let typeItem		= "type"
 	private static let isExecutingItem	= "isExecuting"
 	private static let isFinishedItem	= "isFinished"
 	private static let isCanceledItem	= "isCanceled"
 
 	public init(context ctxt: KEContext, config conf: KEConfig) {
+		let myconf = KEConfig(applicationType: conf.applicationType, processType: .process, doStrict: conf.doStrict, logLevel: conf.logLevel)
 		super.init(context: ctxt)
 
-		kind	= conf.kind
-		switch conf.kind {
-		case .Terminal, .Window:
-			isExecuting	= true
-			isFinished	= false
-			isCanceled	= false
-		case .Operation:
-			isExecuting	= false
-			isFinished	= false
-			isCanceled	= false
+		switch conf.processType {
+		case .main, .process, .thread:
+			isExecuting = true
+		case .operation:
+			isExecuting = false
 		}
+		isFinished	= false
+		isCanceled	= false
 	}
 
-	public var kind: KEApplicationKind {
+	public var type: KEApplicationType {
 		get	   {
 			let immval = getInt32(name: KEProcess.kindItem)
-			if let kind = KEApplicationKind(rawValue: immval) {
+			if let kind = KEApplicationType(rawValue: immval) {
 				return kind
 			} else {
 				fatalError("Unknown application kind at \(#function)")
@@ -42,7 +41,7 @@ public class KEProcess: KEObject
 		}
 		set(value) { set(name: KEProcess.kindItem, int32Value: value.rawValue) }
 	}
-
+	
 	public var isExecuting: Bool {
 		get	   { return getBoolean(name: KEProcess.isExecutingItem) }
 		set(value) { set(name: KEProcess.isExecutingItem, booleanValue: value) }
@@ -58,4 +57,5 @@ public class KEProcess: KEObject
 		set(value) { set(name: KEProcess.isCanceledItem, booleanValue: value) }
 	}
 }
+*/
 

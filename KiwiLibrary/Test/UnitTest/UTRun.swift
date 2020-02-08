@@ -31,8 +31,9 @@ public func UTRun(context ctxt: KEContext, dispatchQueue queue: DispatchQueue, c
 		return false
 	}
 
+	let config = KEConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
 	let url    = URL(fileURLWithPath: "../Test/Sample/sample-1.js")
-	let thread = KLThread(virtualMachine: vm, scriptFile: .url(url), queue: queue, input: instrm, output: outstrm, error: errstrm, resource: resource)
+	let thread = KLThread(virtualMachine: vm, scriptFile: .url(url), queue: queue, input: instrm, output: outstrm, error: errstrm, resource: resource, config: config)
 	thread.start(args)
 
 	/* Wait until exist */

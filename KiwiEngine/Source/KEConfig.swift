@@ -8,17 +8,15 @@
 import CoconutData
 import Foundation
 
-public enum KEApplicationKind: Int32 {
-	case Terminal
-	case Window
-	case Operation
+public enum KEApplicationType: Int32 {
+	case terminal
+	case window
 
 	public func description() -> String {
 		let result: String
 		switch self {
-		case .Terminal: 	result = "terminal"
-		case .Window:		result = "window"
-		case .Operation:	result = "operation"
+		case .terminal: 	result = "terminal"
+		case .window:		result = "window"
 		}
 		return result
 	}
@@ -26,12 +24,15 @@ public enum KEApplicationKind: Int32 {
 
 open class KEConfig: CNConfig
 {
-	public var	kind:		KEApplicationKind
-	public var	doStrict:	Bool
+	private var	mApplicationType:	KEApplicationType
+	public var	mDoStrict:		Bool
 
-	public init(kind knd: KEApplicationKind, doStrict strict: Bool, logLevel log: CNConfig.LogLevel) {
-		kind	  = knd
-		doStrict  = strict
+	public var applicationType: 	KEApplicationType	{ get { return mApplicationType }}
+	public var doStrict:		Bool			{ get { return mDoStrict	}}
+
+	public init(applicationType atype: KEApplicationType, doStrict strict: Bool, logLevel log: CNConfig.LogLevel) {
+		mApplicationType	= atype
+		mDoStrict  		= strict
 		super.init(logLevel: log)
 	}
 }

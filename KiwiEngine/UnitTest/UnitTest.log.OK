@@ -13,11 +13,10 @@ let Alignment = {
 	fill : 2,
 	center : 3
 };
-/* Define Enum: ApplicationKind */
-let ApplicationKind = {
+/* Define Enum: ApplicationType */
+let ApplicationType = {
 	terminal : 0,
-	window : 1,
-	operation : 2
+	window : 1
 };
 /* Define Enum: Authorize */
 let Authorize = {
@@ -62,6 +61,13 @@ let FileType = {
 	notExist : 0,
 	file : 1,
 	directory : 2
+};
+/* Define Enum: ProcessType */
+let ProcessType = {
+	main : 0,
+	process : 1,
+	thread : 2,
+	operation : 3
 };
 /* Define Enum: TextAlign */
 let TextAlign = {

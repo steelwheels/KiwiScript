@@ -6,12 +6,6 @@ let Alignment = {
 	fill : 2,
 	center : 3
 };
-/* Define Enum: ApplicationKind */
-let ApplicationKind = {
-	terminal : 0,
-	window : 1,
-	operation : 2
-};
 /* Define Enum: Authorize */
 let Authorize = {
 	undetermined : 0,
@@ -289,12 +283,6 @@ let Alignment = {
 	fill : 2,
 	center : 3
 };
-/* Define Enum: ApplicationKind */
-let ApplicationKind = {
-	terminal : 0,
-	window : 1,
-	operation : 2
-};
 /* Define Enum: Authorize */
 let Authorize = {
 	undetermined : 0,
@@ -545,12 +533,6 @@ let Alignment = {
 	fill : 2,
 	center : 3
 };
-/* Define Enum: ApplicationKind */
-let ApplicationKind = {
-	terminal : 0,
-	window : 1,
-	operation : 2
-};
 /* Define Enum: Authorize */
 let Authorize = {
 	undetermined : 0,
@@ -703,12 +685,6 @@ let Alignment = {
 	trailing : 1,
 	fill : 2,
 	center : 3
-};
-/* Define Enum: ApplicationKind */
-let ApplicationKind = {
-	terminal : 0,
-	window : 1,
-	operation : 2
 };
 /* Define Enum: Authorize */
 let Authorize = {

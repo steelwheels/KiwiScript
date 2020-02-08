@@ -41,7 +41,7 @@ import Foundation
 		mOwnerContext		= octxt
 		mSelfContext		= KEContext(virtualMachine: JSVirtualMachine())
 		mLibraries		= libs
-		mConfig			= conf
+		mConfig			= KEConfig(applicationType: conf.applicationType, doStrict: conf.doStrict, logLevel: conf.logLevel)
 		mOperationInstance	= nil
 		mGetFunction		= nil
 		mSetFunction		= nil

@@ -171,6 +171,23 @@ do {
 	_proc1.start([]) ;
 	let _ecode2 = _proc1.waitUntilExit() ;
 } while(false) ;
+-- Unit test: 11
+ - Source
+    > ls | wc -l ;
+    > history ;
+ - Script
+do {
+	let _ecode3 = 0 ;
+	let _pipe1 = Pipe();
+	let _proc1 = system(`ls`, stdin, _pipe1, stderr) ;
+	let _proc2 = system(`wc -l`, _pipe1, stdout, stderr) ;
+	for(let proc of [_proc1, _proc2] ){
+		_ecode3 = _select_exit_code(proc.waitUntilExit(), _ecode3) ;
+	}
+	let _proc4 = run("/Users/tomoo/Library/Frameworks/KiwiShell.framework/Resources/Binary/history.js", stdin, stdout, stderr) ;
+	_proc4.start([]) ;
+	let _ecode5 = _proc4.waitUntilExit() ;
+} while(false) ;
 ***** UTScriptManager
-names: history 
+names: history cd 
 Summary: OK
