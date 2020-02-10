@@ -11,6 +11,7 @@
 		050DBEA320C2D47A00F0E133 /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050DBEA220C2D47A00F0E133 /* CoconutData.framework */; };
 		050DBEA520C2D49A00F0E133 /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050DBEA420C2D49A00F0E133 /* KiwiEngine.framework */; };
 		050DBEA720C2D4A800F0E133 /* KiwiLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050DBEA620C2D4A800F0E133 /* KiwiLibrary.framework */; };
+		050E8FE623F0EDD4000C67F6 /* fonts.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050E8FE523F0EDC2000C67F6 /* fonts.js */; };
 		05274FEA23B8F4FD0077E8ED /* history.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05274FE723B8F4E00077E8ED /* history.js */; };
 		05274FEF23B8FE7A0077E8ED /* UTScriptManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05274FEE23B8FE7A0077E8ED /* UTScriptManager.swift */; };
 		055232D62039AE1100FD002C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055232D52039AE1100FD002C /* main.swift */; };
@@ -75,6 +76,7 @@
 			dstPath = Binary;
 			dstSubfolderSpec = 7;
 			files = (
+				050E8FE623F0EDD4000C67F6 /* fonts.js in CopyFiles */,
 				05C0FDA223D28EDC00C88984 /* cd.js in CopyFiles */,
 				05274FEA23B8F4FD0077E8ED /* history.js in CopyFiles */,
 			);
@@ -108,6 +110,7 @@
 		050DBEA220C2D47A00F0E133 /* CoconutData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutData.framework; path = ../../../../Library/Frameworks/CoconutData.framework; sourceTree = "<group>"; };
 		050DBEA420C2D49A00F0E133 /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../Library/Frameworks/KiwiEngine.framework; sourceTree = "<group>"; };
 		050DBEA620C2D4A800F0E133 /* KiwiLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiLibrary.framework; path = ../../../../Library/Frameworks/KiwiLibrary.framework; sourceTree = "<group>"; };
+		050E8FE523F0EDC2000C67F6 /* fonts.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = fonts.js; sourceTree = "<group>"; };
 		05100ECC2039A17000C269BB /* KiwiShell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiShell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05100ED02039A17000C269BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05274FE723B8F4E00077E8ED /* history.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = history.js; sourceTree = "<group>"; };
@@ -220,6 +223,7 @@
 		05274FE623B8F4CE0077E8ED /* Binary */ = {
 			isa = PBXGroup;
 			children = (
+				050E8FE523F0EDC2000C67F6 /* fonts.js */,
 				05C0FDA123D28ECA00C88984 /* cd.js */,
 				05274FE723B8F4E00077E8ED /* history.js */,
 			);

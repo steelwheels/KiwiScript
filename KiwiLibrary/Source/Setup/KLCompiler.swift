@@ -383,6 +383,10 @@ open class KLCompiler: KECompiler
 		let stderrobj = file.standardFile(fileType: .error, context: ctxt)
 		ctxt.set(name: "stderr", object: stderrobj)
 
+		/* FontManager */
+		let fontmgr = KLFontManager(context: ctxt)
+		ctxt.set(name: "FontManager", object: fontmgr)
+
 		/* JSON */
 		let json = KLJSON(context: ctxt)
 		ctxt.set(name: "JSON", object: json)

@@ -62,6 +62,9 @@ Create and control processes and threads.
 * [JSON](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/JSON.md): The object to operate JSON file.
 * [URL](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md): Data representation of URL
 
+### Terminal
+* [FontManager](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/FontManager.md): The singleton object to manage fonts.
+
 ### Graphics
 * [`SpriteAction`](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/BuiltIn/SpriteAction.md): The parameters to decide sprite node action.
 * [`SpriteStatus`](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/BuiltIn/SpriteStatus.md): The parameters to present sprite node status.
