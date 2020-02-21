@@ -58,9 +58,9 @@ public class KEEnumTable
 
 		let distribution = KEEnumType(typeName: "Distribution")
 		distribution.add(members: [
-			KEEnumType.Member(name: "fill",		value: CNDistribution.fill.rawValue),
-			KEEnumType.Member(name: "fillEqually",	value: CNDistribution.fillEqually.rawValue),
-			KEEnumType.Member(name: "equalSpacing",	value: CNDistribution.equalSpacing.rawValue),
+			KEEnumType.Member(name: "fillProportinally",	value: CNDistribution.fillProportinally.rawValue),
+			KEEnumType.Member(name: "fillEqually",		value: CNDistribution.fillEqually.rawValue),
+			KEEnumType.Member(name: "equalSpacing",		value: CNDistribution.equalSpacing.rawValue),
 		])
 		mEnumTypes[distribution.typeName] = distribution
 
