@@ -406,14 +406,8 @@ open class KLCompiler: KECompiler
 
 	private func defineGlobalObjects(context ctxt: KEContext, console cons: CNFileConsole, config conf: KEConfig) {
 		/* console */
-		switch conf.applicationType {
-		case .terminal:
-			/* Define console */
-			let newcons = KLConsole(context: ctxt, console: cons)
-			ctxt.set(name: "console", object: newcons)
-		case .window:
-			break
-		}
+		let newcons = KLConsole(context: ctxt, console: cons)
+		ctxt.set(name: "console", object: newcons)
 	}
 
 	private func defineConstructors(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
