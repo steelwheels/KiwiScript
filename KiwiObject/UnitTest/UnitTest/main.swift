@@ -14,7 +14,7 @@ import Foundation
 
 public func main()
 {
-	let config = KEConfig(kind: .Terminal, doStrict: true, doVerbose: true)
+	let config = KEConfig(applicationType: .terminal, doStrict: true, logLevel: .detail)
 
 	let console = CNFileConsole()
 	let context = KEContext(virtualMachine: JSVirtualMachine())

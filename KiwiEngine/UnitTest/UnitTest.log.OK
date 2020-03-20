@@ -13,11 +13,6 @@ let Alignment = {
 	fill : 2,
 	center : 3
 };
-/* Define Enum: ApplicationType */
-let ApplicationType = {
-	terminal : 0,
-	window : 1
-};
 /* Define Enum: Authorize */
 let Authorize = {
 	undetermined : 0,
@@ -44,7 +39,7 @@ let Color = {
 };
 /* Define Enum: Distribution */
 let Distribution = {
-	fill : 0,
+	fillProportinally : 0,
 	fillEqually : 1,
 	equalSpacing : 2
 };
@@ -61,13 +56,6 @@ let FileType = {
 	notExist : 0,
 	file : 1,
 	directory : 2
-};
-/* Define Enum: ProcessType */
-let ProcessType = {
-	main : 0,
-	process : 1,
-	thread : 2,
-	operation : 3
 };
 /* Define Enum: TextAlign */
 let TextAlign = {
@@ -141,11 +129,11 @@ testValue : OK
     }
   }
   scripts: {
-    script-a: {
-      "scriptA.js"
-    }
     script-b: {
       "scriptB.js"
+    }
+    script-a: {
+      "scriptA.js"
     }
   }
 }

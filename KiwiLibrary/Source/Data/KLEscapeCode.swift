@@ -87,7 +87,7 @@ import Foundation
 
 	public func color(_ type: JSValue, _ color: JSValue) -> JSValue {
 		var result: String? = nil
-		if let targ = Target(rawValue: type.toInt32()), let col = CNColor(rawValue: color.toInt32()) {
+		if let targ = Target(rawValue: type.toInt32()), let col = CNColor.color(withEscapeCode: color.toInt32()) {
 			switch targ {
 			case .forground:
 				result = CNEscapeCode.foregroundColor(col).encode()
