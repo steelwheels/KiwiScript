@@ -374,14 +374,14 @@ open class KLCompiler: KECompiler
 					 error:   cons.errorHandle)
 		ctxt.set(name: "FileManager", object: file)
 
-		let stdinobj = file.standardFile(fileType: .input, context: ctxt)
-		ctxt.set(name: "stdin", object: stdinobj)
+		let stdin = KLFile(file: CNTextFile(fileHandle: cons.inputHandle), context: ctxt)
+		ctxt.set(name: "stdin", object: stdin)
 
-		let stdoutobj = file.standardFile(fileType: .output, context: ctxt)
-		ctxt.set(name: "stdout", object: stdoutobj)
+		let stdout = KLFile(file: CNTextFile(fileHandle: cons.outputHandle), context: ctxt)
+		ctxt.set(name: "stdout", object: stdout)
 
-		let stderrobj = file.standardFile(fileType: .error, context: ctxt)
-		ctxt.set(name: "stderr", object: stderrobj)
+		let stderr = KLFile(file: CNTextFile(fileHandle: cons.errorHandle), context: ctxt)
+		ctxt.set(name: "stderr", object: stderr)
 
 		/* FontManager */
 		let fontmgr = KLFontManager(context: ctxt)

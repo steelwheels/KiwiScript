@@ -12,19 +12,11 @@ import Foundation
 
 @objc public protocol KLFileProtocol: JSExport
 {
-	func close() -> JSValue
 	func getc() -> JSValue
 	func getl() -> JSValue
 	func put(_ str: JSValue) -> JSValue
+	func close()
 }
-
-@objc public protocol KLFileTypeProtocol: JSExport
-{
-	var NotExist:	JSValue { get }
-	var File:	JSValue { get }
-	var Directory:	JSValue { get }
-}
-
 
 @objc public class KLFile: NSObject, KLFileProtocol
 {
@@ -44,13 +36,8 @@ import Foundation
 		get { return mFile.fileHandle }
 	}
 
-	public func close() -> JSValue {
-		mFile.close()
-		return JSValue(int32: 0, in: mContext)
-	}
-
 	public func getc() -> JSValue {
-		if let c = mFile.getChar() {
+		if let c = mFile.getc() {
 			let str = String(c)
 			return JSValue(object: str, in: mContext)
 		} else {
@@ -59,8 +46,8 @@ import Foundation
 	}
 
 	public func getl() -> JSValue {
-		if let line = mFile.getLine() {
-			return JSValue(object: line, in: mContext)
+		if let l = mFile.getl() {
+			return JSValue(object: l, in: mContext)
 		} else {
 			return JSValue(nullIn: mContext)
 		}
@@ -75,6 +62,10 @@ import Foundation
 			}
 		}
 		return JSValue(int32: result, in: mContext)
+	}
+
+	public func close(){
+		mFile.close()
 	}
 }
 

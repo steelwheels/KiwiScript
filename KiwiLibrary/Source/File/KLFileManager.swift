@@ -33,16 +33,16 @@ import Foundation
 
 @objc public class KLFileManager: NSObject, KLFileManagerProtocol
 {
-	private var mContext:	KEContext
-	private var mStdin:	KLFile
-	private var mStdout:	KLFile
-	private var mStderr:	KLFile
+	private var mContext:		KEContext
+	private var mInputFileHandle:	FileHandle
+	private var mOutputFileHandle:	FileHandle
+	private var mErrorFileHandle:	FileHandle
 
 	public init(context ctxt: KEContext, input inhdl: FileHandle, output outhdl: FileHandle, error errhdl: FileHandle){
-		mContext   = ctxt
-		mStdin	   = KLFile(file: CNTextFileObject(fileHandle: inhdl ), context: ctxt)
-		mStdout	   = KLFile(file: CNTextFileObject(fileHandle: outhdl), context: ctxt)
-		mStderr    = KLFile(file: CNTextFileObject(fileHandle: errhdl), context: ctxt)
+		mContext		= ctxt
+		mInputFileHandle	= inhdl
+		mOutputFileHandle	= outhdl
+		mErrorFileHandle	= errhdl
 	}
 
 	public func open(_ pathval: JSValue, _ accval: JSValue) -> JSValue
@@ -58,7 +58,7 @@ import Foundation
 				let fileobj = KLFile(file: file, context: mContext)
 				return JSValue(object: fileobj, in: mContext)
 			case .error(_):
-				mStderr.fileHandle.write(string: "Failed to write \(pathval)")
+				mErrorFileHandle.write(string: "Failed to write \(pathval)")
 			}
 		} else if let pathurl = decodePathURL(pathval) {
 			switch fmanager.openFile(URL: pathurl, accessType: acctype) {
@@ -66,20 +66,10 @@ import Foundation
 				let fileobj = KLFile(file: file, context: mContext)
 				return JSValue(object: fileobj, in: mContext)
 			case .error(_):
-				mStderr.fileHandle.write(string: "Failed to write \(pathval)")
+				mErrorFileHandle.write(string: "Failed to write \(pathval)")
 			}
 		}
 		return JSValue(nullIn: mContext)
-	}
-
-	public func standardFile(fileType type: CNStandardFileType, context ctxt: KEContext) -> KLFile {
-		let result: KLFile
-		switch type {
-		case .input:	result = mStdin
-		case .output:	result = mStdout
-		case .error:	result = mStderr
-		}
-		return result
 	}
 
 	private func decodeAccessType(_ accval: JSValue) -> CNFileAccessType? {

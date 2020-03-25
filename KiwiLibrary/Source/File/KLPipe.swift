@@ -37,7 +37,7 @@ import Foundation
 			if let file = mReading {
 				return JSValue(object: file, in: mContext)
 			} else {
-				let newfile = CNTextFileObject(fileHandle: mPipe.fileHandleForReading)
+				let newfile = CNTextFile(fileHandle: mPipe.fileHandleForReading)
 				let fileobj = KLFile(file: newfile, context: mContext)
 				mReading = fileobj
 				return JSValue(object: fileobj, in: mContext)
@@ -50,7 +50,7 @@ import Foundation
 			if let file = mWriting {
 				return JSValue(object: file, in: mContext)
 			} else {
-				let newfile = CNTextFileObject(fileHandle: mPipe.fileHandleForWriting)
+				let newfile = CNTextFile(fileHandle: mPipe.fileHandleForWriting)
 				let fileobj = KLFile(file: newfile, context: mContext)
 				mWriting = fileobj
 				return JSValue(object: fileobj, in: mContext)

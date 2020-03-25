@@ -21,6 +21,7 @@ import Foundation
 	func cursorBackward(_ delta: JSValue) -> JSValue
 
 	func color(_ type: JSValue, _ color: JSValue) -> JSValue
+	func reset() -> JSValue
 }
 
 @objc public class KLEscapeCode: NSObject, KLEscapeCodeProtocol
@@ -100,6 +101,11 @@ import Foundation
 		} else {
 			return JSValue(nullIn: mContext)
 		}
+	}
+
+	public func reset() -> JSValue {
+		let ecode = CNEscapeCode.setNormalAttributes.encode()
+		return JSValue(object: ecode, in: mContext)
 	}
 }
 

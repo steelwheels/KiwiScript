@@ -16,7 +16,7 @@ import Foundation
 	func waitUntilExit() -> Int32
 }
 
-private class KLThreadObject: CNThread
+public class KLThreadObject: CNThread
 {
 	public typealias ScriptFile = KLThread.ScriptFile
 
@@ -59,6 +59,8 @@ private class KLThreadObject: CNThread
 			script = mResource.loadScript(identifier: ident, index: 0)
 		case .url(let url):
 			script = loadScript(from: url)
+		case .script(let scr):
+			script = scr
 		case .unselected:
 			if let url = selectInputFile() {
 				script = loadMainScript(from: url)
@@ -163,6 +165,7 @@ private class KLThreadObject: CNThread
 	public enum ScriptFile {
 		case identifier(String)		// script indentifier in package file
 		case url(URL)			// URL of external file
+		case script(String)		// JavaScript code
 		case unselected			// Not selected yet
 
 		func description() -> String {
@@ -172,6 +175,8 @@ private class KLThreadObject: CNThread
 				result = ident
 			case .url(let url):
 				result = url.path
+			case .script(_):
+				result = "<javascript-code>"
 			case .unselected:
 				result = "<not defined>"
 			}

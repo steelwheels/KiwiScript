@@ -22,29 +22,26 @@ import Foundation
 public class KHScriptThreadObject: CNThread
 {
 	public enum Script {
-		case statements(Array<String>)
+		case empty
+		case script(String)
 		case file(URL)
 	}
 
 	private var mContext:			KEContext
 	private var mConfig:			KHConfig
+	private var mResource:			KEResource
 
 	private var mScript:			Script
 
 	public var context: KEContext { get { return mContext }}
 
-	public init(virtualMachine vm: JSVirtualMachine, queue disque: DispatchQueue, resource res: KEResource, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, config conf: KHConfig){
+	public init(virtualMachine vm: JSVirtualMachine, script scr: Script, queue disque: DispatchQueue, resource res: KEResource, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, config conf: KHConfig){
 		mContext 	= KEContext(virtualMachine: vm)
 		mConfig		= conf
-		mScript		= .statements([])
+		mResource	= res
+		mScript		= scr
 		super.init(queue: disque, input: instrm, output: outstrm, error: errstrm)
 
-		/* Compile the context */
-		let compiler = KHShellCompiler()
-		guard compiler.compileBaseAndLibrary(context: mContext, queue: disque, resource: res, console: self.console, config: conf) else {
-			console.error(string: "Failed to compile script thread context\n")
-			return
-		}
 		/* Set exception handler */
 		mContext.exceptionCallback = {
 			[weak self]  (_ excep: KEException) -> Void in
@@ -54,11 +51,22 @@ public class KHScriptThreadObject: CNThread
 		}
 	}
 
-	public func setScript(script scr: Script) {
-		mScript = scr
+	public override func main(arguments args: Array<CNNativeValue>) -> Int32 {
+		if compile(config: mConfig) {
+			return execOperation(arguments: args)
+		} else {
+			return -1
+		}
 	}
 
-	public override func main(arguments args: Array<CNNativeValue>) -> Int32 {
+	private func compile(config conf: KEConfig) -> Bool {
+		/* Compile the context */
+		let compiler = KHShellCompiler()
+		guard compiler.compileBaseAndLibrary(context: mContext, queue: super.queue, resource: mResource, console: self.console, config: conf) else {
+			console.error(string: "Failed to compile script thread context\n")
+			return false
+		}
+
 		/* Make script */
 		let script: String
 		switch mScript {
@@ -66,39 +74,39 @@ public class KHScriptThreadObject: CNThread
 			if let scr = url.loadContents() {
 				script = String(scr)
 			} else {
-				return -1
+				return false
 			}
-		case .statements(let stmts):
-			script = stmts.joined(separator: "\n")
+		case .script(let scr):
+			script = scr
+		case .empty:
+			console.error(string: "No script")
+			return false
 		}
+		let _ = compiler.compile(context: mContext, statement: script, console: console, config: conf)
+		return true
+	}
 
-		/* Compile user scripts */
-		let compiler = KHShellCompiler()
-		let _ = compiler.compile(context: mContext, statement: script, console: console, config: mConfig)
-		if mContext.errorCount != 0 {
-			console.error(string: "Failed to compile  user scripts")
-			return -1
-		}
-
-		/* Execute main function */
-		var result: Int32 = 0
-		if mConfig.hasMainFunction {
-			/* Convert arguments */
-			let arr: CNNativeValue	= .arrayValue(args)
-			let jsarg		= arr.toJSValue(context: mContext)
-
-			/* Call main function */
-			if let mainfunc = mContext.objectForKeyedSubscript("main") {
-				if let retval = mainfunc.call(withArguments: [jsarg]) {
-					if retval.isNumber {
-						result = retval.toInt32()
-					}
+	private func execOperation(arguments args: Array<CNNativeValue>) -> Int32 {
+		/* Search main function */
+		var result: Int32 = -1
+		if let funcval = mContext.getValue(name: "main") {
+			/* Allocate argument */
+			var jsarr: Array<JSValue> = []
+			for arg in args {
+				jsarr.append(arg.toJSValue(context: mContext))
+			}
+			if let jsarg = JSValue(object: jsarr, in: mContext) {
+				/* Call main function */
+				if let retval = funcval.call(withArguments: [jsarg]) {
+					result = retval.toInt32()
 				} else {
-					console.error(string: "[Error] No Return value.\n")
+					self.console.error(string: "Failed to call main function\n")
 				}
 			} else {
-				console.error(string: "Can not find main function.\n")
+				self.console.error(string: "Failed to covert argument\n")
 			}
+		} else {
+			self.console.error(string: "main function is NOT found\n")
 		}
 		return result
 	}
@@ -110,16 +118,12 @@ public class KHScriptThreadObject: CNThread
 
 	private var mThread:	KHScriptThreadObject
 
-	public init(virtualMachine vm: JSVirtualMachine, queue disque: DispatchQueue, resource res: KEResource, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, config conf: KHConfig){
-		mThread = KHScriptThreadObject(virtualMachine: vm, queue: disque, resource: res, input: instrm, output: outstrm, error: errstrm, config: conf)
+	public init(virtualMachine vm: JSVirtualMachine, script scr: Script, queue disque: DispatchQueue, resource res: KEResource, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, config conf: KHConfig){
+		mThread = KHScriptThreadObject(virtualMachine: vm, script: scr, queue: disque, resource: res, input: instrm, output: outstrm, error: errstrm, config: conf)
 	}
 
 	public var isExecuting:	Bool  { get { return mThread.isRunning }}
-	public var context: KEContext { get { return mThread.context }}
-
-	public func setScript(script scr: Script) {
-		mThread.setScript(script: scr)
-	}
+	public var context: KEContext { get { return mThread.context   }}
 
 	public func start(arguments args: Array<CNNativeValue>) {
 		mThread.start(arguments: args)
@@ -134,4 +138,5 @@ public class KHScriptThreadObject: CNThread
 		return mThread.waitUntilExit()
 	}
 }
+
 

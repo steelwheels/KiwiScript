@@ -23,8 +23,10 @@ public func main()
 		filecons.error(string: exception.description)
 	}
 
-	let fmanager = KLFileManager(context: context, input: filecons.inputHandle, output: filecons.outputHandle, error: filecons.errorHandle)
-
+	let fmanager = KLFileManager(context: context,
+				     input:  filecons.inputHandle,
+				     output: filecons.outputHandle,
+				     error:  filecons.errorHandle)
 	let compiler = KLCompiler()
 	if(compiler.compileBase(context: context, console: filecons, config: config)){
 		filecons.print(string: "  -> Compiler: OK\n")

@@ -2,26 +2,6 @@
 The object to access file contents.
 This object will be allocated by [FileManager](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/FileManager.md) object.
 
-## `close` method
-Close the file. After the file was closed, it can not access the file.
-````
-var errcode = file.close()
-````
-### Parameter(s)
-none
-### Return value
-When the closing file is succeeded, return value will be "0". If some errors were occurred, Non zero value will be returned.
-
-## `getl` method
-Read a line string from file and return it as string value. The string will be terminated by "\n" except the last line. When there are no string to be read, the return value will be *nil*.
-````
-var string = file.getl()
-````
-### Parameter(s)
-none
-### Return value
-See method description.
-
 ## `getc` method
 Read a character from file. When there are no characters to be read, the *nil* will be returned.
 ````
@@ -31,6 +11,16 @@ var c = file.getc()
 none
 ### Return value
 The string which contains a character. If there are no characters to be read, the *nil* will be returned.
+
+## `getl` method
+Read a line string from file. When there are no lines to be read, the *nil* will be returned.
+````
+var l = file.getl()
+````
+### Parameter(s)
+none
+### Return value
+The string which contains a line string. The string is always terminalted by newline code. If there are no lines to be read, the *nil* will be returned.
 
 ## `put` method
 Write the string into the file.
