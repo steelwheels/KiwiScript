@@ -50,14 +50,14 @@ public class KHShellThreadObject: CNShellThread
 
 	public var context: KEContext { get { return mContext }}
 
-	public init(virtualMachine vm: JSVirtualMachine, queue disque: DispatchQueue, resource res: KEResource, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, config conf: KEConfig){
+	public init(virtualMachine vm: JSVirtualMachine, queue disque: DispatchQueue, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, resource res: KEResource, config conf: KEConfig){
 		mContext	= KEContext(virtualMachine: vm)
 		mInputMode	= .shellScript
-		super.init(queue: disque, input: instrm, output: outstrm, error: errstrm)
+		super.init(queue: disque, input: instrm, output: outstrm, error: errstrm, environment: env)
 
 		/* Compile the context */
 		let compiler  = KHShellCompiler()
-		guard compiler.compileBaseAndLibrary(context: mContext, queue: disque, resource: res, console: console, config: conf) else {
+		guard compiler.compileBaseAndLibrary(context: mContext, queue: disque, environment: env, resource: res, console: console, config: conf) else {
 			console.error(string: "Failed to compile script thread context\n")
 			return
 		}
@@ -157,8 +157,8 @@ public class KHShellThreadObject: CNShellThread
 
 	public var isExecuting: Bool { get { return mThread.isRunning	}}
 
-	public init(virtualMachine vm: JSVirtualMachine, queue disque: DispatchQueue, resource res: KEResource, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, config conf: KEConfig){
-		mThread = KHShellThreadObject(virtualMachine: vm, queue: disque, resource: res, input: instrm, output: outstrm, error: errstrm, config: conf)
+	public init(virtualMachine vm: JSVirtualMachine, queue disque: DispatchQueue, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, resource res: KEResource, config conf: KEConfig){
+		mThread = KHShellThreadObject(virtualMachine: vm, queue: disque, input: instrm, output: outstrm, error: errstrm, environment: env, resource: res, config: conf)
 	}
 
 	public func start() {

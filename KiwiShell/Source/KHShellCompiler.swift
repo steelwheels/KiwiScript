@@ -14,39 +14,39 @@ import Foundation
 
 open class KHShellCompiler: KLCompiler
 {
-	open func compileBaseAndLibrary(context ctxt: KEContext, queue disque: DispatchQueue, resource res: KEResource, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
+	open func compileBaseAndLibrary(context ctxt: KEContext, queue disque: DispatchQueue, environment env: CNEnvironment, resource res: KEResource, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
 		if super.compileBase(context: ctxt, console: cons, config: conf) {
-			if super.compileLibraryInResource(context: ctxt, queue: disque, resource: res, console: cons, config: conf) {
-				defineBuiltinFunctions(context: ctxt, console: cons)
+			if super.compileLibraryInResource(context: ctxt, queue: disque, environment: env, resource: res, console: cons, config: conf) {
+				defineBuiltinFunctions(context: ctxt, environment: env, console: cons)
 				return true
 			}
 		}
 		return false
 	}
 
-	private func defineBuiltinFunctions(context ctxt: KEContext, console cons: CNConsole) {
+	private func defineBuiltinFunctions(context ctxt: KEContext, environment env: CNEnvironment, console cons: CNConsole) {
 		#if os(OSX)
-			defineSystemFunction(context: ctxt)
+			defineSystemFunction(context: ctxt, environment: env)
 		#endif
 	}
 
 	/* Define "system" built-in command */
 	#if os(OSX)
-	private func defineSystemFunction(context ctxt: KEContext) {
+	private func defineSystemFunction(context ctxt: KEContext, environment env: CNEnvironment) {
 		/* system */
 		let systemfunc: @convention(block) (_ cmdval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue = {
 			(_ cmdval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue in
-			return KHShellCompiler.executeSystemCommand(commandValue: cmdval, inputValue: inval, outputValue: outval, errorValue: errval, context: ctxt)
+			return KHShellCompiler.executeSystemCommand(commandValue: cmdval, inputValue: inval, outputValue: outval, errorValue: errval, context: ctxt, environment: env)
 		}
 		ctxt.set(name: "system", function: systemfunc)
 	}
 
-	private static func executeSystemCommand(commandValue cmdval: JSValue, inputValue inval: JSValue, outputValue outval: JSValue, errorValue errval: JSValue, context ctxt: KEContext) -> JSValue {
+	private static func executeSystemCommand(commandValue cmdval: JSValue, inputValue inval: JSValue, outputValue outval: JSValue, errorValue errval: JSValue, context ctxt: KEContext, environment env: CNEnvironment) -> JSValue {
 		if let command = valueToString(value: cmdval),
 		   let instrm  = valueToFileStream(value: inval),
 		   let outstrm = valueToFileStream(value: outval),
 		   let errstrm = valueToFileStream(value: errval) {
-			let process = CNProcess(input: instrm, output: outstrm, error: errstrm, terminationHander: nil)
+			let process = CNProcess(input: instrm, output: outstrm, error: errstrm, environment: env, terminationHander: nil)
 			process.execute(command: command)
 			let procval = KLProcess(process: process, context: ctxt)
 			return JSValue(object: procval, in: ctxt)

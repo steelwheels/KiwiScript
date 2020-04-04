@@ -13,9 +13,10 @@ import Foundation
 
 public func UTRun(context ctxt: KEContext, dispatchQueue queue: DispatchQueue, console cons: CNFileConsole) -> Bool
 {
-	let instrm:  CNFileStream	 = .fileHandle(cons.inputHandle)
-	let outstrm: CNFileStream	 = .fileHandle(cons.outputHandle)
-	let errstrm: CNFileStream	 = .fileHandle(cons.errorHandle)
+	let instrm:  CNFileStream	= .fileHandle(cons.inputHandle)
+	let outstrm: CNFileStream	= .fileHandle(cons.outputHandle)
+	let errstrm: CNFileStream	= .fileHandle(cons.errorHandle)
+	let env:     CNEnvironment	= CNEnvironment()
 
 	guard let vm = JSVirtualMachine() else {
 		cons.print(string: "Could not allocate VM")
@@ -33,7 +34,7 @@ public func UTRun(context ctxt: KEContext, dispatchQueue queue: DispatchQueue, c
 
 	let config = KEConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
 	let url    = URL(fileURLWithPath: "../Test/Sample/sample-1.js")
-	let thread = KLThread(virtualMachine: vm, scriptFile: .url(url), queue: queue, input: instrm, output: outstrm, error: errstrm, resource: resource, config: config)
+	let thread = KLThread(virtualMachine: vm, scriptFile: .url(url), queue: queue, input: instrm, output: outstrm, error: errstrm, environment: env, resource: resource, config: config)
 	thread.start(args)
 
 	/* Wait until exist */

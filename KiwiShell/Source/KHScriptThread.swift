@@ -35,12 +35,12 @@ public class KHScriptThreadObject: CNThread
 
 	public var context: KEContext { get { return mContext }}
 
-	public init(virtualMachine vm: JSVirtualMachine, script scr: Script, queue disque: DispatchQueue, resource res: KEResource, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, config conf: KHConfig){
+	public init(virtualMachine vm: JSVirtualMachine, script scr: Script, queue disque: DispatchQueue, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, resource res: KEResource, config conf: KHConfig){
 		mContext 	= KEContext(virtualMachine: vm)
 		mConfig		= conf
 		mResource	= res
 		mScript		= scr
-		super.init(queue: disque, input: instrm, output: outstrm, error: errstrm)
+		super.init(queue: disque, input: instrm, output: outstrm, error: errstrm, environment: env)
 
 		/* Set exception handler */
 		mContext.exceptionCallback = {
@@ -62,7 +62,7 @@ public class KHScriptThreadObject: CNThread
 	private func compile(config conf: KEConfig) -> Bool {
 		/* Compile the context */
 		let compiler = KHShellCompiler()
-		guard compiler.compileBaseAndLibrary(context: mContext, queue: super.queue, resource: mResource, console: self.console, config: conf) else {
+		guard compiler.compileBaseAndLibrary(context: mContext, queue: super.queue, environment: self.environment, resource: mResource, console: self.console, config: conf) else {
 			console.error(string: "Failed to compile script thread context\n")
 			return false
 		}
@@ -118,8 +118,8 @@ public class KHScriptThreadObject: CNThread
 
 	private var mThread:	KHScriptThreadObject
 
-	public init(virtualMachine vm: JSVirtualMachine, script scr: Script, queue disque: DispatchQueue, resource res: KEResource, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, config conf: KHConfig){
-		mThread = KHScriptThreadObject(virtualMachine: vm, script: scr, queue: disque, resource: res, input: instrm, output: outstrm, error: errstrm, config: conf)
+	public init(virtualMachine vm: JSVirtualMachine, script scr: Script, queue disque: DispatchQueue, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, resource res: KEResource, config conf: KHConfig){
+		mThread = KHScriptThreadObject(virtualMachine: vm, script: scr, queue: disque, input: instrm, output: outstrm, error: errstrm, environment: env, resource: res, config: conf)
 	}
 
 	public var isExecuting:	Bool  { get { return mThread.isRunning }}

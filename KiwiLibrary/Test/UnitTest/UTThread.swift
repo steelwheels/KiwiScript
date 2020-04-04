@@ -40,8 +40,9 @@ public func UTThread(context ctxt: KEContext, queue disque: DispatchQueue, conso
 		let instrm:  CNFileStream	 = .fileHandle(cons.inputHandle)
 		let outstrm: CNFileStream	 = .fileHandle(cons.outputHandle)
 		let errstrm: CNFileStream	 = .fileHandle(cons.errorHandle)
+		let env:     CNEnvironment	 = CNEnvironment()
 		let config 			 = KEConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
-		let thread = KLThread(virtualMachine: vm, scriptFile: file, queue: disque, input: instrm, output: outstrm, error: errstrm, resource: resource, config: config)
+		let thread = KLThread(virtualMachine: vm, scriptFile: file, queue: disque, input: instrm, output: outstrm, error: errstrm, environment: env, resource: resource, config: config)
 
 		/* Start thread */
 		let arg0   = JSValue(object: "Thread", in: ctxt)
