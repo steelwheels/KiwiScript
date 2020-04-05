@@ -12,11 +12,11 @@ import Foundation
 
 open class KLCompiler: KECompiler
 {
-	open override func compileBase(context ctxt: KEContext, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
+	open override func compileBase(context ctxt: KEContext, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
 		/* Expand enum table before they are defined */
 		addEnumTypes()
 
-		guard super.compileBase(context: ctxt, console: cons, config: conf) else {
+		guard super.compileBase(context: ctxt, environment: env, console: cons, config: conf) else {
 			cons.error(string: "Failed to compile")
 			return false
 		}
@@ -24,11 +24,11 @@ open class KLCompiler: KECompiler
 		defineConstants(context: ctxt)
 		defineFunctions(context: ctxt, console: cons, config: conf)
 		definePrimitiveObjects(context: ctxt, console: cons, config: conf)
-		defineClassObjects(context: ctxt, console: cons, config: conf)
+		defineClassObjects(context: ctxt, environment: env, console: cons, config: conf)
 		defineGlobalObjects(context: ctxt, console: cons, config: conf)
 		defineConstructors(context: ctxt, console: cons, config: conf)
 		importBuiltinLibrary(context: ctxt, console: cons, config: conf)
-		defineOperationObjects(context: ctxt, console: cons, config: conf)
+		defineOperationObjects(context: ctxt, environment: env, console: cons, config: conf)
 
 		return true
 	}
@@ -358,7 +358,7 @@ open class KLCompiler: KECompiler
 		ctxt.set(name: "Rect", function: rectFunc)
 	}
 
-	private func defineClassObjects(context ctxt: KEContext, console cons: CNFileConsole, config conf: KEConfig) {
+	private func defineClassObjects(context ctxt: KEContext, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) {
 		/* Pipe() */
 		let pipeFunc:  @convention(block) () -> JSValue = {
 			() -> JSValue in
@@ -398,6 +398,10 @@ open class KLCompiler: KECompiler
 		/* EscapeCode */
 		let ecode = KLEscapeCode(context: ctxt)
 		ctxt.set(name: "EscapeCode", object: ecode)
+
+		/* Environment */
+		let env = KLEnvironment(environment: env, context: ctxt)
+		ctxt.set(name: "Env", object: env)
 
 		/* Built-in script manager */
 		let scrmgr = KLBuiltinScriptManager(context: ctxt)
@@ -448,7 +452,7 @@ open class KLCompiler: KECompiler
 		}
 	}
 
-	private func defineOperationObjects(context ctxt: KEContext, console cons: CNFileConsole, config conf: KEConfig) {
+	private func defineOperationObjects(context ctxt: KEContext, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) {
 		/* Operaion */
 		let opfunc: @convention(block) (_ urlsval: JSValue, _ consval: JSValue) -> JSValue = {
 			(_ urlsval: JSValue, _ consval: JSValue) -> JSValue in
@@ -461,6 +465,7 @@ open class KLCompiler: KECompiler
 							   input:  cons.inputHandle,
 							   output: cons.outputHandle,
 							   error:  cons.errorHandle,
+							   environment: env,
 							   config: opconfig)
 
 			/* User scripts */

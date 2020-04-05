@@ -46,7 +46,7 @@ public class KLThreadObject: CNThread
 	private func compile(config conf: KEConfig) -> Bool {
 		/* Compile */
 		let compiler = KLCompiler()
-		guard compiler.compileBase(context: mContext, console: self.console, config: conf) else {
+		guard compiler.compileBase(context: mContext, environment: self.environment, console: self.console, config: conf) else {
 			return false
 		}
 		guard compiler.compileLibraryInResource(context: mContext, queue: self.queue, environment: self.environment, resource: mResource, console: self.console, config: conf) else {

@@ -13,8 +13,10 @@ import Foundation
 
 public func UTOperation(context ctxt: KEContext, console cons: CNFileConsole, config conf: KEConfig) -> Bool
 {
+	let env = CNEnvironment()
+
 	cons.print(string: "// Allocate operation\n")
-	guard let op = allocateOperation(context: ctxt, console: cons, config: conf) else {
+	guard let op = allocateOperation(context: ctxt, environment: env, console: cons, config: conf) else {
 		cons.error(string: "Could not allocate operation\n")
 		return false
 	}
@@ -66,7 +68,7 @@ public func UTOperation(context ctxt: KEContext, console cons: CNFileConsole, co
 	return true
 }
 
-private func allocateOperation(context ctxt: KEContext, console cons: CNFileConsole, config conf: KEConfig) -> KLOperationContext?
+private func allocateOperation(context ctxt: KEContext, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> KLOperationContext?
 {
 	let strct = CNNativeStruct(name: "UTStruct")
 	strct.setMember(name: "a", value: CNNativeValue.numberValue(NSNumber(floatLiteral: 0.12)))
@@ -77,6 +79,7 @@ private func allocateOperation(context ctxt: KEContext, console cons: CNFileCons
 					input:  cons.inputHandle,
 					output: cons.outputHandle,
 					error:  cons.errorHandle,
+					environment: env,
 					config: conf)
 
 	switch CNFilePath.URLForBundleFile(bundleName: "UnitTest", fileName: "unit-test-0", ofType: "js") {

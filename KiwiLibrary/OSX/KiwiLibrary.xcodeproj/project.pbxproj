@@ -50,12 +50,14 @@
 		05D5128822315C0E00AD95EE /* UTOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D5128722315C0E00AD95EE /* UTOperation.swift */; };
 		05D6BF8421D3D3E4001D737A /* KLImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D6BF8321D3D3E4001D737A /* KLImage.swift */; };
 		05DB987A239336EA008F31F9 /* UTFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DB9879239336EA008F31F9 /* UTFileManager.swift */; };
+		05DF90262438A2F300E4FAAF /* UTEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DF90252438A2F300E4FAAF /* UTEnvironment.swift */; };
 		05E166A622DAB85A00AC6C4E /* UTMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E166A422DAB85400AC6C4E /* UTMath.swift */; };
 		05F0202C203F091100B430F5 /* KLFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F02028203F091100B430F5 /* KLFile.swift */; };
 		05F0202D203F091100B430F5 /* KLJSONFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F02029203F091100B430F5 /* KLJSONFile.swift */; };
 		05F0202E203F091100B430F5 /* KLConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F0202A203F091100B430F5 /* KLConsole.swift */; };
 		05F100A522300F8100B399BE /* KLOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F100A422300F8100B399BE /* KLOperationQueue.swift */; };
 		05F95E1823B9979F006EF30B /* KLBuiltinScripts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F95E1723B9979F006EF30B /* KLBuiltinScripts.swift */; };
+		05F99C83243890880072EDE1 /* KLEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F99C82243890880072EDE1 /* KLEnvironment.swift */; };
 		05FE42A5204164B90094D971 /* KiwiLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 05B12286203F0734009DDBEF /* KiwiLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -167,12 +169,14 @@
 		05D5128722315C0E00AD95EE /* UTOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTOperation.swift; sourceTree = "<group>"; };
 		05D6BF8321D3D3E4001D737A /* KLImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLImage.swift; sourceTree = "<group>"; };
 		05DB9879239336EA008F31F9 /* UTFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTFileManager.swift; sourceTree = "<group>"; };
+		05DF90252438A2F300E4FAAF /* UTEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTEnvironment.swift; sourceTree = "<group>"; };
 		05E166A422DAB85400AC6C4E /* UTMath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTMath.swift; sourceTree = "<group>"; };
 		05F02028203F091100B430F5 /* KLFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLFile.swift; sourceTree = "<group>"; };
 		05F02029203F091100B430F5 /* KLJSONFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLJSONFile.swift; sourceTree = "<group>"; };
 		05F0202A203F091100B430F5 /* KLConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLConsole.swift; sourceTree = "<group>"; };
 		05F100A422300F8100B399BE /* KLOperationQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLOperationQueue.swift; sourceTree = "<group>"; };
 		05F95E1723B9979F006EF30B /* KLBuiltinScripts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLBuiltinScripts.swift; sourceTree = "<group>"; };
+		05F99C82243890880072EDE1 /* KLEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLEnvironment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +247,7 @@
 				0546C40E2253B0D2001686B8 /* UTOperation2.swift */,
 				0567B9A123462F64008CA9A2 /* UTThread.swift */,
 				05C8B6362391DEFD00FA5646 /* UTRun.swift */,
+				05DF90252438A2F300E4FAAF /* UTEnvironment.swift */,
 				058EEBBE22F5066B0095012B /* UTNativeValue.swift */,
 				05DB9879239336EA008F31F9 /* UTFileManager.swift */,
 				05117D0023F0E7200053F390 /* UTFontManager.swift */,
@@ -338,6 +343,7 @@
 				05D2B3F323ACDFFF0026D80A /* KLChar.swift */,
 				05D6BF8321D3D3E4001D737A /* KLImage.swift */,
 				05B746CE237FE6AA002F58F8 /* KLEscapeCode.swift */,
+				05F99C82243890880072EDE1 /* KLEnvironment.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -584,6 +590,7 @@
 				058EEBBF22F5066B0095012B /* UTNativeValue.swift in Sources */,
 				05B860CF23B98BB00019D62B /* UTScriptManager.swift in Sources */,
 				05117D0123F0E7200053F390 /* UTFontManager.swift in Sources */,
+				05DF90262438A2F300E4FAAF /* UTEnvironment.swift in Sources */,
 				05DB987A239336EA008F31F9 /* UTFileManager.swift in Sources */,
 				05E166A622DAB85A00AC6C4E /* UTMath.swift in Sources */,
 				0546C40F2253B0D2001686B8 /* UTOperation2.swift in Sources */,
@@ -622,6 +629,7 @@
 				05610E5121B3C12800535D06 /* KLDatabase.swift in Sources */,
 				05F100A522300F8100B399BE /* KLOperationQueue.swift in Sources */,
 				057FF82D2344CEDE0044AAE8 /* KLThread.swift in Sources */,
+				05F99C83243890880072EDE1 /* KLEnvironment.swift in Sources */,
 				05F95E1823B9979F006EF30B /* KLBuiltinScripts.swift in Sources */,
 				05068611225659DA00641F95 /* KLType.swift in Sources */,
 				058414AB231583FF002F731E /* KLProcess.swift in Sources */,

@@ -5,12 +5,13 @@
 function main(args)
 {
 	let path   = args[0] ;
-	let result = 1
 	if(isString(path)){
-		if(FileManager.changeCurrentDirectory(path)){
-			result = 0
+		let newpath = FileManager.normalizePath(Env.get("PWD"), path) ;
+		if(FileManager.isDirectory(newpath)){
+			Env.set("PWD", newpath.path) ;
+			return 0
 		}
 	}
-	return result
+	return 1
 }
 

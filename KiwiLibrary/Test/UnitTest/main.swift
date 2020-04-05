@@ -23,12 +23,14 @@ public func main()
 		filecons.error(string: exception.description)
 	}
 
+	let env = CNEnvironment()
+
 	let fmanager = KLFileManager(context: context,
 				     input:  filecons.inputHandle,
 				     output: filecons.outputHandle,
 				     error:  filecons.errorHandle)
 	let compiler = KLCompiler()
-	if(compiler.compileBase(context: context, console: filecons, config: config)){
+	if(compiler.compileBase(context: context, environment: env, console: filecons, config: config)){
 		filecons.print(string: "  -> Compiler: OK\n")
 	} else {
 		filecons.print(string: "  -> Compiler: NG\n")
@@ -78,7 +80,11 @@ public func main()
 	filecons.print(string: "/* Unit test for ScriptManager */\n")
 	let result9 = UTScriptManager(console: filecons)
 
-	if result0 && result1 && result2 && result3 && result4 && result5 && result6 && result7 && result8 && result9 && result10 {
+	/* Env */
+	filecons.print(string: "/* Unit test for environmrnt */\n")
+	let result11 = UTEnvironment(context: context, console: filecons)
+
+	if result0 && result1 && result2 && result3 && result4 && result5 && result6 && result7 && result8 && result9 && result10 && result11 {
 		filecons.print(string: "Summary: OK\n")
 	} else {
 		filecons.print(string: "Summary: NG (\(result0) \(result1) \(result2) \(result3) \(result4) \(result5) \(result6) \(result7) \(result8))\n")

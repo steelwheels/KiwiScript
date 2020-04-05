@@ -30,6 +30,7 @@ import Foundation
 	 */
 	private var 	mOwnerContext:		KEContext
 	private var	mSelfContext:		KEContext
+	private var 	mEnvironment:		CNEnvironment
 	private var	mLibraries:		Array<URL>
 	private var	mConfig:		KEConfig
 	private var	mOperationInstance:	JSValue?
@@ -37,9 +38,10 @@ import Foundation
 	private var	mSetFunction:		JSValue?
 	private var 	mExecFunction:		JSValue?
 
-	public init(ownerContext octxt: KEContext, libraries libs: Array<URL>, input inhdl: FileHandle, output outhdl: FileHandle, error errhdl: FileHandle, config conf: KEConfig){
+	public init(ownerContext octxt: KEContext, libraries libs: Array<URL>, input inhdl: FileHandle, output outhdl: FileHandle, error errhdl: FileHandle, environment env: CNEnvironment, config conf: KEConfig){
 		mOwnerContext		= octxt
 		mSelfContext		= KEContext(virtualMachine: JSVirtualMachine())
+		mEnvironment		= env
 		mLibraries		= libs
 		mConfig			= KEConfig(applicationType: conf.applicationType, doStrict: conf.doStrict, logLevel: conf.logLevel)
 		mOperationInstance	= nil
@@ -139,7 +141,7 @@ import Foundation
 	public func compile(userStructs structs: Array<CNNativeStruct>, userScripts scripts: Array<URL>) -> Bool {
 		let compiler = KLOperationCompiler()
 		let result: Bool
-		if compiler.compile(context: mSelfContext, operation: self, userStructs: structs, libraries: mLibraries, userScripts: scripts, console: self.console, config: mConfig) {
+		if compiler.compile(context: mSelfContext, operation: self, userStructs: structs, libraries: mLibraries, userScripts: scripts, environment: mEnvironment, console: self.console, config: mConfig) {
 			result = getGlobalVariables(context: mSelfContext)
 		} else {
 			result = false
@@ -185,8 +187,8 @@ import Foundation
 
 private class KLOperationCompiler: KLCompiler
 {
-	public func compile(context ctxt: KEContext, operation op: KLOperationContext, userStructs structs: Array<CNNativeStruct>, libraries libs: Array<URL>, userScripts scripts:  Array<URL>, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
-		if super.compileBase(context: ctxt, console: cons, config: conf) {
+	public func compile(context ctxt: KEContext, operation op: KLOperationContext, userStructs structs: Array<CNNativeStruct>, libraries libs: Array<URL>, userScripts scripts:  Array<URL>, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
+		if super.compileBase(context: ctxt, environment: env, console: cons, config: conf) {
 			compileOperationClass(context: ctxt, operation: op, console: cons, config: conf)
 
 			var bothscripts = libs

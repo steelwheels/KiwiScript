@@ -2040,4 +2040,6 @@ Zapfino
 ScriptManager
  - script: unit-test-0
  - script: unit-test-1
+/* Unit test for environmrnt */
+Env(MSG) = hello
 Summary: OK

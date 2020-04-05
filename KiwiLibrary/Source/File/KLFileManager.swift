@@ -14,13 +14,13 @@ import Foundation
 {
 	func open(_ pathstr: JSValue, _ acctype: JSValue) -> JSValue
 
+	func isDirectory(_ pathstr: JSValue) -> JSValue
 	func isReadable(_ pathstr: JSValue) -> JSValue
 	func isWritable(_ pathstr: JSValue) -> JSValue
 	func isExecutable(_ pathstr: JSValue) -> JSValue
 	func isDeletable(_ pathstr: JSValue) -> JSValue
 
-	func currentDirectory() -> JSValue
-	func changeCurrentDirectory(_ dir: JSValue) -> JSValue
+	func normalizePath(_ parent: JSValue, _ subdir: JSValue) -> JSValue
 
 	#if os(OSX)
 		func homeDirectory() -> JSValue
@@ -102,6 +102,17 @@ import Foundation
 		return nil
 	}
 
+	public func isDirectory(_ pathval: JSValue) -> JSValue {
+		if let path = valueToString(value: pathval) {
+			if FileManager.default.fileExists(atPath: path, isDirectory: nil) {
+				return JSValue(bool: true, in: mContext)
+			} else {
+				return JSValue(bool: false, in: mContext)
+			}
+		}
+		return JSValue(nullIn: mContext)
+	}
+
 	public func isReadable(_ pathval: JSValue) -> JSValue {
 		var result = false
 		if let url = valueToURL(value: pathval) {
@@ -134,27 +145,14 @@ import Foundation
 		return JSValue(bool: result, in: mContext)
 	}
 
-	private func valueToURL(value val: JSValue) -> URL? {
-		if val.isURL {
-			return val.toURL()
-		} else {
-			return nil
+	public func normalizePath(_ parent: JSValue, _ subdir: JSValue) -> JSValue {
+		if let parenturl = valueToURL(value: parent),
+		   let subdirstr = valueToString(value: subdir) {
+			var url = parenturl.appendingPathComponent(subdirstr)
+			url.standardize()
+			return JSValue(object: KLURL(URL: url, context: mContext), in: mContext)
 		}
-	}
-
-	public func currentDirectory() -> JSValue {
-		let curdir = FileManager.default.currentDirectoryPath
-		let cururl = URL(fileURLWithPath: curdir)
-		let urlobj = KLURL(URL: cururl, context: mContext)
-		return JSValue(object: urlobj, in: mContext)
-	}
-
-	public func changeCurrentDirectory(_ dir: JSValue) -> JSValue {
-		var result = false
-		if let path = pathString(in: dir) {
-			result = FileManager.default.changeCurrentDirectoryPath(path)
-		}
-		return JSValue(bool: result, in: mContext)
+		return JSValue(nullIn: mContext)
 	}
 
 	#if os(OSX)
@@ -210,5 +208,25 @@ import Foundation
 			}
 		}
 		return JSValue(int32: CNFileType.NotExist.rawValue, in: self.mContext)
+	}
+
+	private func valueToURL(value val: JSValue) -> URL? {
+		if val.isURL {
+			return val.toURL()
+		} else if val.isString {
+			return URL(fileURLWithPath: val.toString())
+		} else {
+			return nil
+		}
+	}
+
+	private func valueToString(value val: JSValue) -> String? {
+		if val.isURL {
+			return val.toURL().path
+		} else if val.isString {
+			return val.toString()
+		} else {
+			return nil
+		}
 	}
 }
