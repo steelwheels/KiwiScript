@@ -1,4 +1,10 @@
 'use strict' ;
+/* Define Enum: AccessType */
+let AccessType = {
+	read : 0,
+	write : 1,
+	append : 2
+};
 /* Define Enum: Alignment */
 let Alignment = {
 	leading : 0,
@@ -276,6 +282,12 @@ read(d2) -> -5
 /* Unit test for Operation */
 // Allocate operation
 'use strict' ;
+/* Define Enum: AccessType */
+let AccessType = {
+	read : 0,
+	write : 1,
+	append : 2
+};
 /* Define Enum: Alignment */
 let Alignment = {
 	leading : 0,
@@ -526,6 +538,12 @@ Input value: 1.23
 Task: Hello, World !!
 /* Unit test for Operation2 */
 'use strict' ;
+/* Define Enum: AccessType */
+let AccessType = {
+	read : 0,
+	write : 1,
+	append : 2
+};
 /* Define Enum: Alignment */
 let Alignment = {
 	leading : 0,
@@ -679,6 +697,12 @@ class Graphics {
 }
 MainThread: Compile OK
 'use strict' ;
+/* Define Enum: AccessType */
+let AccessType = {
+	read : 0,
+	write : 1,
+	append : 2
+};
 /* Define Enum: Alignment */
 let Alignment = {
 	leading : 0,
@@ -951,17 +975,20 @@ Thread is finished with error code: 0
 /* Unit test for FileManager */
 Home directory:
   * path: <skipped>
-    isReadable:   true
-    isWritable:   true
-    isExecutable: true
-    isDeletable:  false
+    isReadable:   false
+    isWritable:   false
+    isExecutable: false
+    isDeletable:  true
+FileType: Not exit
   * path: <skipped>
     isReadable:   true
     isWritable:   true
     isExecutable: true
     isDeletable:  true
-Change directory: ..
-Change directory: OSX
+FileType: Directory
+normalize: /home/user + tmp => /home/user/tmp
+normalize: /home/user/tmp + .. => /home/user
+Expected value: true
 /* Unit test for FontManager */
 [Available fonts]
 ..SFCompactDisplay-Regular

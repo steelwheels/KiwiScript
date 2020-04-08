@@ -189,5 +189,5 @@ do {
 	let _ecode5 = _proc4.waitUntilExit() ;
 } while(false) ;
 ***** UTScriptManager
-names: history cd 
+names: cd fonts history 
 Summary: OK

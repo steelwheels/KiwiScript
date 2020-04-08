@@ -14,17 +14,15 @@ import Foundation
 {
 	func open(_ pathstr: JSValue, _ acctype: JSValue) -> JSValue
 
-	func isDirectory(_ pathstr: JSValue) -> JSValue
 	func isReadable(_ pathstr: JSValue) -> JSValue
 	func isWritable(_ pathstr: JSValue) -> JSValue
 	func isExecutable(_ pathstr: JSValue) -> JSValue
 	func isDeletable(_ pathstr: JSValue) -> JSValue
+	func isAccessible(_ pathstr: JSValue, _ acctype: JSValue) -> JSValue
 
 	func normalizePath(_ parent: JSValue, _ subdir: JSValue) -> JSValue
 
-	#if os(OSX)
-		func homeDirectory() -> JSValue
-	#endif
+	func homeDirectory() -> JSValue
 	func temporaryDirectory() -> JSValue
 
 	func checkFileType(_ pathstr: JSValue) -> JSValue
@@ -34,12 +32,14 @@ import Foundation
 @objc public class KLFileManager: NSObject, KLFileManagerProtocol
 {
 	private var mContext:		KEContext
+	private var mEnvironment:	CNEnvironment
 	private var mInputFileHandle:	FileHandle
 	private var mOutputFileHandle:	FileHandle
 	private var mErrorFileHandle:	FileHandle
 
-	public init(context ctxt: KEContext, input inhdl: FileHandle, output outhdl: FileHandle, error errhdl: FileHandle){
+	public init(context ctxt: KEContext, environment env: CNEnvironment, input inhdl: FileHandle, output outhdl: FileHandle, error errhdl: FileHandle){
 		mContext		= ctxt
+		mEnvironment		= env
 		mInputFileHandle	= inhdl
 		mOutputFileHandle	= outhdl
 		mErrorFileHandle	= errhdl
@@ -53,7 +53,8 @@ import Foundation
 
 		let fmanager = FileManager.default
 		if let pathstr = decodePathString(pathval) {
-			switch fmanager.openFile(filePath: pathstr, accessType: acctype) {
+			let pathurl = fmanager.fullPathURL(relativePath: pathstr, baseDirectory: mEnvironment.currentDirectory.path)
+			switch fmanager.openFile(URL: pathurl, accessType: acctype) {
 			case .ok(let file):
 				let fileobj = KLFile(file: file, context: mContext)
 				return JSValue(object: fileobj, in: mContext)
@@ -102,17 +103,6 @@ import Foundation
 		return nil
 	}
 
-	public func isDirectory(_ pathval: JSValue) -> JSValue {
-		if let path = valueToString(value: pathval) {
-			if FileManager.default.fileExists(atPath: path, isDirectory: nil) {
-				return JSValue(bool: true, in: mContext)
-			} else {
-				return JSValue(bool: false, in: mContext)
-			}
-		}
-		return JSValue(nullIn: mContext)
-	}
-
 	public func isReadable(_ pathval: JSValue) -> JSValue {
 		var result = false
 		if let url = valueToURL(value: pathval) {
@@ -145,6 +135,29 @@ import Foundation
 		return JSValue(bool: result, in: mContext)
 	}
 
+	public func isAccessible(_ pathval: JSValue, _ accval: JSValue) -> JSValue {
+		if pathval.isString && accval.isNumber {
+			let pathstr = pathval.toString()
+			let accnum  = accval.toInt32()
+			let acctype: CNFileAccessType?
+			switch accnum {
+			case CNFileAccessType.ReadAccess.rawValue:
+				acctype = .ReadAccess
+			case CNFileAccessType.WriteAccess.rawValue:
+				acctype = .WriteAccess
+			case CNFileAccessType.AppendAccess.rawValue:
+				acctype = .AppendAccess
+			default:
+				acctype = nil
+			}
+			if let path = pathstr, let type = acctype {
+				let result = FileManager.default.isAccessible(pathString: path, accessType: type)
+				return JSValue(bool: result, in: mContext)
+			}
+		}
+		return JSValue(nullIn: mContext)
+	}
+
 	public func normalizePath(_ parent: JSValue, _ subdir: JSValue) -> JSValue {
 		if let parenturl = valueToURL(value: parent),
 		   let subdirstr = valueToString(value: subdir) {
@@ -155,13 +168,11 @@ import Foundation
 		return JSValue(nullIn: mContext)
 	}
 
-	#if os(OSX)
 	public func homeDirectory() -> JSValue {
-		let dirurl = FileManager.default.homeDirectoryForCurrentUser
-		let urlobj = KLURL(URL: dirurl, context: mContext)
+		let home = CNPreference.shared.userPreference.homeDirectory
+		let urlobj = KLURL(URL: home, context: mContext)
 		return JSValue(object: urlobj, in: mContext)
 	}
-	#endif
 
 	public func temporaryDirectory() -> JSValue {
 		let tmpurl = FileManager.default.temporaryDirectory
@@ -195,17 +206,10 @@ import Foundation
 	}
 
 	public func checkFileType(_ pathval: JSValue) -> JSValue {
-		if pathval.isString {
-			if let pathstr = pathval.toString() {
-				let fmanager = FileManager.default
-				var result: Int32
-				switch fmanager.checkFileType(pathString: pathstr) {
-				case .NotExist:		result = CNFileType.NotExist.rawValue
-				case .File:		result = CNFileType.File.rawValue
-				case .Directory:	result = CNFileType.Directory.rawValue
-				}
-				return JSValue(int32: result, in: self.mContext)
-			}
+		if let pathstr = valueToString(value: pathval) {
+			let fmanager = FileManager.default
+			let ftype    = fmanager.checkFileType(pathString: pathstr)
+			return JSValue(int32: ftype.rawValue, in: self.mContext)
 		}
 		return JSValue(int32: CNFileType.NotExist.rawValue, in: self.mContext)
 	}

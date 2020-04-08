@@ -17,11 +17,13 @@ public func UTFileManager(fileManager manager: KLFileManager, context ctxt: KECo
 	let res0 = printURL(URLValue: manager.homeDirectory(), fileManager: manager, console: cons)
 	let res1 = printURL(URLValue: manager.temporaryDirectory(), fileManager: manager, console: cons)
 	let res2 = normalizePath(fileManager: manager, context: ctxt, console: cons)
-	return res0 && res1 && res2
+	let res3 = accessibilityTest(fileManager: manager, context: ctxt, console: cons)
+	return res0 && res1 && res2 && res3
 }
 
 private func printURL(URLValue val: JSValue, fileManager manager: KLFileManager, console cons: CNConsole) -> Bool
 {
+	var result = true
 	if val.isURL {
 		//let url = val.toURL()
 		//cons.print(string: "  * path: \(url.path)\n")
@@ -30,9 +32,29 @@ private func printURL(URLValue val: JSValue, fileManager manager: KLFileManager,
 		cons.print(string: "    isWritable:   " + valueToBoolString(boolValue: manager.isWritable(val)) + "\n")
 		cons.print(string: "    isExecutable: " + valueToBoolString(boolValue: manager.isExecutable(val)) + "\n")
 		cons.print(string: "    isDeletable:  " + valueToBoolString(boolValue: manager.isDeletable(val)) + "\n")
-		return true
+	} else {
+		result = false
 	}
-	return false
+
+	let typeval = manager.checkFileType(val)
+	if typeval.isNumber {
+		switch typeval.toInt32() {
+		case CNFileType.File.rawValue:
+			cons.print(string: "FileType: File\n")
+		case CNFileType.Directory.rawValue:
+			cons.print(string: "FileType: Directory\n")
+		case CNFileType.NotExist.rawValue:
+			cons.print(string: "FileType: Not exit\n")
+		default:
+			cons.print(string: "FileType: Unknown\n")
+			result = false
+		}
+	} else {
+		cons.print(string: "[Error] Unexpected file type: \(typeval.description)")
+		result = false
+	}
+
+	return result
 }
 
 private func valueToBoolString(boolValue val: JSValue) -> String {
@@ -46,7 +68,6 @@ private func valueToBoolString(boolValue val: JSValue) -> String {
 	}
 	return result
 }
-
 
 private func normalizePath(fileManager manager: KLFileManager, context ctxt: KEContext, console cons: CNConsole) -> Bool
 {
@@ -68,59 +89,24 @@ private func normalizeTest(fileManager manager: KLFileManager, context ctxt: KEC
 	return result
 }
 
-/*
-private func currentDirectoryTest() -> Bool {
-	var result = true
-
-	if let newdir = JSValue(object: String(".."), in: ctxt) {
-		let resval = manager.changeCurrentDirectory(newdir)
-		if resval.isBoolean {
-			if resval.toBool() {
-				cons.print(string: "Change directory: ..\n")
+private func accessibilityTest(fileManager manager: KLFileManager, context ctxt: KEContext, console cons: CNConsole) -> Bool
+{
+	if let pathval = JSValue(object: FileManager.default.currentDirectoryPath + "/Info.plist", in: ctxt),
+	   let accval  = JSValue(int32: CNFileAccessType.ReadAccess.rawValue, in: ctxt) {
+		let retval  = manager.isAccessible(pathval, accval)
+		if retval.isBoolean {
+			if retval.toBool() {
+				cons.print(string: "Expected value: true\n")
+				return true
 			} else {
-				cons.print(string: "Current directory can not be changed (1)\n")
-				result = false
+				cons.print(string: "[Error] Unexpected value: false\n")
 			}
 		} else {
-			cons.print(string: "Current directory can not be changed (2) \n")
-			result = false
+			cons.print(string: "[Error] Invalud return value: \(retval.description)\n")
 		}
 	} else {
-		cons.print(string: "[Error] Failed to change directory\n")
-		result = false
+		cons.print(string: "[Error] Invalid parameters\n")
 	}
-
-	#if false
-	let dirval = manager.currentDirectory()
-	if dirval.isURL {
-		let url = dirval.toURL()
-		cons.print(string: "CurrentDirectory: \(url.path)\n")
-	} else {
-		cons.print(string: "CurrentDirectory: nil\n")
-		result = false
-	}
-	#endif
-
-	if result {
-		if let newdir = JSValue(object: String("OSX"), in: ctxt) {
-			let resval = manager.changeCurrentDirectory(newdir)
-			if resval.isBoolean {
-				if resval.toBool() {
-					cons.print(string: "Change directory: OSX\n")
-				} else {
-					cons.print(string: "Current directory can not be changed (1)\n")
-					result = false
-				}
-			} else {
-				cons.print(string: "Current directory can not be changed (2) \n")
-				result = false
-			}
-		} else {
-			cons.print(string: "[Error] Failed to change directory\n")
-			result = false
-		}
-	}
-	return result
+	return false
 }
-*/
 

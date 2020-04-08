@@ -40,6 +40,14 @@ public class KEEnumTable
 		])
 		mEnumTypes[filetype.typeName] = filetype
 
+		let acctype = KEEnumType(typeName: "AccessType")
+		acctype.add(members: [
+			KEEnumType.Member(name: "read", 		value: CNFileAccessType.ReadAccess.rawValue),
+			KEEnumType.Member(name: "write", 		value: CNFileAccessType.WriteAccess.rawValue),
+			KEEnumType.Member(name: "append", 		value: CNFileAccessType.AppendAccess.rawValue),
+		])
+		mEnumTypes[acctype.typeName] = acctype
+
 		let axis = KEEnumType(typeName: "Axis")
 		axis.add(members: [
 			KEEnumType.Member(name: "horizontal",	value: CNAxis.horizontal.rawValue),

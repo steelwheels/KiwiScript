@@ -25,10 +25,11 @@ public func main()
 
 	let env = CNEnvironment()
 
-	let fmanager = KLFileManager(context: context,
-				     input:  filecons.inputHandle,
-				     output: filecons.outputHandle,
-				     error:  filecons.errorHandle)
+	let fmanager = KLFileManager(context: 		context,
+				     environment:	env,
+				     input:  		filecons.inputHandle,
+				     output: 		filecons.outputHandle,
+				     error:  		filecons.errorHandle)
 	let compiler = KLCompiler()
 	if(compiler.compileBase(context: context, environment: env, console: filecons, config: config)){
 		filecons.print(string: "  -> Compiler: OK\n")

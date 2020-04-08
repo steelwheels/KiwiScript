@@ -368,10 +368,11 @@ open class KLCompiler: KECompiler
 		ctxt.set(name: "Pipe", function: pipeFunc)
 
 		/* File */
-		let file = KLFileManager(context: ctxt,
-					 input:   cons.inputHandle,
-					 output:  cons.outputHandle,
-					 error:   cons.errorHandle)
+		let file = KLFileManager(context: 	ctxt,
+					 environment:	env,
+					 input:   	cons.inputHandle,
+					 output:  	cons.outputHandle,
+					 error:   	cons.errorHandle)
 		ctxt.set(name: "FileManager", object: file)
 
 		let stdin = KLFile(file: CNTextFile(fileHandle: cons.inputHandle), context: ctxt)

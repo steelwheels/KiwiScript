@@ -23,6 +23,9 @@ FileManager.isReadable(file: URL) -> Bool
 |:---           |:---   |:---                           |
 |file           |[URL](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md) |URL of the file to check      |
 
+### Return
+The value is `true` when the given file is readable.
+
 ## `isWritable` class method
 Returns a Boolean value that indicates whether the file at the given URL is writable or not.
 ````
@@ -33,6 +36,9 @@ FileManager.isWritable(file: URL) -> Bool
 |Parameter      |Type   |Description                    |
 |:---           |:---   |:---                           |
 |file           |[URL](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md) |URL of the file to check      |
+
+### Return
+The value is `true` when the given file is writable.
 
 ## `isExecutable` class method
 Returns a Boolean value that indicates whether the file at the given URL is executable or not.
@@ -45,8 +51,11 @@ FileManager.isExecutable(file: URL) -> Bool
 |:---           |:---   |:---                           |
 |file           |[URL](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md) |URL of the file to check      |
 
+### Return
+The value is `true` when the given file is executable.
+
 ## `isDeletable` class method
-Returns a Boolean value that indicates whether the file at the given URL is deletable or not.
+Returns a boolean value that indicates whether the file at the given URL is deletable or not.
 ````
 FileManager.isDeletable(file: URL) -> Bool
 ````
@@ -55,6 +64,24 @@ FileManager.isDeletable(file: URL) -> Bool
 |Parameter      |Type   |Description                    |
 |:---           |:---   |:---                           |
 |file           |[URL](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md) |URL of the file to check      |
+
+### Return
+The value is `true` when the given file is deletable.
+
+## `isAccessible` class methods
+Return a boolean value that indicates whether the file can be accessed or not.
+````
+FileManager.isAccessible(file: String, accessType: AccessType)
+````
+
+### Parameter(s)
+|Parameter      |Type   |Description                    |
+|:---           |:---   |:---                           |
+|file           |String | The string of the file path   |
+|accessType     |[AccessType](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/AcccessType.md) | Type of access to be checked. |
+
+### Return
+The value is `true` when the given file is accessible.
 
 ## `open` class method
 Allocate file object by the file name and access method.

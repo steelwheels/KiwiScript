@@ -14,7 +14,7 @@ import Foundation
 public func UTScriptManager(console cons: CNConsole) -> Bool
 {
 	let manager = KLBuiltinScripts.shared
-	let names   = manager.scriptNames()
+	let names   = manager.scriptNames().sorted()
 	cons.print(string: "names: ")
 	for name in names {
 		cons.print(string: "\(name) ")
