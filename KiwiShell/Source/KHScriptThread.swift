@@ -42,6 +42,10 @@ public class KHScriptThreadObject: CNThread
 		mScript		= scr
 		super.init(queue: disque, input: instrm, output: outstrm, error: errstrm, environment: env)
 
+		/* Set initial home directory */
+		let homedir = CNPreference.shared.userPreference.homeDirectory
+		environment.currentDirectory = homedir
+
 		/* Set exception handler */
 		mContext.exceptionCallback = {
 			[weak self]  (_ excep: KEException) -> Void in
