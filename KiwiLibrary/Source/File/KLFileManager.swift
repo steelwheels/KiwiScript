@@ -20,7 +20,7 @@ import Foundation
 	func isDeletable(_ pathstr: JSValue) -> JSValue
 	func isAccessible(_ pathstr: JSValue, _ acctype: JSValue) -> JSValue
 
-	func normalizePath(_ parent: JSValue, _ subdir: JSValue) -> JSValue
+	func fullPath(_ path: JSValue, _ base: JSValue) -> JSValue
 
 	func homeDirectory() -> JSValue
 	func temporaryDirectory() -> JSValue
@@ -136,9 +136,8 @@ import Foundation
 	}
 
 	public func isAccessible(_ pathval: JSValue, _ accval: JSValue) -> JSValue {
-		if pathval.isString && accval.isNumber {
-			let pathstr = pathval.toString()
-			let accnum  = accval.toInt32()
+		if let pathstr = valueToString(value: pathval),
+		   let accnum  = valueToInt(value: accval) {
 			let acctype: CNFileAccessType?
 			switch accnum {
 			case CNFileAccessType.ReadAccess.rawValue:
@@ -150,12 +149,22 @@ import Foundation
 			default:
 				acctype = nil
 			}
-			if let path = pathstr, let type = acctype {
-				let result = FileManager.default.isAccessible(pathString: path, accessType: type)
+			if let type = acctype {
+				let result = FileManager.default.isAccessible(pathString: pathstr, accessType: type)
 				return JSValue(bool: result, in: mContext)
 			}
 		}
 		return JSValue(nullIn: mContext)
+	}
+
+	public func fullPath(_ pathval: JSValue, _ baseval: JSValue) -> JSValue {
+		if let path = valueToString(value: pathval),
+		   let base = valueToURL(value: baseval) {
+			let url = FileManager.default.fullPath(pathString: path, baseURL: base)
+			return JSValue(object: KLURL(URL: url, context: mContext), in: mContext)
+		} else {
+			return JSValue(nullIn: mContext)
+		}
 	}
 
 	public func normalizePath(_ parent: JSValue, _ subdir: JSValue) -> JSValue {
@@ -229,6 +238,14 @@ import Foundation
 			return val.toURL().path
 		} else if val.isString {
 			return val.toString()
+		} else {
+			return nil
+		}
+	}
+
+	private func valueToInt(value val: JSValue) -> Int32? {
+		if val.isNumber {
+			return val.toInt32()
 		} else {
 			return nil
 		}

@@ -119,6 +119,27 @@ none
 ### Return value
 The [URL object](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md) which presents the current user's home directory.
 
+## `fullPath` method
+Convert relative-path declaration into full-path declaration.
+````
+let fullpath = FileManager.fullpath(path: String, currentDir: URL)
+````
+
+### Parameter(s)
+|Parameter    |Type   |Description                    |
+|:---         |:---   |:---                           |
+|path         |String |Path of the file               |
+|curdir       |[URL](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md) |URL of current directory |
+
+If the given `path` is *absolute path*, the URL of it is returned.
+If the given `path` is *relative path*, the `curdir` URL is treated as the parent path of the `path`. The result of merging is returned as full path URL.
+
+You can get URL of current directory by `currentDirectory` method of the [Environment](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Environment.md) class.
+
+### Return value
+The URL of full path to point the given `path`.
+If the parameters are invalid, the return value will be `null`.
+
 ## `checkFileType` method
 Check the file type given by path string.
 ````
