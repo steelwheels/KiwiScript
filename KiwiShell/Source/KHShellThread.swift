@@ -55,10 +55,6 @@ public class KHShellThreadObject: CNShellThread
 		mInputMode	= .shellScript
 		super.init(queue: disque, input: instrm, output: outstrm, error: errstrm, environment: env)
 
-		/* Setup initial home directory */
-		let homedir = CNPreference.shared.userPreference.homeDirectory
-		environment.currentDirectory = homedir
-
 		/* Compile the context */
 		let compiler  = KHShellCompiler()
 		guard compiler.compileBaseAndLibrary(context: mContext, queue: disque, environment: env, resource: res, console: console, config: conf) else {

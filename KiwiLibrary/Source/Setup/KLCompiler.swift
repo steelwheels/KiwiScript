@@ -421,7 +421,7 @@ open class KLCompiler: KECompiler
 			(_ value: JSValue) -> JSValue in
 			if let str = value.toString() {
 				let url: URL?
-				if let _ = CNFilePath.schemeInString(string: str) {
+				if let _ = FileManager.default.schemeInPath(pathString: str) {
 					url = URL(string: str)
 				} else {
 					url = URL(fileURLWithPath: str)

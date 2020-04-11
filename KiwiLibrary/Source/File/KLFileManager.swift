@@ -53,7 +53,7 @@ import Foundation
 
 		let fmanager = FileManager.default
 		if let pathstr = decodePathString(pathval) {
-			let pathurl = fmanager.fullPathURL(relativePath: pathstr, baseDirectory: mEnvironment.currentDirectory.path)
+			let pathurl = fmanager.fullPath(pathString: pathstr, baseURL: mEnvironment.currentDirectory)
 			switch fmanager.openFile(URL: pathurl, accessType: acctype) {
 			case .ok(let file):
 				let fileobj = KLFile(file: file, context: mContext)
