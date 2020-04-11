@@ -17,7 +17,7 @@ function main(args)
 			case FileType.directory:
 				//console.error("cd: " + path + "\n") ;
 				if(FileManager.isAccessible(path, AccessType.read)) {
-					Env.set("PWD", path) ;
+					Environment.set("PWD", path) ;
 					result = 0 ;
 				} else {
 					console.error("cd: can not read the directory: " + path + "\n")
@@ -29,7 +29,7 @@ function main(args)
 		}
 		return result ;
 	} else {
-		Env.set("PWD", FileManager.homeDirectory()) ;
+		Environment.set("PWD", FileManager.homeDirectory()) ;
 		return 0 ;
 	}
 

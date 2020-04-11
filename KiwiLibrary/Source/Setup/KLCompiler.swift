@@ -134,10 +134,18 @@ open class KLCompiler: KECompiler
 		/* isDate */
 		let isDateFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in
-			let result: Bool = value.isArray
+			let result: Bool = value.isDate
 			return JSValue(bool: result, in: ctxt)
 		}
 		ctxt.set(name: "isDate", function: isDateFunc)
+
+		/* isURL */
+		let isURLFunc: @convention(block) (_ value: JSValue) -> JSValue = {
+			(_ value: JSValue) -> JSValue in
+			let result: Bool = value.isURL
+			return JSValue(bool: result, in: ctxt)
+		}
+		ctxt.set(name: "isURL", function: isURLFunc)
 
 		/* typeID */
 		let typeidFunc: @convention(block) (_ value: JSValue) -> JSValue = {
