@@ -402,7 +402,7 @@ open class KLCompiler: KECompiler
 
 		/* Environment */
 		let env = KLEnvironment(environment: env, context: ctxt)
-		ctxt.set(name: "Env", object: env)
+		ctxt.set(name: "Environment", object: env)
 
 		/* Built-in script manager */
 		let scrmgr = KLBuiltinScriptManager(context: ctxt)

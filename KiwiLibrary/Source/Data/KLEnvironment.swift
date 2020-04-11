@@ -14,6 +14,9 @@ import Foundation
 {
 	func set(_ name: JSValue, _ value: JSValue)
 	func get(_ name: JSValue) -> JSValue
+
+	var currentDirectory:  JSValue { get }
+	var temporaryDirectory: JSValue { get }
 }
 
 @objc public class KLEnvironment: NSObject, KLEnvironmentProtocol
@@ -46,5 +49,21 @@ import Foundation
 			result = val.toString()
 		}
 		return result
+	}
+
+	public var currentDirectory:  JSValue {
+		get {
+			let dir = mEnvironment.currentDirectory
+			let url = KLURL(URL: dir, context: mContext)
+			return JSValue(object: url, in: mContext)
+		}
+	}
+
+	public var temporaryDirectory: JSValue {
+		get {
+			let dir = mEnvironment.temporaryDirectory
+			let url = KLURL(URL: dir, context: mContext)
+			return JSValue(object: url, in: mContext)
+		}
 	}
 }

@@ -2068,5 +2068,7 @@ ScriptManager
  - script: unit-test-0
  - script: unit-test-1
 /* Unit test for environmrnt */
-Env(MSG) = hello
+Environment("MSG") = hello
+current_directory => true
+temporary_directory => true
 Summary: OK
