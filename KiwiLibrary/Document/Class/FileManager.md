@@ -3,7 +3,7 @@ The *FileManager* class is used to allocate *File* class.
 The File is used to read and/or write the file.
 
 ## Global variables
-Following global variables are defined when this class is imported.
+Following global variables are defined.
 
 |Variable   |Class  | Description                     |
 |:---       |:---   |:---                             |

@@ -2,7 +2,7 @@
 The *ScriptManager* class is used to read built-in script.
 
 ## Global variables
-Following global variables are defined when this class is imported.
+Singleton object for ScriptManager class
 
 |Variable   |Class  | Description                     |
 |:---       |:---   |:---                             |

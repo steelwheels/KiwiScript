@@ -3,11 +3,11 @@ The *FontManager* class is used to allocate *File* class.
 The File is used to read and/or write the file.
 
 ## Global variables
-Following global variables are defined when this class is imported.
+The singleton object for the FontManager class
 
 |Variable   |Class  | Description                     |
 |:---       |:---   |:---                             |
-|FileManager  |FileManager   |Singleton object of Font manager class   |
+|FontManager  |FontManager   |Singleton object of FontManager class   |
 
 ## Properties
 |Variable   |Type  | Description                     |
@@ -16,3 +16,4 @@ Following global variables are defined when this class is imported.
 
 # References
 * [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library
+
