@@ -14,6 +14,8 @@
 		050E8FE623F0EDD4000C67F6 /* fonts.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050E8FE523F0EDC2000C67F6 /* fonts.js */; };
 		05274FEA23B8F4FD0077E8ED /* history.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05274FE723B8F4E00077E8ED /* history.js */; };
 		05274FEF23B8FE7A0077E8ED /* UTScriptManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05274FEE23B8FE7A0077E8ED /* UTScriptManager.swift */; };
+		0550C0072442F36900493ACC /* setenv.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0550C0052442F33E00493ACC /* setenv.js */; };
+		0550C0082442F36900493ACC /* getenv.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0550C0062442F35700493ACC /* getenv.js */; };
 		055232D62039AE1100FD002C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055232D52039AE1100FD002C /* main.swift */; };
 		0554175323181982005BE0C5 /* KHConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0554175223181982005BE0C5 /* KHConfig.swift */; };
 		055AAA912039A319008018A8 /* KiwiShell.h in Headers */ = {isa = PBXBuildFile; fileRef = 055AAA902039A319008018A8 /* KiwiShell.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -76,6 +78,8 @@
 			dstPath = Binary;
 			dstSubfolderSpec = 7;
 			files = (
+				0550C0072442F36900493ACC /* setenv.js in CopyFiles */,
+				0550C0082442F36900493ACC /* getenv.js in CopyFiles */,
 				050E8FE623F0EDD4000C67F6 /* fonts.js in CopyFiles */,
 				05C0FDA223D28EDC00C88984 /* cd.js in CopyFiles */,
 				05274FEA23B8F4FD0077E8ED /* history.js in CopyFiles */,
@@ -115,6 +119,8 @@
 		05100ED02039A17000C269BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05274FE723B8F4E00077E8ED /* history.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = history.js; sourceTree = "<group>"; };
 		05274FEE23B8FE7A0077E8ED /* UTScriptManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTScriptManager.swift; sourceTree = "<group>"; };
+		0550C0052442F33E00493ACC /* setenv.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = setenv.js; sourceTree = "<group>"; };
+		0550C0062442F35700493ACC /* getenv.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = getenv.js; sourceTree = "<group>"; };
 		055232D32039AE1100FD002C /* UnitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		055232D52039AE1100FD002C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		0554175223181982005BE0C5 /* KHConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KHConfig.swift; sourceTree = "<group>"; };
@@ -226,6 +232,8 @@
 				050E8FE523F0EDC2000C67F6 /* fonts.js */,
 				05C0FDA123D28ECA00C88984 /* cd.js */,
 				05274FE723B8F4E00077E8ED /* history.js */,
+				0550C0052442F33E00493ACC /* setenv.js */,
+				0550C0062442F35700493ACC /* getenv.js */,
 			);
 			path = Binary;
 			sourceTree = "<group>";
