@@ -104,7 +104,7 @@ import Foundation
 	}
 
 	public func reset() -> JSValue {
-		let ecode = CNEscapeCode.setNormalAttributes.encode()
+		let ecode = CNEscapeCode.resetCharacterAttribute.encode()
 		return JSValue(object: ecode, in: mContext)
 	}
 }

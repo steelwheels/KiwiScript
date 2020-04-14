@@ -11,10 +11,12 @@ The singleton object is defined for Environment class.
 ## Pre-defined environment variables
 Following variables are defined before executing script.
 
-|Variable name  |Description                            |
-|:---           |:---                                   |
-|`PWD`          |Path of the current working directory  |
-|`TMPDIR`       |Path of the temporary directory        |
+|Variable name  |Description                                             |
+|:---           |:---                                                   |
+|`CLICOLOR`, `CLICOLOR_FORCE` |The flag to use color in the terminal. The [JSTerminal](https://github.com/steelwheels/JSTerminal/blob/master/Documents/UsersManual.md) could not support terminal functions such as `isatty`. For more details, see [Bug & Restrictions](https://github.com/steelwheels/JSTerminal/blob/master/Documents/restrictions.md). |
+|`PWD`          |Path of the current working directory                  |
+|`TERM`         |Terminal type. The default value is `xterm-16color`    |
+|`TMPDIR`       |Path of the temporary directory                        |
 
 ## `set` method
 Set environent variable. The name of the variable and it's value are must have string type.
