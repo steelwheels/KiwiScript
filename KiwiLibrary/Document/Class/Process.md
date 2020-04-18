@@ -15,9 +15,15 @@ process.isRunning() ;
 Wait until the process is finished.
 The return value is exit code of the process.
 ````
-process.waitUntilExit() -> Int
+process.waitUntilExit() -> Int ;
+````
+
+### `terminate`
+Terminate the process.
+````
+process.terminate() ;
 ````
 
 ## References
-* [system function](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/System.md): The function to generate process. 
+* [system function](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/System.md): The function to generate process.
 * [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library
