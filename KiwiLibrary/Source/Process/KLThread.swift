@@ -14,6 +14,7 @@ import Foundation
 	func start(_ args: JSValue)
 	func isRunning() -> Bool
 	func waitUntilExit() -> Int32
+	func terminate()
 }
 
 public class KLThreadObject: CNThread
@@ -207,6 +208,10 @@ public class KLThreadObject: CNThread
 
 	public func waitUntilExit() -> Int32 {
 		return mThread.waitUntilExit()
+	}
+
+	public func terminate() {
+		return mThread.terminate()
 	}
 
 	public func print(string str: String) {

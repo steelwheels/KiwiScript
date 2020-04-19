@@ -189,5 +189,5 @@ do {
 	let _ecode5 = _proc4.waitUntilExit() ;
 } while(false) ;
 ***** UTScriptManager
-names: cd fonts history 
+names: cd fonts getenv history setenv 
 Summary: OK

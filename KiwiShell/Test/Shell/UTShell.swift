@@ -30,11 +30,10 @@ public func UTShell(input inhdl: FileHandle, output outhdl: FileHandle, error er
 	let outstrm : CNFileStream = .fileHandle(outhdl)
 	let errstrm : CNFileStream = .fileHandle(errhdl)
 
-	let queue    = DispatchQueue(label: "test", qos: .default, attributes: .concurrent)
 	let env      = CNEnvironment()
 	let resource = KEResource(baseURL: URL(fileURLWithPath: "."))
 	let config   = KEConfig(applicationType: .terminal, doStrict: true, logLevel: .detail)
-	let shell    = KHShellThread(virtualMachine: vm, queue: queue, input: instrm, output: outstrm, error: errstrm, environment: env, resource: resource, config: config)
+	let shell    = KHShellThread(virtualMachine: vm, input: instrm, output: outstrm, error: errstrm, environment: env, resource: resource, config: config)
 	shell.start()
 
 	sleep(1)
