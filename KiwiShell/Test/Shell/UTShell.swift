@@ -33,7 +33,8 @@ public func UTShell(input inhdl: FileHandle, output outhdl: FileHandle, error er
 	let env      = CNEnvironment()
 	let resource = KEResource(baseURL: URL(fileURLWithPath: "."))
 	let config   = KEConfig(applicationType: .terminal, doStrict: true, logLevel: .detail)
-	let shell    = KHShellThread(virtualMachine: vm, input: instrm, output: outstrm, error: errstrm, environment: env, resource: resource, config: config)
+	let shellobj = KHShellThreadObject(virtualMachine: vm, input: instrm, output: outstrm, error: errstrm, environment: env, resource: resource, config: config)
+	let shell    = KHShellThread(thread: shellobj)
 	shell.start()
 
 	sleep(1)

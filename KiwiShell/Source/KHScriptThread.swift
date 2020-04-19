@@ -133,8 +133,8 @@ public class KHScriptThreadObject: CNThread
 
 	private var mThread:	KHScriptThreadObject
 
-	public init(virtualMachine vm: JSVirtualMachine, script scr: Script, queue disque: DispatchQueue, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, resource res: KEResource, config conf: KHConfig){
-		mThread = KHScriptThreadObject(virtualMachine: vm, script: scr, queue: disque, input: instrm, output: outstrm, error: errstrm, environment: env, resource: res, config: conf)
+	public init(thread threadobj: KHScriptThreadObject){
+		mThread = threadobj
 	}
 
 	public var isExecuting:	Bool  { get { return mThread.isRunning }}

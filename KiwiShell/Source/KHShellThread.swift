@@ -158,8 +158,8 @@ public class KHShellThreadObject: CNShellThread
 
 	public var isExecuting: Bool { get { return mThread.isRunning	}}
 
-	public init(virtualMachine vm: JSVirtualMachine, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, resource res: KEResource, config conf: KEConfig){
-		mThread = KHShellThreadObject(virtualMachine: vm, input: instrm, output: outstrm, error: errstrm, environment: env, resource: res, config: conf)
+	public init(thread threadobj: KHShellThreadObject){
+		mThread = threadobj
 	}
 
 	public func start() {
