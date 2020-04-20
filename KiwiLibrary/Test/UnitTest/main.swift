@@ -14,6 +14,7 @@ import Foundation
 public func main()
 {
 	let filecons = CNFileConsole()
+	let pmanager = CNProcessManager()
 	let queue    = DispatchQueue(label: "UnitTest", qos: .default, attributes: .concurrent)
 	let config   = KEConfig(applicationType: .terminal, doStrict: true, logLevel: .detail)
 
@@ -63,7 +64,7 @@ public func main()
 
 	/* Thread */
 	filecons.print(string: "/* Unit test for Thread */\n")
-	let result6 = UTThread(context: context, queue: queue, console: filecons, config: config)
+	let result6 = UTThread(context: context, processManager: pmanager, queue: queue, console: filecons, config: config)
 
 	/* Run */
 	filecons.print(string: "/* Unit test for Run */\n")

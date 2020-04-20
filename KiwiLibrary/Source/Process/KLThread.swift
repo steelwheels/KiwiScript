@@ -26,31 +26,33 @@ public class KLThreadObject: CNThread
 	private var mResource:		KEResource
 	private var mConfig:		KEConfig
 
-	public init(virtualMachine vm: JSVirtualMachine, scriptFile file: ScriptFile, queue disque: DispatchQueue,input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, resource res: KEResource, config conf: KEConfig) {
+	public init(virtualMachine vm: JSVirtualMachine, scriptFile file: ScriptFile, processManager procmgr: CNProcessManager, queue disque: DispatchQueue,input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, resource res: KEResource, config conf: KEConfig) {
 		mContext   	= KEContext(virtualMachine: vm)
 		mScriptFile	= file
 		mResource	= res
 		mConfig		= KEConfig(applicationType: conf.applicationType,
 						  doStrict: conf.doStrict,
 						  logLevel: conf.logLevel)
-		super.init(queue: disque, input: instrm, output: outstrm, error: errstrm, environment: env)
+		super.init(processManager: procmgr, queue: disque, input: instrm, output: outstrm, error: errstrm, environment: env)
 	}
 
 	public override func main(arguments args: Array<CNNativeValue>) -> Int32 {
-		if compile(config: mConfig) {
+		let manager = CNProcessManager()
+		let queue   = DispatchQueue(label: "KLThreadObject", qos: .default, attributes: .concurrent)
+		if compile(processManager: manager, queue: queue, config: mConfig) {
 			return execOperation(arguments: args)
 		} else {
 			return -1
 		}
 	}
 
-	private func compile(config conf: KEConfig) -> Bool {
+	private func compile(processManager procmgr: CNProcessManager, queue disque: DispatchQueue, config conf: KEConfig) -> Bool {
 		/* Compile */
 		let compiler = KLCompiler()
 		guard compiler.compileBase(context: mContext, environment: self.environment, console: self.console, config: conf) else {
 			return false
 		}
-		guard compiler.compileLibraryInResource(context: mContext, queue: self.queue, environment: self.environment, resource: mResource, console: self.console, config: conf) else {
+		guard compiler.compileLibraryInResource(context: mContext, processManager: procmgr, queue: disque, environment: self.environment, resource: mResource, console: self.console, config: conf) else {
 			return false
 		}
 		/* Load script */
@@ -187,8 +189,8 @@ public class KLThreadObject: CNThread
 
 	private var mThread: KLThreadObject
 
-	public init(virtualMachine vm: JSVirtualMachine, scriptFile file: ScriptFile, queue disque: DispatchQueue, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, resource res: KEResource, config conf: KEConfig) {
-		mThread = KLThreadObject(virtualMachine: vm, scriptFile: file, queue: disque, input: instrm, output: outstrm, error: errstrm, environment: env, resource: res, config: conf)
+	public init(thread threadobj: KLThreadObject) {
+		mThread = threadobj
 	}
 
 	public func start(_ args: JSValue) {

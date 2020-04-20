@@ -11,7 +11,7 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-public func UTThread(context ctxt: KEContext, queue disque: DispatchQueue, console cons: CNFileConsole, config conf: KEConfig) -> Bool
+public func UTThread(context ctxt: KEContext, processManager procmgr: CNProcessManager, queue disque: DispatchQueue, console cons: CNFileConsole, config conf: KEConfig) -> Bool
 {
 	var result = false
 
@@ -42,7 +42,8 @@ public func UTThread(context ctxt: KEContext, queue disque: DispatchQueue, conso
 		let errstrm: CNFileStream	 = .fileHandle(cons.errorHandle)
 		let env:     CNEnvironment	 = CNEnvironment()
 		let config 			 = KEConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
-		let thread = KLThread(virtualMachine: vm, scriptFile: file, queue: disque, input: instrm, output: outstrm, error: errstrm, environment: env, resource: resource, config: config)
+		let threadobj = KLThreadObject(virtualMachine: vm, scriptFile: file, processManager: procmgr, queue: disque, input: instrm, output: outstrm, error: errstrm, environment: env, resource: resource, config: config)
+		let thread    = KLThread(thread: threadobj)
 
 		/* Start thread */
 		let arg0   = JSValue(object: "Thread", in: ctxt)

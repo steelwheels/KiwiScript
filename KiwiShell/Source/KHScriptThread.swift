@@ -36,13 +36,13 @@ public class KHScriptThreadObject: CNThread
 
 	public var context: KEContext { get { return mContext }}
 
-	public init(virtualMachine vm: JSVirtualMachine, script scr: Script, queue disque: DispatchQueue, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, resource res: KEResource, config conf: KHConfig){
+	public init(virtualMachine vm: JSVirtualMachine, script scr: Script, processManager procmgr: CNProcessManager, queue disque: DispatchQueue, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, resource res: KEResource, config conf: KHConfig){
 		mContext 	= KEContext(virtualMachine: vm)
 		mConfig		= conf
 		mResource	= res
 		mScript		= scr
 		mExceptionCount	= 0
-		super.init(queue: disque, input: instrm, output: outstrm, error: errstrm, environment: env)
+		super.init(processManager: procmgr, queue: disque, input: instrm, output: outstrm, error: errstrm, environment: env)
 
 		/* Set exception handler */
 		mContext.exceptionCallback = {
@@ -55,7 +55,8 @@ public class KHScriptThreadObject: CNThread
 	}
 
 	public override func main(arguments args: Array<CNNativeValue>) -> Int32 {
-		if compile(config: mConfig) {
+		let manager = CNProcessManager()
+		if compile(processManager: manager, config: mConfig) {
 			if mConfig.hasMainFunction {
 				return execOperation(arguments: args)
 			} else {
@@ -66,10 +67,11 @@ public class KHScriptThreadObject: CNThread
 		}
 	}
 
-	private func compile(config conf: KEConfig) -> Bool {
+	private func compile(processManager procmgr: CNProcessManager, config conf: KEConfig) -> Bool {
 		/* Compile the context */
 		let compiler = KHShellCompiler()
-		guard compiler.compileBaseAndLibrary(context: mContext, queue: super.queue, environment: self.environment, resource: mResource, console: self.console, config: conf) else {
+		let queue    = DispatchQueue(label: "KHScriptThreadObject", qos: .default, attributes: .concurrent)
+		guard compiler.compileBaseAndLibrary(context: mContext, processManager: procmgr, queue: queue, environment: self.environment, resource: mResource, console: self.console, config: conf) else {
 			console.error(string: "Failed to compile script thread context\n")
 			return false
 		}
