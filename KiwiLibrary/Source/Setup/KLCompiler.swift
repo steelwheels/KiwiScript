@@ -257,6 +257,20 @@ open class KLCompiler: KECompiler
 		}
 		ctxt.set(name: "sqrt", function: sqrtFunc)
 
+		/* sleep */
+		let sleepFunc: @convention(block) (_ val: JSValue) -> JSValue = {
+			(_ val: JSValue) -> JSValue in
+			let result: Bool
+			if val.isNumber {
+				Thread.sleep(forTimeInterval: val.toDouble())
+				result = true
+			} else {
+				result = false
+			}
+			return JSValue(bool: result, in: ctxt)
+		}
+		ctxt.set(name: "sleep", function: sleepFunc)
+
 		/* exit */
 		let exitFunc: @convention(block) (_ value: JSValue) -> JSValue
 		switch conf.applicationType {

@@ -124,6 +124,11 @@ public class KHScriptThreadObject: CNThread
 		return result
 	}
 
+	open override func terminate() {
+		NSLog("Terminate script by exit(1)")
+		mContext.evaluateScript("exit(1) ;")
+	}
+
 	private func hasNoException() -> Bool {
 		return mExceptionCount == 0
 	}

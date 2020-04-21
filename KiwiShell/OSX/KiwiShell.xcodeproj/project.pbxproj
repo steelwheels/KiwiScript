@@ -31,6 +31,7 @@
 		059A74CD20C3685700D83E94 /* KiwiEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050DBEA420C2D49A00F0E133 /* KiwiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		059A74CE20C3685B00D83E94 /* KiwiLibrary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050DBEA620C2D4A800F0E133 /* KiwiLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		059D085123C36F05005C2F6E /* KHShellConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059D085023C36F05005C2F6E /* KHShellConverter.swift */; };
+		05B680CA244F1F8B00485873 /* UTScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B680C9244F1F8B00485873 /* UTScript.swift */; };
 		05BE576E2327D8160062243B /* UTShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BE576D2327D8160062243B /* UTShell.swift */; };
 		05BEBC0623688761003F9ED9 /* UTShellCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BEBC0523688761003F9ED9 /* UTShellCommand.swift */; };
 		05C0FDA223D28EDC00C88984 /* cd.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05C0FDA123D28ECA00C88984 /* cd.js */; };
@@ -131,6 +132,7 @@
 		058BA8E323C0E0F80034E271 /* KHShellParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KHShellParser.swift; sourceTree = "<group>"; };
 		059A0D2623C94B9C003172F6 /* KHShellCoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KHShellCoder.swift; sourceTree = "<group>"; };
 		059D085023C36F05005C2F6E /* KHShellConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KHShellConverter.swift; sourceTree = "<group>"; };
+		05B680C9244F1F8B00485873 /* UTScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTScript.swift; sourceTree = "<group>"; };
 		05BE576D2327D8160062243B /* UTShell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTShell.swift; sourceTree = "<group>"; };
 		05BEBC0523688761003F9ED9 /* UTShellCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTShellCommand.swift; sourceTree = "<group>"; };
 		05C0FDA123D28ECA00C88984 /* cd.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = cd.js; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				05BE576D2327D8160062243B /* UTShell.swift */,
 				05E4642023C2276700B82EEE /* UTParser.swift */,
 				05274FEE23B8FE7A0077E8ED /* UTScriptManager.swift */,
+				05B680C9244F1F8B00485873 /* UTScript.swift */,
 			);
 			path = Shell;
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 				05E4642123C2276700B82EEE /* UTParser.swift in Sources */,
 				05274FEF23B8FE7A0077E8ED /* UTScriptManager.swift in Sources */,
 				055232D62039AE1100FD002C /* main.swift in Sources */,
+				05B680CA244F1F8B00485873 /* UTScript.swift in Sources */,
 				05BE576E2327D8160062243B /* UTShell.swift in Sources */,
 				05BEBC0623688761003F9ED9 /* UTShellCommand.swift in Sources */,
 			);

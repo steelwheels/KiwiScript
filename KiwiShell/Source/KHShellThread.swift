@@ -106,6 +106,11 @@ public class KHShellThreadObject: CNShellThread
 		return result
 	}
 
+	open override func terminate() {
+		//NSLog("Terminate script by exit(1)")
+		mContext.evaluateScript("exit(1) ;")
+	}
+
 	private func decodeMode(command cmd: String) -> String? {
 		let result: String?
 		let line = cmd.trimmingCharacters(in: .whitespaces)
