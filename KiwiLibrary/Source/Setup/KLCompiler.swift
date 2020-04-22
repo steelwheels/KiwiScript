@@ -526,6 +526,7 @@ open class KLCompiler: KECompiler
 			   let vm = JSVirtualMachine() {
 				let threadobj = KLThreadObject(virtualMachine: vm, scriptFile: .identifier(name), processManager: procmgr, queue: disque, input:  infile, output: outfile, error: errfile, environment: env, resource: res, config: conf)
 				let thread    = KLThread(thread: threadobj)
+				let _         = procmgr.addProcess(process: threadobj)
 				return JSValue(object: thread, in: ctxt)
 			} else {
 				cons.error(string: "Invalid parameters\n")
@@ -552,6 +553,7 @@ open class KLCompiler: KECompiler
 				}
 				let threadobj = KLThreadObject(virtualMachine: vm, scriptFile: file, processManager: procmgr, queue: disque, input:  infile, output: outfile, error: errfile, environment: env, resource: res, config: conf)
 				let thread    = KLThread(thread: threadobj)
+				let _         = procmgr.addProcess(process: threadobj)
 				return JSValue(object: thread, in: ctxt)
 			}
 			return JSValue(nullIn: ctxt)

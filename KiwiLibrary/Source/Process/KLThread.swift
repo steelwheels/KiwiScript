@@ -21,29 +21,29 @@ public class KLThreadObject: CNThread
 {
 	public typealias ScriptFile = KLThread.ScriptFile
 
-	private var mContext:		KEContext
-	private var mScriptFile:	ScriptFile
-	private var mResource:		KEResource
-	private var mConfig:		KEConfig
+	private var mContext:			KEContext
+	private var mChildProcessManager:	CNProcessManager
+	private var mScriptFile:		ScriptFile
+	private var mResource:			KEResource
+	private var mConfig:			KEConfig
 
 	public init(virtualMachine vm: JSVirtualMachine, scriptFile file: ScriptFile, processManager procmgr: CNProcessManager, queue disque: DispatchQueue,input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, resource res: KEResource, config conf: KEConfig) {
-		mContext   	= KEContext(virtualMachine: vm)
-		mScriptFile	= file
-		mResource	= res
-		mConfig		= KEConfig(applicationType: conf.applicationType,
-						  doStrict: conf.doStrict,
-						  logLevel: conf.logLevel)
+		mContext   		= KEContext(virtualMachine: vm)
+		mChildProcessManager	= CNProcessManager()
+		mScriptFile		= file
+		mResource		= res
+		mConfig			= KEConfig(applicationType: conf.applicationType,
+						   doStrict: conf.doStrict,
+						   logLevel: conf.logLevel)
 		super.init(processManager: procmgr, queue: disque, input: instrm, output: outstrm, error: errstrm, environment: env)
+
+		/* Add to parent manager */
+		procmgr.addChildManager(childManager: mChildProcessManager)
 	}
 
 	public override func main(arguments args: Array<CNNativeValue>) -> Int32 {
-		let manager = CNProcessManager()
-		let queue   = DispatchQueue(label: "KLThreadObject", qos: .default, attributes: .concurrent)
-		/* Add to parent manager */
-		if let parent = self.processManager {
-			parent.addChildManager(childManager: manager)
-		}
-		if compile(processManager: manager, queue: queue, config: mConfig) {
+		let queue = DispatchQueue(label: "KLThreadObject", qos: .default, attributes: .concurrent)
+		if compile(processManager: mChildProcessManager, queue: queue, config: mConfig) {
 			return execOperation(arguments: args)
 		} else {
 			return -1

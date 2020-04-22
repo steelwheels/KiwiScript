@@ -47,6 +47,7 @@ open class KHShellCompiler: KLCompiler
 		   let outstrm = valueToFileStream(value: outval),
 		   let errstrm = valueToFileStream(value: errval) {
 			let process = CNProcess(processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: env, terminationHander: nil)
+			let _       = procmgr.addProcess(process: process)
 			process.execute(command: command)
 			let procval = KLProcess(process: process, context: ctxt)
 			return JSValue(object: procval, in: ctxt)

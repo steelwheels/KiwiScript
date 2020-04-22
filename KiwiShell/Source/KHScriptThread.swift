@@ -28,6 +28,7 @@ public class KHScriptThreadObject: CNThread
 	}
 
 	private var mContext:			KEContext
+	private var mChildProcessManager:	CNProcessManager
 	private var mConfig:			KHConfig
 	private var mResource:			KEResource
 
@@ -37,12 +38,16 @@ public class KHScriptThreadObject: CNThread
 	public var context: KEContext { get { return mContext }}
 
 	public init(virtualMachine vm: JSVirtualMachine, script scr: Script, processManager procmgr: CNProcessManager, queue disque: DispatchQueue, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, resource res: KEResource, config conf: KHConfig){
-		mContext 	= KEContext(virtualMachine: vm)
-		mConfig		= conf
-		mResource	= res
-		mScript		= scr
-		mExceptionCount	= 0
+		mContext 		= KEContext(virtualMachine: vm)
+		mChildProcessManager	= CNProcessManager()
+		mConfig			= conf
+		mResource		= res
+		mScript			= scr
+		mExceptionCount		= 0
 		super.init(processManager: procmgr, queue: disque, input: instrm, output: outstrm, error: errstrm, environment: env)
+
+		/* Add child process manager */
+		procmgr.addChildManager(childManager: mChildProcessManager)
 
 		/* Set exception handler */
 		mContext.exceptionCallback = {
@@ -55,11 +60,7 @@ public class KHScriptThreadObject: CNThread
 	}
 
 	public override func main(arguments args: Array<CNNativeValue>) -> Int32 {
-		let manager = CNProcessManager()
-		if let parent = self.processManager {
-			parent.addChildManager(childManager: manager)
-		}
-		if compile(processManager: manager, config: mConfig) {
+		if compile(processManager: mChildProcessManager, config: mConfig) {
 			if mConfig.hasMainFunction {
 				return execOperation(arguments: args)
 			} else {

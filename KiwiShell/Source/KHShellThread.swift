@@ -45,19 +45,24 @@ public class KHShellThreadObject: CNShellThread
 		}
 	}
 
-	private var mContext:		KEContext
-	private var mInputMode:		InputMode
+	private var mContext:			KEContext
+	private var mChildProcessManager:	CNProcessManager
+	private var mInputMode:			InputMode
 
 	public var context: KEContext { get { return mContext }}
 
 	public init(virtualMachine vm: JSVirtualMachine, processManager procmgr: CNProcessManager, queue disque: DispatchQueue, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, resource res: KEResource, config conf: KEConfig){
-		mContext	= KEContext(virtualMachine: vm)
-		mInputMode	= .shellScript
+		mContext		= KEContext(virtualMachine: vm)
+		mChildProcessManager	= CNProcessManager()
+		mInputMode		= .shellScript
 		super.init(processManager: procmgr, queue: disque, input: instrm, output: outstrm, error: errstrm, environment: env)
+
+		/* Allocate process manager for child processes */
+		procmgr.addChildManager(childManager: mChildProcessManager)
 
 		/* Compile the context */
 		let compiler  = KHShellCompiler()
-		guard compiler.compileBaseAndLibrary(context: mContext, processManager: procmgr, queue: disque, environment: env, resource: res, console: console, config: conf) else {
+		guard compiler.compileBaseAndLibrary(context: mContext, processManager: mChildProcessManager, queue: disque, environment: env, resource: res, console: console, config: conf) else {
 			console.error(string: "Failed to compile script thread context\n")
 			return
 		}
@@ -106,14 +111,6 @@ public class KHShellThreadObject: CNShellThread
 		return result
 	}
 
-	open override func terminate() {
-		if isRunning {
-			//NSLog("Terminate script by _cancel()")
-			mContext.evaluateScript("_cancel() ;")
-			super.terminate()
-		}
-	}
-
 	private func decodeMode(command cmd: String) -> String? {
 		let result: String?
 		let line = cmd.trimmingCharacters(in: .whitespaces)
@@ -146,6 +143,19 @@ public class KHShellThreadObject: CNShellThread
 			}
 		}
 		return result
+	}
+
+	public override func terminate() {
+		NSLog("\(#file) *0")
+		if let parent = self.processManager {
+			NSLog("\(#file) *1")
+			let childlen = parent.childProcessManagers
+			for child in childlen {
+				NSLog("\(#file): Terminate child process")
+				child.terminate()
+			}
+		}
+		NSLog("\(#file) *2")
 	}
 
 	private func isEmpty(string str: String) -> Bool {
