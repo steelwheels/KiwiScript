@@ -55,6 +55,7 @@ public func UTScript(input inhdl: FileHandle, output outhdl: FileHandle, error e
 		result = false
 	}
 
+	cons.print(string: "UTScript ... done\n")
 	return result
 }
 

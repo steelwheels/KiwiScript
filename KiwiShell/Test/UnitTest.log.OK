@@ -190,4 +190,7 @@ do {
 } while(false) ;
 ***** UTScriptManager
 names: cd fonts getenv history setenv 
+***** UTScript
+[31mError: CancelException
+[0mUTScript ... done
 Summary: OK

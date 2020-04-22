@@ -2,18 +2,6 @@
  * Operation.js : Define Operation class
  */
 
- class CancelException extends Error
- {
-        constructor (code){
-                super("CancelException") ;
-                this.code = code ;
-        }
- }
-
-function _cancel() {
-	throw new CancelException(ExitCode.exception) ;
-}
-
 /* This class must be inherited */
 class Operation
 {

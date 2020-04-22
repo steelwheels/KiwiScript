@@ -39,6 +39,10 @@ public class KLThreadObject: CNThread
 	public override func main(arguments args: Array<CNNativeValue>) -> Int32 {
 		let manager = CNProcessManager()
 		let queue   = DispatchQueue(label: "KLThreadObject", qos: .default, attributes: .concurrent)
+		/* Add to parent manager */
+		if let parent = self.processManager {
+			parent.addChildManager(childManager: manager)
+		}
 		if compile(processManager: manager, queue: queue, config: mConfig) {
 			return execOperation(arguments: args)
 		} else {

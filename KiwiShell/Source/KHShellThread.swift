@@ -107,8 +107,11 @@ public class KHShellThreadObject: CNShellThread
 	}
 
 	open override func terminate() {
-		//NSLog("Terminate script by exit(1)")
-		mContext.evaluateScript("exit(1) ;")
+		if isRunning {
+			//NSLog("Terminate script by _cancel()")
+			mContext.evaluateScript("_cancel() ;")
+			super.terminate()
+		}
 	}
 
 	private func decodeMode(command cmd: String) -> String? {

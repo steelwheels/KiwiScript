@@ -35,7 +35,7 @@ public func main()
 	console.print(string: "***** UTScript\n")
 	let res4 = UTScript(input: inhdl, output: outhdl, error: errhdl, console: console)
 
-	if res0 && res2 && res3 {
+	if res0 && res2 && res3 && res4 {
 		console.print(string: "Summary: OK\n")
 	} else {
 		console.print(string: "Summary: NG\n")

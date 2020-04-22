@@ -460,7 +460,7 @@ open class KLCompiler: KECompiler
 
 	private func importBuiltinLibrary(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig)
 	{
-		let libnames = ["Debug", "Math", "Graphics"]
+		let libnames = ["Cancel", "Debug", "Math", "Graphics"]
 		do {
 			for libname in libnames {
 				if let url = CNFilePath.URLForResourceFile(fileName: libname, fileExtension: "js", forClass: KLCompiler.self) {
