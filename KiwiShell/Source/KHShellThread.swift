@@ -181,7 +181,7 @@ public class KHShellThreadObject: CNShellThread
 	}
 
 	public func start() {
-		mThread.start(arguments: [])
+		mThread.start(argument: .nullValue)
 	}
 
 	public func cancel(){

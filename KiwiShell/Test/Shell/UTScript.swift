@@ -36,7 +36,7 @@ public func UTScript(input inhdl: FileHandle, output outhdl: FileHandle, error e
 	let thread   = KHScriptThreadObject(virtualMachine: vm, script: .script(script), processManager: procmgr, queue: queue, input: instrm, output: outstrm, error: errstrm, environment: env, resource: resource, config: config)
 
 	/* Execute the thread */
-	thread.start(arguments: [])
+	thread.start(argument: .nullValue)
 
 	/* Check status */
 	Thread.sleep(forTimeInterval: 1.0)

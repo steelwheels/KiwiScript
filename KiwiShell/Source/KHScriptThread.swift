@@ -59,10 +59,10 @@ public class KHScriptThreadObject: CNThread
 		}
 	}
 
-	public override func main(arguments args: Array<CNNativeValue>) -> Int32 {
+	public override func main(argument arg: CNNativeValue) -> Int32 {
 		if compile(processManager: mChildProcessManager, config: mConfig) {
 			if mConfig.hasMainFunction {
-				return execOperation(arguments: args)
+				return execOperation(argument: arg)
 			} else {
 				return hasNoException() ? 0 : -1
 			}
@@ -99,25 +99,18 @@ public class KHScriptThreadObject: CNThread
 		return hasNoException()
 	}
 
-	private func execOperation(arguments args: Array<CNNativeValue>) -> Int32 {
+	private func execOperation(argument arg: CNNativeValue) -> Int32 {
 		/* Search main function */
 		var result: Int32 = -1
 		if let funcval = mContext.getValue(name: "main") {
 			if !funcval.isUndefined {
 				/* Allocate argument */
-				var jsarr: Array<JSValue> = []
-				for arg in args {
-					jsarr.append(arg.toJSValue(context: mContext))
-				}
-				if let jsarg = JSValue(object: jsarr, in: mContext) {
-					/* Call main function */
-					if let retval = funcval.call(withArguments: [jsarg]) {
-						result = retval.toInt32()
-					} else {
-						self.console.error(string: "Failed to call main function\n")
-					}
+				let jsarg = arg.toJSValue(context: mContext)
+				/* Call main function */
+				if let retval = funcval.call(withArguments: [jsarg]) {
+					result = retval.toInt32()
 				} else {
-					self.console.error(string: "Failed to covert argument\n")
+					self.console.error(string: "Failed to call main function\n")
 				}
 			} else {
 				self.console.error(string: "main function is NOT found\n")
@@ -154,13 +147,13 @@ public class KHScriptThreadObject: CNThread
 	public var isExecuting:	Bool  { get { return mThread.isRunning }}
 	public var context: KEContext { get { return mThread.context   }}
 
-	public func start(arguments args: Array<CNNativeValue>) {
-		mThread.start(arguments: args)
+	public func start(argument arg: CNNativeValue) {
+		mThread.start(argument: arg)
 	}
 
 	public func start(_ args: JSValue){
 		let nargs = args.toNativeValue()
-		mThread.start(arguments: [nargs])
+		mThread.start(argument: nargs)
 	}
 
 	public func waitUntilExit() -> Int32 {
