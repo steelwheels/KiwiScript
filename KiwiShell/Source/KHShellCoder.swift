@@ -145,9 +145,15 @@ private class KHCodeConverter: KHShellStatementVisitor
 		} else {
 			path = "null"
 		}
+		var arg: String = "null"
+		if let a = stmt.argument {
+			if !a.isEmpty {
+				arg = a
+			}
+		}
 		let proc  = processName(stmt)
 		let stmt0 = "let \(proc) = run(\(path), \(stmt.inputNameString), \(stmt.outputNameString), \(stmt.errorNameString)) ;"
-		let stmt1 = "\(proc).start([]) ;"
+		let stmt1 = "\(proc).start(\(arg)) ;"
 		add(statements: [stmt0, stmt1])
 		return nil
 	}

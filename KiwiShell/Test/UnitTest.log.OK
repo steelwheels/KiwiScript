@@ -155,11 +155,20 @@ do {
 } while(false) ;
 -- Unit test: 9
  - Source
-    > run test.js > a
+    > run test.js > @a
  - Script
 do {
-	let _proc1 = run("test.js", stdin, stdout, stderr) ;
-	_proc1.start([]) ;
+	let _proc1 = run("test.js", stdin, a, stderr) ;
+	_proc1.start(null) ;
+	let _ecode2 = _proc1.waitUntilExit() ;
+} while(false) ;
+-- Unit test: 12
+ - Source
+    > run test.js "-Wall" < @b
+ - Script
+do {
+	let _proc1 = run("test.js", b, stdout, stderr) ;
+	_proc1.start("-Wall" ) ;
 	let _ecode2 = _proc1.waitUntilExit() ;
 } while(false) ;
 -- Unit test: 10

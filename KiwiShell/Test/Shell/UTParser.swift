@@ -65,9 +65,14 @@ public func UTParser(console cons: CNConsole) -> Bool
 	let res8 = testParser(parser: parser, testNo: 8, source: stmt8, readline: readline, console: cons)
 
 	let stmt9: Array<String> = [
-                "> run test.js > a"
+                "> run test.js > @a"
         ]
 	let res9 = testParser(parser: parser, testNo: 9, source: stmt9, readline: readline, console: cons)
+
+	let stmt12: Array<String> = [
+                "> run test.js \"-Wall\" < @b"
+        ]
+	let res12 = testParser(parser: parser, testNo: 12, source: stmt12, readline: readline, console: cons)
 
 	let stmt10: Array<String> = [
                 "> history "
@@ -80,7 +85,7 @@ public func UTParser(console cons: CNConsole) -> Bool
         ]
 	let res11 = testParser(parser: parser, testNo: 11, source: stmt11, readline: readline, console: cons)
 
-	return res0 && res1 && res2 && res3 && res4 && res5 && res6 && res7 && res8 && res9 && res10 && res11
+	return res0 && res1 && res2 && res3 && res4 && res5 && res6 && res7 && res8 && res9 && res10 && res11 && res12
 }
 
 private func testParser(parser psr: KHShellParser, testNo testno: Int, source srcs: Array<String>, readline rdln: CNReadline, console cons: CNConsole) -> Bool
@@ -94,7 +99,7 @@ private func testParser(parser psr: KHShellParser, testNo testno: Int, source sr
 	var result: Bool
 	switch psr.parse(lines: srcs) {
 	case .ok(let stmts):
-		let newstmts = KHCompileShellStatement(statements: stmts, readline: rdln)
+		let newstmts = KHCompileShellStatement(statements: stmts)
 		#if false
 			cons.print(string: " - Compile\n")
 			for stmt in newstmts {

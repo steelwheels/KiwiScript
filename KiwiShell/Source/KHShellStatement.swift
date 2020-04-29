@@ -22,6 +22,10 @@ open class KHStatement
 		stmt.processId = self.processId
 	}
 
+	open func importProperties(source stmt: KHStatement) {
+		self.processId = stmt.processId
+	}
+
 	open func dump(indent idt: Int, to console: CNConsole) {
 	}
 
@@ -54,6 +58,13 @@ open class KHSingleStatement: KHStatement
 		} else {
 			return str1
 		}
+	}
+
+	open func importProperties(source stmt: KHSingleStatement) {
+		super.importProperties(source: stmt)
+		self.inputName  = stmt.inputName
+		self.outputName = stmt.outputName
+		self.errorName  = stmt.errorName
 	}
 
 	open override func dump(indent idt: Int, to console: CNConsole) {
@@ -109,11 +120,14 @@ public class KHShellCommandStatement: KHSingleStatement
 public class KHRunCommandStatement: KHSingleStatement
 {
 	private var mScriptPath:	String?
+	private var mArgument:		String?
 
 	public var scriptPath: String? { get { return mScriptPath }}
+	public var argument:   String? { get { return mArgument   }}
 
-	public init(scriptPath path: String?) {
+	public init(scriptPath path: String?, argument arg: String?) {
 		mScriptPath = path
+		mArgument   = arg
 	}
 
 	open override func dump(indent idt: Int, to console: CNConsole) {

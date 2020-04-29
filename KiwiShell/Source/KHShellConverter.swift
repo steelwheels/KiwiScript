@@ -10,7 +10,7 @@ import CoconutShell
 import CoconutData
 import Foundation
 
-public func KHCompileShellStatement(statements stmts: Array<KHStatement>, readline rdln: CNReadline?) -> Array<KHStatement>
+public func KHCompileShellStatement(statements stmts: Array<KHStatement>) -> Array<KHStatement>
 {
 	/* Setup built-in script location */
 	let manager = KLBuiltinScripts.shared
@@ -35,28 +35,35 @@ public func KHCompileShellStatement(statements stmts: Array<KHStatement>, readli
 private class KHBuiltinCommandConverter: KHShellStatementConverter
 {
 	open override func visit(shellCommandStatement stmt: KHShellCommandStatement) -> KHSingleStatement? {
-		if let newcmd = convertToNativeBuiltinCommand(command: stmt.shellCommand) {
+		if let newcmd = convertToNativeBuiltinCommand(statement: stmt) {
 			return newcmd
 		} else if let (url, args) = convertToBuiltinScriptCommand(command: stmt.shellCommand) {
-			return KHBuiltinCommandStatement(scriptURL: url, arguments: args)
+			let newstmt = KHBuiltinCommandStatement(scriptURL: url, arguments: args)
+			newstmt.importProperties(source: stmt)
+			return newstmt
 		} else {
 			return nil
 		}
 	}
 
-	private func convertToNativeBuiltinCommand(command cmd: String) -> KHSingleStatement? {
-		var result: KHSingleStatement? = nil
-		var words = CNStringUtil.divideBySpaces(string: cmd)
-		if words.count > 0 {
-			let cmdname = words.removeFirst()
+	private func convertToNativeBuiltinCommand(statement stmt: KHShellCommandStatement) -> KHSingleStatement? {
+		let (cmdnamep, restp) = CNStringUtil.cutFirstWord(string: stmt.shellCommand)
+		if let cmdname = cmdnamep {
 			switch cmdname {
 			case "run":
-				result = KHRunCommandStatement(scriptPath: words.count > 0 ? words[0] : nil)
+				var path: String? = nil
+				var arg:  String? = nil
+				if let rest = restp {
+					(path, arg) = CNStringUtil.cutFirstWord(string: rest)
+				}
+				let newstmt = KHRunCommandStatement(scriptPath: path, argument: arg)
+				newstmt.importProperties(source: stmt)
+				return newstmt
 			default:
 				break
 			}
 		}
-		return result
+		return nil
 	}
 
 	private func convertToBuiltinScriptCommand(command cmd: String) -> (URL, Array<String>)? {

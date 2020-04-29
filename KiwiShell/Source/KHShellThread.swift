@@ -93,7 +93,7 @@ public class KHShellThreadObject: CNShellThread
 			let parser = KHShellParser()
 			switch parser.parse(lines: [line]) {
 			case .ok(let stmts0):
-				let stmts1  = KHCompileShellStatement(statements: stmts0, readline: self.readline)
+				let stmts1  = KHCompileShellStatement(statements: stmts0)
 				let script0 = KHGenerateScript(from: stmts1)
 				let script1 = script0.joined(separator: "\n")
 				if let retval = mContext.evaluateScript(script1) {
