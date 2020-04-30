@@ -1010,6 +1010,12 @@ FileType: Not exit
     isExecutable: true
     isDeletable:  true
 FileType: Directory
+  * path: <skipped>
+    isReadable:   true
+    isWritable:   true
+    isExecutable: true
+    isDeletable:  true
+FileType: Directory
 normalize: /home/user + tmp => /home/user/tmp
 normalize: /home/user/tmp + .. => /home/user
 Expected value: true

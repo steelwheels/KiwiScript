@@ -397,6 +397,9 @@ open class KLCompiler: KECompiler
 					 error:   	cons.errorHandle)
 		ctxt.set(name: "FileManager", object: file)
 
+		/* Add resource location */
+		file.addResourceDirectory(name: "Library", classObject: KLCompiler.self)
+
 		let stdin = KLFile(file: CNTextFile(fileHandle: cons.inputHandle), context: ctxt)
 		ctxt.set(name: "stdin", object: stdin)
 

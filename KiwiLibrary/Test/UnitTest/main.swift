@@ -26,16 +26,17 @@ public func main()
 
 	let env = CNEnvironment()
 
-	let fmanager = KLFileManager(context: 		context,
-				     environment:	env,
-				     input:  		filecons.inputHandle,
-				     output: 		filecons.outputHandle,
-				     error:  		filecons.errorHandle)
 	let compiler = KLCompiler()
 	if(compiler.compileBase(context: context, environment: env, console: filecons, config: config)){
 		filecons.print(string: "  -> Compiler: OK\n")
 	} else {
 		filecons.print(string: "  -> Compiler: NG\n")
+	}
+
+	/* Get file manager */
+	guard let fmanager = getFileManager(from: context) else {
+		filecons.print(string: "[Error] No file manager => Terminated \n")
+		return
 	}
 
 	/* Type */
@@ -91,6 +92,15 @@ public func main()
 	} else {
 		filecons.print(string: "Summary: NG (\(result0) \(result1) \(result2) \(result3) \(result4) \(result5) \(result6) \(result7) \(result8))\n")
 	}
+}
+
+private func getFileManager(from context: KEContext) -> KLFileManager? {
+	if let value = context.getValue(name: "FileManager") {
+		if value.isObject {
+			return value.toObject() as? KLFileManager
+		}
+	}
+	return nil
 }
 
 main()

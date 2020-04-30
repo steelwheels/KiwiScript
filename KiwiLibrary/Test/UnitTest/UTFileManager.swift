@@ -16,9 +16,10 @@ public func UTFileManager(fileManager manager: KLFileManager, context ctxt: KECo
 	cons.print(string: "Home directory:\n")
 	let res0 = printURL(URLValue: manager.homeDirectory(), fileManager: manager, console: cons)
 	let res1 = printURL(URLValue: manager.temporaryDirectory(), fileManager: manager, console: cons)
-	let res2 = normalizePath(fileManager: manager, context: ctxt, console: cons)
-	let res3 = accessibilityTest(fileManager: manager, context: ctxt, console: cons)
-	return res0 && res1 && res2 && res3
+	let res2 = printURL(URLValue: manager.resourceDirectory(JSValue(object: "Library", in: ctxt)), fileManager: manager, console: cons)
+	let res3 = normalizePath(fileManager: manager, context: ctxt, console: cons)
+	let res4 = accessibilityTest(fileManager: manager, context: ctxt, console: cons)
+	return res0 && res1 && res2 && res3 && res4
 }
 
 private func printURL(URLValue val: JSValue, fileManager manager: KLFileManager, console cons: CNConsole) -> Bool

@@ -12,6 +12,10 @@
 		053C799623C22D7D006A602A /* KHShellVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053C799523C22D7D006A602A /* KHShellVisitor.swift */; };
 		05449DF123D2921800B37F3D /* cd.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05449DF023D2920F00B37F3D /* cd.js */; };
 		055417552318202D005BE0C5 /* KHConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055417542318202D005BE0C5 /* KHConfig.swift */; };
+		0576D465245A776000EAA9E9 /* setenv.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0576D463245A775400EAA9E9 /* setenv.js */; };
+		0576D466245A776000EAA9E9 /* setup.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0576D464245A775400EAA9E9 /* setup.js */; };
+		0576D467245A776000EAA9E9 /* fonts.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0576D461245A774B00EAA9E9 /* fonts.js */; };
+		0576D468245A776000EAA9E9 /* getenv.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0576D462245A774B00EAA9E9 /* getenv.js */; };
 		058EEA2123C226A600311781 /* KHShellParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058EEA2023C226A600311781 /* KHShellParser.swift */; };
 		0592776A23B8BF8200844FA4 /* KHShellStatement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0592776923B8BF8200844FA4 /* KHShellStatement.swift */; };
 		05AF0E7F23053F7500375196 /* KiwiShell.h in Headers */ = {isa = PBXBuildFile; fileRef = 05AF0E7D23053F7500375196 /* KiwiShell.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -40,6 +44,10 @@
 			dstPath = Binary;
 			dstSubfolderSpec = 7;
 			files = (
+				0576D465245A776000EAA9E9 /* setenv.js in CopyFiles */,
+				0576D466245A776000EAA9E9 /* setup.js in CopyFiles */,
+				0576D467245A776000EAA9E9 /* fonts.js in CopyFiles */,
+				0576D468245A776000EAA9E9 /* getenv.js in CopyFiles */,
 				05449DF123D2921800B37F3D /* cd.js in CopyFiles */,
 				05B3618223B9675200DA0BF3 /* history.js in CopyFiles */,
 			);
@@ -53,6 +61,10 @@
 		053C799523C22D7D006A602A /* KHShellVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHShellVisitor.swift; sourceTree = "<group>"; };
 		05449DF023D2920F00B37F3D /* cd.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = cd.js; sourceTree = "<group>"; };
 		055417542318202D005BE0C5 /* KHConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHConfig.swift; sourceTree = "<group>"; };
+		0576D461245A774B00EAA9E9 /* fonts.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = fonts.js; sourceTree = "<group>"; };
+		0576D462245A774B00EAA9E9 /* getenv.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = getenv.js; sourceTree = "<group>"; };
+		0576D463245A775400EAA9E9 /* setenv.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = setenv.js; sourceTree = "<group>"; };
+		0576D464245A775400EAA9E9 /* setup.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = setup.js; sourceTree = "<group>"; };
 		058EEA2023C226A600311781 /* KHShellParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHShellParser.swift; sourceTree = "<group>"; };
 		0592776923B8BF8200844FA4 /* KHShellStatement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHShellStatement.swift; sourceTree = "<group>"; };
 		05AF0E7A23053F7500375196 /* KiwiShell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiShell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,7 +157,11 @@
 		05B3617E23B9670F00DA0BF3 /* Binary */ = {
 			isa = PBXGroup;
 			children = (
+				0576D463245A775400EAA9E9 /* setenv.js */,
+				0576D464245A775400EAA9E9 /* setup.js */,
 				05449DF023D2920F00B37F3D /* cd.js */,
+				0576D461245A774B00EAA9E9 /* fonts.js */,
+				0576D462245A774B00EAA9E9 /* getenv.js */,
 				05B3617F23B9672B00DA0BF3 /* history.js */,
 			);
 			path = Binary;
