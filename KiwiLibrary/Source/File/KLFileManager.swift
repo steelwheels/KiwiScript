@@ -12,6 +12,8 @@ import Foundation
 
 @objc public protocol KLFileManagerProtocol: JSExport
 {
+	func setupFileSystem() -> JSValue
+
 	func open(_ pathstr: JSValue, _ acctype: JSValue) -> JSValue
 
 	func isReadable(_ pathstr: JSValue) -> JSValue
@@ -43,6 +45,17 @@ import Foundation
 		mInputFileHandle	= inhdl
 		mOutputFileHandle	= outhdl
 		mErrorFileHandle	= errhdl
+	}
+
+	public func setupFileSystem() -> JSValue {
+		let result: Bool
+		if let _ = FileManager.default.setupFileSystem() {
+			/* There are some errors */
+			result = false
+		} else {
+			result = true
+		}
+		return JSValue(bool: result, in: mContext)
 	}
 
 	public func open(_ pathval: JSValue, _ accval: JSValue) -> JSValue
