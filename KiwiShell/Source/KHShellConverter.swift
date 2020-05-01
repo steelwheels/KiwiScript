@@ -14,7 +14,7 @@ public func KHCompileShellStatement(statements stmts: Array<KHStatement>) -> Arr
 {
 	/* Setup built-in script location */
 	let manager = KLBuiltinScripts.shared
-	manager.setup(subdirectory: "Binary", forClass: KHShellThreadObject.self)
+	manager.setup(subdirectory: "Script", forClass: KHShellThreadObject.self)
 
 	var newstmts:		Array<KHStatement>	= []
 	var hasnewstmts: 	Bool			= false

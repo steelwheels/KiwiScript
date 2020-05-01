@@ -75,6 +75,10 @@ public func main()
 	filecons.print(string: "/* Unit test for FileManager */\n")
 	let result8 = UTFileManager(fileManager: fmanager, context: context, console: filecons)
 
+	/* URL */
+	filecons.print(string: "/* Unit test for URL */\n")
+	let result12 = UTURL(fileManager: fmanager, context: context, console: filecons)
+
 	/* FontManager */
 	filecons.print(string: "/* Unit test for FontManager */\n")
 	let result10 = UTFontManager(context: context, console: filecons)
@@ -87,7 +91,7 @@ public func main()
 	filecons.print(string: "/* Unit test for environmrnt */\n")
 	let result11 = UTEnvironment(context: context, console: filecons)
 
-	if result0 && result1 && result2 && result3 && result4 && result5 && result6 && result7 && result8 && result9 && result10 && result11 {
+	if result0 && result1 && result2 && result3 && result4 && result5 && result6 && result7 && result8 && result9 && result10 && result11 && result12 {
 		filecons.print(string: "Summary: OK\n")
 	} else {
 		filecons.print(string: "Summary: NG (\(result0) \(result1) \(result2) \(result3) \(result4) \(result5) \(result6) \(result7) \(result8))\n")

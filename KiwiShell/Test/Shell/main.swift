@@ -21,7 +21,7 @@ public func main()
 	let console = CNFileConsole(input: inhdl, output: outhdl, error: errhdl)
 
 	let manager = KLBuiltinScripts.shared
-	manager.setup(subdirectory: "Binary", forClass: KHShellThread.self)
+	manager.setup(subdirectory: "Script", forClass: KHShellThread.self)
 
 	console.print(string: "***** UTShellCommand\n")
 	let res0 = UTShellCommand(console: console)

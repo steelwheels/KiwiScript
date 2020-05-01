@@ -77,7 +77,7 @@
 		05274FE923B8F4F40077E8ED /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = Binary;
+			dstPath = Script;
 			dstSubfolderSpec = 7;
 			files = (
 				05C852D3245A768300887986 /* setup.js in CopyFiles */,
@@ -225,13 +225,13 @@
 		05274FE523B8F4B60077E8ED /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				05274FE623B8F4CE0077E8ED /* Binary */,
+				05274FE623B8F4CE0077E8ED /* Script */,
 			);
 			name = Resource;
 			path = ../Resource;
 			sourceTree = "<group>";
 		};
-		05274FE623B8F4CE0077E8ED /* Binary */ = {
+		05274FE623B8F4CE0077E8ED /* Script */ = {
 			isa = PBXGroup;
 			children = (
 				05C852D2245A767700887986 /* setup.js */,
@@ -241,7 +241,7 @@
 				0550C0052442F33E00493ACC /* setenv.js */,
 				0550C0062442F35700493ACC /* getenv.js */,
 			);
-			path = Binary;
+			path = Script;
 			sourceTree = "<group>";
 		};
 		055AAA8F2039A244008018A8 /* Source */ = {

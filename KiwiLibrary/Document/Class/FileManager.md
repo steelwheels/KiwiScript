@@ -119,6 +119,26 @@ none
 ### Return value
 The [URL object](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md) which presents the current user's home directory.
 
+## `resourceDirectory` method
+Get the URL of resource directory foreach application and framework.
+````
+let url = FileManager.resourceDirectory("name") ;
+````
+### Parameter(s)
+|Name   |Type     |Description                          |
+|:--    |:--      |:--                                  |
+|name   |String   |Name of application or library       |
+
+Following resource names are supported:
+
+|Name           |Resource owner                               |
+|:--            |:--                                          |
+|`Library`      |[KiwiLibrary framework](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/README.md) |
+|`Shell`        |[KiwiShell framework](https://github.com/steelwheels/KiwiScript/blob/master/KiwiShell/README.md) |
+
+### Return value
+The [URL object](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md) which presents the resource directory.
+
 ## `fullPath` method
 Convert relative-path declaration into full-path declaration.
 ````

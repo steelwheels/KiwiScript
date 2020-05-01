@@ -24,7 +24,6 @@ import Foundation
 
 	func homeDirectory() -> JSValue
 	func temporaryDirectory() -> JSValue
-	func resourceDirectory(_ name: JSValue) -> JSValue
 
 	func checkFileType(_ pathstr: JSValue) -> JSValue
 	func uti(_ pathstr: JSValue) -> JSValue
@@ -37,7 +36,6 @@ import Foundation
 	private var mInputFileHandle:		FileHandle
 	private var mOutputFileHandle:		FileHandle
 	private var mErrorFileHandle:		FileHandle
-	private var mResourceDirectories:	Dictionary<String, URL>
 
 	public init(context ctxt: KEContext, environment env: CNEnvironment, input inhdl: FileHandle, output outhdl: FileHandle, error errhdl: FileHandle){
 		mContext		= ctxt
@@ -45,7 +43,6 @@ import Foundation
 		mInputFileHandle	= inhdl
 		mOutputFileHandle	= outhdl
 		mErrorFileHandle	= errhdl
-		mResourceDirectories	= [:]
 	}
 
 	public func open(_ pathval: JSValue, _ accval: JSValue) -> JSValue
@@ -190,21 +187,6 @@ import Foundation
 		let tmpurl = FileManager.default.temporaryDirectory
 		let urlobj = KLURL(URL: tmpurl, context: mContext)
 		return JSValue(object: urlobj, in: mContext)
-	}
-
-	public func addResourceDirectory(name nm: String, classObject cobj: AnyClass) {
-		let path = Bundle(for: cobj).bundlePath + "/Resources"
-		mResourceDirectories[nm] = URL(fileURLWithPath: path)
-	}
-
-	public func resourceDirectory(_ name: JSValue) -> JSValue {
-		if name.isString {
-			if let url = mResourceDirectories[name.toString()] {
-				let urlobj = KLURL(URL: url, context: mContext)
-				return JSValue(object: urlobj, in: mContext)
-			}
-		}
-		return JSValue(nullIn: mContext)
 	}
 
 	private func pathString(in val: JSValue) -> String? {

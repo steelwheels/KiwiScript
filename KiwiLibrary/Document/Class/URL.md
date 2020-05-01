@@ -47,6 +47,19 @@ let str = url.path ;
 ````
 
 ## Methods
+### `appendingPathComponent`
+Add path component (relative path) to URL object.
+````
+  let newurl = url.appendingPathComponent("Document/Script")
+````
+#### Parameter(s)
+|variable | type | description                          |
+|:---   |:---    |:---                                  |
+|`path` | String or [URL](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md) |The path string of the file           |
+
+#### Return value
+The new [URL](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md) object when the allocation is succeeded. If the allocation is failed, the return value will be `null`.
+
 ### `loadText` method
 Load contents of the text file which pointed by the URL.
 ````

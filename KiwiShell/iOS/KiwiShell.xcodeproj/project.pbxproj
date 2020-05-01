@@ -41,7 +41,7 @@
 		05B3618123B9674100DA0BF3 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = Binary;
+			dstPath = Script;
 			dstSubfolderSpec = 7;
 			files = (
 				0576D465245A776000EAA9E9 /* setenv.js in CopyFiles */,
@@ -148,13 +148,13 @@
 		05B3617D23B966EB00DA0BF3 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				05B3617E23B9670F00DA0BF3 /* Binary */,
+				05B3617E23B9670F00DA0BF3 /* Script */,
 			);
 			name = Resource;
 			path = ../Resource;
 			sourceTree = "<group>";
 		};
-		05B3617E23B9670F00DA0BF3 /* Binary */ = {
+		05B3617E23B9670F00DA0BF3 /* Script */ = {
 			isa = PBXGroup;
 			children = (
 				0576D463245A775400EAA9E9 /* setenv.js */,
@@ -164,7 +164,7 @@
 				0576D462245A774B00EAA9E9 /* getenv.js */,
 				05B3617F23B9672B00DA0BF3 /* history.js */,
 			);
-			path = Binary;
+			path = Script;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,7 +223,7 @@
 		05AF0E7123053F7500375196 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1110;
+				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = "Steel Wheels Project";
 				TargetAttributes = {
 					0514ACF22305818600204478 = {
@@ -436,7 +436,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -468,7 +468,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;

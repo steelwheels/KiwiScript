@@ -15,6 +15,7 @@ import Foundation
 	var absoluteString: JSValue { get }
 	var path: JSValue { get }
 
+	func appendingPathComponent(_ compval: JSValue) -> JSValue
 	func loadText() -> JSValue
 }
 
@@ -63,6 +64,29 @@ import Foundation
 			} else {
 				return JSValue(nullIn: mContext)
 			}
+		}
+	}
+
+	public func appendingPathComponent(_ compval: JSValue) -> JSValue {
+		guard let cururl = mURL else {
+			return JSValue(nullIn: mContext)
+		}
+
+		let compstr: String?
+		if compval.isString {
+			compstr = compval.toString()
+		} else if compval.isURL {
+			let url = compval.toURL()
+			compstr = url.path
+		} else {
+			compstr = nil
+		}
+		if let component = compstr {
+			let newurl = cururl.appendingPathComponent(component)
+			let newobj = KLURL(URL: newurl, context: mContext)
+			return JSValue(object: newobj, in: mContext)
+		} else {
+			return JSValue(nullIn: mContext)
 		}
 	}
 

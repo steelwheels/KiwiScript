@@ -176,7 +176,7 @@ do {
     > history 
  - Script
 do {
-	let _proc1 = run("/Users/tomoo/Library/Frameworks/KiwiShell.framework/Resources/Binary/history.js", stdin, stdout, stderr) ;
+	let _proc1 = run("/Users/tomoo/Library/Frameworks/KiwiShell.framework/Resources/Script/history.js", stdin, stdout, stderr) ;
 	_proc1.start([]) ;
 	let _ecode2 = _proc1.waitUntilExit() ;
 } while(false) ;
@@ -193,7 +193,7 @@ do {
 	for(let proc of [_proc1, _proc2] ){
 		_ecode3 = _select_exit_code(proc.waitUntilExit(), _ecode3) ;
 	}
-	let _proc4 = run("/Users/tomoo/Library/Frameworks/KiwiShell.framework/Resources/Binary/history.js", stdin, stdout, stderr) ;
+	let _proc4 = run("/Users/tomoo/Library/Frameworks/KiwiShell.framework/Resources/Script/history.js", stdin, stdout, stderr) ;
 	_proc4.start([]) ;
 	let _ecode5 = _proc4.waitUntilExit() ;
 } while(false) ;
