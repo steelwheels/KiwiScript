@@ -35,21 +35,17 @@ import Foundation
 {
 	private var mContext:			KEContext
 	private var mEnvironment:		CNEnvironment
-	private var mInputFileHandle:		FileHandle
-	private var mOutputFileHandle:		FileHandle
-	private var mErrorFileHandle:		FileHandle
+	private var mConsole:			CNFileConsole
 
 	public init(context ctxt: KEContext, environment env: CNEnvironment, input inhdl: FileHandle, output outhdl: FileHandle, error errhdl: FileHandle){
 		mContext		= ctxt
 		mEnvironment		= env
-		mInputFileHandle	= inhdl
-		mOutputFileHandle	= outhdl
-		mErrorFileHandle	= errhdl
+		mConsole		= CNFileConsole(input: inhdl, output: outhdl, error: errhdl)
 	}
 
 	public func setupFileSystem() -> JSValue {
 		let result: Bool
-		if let _ = FileManager.default.setupFileSystem() {
+		if let _ = FileManager.default.setupFileSystem(console: mConsole) {
 			/* There are some errors */
 			result = false
 		} else {
@@ -72,7 +68,7 @@ import Foundation
 				let fileobj = KLFile(file: file, context: mContext)
 				return JSValue(object: fileobj, in: mContext)
 			case .error(_):
-				mErrorFileHandle.write(string: "Failed to write \(pathval)")
+				mConsole.error(string: "Failed to write \(pathval)")
 			}
 		} else if let pathurl = decodePathURL(pathval) {
 			switch fmanager.openFile(URL: pathurl, accessType: acctype) {
@@ -80,7 +76,7 @@ import Foundation
 				let fileobj = KLFile(file: file, context: mContext)
 				return JSValue(object: fileobj, in: mContext)
 			case .error(_):
-				mErrorFileHandle.write(string: "Failed to write \(pathval)")
+				mConsole.error(string: "Failed to write \(pathval)")
 			}
 		}
 		return JSValue(nullIn: mContext)

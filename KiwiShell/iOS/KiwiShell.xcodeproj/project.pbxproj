@@ -41,7 +41,7 @@
 		05B3618123B9674100DA0BF3 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = Script;
+			dstPath = Documents/Script;
 			dstSubfolderSpec = 7;
 			files = (
 				0576D465245A776000EAA9E9 /* setenv.js in CopyFiles */,
