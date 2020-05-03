@@ -543,13 +543,10 @@ open class KLCompiler: KECompiler
 			   let errfile = KLCompiler.vallueToFileStream(value: errval),
 			   let vm = JSVirtualMachine() {
 				let file: KLThread.ScriptFile
-				if pathval.isString {
-					let url = URL(fileURLWithPath: pathval.toString())
-					file    = .url(url)
-				} else if pathval.isNull {
-					file    = .unselected
+				if let inurl = self.pathToFullPath(path: pathval, environment: env) {
+					file = .url(inurl)
 				} else {
-					return JSValue(nullIn: ctxt)
+					file = .unselected
 				}
 				let threadobj = KLThreadObject(virtualMachine: vm, scriptFile: file, processManager: procmgr, queue: disque, input:  infile, output: outfile, error: errfile, environment: env, resource: res, config: conf)
 				let thread    = KLThread(thread: threadobj)
@@ -590,6 +587,23 @@ open class KLCompiler: KECompiler
 			return JSValue(nullIn: ctxt)
 		}
 		ctxt.set(name: "_waitUntilExitAll", function: waitExtFunc)
+	}
+
+	private func pathToFullPath(path pathval: JSValue, environment env: CNEnvironment) -> URL? {
+		let pathstr: String
+		if pathval.isURL {
+			pathstr = pathval.toURL().path
+		} else if pathval.isString {
+			pathstr = pathval.toString()
+		} else {
+			return nil
+		}
+		if FileManager.default.isAbsolutePath(pathString: pathstr) {
+			return URL(fileURLWithPath: pathstr)
+		} else {
+			let curdir = env.currentDirectory
+			return URL(fileURLWithPath: pathstr, relativeTo: curdir)
+		}
 	}
 
 	private class func valueToConsole(consoleValue consval: JSValue, context ctxt: KEContext, logConsole logcons: CNConsole) -> CNFileConsole {
