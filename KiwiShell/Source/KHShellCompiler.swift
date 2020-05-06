@@ -17,11 +17,16 @@ open class KHShellCompiler: KLCompiler
 	open func compileBaseAndLibrary(context ctxt: KEContext, processManager procmgr: CNProcessManager, queue disque: DispatchQueue, environment env: CNEnvironment, resource res: KEResource, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
 		if super.compileBase(context: ctxt, environment: env, console: cons, config: conf) {
 			if super.compileLibraryInResource(context: ctxt, processManager: procmgr, queue: disque, environment: env, resource: res, console: cons, config: conf) {
+				defineEnvironmentVariables(environment: env)
 				defineBuiltinFunctions(context: ctxt, processManager: procmgr, environment: env, console: cons)
 				return true
 			}
 		}
 		return false
+	}
+
+	private func defineEnvironmentVariables(environment env: CNEnvironment) {
+		env.set(name: "JSH_VERSION", string: CNPreference.shared.systemPreference.version)
 	}
 
 	private func defineBuiltinFunctions(context ctxt: KEContext, processManager procmgr: CNProcessManager, environment env: CNEnvironment, console cons: CNConsole) {
