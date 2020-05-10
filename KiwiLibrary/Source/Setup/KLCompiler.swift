@@ -406,6 +406,10 @@ open class KLCompiler: KECompiler
 		let stderr = KLFile(file: CNTextFile(fileHandle: cons.errorHandle), context: ctxt)
 		ctxt.set(name: "stderr", object: stderr)
 
+		/* Curses */
+		let curses = KLCurses.singleton(console: cons, context: ctxt)
+		ctxt.set(name: "Curses", object: curses)
+
 		/* FontManager */
 		let fontmgr = KLFontManager(context: ctxt)
 		ctxt.set(name: "FontManager", object: fontmgr)
