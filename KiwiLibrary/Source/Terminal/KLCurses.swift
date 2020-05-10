@@ -50,6 +50,7 @@ import Foundation
 	public func moveTo(_ x: JSValue, _ y: JSValue) -> JSValue {
 		let result: Bool
 		if x.isNumber && y.isNumber {
+			mCurses.moveTo(x: Int(x.toInt32()), y: Int(y.toInt32()))
 			result = true
 		} else {
 			result = false
