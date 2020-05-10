@@ -407,7 +407,7 @@ open class KLCompiler: KECompiler
 		ctxt.set(name: "stderr", object: stderr)
 
 		/* Curses */
-		let curses = KLCurses.singleton(console: cons, context: ctxt)
+		let curses = KLCurses(console: cons, environment: env, context: ctxt)
 		ctxt.set(name: "Curses", object: curses)
 
 		/* FontManager */

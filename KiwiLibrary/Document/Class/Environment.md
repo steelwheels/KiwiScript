@@ -14,6 +14,8 @@ Following variables are defined before executing script.
 |Variable name  |Description                                             |
 |:---           |:---                                                   |
 |`CLICOLOR`, `CLICOLOR_FORCE` |The flag to use color in the terminal. The [JSTerminal](https://github.com/steelwheels/JSTerminal/blob/master/Documents/UsersManual.md) could not support terminal functions such as `isatty`. For more details, see [Bug & Restrictions](https://github.com/steelwheels/JSTerminal/blob/master/Documents/restrictions.md). |
+|`COLUMNS`      |Number of columns in the terminal. It presents the digit value. |
+|`LINES`        |Number of lines in the terminal. It presents the digit value. |
 |`PWD`          |Path of the current working directory                  |
 |`TERM`         |Terminal type. The default value is `xterm-16color`    |
 |`TMPDIR`       |Path of the temporary directory                        |
