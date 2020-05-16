@@ -48,5 +48,20 @@ Curses.moveTo(x, y) ;
 |x            |Int      |The X position                   |
 |y            |Int      |The Y position                   |
 
+## Color
+### `foregroundColor` Property
+The foreground color which type is defined as [Color](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/Color.md).
+````
+let fcol = Curses.foregroundColor ;
+Curses.foregroundColor = Color.black ;
+````
+
+### `backgroundColor` Property
+The background color which type is defined as [Color](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/Color.md).
+````
+let bcol = Curses.backgroundColor ;
+Curses.backgroundColor = Color.white ;
+````
+
 ## Related Links
 * [ncurses](https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man3/ncurses.3x.html): Curses library

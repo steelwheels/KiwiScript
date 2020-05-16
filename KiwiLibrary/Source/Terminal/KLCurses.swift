@@ -26,6 +26,7 @@ import Foundation
 	private var		mCurses:	CNCurses
 	private var 		mContext:	KEContext
 
+
 	public init(console cons: CNConsole, environment env: CNEnvironment, context ctxt: KEContext){
 		mCurses  = CNCurses(console: cons, environment: env)
 		mContext = ctxt
