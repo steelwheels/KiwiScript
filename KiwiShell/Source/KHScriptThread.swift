@@ -19,7 +19,7 @@ import Foundation
 	func waitUntilExit() -> Int32
 }
 
-public class KHScriptThreadObject: CNThread
+public class KHScriptThreadObject: CNScriptThread
 {
 	public enum Script {
 		case empty
@@ -60,6 +60,9 @@ public class KHScriptThreadObject: CNThread
 	}
 
 	public override func main(argument arg: CNNativeValue) -> Int32 {
+		/* Setup */
+		super.setup()
+
 		if compile(processManager: mChildProcessManager, config: mConfig) {
 			if mConfig.hasMainFunction {
 				return execOperation(argument: arg)

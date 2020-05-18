@@ -15,8 +15,8 @@ import Foundation
 	func start()
 	func end()
 
-	var columns: JSValue { get }
-	var lines:   JSValue { get }
+	var width:  JSValue { get }
+	var height: JSValue { get }
 
 	func moveTo(_ x: JSValue, _ y: JSValue) -> JSValue
 }
@@ -40,12 +40,12 @@ import Foundation
 		mCurses.end()
 	}
 
-	public var columns: JSValue {
-		get { return JSValue(int32: Int32(mCurses.columns), in: mContext) }
+	public var width: JSValue {
+		get { return JSValue(int32: Int32(mCurses.width), in: mContext) }
 	}
 
-	public var lines:   JSValue {
-		get { return JSValue(int32: Int32(mCurses.lines), in: mContext) }
+	public var height:   JSValue {
+		get { return JSValue(int32: Int32(mCurses.height), in: mContext) }
 	}
 
 	public func moveTo(_ x: JSValue, _ y: JSValue) -> JSValue {
