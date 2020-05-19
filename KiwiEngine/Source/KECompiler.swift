@@ -15,7 +15,7 @@ open class KECompiler
 
 	}
 	
-	open func compileBase(context ctxt: KEContext, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
+	open func compileBase(context ctxt: KEContext, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
 		/* Set strict */
 		setStrictMode(context: ctxt, console: cons, config: conf)
 		/* Define Enum Types */

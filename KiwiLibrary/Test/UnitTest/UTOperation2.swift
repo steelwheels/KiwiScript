@@ -16,9 +16,10 @@ public func UTOperation2(console cons: CNFileConsole, config conf: KEConfig) -> 
 	var result  = true
 
 	let ctxt     = KEContext(virtualMachine: JSVirtualMachine())
+	let terminfo = CNTerminalInfo(width: 80, height: 25)
 	let env	     = CNEnvironment()
 	let compiler = KLCompiler()
-	if compiler.compileBase(context: ctxt, environment: env, console: cons, config: conf) {
+	if compiler.compileBase(context: ctxt, terminalInfo: terminfo, environment: env, console: cons, config: conf) {
 		cons.print(string: "MainThread: Compile OK\n")
 	} else {
 		cons.print(string: "MainThread: Compile failed\n")
@@ -26,13 +27,14 @@ public func UTOperation2(console cons: CNFileConsole, config conf: KEConfig) -> 
 	}
 
 	let opconf = KEConfig(applicationType: .terminal, doStrict: true, logLevel: .detail)
-	let op     = KLOperationContext(ownerContext: ctxt,
-					libraries: [],
-					input:  cons.inputHandle,
-					output: cons.outputHandle,
-					error:  cons.errorHandle,
-					environment: env,
-					config: opconf)
+	let op     = KLOperationContext(ownerContext:	ctxt,
+					libraries:	[],
+					input:		cons.inputHandle,
+					output:		cons.outputHandle,
+					error:		cons.errorHandle,
+					terminalInfo:	terminfo,
+					environment:	env,
+					config:		opconf)
 
 	switch CNFilePath.URLForBundleFile(bundleName: "UnitTest", fileName: "unit-test-1", ofType: "js") {
 	case .ok(let url):

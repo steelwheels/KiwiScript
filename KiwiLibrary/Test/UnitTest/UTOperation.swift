@@ -13,10 +13,11 @@ import Foundation
 
 public func UTOperation(context ctxt: KEContext, console cons: CNFileConsole, config conf: KEConfig) -> Bool
 {
-	let env = CNEnvironment()
+	let terminfo	= CNTerminalInfo(width: 80, height: 25)
+	let env		= CNEnvironment()
 
 	cons.print(string: "// Allocate operation\n")
-	guard let op = allocateOperation(context: ctxt, environment: env, console: cons, config: conf) else {
+	guard let op = allocateOperation(context: ctxt, terminalInfo: terminfo, environment: env, console: cons, config: conf) else {
 		cons.error(string: "Could not allocate operation\n")
 		return false
 	}
@@ -68,19 +69,20 @@ public func UTOperation(context ctxt: KEContext, console cons: CNFileConsole, co
 	return true
 }
 
-private func allocateOperation(context ctxt: KEContext, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> KLOperationContext?
+private func allocateOperation(context ctxt: KEContext, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> KLOperationContext?
 {
 	let strct = CNNativeStruct(name: "UTStruct")
 	strct.setMember(name: "a", value: CNNativeValue.numberValue(NSNumber(floatLiteral: 0.12)))
 	strct.setMember(name: "b", value: CNNativeValue.stringValue("Hello"))
 
-	let op     = KLOperationContext(ownerContext: ctxt,
-					libraries: [],
-					input:  cons.inputHandle,
-					output: cons.outputHandle,
-					error:  cons.errorHandle,
-					environment: env,
-					config: conf)
+	let op     = KLOperationContext(ownerContext:	ctxt,
+					libraries:	[],
+					input:		cons.inputHandle,
+					output:		cons.outputHandle,
+					error:		cons.errorHandle,
+					terminalInfo:	terminfo,
+					environment:	env,
+					config:		conf)
 
 	switch CNFilePath.URLForBundleFile(bundleName: "UnitTest", fileName: "unit-test-0", ofType: "js") {
 	case .ok(let url):

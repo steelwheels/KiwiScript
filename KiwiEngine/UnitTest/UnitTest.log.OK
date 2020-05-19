@@ -6,6 +6,12 @@ testError : OK
 * Setup compiler
 * compile
 'use strict' ;
+/* Define Enum: AccessType */
+let AccessType = {
+	read : 0,
+	write : 1,
+	append : 2
+};
 /* Define Enum: Alignment */
 let Alignment = {
 	leading : 0,
@@ -129,11 +135,11 @@ testValue : OK
     }
   }
   scripts: {
-    script-b: {
-      "scriptB.js"
-    }
     script-a: {
       "scriptA.js"
+    }
+    script-b: {
+      "scriptB.js"
     }
   }
 }

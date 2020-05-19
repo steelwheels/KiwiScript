@@ -23,9 +23,12 @@ public func testCompiler(console cons: CNFileConsole) -> Bool
 	console.print(string: "* Setup compiler\n")
 	let compiler = KECompiler()
 
+	let terminfo    = CNTerminalInfo(width: 80, height: 25)
+	let environment = CNEnvironment()
+
 	let result: Bool
 	console.print(string: "* compile\n")
-	if compiler.compileBase(context: context, console: cons, config: config) {
+	if compiler.compileBase(context: context, terminalInfo: terminfo, environment: environment, console: cons, config: config) {
 		console.print(string: "Compile ... OK\n")
 		result = true
 	} else {

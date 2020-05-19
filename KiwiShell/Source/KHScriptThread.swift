@@ -78,7 +78,7 @@ public class KHScriptThreadObject: CNScriptThread
 		/* Compile the context */
 		let compiler = KHShellCompiler()
 		let queue    = DispatchQueue(label: "KHScriptThreadObject", qos: .default, attributes: .concurrent)
-		guard compiler.compileBaseAndLibrary(context: mContext, processManager: procmgr, queue: queue, environment: self.environment, resource: mResource, console: self.console, config: conf) else {
+		guard compiler.compileBaseAndLibrary(context: mContext, processManager: procmgr, queue: queue, terminalInfo: self.terminalInfo,environment: self.environment, resource: mResource, console: self.console, config: conf) else {
 			console.error(string: "Failed to compile script thread context\n")
 			return false
 		}

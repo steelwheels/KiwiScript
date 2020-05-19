@@ -24,13 +24,15 @@ public class KLThreadObject: CNThread
 	private var mContext:			KEContext
 	private var mChildProcessManager:	CNProcessManager
 	private var mScriptFile:		ScriptFile
+	private var mTerminalInfo:		CNTerminalInfo
 	private var mResource:			KEResource
 	private var mConfig:			KEConfig
 
-	public init(virtualMachine vm: JSVirtualMachine, scriptFile file: ScriptFile, processManager procmgr: CNProcessManager, queue disque: DispatchQueue,input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, resource res: KEResource, config conf: KEConfig) {
+	public init(virtualMachine vm: JSVirtualMachine, scriptFile file: ScriptFile, processManager procmgr: CNProcessManager, queue disque: DispatchQueue,input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, resource res: KEResource, config conf: KEConfig) {
 		mContext   		= KEContext(virtualMachine: vm)
 		mChildProcessManager	= CNProcessManager()
 		mScriptFile		= file
+		mTerminalInfo		= terminfo
 		mResource		= res
 		mConfig			= KEConfig(applicationType: conf.applicationType,
 						   doStrict: conf.doStrict,
@@ -53,10 +55,10 @@ public class KLThreadObject: CNThread
 	private func compile(processManager procmgr: CNProcessManager, queue disque: DispatchQueue, config conf: KEConfig) -> Bool {
 		/* Compile */
 		let compiler = KLCompiler()
-		guard compiler.compileBase(context: mContext, environment: self.environment, console: self.console, config: conf) else {
+		guard compiler.compileBase(context: mContext, terminalInfo: self.mTerminalInfo, environment: self.environment, console: self.console, config: conf) else {
 			return false
 		}
-		guard compiler.compileLibraryInResource(context: mContext, processManager: procmgr, queue: disque, environment: self.environment, resource: mResource, console: self.console, config: conf) else {
+		guard compiler.compileLibraryInResource(context: mContext, processManager: procmgr, queue: disque, terminalInfo: self.mTerminalInfo, environment: self.environment, resource: mResource, console: self.console, config: conf) else {
 			return false
 		}
 		/* Load script */

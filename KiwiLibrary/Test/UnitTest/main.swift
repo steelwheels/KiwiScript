@@ -24,10 +24,11 @@ public func main()
 		filecons.error(string: exception.description)
 	}
 
-	let env = CNEnvironment()
+	let terminfo = CNTerminalInfo(width: 80, height: 25)
+	let env      = CNEnvironment()
 
 	let compiler = KLCompiler()
-	if(compiler.compileBase(context: context, environment: env, console: filecons, config: config)){
+	if(compiler.compileBase(context: context, terminalInfo: terminfo, environment: env, console: filecons, config: config)){
 		filecons.print(string: "  -> Compiler: OK\n")
 	} else {
 		filecons.print(string: "  -> Compiler: NG\n")

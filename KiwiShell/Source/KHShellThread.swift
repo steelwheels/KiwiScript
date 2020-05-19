@@ -62,7 +62,7 @@ public class KHShellThreadObject: CNShellThread
 
 		/* Compile the context */
 		let compiler  = KHShellCompiler()
-		guard compiler.compileBaseAndLibrary(context: mContext, processManager: mChildProcessManager, queue: disque, environment: env, resource: res, console: console, config: conf) else {
+		guard compiler.compileBaseAndLibrary(context: mContext, processManager: mChildProcessManager, queue: disque, terminalInfo: self.terminalInfo, environment: env, resource: res, console: console, config: conf) else {
 			console.error(string: "Failed to compile script thread context\n")
 			return
 		}

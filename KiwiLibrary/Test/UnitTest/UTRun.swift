@@ -13,11 +13,12 @@ import Foundation
 
 public func UTRun(context ctxt: KEContext, dispatchQueue queue: DispatchQueue, console cons: CNFileConsole) -> Bool
 {
-	let manager: CNProcessManager	= CNProcessManager()
-	let instrm:  CNFileStream	= .fileHandle(cons.inputHandle)
-	let outstrm: CNFileStream	= .fileHandle(cons.outputHandle)
-	let errstrm: CNFileStream	= .fileHandle(cons.errorHandle)
-	let env:     CNEnvironment	= CNEnvironment()
+	let manager:	CNProcessManager = CNProcessManager()
+	let instrm:	CNFileStream	 = .fileHandle(cons.inputHandle)
+	let outstrm:	CNFileStream	 = .fileHandle(cons.outputHandle)
+	let errstrm:	CNFileStream	 = .fileHandle(cons.errorHandle)
+	let env:	CNEnvironment	 = CNEnvironment()
+	let terminfo:	CNTerminalInfo	 = CNTerminalInfo(width: 80, height: 25)
 
 	guard let vm = JSVirtualMachine() else {
 		cons.print(string: "Could not allocate VM")
@@ -35,7 +36,7 @@ public func UTRun(context ctxt: KEContext, dispatchQueue queue: DispatchQueue, c
 
 	let config    = KEConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
 	let url       = URL(fileURLWithPath: "../Test/Sample/sample-1.js")
-	let threadobj = KLThreadObject(virtualMachine: vm, scriptFile: .url(url), processManager: manager, queue: queue, input: instrm, output: outstrm, error: errstrm, environment: env, resource: resource, config: config)
+	let threadobj = KLThreadObject(virtualMachine: vm, scriptFile: .url(url), processManager: manager, queue: queue, input: instrm, output: outstrm, error: errstrm, terminalInfo: terminfo, environment: env, resource: resource, config: config)
 	let thread    = KLThread(thread: threadobj)
 	thread.start(args)
 
