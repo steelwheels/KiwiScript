@@ -19,7 +19,7 @@ import Foundation
 	func waitUntilExit() -> Int32
 }
 
-public class KHScriptThreadObject: CNScriptThread
+public class KHScriptThreadObject: CNThread
 {
 	public enum Script {
 		case empty
@@ -29,6 +29,7 @@ public class KHScriptThreadObject: CNScriptThread
 
 	private var mContext:			KEContext
 	private var mChildProcessManager:	CNProcessManager
+	private var mTerminalInfo:		CNTerminalInfo
 	private var mConfig:			KHConfig
 	private var mResource:			KEResource
 
@@ -37,14 +38,16 @@ public class KHScriptThreadObject: CNScriptThread
 
 	public var context: KEContext { get { return mContext }}
 
-	public init(virtualMachine vm: JSVirtualMachine, script scr: Script, processManager procmgr: CNProcessManager, queue disque: DispatchQueue, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, resource res: KEResource, config conf: KHConfig){
-		mContext 		= KEContext(virtualMachine: vm)
+	public init(script scr: Script, processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, resource res: KEResource, config conf: KHConfig){
+		let vm			= JSVirtualMachine()
+		mContext 		= KEContext(virtualMachine: vm!)
 		mChildProcessManager	= CNProcessManager()
+		mTerminalInfo		= CNTerminalInfo(width: 80, height: 25)
 		mConfig			= conf
 		mResource		= res
 		mScript			= scr
 		mExceptionCount		= 0
-		super.init(processManager: procmgr, queue: disque, input: instrm, output: outstrm, error: errstrm, environment: env)
+		super.init(processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: env)
 
 		/* Add child process manager */
 		procmgr.addChildManager(childManager: mChildProcessManager)
@@ -60,9 +63,6 @@ public class KHScriptThreadObject: CNScriptThread
 	}
 
 	public override func main(argument arg: CNNativeValue) -> Int32 {
-		/* Setup */
-		super.setup()
-
 		if compile(processManager: mChildProcessManager, config: mConfig) {
 			if mConfig.hasMainFunction {
 				return execOperation(argument: arg)
@@ -77,8 +77,7 @@ public class KHScriptThreadObject: CNScriptThread
 	private func compile(processManager procmgr: CNProcessManager, config conf: KEConfig) -> Bool {
 		/* Compile the context */
 		let compiler = KHShellCompiler()
-		let queue    = DispatchQueue(label: "KHScriptThreadObject", qos: .default, attributes: .concurrent)
-		guard compiler.compileBaseAndLibrary(context: mContext, processManager: procmgr, queue: queue, terminalInfo: self.terminalInfo,environment: self.environment, resource: mResource, console: self.console, config: conf) else {
+		guard compiler.compileBaseAndLibrary(context: mContext, processManager: procmgr, terminalInfo: mTerminalInfo, environment: self.environment, resource: mResource, console: self.console, config: conf) else {
 			console.error(string: "Failed to compile script thread context\n")
 			return false
 		}

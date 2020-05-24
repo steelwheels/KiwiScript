@@ -33,9 +33,9 @@ open class KLCompiler: KECompiler
 		return true
 	}
 
-	open func compileLibraryInResource(context ctxt: KEContext, processManager procmgr: CNProcessManager, queue disque: DispatchQueue, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, resource res: KEResource, console cons: CNConsole, config conf: KEConfig) -> Bool {
+	open func compileLibraryInResource(context ctxt: KEContext, processManager procmgr: CNProcessManager, environment env: CNEnvironment, resource res: KEResource, console cons: CNConsole, config conf: KEConfig) -> Bool {
 		if super.compileLibraryInResource(context: ctxt, resource: res, console: cons, config: conf) {
-			defineThreadFunction(context: ctxt, processManager: procmgr, queue: disque, terminalInfo: terminfo, environment: env, resource: res, console: cons, config: conf)
+			defineThreadFunction(context: ctxt, processManager: procmgr, environment: env, resource: res, console: cons, config: conf)
 			return (ctxt.errorCount == 0)
 		} else {
 			return false
@@ -520,7 +520,7 @@ open class KLCompiler: KECompiler
 		ctxt.set(name: "OperationQueue", function: queuefunc)
 	}
 
-	private func defineThreadFunction(context ctxt: KEContext, processManager procmgr: CNProcessManager, queue disque: DispatchQueue, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, resource res: KEResource, console cons: CNConsole, config conf: KEConfig) {
+	private func defineThreadFunction(context ctxt: KEContext, processManager procmgr: CNProcessManager, environment env: CNEnvironment, resource res: KEResource, console cons: CNConsole, config conf: KEConfig) {
 		/* Thread */
 		let thfunc: @convention(block) (_ nameval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue = {
 			(_ nameval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue in
@@ -529,7 +529,7 @@ open class KLCompiler: KECompiler
 			   let outfile = KLCompiler.vallueToFileStream(value: outval),
 			   let errfile = KLCompiler.vallueToFileStream(value: errval),
 			   let vm = JSVirtualMachine() {
-				let threadobj = KLThreadObject(virtualMachine: vm, scriptFile: .identifier(name), processManager: procmgr, queue: disque, input:  infile, output: outfile, error: errfile, terminalInfo: terminfo, environment: env, resource: res, config: conf)
+				let threadobj = KLThreadObject(virtualMachine: vm, scriptFile: .identifier(name), processManager: procmgr, input:  infile, output: outfile, error: errfile, environment: env, resource: res, config: conf)
 				let thread    = KLThread(thread: threadobj)
 				let _         = procmgr.addProcess(process: threadobj)
 				return JSValue(object: thread, in: ctxt)
@@ -553,7 +553,7 @@ open class KLCompiler: KECompiler
 				} else {
 					file = .unselected
 				}
-				let threadobj = KLThreadObject(virtualMachine: vm, scriptFile: file, processManager: procmgr, queue: disque, input:  infile, output: outfile, error: errfile, terminalInfo: terminfo, environment: env, resource: res, config: conf)
+				let threadobj = KLThreadObject(virtualMachine: vm, scriptFile: file, processManager: procmgr, input:  infile, output: outfile, error: errfile, environment: env, resource: res, config: conf)
 				let thread    = KLThread(thread: threadobj)
 				let _         = procmgr.addProcess(process: threadobj)
 				return JSValue(object: thread, in: ctxt)

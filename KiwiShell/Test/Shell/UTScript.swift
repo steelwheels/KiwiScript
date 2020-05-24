@@ -17,11 +17,6 @@ public func UTScript(input inhdl: FileHandle, output outhdl: FileHandle, error e
 {
 	var result = true
 
-	guard let vm = JSVirtualMachine() else {
-		cons.error(string: "Failed to allocate VM\n")
-		return false
-	}
-
 	let instrm  : CNFileStream = .fileHandle(inhdl)
 	let outstrm : CNFileStream = .fileHandle(outhdl)
 	let errstrm : CNFileStream = .fileHandle(errhdl)
@@ -29,11 +24,10 @@ public func UTScript(input inhdl: FileHandle, output outhdl: FileHandle, error e
 	let script: String = "for(let i=0; i<1000000 ; i ++) { sleep(0.1) ; } "
 
 	let procmgr  = CNProcessManager()
-	let queue    = DispatchQueue(label: "UTShell", qos: .default, attributes: .concurrent)
 	let env      = CNEnvironment()
 	let resource = KEResource(baseURL: URL(fileURLWithPath: "."))
 	let config   = KHConfig(applicationType: .terminal, hasMainFunction: false, doStrict: true, logLevel: .warning)
-	let thread   = KHScriptThreadObject(virtualMachine: vm, script: .script(script), processManager: procmgr, queue: queue, input: instrm, output: outstrm, error: errstrm, environment: env, resource: resource, config: config)
+	let thread   = KHScriptThreadObject(script: .script(script), processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: env, resource: resource, config: config)
 
 	/* Execute the thread */
 	thread.start(argument: .nullValue)

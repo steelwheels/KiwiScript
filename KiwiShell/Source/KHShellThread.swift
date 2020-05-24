@@ -51,21 +51,26 @@ public class KHShellThreadObject: CNShellThread
 
 	public var context: KEContext { get { return mContext }}
 
-	public init(virtualMachine vm: JSVirtualMachine, processManager procmgr: CNProcessManager, queue disque: DispatchQueue, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, resource res: KEResource, config conf: KEConfig){
-		mContext		= KEContext(virtualMachine: vm)
+	public init(processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, resource res: KEResource, config conf: KEConfig){
+		let vm			= JSVirtualMachine()
+		mContext		= KEContext(virtualMachine: vm!)
 		mChildProcessManager	= CNProcessManager()
 		mInputMode		= .shellScript
-		super.init(processManager: procmgr, queue: disque, input: instrm, output: outstrm, error: errstrm, environment: env)
+		super.init(processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: env)
 
 		/* Allocate process manager for child processes */
 		procmgr.addChildManager(childManager: mChildProcessManager)
 
 		/* Compile the context */
 		let compiler  = KHShellCompiler()
-		guard compiler.compileBaseAndLibrary(context: mContext, processManager: mChildProcessManager, queue: disque, terminalInfo: self.terminalInfo, environment: env, resource: res, console: console, config: conf) else {
+		guard compiler.compileBaseAndLibrary(context: mContext, processManager: mChildProcessManager, terminalInfo: self.terminalInfo, environment: env, resource: res, console: console, config: conf) else {
 			console.error(string: "Failed to compile script thread context\n")
 			return
 		}
+
+		/* Setup built-in script location */
+		let manager = KLBuiltinScripts.shared
+		manager.setup(subdirectory: "Documents/Script", forClass: KHShellThreadObject.self)
 
 		/* Set exception handler */
 		mContext.exceptionCallback = {
@@ -146,9 +151,7 @@ public class KHShellThreadObject: CNShellThread
 	}
 
 	public override func terminate() {
-		NSLog("\(#file) *0")
 		if let parent = self.processManager {
-			NSLog("\(#file) *1")
 			let childlen = parent.childProcessManagers
 			for child in childlen {
 				NSLog("\(#file): Terminate child process")

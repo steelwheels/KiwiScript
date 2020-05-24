@@ -28,37 +28,36 @@ public class KLThreadObject: CNThread
 	private var mResource:			KEResource
 	private var mConfig:			KEConfig
 
-	public init(virtualMachine vm: JSVirtualMachine, scriptFile file: ScriptFile, processManager procmgr: CNProcessManager, queue disque: DispatchQueue,input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, resource res: KEResource, config conf: KEConfig) {
+	public init(virtualMachine vm: JSVirtualMachine, scriptFile file: ScriptFile, processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, resource res: KEResource, config conf: KEConfig) {
 		mContext   		= KEContext(virtualMachine: vm)
 		mChildProcessManager	= CNProcessManager()
 		mScriptFile		= file
-		mTerminalInfo		= terminfo
+		mTerminalInfo		= CNTerminalInfo(width: 80, height: 25)
 		mResource		= res
 		mConfig			= KEConfig(applicationType: conf.applicationType,
 						   doStrict: conf.doStrict,
 						   logLevel: conf.logLevel)
-		super.init(processManager: procmgr, queue: disque, input: instrm, output: outstrm, error: errstrm, environment: env)
+		super.init(processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: env)
 
 		/* Add to parent manager */
 		procmgr.addChildManager(childManager: mChildProcessManager)
 	}
 
 	public override func main(argument arg: CNNativeValue) -> Int32 {
-		let queue = DispatchQueue(label: "KLThreadObject", qos: .default, attributes: .concurrent)
-		if compile(processManager: mChildProcessManager, queue: queue, config: mConfig) {
+		if compile(processManager: mChildProcessManager, config: mConfig) {
 			return execOperation(argument: arg)
 		} else {
 			return -1
 		}
 	}
 
-	private func compile(processManager procmgr: CNProcessManager, queue disque: DispatchQueue, config conf: KEConfig) -> Bool {
+	private func compile(processManager procmgr: CNProcessManager, config conf: KEConfig) -> Bool {
 		/* Compile */
 		let compiler = KLCompiler()
 		guard compiler.compileBase(context: mContext, terminalInfo: self.mTerminalInfo, environment: self.environment, console: self.console, config: conf) else {
 			return false
 		}
-		guard compiler.compileLibraryInResource(context: mContext, processManager: procmgr, queue: disque, terminalInfo: self.mTerminalInfo, environment: self.environment, resource: mResource, console: self.console, config: conf) else {
+		guard compiler.compileLibraryInResource(context: mContext, processManager: procmgr, environment: self.environment, resource: mResource, console: self.console, config: conf) else {
 			return false
 		}
 		/* Load script */

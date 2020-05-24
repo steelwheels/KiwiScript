@@ -21,21 +21,15 @@ public func UTShell(input inhdl: FileHandle, output outhdl: FileHandle, error er
 		cons.print(string: hdl.availableString)
 	}
 
-	guard let vm = JSVirtualMachine() else {
-		cons.error(string: "Failed to allocate VM\n")
-		return false
-	}
-
 	let instrm  : CNFileStream = .fileHandle(inhdl)
 	let outstrm : CNFileStream = .fileHandle(outhdl)
 	let errstrm : CNFileStream = .fileHandle(errhdl)
 
 	let procmgr  = CNProcessManager()
-	let queue    = DispatchQueue(label: "UTShell", qos: .default, attributes: .concurrent)
 	let env      = CNEnvironment()
 	let resource = KEResource(baseURL: URL(fileURLWithPath: "."))
 	let config   = KEConfig(applicationType: .terminal, doStrict: true, logLevel: .detail)
-	let shellobj = KHShellThreadObject(virtualMachine: vm, processManager: procmgr, queue: queue, input: instrm, output: outstrm, error: errstrm, environment: env, resource: resource, config: config)
+	let shellobj = KHShellThreadObject(processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: env, resource: resource, config: config)
 	let shell    = KHShellThread(thread: shellobj)
 	shell.start()
 
