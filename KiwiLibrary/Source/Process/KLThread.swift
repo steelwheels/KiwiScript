@@ -28,8 +28,9 @@ public class KLThreadObject: CNThread
 	private var mResource:			KEResource
 	private var mConfig:			KEConfig
 
-	public init(virtualMachine vm: JSVirtualMachine, scriptFile file: ScriptFile, processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, resource res: KEResource, config conf: KEConfig) {
-		mContext   		= KEContext(virtualMachine: vm)
+	public init(scriptFile file: ScriptFile, processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, resource res: KEResource, config conf: KEConfig) {
+		let vm			= JSVirtualMachine()
+		mContext   		= KEContext(virtualMachine: vm!)
 		mChildProcessManager	= CNProcessManager()
 		mScriptFile		= file
 		mTerminalInfo		= CNTerminalInfo(width: 80, height: 25)

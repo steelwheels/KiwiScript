@@ -527,9 +527,8 @@ open class KLCompiler: KECompiler
 			if let name    = nameval.toString(),
 			   let infile  = KLCompiler.vallueToFileStream(value: inval),
 			   let outfile = KLCompiler.vallueToFileStream(value: outval),
-			   let errfile = KLCompiler.vallueToFileStream(value: errval),
-			   let vm = JSVirtualMachine() {
-				let threadobj = KLThreadObject(virtualMachine: vm, scriptFile: .identifier(name), processManager: procmgr, input:  infile, output: outfile, error: errfile, environment: env, resource: res, config: conf)
+			   let errfile = KLCompiler.vallueToFileStream(value: errval) {
+				let threadobj = KLThreadObject(scriptFile: .identifier(name), processManager: procmgr, input:  infile, output: outfile, error: errfile, environment: env, resource: res, config: conf)
 				let thread    = KLThread(thread: threadobj)
 				let _         = procmgr.addProcess(process: threadobj)
 				return JSValue(object: thread, in: ctxt)
@@ -545,15 +544,14 @@ open class KLCompiler: KECompiler
 			(_ pathval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue in
 			if let infile  = KLCompiler.vallueToFileStream(value: inval),
 			   let outfile = KLCompiler.vallueToFileStream(value: outval),
-			   let errfile = KLCompiler.vallueToFileStream(value: errval),
-			   let vm = JSVirtualMachine() {
+			   let errfile = KLCompiler.vallueToFileStream(value: errval) {
 				let file: KLThread.ScriptFile
 				if let inurl = self.pathToFullPath(path: pathval, environment: env) {
 					file = .url(inurl)
 				} else {
 					file = .unselected
 				}
-				let threadobj = KLThreadObject(virtualMachine: vm, scriptFile: file, processManager: procmgr, input:  infile, output: outfile, error: errfile, environment: env, resource: res, config: conf)
+				let threadobj = KLThreadObject(scriptFile: file, processManager: procmgr, input:  infile, output: outfile, error: errfile, environment: env, resource: res, config: conf)
 				let thread    = KLThread(thread: threadobj)
 				let _         = procmgr.addProcess(process: threadobj)
 				return JSValue(object: thread, in: ctxt)

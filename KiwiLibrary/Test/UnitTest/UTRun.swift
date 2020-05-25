@@ -19,10 +19,6 @@ public func UTRun(context ctxt: KEContext, console cons: CNFileConsole) -> Bool
 	let errstrm:	CNFileStream	 = .fileHandle(cons.errorHandle)
 	let env:	CNEnvironment	 = CNEnvironment()
 
-	guard let vm = JSVirtualMachine() else {
-		cons.print(string: "Could not allocate VM")
-		return false
-	}
 	let pkgurl 	= URL(fileURLWithPath: "../Test/Sample/sample-0.jspkg")
 	let resource	= KEResource(baseURL: pkgurl)
 
@@ -35,7 +31,7 @@ public func UTRun(context ctxt: KEContext, console cons: CNFileConsole) -> Bool
 
 	let config    = KEConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
 	let url       = URL(fileURLWithPath: "../Test/Sample/sample-1.js")
-	let threadobj = KLThreadObject(virtualMachine: vm, scriptFile: .url(url), processManager: manager, input: instrm, output: outstrm, error: errstrm, environment: env, resource: resource, config: config)
+	let threadobj = KLThreadObject(scriptFile: .url(url), processManager: manager, input: instrm, output: outstrm, error: errstrm, environment: env, resource: resource, config: config)
 	let thread    = KLThread(thread: threadobj)
 	thread.start(args)
 
