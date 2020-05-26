@@ -27,7 +27,7 @@ public class KHScriptThreadObject: CNThread
 		case file(URL)
 	}
 
-	private var mContext:			KEContext
+	private var mContext:			KEContext?
 	private var mChildProcessManager:	CNProcessManager
 	private var mTerminalInfo:		CNTerminalInfo
 	private var mConfig:			KHConfig
@@ -36,11 +36,8 @@ public class KHScriptThreadObject: CNThread
 	private var mScript:			Script
 	private var mExceptionCount:		Int
 
-	public var context: KEContext { get { return mContext }}
-
 	public init(script scr: Script, processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, resource res: KEResource, config conf: KHConfig){
-		let vm			= JSVirtualMachine()
-		mContext 		= KEContext(virtualMachine: vm!)
+		mContext		= nil
 		mChildProcessManager	= CNProcessManager()
 		mTerminalInfo		= CNTerminalInfo(width: 80, height: 25)
 		mConfig			= conf
@@ -51,21 +48,29 @@ public class KHScriptThreadObject: CNThread
 
 		/* Add child process manager */
 		procmgr.addChildManager(childManager: mChildProcessManager)
+	}
+
+	public override func main(argument arg: CNNativeValue) -> Int32 {
+		guard let vm = JSVirtualMachine() else {
+			self.console.error(string: "Failed to allocate VM")
+			return -1
+		}
+		let ctxt = KEContext(virtualMachine: vm)
+		mContext = ctxt
 
 		/* Set exception handler */
-		mContext.exceptionCallback = {
+		ctxt.exceptionCallback = {
 			[weak self]  (_ excep: KEException) -> Void in
 			if let myself = self {
 				myself.console.error(string: excep.description + "\n")
 				myself.mExceptionCount += 1
 			}
 		}
-	}
 
-	public override func main(argument arg: CNNativeValue) -> Int32 {
-		if compile(processManager: mChildProcessManager, config: mConfig) {
+		/* Compile the script */
+		if compile(processManager: mChildProcessManager, context: ctxt, config: mConfig) {
 			if mConfig.hasMainFunction {
-				return execOperation(argument: arg)
+				return execOperation(argument: arg, context: ctxt)
 			} else {
 				return hasNoException() ? 0 : -1
 			}
@@ -74,10 +79,10 @@ public class KHScriptThreadObject: CNThread
 		}
 	}
 
-	private func compile(processManager procmgr: CNProcessManager, config conf: KEConfig) -> Bool {
+	private func compile(processManager procmgr: CNProcessManager, context ctxt: KEContext, config conf: KEConfig) -> Bool {
 		/* Compile the context */
 		let compiler = KHShellCompiler()
-		guard compiler.compileBaseAndLibrary(context: mContext, processManager: procmgr, terminalInfo: mTerminalInfo, environment: self.environment, resource: mResource, console: self.console, config: conf) else {
+		guard compiler.compileBaseAndLibrary(context: ctxt, processManager: procmgr, terminalInfo: mTerminalInfo, environment: self.environment, resource: mResource, console: self.console, config: conf) else {
 			console.error(string: "Failed to compile script thread context\n")
 			return false
 		}
@@ -97,17 +102,17 @@ public class KHScriptThreadObject: CNThread
 			console.error(string: "No script")
 			return false
 		}
-		let _ = compiler.compile(context: mContext, statement: script, console: console, config: conf)
+		let _ = compiler.compile(context: ctxt, statement: script, console: console, config: conf)
 		return hasNoException()
 	}
 
-	private func execOperation(argument arg: CNNativeValue) -> Int32 {
+	private func execOperation(argument arg: CNNativeValue, context ctxt: KEContext) -> Int32 {
 		/* Search main function */
 		var result: Int32 = -1
-		if let funcval = mContext.getValue(name: "main") {
+		if let funcval = ctxt.getValue(name: "main") {
 			if !funcval.isUndefined {
 				/* Allocate argument */
-				let jsarg = arg.toJSValue(context: mContext)
+				let jsarg = arg.toJSValue(context: ctxt)
 				/* Call main function */
 				if let retval = funcval.call(withArguments: [jsarg]) {
 					result = retval.toInt32()
@@ -124,9 +129,13 @@ public class KHScriptThreadObject: CNThread
 	}
 
 	open override func terminate() {
+		guard let ctxt = mContext else {
+			console.error(string: "No context")
+			return
+		}
 		if isRunning {
 			//NSLog("Terminate script by _cancel()")
-			mContext.evaluateScript("_cancel() ;")
+			ctxt.evaluateScript("_cancel() ;")
 			super.terminate()
 		}
 	}
@@ -147,7 +156,6 @@ public class KHScriptThreadObject: CNThread
 	}
 
 	public var isExecuting:	Bool  { get { return mThread.isRunning }}
-	public var context: KEContext { get { return mThread.context   }}
 
 	public func start(argument arg: CNNativeValue) {
 		mThread.start(argument: arg)

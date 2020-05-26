@@ -200,6 +200,6 @@ do {
 ***** UTScriptManager
 names: cd fonts getenv history setenv setup 
 ***** UTScript
-[18;0;0t[31mError: CancelException
+[31mError: CancelException
 [0mUTScript ... done
 Summary: OK

@@ -19,6 +19,7 @@ import Foundation
 	var height: JSValue { get }
 
 	func moveTo(_ x: JSValue, _ y: JSValue) -> JSValue
+	func inkey() -> JSValue
 }
 
 @objc public class KLCurses: NSObject, KLCursesProtocol
@@ -27,7 +28,7 @@ import Foundation
 	private var 		mContext:	KEContext
 
 
-	public init(console cons: CNConsole, terminalInfo terminfo: CNTerminalInfo, context ctxt: KEContext){
+	public init(console cons: CNFileConsole, terminalInfo terminfo: CNTerminalInfo, context ctxt: KEContext){
 		mCurses  = CNCurses(console: cons, terminalInfo: terminfo)
 		mContext = ctxt
 	}
@@ -57,6 +58,14 @@ import Foundation
 			result = false
 		}
 		return JSValue(bool: result, in: mContext)
+	}
+
+	public func inkey() -> JSValue {
+		if let c = mCurses.inkey() {
+			return JSValue(object: String(c), in: mContext)
+		} else {
+			return JSValue(nullIn: mContext)
+		}
 	}
 }
 

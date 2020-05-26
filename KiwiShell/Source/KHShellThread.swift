@@ -45,15 +45,16 @@ public class KHShellThreadObject: CNShellThread
 		}
 	}
 
-	private var mContext:			KEContext
+	private var mContext:			KEContext?
+	private var mResource:			KEResource
+	private var mConfig:			KEConfig
 	private var mChildProcessManager:	CNProcessManager
 	private var mInputMode:			InputMode
 
-	public var context: KEContext { get { return mContext }}
-
 	public init(processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, resource res: KEResource, config conf: KEConfig){
-		let vm			= JSVirtualMachine()
-		mContext		= KEContext(virtualMachine: vm!)
+		mContext		= nil
+		mResource		= res
+		mConfig			= conf
 		mChildProcessManager	= CNProcessManager()
 		mInputMode		= .shellScript
 		super.init(processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: env)
@@ -61,32 +62,51 @@ public class KHShellThreadObject: CNShellThread
 		/* Allocate process manager for child processes */
 		procmgr.addChildManager(childManager: mChildProcessManager)
 
-		/* Compile the context */
-		let compiler  = KHShellCompiler()
-		guard compiler.compileBaseAndLibrary(context: mContext, processManager: mChildProcessManager, terminalInfo: self.terminalInfo, environment: env, resource: res, console: console, config: conf) else {
-			console.error(string: "Failed to compile script thread context\n")
-			return
-		}
-
 		/* Setup built-in script location */
 		let manager = KLBuiltinScripts.shared
 		manager.setup(subdirectory: "Documents/Script", forClass: KHShellThreadObject.self)
+	}
+
+	public override func main(argument arg: CNNativeValue) -> Int32
+	{
+		guard let vm = JSVirtualMachine() else {
+			console.error(string: "Failed to allocate VM")
+			return -1
+		}
+		let ctxt = KEContext(virtualMachine: vm)
+		mContext = ctxt
+
+		/* Compile the context */
+		let compiler  = KHShellCompiler()
+		guard compiler.compileBaseAndLibrary(context:		ctxt,
+						     processManager:	mChildProcessManager,
+						     terminalInfo:	self.terminalInfo,
+						     environment:	self.environment,
+						     resource:		mResource,
+						     console:		self.console,
+						     config: 		mConfig) else {
+			console.error(string: "Failed to compile script thread context\n")
+			return -1
+		}
 
 		/* Set exception handler */
-		mContext.exceptionCallback = {
+		ctxt.exceptionCallback = {
 			[weak self]  (_ excep: KEException) -> Void in
 			if let myself = self {
 				let desc = excep.description
 				myself.console.error(string: "[Exception] \(desc)\n")
 			}
 		}
-	}
 
-	public override func promptString() -> String {
-		return "jsh" + mInputMode.toSymbol() + " "
+		return super.main(argument: arg)
 	}
 
 	open override func execute(command cmd: String) -> Bool {
+		guard let ctxt = mContext else {
+			console.error(string: "No context")
+			return false
+		}
+
 		var result = false
 		if !isEmpty(string: cmd) {
 			/* decode mode */
@@ -101,7 +121,7 @@ public class KHShellThreadObject: CNShellThread
 				let stmts1  = KHCompileShellStatement(statements: stmts0)
 				let script0 = KHGenerateScript(from: stmts1)
 				let script1 = script0.joined(separator: "\n")
-				if let retval = mContext.evaluateScript(script1) {
+				if let retval = ctxt.evaluateScript(script1) {
 					if !retval.isUndefined, let retstr = retval.toString() {
 						self.outputFileHandle.write(string: retstr)
 					}
@@ -114,6 +134,10 @@ public class KHShellThreadObject: CNShellThread
 			}
 		}
 		return result
+	}
+
+	public override func promptString() -> String {
+		return "jsh" + mInputMode.toSymbol() + " "
 	}
 
 	private func decodeMode(command cmd: String) -> String? {
