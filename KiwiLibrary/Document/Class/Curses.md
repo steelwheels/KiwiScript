@@ -48,6 +48,13 @@ Curses.moveTo(x, y) ;
 |x            |Int      |The X position                   |
 |y            |Int      |The Y position                   |
 
+### `inkey` method
+Get current input character. If no key is pressed, the return value will be `null`. This method *IS NOT* blocked when the no key is pressed.
+(The `getc` method in [File class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/File.md) is blocked until some input is given.)
+````
+let c = Curses.inkey() ;
+````
+
 ## Color
 ### `foregroundColor` Property
 The foreground color which type is defined as [Color](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/Color.md).
