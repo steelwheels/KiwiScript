@@ -41,6 +41,15 @@ open class KEManifestLoader
 	}
 
 	open func decode(resource res: KEResource, json data: Dictionary<String, CNNativeValue>) throws {
+		/* Decode: "application" */
+		if let appval = data["application"] {
+			if let apppath = appval.toString() {
+				res.setApprication(path: apppath)
+			} else {
+				throw NSError.parseError(message: "application must has array property")
+			}
+		}
+
 		/* Decode: "libraries" */
 		if let libval = data["libraries"] {
 			if let libarr = libval.toArray() {
@@ -49,20 +58,20 @@ open class KEManifestLoader
 					res.addLibrary(path: path)
 				}
 			} else {
-				throw NSError.parseError(message: "libraries must has array property")
+				throw NSError.parseError(message: "libraries section must has array property")
 			}
 		}
-		/* Decode: "scripts" */
-		if let scrsval = data["scripts"] {
+		/* Decode: "threads" */
+		if let scrsval = data["threads"] {
 			if let scrsdict = scrsval.toDictionary() {
 				let fmap = try decodeFilesMap(json: scrsdict)
 				for (ident, paths) in fmap {
 					for path in paths {
-						res.addScript(identifier: ident, path: path)
+						res.addThread(identifier: ident, path: path)
 					}
 				}
 			} else {
-				throw NSError.parseError(message: "windows must has object property")
+				throw NSError.parseError(message: "threads section must has object property")
 			}
 		}
 	}
@@ -88,14 +97,8 @@ open class KEManifestLoader
 		for key in data.keys {
 			result[key] = []
 			if let val = data[key] {
-				if let arr = val.toArray() {
-					for elm in arr {
-						if let str = elm.toString() {
-							result[key]?.append(str)
-						} else {
-							throw NSError.parseError(message: "Invalid value for \"\(key)\" in manifest file")
-						}
-					}
+				if let str = val.toString() {
+					result[key]?.append(str)
 				} else {
 					throw NSError.parseError(message: "Invalid value for \"\(key)\" in manifest file")
 				}

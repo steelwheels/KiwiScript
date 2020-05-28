@@ -79,26 +79,6 @@ open class KECompiler
 		return result && (ctxt.errorCount == 0)
 	}
 
-	public func compileScriptInResource(context ctxt: KEContext, resource res: KEResource, scriptName name: String, console cons: CNConsole, config conf: KEConfig) -> Bool {
-		var result = true
-		/* Compile script */
-		if let scrnum = res.countOfScripts(identifier: name) {
-			for i in 0..<scrnum {
-				if let scr = res.loadScript(identifier: name, index: i) {
-					let _ = self.compile(context: ctxt, statement: scr, console: cons, config: conf)
-				} else {
-					if let fname = res.URLOfScript(identifier: name, index: i) {
-						cons.error(string: "Failed to load script : \(fname.absoluteString)")
-					} else {
-						cons.error(string: "Failed to load file in script section")
-					}
-					result = false
-				}
-			}
-		}
-		return result && (ctxt.errorCount == 0)
-	}
-
 	public func compile(context ctxt: KEContext, statement stmt: String, console cons: CNConsole, config conf: KEConfig) -> JSValue? {
 		switch conf.logLevel {
 		case .error, .warning, .flow:
