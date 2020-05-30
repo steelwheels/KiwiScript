@@ -19,22 +19,18 @@ import Foundation
 
 public class KLThreadObject: CNThread
 {
-	public typealias ScriptFile = KLThread.ScriptFile
-
 	private var mContext:			KEContext
 	private var mChildProcessManager:	CNProcessManager
-	private var mScriptFile:		ScriptFile
+	private var mSourceFile:		KESourceFile
 	private var mTerminalInfo:		CNTerminalInfo
-	private var mResource:			KEResource
 	private var mConfig:			KEConfig
 
-	public init(scriptFile file: ScriptFile, processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, resource res: KEResource, config conf: KEConfig) {
+	public init(sourceFile file: KESourceFile, processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, config conf: KEConfig) {
 		let vm			= JSVirtualMachine()
 		mContext   		= KEContext(virtualMachine: vm!)
 		mChildProcessManager	= CNProcessManager()
-		mScriptFile		= file
+		mSourceFile		= file
 		mTerminalInfo		= CNTerminalInfo(width: 80, height: 25)
-		mResource		= res
 		mConfig			= KEConfig(applicationType: conf.applicationType,
 						   doStrict: conf.doStrict,
 						   logLevel: conf.logLevel)
@@ -53,35 +49,59 @@ public class KLThreadObject: CNThread
 	}
 
 	private func compile(processManager procmgr: CNProcessManager, config conf: KEConfig) -> Bool {
+		/* Update resource file */
+		let resource: KEResource
+		switch mSourceFile {
+		case .none:
+			if let url = selectInputFile() {
+				switch KEResource.allocateResource(from: url) {
+				case .ok(let res):
+					resource = res
+				case .error(let err):
+					console.error(string: "[Error] \(err.description)")
+					return false
+				}
+			} else {
+				console.error(string: "Failed to select script\n")
+				return false
+			}
+		case .file(let url):
+			resource = KEResource(singleFileURL: url)
+		case .script(let scr):
+			let base = URL(fileURLWithPath: NSHomeDirectory())
+			resource = KEResource(baseURL: base)
+			resource.setApprication(path: "/dev/null")		// dummy
+			resource.storeAppilication(script: scr)
+		case .resource(let res):
+			resource = res
+		case .thread(let name, let res):
+			if let scr = res.loadThread(identifier: name) {
+				let base = URL(fileURLWithPath: NSHomeDirectory())
+				resource = KEResource(baseURL: base)
+				resource.setApprication(path: "/dev/null")	// dummy
+				resource.storeAppilication(script: scr)
+			} else {
+				console.error(string: "Failed to load thread: \(name)")
+				return false
+			}
+		}
+		mSourceFile = .resource(resource)
+
 		/* Compile */
 		let compiler = KLCompiler()
 		guard compiler.compileBase(context: mContext, terminalInfo: self.mTerminalInfo, environment: self.environment, console: self.console, config: conf) else {
 			return false
 		}
-		guard compiler.compileLibraryInResource(context: mContext, processManager: procmgr, environment: self.environment, resource: mResource, console: self.console, config: conf) else {
+		guard compiler.compileLibrary(context: mContext, sourceFile: mSourceFile, processManager: procmgr, environment: self.environment, console: self.console, config: conf) else {
 			return false
 		}
-		/* Load script */
-		let script: String?
-		switch mScriptFile {
-		case .identifier(let ident):
-			script = mResource.loadScript(identifier: ident, index: 0)
-		case .url(let url):
-			script = loadScript(from: url)
-		case .script(let scr):
-			script = scr
-		case .unselected:
-			if let url = selectInputFile() {
-				script = loadMainScript(from: url)
-			} else {
-				console.error(string: "Failed to select script")
-				return false
-			}
-		}
-		if let scr = script {
+
+		/* Load main script */
+		if let scr = resource.loadApplication() {
 			let _ = compiler.compile(context: mContext, statement: scr, console: console, config: conf)
 		} else {
-			console.error(string: "Failed to load script: \(mScriptFile.description())")
+			console.error(string: "Failed to load script\n")
+			resource.toText().print(console: console)
 			return false
 		}
 		return true
@@ -116,19 +136,29 @@ public class KLThreadObject: CNThread
 		return self.mSelectedURL
 	}
 
-	private func loadMainScript(from url: URL) -> String? {
+	/*
+	private func loadSourceFile(from url: URL, processManager procmgr: CNProcessManager, config conf: KEConfig) -> String? {
 		let result: String?
 		switch pathExtension(of: url.path) {
 		case "js":
 			result = loadScript(from: url)
 		case "jspkg":
 			let res = KEResource(baseURL: url)
-			result = res.loadScript(identifier: "main", index: 0)
+			let srcfile: KESourceFile = .resource(res)
+			/* Compile */
+			let compiler = KLCompiler()
+			guard compiler.compileBase(context: mContext, terminalInfo: self.mTerminalInfo, environment: self.environment, console: self.console, config: conf) else {
+				return nil
+			}
+			guard compiler.compileLibrary(context: mContext, sourceFile: srcfile, processManager: procmgr, environment: self.environment, console: self.console, config: conf) else {
+				return nil
+			}
+			result = res.loadApplication()
 		default:
 			result = nil
 		}
 		return result
-	}
+	}*/
 
 	private func pathExtension(of file: String) -> String {
 		let strobj = NSString(string: file)
@@ -164,28 +194,6 @@ public class KLThreadObject: CNThread
 
 @objc public class KLThread: NSObject, KLThreadProtocol
 {
-	public enum ScriptFile {
-		case identifier(String)		// script indentifier in package file
-		case url(URL)			// URL of external file
-		case script(String)		// JavaScript code
-		case unselected			// Not selected yet
-
-		func description() -> String {
-			let result: String
-			switch self {
-			case .identifier(let ident):
-				result = ident
-			case .url(let url):
-				result = url.path
-			case .script(_):
-				result = "<javascript-code>"
-			case .unselected:
-				result = "<not defined>"
-			}
-			return result
-		}
-	}
-
 	private var mThread: KLThreadObject
 
 	public init(thread threadobj: KLThreadObject) {

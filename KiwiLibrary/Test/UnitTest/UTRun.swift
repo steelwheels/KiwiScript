@@ -19,9 +19,6 @@ public func UTRun(context ctxt: KEContext, console cons: CNFileConsole) -> Bool
 	let errstrm:	CNFileStream	 = .fileHandle(cons.errorHandle)
 	let env:	CNEnvironment	 = CNEnvironment()
 
-	let pkgurl 	= URL(fileURLWithPath: "../Test/Sample/sample-0.jspkg")
-	let resource	= KEResource(baseURL: pkgurl)
-
 	let arg0	= JSValue(int32: 123, in: ctxt)
 	let arg1	= JSValue(object: "Message from UTRun", in: ctxt)
 	guard let args  = JSValue(object: [arg0, arg1], in: ctxt) else {
@@ -31,7 +28,8 @@ public func UTRun(context ctxt: KEContext, console cons: CNFileConsole) -> Bool
 
 	let config    = KEConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
 	let url       = URL(fileURLWithPath: "../Test/Sample/sample-1.js")
-	let threadobj = KLThreadObject(scriptFile: .url(url), processManager: manager, input: instrm, output: outstrm, error: errstrm, environment: env, resource: resource, config: config)
+	let srcfile   = KESourceFile.file(url)
+	let threadobj = KLThreadObject(sourceFile: srcfile, processManager: manager, input: instrm, output: outstrm, error: errstrm, environment: env, config: config)
 	let thread    = KLThread(thread: threadobj)
 	thread.start(args)
 

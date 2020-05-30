@@ -17,6 +17,7 @@
 		0526A61E2258A3DA003F7399 /* KLNativeValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526A61D2258A3DA003F7399 /* KLNativeValue.swift */; };
 		05341CC220BDCB73001E2173 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05341CC120BDCB73001E2173 /* main.swift */; };
 		0534BBED2321405400FC8DEF /* KLFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0534BBEC2321405400FC8DEF /* KLFileManager.swift */; };
+		053E389724822CD5001D3185 /* KLResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053E389624822CD5001D3185 /* KLResource.swift */; };
 		0546C40F2253B0D2001686B8 /* UTOperation2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0546C40E2253B0D2001686B8 /* UTOperation2.swift */; };
 		055560F3211B4A4C009DB8F8 /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 055560F2211B4A4B009DB8F8 /* CoconutData.framework */; };
 		05610E5121B3C12800535D06 /* KLDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05610E5021B3C12800535D06 /* KLDatabase.swift */; };
@@ -140,6 +141,7 @@
 		05341CBF20BDCB73001E2173 /* UnitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		05341CC120BDCB73001E2173 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		0534BBEC2321405400FC8DEF /* KLFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLFileManager.swift; sourceTree = "<group>"; };
+		053E389624822CD5001D3185 /* KLResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLResource.swift; sourceTree = "<group>"; };
 		0546C40E2253B0D2001686B8 /* UTOperation2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTOperation2.swift; sourceTree = "<group>"; };
 		0551CEA620BDC8A100615229 /* UnitTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		0551CEA820BDC8A100615229 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -402,6 +404,7 @@
 			isa = PBXGroup;
 			children = (
 				05AFD990217F6FCC0015524B /* KLCompiler.swift */,
+				053E389624822CD5001D3185 /* KLResource.swift */,
 			);
 			path = Setup;
 			sourceTree = "<group>";
@@ -640,6 +643,7 @@
 				05F0202D203F091100B430F5 /* KLJSONFile.swift in Sources */,
 				05610E5121B3C12800535D06 /* KLDatabase.swift in Sources */,
 				05F100A522300F8100B399BE /* KLOperationQueue.swift in Sources */,
+				053E389724822CD5001D3185 /* KLResource.swift in Sources */,
 				057FF82D2344CEDE0044AAE8 /* KLThread.swift in Sources */,
 				05F99C83243890880072EDE1 /* KLEnvironment.swift in Sources */,
 				05F95E1823B9979F006EF30B /* KLBuiltinScripts.swift in Sources */,

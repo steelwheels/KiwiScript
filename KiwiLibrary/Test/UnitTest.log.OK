@@ -983,9 +983,11 @@ class UTStruct {
 Source URL: file:///Users/tomoo/Project/KiwiScript/KiwiLibrary/Test/Sample/sample-0.jspkg/
 {
   URL: ../Test/Sample/sample-0.jspkg/
+  application: {
+  }
   libraries: {
   }
-  scripts: {
+  threads: {
     sample0: {
       "sample0.js"
     }

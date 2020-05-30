@@ -79,10 +79,10 @@ public class KHShellThreadObject: CNShellThread
 		/* Compile the context */
 		let compiler  = KHShellCompiler()
 		guard compiler.compileBaseAndLibrary(context:		ctxt,
+						     sourceFile: 	.none,
 						     processManager:	mChildProcessManager,
 						     terminalInfo:	self.terminalInfo,
 						     environment:	self.environment,
-						     resource:		mResource,
 						     console:		self.console,
 						     config: 		mConfig) else {
 			console.error(string: "Failed to compile script thread context\n")
@@ -182,7 +182,6 @@ public class KHShellThreadObject: CNShellThread
 				child.terminate()
 			}
 		}
-		NSLog("\(#file) *2")
 	}
 
 	private func isEmpty(string str: String) -> Bool {

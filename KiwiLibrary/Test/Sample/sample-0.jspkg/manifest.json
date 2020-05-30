@@ -1,6 +1,6 @@
 {
-  "scripts": {
-    "sample0": ["sample0.js"]
+  "threads": {
+    "sample0": "sample0.js"
   }
 }
 

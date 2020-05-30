@@ -64,11 +64,9 @@ open class KEManifestLoader
 		/* Decode: "threads" */
 		if let scrsval = data["threads"] {
 			if let scrsdict = scrsval.toDictionary() {
-				let fmap = try decodeFilesMap(json: scrsdict)
-				for (ident, paths) in fmap {
-					for path in paths {
-						res.addThread(identifier: ident, path: path)
-					}
+				let fmap = try decodeFileMap(json: scrsdict)
+				for (ident, path) in fmap {
+					res.setThread(identifier: ident, path: path)
 				}
 			} else {
 				throw NSError.parseError(message: "threads section must has object property")
@@ -82,23 +80,6 @@ open class KEManifestLoader
 			if let val = data[key] {
 				if let str = val.toString() {
 					result[key] = str
-				} else {
-					throw NSError.parseError(message: "Invalid value for \"\(key)\" in manifest file")
-				}
-			} else {
-				throw NSError.parseError(message: "Can not happen")
-			}
-		}
-		return result
-	}
-
-	public func decodeFilesMap(json data: Dictionary<String, CNNativeValue>) throws -> Dictionary<String, Array<String>> {
-		var result: Dictionary<String, Array<String>> = [:]
-		for key in data.keys {
-			result[key] = []
-			if let val = data[key] {
-				if let str = val.toString() {
-					result[key]?.append(str)
 				} else {
 					throw NSError.parseError(message: "Invalid value for \"\(key)\" in manifest file")
 				}

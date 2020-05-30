@@ -39,6 +39,13 @@ open class KEResource: CNResource
 		addCategory(category: KEResource.ThreadsCategory,	loader: mFileLoader)
 	}
 
+	public convenience init(singleFileURL url: URL) {
+		let base = url.deletingLastPathComponent()
+		let file = url.lastPathComponent
+		self.init(baseURL: base)
+		setApprication(path: file)
+	}
+
 	public func addCategory(category cname: String, loader ldr: @escaping LoaderFunc) {
 		super.allocate(category: cname, loader: ldr)
 	}
@@ -68,6 +75,10 @@ open class KEResource: CNResource
 		} else {
 			return nil
 		}
+	}
+
+	public func storeAppilication(script scr: String) {
+		super.store(category: KEResource.ApplicationCategory, identifier: KEResource.DefaultIdentifier, index: 0, content: scr)
 	}
 
 	/*
@@ -108,28 +119,24 @@ open class KEResource: CNResource
 		return super.identifiers(category: KEResource.ThreadsCategory)
 	}
 
-	public func addThread(identifier ident: String, path pathstr: String){
-		super.add(category: KEResource.ThreadsCategory, identifier: ident, path: pathstr)
+	public func setThread(identifier ident: String, path pathstr: String){
+		super.set(category: KEResource.ThreadsCategory, identifier: ident, path: pathstr)
 	}
 
-	public func countOfThreads(identifier ident: String) -> Int? {
-		return super.count(category: KEResource.ThreadsCategory, identifier: ident)
+	public func pathStringOfThread(identifier ident: String) -> String? {
+		return super.pathString(category: KEResource.ThreadsCategory, identifier: ident, index: 0)
 	}
 
-	public func pathStringOfThread(identifier ident: String, index idx: Int) -> String? {
-		return super.pathString(category: KEResource.ThreadsCategory, identifier: ident, index: idx)
-	}
-
-	public func URLOfScript(identifier ident: String, index idx: Int) -> URL? {
-		if let url = super.fullPathURL(category: KEResource.ThreadsCategory, identifier: ident, index: idx) {
+	public func URLOfThread(identifier ident: String) -> URL? {
+		if let url = super.fullPathURL(category: KEResource.ThreadsCategory, identifier: ident, index: 0) {
 			return url
 		} else {
 			return nil
 		}
 	}
 
-	public func loadScript(identifier ident: String, index idx: Int) -> String? {
-		if let script:String = super.load(category: KEResource.ThreadsCategory, identifier: ident, index: idx) {
+	public func loadThread(identifier ident: String) -> String? {
+		if let script:String = super.load(category: KEResource.ThreadsCategory, identifier: ident, index: 0) {
 			return script
 		} else {
 			return nil
