@@ -44,7 +44,7 @@ public class KHScriptThreadObject: CNThread
 
 	public override func main(argument arg: CNNativeValue) -> Int32 {
 		guard let vm = JSVirtualMachine() else {
-			self.console.error(string: "Failed to allocate VM")
+			self.console.error(string: "Failed to allocate VM\n")
 			return -1
 		}
 		let ctxt = KEContext(virtualMachine: vm)
@@ -83,7 +83,7 @@ public class KHScriptThreadObject: CNThread
 		let script: String
 		switch srcfile {
 		case .none:
-			console.error(string: "No script")
+			console.error(string: "No script\n")
 			return false
 		case .file(let url):
 			if let scr = url.loadContents() {
@@ -134,7 +134,7 @@ public class KHScriptThreadObject: CNThread
 
 	open override func terminate() {
 		guard let ctxt = mContext else {
-			console.error(string: "No context")
+			console.error(string: "No context\n")
 			return
 		}
 		if isRunning {

@@ -92,7 +92,7 @@ import Foundation
 				return
 			}
 		}
-		self.console.error(string: "Failed to exec _set_operation method")
+		self.console.error(string: "Failed to exec _set_operation method\n")
 	}
 
 	open override func parameter(name nm: String) -> CNNativeValue? {
@@ -103,7 +103,7 @@ import Foundation
 				}
 			}
 		}
-		self.console.error(string: "Failed to exec _get_operation method")
+		self.console.error(string: "Failed to exec _get_operation method\n")
 		return nil
 	}
 
@@ -115,7 +115,7 @@ import Foundation
 				return
 			}
 		}
-		self.console.error(string: "Failed to exec _set_parameter")
+		self.console.error(string: "Failed to exec _set_parameter\n")
 	}
 
 	public func get(_ name: JSValue) -> JSValue {
@@ -137,7 +137,7 @@ import Foundation
 				return
 			}
 		}
-		self.console.error(string: "Failed to set console")
+		self.console.error(string: "Failed to set console\n")
 	}
 
 	public func compile(userStructs structs: Array<CNNativeStruct>, userScripts scripts: Array<URL>) -> Bool {

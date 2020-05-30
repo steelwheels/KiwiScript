@@ -58,7 +58,7 @@ public class KLThreadObject: CNThread
 				case .ok(let res):
 					resource = res
 				case .error(let err):
-					console.error(string: "[Error] \(err.description)")
+					console.error(string: "[Error] \(err.description)\n")
 					return false
 				}
 			} else {
@@ -81,7 +81,7 @@ public class KLThreadObject: CNThread
 				resource.setApprication(path: "/dev/null")	// dummy
 				resource.storeAppilication(script: scr)
 			} else {
-				console.error(string: "Failed to load thread: \(name)")
+				console.error(string: "Failed to load thread: \(name)\n")
 				return false
 			}
 		}

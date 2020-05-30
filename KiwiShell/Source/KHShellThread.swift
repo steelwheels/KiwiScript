@@ -70,7 +70,7 @@ public class KHShellThreadObject: CNShellThread
 	public override func main(argument arg: CNNativeValue) -> Int32
 	{
 		guard let vm = JSVirtualMachine() else {
-			console.error(string: "Failed to allocate VM")
+			console.error(string: "Failed to allocate VM\n")
 			return -1
 		}
 		let ctxt = KEContext(virtualMachine: vm)
@@ -103,7 +103,7 @@ public class KHShellThreadObject: CNShellThread
 
 	open override func execute(command cmd: String) -> Bool {
 		guard let ctxt = mContext else {
-			console.error(string: "No context")
+			console.error(string: "No context\n")
 			return false
 		}
 

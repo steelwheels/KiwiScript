@@ -68,7 +68,7 @@ import Foundation
 				let fileobj = KLFile(file: file, context: mContext)
 				return JSValue(object: fileobj, in: mContext)
 			case .error(_):
-				mConsole.error(string: "Failed to write \(pathval)")
+				mConsole.error(string: "Failed to write \(pathval)\n")
 			}
 		} else if let pathurl = decodePathURL(pathval) {
 			switch fmanager.openFile(URL: pathurl, accessType: acctype) {
@@ -76,7 +76,7 @@ import Foundation
 				let fileobj = KLFile(file: file, context: mContext)
 				return JSValue(object: fileobj, in: mContext)
 			case .error(_):
-				mConsole.error(string: "Failed to write \(pathval)")
+				mConsole.error(string: "Failed to write \(pathval)\n")
 			}
 		}
 		return JSValue(nullIn: mContext)

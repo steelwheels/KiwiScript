@@ -37,7 +37,7 @@ import Foundation
 			if noexecs.count == 0 {
 				result = true
 			} else {
-				mConsole.error(string: "Failed to execute some operations")
+				mConsole.error(string: "Failed to execute some operations\n")
 				result = false
 			}
 		} else {

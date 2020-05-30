@@ -76,10 +76,10 @@ open class KECompiler
 						let _ = self.compile(context: ctxt, statement: scr, console: cons, config: conf)
 					} else {
 						if let fname = res.URLOfLibrary(index: i) {
-							cons.error(string: "Failed to load library: \(fname.absoluteString)")
+							cons.error(string: "Failed to load library: \(fname.absoluteString)\n")
 							result = false
 						} else {
-							cons.error(string: "Failed to load file in library section")
+							cons.error(string: "Failed to load file in library section\n")
 							result = false
 						}
 					}
