@@ -1,10 +1,10 @@
-//
-//  KiwiObject.h
-//  KiwiObject
-//
-//  Created by Tomoo Hamada on 2020/05/31.
-//  Copyright © 2020 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	KMObject.h
+ * @brief	Define pritimitive types
+ * @par Copyright
+ *   Copyright (C) 2020 Steel Wheels Project
+ */
+
 
 #import <Foundation/Foundation.h>
 

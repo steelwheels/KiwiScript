@@ -1,42 +1,56 @@
 # KSON: Kiwi Script Object Notation
 ## Introduction
-The _Kiwi Script Object Notation_ is similar to [JSON](https://www.json.org/json-en.html).
-Following features are added.
-* The type declaration is added
-* Add syntax to describe compound text
+This document describes about the specification of
+the _Kiwi Script Object Notation_ .
+The kiwi script object notation is resemble to [JSON](https://www.json.org/json-en.html). But it support following definitions
+* Data type
+* Function
+* Free text
 
 Here is the example of KSON data:
 ````
-{
-        var_a String: "My Name",
-        func_a Function: %{
-                for(i=0 ; i<10 ; i++){
-                        console.log("Hello, world !!") ;
-                }
+{      
+        var_a: string "My Name",
+        func_a: int (a: int, b: int) %{
+                return a + b ;
         %}
 }
 ````
 
-You will notice:
-* The　type `key` is limited to string type. The double quotation for the key is *not required* like `var_a`.
-* The `String` and `Function` is type name of the value.
-* The free style text can be defined in `%{` and `%}`.
+## Comments
+The context between `//` and newline (or end of file) is treated as comment. It will be removed by the parser.
 
 ## Data type
-The name of data types are _not defined_ by the KSON.
-You can define any names but following names are recommended
-to present them.
+Some primitive data types are already defined.
 
 |Type name      |Description                                            |
 |:---           |:---                                                   |
-|`Bool`         |Boolean type. The value must be `true` or `false`      |
-|`Int`          |System defined interger type                           |
-|`Char`         |Character                                              |
-|`String`       |String                                                 |
+|`bool`         |Boolean type. The value must be `true` or `false`      |
+|`int`          |Signed integer number                                  |
+|`float`        |Floating point number                                  |
+|`string`       |UTF8 String                                            |
 
+You can use custom definitions. It is not parsed by KSON parser
+and decoded by the semantics analyzer (which is not defined here).
+````
+{
+        position: Point { x: int 0, y: int 0}
+}
+````
+
+## Parameters
+The parameter definition is supported to define the function.
+The definition is _optional_. If it is defined following value will be a body of function. In usually, the free-text is used to define the body.
+````
+{
+        func-name: return-type (param0: type0, param1: type1) %{
+                ... function body ...
+        %}
+}
+````
 
 ## Value declaration
-The special symbol is used to present any context string.
+The special symbol is used to present free text.
 Put the text between `%{` and `%}`.
 
 ## Related links
