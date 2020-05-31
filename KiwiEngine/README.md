@@ -3,7 +3,7 @@ The *KiwiEngine Framework* is a part of [KiwiScript repository](https://github.c
 This framework contains primitive data class definitions to support JavaScript execution in JavaScriptCore.
 
 # Copyright
-Copyright (C) 2015-2017 [Steel Wheels Project](https://sites.google.com/site/steelwheelsproject/).
+Copyright (C) 2015-2017 [Steel Wheels Project](https://steelwheels.github.io).
 This software is distributed under [GNU LESSER GENERAL PUBLIC LICENSE Version 2.1](https://www.gnu.org/licenses/lgpl-2.1-standalone.html).
 
 # Target
