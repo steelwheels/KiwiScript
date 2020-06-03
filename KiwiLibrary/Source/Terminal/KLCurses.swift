@@ -24,6 +24,7 @@ import Foundation
 	func moveTo(_ x: JSValue, _ y: JSValue) -> JSValue
 	func inkey() -> JSValue
 
+	func put(_ str: JSValue)
 	func fill(_ x: JSValue, _ y: JSValue, _ width: JSValue, _ height: JSValue, _ c: JSValue)
 }
 
@@ -98,6 +99,14 @@ import Foundation
 			return JSValue(object: String(c), in: mContext)
 		} else {
 			return JSValue(nullIn: mContext)
+		}
+	}
+
+	public func put(_ str: JSValue) {
+		if let s = str.toString() {
+			mCurses.put(string: s)
+		} else {
+			NSLog("Failed to put string")
 		}
 	}
 

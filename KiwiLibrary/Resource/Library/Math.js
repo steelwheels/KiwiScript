@@ -6,3 +6,8 @@ Math.randomInt = function(min, max) {
   const rval  = Math.floor(Math.random() * range) ;
   return rval + min ;
 } ;
+
+/* Convert value to integer */
+function int(value) {
+	return Math.floor(value) ;
+}
