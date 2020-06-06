@@ -17,6 +17,7 @@ public class KMObjectParser
 		case notEntireParsedError
 		case unexpectedEndOfStream
 		case unexpectedSymbol(Character, Character, Int)	// given, required, line
+		case noExpectedSymbol(Array<Character>, Int)
 		case unexpectedTypeValue(CNToken, Int)
 		case unexpectedToken(CNToken, Int)
 
@@ -31,6 +32,8 @@ public class KMObjectParser
 				case .unexpectedEndOfStream:	result = "Unexpected end of source"
 				case .unexpectedSymbol(let real, let exp, let line):
 					result = "Unexpected symbol \(real) instead of \(exp) at line \(line)"
+				case .noExpectedSymbol(let exp, let line):
+					result = "Symbol \(exp) is expected at line \(line)"
 				case .unexpectedToken(let token, let line):
 					result = "Unexpected token \(token.toString()) at line \(line)"
 				case .unexpectedTypeValue(let token, let line):
@@ -127,25 +130,47 @@ public class KMObjectParser
 
 	private func parseProperties(tokenStream stream: CNTokenStream) throws -> Array<KMProperty> {
 		var props: Array<KMProperty> = []
-		var docont = true
-		while docont {
+		var is1st  = true
+		parse_loop: while true {
+			/* Require
+			 *   is1st  : "}" or none
+			 *   !is1st : "}" or ","
+			 */
+			if let token = stream.get() {
+				switch token.type {
+				case .SymbolToken(let c):
+					if c == "}" {
+						break parse_loop	/* Break out of this loop */
+					} else if !is1st && c == "," {
+						/* through */
+					} else {
+						throw ParseError.unexpectedSymbol(c, "}", token.lineNo)
+					}
+				default:
+					if !is1st {
+						throw ParseError.noExpectedSymbol([",", "}"], token.lineNo)
+					} else {
+						let _ = stream.unget()
+					}
+				}
+			} else {
+				throw ParseError.unexpectedEndOfStream
+			}
+
+			/* Require property */
 			if let token = stream.get() {
 				switch token.type {
 				case .IdentifierToken(let ident):
 					let prop = try parseProperty(identifier: ident, tokenStream: stream)
 					props.append(prop)
-				case .SymbolToken(let c):
-					if c == "}" {
-						docont = false
-					} else {
-						throw ParseError.unexpectedSymbol(c, "}", token.lineNo)
-					}
 				default:
 					throw ParseError.unexpectedToken(token, token.lineNo)
 				}
 			} else {
-				throw ParseError.notEntireParsedError
+				throw ParseError.unexpectedEndOfStream
 			}
+			/* Update flag */
+			is1st = false
 		}
 		return props
 	}

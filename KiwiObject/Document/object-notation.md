@@ -17,10 +17,11 @@ Here is the example of KSON data:
 }
 ````
 
-## Comments
+## Overview
+### Comments
 The context between `//` and newline (or end of file) is treated as comment. It will be removed by the parser.
 
-## Data type
+### Data type
 Some primitive data types are already defined.
 
 |Type name      |Description                                            |
@@ -38,7 +39,7 @@ and decoded by the semantics analyzer (which is not defined here).
 }
 ````
 
-## Parameters
+### Parameters
 The parameter definition is supported to define the function.
 The definition is _optional_. If it is defined following value will be a body of function. In usually, the free-text is used to define the body.
 ````
@@ -49,9 +50,23 @@ The definition is _optional_. If it is defined following value will be a body of
 }
 ````
 
-## Value declaration
+### Value declaration
 The special symbol is used to present free text.
 Put the text between `%{` and `%}`.
+
+## Syntax
+The comment must be removed before parsing.
+````
+tson_object       := object_notation
+object_notation   := '{' property_list '}'
+property_list     := property [',' property]*
+property          := identifier ':' type_declaration value_declaration
+identifier        := <usual string>
+type_declaration  := "bool" | "int" | "float" | "string"
+value_declaration :=   primitive_declaration
+                     | string_declaration
+                     | function_declaration
+````
 
 ## Related links
 * [Steel Wheels Project](https://steelwheels.github.io): The developer's web page

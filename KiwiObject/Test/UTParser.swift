@@ -14,7 +14,7 @@ public func parserTest(console cons: CNConsole) -> Bool {
 	let stmt0  = "{ a: int 10 }"
 	let stmt1  = "{ a: int 10 } // comment"
 	let stmt2  =   "{\n"
-		     + "  a: int 10 \n"
+		     + "  a: int 10, \n"
 		     + "  b: Object {\n"
 		     + "    c: float 12.3\n"
 		     + "  }\n"
@@ -28,6 +28,7 @@ public func parserTest(console cons: CNConsole) -> Bool {
 
 private func parse(string str: String, console cons: CNConsole) -> Bool
 {
+	cons.print(string: "+ parse test\n")
 	let result: Bool
 	let parser = KMObjectParser()
 	switch parser.parse(source: str) {
