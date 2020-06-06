@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		053CC40C248B3A3E00C6E99D /* KMObjectDumper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053CC40B248B3A3E00C6E99D /* KMObjectDumper.swift */; };
 		0589D20C2483EBE000F4C27A /* KMObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0589D2092483EBE000F4C27A /* KMObject.swift */; };
 		0589D20D2483EBE000F4C27A /* KMObjectParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0589D20A2483EBE000F4C27A /* KMObjectParser.swift */; };
 		0589D20E2483EBE000F4C27A /* KiwiObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 0589D20B2483EBE000F4C27A /* KiwiObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -23,6 +24,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		053CC40B248B3A3E00C6E99D /* KMObjectDumper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMObjectDumper.swift; sourceTree = "<group>"; };
 		055F22C32483EB93009666C4 /* KiwiObject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiObject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		055F22C72483EB93009666C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		0589D2092483EBE000F4C27A /* KMObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMObject.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				0589D20B2483EBE000F4C27A /* KiwiObject.h */,
 				0589D2092483EBE000F4C27A /* KMObject.swift */,
 				0589D20A2483EBE000F4C27A /* KMObjectParser.swift */,
+				053CC40B248B3A3E00C6E99D /* KMObjectDumper.swift */,
 			);
 			name = Source;
 			path = ../Source;
@@ -180,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0589D20C2483EBE000F4C27A /* KMObject.swift in Sources */,
+				053CC40C248B3A3E00C6E99D /* KMObjectDumper.swift in Sources */,
 				0589D20D2483EBE000F4C27A /* KMObjectParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
