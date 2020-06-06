@@ -14,6 +14,14 @@ public func main()
 {
 	let console = CNFileConsole()
 	console.print(string: "*** Unit test of KiwiObject\n")
+
+	let res0 = parserTest(console: console)
+
+	if res0 {
+		console.print(string: "Summary: OK\n")
+	} else {
+		console.print(string: "Summary: NG\n")
+	}
 }
 
 main()

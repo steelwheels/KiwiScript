@@ -7,32 +7,37 @@
 
 import Foundation
 
-public enum KMType {
-	case bool
-	case int
-	case float
-	case string
-	case text
-	case any(String)	// type name
-}
-
-public enum KMObject {
+public enum KMValue
+{
 	case bool(Bool)
 	case int(Int)
-	case float(Float)
+	case float(Double)
 	case string(String)
-	case text(String)
-	case properties(Array<KMProperty>)
+	case object(String, KMObject)	// class name, object
 }
 
-public struct KMProperty {
-	var	name:	String
-	var	type:	KMType
-	var	value:	KMObject
+public class KMProperty
+{
+	public var	name	: String
+	public var	value	: KMValue
 
-	public init(name nm: String, type tp: KMType, value val: KMObject){
-		name  = nm
-		type  = tp
-		value = val
+	public init(name nm: String, value val: KMValue){
+		name	= nm
+		value	= val
+	}
+}
+
+public class KMObject
+{
+	private var mProperties: Array<KMProperty>
+
+	public var properties: Array<KMProperty> { get { return mProperties }}
+
+	public init() {
+		mProperties = []
+	}
+
+	public init(properties props: Array<KMProperty>){
+		mProperties = props
 	}
 }

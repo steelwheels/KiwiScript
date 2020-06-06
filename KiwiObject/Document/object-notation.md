@@ -1,8 +1,8 @@
-# KSON: Kiwi Script Object Notation
+# TSON: Typed Script Object Notation
 ## Introduction
 This document describes about the specification of
-the _Kiwi Script Object Notation_ .
-The kiwi script object notation is resemble to [JSON](https://www.json.org/json-en.html). But it support following definitions
+the _Typed Script Object Notation_ .
+The typed script object notation is resemble to [JSON](https://www.json.org/json-en.html). But it support following definitions
 * Data type
 * Function
 * Free text

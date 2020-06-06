@@ -12,6 +12,8 @@
 		0550B0B52483E97200F8661E /* KiwiObject.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 052ACB59248353F200413A3A /* KiwiObject.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0550B0B92483E97400F8661E /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D1EC9A2483D18D0015B6F7 /* CoconutData.framework */; };
 		0550B0BA2483E97400F8661E /* CoconutData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05D1EC9A2483D18D0015B6F7 /* CoconutData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		057D0D6C2489415900CAD333 /* UTParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057D0D6B2489415900CAD333 /* UTParser.swift */; };
+		05B8E5A02489EFAF0095E67C /* KMObjectDumper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8E59F2489EFAF0095E67C /* KMObjectDumper.swift */; };
 		05D1EC962483BCA30015B6F7 /* KMObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D1EC952483BCA30015B6F7 /* KMObject.swift */; };
 		05D1EC982483D12E0015B6F7 /* KMObjectParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D1EC972483D12E0015B6F7 /* KMObjectParser.swift */; };
 		05D1EC9B2483D18D0015B6F7 /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D1EC9A2483D18D0015B6F7 /* CoconutData.framework */; };
@@ -64,6 +66,8 @@
 		052ACB5C248353F200413A3A /* KiwiObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiObject.h; sourceTree = "<group>"; };
 		052ACB5D248353F200413A3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		0550B0A22483E40900F8661E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		057D0D6B2489415900CAD333 /* UTParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTParser.swift; sourceTree = "<group>"; };
+		05B8E59F2489EFAF0095E67C /* KMObjectDumper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMObjectDumper.swift; sourceTree = "<group>"; };
 		05D1EC952483BCA30015B6F7 /* KMObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMObject.swift; sourceTree = "<group>"; };
 		05D1EC972483D12E0015B6F7 /* KMObjectParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMObjectParser.swift; sourceTree = "<group>"; };
 		05D1EC9A2483D18D0015B6F7 /* CoconutData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutData.framework; path = ../../../../Library/Frameworks/CoconutData.framework; sourceTree = "<group>"; };
@@ -127,6 +131,7 @@
 				052ACB5C248353F200413A3A /* KiwiObject.h */,
 				05D1EC952483BCA30015B6F7 /* KMObject.swift */,
 				05D1EC972483D12E0015B6F7 /* KMObjectParser.swift */,
+				05B8E59F2489EFAF0095E67C /* KMObjectDumper.swift */,
 			);
 			name = Source;
 			path = ../Source;
@@ -152,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				05D1ECA82483DB660015B6F7 /* main.swift */,
+				057D0D6B2489415900CAD333 /* UTParser.swift */,
 			);
 			name = Test;
 			path = ../Test;
@@ -284,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05D1EC962483BCA30015B6F7 /* KMObject.swift in Sources */,
+				05B8E5A02489EFAF0095E67C /* KMObjectDumper.swift in Sources */,
 				05D1EC982483D12E0015B6F7 /* KMObjectParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05D1ECA92483DB660015B6F7 /* main.swift in Sources */,
+				057D0D6C2489415900CAD333 /* UTParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
