@@ -11,15 +11,17 @@ import Foundation
 
 public func parserTest(console cons: CNConsole) -> Bool {
 	var result = true
-	let stmt0  = "{ a: int 10 }"
-	let stmt1  = "{ a: int 10 } // comment"
+	let stmt0  = "{ a: 10 }"
+	let stmt1  = "{ a: 10 } // comment"
 	let stmt2  =   "{\n"
-		     + "  a: int 10, \n"
-		     + "  b: Object {\n"
-		     + "    c: float 12.3\n"
+		     + "  a: 10, \n"
+		     + "  b: {\n"
+		     + "    c: 12.3\n"
 		     + "  }\n"
 		     + "}"
-	for stmt in [stmt0, stmt1, stmt2] {
+	let stmt3  = "{ a: [10, 20] } // comment"
+	let stmt4  = "{ a: [ {a: 10}, {a: 20}] } // comment"
+	for stmt in [stmt0, stmt1, stmt2, stmt3, stmt4] {
 		let res0 = parse(string: stmt, console: cons)
 		result = result && res0
 	}

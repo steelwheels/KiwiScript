@@ -10,51 +10,33 @@ import Foundation
 
 public class KMObjectParser
 {
+	public enum Result {
+		case ok(KMObject)
+		case error(ParseError)
+	}
+
 	public enum ParseError: Error {
 		case tokenError(CNParseError)
 		case unknownError
-		case emptyStringError
-		case notEntireParsedError
 		case unexpectedEndOfStream
-		case unexpectedSymbol(Character, Character, Int)	// given, required, line
-		case noExpectedSymbol(Array<Character>, Int)
-		case unexpectedTypeValue(CNToken, Int)
 		case unexpectedToken(CNToken, Int)
+		case unexpectedSymbol(Character, Character, Int)	// given, required, line
 
 		public var description: String {
 			get {
 				let result: String
 				switch self {
 				case .tokenError(let err):	result = err.description()
-				case .unknownError:		result = "Unknown"
-				case .emptyStringError:		result = "Empty string"
-				case .notEntireParsedError:	result = "Parsing terminated"
-				case .unexpectedEndOfStream:	result = "Unexpected end of source"
-				case .unexpectedSymbol(let real, let exp, let line):
-					result = "Unexpected symbol \(real) instead of \(exp) at line \(line)"
-				case .noExpectedSymbol(let exp, let line):
-					result = "Symbol \(exp) is expected at line \(line)"
-				case .unexpectedToken(let token, let line):
-					result = "Unexpected token \(token.toString()) at line \(line)"
-				case .unexpectedTypeValue(let token, let line):
-					result = "Unexpected type value \(token.toString()) at line \(line)"
+				case .unknownError:		result = "Unknown error"
+				case .unexpectedEndOfStream:	result = "Unexpected end of token"
+				case .unexpectedToken(let token, let lineno):
+					result = "Unexpected token \"\(token.toString())\" at line \(lineno)"
+				case .unexpectedSymbol(let real, let exp, let lineno):
+					result = "Char \"\(exp)\" is expected but \"\(real)\" is given at line \(lineno)"
 				}
 				return result
 			}
 		}
-	}
-
-	public enum Result {
-		case ok(KMObject)
-		case error(ParseError)
-	}
-
-	public enum DataType {
-		case bool
-		case int
-		case float
-		case string
-		case custom(String)
 	}
 
 	public init(){
@@ -64,7 +46,7 @@ public class KMObjectParser
 		/* Remove comments in the string */
 		let lines = removeComments(lines: src.components(separatedBy: "\n"))
 		let msrc  = lines.joined(separator: "\n")
-
+		/* Get tokens from source text*/
 		let conf = CNParserConfig(allowIdentiferHasPeriod: false)
 		let result: Result
 		switch CNStringToToken(string: msrc, config: conf) {
@@ -75,7 +57,7 @@ public class KMObjectParser
 					let obj = try parseObject(tokenStream: CNTokenStream(source: tokens))
 					result = .ok(obj)
 				} else {
-					result = .error(.emptyStringError)
+					result = .error(.unexpectedEndOfStream)
 				}
 			} catch let err as ParseError {
 				result = .error(err)
@@ -97,95 +79,96 @@ public class KMObjectParser
 		return result
 	}
 
-	private func decodeDataType(identifier ident: String) -> DataType {
-		let result: DataType
-		switch ident {
-		case "bool":	result = .bool
-		case "int":	result = .int
-		case "float":	result = .float
-		case "string":	result = .string
-		default:	result = .custom(ident)
+	private func parseObject(tokenStream stream: CNTokenStream) throws -> KMObject {
+		let result = KMObject()
+		try requireSymbol(symbol: "{", in: stream)
+
+		var is1st = true
+		parse_loop: while true {
+			if let c = checkSymbol(in: stream) {
+				if c == "}" {
+					break parse_loop
+				} else if !is1st && c == "," {
+					/* Continue */
+				} else {
+					/* Ignore */
+					let _ = stream.unget()
+				}
+			}
+			if let (ident, val) = try parseProperty(tokenStream: stream) {
+				result.set(identifier: ident, value: val)
+			} else {
+				break parse_loop
+			}
+			is1st = false
 		}
 		return result
 	}
 
-	private func parseObject(tokenStream stream: CNTokenStream) throws -> KMObject {
+	private func parseProperty(tokenStream stream: CNTokenStream) throws -> (String, KMValue)? {
+		if let ident = checkIdentifier(in: stream) {
+			try requireSymbol(symbol: ":", in: stream)
+			let value = try parseValue(tokenStream: stream)
+			return (ident, value)
+		}
+		return nil
+	}
+
+	public func parseValue(tokenStream stream: CNTokenStream) throws -> KMValue {
 		if let token = stream.get() {
-			switch token.type {
-			case .SymbolToken(let c):
-				if c == "{" {
-					let props = try parseProperties(tokenStream: stream)
-					return KMObject(properties: props)
+			let result: KMValue
+			if let c = token.getSymbol() {
+				if c == "[" {
+					result = try parseArrayValue(tokenStream: stream)
+				} else if c == "{" {
+					let _   = stream.unget()
+					let obj = try parseObject(tokenStream: stream)
+					result = .object(obj)
 				} else {
-					throw ParseError.unexpectedSymbol(c, "{", token.lineNo)
+					throw ParseError.unexpectedToken(token, token.lineNo)
 				}
-			default:
-				break
+			} else {
+				switch token.type {
+				case .BoolToken(let value):	result = .bool(value)
+				case .IntToken(let value):	result = .int(value)
+				case .UIntToken(let value):	result = .int(Int(value))
+				case .DoubleToken(let value):	result = .float(value)
+				case .StringToken(let value):	result = .string(value)
+				default: throw ParseError.unexpectedToken(token, token.lineNo)
+				}
 			}
-			throw ParseError.unexpectedToken(token, token.lineNo)
+			return result
 		} else {
 			throw ParseError.unexpectedEndOfStream
 		}
 	}
 
-	private func parseProperties(tokenStream stream: CNTokenStream) throws -> Array<KMProperty> {
-		var props: Array<KMProperty> = []
-		var is1st  = true
+	public func parseArrayValue(tokenStream stream: CNTokenStream) throws -> KMValue {
+		var vals: Array<KMValue> = []
+		var is1st = true
 		parse_loop: while true {
-			/* Require
-			 *   is1st  : "}" or none
-			 *   !is1st : "}" or ","
-			 */
-			if let token = stream.get() {
-				switch token.type {
-				case .SymbolToken(let c):
-					if c == "}" {
-						break parse_loop	/* Break out of this loop */
-					} else if !is1st && c == "," {
-						/* through */
-					} else {
-						throw ParseError.unexpectedSymbol(c, "}", token.lineNo)
-					}
-				default:
-					if !is1st {
-						throw ParseError.noExpectedSymbol([",", "}"], token.lineNo)
-					} else {
-						let _ = stream.unget()
-					}
+			if let c = checkSymbol(in: stream) {
+				if c == "]" {
+					break parse_loop
+				} else if c == "," && !is1st {
+					/* Continue */
+				} else  {
+					/* ignore */
+					let _ = stream.unget()
 				}
-			} else {
-				throw ParseError.unexpectedEndOfStream
 			}
-
-			/* Require property */
-			if let token = stream.get() {
-				switch token.type {
-				case .IdentifierToken(let ident):
-					let prop = try parseProperty(identifier: ident, tokenStream: stream)
-					props.append(prop)
-				default:
-					throw ParseError.unexpectedToken(token, token.lineNo)
-				}
-			} else {
-				throw ParseError.unexpectedEndOfStream
-			}
-			/* Update flag */
+			let val = try parseValue(tokenStream: stream)
+			vals.append(val)
 			is1st = false
 		}
-		return props
+		return .array(vals)
 	}
 
-	private func parseProperty(identifier ident: String, tokenStream stream: CNTokenStream) throws -> KMProperty {
+	private func requireSymbol(symbol sym: Character, in stream: CNTokenStream) throws {
 		if let token = stream.get() {
-			switch token.type {
-			case .SymbolToken(let c):
-				if c == ":" {
-					let val = try parseValue(tokenStream: stream)
-					return KMProperty(name: ident, value: val)
-				} else {
-					throw ParseError.unexpectedSymbol(c, ":", token.lineNo)
-				}
-			default:
+			if let c = token.getSymbol() {
+				if c != sym { throw ParseError.unexpectedSymbol(c, sym, token.lineNo) }
+			} else {
 				throw ParseError.unexpectedToken(token, token.lineNo)
 			}
 		} else {
@@ -193,74 +176,37 @@ public class KMObjectParser
 		}
 	}
 
-	private func parseValue(tokenStream stream: CNTokenStream) throws -> KMValue {
+	private func checkSymbol(in stream: CNTokenStream) -> Character? {
 		if let token = stream.get() {
-			switch token.type {
-			case .IdentifierToken(let ident):
-				let type = decodeDataType(identifier: ident)
-				return try parseRawValue(dataType: type, tokenStream: stream)
-			default:
-				break
+			if let c = token.getSymbol() {
+				return c
+			} else {
+				let _ = stream.unget()
+				return nil
 			}
-			throw ParseError.unexpectedToken(token, token.lineNo)
 		} else {
-			throw ParseError.unexpectedEndOfStream
+			return nil
 		}
 	}
-	
-	private func parseRawValue(dataType type: DataType, tokenStream stream: CNTokenStream) throws -> KMValue {
+
+	private func checkIdentifier(in stream: CNTokenStream) -> String? {
 		if let token = stream.get() {
-			switch type {
-			case .bool:
-				switch token.type {
-				case .BoolToken(let value):
-					return .bool(value)
-				default:
-					throw ParseError.unexpectedTypeValue(token, token.lineNo)
-				}
-			case .int:
-				switch token.type {
-				case .IntToken(let value):
-					return .int(value)
-				case .UIntToken(let value):
-					return .int(Int(value))
-				default:
-					throw ParseError.unexpectedTypeValue(token, token.lineNo)
-				}
-			case .float:
-				switch token.type {
-				case .IntToken(let value):
-					return .float(Double(value))
-				case .UIntToken(let value):
-					return .float(Double(value))
-				case .DoubleToken(let value):
-					return .float(value)
-				default:
-					throw ParseError.unexpectedTypeValue(token, token.lineNo)
-				}
-			case .string:
-				switch token.type {
-				case .StringToken(let value):
-					return .string(value)
-				default:
-					throw ParseError.unexpectedTypeValue(token, token.lineNo)
-				}
-			case .custom(let typename):
-				switch token.type {
-				case .SymbolToken(let c):
-					if c == "{" {
-						let props = try parseProperties(tokenStream: stream)
-						let obj   = KMObject(properties: props)
-						return KMValue.object(typename, obj)
-					} else {
-						throw ParseError.unexpectedSymbol(c, "{", token.lineNo)
-					}
-				default:
-					throw ParseError.unexpectedToken(token, token.lineNo)
-				}
+			if let ident = token.getIdentifier() {
+				return ident
+			} else {
+				let _ = stream.unget()
+				return nil
 			}
 		} else {
-			throw ParseError.unexpectedEndOfStream
+			return nil
+		}
+	}
+
+	private func lineNo(tokenStream stream: CNTokenStream) -> Int {
+		if let no = stream.lineNo {
+			return no
+		} else {
+			return 0
 		}
 	}
 }

@@ -11,39 +11,49 @@ import Foundation
 public class KMObjectDumper
 {
 	public init() {
-
 	}
 
 	public func dump(object obj: KMObject) -> CNTextSection {
-		let section = CNTextSection()
-		section.header = "{"
-		section.footer = "}"
-
-		let props = obj.properties
-		for prop in props {
-			let text = dump(property: prop)
-			section.add(text: text)
+		let sect = CNTextSection()
+		sect.header = "{" ; sect.footer = "}"
+		for (ident, val) in obj.properties {
+			let txt = dump(identifier: ident, value: val)
+			sect.add(text: txt)
 		}
-		return section
+		return sect
 	}
 
-	private func dump(property prop: KMProperty) -> CNText {
+	public func dump(identifier ident: String, value val: KMValue) -> CNText {
+		let valtxt = dump(value: val)
+		if let valsect = valtxt as? CNTextSection {
+			valsect.header = "\(ident) : " + valsect.header
+			return valsect
+		} else if let valline = valtxt as? CNTextLine {
+			return CNTextLine(string: "\(ident) : " + valline.string)
+		} else {
+			fatalError("\(#file): Unknown object")
+		}
+	}
+
+	public func dump(value val: KMValue) -> CNText {
 		let result: CNText
-		let name = prop.name
-		switch prop.value {
-		case .bool(let value):
-			result = CNTextLine(string: "\(name): bool \(value)")
-		case .int(let value):
-			result = CNTextLine(string: "\(name): int \(value)")
-		case .float(let value):
-			result = CNTextLine(string: "\(name): float \(value)")
-		case .string(let value):
-			result = CNTextLine(string: "\(name): string \"\(value)\"")
-		case .object(let typename, let value):
-			let valtxt = dump(object: value)
-			valtxt.header = name + ": " + typename + " " + valtxt.header
-			result = valtxt
+		switch val {
+		case .bool(let val):	result = CNTextLine(string: "\(val)")
+		case .int(let val):	result = CNTextLine(string: "\(val)")
+		case .float(let val):	result = CNTextLine(string: "\(val)")
+		case .string(let val):	result = CNTextLine(string: val)
+		case .null:		result = CNTextLine(string: "null")
+		case .object(let obj):	result = dump(object: obj)
+		case .array(let vals):
+			let sect = CNTextSection()
+			sect.header = "[" ; sect.footer = "]"
+			for val in vals {
+				let txt = dump(value: val)
+				sect.add(text: txt)
+			}
+			result = sect
 		}
 		return result
 	}
 }
+

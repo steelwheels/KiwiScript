@@ -7,37 +7,33 @@
 
 import Foundation
 
-public enum KMValue
-{
+public enum KMValue {
 	case bool(Bool)
 	case int(Int)
 	case float(Double)
 	case string(String)
-	case object(String, KMObject)	// class name, object
-}
-
-public class KMProperty
-{
-	public var	name	: String
-	public var	value	: KMValue
-
-	public init(name nm: String, value val: KMValue){
-		name	= nm
-		value	= val
-	}
+	case object(KMObject)
+	case array(Array<KMValue>)
+	case null
 }
 
 public class KMObject
 {
-	private var mProperties: Array<KMProperty>
+	private var mProperties: Dictionary<String, KMValue>
 
-	public var properties: Array<KMProperty> { get { return mProperties }}
+	public var properties: Dictionary<String, KMValue> { get { return mProperties }}
 
 	public init() {
-		mProperties = []
+		mProperties = [:]
 	}
 
-	public init(properties props: Array<KMProperty>){
-		mProperties = props
+	public func set(identifier ident: String, value val: KMValue) {
+		mProperties[ident] = val
+	}
+
+	public func get(indeitifier ident: String) -> KMValue? {
+		return mProperties[ident]
 	}
 }
+
+
