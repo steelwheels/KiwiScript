@@ -19,10 +19,11 @@ Here is the example of KSON data:
 ````
 
 ## Overview
+Here is difference from JSON format.
 ### Comments
 The context between `//` and newline (or end of file) is treated as comment. It will be removed by the parser.
 
-## Properties
+### Properties
 The property key is described by identifier instead of string.
 ````
 {
