@@ -81,6 +81,6 @@ private func opSet(operation op: KLOperationContext, parameter param: String, va
 {
 	let text = val.toText()
 	cons.print(string: "MainThread: Set command: \(param) <- ")
-	text.print(console: cons)
+	text.print(console: cons, terminal: "")
 	op.setParameter(name: param, value: val)
 }

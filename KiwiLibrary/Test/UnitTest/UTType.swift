@@ -142,18 +142,18 @@ private func typeTest(value val: JSValue, context2 ctxt2: KEContext, console con
 
 	cons.print(string: "native: ")
 	let ntxt = nval.toText()
-	ntxt.print(console: cons)
+	ntxt.print(console: cons, terminal: "")
 
 	cons.print(string: "native -> js: ")
 	let jval = nval.toJSValue(context: ctxt2)
 	let jtxt = jval.toText()
-	jtxt.print(console: cons)
+	jtxt.print(console: cons, terminal: "")
 
 	cons.print(string: "duplicate: ")
 	let duplicator = KLValueDuplicator(targetContext: ctxt2)
 	let dval = duplicator.duplicate(value: val)
 	let dtxt = dval.toText()
-	dtxt.print(console: cons)
+	dtxt.print(console: cons, terminal: "")
 
 	return true
 }

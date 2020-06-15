@@ -46,7 +46,7 @@ import Foundation
 
 	public func dump(_ value: JSValue){
 		let native = value.toText()
-		native.print(console: mConsole)
+		native.print(console: mConsole, terminal: "")
 	}
 }
 

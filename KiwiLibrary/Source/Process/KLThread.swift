@@ -101,7 +101,7 @@ public class KLThreadObject: CNThread
 			let _ = compiler.compile(context: mContext, statement: scr, console: console, config: conf)
 		} else {
 			console.error(string: "Failed to load script\n")
-			resource.toText().print(console: console)
+			resource.toText().print(console: console, terminal: ",")
 			return false
 		}
 		return true

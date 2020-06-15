@@ -28,7 +28,7 @@ public func UTThread(context ctxt: KEContext, processManager procmgr: CNProcessM
 	} else {
 		/* Dump the resource file */
 		let text = resource.toText()
-		text.print(console: cons)
+		text.print(console: cons, terminal: "")
 
 		let srcfile:	KESourceFile		= .thread("sample0", resource)
 		let instrm: 	CNFileStream		= .fileHandle(cons.inputHandle)
