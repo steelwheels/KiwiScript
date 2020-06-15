@@ -16,12 +16,12 @@ open class KEManifestLoader
 
 	public func load(into resource: KEResource) -> NSError? {
 		do {
-			let json = try readJSON(from: resource.baseURL)
-			if let dict = json.toDictionary() {
-				try decode(resource: resource, json: dict)
+			let nvalue = try readNativeValue(from: resource.baseURL)
+			if let dict = nvalue.toDictionary() {
+				try decode(resource: resource, properties: dict)
 				return nil
 			} else {
-				throw NSError.parseError(message: "Not JSON data")
+				throw NSError.parseError(message: "Not manifest data")
 			}
 		} catch let err as NSError {
 			return err
@@ -30,17 +30,17 @@ open class KEManifestLoader
 		}
 	}
 
-	private func readJSON(from url: URL) throws -> CNNativeValue {
+	private func readNativeValue(from url: URL) throws -> CNNativeValue {
 		let fileurl = url.appendingPathComponent("manifest.json")
-		let (manvaluep, error) = CNJSONFile.readFile(URL: fileurl)
-		if let manval = manvaluep {
-			return manval
-		} else {
-			throw error!
+		switch CNNativeValueFile.readFile(URL: fileurl) {
+		case .ok(let value):
+			return value
+		case .error(let err):
+			throw err
 		}
 	}
 
-	open func decode(resource res: KEResource, json data: Dictionary<String, CNNativeValue>) throws {
+	open func decode(resource res: KEResource, properties data: Dictionary<String, CNNativeValue>) throws {
 		/* Decode: "application" */
 		if let appval = data["application"] {
 			if let apppath = appval.toString() {
@@ -53,7 +53,7 @@ open class KEManifestLoader
 		/* Decode: "libraries" */
 		if let libval = data["libraries"] {
 			if let libarr = libval.toArray() {
-				let patharr = try decodeFileArray(json: libarr)
+				let patharr = try decodeFileArray(arrayValue: libarr)
 				for path in patharr {
 					res.addLibrary(path: path)
 				}
@@ -64,7 +64,7 @@ open class KEManifestLoader
 		/* Decode: "threads" */
 		if let scrsval = data["threads"] {
 			if let scrsdict = scrsval.toDictionary() {
-				let fmap = try decodeFileMap(json: scrsdict)
+				let fmap = try decodeFileMap(properties: scrsdict)
 				for (ident, path) in fmap {
 					res.setThread(identifier: ident, path: path)
 				}
@@ -74,7 +74,7 @@ open class KEManifestLoader
 		}
 	}
 
-	public func decodeFileMap(json data: Dictionary<String, CNNativeValue>) throws -> Dictionary<String, String> {
+	public func decodeFileMap(properties data: Dictionary<String, CNNativeValue>) throws -> Dictionary<String, String> {
 		var result: Dictionary<String, String> = [:]
 		for key in data.keys {
 			if let val = data[key] {
@@ -90,7 +90,7 @@ open class KEManifestLoader
 		return result
 	}
 
-	public func decodeFileArray(json data: Array<CNNativeValue>) throws -> Array<String> {
+	public func decodeFileArray(arrayValue data: Array<CNNativeValue>) throws -> Array<String> {
 		var result: Array<String> = []
 		for elm in data {
 			if let path = elm.toString() {

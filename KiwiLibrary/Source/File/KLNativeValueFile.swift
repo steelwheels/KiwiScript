@@ -1,6 +1,6 @@
 /**
- * @file	KSJSONFile.swift
- * @brief	Define KSJSONFile class
+ * @file	KSNativeValueFile.swift
+ * @brief	Define KSNativeValueFile class
  * @par Copyright
  *   Copyright (C) 2017 Steel Wheels Project
  */
@@ -10,13 +10,13 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-@objc public protocol KLJSONProtocol: JSExport
+@objc public protocol KLNativeValueFileProtocol: JSExport
 {
 	func read(_ fname: JSValue) -> JSValue
 	func write(_ fname: JSValue, _ json: JSValue) -> JSValue
 }
 
-@objc public class KLJSON: NSObject, KLJSONProtocol
+@objc public class KLNativeValueFile: NSObject, KLNativeValueFileProtocol
 {
 	private var mContext: KEContext
 
@@ -26,14 +26,11 @@ import Foundation
 
 	public func read(_ fname: JSValue) -> JSValue {
 		if let url = valueToURL(value: fname) {
-			do {
-				if let data = NSData(contentsOf: url) {
-					let json = try JSONSerialization.jsonObject(with: data as Data, options: [])
-					return JSValue(object: json, in: mContext)
-				}
-			}
-			catch {
-				/* through */
+			switch CNNativeValueFile.readFile(URL: url) {
+			case .ok(let value):
+				return value.toJSValue(context: mContext)
+			default:
+				break
 			}
 		}
 		return JSValue(nullIn: mContext)
@@ -42,15 +39,11 @@ import Foundation
 	public func write(_ fname: JSValue, _ json: JSValue) -> JSValue {
 		var result = false
 		if let url = valueToURL(value: fname) {
-			do {
-				if let jsdata = json.toObject() {
-					let data = try JSONSerialization.data(withJSONObject: jsdata, options: JSONSerialization.WritingOptions.prettyPrinted)
-					try data.write(to: url, options: .atomic)
-					result = true
-				}
-			}
-			catch {
-				/* through */
+			let nval = json.toNativeValue()
+			let err  = CNNativeValueFile.writeFile(URL: url, nativeValue: nval)
+			if err == nil {
+				/* No error */
+				result = true
 			}
 		}
 		return JSValue(bool: result, in: mContext)

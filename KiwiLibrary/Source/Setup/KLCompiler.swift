@@ -415,8 +415,8 @@ open class KLCompiler: KECompiler
 		ctxt.set(name: "FontManager", object: fontmgr)
 
 		/* JSON */
-		let json = KLJSON(context: ctxt)
-		ctxt.set(name: "JSON", object: json)
+		let native = KLNativeValueFile(context: ctxt)
+		ctxt.set(name: "JSON", object: native)
 
 		/* Char */
 		let charobj = KLChar(context: ctxt)

@@ -21,7 +21,6 @@ public func testManifest(console cons: CNConsole, config conf: KEConfig) -> Bool
 
 	switch CNFilePath.URLForBundleFile(bundleName: "UnitTest", fileName: "Sample", ofType: "jspkg") {
 	case .ok(let url):
-		//cons.print(string: "manifest.json is at \(url.description)\n")
 		let resource = KEResource(baseURL: url)
 		let loader   = KEManifestLoader()
 		if let err = loader.load(into: resource) {
