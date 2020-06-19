@@ -20,6 +20,9 @@ import Foundation
 	func cursorForward(_ delta: JSValue) -> JSValue
 	func cursorBackward(_ delta: JSValue) -> JSValue
 
+	func scrollUp(_ lines: JSValue) -> JSValue
+	func scrollDown(_ lines: JSValue) -> JSValue
+
 	func color(_ type: JSValue, _ color: JSValue) -> JSValue
 	func reset() -> JSValue
 }
@@ -76,6 +79,24 @@ import Foundation
 		if delta.isNumber {
 			let n = Int(delta.toInt32())
 			return escapeCodeToValue(escapeCode: .cursorBackward(n))
+		} else {
+			return JSValue(nullIn: mContext)
+		}
+	}
+
+	public func scrollUp(_ lines: JSValue) -> JSValue {
+		if lines.isNumber {
+			let n = Int(lines.toInt32())
+			return escapeCodeToValue(escapeCode: .scrollUp(n))
+		} else {
+			return JSValue(nullIn: mContext)
+		}
+	}
+
+	public func scrollDown(_ lines: JSValue) -> JSValue {
+		if lines.isNumber {
+			let n = Int(lines.toInt32())
+			return escapeCodeToValue(escapeCode: .scrollDown(n))
 		} else {
 			return JSValue(nullIn: mContext)
 		}

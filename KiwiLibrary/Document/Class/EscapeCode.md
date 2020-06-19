@@ -7,6 +7,29 @@ The singleton object is defined for EscapeCode class.
 |:---       |:---       |:---                                   |
 |EscapeCode |EscapeCode |Singleton object of EscapeCode class   |
 
+## `scrollUp` method
+Generate escape sequence to scroll up the terminal.
+````
+scrollUp(lines: Int) -> String
+````
+
+### Parameters
+|Parameter    |Type     |Description                    |
+|:---         |:---     |:---                           |
+|lines        |Int      |Number of lines to scroll up   |
+
+
+## `scrollDown` method
+Generate escape sequence to scroll down the terminal.
+````
+scrollDown(lines: Int) -> String
+````
+
+### Parameters
+|Parameter    |Type     |Description                    |
+|:---         |:---     |:---                           |
+|lines        |Int      |Number of lines to scroll down |
+
 ## `color` method
 Generate escape sequence to set the foreground or background color.
 ````
