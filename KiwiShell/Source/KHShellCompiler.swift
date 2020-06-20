@@ -26,7 +26,8 @@ open class KHShellCompiler: KLCompiler
 	}
 
 	private func defineEnvironmentVariables(environment env: CNEnvironment) {
-		env.set(name: "JSH_VERSION", string: CNPreference.shared.systemPreference.version)
+		let verstr = CNPreference.shared.systemPreference.version
+		env.set(name: "JSH_VERSION", value: .stringValue(verstr))
 	}
 
 	private func defineBuiltinFunctions(context ctxt: KEContext, processManager procmgr: CNProcessManager, environment env: CNEnvironment, console cons: CNConsole) {

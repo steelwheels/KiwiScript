@@ -30,12 +30,12 @@ import Foundation
 	}
 
 	public func set(_ name: JSValue, _ value: JSValue) {
-		mEnvironment.set(name: name.toString(), string: valueToString(value: value))
+		mEnvironment.set(name: name.toString(), value: value.toNativeValue())
 	}
 
 	public func get(_ name: JSValue) -> JSValue {
-		if let res = mEnvironment.get(name: name.toString()) {
-			return JSValue(object: res, in: mContext)
+		if let val = mEnvironment.get(name: name.toString()) {
+			return val.toJSValue(context: mContext)
 		} else {
 			return JSValue(nullIn: mContext)
 		}
