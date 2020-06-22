@@ -19,6 +19,16 @@ import Foundation
 	func cursorDown(_ delta: JSValue) -> JSValue
 	func cursorForward(_ delta: JSValue) -> JSValue
 	func cursorBackward(_ delta: JSValue) -> JSValue
+	func cursorNextLine(_ delta: JSValue) -> JSValue
+	func cursorPreviousLine(_ delta: JSValue) -> JSValue
+	func saveCursorPosition() -> JSValue
+	func restoreCursorPosition() -> JSValue
+
+	func eraceFromCursorToEnd() -> JSValue
+	func eraceFromCursorToBegin() -> JSValue
+	func eraceEntireBuffer() -> JSValue
+	func eraceFromCursorToRight() -> JSValue
+	func eraceFromCursorToLeft() -> JSValue
 
 	func scrollUp(_ lines: JSValue) -> JSValue
 	func scrollDown(_ lines: JSValue) -> JSValue
@@ -82,6 +92,54 @@ import Foundation
 		} else {
 			return JSValue(nullIn: mContext)
 		}
+	}
+
+	public func cursorNextLine(_ delta: JSValue) -> JSValue {
+		if delta.isNumber {
+			let n = Int(delta.toInt32())
+			return escapeCodeToValue(escapeCode: .cursorNextLine(n))
+		} else {
+			return JSValue(nullIn: mContext)
+		}
+	}
+
+	public func cursorPreviousLine(_ delta: JSValue) -> JSValue {
+		if delta.isNumber {
+			let n = Int(delta.toInt32())
+			return escapeCodeToValue(escapeCode: .cursorPreviousLine(n))
+		} else {
+			return JSValue(nullIn: mContext)
+		}
+	}
+
+	public func saveCursorPosition() -> JSValue {
+		let code = CNEscapeCode.saveCursorPosition
+		return escapeCodeToValue(escapeCode: code)
+	}
+
+	public func restoreCursorPosition() -> JSValue {
+		let code = CNEscapeCode.restoreCursorPosition
+		return escapeCodeToValue(escapeCode: code)
+	}
+
+	public func eraceFromCursorToEnd() -> JSValue {
+		return escapeCodeToValue(escapeCode: .eraceFromCursorToEnd)
+	}
+
+	public func eraceFromCursorToBegin() -> JSValue {
+		return escapeCodeToValue(escapeCode: .eraceFromCursorToBegin)
+	}
+
+	public func eraceEntireBuffer() -> JSValue {
+		return escapeCodeToValue(escapeCode: .eraceEntireBuffer)
+	}
+
+	public func eraceFromCursorToRight() -> JSValue {
+		return escapeCodeToValue(escapeCode: .eraceFromCursorToRight)
+	}
+
+	public func eraceFromCursorToLeft() -> JSValue {
+		return escapeCodeToValue(escapeCode: .eraceFromCursorToLeft)
 	}
 
 	public func scrollUp(_ lines: JSValue) -> JSValue {

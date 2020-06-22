@@ -7,10 +7,66 @@ The singleton object is defined for EscapeCode class.
 |:---       |:---       |:---                                   |
 |EscapeCode |EscapeCode |Singleton object of EscapeCode class   |
 
+## `cursorNextLine` method
+Move cursor to head of next line.
+The number of lines to move is given as a parameter.
+````
+let code = escapeCode.cursorNextLine(1) ;
+````
+
+## `cursorPreviousLine` method
+Move cursor to head of previous line.
+The number of lines to move is given as a parameter.
+````
+let code = escapeCode.escapeCode.cursorPreviousLine(1) ;
+````
+
+## `saveCursorPosition` method
+Save current cursor position.
+````
+let code = escapeCode.saveCursorPosition()
+````
+
+## `restoreCursorPosition` method
+Restore cursor position which is stored by `saveCursorPosition` method.
+````
+let code = escapeCode.restoreCursorPosition()
+````
+
+## `eraceFromCursorToEnd` method
+Erace all text from cursor to the end of string.
+````
+let code = escapeCode.eraceFromCursorToEnd()
+````
+
+## `eraceFromCursorToBegin` method
+Erace all text from beginning to the cursor.
+````
+let code = escapeCode.eraceFromCursorToBegin()
+````
+
+## `eraceEntireBuffer` method
+Erace all text.
+````
+let code = escapeCode.eraceEntiferBuffer()
+````
+
+## `eraceFromCursorToRight` method
+Erace string from cursor to the end of the line.
+````
+let code = escapeCode.eraceFromCursorToRight()
+````
+
+## `eraceFromCursorToLeft` method
+Erace string from beginning of the line to the cursor
+````
+let code = escapeCode.eraceFromCursorToLeft()
+````
+
 ## `scrollUp` method
 Generate escape sequence to scroll up the terminal.
 ````
-scrollUp(lines: Int) -> String
+let code = escapeCode.scrollUp(lines: Int) -> String
 ````
 
 ### Parameters
@@ -22,7 +78,7 @@ scrollUp(lines: Int) -> String
 ## `scrollDown` method
 Generate escape sequence to scroll down the terminal.
 ````
-scrollDown(lines: Int) -> String
+let code = escapeCode.scrollDown(lines: Int) -> String
 ````
 
 ### Parameters
@@ -33,7 +89,7 @@ scrollDown(lines: Int) -> String
 ## `color` method
 Generate escape sequence to set the foreground or background color.
 ````
-color(type: Int, color: Color) -> String
+let code = escapeCode.color(type: Int, color: Color) -> String
 ````
 ### Parameters
 |Parameter    |Type   |Description                    |
