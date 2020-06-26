@@ -13,10 +13,11 @@ import CoconutShell
 import JavaScriptCore
 import Foundation
 
-public func UTParser(console cons: CNConsole) -> Bool
+public func UTParser(environment env: CNEnvironment, console cons: CNConsole) -> Bool
 {
 	let parser   = KHShellParser()
-	let readline = CNReadline()
+	let compl    = KHComplementor()
+	let readline = CNReadline(complementor: compl, environment: env)
 
 	let stmt0 = ["let a = 10 ;"]
 	let res0  = testParser(parser: parser, testNo: 0, source: stmt0, readline: readline, console: cons)

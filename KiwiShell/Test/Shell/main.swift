@@ -19,6 +19,7 @@ public func main()
 	let outhdl  = FileHandle.standardOutput
 	let errhdl  = FileHandle.standardError
 	let console = CNFileConsole(input: inhdl, output: outhdl, error: errhdl)
+	let env     = CNEnvironment()
 
 	let manager = KLBuiltinScripts.shared
 	manager.setup(subdirectory: "Documents/Script", forClass: KHShellThread.self)
@@ -27,7 +28,7 @@ public func main()
 	let res0 = UTShellCommand(console: console)
 
 	console.print(string: "***** UTParser\n")
-	let res3 = UTParser(console: console)
+	let res3 = UTParser(environment: env, console: console)
 
 	console.print(string: "***** UTScriptManager\n")
 	let res2 = UTScriptManager(console: console)

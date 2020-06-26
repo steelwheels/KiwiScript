@@ -57,7 +57,8 @@ public class KHShellThreadObject: CNShellThread
 		mConfig			= conf
 		mChildProcessManager	= CNProcessManager()
 		mInputMode		= .shellScript
-		super.init(processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: env)
+		let compl		= KHComplementor()
+		super.init(processManager: procmgr, input: instrm, output: outstrm, error: errstrm, complementor: compl, environment: env)
 
 		/* Allocate process manager for child processes */
 		procmgr.addChildManager(childManager: mChildProcessManager)

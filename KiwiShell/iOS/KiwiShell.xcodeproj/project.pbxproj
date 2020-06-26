@@ -18,6 +18,7 @@
 		0576D468245A776000EAA9E9 /* getenv.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0576D462245A774B00EAA9E9 /* getenv.js */; };
 		058EEA2123C226A600311781 /* KHShellParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058EEA2023C226A600311781 /* KHShellParser.swift */; };
 		0592776A23B8BF8200844FA4 /* KHShellStatement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0592776923B8BF8200844FA4 /* KHShellStatement.swift */; };
+		059E259924A36547004DF0C5 /* KHComplementor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059E259824A36547004DF0C5 /* KHComplementor.swift */; };
 		05AF0E7F23053F7500375196 /* KiwiShell.h in Headers */ = {isa = PBXBuildFile; fileRef = 05AF0E7D23053F7500375196 /* KiwiShell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05B3618223B9675200DA0BF3 /* history.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B3617F23B9672B00DA0BF3 /* history.js */; };
 		05BE4D2A23CAEA8000F64276 /* KHShellConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BE4D2823CAEA8000F64276 /* KHShellConverter.swift */; };
@@ -67,6 +68,7 @@
 		0576D464245A775400EAA9E9 /* setup.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = setup.js; sourceTree = "<group>"; };
 		058EEA2023C226A600311781 /* KHShellParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHShellParser.swift; sourceTree = "<group>"; };
 		0592776923B8BF8200844FA4 /* KHShellStatement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHShellStatement.swift; sourceTree = "<group>"; };
+		059E259824A36547004DF0C5 /* KHComplementor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHComplementor.swift; sourceTree = "<group>"; };
 		05AF0E7A23053F7500375196 /* KiwiShell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiShell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05AF0E7D23053F7500375196 /* KiwiShell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiShell.h; sourceTree = "<group>"; };
 		05AF0E7E23053F7500375196 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				055417542318202D005BE0C5 /* KHConfig.swift */,
 				05C4BE2523127E340014C2DB /* KHScriptThread.swift */,
 				05C4BE2723127E400014C2DB /* KHShellThread.swift */,
+				059E259824A36547004DF0C5 /* KHComplementor.swift */,
 				05EE1F65231161BD0051C0E9 /* KHShellCompiler.swift */,
 				058EEA2023C226A600311781 /* KHShellParser.swift */,
 				05BE4D2823CAEA8000F64276 /* KHShellConverter.swift */,
@@ -268,6 +271,7 @@
 				05C4BE2823127E400014C2DB /* KHShellThread.swift in Sources */,
 				0592776A23B8BF8200844FA4 /* KHShellStatement.swift in Sources */,
 				05C4BE2623127E340014C2DB /* KHScriptThread.swift in Sources */,
+				059E259924A36547004DF0C5 /* KHComplementor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
