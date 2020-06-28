@@ -30,7 +30,7 @@ function main(args)
 		}
 		return result ;
 	} else {
-		Environment.set("PWD", FileManager.homeDirectory()) ;
+		Environment.set("PWD", FileManager.homeDirectory().path) ;
 		return 0 ;
 	}
 
