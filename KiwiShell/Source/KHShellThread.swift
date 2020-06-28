@@ -179,7 +179,7 @@ public class KHShellThreadObject: CNShellThread
 		if let parent = self.processManager {
 			let childlen = parent.childProcessManagers
 			for child in childlen {
-				NSLog("\(#file): Terminate child process")
+				//NSLog("\(#file): Terminate child process")
 				child.terminate()
 			}
 		}
