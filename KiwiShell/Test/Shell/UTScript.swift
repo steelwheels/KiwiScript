@@ -26,7 +26,7 @@ public func UTScript(input inhdl: FileHandle, output outhdl: FileHandle, error e
 	let procmgr  = CNProcessManager()
 	let env      = CNEnvironment()
 	let config   = KHConfig(applicationType: .terminal, hasMainFunction: false, doStrict: true, logLevel: .warning)
-	let thread   = KHScriptThreadObject(sourceFile: .script(script), processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: env, config: config)
+	let thread   = KHScriptThreadObject(sourceFile: .script(script), processManager: procmgr, input: instrm, output: outstrm, error: errstrm, externalCompiler: nil,  environment: env, config: config)
 
 	/* Execute the thread */
 	thread.start(argument: .nullValue)

@@ -25,15 +25,17 @@ public class KHScriptThreadObject: CNThread
 	private var mChildProcessManager:	CNProcessManager
 	private var mTerminalInfo:		CNTerminalInfo
 	private var mConfig:			KHConfig
+	private var mExternalCompiler:		KHExternalCompiler?
 
 	private var mSourceFile:		KESourceFile
 	private var mExceptionCount:		Int
 
-	public init(sourceFile srcfile: KESourceFile, processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, config conf: KHConfig){
+	public init(sourceFile srcfile: KESourceFile, processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, externalCompiler excomp: KHExternalCompiler?, environment env: CNEnvironment, config conf: KHConfig){
 		mContext		= nil
 		mChildProcessManager	= CNProcessManager()
 		mTerminalInfo		= CNTerminalInfo(width: 80, height: 25)
 		mConfig			= conf
+		mExternalCompiler	= excomp
 		mSourceFile		= srcfile
 		mExceptionCount		= 0
 		super.init(processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: env)
@@ -107,6 +109,13 @@ public class KHScriptThreadObject: CNThread
 			}
 		}
 		let _ = compiler.compile(context: ctxt, statement: script, console: console, config: conf)
+
+		/* Call external compiler */
+		if let extcomp = mExternalCompiler {
+			if !extcomp.compile(context: ctxt, config: conf) {
+				return false
+			}
+		}
 		return hasNoException()
 	}
 
