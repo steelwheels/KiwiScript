@@ -25,12 +25,12 @@ public class KHScriptThreadObject: CNThread
 	private var mChildProcessManager:	CNProcessManager
 	private var mTerminalInfo:		CNTerminalInfo
 	private var mConfig:			KHConfig
-	private var mExternalCompiler:		KHExternalCompiler?
+	private var mExternalCompiler:		KLExternalCompiler?
 
 	private var mSourceFile:		KESourceFile
 	private var mExceptionCount:		Int
 
-	public init(sourceFile srcfile: KESourceFile, processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, externalCompiler excomp: KHExternalCompiler?, environment env: CNEnvironment, config conf: KHConfig){
+	public init(sourceFile srcfile: KESourceFile, processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, externalCompiler excomp: KLExternalCompiler?, environment env: CNEnvironment, config conf: KHConfig){
 		mContext		= nil
 		mChildProcessManager	= CNProcessManager()
 		mTerminalInfo		= CNTerminalInfo(width: 80, height: 25)
@@ -62,7 +62,7 @@ public class KHScriptThreadObject: CNThread
 		}
 
 		/* Compile the script */
-		if compile(sourceFile: mSourceFile, processManager: mChildProcessManager, context: ctxt, config: mConfig) {
+		if compile(sourceFile: mSourceFile, processManager: mChildProcessManager, context: ctxt, externalCompiler: mExternalCompiler, config: mConfig) {
 			if mConfig.hasMainFunction {
 				return execOperation(argument: arg, context: ctxt)
 			} else {
@@ -73,10 +73,10 @@ public class KHScriptThreadObject: CNThread
 		}
 	}
 
-	private func compile(sourceFile srcfile: KESourceFile, processManager procmgr: CNProcessManager, context ctxt: KEContext, config conf: KEConfig) -> Bool {
+	private func compile(sourceFile srcfile: KESourceFile, processManager procmgr: CNProcessManager, context ctxt: KEContext, externalCompiler extcomp: KLExternalCompiler?, config conf: KEConfig) -> Bool {
 		/* Compile the context */
 		let compiler = KHShellCompiler()
-		guard compiler.compileBaseAndLibrary(context: ctxt, sourceFile: srcfile, processManager: procmgr, terminalInfo: mTerminalInfo, environment: self.environment, console: self.console, config: conf) else {
+		guard compiler.compileBaseAndLibrary(context: ctxt, sourceFile: srcfile, processManager: procmgr, terminalInfo: mTerminalInfo, externalCompiler: extcomp, environment: self.environment, console: self.console, config: conf) else {
 			console.error(string: "Failed to compile script thread context\n")
 			return false
 		}
@@ -110,12 +110,6 @@ public class KHScriptThreadObject: CNThread
 		}
 		let _ = compiler.compile(context: ctxt, statement: script, console: console, config: conf)
 
-		/* Call external compiler */
-		if let extcomp = mExternalCompiler {
-			if !extcomp.compile(context: ctxt, config: conf) {
-				return false
-			}
-		}
 		return hasNoException()
 	}
 

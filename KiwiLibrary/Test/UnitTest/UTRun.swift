@@ -29,7 +29,7 @@ public func UTRun(context ctxt: KEContext, console cons: CNFileConsole) -> Bool
 	let config    = KEConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
 	let url       = URL(fileURLWithPath: "../Test/Sample/sample-1.js")
 	let srcfile   = KESourceFile.file(url)
-	let threadobj = KLThreadObject(sourceFile: srcfile, processManager: manager, input: instrm, output: outstrm, error: errstrm, environment: env, config: config)
+	let threadobj = KLThreadObject(sourceFile: srcfile, processManager: manager, input: instrm, output: outstrm, error: errstrm, externalCompiler: nil,  environment: env, config: config)
 	let thread    = KLThread(thread: threadobj)
 	thread.start(args)
 

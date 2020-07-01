@@ -14,9 +14,9 @@ import Foundation
 
 open class KHShellCompiler: KLCompiler
 {
-	open func compileBaseAndLibrary(context ctxt: KEContext, sourceFile srcfile: KESourceFile, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
+	open func compileBaseAndLibrary(context ctxt: KEContext, sourceFile srcfile: KESourceFile, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, externalCompiler extcomp: KLExternalCompiler?, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
 		if super.compileBase(context: ctxt, terminalInfo: terminfo, environment: env, console: cons, config: conf) {
-			if super.compileLibrary(context: ctxt, sourceFile: srcfile, processManager: procmgr, environment: env, console: cons, config: conf) {
+			if super.compileLibrary(context: ctxt, sourceFile: srcfile, processManager: procmgr, externalCompiler: extcomp, environment: env, console: cons, config: conf) {
 				defineEnvironmentVariables(environment: env)
 				defineBuiltinFunctions(context: ctxt, processManager: procmgr, environment: env, console: cons)
 				return true

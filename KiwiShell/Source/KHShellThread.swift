@@ -47,12 +47,12 @@ public class KHShellThreadObject: CNShellThread
 
 	private var mContext:			KEContext?
 	private var mResource:			KEResource
-	private var mExternalCompiler:		KHExternalCompiler?
+	private var mExternalCompiler:		KLExternalCompiler?
 	private var mConfig:			KEConfig
 	private var mChildProcessManager:	CNProcessManager
 	private var mInputMode:			InputMode
 
-	public init(processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, externalCompiler extcomp: KHExternalCompiler?, environment env: CNEnvironment, resource res: KEResource, config conf: KEConfig){
+	public init(processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, externalCompiler extcomp: KLExternalCompiler?, environment env: CNEnvironment, resource res: KEResource, config conf: KEConfig){
 		mContext		= nil
 		mResource		= res
 		mExternalCompiler	= extcomp
@@ -85,18 +85,12 @@ public class KHShellThreadObject: CNShellThread
 						     sourceFile: 	.none,
 						     processManager:	mChildProcessManager,
 						     terminalInfo:	self.terminalInfo,
+						     externalCompiler: 	mExternalCompiler,
 						     environment:	self.environment,
 						     console:		self.console,
 						     config: 		mConfig) else {
 			console.error(string: "Failed to compile script thread context\n")
 			return -1
-		}
-
-		/* Call external compiler */
-		if let extcomp = mExternalCompiler {
-			if !extcomp.compile(context: ctxt, config: mConfig) {
-				return -1
-			}
 		}
 
 		/* Set exception handler */

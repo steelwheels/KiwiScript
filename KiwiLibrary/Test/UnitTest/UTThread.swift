@@ -36,7 +36,7 @@ public func UTThread(context ctxt: KEContext, processManager procmgr: CNProcessM
 		let errstrm:	CNFileStream		= .fileHandle(cons.errorHandle)
 		let env:     	CNEnvironment		= CNEnvironment()
 		let config   = KEConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
-		let threadobj = KLThreadObject(sourceFile: srcfile, processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: env, config: config)
+		let threadobj = KLThreadObject(sourceFile: srcfile, processManager: procmgr, input: instrm, output: outstrm, error: errstrm, externalCompiler: nil, environment: env, config: config)
 		let thread    = KLThread(thread: threadobj)
 
 		/* Start thread */
