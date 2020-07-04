@@ -1,9 +1,9 @@
-# JSOBJ: Extended JavaScript Object Notation
+# JSONe: Extended JavaScript Object Notation
 ## Introduction
 This document describes about the specification of
 the _Extended JavaScript Object Notation_.
-The parse result *is not different* from [JSON](https://www.json.org/json-en.html).
-But the format is extended to improve readability and writability.
+The `JSONe` is small extension of the [JSON](https://www.json.org/json-en.html).
+It is extended to improve readability and writability.
 There are modified points:
 * The `//` comment is supported. The string between `//` and end-of-line will be ignored
 * The double quotation for the property key is NOT required.

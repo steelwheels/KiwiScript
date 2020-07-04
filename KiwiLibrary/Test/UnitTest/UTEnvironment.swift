@@ -1,6 +1,6 @@
 /*
  * @file	UTEnvironment.swift
- * @brief	Unit test for "Env" class object
+ * @brief	Unit test for "KLEnvironment" class object
  * @par Copyright
  *   Copyright (C) 2020 Steel Wheels Project
  */

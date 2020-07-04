@@ -2120,4 +2120,6 @@ ScriptManager
 Environment("MSG") = hello
 current_directory => true
 temporary_directory => true
+/* Unit test for preference */
+preference.system.version = unknown
 Summary: OK

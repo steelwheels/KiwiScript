@@ -4,9 +4,9 @@ The *Environment* class is used to set and get environment variables.
 ## Global variables
 The singleton object is defined for Environment class.
 
-|Variable    |Class             | Description                   |
-|:---        |:---              |:---                           |
-|`Environment` |Environment       |Singleton object of the class  |
+|Variable       |Class             | Description                   |
+|:---           |:---              |:---                           |
+|`Environment`  |Environment       |Singleton object of the class  |
 
 ## Pre-defined environment variables
 Following variables are defined before executing script.

@@ -436,6 +436,10 @@ open class KLCompiler: KECompiler
 		let env = KLEnvironment(environment: env, context: ctxt)
 		ctxt.set(name: "Environment", object: env)
 
+		/* Preference */
+		let pref = KLPreference(context: ctxt)
+		ctxt.set(name: "Preference", object: pref)
+
 		/* Built-in script manager */
 		let scrmgr = KLBuiltinScriptManager(context: ctxt)
 		ctxt.set(name: "ScriptManager", object: scrmgr)

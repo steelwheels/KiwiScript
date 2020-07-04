@@ -12,6 +12,7 @@
 		050DBEA520C2D49A00F0E133 /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050DBEA420C2D49A00F0E133 /* KiwiEngine.framework */; };
 		050DBEA720C2D4A800F0E133 /* KiwiLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050DBEA620C2D4A800F0E133 /* KiwiLibrary.framework */; };
 		050E8FE623F0EDD4000C67F6 /* fonts.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050E8FE523F0EDC2000C67F6 /* fonts.js */; };
+		05124BF324B007FB0027C62C /* KHPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05124BF224B007FB0027C62C /* KHPreference.swift */; };
 		05274FEA23B8F4FD0077E8ED /* history.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05274FE723B8F4E00077E8ED /* history.js */; };
 		05274FEF23B8FE7A0077E8ED /* UTScriptManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05274FEE23B8FE7A0077E8ED /* UTScriptManager.swift */; };
 		0550C0072442F36900493ACC /* setenv.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0550C0052442F33E00493ACC /* setenv.js */; };
@@ -121,6 +122,7 @@
 		050E8FE523F0EDC2000C67F6 /* fonts.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = fonts.js; sourceTree = "<group>"; };
 		05100ECC2039A17000C269BB /* KiwiShell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiShell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05100ED02039A17000C269BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05124BF224B007FB0027C62C /* KHPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KHPreference.swift; sourceTree = "<group>"; };
 		05274FE723B8F4E00077E8ED /* history.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = history.js; sourceTree = "<group>"; };
 		05274FEE23B8FE7A0077E8ED /* UTScriptManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTScriptManager.swift; sourceTree = "<group>"; };
 		0550C0052442F33E00493ACC /* setenv.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = setenv.js; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 				05E4642223C22CDB00B82EEE /* KHShellVisitor.swift */,
 				059D085023C36F05005C2F6E /* KHShellConverter.swift */,
 				059A0D2623C94B9C003172F6 /* KHShellCoder.swift */,
+				05124BF224B007FB0027C62C /* KHPreference.swift */,
 			);
 			name = Source;
 			path = ../Source;
@@ -467,6 +470,7 @@
 				05E4642323C22CDB00B82EEE /* KHShellVisitor.swift in Sources */,
 				0582DFE02388F98F005BD011 /* KHShellStatement.swift in Sources */,
 				050C3625231158770015F557 /* KHShellCompiler.swift in Sources */,
+				05124BF324B007FB0027C62C /* KHPreference.swift in Sources */,
 				05D049D52039AA9000642E6A /* KHShellThread.swift in Sources */,
 				05DBA585231271760061046B /* KHScriptThread.swift in Sources */,
 				059A0D2723C94B9C003172F6 /* KHShellCoder.swift in Sources */,

@@ -87,11 +87,15 @@ public func main()
 	filecons.print(string: "/* Unit test for ScriptManager */\n")
 	let result9 = UTScriptManager(console: filecons)
 
-	/* Env */
+	/* Environment */
 	filecons.print(string: "/* Unit test for environmrnt */\n")
 	let result11 = UTEnvironment(context: context, console: filecons)
 
-	if result0 && result1 && result2 && result3 && result4 && result5 && result6 && result7 && result8 && result9 && result10 && result11 && result12 {
+	/* Preference */
+	filecons.print(string: "/* Unit test for preference */\n")
+	let result13 = UTPreference(context: context, console: filecons)
+
+	if result0 && result1 && result2 && result3 && result4 && result5 && result6 && result7 && result8 && result9 && result10 && result11 && result12 && result13 {
 		filecons.print(string: "Summary: OK\n")
 	} else {
 		filecons.print(string: "Summary: NG (\(result0) \(result1) \(result2) \(result3) \(result4) \(result5) \(result6) \(result7) \(result8))\n")
