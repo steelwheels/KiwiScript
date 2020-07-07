@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		051FEC2024B4AF2400D17BEB /* KHPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051FEC1F24B4AF2400D17BEB /* KHPreference.swift */; };
 		0528875B230540A900EB4D9A /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0528875A230540A900EB4D9A /* CoconutData.framework */; };
 		0528875D230540BA00EB4D9A /* CoconutShell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0528875C230540BA00EB4D9A /* CoconutShell.framework */; };
 		053C799623C22D7D006A602A /* KHShellVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053C799523C22D7D006A602A /* KHShellVisitor.swift */; };
@@ -57,6 +58,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		051FEC1F24B4AF2400D17BEB /* KHPreference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHPreference.swift; sourceTree = "<group>"; };
 		0528875A230540A900EB4D9A /* CoconutData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutData.framework; path = ../../../../local/Frameworks/CoconutData.framework; sourceTree = "<group>"; };
 		0528875C230540BA00EB4D9A /* CoconutShell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutShell.framework; path = ../../../../local/Frameworks/CoconutShell.framework; sourceTree = "<group>"; };
 		053C799523C22D7D006A602A /* KHShellVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHShellVisitor.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				05BE4D2923CAEA8000F64276 /* KHShellCoder.swift */,
 				0592776923B8BF8200844FA4 /* KHShellStatement.swift */,
 				053C799523C22D7D006A602A /* KHShellVisitor.swift */,
+				051FEC1F24B4AF2400D17BEB /* KHPreference.swift */,
 			);
 			name = Source;
 			path = ../Source;
@@ -268,6 +271,7 @@
 				053C799623C22D7D006A602A /* KHShellVisitor.swift in Sources */,
 				05EE1F66231161BD0051C0E9 /* KHShellCompiler.swift in Sources */,
 				05BE4D2A23CAEA8000F64276 /* KHShellConverter.swift in Sources */,
+				051FEC2024B4AF2400D17BEB /* KHPreference.swift in Sources */,
 				05C4BE2823127E400014C2DB /* KHShellThread.swift in Sources */,
 				0592776A23B8BF8200844FA4 /* KHShellStatement.swift in Sources */,
 				05C4BE2623127E340014C2DB /* KHScriptThread.swift in Sources */,

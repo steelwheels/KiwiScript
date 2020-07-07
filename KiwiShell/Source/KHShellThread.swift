@@ -93,6 +93,15 @@ public class KHShellThreadObject: CNShellThread
 			return -1
 		}
 
+		/* Compile the .jshrc file */
+		let rcdir  = CNPreference.shared.userPreference.homeDirectory
+		let rcfile = URL(fileURLWithPath: ".jshrc", relativeTo: rcdir)
+		if FileManager.default.isReadableFile(atPath: rcfile.path) {
+			if let content = rcfile.loadContents() {
+				let _ = compiler.compile(context: ctxt, statement: content as String, console: self.console, config: mConfig)
+			}
+		}
+
 		/* Set exception handler */
 		ctxt.exceptionCallback = {
 			[weak self]  (_ excep: KEException) -> Void in

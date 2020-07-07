@@ -17,12 +17,18 @@ open class KHShellCompiler: KLCompiler
 	open func compileBaseAndLibrary(context ctxt: KEContext, sourceFile srcfile: KESourceFile, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, externalCompiler extcomp: KLExternalCompiler?, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
 		if super.compileBase(context: ctxt, terminalInfo: terminfo, environment: env, console: cons, config: conf) {
 			if super.compileLibrary(context: ctxt, sourceFile: srcfile, processManager: procmgr, externalCompiler: extcomp, environment: env, console: cons, config: conf) {
+				defineGlobalVariables(context: ctxt)
 				defineEnvironmentVariables(environment: env)
 				defineBuiltinFunctions(context: ctxt, processManager: procmgr, environment: env, console: cons)
 				return true
 			}
 		}
 		return false
+	}
+
+	private func defineGlobalVariables(context ctxt: KEContext){
+		let pref = KHPreference(context: ctxt)
+		ctxt.set(name: "Preference", object: pref)
 	}
 
 	private func defineEnvironmentVariables(environment env: CNEnvironment) {
