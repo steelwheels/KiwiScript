@@ -15,7 +15,7 @@ public func UTPreference(context ctxt: KEContext, console cons: CNFileConsole) -
 	/* Ger version */
 	var hasversion = false
 	let pref   = KLPreference(context: ctxt)
-	let sysval = pref.systemPreference
+	let sysval = pref.system
 	if let sysobj = sysval.toObject() as? KLSystemPreference {
 		let verval = sysobj.version
 		if let verstr = verval.toString() {

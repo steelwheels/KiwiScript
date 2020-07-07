@@ -436,7 +436,7 @@ open class KLCompiler: KECompiler
 		let env = KLEnvironment(environment: env, context: ctxt)
 		ctxt.set(name: "Environment", object: env)
 
-		/* Preference */
+		/* Preference: This value will be override by KiwiShell */
 		let pref = KLPreference(context: ctxt)
 		ctxt.set(name: "Preference", object: pref)
 

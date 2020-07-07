@@ -10,26 +10,17 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-open class KLPreferenceTable: CNPreferenceTable
+public extension CNPreferenceTable
 {
-	private var mContext:	KEContext
-	public var context: KEContext { get { return mContext }}
-
-	public init(sectionName name: String, context ctxt: KEContext) {
-		mContext = ctxt
-		super.init(sectionName: name)
+	func set(scriptValue val: JSValue, forKey key: String) {
+		set(anyValue: val, forKey: key)
 	}
-}
 
-extension CNPreference
-{
-	public func get<T: KLPreferenceTable>(name nm: String, context ctxt: KEContext, allocator alloc: (_ ctxt: KEContext) -> T) -> T {
-		if let anypref = peekTable(name: nm) as? T {
-			return anypref
+	func scriptValue(forKey key: String) -> JSValue? {
+		if let val = anyValue(forKey: key) as? JSValue {
+			return val
 		} else {
-			let newpref = alloc(ctxt)
-			pokeTable(name: nm, table: newpref)
-			return newpref
+			return nil
 		}
 	}
 }
@@ -39,16 +30,13 @@ extension CNPreference
 	var system: JSValue { get }
 }
 
-@objc public protocol KLSystemPreferenceProtocol: JSExport
-{
-	var version: JSValue { get }
-}
-
-@objc public class KLPreference: NSObject, KLPreferenceProtocol
+@objc open class KLPreference: NSObject, KLPreferenceProtocol
 {
 	private var mContext: KEContext
 
-	public init(context ctxt: KEContext) {
+	public var context: KEContext { get { return mContext }}
+
+	public init(context ctxt: KEContext){
 		mContext = ctxt
 	}
 
@@ -58,16 +46,23 @@ extension CNPreference
 	}}
 }
 
+@objc public protocol KLSystemPreferenceProtocol: JSExport
+{
+	var version: JSValue { get }
+}
+
 @objc public class KLSystemPreference: NSObject, KLSystemPreferenceProtocol
 {
 	private var mContext: KEContext
 
-	public init(context ctxt: KEContext) {
+	public init(context ctxt: KEContext){
 		mContext = ctxt
 	}
 
 	public var version: JSValue { get {
-		let ver = CNPreference.shared.systemPreference.version
-		return JSValue(object: ver, in: mContext)
+		let syspref = CNPreference.shared.systemPreference
+		let verstr  = syspref.version
+		return JSValue(object: verstr, in: mContext)
 	}}
 }
+
