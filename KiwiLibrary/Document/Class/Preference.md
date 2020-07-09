@@ -21,6 +21,15 @@ Here is examples to acceess property.
 let version_string = Preference.system.version ;
 ````
 
+## `terminal` preference
+The preference of terminal attributes.
+
+This is a list of properties in the preference:
+|Name               |Type       |Description                |
+|:---               |:---       |:---                       |
+|foregroundColor    |[Color](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/Color.md)  |The integer value to present foreground color |
+|backgoundColor     |[Color](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/Color.md) |The integer value to present background color  |
+
 ## `shell` preference
 *This preference is exist only in interractive mode in shell.* This has properties for shell operation.
 

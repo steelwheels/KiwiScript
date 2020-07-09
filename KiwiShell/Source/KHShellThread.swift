@@ -149,8 +149,24 @@ public class KHShellThreadObject: CNShellThread
 		return result
 	}
 
+	private var mUseablePromptFunc = true
+
 	public override func promptString() -> String {
-		return "jsh" + mInputMode.toSymbol() + " "
+		var promptstr: String = "jsh"
+		if mUseablePromptFunc {
+			/* Call JavaScript function which is defined at Preference.shell.prompt */
+			let pref = CNPreference.shared.shellPreference
+			if let pval = pref.prompt {
+				mUseablePromptFunc = false
+				if let retval = pval.call(withArguments: []) {
+					if retval.isString {
+						promptstr = retval.toString()
+						mUseablePromptFunc = true
+					}
+				}
+			}
+		}
+		return promptstr + mInputMode.toSymbol() + " "
 	}
 
 	private func decodeMode(command cmd: String) -> String? {

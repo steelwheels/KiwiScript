@@ -27,7 +27,8 @@ public extension CNPreferenceTable
 
 @objc public protocol KLPreferenceProtocol: JSExport
 {
-	var system: JSValue { get }
+	var system:	JSValue { get }
+	var terminal:	JSValue { get }
 }
 
 @objc open class KLPreference: NSObject, KLPreferenceProtocol
@@ -42,6 +43,11 @@ public extension CNPreferenceTable
 
 	public var system: JSValue { get {
 		let pref = KLSystemPreference(context: mContext)
+		return JSValue(object: pref, in: mContext)
+	}}
+
+	public var terminal: JSValue { get {
+		let pref = KLTerminalPreference(context: mContext)
 		return JSValue(object: pref, in: mContext)
 	}}
 }
@@ -64,5 +70,56 @@ public extension CNPreferenceTable
 		let verstr  = syspref.version
 		return JSValue(object: verstr, in: mContext)
 	}}
+}
+
+@objc public protocol KLTerminalPreferenceProtocol: JSExport
+{
+	var foregroundColor: JSValue { get set }
+	var backgroundColor: JSValue { get set }
+}
+
+@objc public class KLTerminalPreference: NSObject, KLTerminalPreferenceProtocol
+{
+	private var mContext: KEContext
+
+	public init(context ctxt: KEContext){
+		mContext = ctxt
+	}
+
+	public var foregroundColor: JSValue {
+		get {
+			let pref  = CNPreference.shared.terminalPreference
+			let color = pref.foregroundTextColor
+			return JSValue(int32: color.escapeCode(), in: mContext)
+		}
+		set(newval) {
+			if newval.isNumber {
+				if let col = CNColor.color(withEscapeCode: newval.toInt32()) {
+					let pref = CNPreference.shared.terminalPreference
+					pref.foregroundTextColor = col
+					return
+				}
+			}
+			NSLog("Failed to set foregound color")
+		}
+	}
+
+	public var backgroundColor: JSValue {
+		get {
+			let pref  = CNPreference.shared.terminalPreference
+			let color = pref.backgroundTextColor
+			return JSValue(int32: color.escapeCode(), in: mContext)
+		}
+		set(newval) {
+			if newval.isNumber {
+				if let col = CNColor.color(withEscapeCode: newval.toInt32()) {
+					let pref = CNPreference.shared.terminalPreference
+					pref.backgroundTextColor = col
+					return
+				}
+			}
+			NSLog("Failed to set foregound color")
+		}
+	}
 }
 
