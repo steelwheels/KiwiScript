@@ -11,10 +11,10 @@ The singleton object is defined for Curses class.
 |`Curses`    |Curses            |Singleton object of the class  |
 
 ## Setup/Release
-### `init` method
-Initialize the screen for CUI
+### `start` method
+Startup the screen for CUI
 ````
-Curses.init() ;
+Curses.start() ;
 ````
 
 ### `end` method
