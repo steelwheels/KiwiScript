@@ -20,10 +20,10 @@
 		0534BBED2321405400FC8DEF /* KLFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0534BBEC2321405400FC8DEF /* KLFileManager.swift */; };
 		053E389724822CD5001D3185 /* KLResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053E389624822CD5001D3185 /* KLResource.swift */; };
 		0546C40F2253B0D2001686B8 /* UTOperation2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0546C40E2253B0D2001686B8 /* UTOperation2.swift */; };
+		0548AE5A24C30BCD00BEC581 /* Curses.js in Resources */ = {isa = PBXBuildFile; fileRef = 0548AE5924C30BCD00BEC581 /* Curses.js */; };
 		055560F3211B4A4C009DB8F8 /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 055560F2211B4A4B009DB8F8 /* CoconutData.framework */; };
 		05610E5121B3C12800535D06 /* KLDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05610E5021B3C12800535D06 /* KLDatabase.swift */; };
 		0567B9A223462F64008CA9A2 /* UTThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0567B9A123462F64008CA9A2 /* UTThread.swift */; };
-		0578143422DE18CB00B50279 /* Graphics.js in Resources */ = {isa = PBXBuildFile; fileRef = 0578143322DE18CB00B50279 /* Graphics.js */; };
 		057F1343234F82E40043C54B /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 055560F2211B4A4B009DB8F8 /* CoconutData.framework */; };
 		057F1344234F82E40043C54B /* CoconutData.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 055560F2211B4A4B009DB8F8 /* CoconutData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		057F1345234F82E50043C54B /* CoconutShell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05BC6856234E2FD30013C897 /* CoconutShell.framework */; };
@@ -146,6 +146,7 @@
 		0534BBEC2321405400FC8DEF /* KLFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLFileManager.swift; sourceTree = "<group>"; };
 		053E389624822CD5001D3185 /* KLResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLResource.swift; sourceTree = "<group>"; };
 		0546C40E2253B0D2001686B8 /* UTOperation2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTOperation2.swift; sourceTree = "<group>"; };
+		0548AE5924C30BCD00BEC581 /* Curses.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Curses.js; sourceTree = "<group>"; };
 		0551CEA620BDC8A100615229 /* UnitTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		0551CEA820BDC8A100615229 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		055560F2211B4A4B009DB8F8 /* CoconutData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutData.framework; path = ../../../../Library/Frameworks/CoconutData.framework; sourceTree = "<group>"; };
@@ -154,7 +155,6 @@
 		05610E5021B3C12800535D06 /* KLDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLDatabase.swift; sourceTree = "<group>"; };
 		0562E07A222C1A0300761F70 /* Operation.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Operation.js; sourceTree = "<group>"; };
 		0567B9A123462F64008CA9A2 /* UTThread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTThread.swift; sourceTree = "<group>"; };
-		0578143322DE18CB00B50279 /* Graphics.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Graphics.js; sourceTree = "<group>"; };
 		057FF82C2344CEDE0044AAE8 /* KLThread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLThread.swift; sourceTree = "<group>"; };
 		058414AA231583FF002F731E /* KLProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLProcess.swift; sourceTree = "<group>"; };
 		058735D520C2C7F700797EFD /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../Library/Frameworks/KiwiEngine.framework; sourceTree = "<group>"; };
@@ -249,10 +249,10 @@
 		052B153E20C382D300BAF41B /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				0548AE5924C30BCD00BEC581 /* Curses.js */,
 				05F92B73244FF77D00E08561 /* Cancel.js */,
 				0562E07A222C1A0300761F70 /* Operation.js */,
 				052B153F20C382E500BAF41B /* Math.js */,
-				0578143322DE18CB00B50279 /* Graphics.js */,
 				05B176A82250E4B1001216F2 /* Debug.js */,
 			);
 			path = Library;
@@ -597,8 +597,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				05B176A92250E4B2001216F2 /* Debug.js in Resources */,
+				0548AE5A24C30BCD00BEC581 /* Curses.js in Resources */,
 				05A5938A2245FE0700001E4C /* Math.js in Resources */,
-				0578143422DE18CB00B50279 /* Graphics.js in Resources */,
 				05A593892245FE0500001E4C /* Operation.js in Resources */,
 				05F92B74244FF77D00E08561 /* Cancel.js in Resources */,
 			);
