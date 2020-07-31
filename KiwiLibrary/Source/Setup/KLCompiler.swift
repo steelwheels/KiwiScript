@@ -41,6 +41,9 @@ open class KLCompiler: KECompiler
 	open func compileLibrary(context ctxt: KEContext, sourceFile srcfile: KESourceFile, processManager procmgr: CNProcessManager, externalCompiler extcomp: KLExternalCompiler?, environment env: CNEnvironment, console cons: CNConsole, config conf: KEConfig) -> Bool {
 		if super.compileLibrary(context: ctxt, sourceFile: srcfile, console: cons, config: conf) {
 			defineThreadFunction(context: ctxt, sourceFile: srcfile, processManager: procmgr, externalCompiler: extcomp, environment: env, console: cons, config: conf)
+			#if os(OSX)
+				defineApplicationFunction(context: ctxt, console: cons, config: conf)
+			#endif
 			let res = compileExternalModule(context: ctxt, externalCompiler: extcomp, config: conf)
 			return (ctxt.errorCount == 0) && res
 		} else {
@@ -592,6 +595,7 @@ open class KLCompiler: KECompiler
 		}
 		ctxt.set(name: "run", function: runfunc)
 
+		#if os(OSX)
 		/* _waitUtilExitAll */
 		let waitExtFunc: @convention(block) (_ procval: JSValue) -> JSValue = {
 			(_ procval: JSValue) -> JSValue in
@@ -622,7 +626,26 @@ open class KLCompiler: KECompiler
 			return JSValue(nullIn: ctxt)
 		}
 		ctxt.set(name: "_waitUntilExitAll", function: waitExtFunc)
+		#endif
 	}
+
+	#if os(OSX)
+	private func defineApplicationFunction(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
+		/* Launch */
+		let launchfunc: @convention(block) (_ docval: JSValue, _ appcal: JSValue) -> JSValue = {
+			(_ docval: JSValue, _ appval: JSValue) -> JSValue in
+
+			let docurl: URL? = KLCompiler.anyToURL(anyValue: docval)
+			let appurl: URL? = KLCompiler.anyToURL(anyValue: appval)
+			if let appobj = KLApplication.launch(application: appurl, document: docurl, context: ctxt) {
+				return JSValue(object: appobj, in: ctxt)
+			} else {
+				return JSValue(nullIn: ctxt)
+			}
+		}
+		ctxt.set(name: "launch", function: launchfunc)
+	}
+	#endif
 
 	private func compileExternalModule(context ctxt: KEContext, externalCompiler extcomp: KLExternalCompiler?, config conf: KEConfig) -> Bool {
 		let result: Bool
@@ -705,11 +728,16 @@ open class KLCompiler: KECompiler
 				if let url = urlobj.url {
 					result = url
 				}
+			} else if urlval.isString {
+				if let str = urlval.toString() {
+					result  = URL(fileURLWithPath: str)
+				}
 			}
 		}
 		return result
 	}
 
+	#if os(OSX)
 	private class func anyToProcess(anyValue val: Any) -> KLProcessProtocol? {
 		if let proc = val as? KLProcessProtocol {
 			return proc
@@ -722,5 +750,6 @@ open class KLCompiler: KECompiler
 		}
 		return nil
 	}
+	#endif
 }
 

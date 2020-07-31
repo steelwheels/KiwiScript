@@ -10,13 +10,13 @@ import KiwiEngine
 import JavaScriptCore
 import Foundation
 
+#if os(OSX)
+
 @objc public protocol KLProcessProtocol: JSExport {
 	func isRunning() -> Bool
 	func waitUntilExit() -> Int32
 	func terminate()
 }
-
-#if os(OSX)
 
 @objc public class KLProcess: NSObject, KLProcessProtocol
 {

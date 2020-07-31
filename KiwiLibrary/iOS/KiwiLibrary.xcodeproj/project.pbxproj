@@ -22,6 +22,7 @@
 		0554464922ACC13100ABB9B4 /* KLOperationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0554464822ACC13100ABB9B4 /* KLOperationContext.swift */; };
 		057D603D22F1DE4100021E89 /* KLContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057D603C22F1DE4100021E89 /* KLContext.swift */; };
 		058414AD2315856E002F731E /* KLProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058414AC2315856E002F731E /* KLProcess.swift */; };
+		05896A4924D30AA200AD8C88 /* KLApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05896A4824D30AA200AD8C88 /* KLApplication.swift */; };
 		058EEBBD22F505E50095012B /* KLNativeStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058EEBBC22F505E50095012B /* KLNativeStruct.swift */; };
 		0599123E2438AD3400B21467 /* KLEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0599123D2438AD3400B21467 /* KLEnvironment.swift */; };
 		059EA91E223D4D1100BF229C /* Operation.js in Resources */ = {isa = PBXBuildFile; fileRef = 05549B38222C1A41009130E2 /* Operation.js */; };
@@ -70,6 +71,7 @@
 		05549B38222C1A41009130E2 /* Operation.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Operation.js; sourceTree = "<group>"; };
 		057D603C22F1DE4100021E89 /* KLContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLContext.swift; sourceTree = "<group>"; };
 		058414AC2315856E002F731E /* KLProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLProcess.swift; sourceTree = "<group>"; };
+		05896A4824D30AA200AD8C88 /* KLApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLApplication.swift; sourceTree = "<group>"; };
 		058EEBBC22F505E50095012B /* KLNativeStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLNativeStruct.swift; sourceTree = "<group>"; };
 		0599123D2438AD3400B21467 /* KLEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLEnvironment.swift; sourceTree = "<group>"; };
 		059EF05323B9A0500039C8E2 /* KLBuiltinScripts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLBuiltinScripts.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				054069E123480F2000241E58 /* KLThread.swift */,
+				05896A4824D30AA200AD8C88 /* KLApplication.swift */,
 				0554464822ACC13100ABB9B4 /* KLOperationContext.swift */,
 				05F100A622300F9C00B399BE /* KLOperationQueue.swift */,
 				058414AC2315856E002F731E /* KLProcess.swift */,
@@ -363,6 +366,7 @@
 				050D9E9123F0DE070026769A /* KLFontManager.swift in Sources */,
 				05BCE66D2068BDAE007B0559 /* KLPipe.swift in Sources */,
 				05BCE66C2068BDAE007B0559 /* KLFile.swift in Sources */,
+				05896A4924D30AA200AD8C88 /* KLApplication.swift in Sources */,
 				05D6BF8721D3E269001D737A /* KLImage.swift in Sources */,
 				05BCE66E2068BDAE007B0559 /* KLNativeValueFile.swift in Sources */,
 				053C0FF32257AC420086B1CC /* KLScriptValue.swift in Sources */,

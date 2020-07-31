@@ -71,6 +71,10 @@ public func main()
 	filecons.print(string: "/* Unit test for Run */\n")
 	let result7 = UTRun(context: context, console: filecons)
 
+	/* Application */
+	filecons.print(string: "/* Unit test for Application */\n")
+	let result14 = UTApplication(context: context, console: filecons)
+
 	/* FileManager */
 	filecons.print(string: "/* Unit test for FileManager */\n")
 	let result8 = UTFileManager(fileManager: fmanager, context: context, console: filecons)
@@ -95,7 +99,7 @@ public func main()
 	filecons.print(string: "/* Unit test for preference */\n")
 	let result13 = UTPreference(context: context, console: filecons)
 
-	if result0 && result1 && result2 && result3 && result4 && result5 && result6 && result7 && result8 && result9 && result10 && result11 && result12 && result13 {
+	if result0 && result1 && result2 && result3 && result4 && result5 && result6 && result7 && result8 && result9 && result10 && result11 && result12 && result13 && result14 {
 		filecons.print(string: "Summary: OK\n")
 	} else {
 		filecons.print(string: "Summary: NG (\(result0) \(result1) \(result2) \(result3) \(result4) \(result5) \(result6) \(result7) \(result8))\n")
