@@ -24,29 +24,6 @@ import Foundation
 	private var mApplicationInfo:	NSRunningApplication
 	private var mContext:		KEContext
 
-	public static func launch(application appurl: URL?, document docurl: URL?, context ctxt: KEContext) -> KLApplication? {
-		do {
-			let app: NSRunningApplication
-			if let aurl = appurl {
-				var docs: Array<URL> = []
-				if let durl = docurl {
-					docs = [durl]
-				}
-				app = try NSWorkspace.shared.open(docs, withApplicationAt: aurl, options: .async, configuration: [:])
-			} else {
-				if let durl = docurl {
-					app = try NSWorkspace.shared.open(durl, options: .async, configuration: [:])
-				} else {
-					/* docurl == nil && appurl == nil */
-					return nil
-				}
-			}
-			return KLApplication(applicationInfo: app, context: ctxt)
-		} catch {
-			return nil
-		}
-	}
-
 	public init(applicationInfo appinfo: NSRunningApplication, context ctxt: KEContext) {
 		mApplicationInfo = appinfo
 		mContext	 = ctxt

@@ -24,7 +24,8 @@ public func UTApplication(context ctxt: KEContext, console cons: CNFileConsole) 
 private func launchApplication(context ctxt: KEContext, console cons: CNFileConsole) -> Bool {
 	let appurl: URL? = URL(fileURLWithPath: "/System/Applications/TextEdit.app")
 	let docurl: URL? = URL(fileURLWithPath: "Info.plist")
-	if let app = KLApplication.launch(application: appurl, document: docurl, context: ctxt) {
+	if let runapp = CNRemoteApplication.launch(application: appurl, document: docurl) {
+		let app = KLApplication(applicationInfo: runapp, context: ctxt)
 		let name = app.name()
 		cons.print(string: "Launch ... \(String(describing: name.toString()))\n")
 	} else {

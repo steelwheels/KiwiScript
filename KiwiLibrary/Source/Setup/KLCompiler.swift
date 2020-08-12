@@ -637,11 +637,11 @@ open class KLCompiler: KECompiler
 
 			let docurl: URL? = KLCompiler.anyToURL(anyValue: docval)
 			let appurl: URL? = KLCompiler.anyToURL(anyValue: appval)
-			if let appobj = KLApplication.launch(application: appurl, document: docurl, context: ctxt) {
+			if let runapp = CNRemoteApplication.launch(application: appurl, document: docurl) {
+				let appobj = KLApplication(applicationInfo: runapp, context: ctxt)
 				return JSValue(object: appobj, in: ctxt)
-			} else {
-				return JSValue(nullIn: ctxt)
 			}
+			return JSValue(nullIn: ctxt)
 		}
 		ctxt.set(name: "launch", function: launchfunc)
 	}

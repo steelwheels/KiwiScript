@@ -1,37 +1,24 @@
-# Thread Class
+# Application Class
 
 ## Introduction
-The `Thread` class is used to execute JavaScript on the thread.
-It is used to execute JavaScript on the thread.
-The [thread function](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Thread.md) allocates this object.
+The `Application` class is used to watch the status of the macOS application which is launched by [launch function](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Launch.md).
 
-## `start` method
-Start the thread with parameters. The parameters will be arguments of `main` function. If the thread is started without any errors, the return value will be true.
+## `isRunning` method
+This method returns true when the launched application still running.
 ````
-thread.start(args : Array<Value>)
+let isrun = app.isRunning() ;
 ````
-
-### Parameter(s)
-|Name           |Type           |Description                    |
-|:---           |:----          |:----                          |
-|args           |Array\<Value\> |Array of primitive values.     |
-
-### Return value
-none
 
 ## `waitUntilExit` method
-Wait until the process is finished.
+Wait until the application is finished.
 The return value is exit code of the process.
 ````
-thread.waitUntilExit() -> Int
+let exitcode = app.waitUntilExit() ;
 ````
 
-### Parameter(s)
-none
-
-### Return value
-The exit code of the thread.
+### Note
+This function *IS NOT* supported by command line application such as *jsh* in [JSTools](https://github.com/steelwheels/JSTools/blob/master/README.md).
 
 ## References
-* [Thread function](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Thread.md): The function to generate the thread.
+* [launch function](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Launch.md): The function to generate the thread.
 * [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library
