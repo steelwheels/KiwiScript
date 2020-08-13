@@ -3,6 +3,18 @@
 ## Introduction
 The `Application` class is used to watch the status of the macOS application which is launched by [launch function](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Launch.md).
 
+## `name` property
+Get the localized name of the application. When it can not be gotten, the value will be `null`.
+````
+let name = app.name ;
+````
+
+## `bundleIdentifier` property
+Get the bundle identifier of the application. When it can not be gotten, the value will be `null`.
+````
+let name = app.bundleIdentifier ;
+````
+
 ## `isRunning` method
 This method returns true when the launched application still running.
 ````

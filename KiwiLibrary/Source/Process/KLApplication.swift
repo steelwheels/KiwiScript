@@ -5,15 +5,17 @@
  *   Copyright (C) 2019 Steel Wheels Project
  */
 
+#if os(OSX)
+
+import CoconutScript
 import CoconutData
 import KiwiEngine
 import JavaScriptCore
 import Foundation
 
-#if os(OSX)
-
 @objc public protocol KLApplicationProtocol: JSExport {
-	func name() -> JSValue
+	var name: JSValue { get }
+	var bundleIdentifier: JSValue { get }
 	func isRunning() -> JSValue
 	func waitUntilExit() -> JSValue
 	func terminate()
@@ -21,19 +23,31 @@ import Foundation
 
 @objc public class KLApplication: NSObject, KLApplicationProtocol
 {
-	private var mApplicationInfo:	NSRunningApplication
+	private var mApplication:	CNReceiverApplication	// in CoconutScript framework
 	private var mContext:		KEContext
 
 	public init(applicationInfo appinfo: NSRunningApplication, context ctxt: KEContext) {
-		mApplicationInfo = appinfo
-		mContext	 = ctxt
+		mApplication	= CNReceiverApplication(application: appinfo)
+		mContext	= ctxt
 	}
 
-	public func name() -> JSValue {
-		if let name = mApplicationInfo.localizedName {
-			return JSValue(object: name, in: mContext)
-		} else {
-			return JSValue(nullIn: mContext)
+	public var name: JSValue {
+		get {
+			if let name = mApplication.name {
+				return JSValue(object: name, in: mContext)
+			} else {
+				return JSValue(nullIn: mContext)
+			}
+		}
+	}
+
+	public var bundleIdentifier: JSValue {
+		get {
+			if let ident = mApplication.bundleIdentifier {
+				return JSValue(object: ident, in: mContext)
+			} else {
+				return JSValue(nullIn: mContext)
+			}
 		}
 	}
 
@@ -44,7 +58,7 @@ import Foundation
 	private func checkRunning() -> Bool {
 		let runs = NSWorkspace.shared.runningApplications
 		for run in runs {
-			if mApplicationInfo.isEqual(run) {
+			if mApplication.isEqual(application: run) {
 				return true
 			}
 		}
@@ -59,9 +73,9 @@ import Foundation
 	}
 
 	public func terminate() {
-		if !mApplicationInfo.terminate() {
+		if !mApplication.terminate() {
 			NSLog("\(#file) [Error] Failed to terminate application")
-			if !mApplicationInfo.forceTerminate() {
+			if !mApplication.forceTerminate() {
 				NSLog("  Force termination ... Succeeded")
 			} else {
 				NSLog("  Force termination ... Failed")
