@@ -7,7 +7,6 @@
 
 #if os(OSX)
 
-import CoconutScript
 import CoconutData
 import KiwiEngine
 import JavaScriptCore
@@ -23,11 +22,11 @@ import Foundation
 
 @objc public class KLApplication: NSObject, KLApplicationProtocol
 {
-	private var mApplication:	CNReceiverApplication	// in CoconutScript framework
+	private var mApplication:	CNRemoteApplication
 	private var mContext:		KEContext
 
 	public init(applicationInfo appinfo: NSRunningApplication, context ctxt: KEContext) {
-		mApplication	= CNReceiverApplication(application: appinfo)
+		mApplication	= CNRemoteApplication(application: appinfo)
 		mContext	= ctxt
 	}
 

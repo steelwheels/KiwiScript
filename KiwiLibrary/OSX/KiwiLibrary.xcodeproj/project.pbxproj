@@ -55,8 +55,6 @@
 		05D5128822315C0E00AD95EE /* UTOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D5128722315C0E00AD95EE /* UTOperation.swift */; };
 		05D6BF8421D3D3E4001D737A /* KLImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D6BF8321D3D3E4001D737A /* KLImage.swift */; };
 		05DB987A239336EA008F31F9 /* UTFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DB9879239336EA008F31F9 /* UTFileManager.swift */; };
-		05DD292E24E426A2002FF447 /* CoconutScript.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DD292D24E426A2002FF447 /* CoconutScript.framework */; };
-		05DD292F24E426A2002FF447 /* CoconutScript.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05DD292D24E426A2002FF447 /* CoconutScript.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05DF90262438A2F300E4FAAF /* UTEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DF90252438A2F300E4FAAF /* UTEnvironment.swift */; };
 		05E166A622DAB85A00AC6C4E /* UTMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E166A422DAB85400AC6C4E /* UTMath.swift */; };
 		05EEDE8B24B05D7400B80E17 /* UTPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EEDE8A24B05D7400B80E17 /* UTPreference.swift */; };
@@ -132,17 +130,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		05DD293024E426A2002FF447 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				05DD292F24E426A2002FF447 /* CoconutScript.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -195,7 +182,6 @@
 		05D5128722315C0E00AD95EE /* UTOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTOperation.swift; sourceTree = "<group>"; };
 		05D6BF8321D3D3E4001D737A /* KLImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLImage.swift; sourceTree = "<group>"; };
 		05DB9879239336EA008F31F9 /* UTFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTFileManager.swift; sourceTree = "<group>"; };
-		05DD292D24E426A2002FF447 /* CoconutScript.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutScript.framework; path = ../../../../Library/Frameworks/CoconutScript.framework; sourceTree = "<group>"; };
 		05DF90252438A2F300E4FAAF /* UTEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTEnvironment.swift; sourceTree = "<group>"; };
 		05E166A422DAB85400AC6C4E /* UTMath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTMath.swift; sourceTree = "<group>"; };
 		05EEDE8A24B05D7400B80E17 /* UTPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTPreference.swift; sourceTree = "<group>"; };
@@ -230,7 +216,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05DD292E24E426A2002FF447 /* CoconutScript.framework in Frameworks */,
 				055560F3211B4A4C009DB8F8 /* CoconutData.framework in Frameworks */,
 				058735D620C2C7F700797EFD /* KiwiEngine.framework in Frameworks */,
 			);
@@ -331,7 +316,6 @@
 		05AAEC9F20C1B9F000694209 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				05DD292D24E426A2002FF447 /* CoconutScript.framework */,
 				05BC6856234E2FD30013C897 /* CoconutShell.framework */,
 				055560F2211B4A4B009DB8F8 /* CoconutData.framework */,
 				058735D520C2C7F700797EFD /* KiwiEngine.framework */,
@@ -538,7 +522,6 @@
 				05B1227F203F0734009DDBEF /* Frameworks */,
 				05B12280203F0734009DDBEF /* Headers */,
 				05D51289223179AF00AD95EE /* Resources */,
-				05DD293024E426A2002FF447 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
