@@ -32,6 +32,16 @@ public class KEEnumTable
 			])
 		mEnumTypes[exitcode.typeName] = exitcode
 
+		let logcode = KEEnumType(typeName: "LogLevel")
+		logcode.add(members: [
+			KEEnumType.Member(name: "nolog",		value: Int32(CNConfig.LogLevel.nolog.rawValue)),
+			KEEnumType.Member(name: "error",		value: Int32(CNConfig.LogLevel.error.rawValue)),
+			KEEnumType.Member(name: "warning",		value: Int32(CNConfig.LogLevel.warning.rawValue)),
+			KEEnumType.Member(name: "debug",		value: Int32(CNConfig.LogLevel.debug.rawValue)),
+			KEEnumType.Member(name: "detail",		value: Int32(CNConfig.LogLevel.detail.rawValue))
+		])
+		mEnumTypes[logcode.typeName] = logcode
+
 		let filetype = KEEnumType(typeName: "FileType")
 		filetype.add(members: [
 			KEEnumType.Member(name: "notExist", 		value: CNFileType.NotExist.rawValue),
