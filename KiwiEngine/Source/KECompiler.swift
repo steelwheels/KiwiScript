@@ -94,7 +94,7 @@ open class KECompiler
 
 	public func compile(context ctxt: KEContext, statement stmt: String, console cons: CNConsole, config conf: KEConfig) -> JSValue? {
 		switch conf.logLevel {
-		case .error, .warning, .flow:
+		case .nolog, .error, .warning, .debug:
 			break
 		case .detail:
 			cons.print(string: stmt)
@@ -105,7 +105,7 @@ open class KECompiler
 	public func compile(context ctxt: KEContext, statements stmts: Array<String>, console cons: CNConsole, config conf: KEConfig) -> JSValue? {
 		let script = stmts.joined(separator: "\n")
 		switch conf.logLevel {
-		case .error, .warning, .flow:
+		case .nolog, .error, .warning, .debug:
 			break
 		case .detail:
 			cons.print(string: script)
@@ -117,7 +117,7 @@ open class KECompiler
 		/* Compile */
 		let typename = etype.typeName
 		switch conf.logLevel {
-		case .error, .warning, .flow:
+		case .nolog, .error, .warning, .debug:
 			break
 		case .detail:
 			cons.print(string: "/* Define Enum: \(typename) */\n")

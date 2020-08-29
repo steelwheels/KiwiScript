@@ -30,7 +30,7 @@ public func testManifest(console cons: CNConsole, config conf: KEConfig) -> Bool
 
 		/* dump */
 		cons.print(string: "/* Dump resource */\n")
-		resource.toText().print(console: cons)
+		resource.toText().print(console: cons, terminal: "")
 	case .error(let err):
 		cons.print(string: "[Error] \(err.toString())\n")
 		return false
