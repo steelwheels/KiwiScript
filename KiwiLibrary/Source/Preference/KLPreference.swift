@@ -54,7 +54,8 @@ public extension CNPreferenceTable
 
 @objc public protocol KLSystemPreferenceProtocol: JSExport
 {
-	var version: JSValue { get }
+	var version	: JSValue { get }
+	var logLevel	: JSValue { get set }
 }
 
 @objc public class KLSystemPreference: NSObject, KLSystemPreferenceProtocol
@@ -70,6 +71,23 @@ public extension CNPreferenceTable
 		let verstr  = syspref.version
 		return JSValue(object: verstr, in: mContext)
 	}}
+
+	public var logLevel: JSValue {
+		get {
+			let curlevel = CNPreference.shared.systemPreference.logLevel
+			return JSValue(int32: Int32(curlevel.rawValue), in: mContext)
+		}
+		set(newval) {
+			if newval.isNumber {
+				let ival = newval.toInt32()
+				if let level = CNConfig.LogLevel(rawValue: Int(ival)) {
+					CNPreference.shared.systemPreference.logLevel = level
+					return // without error
+				}
+			}
+			NSLog("Invalid logLevel value: \(newval.description)")
+		}
+	}
 }
 
 @objc public protocol KLTerminalPreferenceProtocol: JSExport

@@ -15,10 +15,12 @@ This is a list of properties in the preference:
 |Name       |Type       |Description                        |
 |:---       |:---       |:---                               |
 |`version`  |String     |The version of the application     |
+|`logLevel` |[LogLevel](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/LogLevel.md) | Log level for debugging|
 
 Here is examples to acceess property.
 ````
 let version_string = Preference.system.version ;
+Preference.system.logLevel = LogLevel.error ;
 ````
 
 ## `terminal` preference
