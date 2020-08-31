@@ -8,20 +8,6 @@ The singleton object is defined for Console class.
 |:---       |:---     |:---                             |
 |console    |Console  |Singleton object of Console class  |
 
-## `log` method
-Print log message to standard output.
-The newline code will be appended to the given message.
-````
-console.log(<message>)
-````
-#### Parameter(s)
-|Parameter    |Type   |Description                    |
-|:---         |:---   |:---                           |
-|message      |String |Log message string             |
-
-### Return value
-none
-
 ## `print` method
 Print message to standard output.
 ````
@@ -62,4 +48,5 @@ console.dump(value)
 none
 
 ## References
+* [Debug class](Console.md): The `Debug` class
 * [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library
