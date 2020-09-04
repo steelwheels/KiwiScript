@@ -18,6 +18,8 @@ import Foundation
 	func isRunning() -> JSValue
 	func waitUntilExit() -> JSValue
 	func terminate()
+	func activate() -> JSValue
+	func makeNewDocument() -> JSValue
 }
 
 @objc public class KLApplication: NSObject, KLApplicationProtocol
@@ -80,6 +82,26 @@ import Foundation
 				NSLog("  Force termination ... Failed")
 			}
 		}
+	}
+
+	public func activate() -> JSValue {
+		let result: Bool
+		if let _ = mApplication.activate() {
+			result = false // some error
+		} else {
+			result = true  // no error
+		}
+		return JSValue(bool: result, in: mContext)
+	}
+
+	public func makeNewDocument() -> JSValue {
+		let result: Bool
+		if let _ = mApplication.makeNewDocument() {
+			result = false // some error
+		} else {
+			result = true  // no error
+		}
+		return JSValue(bool: result, in: mContext)
 	}
 
 }

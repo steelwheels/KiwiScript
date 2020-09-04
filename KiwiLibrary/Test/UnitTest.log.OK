@@ -56,6 +56,14 @@ let FileType = {
 	file : 1,
 	directory : 2
 };
+/* Define Enum: LogLevel */
+let LogLevel = {
+	nolog : 0,
+	error : 1,
+	warning : 2,
+	debug : 3,
+	detail : 4
+};
 /* Define Enum: TextAlign */
 let TextAlign = {
 	left : 0,
@@ -430,6 +438,14 @@ let FileType = {
 	file : 1,
 	directory : 2
 };
+/* Define Enum: LogLevel */
+let LogLevel = {
+	nolog : 0,
+	error : 1,
+	warning : 2,
+	debug : 3,
+	detail : 4
+};
 /* Define Enum: TextAlign */
 let TextAlign = {
 	left : 0,
@@ -765,6 +781,14 @@ let FileType = {
 	file : 1,
 	directory : 2
 };
+/* Define Enum: LogLevel */
+let LogLevel = {
+	nolog : 0,
+	error : 1,
+	warning : 2,
+	debug : 3,
+	detail : 4
+};
 /* Define Enum: TextAlign */
 let TextAlign = {
 	left : 0,
@@ -1014,6 +1038,14 @@ let FileType = {
 	notExist : 0,
 	file : 1,
 	directory : 2
+};
+/* Define Enum: LogLevel */
+let LogLevel = {
+	nolog : 0,
+	error : 1,
+	warning : 2,
+	debug : 3,
+	detail : 4
 };
 /* Define Enum: TextAlign */
 let TextAlign = {
