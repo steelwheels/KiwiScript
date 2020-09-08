@@ -20,6 +20,11 @@ import Foundation
 	func terminate()
 	func activate() -> JSValue
 	func makeNewDocument() -> JSValue
+	func setNameOfFrontWindow(_ val: JSValue) -> JSValue
+	func nameOfFrontWindow() -> JSValue
+	func setContentOfFrontWindow(_ val: JSValue) -> JSValue
+	func contentOfFrontWindow() -> JSValue
+	func saveToFile(_ val: JSValue) -> JSValue
 }
 
 @objc public class KLApplication: NSObject, KLApplicationProtocol
@@ -104,6 +109,73 @@ import Foundation
 		return JSValue(bool: result, in: mContext)
 	}
 
+	public func setNameOfFrontWindow(_ val: JSValue) -> JSValue {
+		let result: Bool
+		if let str = val.toString() {
+			if let _ = mApplication.setNameOfFrontWindow(name: str) {
+				result = false 	// some errors
+			} else {
+				result = true
+			}
+		} else {
+			result = false
+		}
+		return JSValue(bool: result, in: mContext)
+	}
+
+	public func nameOfFrontWindow() -> JSValue {
+		let result: JSValue
+		switch mApplication.nameOfFrontWindow() {
+		case .ok(let str):
+			result = JSValue(object: str, in: mContext)
+		case .error(_):
+			result = JSValue(nullIn: mContext)
+		}
+		return result
+	}
+
+	public func setContentOfFrontWindow(_ val: JSValue) -> JSValue {
+		let result: Bool
+		if let str = val.toString() {
+			if let _ = mApplication.setContentOfFrontWindow(context: str) {
+				result = false 	// some errors
+			} else {
+				result = true
+			}
+		} else {
+			result = false
+		}
+		return JSValue(bool: result, in: mContext)
+	}
+
+	public func contentOfFrontWindow() -> JSValue {
+		let result: JSValue
+		switch mApplication.contentOfFrontWindow() {
+		case .ok(let str):
+			result = JSValue(object: str, in: mContext)
+		case .error(_):
+			result = JSValue(nullIn: mContext)
+		}
+		return result
+	}
+
+	public func saveToFile(_ val: JSValue) -> JSValue {
+		let url: URL
+		if val.isURL {
+			url = val.toURL()
+		} else if val.isString {
+			url = URL(fileURLWithPath: val.toString())
+		} else {
+			return JSValue(bool: false, in: mContext)
+		}
+		if let _ = mApplication.saveToFile(fileURL: url) {
+			/* Some errors */
+			return JSValue(bool: false, in: mContext)
+		} else {
+			/* No error */
+			return JSValue(bool: true, in: mContext)
+		}
+	}
 }
 
 #endif
