@@ -20,11 +20,12 @@ import Foundation
 	func terminate()
 	func activate() -> JSValue
 	func makeNewDocument() -> JSValue
+	func open(_ val: JSValue) -> JSValue
 	func setNameOfFrontWindow(_ val: JSValue) -> JSValue
 	func nameOfFrontWindow() -> JSValue
 	func setContentOfFrontWindow(_ val: JSValue) -> JSValue
 	func contentOfFrontWindow() -> JSValue
-	func saveToFile(_ val: JSValue) -> JSValue
+	func save(_ val: JSValue) -> JSValue
 }
 
 @objc public class KLApplication: NSObject, KLApplicationProtocol
@@ -109,6 +110,19 @@ import Foundation
 		return JSValue(bool: result, in: mContext)
 	}
 
+	public func open(_ val: JSValue) -> JSValue {
+		guard let url = valueToURL(value: val) else {
+			return JSValue(bool: false, in: mContext)
+		}
+		if let _ = mApplication.open(fileURL: url) {
+			/* Some errors */
+			return JSValue(bool: false, in: mContext)
+		} else {
+			/* No error */
+			return JSValue(bool: true, in: mContext)
+		}
+	}
+
 	public func setNameOfFrontWindow(_ val: JSValue) -> JSValue {
 		let result: Bool
 		if let str = val.toString() {
@@ -159,22 +173,29 @@ import Foundation
 		return result
 	}
 
-	public func saveToFile(_ val: JSValue) -> JSValue {
-		let url: URL
-		if val.isURL {
-			url = val.toURL()
-		} else if val.isString {
-			url = URL(fileURLWithPath: val.toString())
-		} else {
+	public func save(_ val: JSValue) -> JSValue {
+		guard let url = valueToURL(value: val) else {
 			return JSValue(bool: false, in: mContext)
 		}
-		if let _ = mApplication.saveToFile(fileURL: url) {
+		if let _ = mApplication.save(fileURL: url) {
 			/* Some errors */
 			return JSValue(bool: false, in: mContext)
 		} else {
 			/* No error */
 			return JSValue(bool: true, in: mContext)
 		}
+	}
+
+	private func valueToURL(value val: JSValue) -> URL? {
+		let url: URL?
+		if val.isURL {
+			url = val.toURL()
+		} else if val.isString {
+			url = URL(fileURLWithPath: val.toString())
+		} else {
+			url = nil
+		}
+		return url
 	}
 }
 
