@@ -20,7 +20,9 @@ import Foundation
 	func terminate()
 	func activate() -> JSValue
 	func makeNewDocument() -> JSValue
+	func makeNewMail(_ subject: JSValue) -> JSValue
 	func open(_ val: JSValue) -> JSValue
+	func close(_ val: JSValue) -> JSValue
 	func setNameOfFrontWindow(_ val: JSValue) -> JSValue
 	func nameOfFrontWindow() -> JSValue
 	func setContentOfFrontWindow(_ val: JSValue) -> JSValue
@@ -92,20 +94,33 @@ import Foundation
 
 	public func activate() -> JSValue {
 		let result: Bool
-		if let _ = mApplication.activate() {
-			result = false // some error
-		} else {
-			result = true  // no error
+		switch mApplication.activate() {
+		case .ok(_):
+			result = true
+		case .error(let err):
+			NSLog("\(#file): [Error] \(err.description)")
+			result = false
 		}
 		return JSValue(bool: result, in: mContext)
 	}
 
 	public func makeNewDocument() -> JSValue {
 		let result: Bool
-		if let _ = mApplication.makeNewDocument() {
-			result = false // some error
-		} else {
-			result = true  // no error
+		switch mApplication.makeNewDocument() {
+		case .ok(_):	result = true
+		case .error(_):	result = false
+		}
+		return JSValue(bool: result, in: mContext)
+	}
+
+	public func makeNewMail(_ subject: JSValue) -> JSValue {
+		guard subject.isString else {
+			return JSValue(bool: false, in: mContext)
+		}
+		let result: Bool
+		switch mApplication.makeNewMail(subject: subject.toString()) {
+		case .ok(_):	result = true
+		case .error(_):	result = false
 		}
 		return JSValue(bool: result, in: mContext)
 	}
@@ -114,11 +129,26 @@ import Foundation
 		guard let url = valueToURL(value: val) else {
 			return JSValue(bool: false, in: mContext)
 		}
-		if let _ = mApplication.open(fileURL: url) {
-			/* Some errors */
+		switch mApplication.open(fileURL: url) {
+		case .ok(_):	return JSValue(bool: true, in: mContext)
+		case .error(_):	return JSValue(bool: false, in: mContext)
+		}
+	}
+
+	public func close(_ val: JSValue) -> JSValue {
+		let fileurl: URL?
+		if !val.isNull {
+			if let url = valueToURL(value: val) {
+				fileurl = url
+			} else {
+				return JSValue(bool: false, in: mContext)
+			}
+		} else {
+			fileurl = nil
+		}
+		if let _ = mApplication.close(fileURL: fileurl) {
 			return JSValue(bool: false, in: mContext)
 		} else {
-			/* No error */
 			return JSValue(bool: true, in: mContext)
 		}
 	}
