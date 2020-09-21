@@ -98,6 +98,8 @@ open class KECompiler
 			break
 		case .detail:
 			cons.print(string: stmt)
+		@unknown default:
+			break
 		}
 		return ctxt.evaluateScript(stmt)
 	}
@@ -109,6 +111,8 @@ open class KECompiler
 			break
 		case .detail:
 			cons.print(string: script)
+		@unknown default:
+			break
 		}
 		return ctxt.evaluateScript(script)
 	}
@@ -121,6 +125,8 @@ open class KECompiler
 			break
 		case .detail:
 			cons.print(string: "/* Define Enum: \(typename) */\n")
+		@unknown default:
+			break
 		}
 
 		var enumstmt = "let \(typename) = {\n"

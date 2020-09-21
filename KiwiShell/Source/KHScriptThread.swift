@@ -85,7 +85,7 @@ public class KHScriptThreadObject: CNThread
 		let script: String
 		switch srcfile {
 		case .none:
-			console.error(string: "No script\n")
+			CNLog(logLevel: .error, message: "No script")
 			return false
 		case .file(let url):
 			if let scr = url.loadContents() {
@@ -107,6 +107,9 @@ public class KHScriptThreadObject: CNThread
 			} else {
 				return false
 			}
+		@unknown default:
+			CNLog(logLevel: .error, message: "Unknown script type")
+			return false
 		}
 		let _ = compiler.compile(context: ctxt, statement: script, console: console, config: conf)
 

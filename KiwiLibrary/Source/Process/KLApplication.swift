@@ -10,6 +10,7 @@
 import CoconutData
 import KiwiEngine
 import JavaScriptCore
+import AppKit
 import Foundation
 
 @objc public protocol KLApplicationProtocol: JSExport {
@@ -19,8 +20,11 @@ import Foundation
 	func waitUntilExit() -> JSValue
 	func terminate()
 	func activate() -> JSValue
+}
+
+@objc public protocol KLTextEditApplicationProtocol: JSExport
+{
 	func makeNewDocument() -> JSValue
-	func makeNewMail(_ subject: JSValue) -> JSValue
 	func open(_ val: JSValue) -> JSValue
 	func close(_ val: JSValue) -> JSValue
 	func setNameOfFrontWindow(_ val: JSValue) -> JSValue
@@ -30,13 +34,20 @@ import Foundation
 	func save(_ val: JSValue) -> JSValue
 }
 
+@objc public protocol KLSafariApplicationProtocol: JSExport
+{
+	func open(_ val: JSValue) -> JSValue
+}
+
 @objc public class KLApplication: NSObject, KLApplicationProtocol
 {
-	private var mApplication:	CNRemoteApplication
+	private var mApplication:	CNEventReceiverApplication
 	private var mContext:		KEContext
 
-	public init(applicationInfo appinfo: NSRunningApplication, context ctxt: KEContext) {
-		mApplication	= CNRemoteApplication(application: appinfo)
+	public var context: KEContext { get { return mContext }}
+
+	public init(application app: CNEventReceiverApplication, context ctxt: KEContext) {
+		mApplication	= app
 		mContext	= ctxt
 	}
 
@@ -83,12 +94,8 @@ import Foundation
 
 	public func terminate() {
 		if !mApplication.terminate() {
-			NSLog("\(#file) [Error] Failed to terminate application")
-			if !mApplication.forceTerminate() {
-				NSLog("  Force termination ... Succeeded")
-			} else {
-				NSLog("  Force termination ... Failed")
-			}
+			CNLog(logLevel: .error, message: "Application: failed to terminate")
+			let _ = mApplication.forceTerminate()
 		}
 	}
 
@@ -98,41 +105,75 @@ import Foundation
 		case .ok(_):
 			result = true
 		case .error(let err):
-			NSLog("\(#file): [Error] \(err.description)")
+			CNLog(logLevel: .error, message: "AppleEventError activate: \(err.toString())")
+			result = false
+		@unknown default:
+			CNLog(logLevel: .error, message: "AppleEventError activate: <unknown>")
 			result = false
 		}
 		return JSValue(bool: result, in: mContext)
 	}
 
+	public func valueToURL(value val: JSValue) -> URL? {
+		var url: URL? = nil
+		if val.isURL {
+			url = val.toURL()
+		} else if val.isString {
+			if let str = val.toString() {
+				if let _ = FileManager.default.schemeInPath(pathString: str) {
+					/* URL based on given scheme */
+					url = URL(string: str)
+				} else {
+					/* File URL */
+					url = URL(fileURLWithPath: str)
+				}
+			}
+		}
+		return url
+	}
+}
+
+@objc public class KLTextEditApplication: KLApplication, KLTextEditApplicationProtocol
+{
+	private var mApplication:	CNTextEditApplication
+
+	public init(textEditApplication app: CNTextEditApplication, context ctxt: KEContext) {
+		mApplication = app
+		super.init(application: app, context: ctxt)
+	}
+
 	public func makeNewDocument() -> JSValue {
 		let result: Bool
 		switch mApplication.makeNewDocument() {
-		case .ok(_):	result = true
-		case .error(_):	result = false
+		case .ok(_):
+			result = true
+		case .error(let err):
+			CNLog(logLevel: .error, message: "AppleEventError makeNewDocument: \(err.toString())")
+			result = false
+		@unknown default:
+			CNLog(logLevel: .error, message: "AppleEventError makeNewDocument: <unknown>")
+			result = false
 		}
-		return JSValue(bool: result, in: mContext)
-	}
-
-	public func makeNewMail(_ subject: JSValue) -> JSValue {
-		guard subject.isString else {
-			return JSValue(bool: false, in: mContext)
-		}
-		let result: Bool
-		switch mApplication.makeNewMail(subject: subject.toString()) {
-		case .ok(_):	result = true
-		case .error(_):	result = false
-		}
-		return JSValue(bool: result, in: mContext)
+		return JSValue(bool: result, in: context)
 	}
 
 	public func open(_ val: JSValue) -> JSValue {
 		guard let url = valueToURL(value: val) else {
-			return JSValue(bool: false, in: mContext)
+			return JSValue(bool: false, in: context)
 		}
+		let result: Bool
 		switch mApplication.open(fileURL: url) {
-		case .ok(_):	return JSValue(bool: true, in: mContext)
-		case .error(_):	return JSValue(bool: false, in: mContext)
+		case .ok(_):
+			result = true
+
+		case .error(let err):
+			CNLog(logLevel: .error, message: "AppleEventError open: \(err.toString())")
+			result = false
+		@unknown default:
+			CNLog(logLevel: .error, message: "AppleEventError open: <unknown>")
+			result = false
 		}
+		return JSValue(bool: result, in: context)
 	}
 
 	public func close(_ val: JSValue) -> JSValue {
@@ -141,39 +182,55 @@ import Foundation
 			if let url = valueToURL(value: val) {
 				fileurl = url
 			} else {
-				return JSValue(bool: false, in: mContext)
+				return JSValue(bool: false, in: context)
 			}
 		} else {
 			fileurl = nil
 		}
-		if let _ = mApplication.close(fileURL: fileurl) {
-			return JSValue(bool: false, in: mContext)
-		} else {
-			return JSValue(bool: true, in: mContext)
+		let result: Bool
+		switch mApplication.close(fileURL: fileurl) {
+		case .ok(_):
+			result = true
+		case .error(let err):
+			CNLog(logLevel: .error, message: "AppleEvent close: \(err.toString())")
+			result = false
+		@unknown default:
+			CNLog(logLevel: .error, message: "AppleEvent close: <unknown>")
+			result = false
 		}
+		return JSValue(bool: result, in: context)
 	}
 
 	public func setNameOfFrontWindow(_ val: JSValue) -> JSValue {
 		let result: Bool
 		if let str = val.toString() {
-			if let _ = mApplication.setNameOfFrontWindow(name: str) {
-				result = false 	// some errors
-			} else {
+			switch  mApplication.setNameOfFrontWindow(name: str) {
+			case .ok(_):
 				result = true
+			case .error(let err):
+				CNLog(logLevel: .error, message: "AppleEvent setNameOfFrontWindow: \(err.toString())")
+				result = false
+			@unknown default:
+				CNLog(logLevel: .error, message: "AppleEvent close: <unknown>")
+				result = false
 			}
 		} else {
 			result = false
 		}
-		return JSValue(bool: result, in: mContext)
+		return JSValue(bool: result, in: context)
 	}
 
 	public func nameOfFrontWindow() -> JSValue {
 		let result: JSValue
 		switch mApplication.nameOfFrontWindow() {
 		case .ok(let str):
-			result = JSValue(object: str, in: mContext)
-		case .error(_):
-			result = JSValue(nullIn: mContext)
+			result = JSValue(object: str, in: context)
+		case .error(let err):
+			CNLog(logLevel: .error, message: "AppleEventError nameOfFrontWindow: \(err.toString())")
+			result = JSValue(nullIn: context)
+		@unknown default:
+			CNLog(logLevel: .error, message: "AppleEventError nameOfFrontWindow: <unknown>")
+			result = JSValue(nullIn: context)
 		}
 		return result
 	}
@@ -189,43 +246,68 @@ import Foundation
 		} else {
 			result = false
 		}
-		return JSValue(bool: result, in: mContext)
+		return JSValue(bool: result, in: context)
 	}
 
 	public func contentOfFrontWindow() -> JSValue {
 		let result: JSValue
 		switch mApplication.contentOfFrontWindow() {
 		case .ok(let str):
-			result = JSValue(object: str, in: mContext)
-		case .error(_):
-			result = JSValue(nullIn: mContext)
+			result = JSValue(object: str, in: context)
+		case .error(let err):
+			CNLog(logLevel: .error, message: "AppleEventError contentOfFrontWindow: \(err.toString())")
+			result = JSValue(nullIn: context)
+		@unknown default:
+			CNLog(logLevel: .error, message: "AppleEventError contentOfFrontWindow: <unknown>")
+			result = JSValue(nullIn: context)
 		}
 		return result
 	}
 
 	public func save(_ val: JSValue) -> JSValue {
 		guard let url = valueToURL(value: val) else {
-			return JSValue(bool: false, in: mContext)
+			return JSValue(bool: false, in: context)
 		}
-		if let _ = mApplication.save(fileURL: url) {
-			/* Some errors */
-			return JSValue(bool: false, in: mContext)
-		} else {
-			/* No error */
-			return JSValue(bool: true, in: mContext)
+		let result: Bool
+		switch mApplication.save(fileURL: url) {
+		case .ok(_):
+			result = true
+		case .error(let err):
+			CNLog(logLevel: .error, message: "AppleEventError save: \(err.toString())")
+			result = false
+		@unknown default:
+			CNLog(logLevel: .error, message: "AppleEventError save: <unknown>")
+			result = false
 		}
+		return JSValue(bool: result, in: context)
+	}
+}
+
+@objc public class KLSafariApplication: KLApplication, KLSafariApplicationProtocol
+{
+	private var mApplication:	CNSafariApplication
+
+	public init(safariApplication app: CNSafariApplication, context ctxt: KEContext) {
+		mApplication = app
+		super.init(application: app, context: ctxt)
 	}
 
-	private func valueToURL(value val: JSValue) -> URL? {
-		let url: URL?
-		if val.isURL {
-			url = val.toURL()
-		} else if val.isString {
-			url = URL(fileURLWithPath: val.toString())
-		} else {
-			url = nil
+	public func open(_ val: JSValue) -> JSValue {
+		guard let url = valueToURL(value: val) else {
+			return JSValue(bool: false, in: context)
 		}
-		return url
+		let result: Bool
+		switch mApplication.open(fileURL: url) {
+		case .ok(_):
+			result = true
+		case .error(let err):
+			CNLog(logLevel: .error, message: "AppleEventError open: \(err.toString())")
+			result = false
+		@unknown default:
+			CNLog(logLevel: .error, message: "AppleEventError open: <unknown>")
+			result = false
+		}
+		return JSValue(bool: result, in: context)
 	}
 }
 

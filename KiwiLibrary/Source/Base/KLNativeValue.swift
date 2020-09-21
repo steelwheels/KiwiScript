@@ -54,6 +54,8 @@ extension CNNativeValue {
 			result = JSValue(image: val, in: ctxt)
 		case .anyObjectValue(let val):
 			result = JSValue(object: val, in: ctxt)
+		@unknown default:
+			result = JSValue(nullIn: ctxt)
 		}
 		return result
 	}

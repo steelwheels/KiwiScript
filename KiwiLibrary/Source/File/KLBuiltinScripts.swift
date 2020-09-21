@@ -70,6 +70,9 @@ public class KLBuiltinScripts
 		case .error(let err):
 			NSLog("[Internal Error] \(err.description)")
 			return [:]
+		@unknown default:
+			NSLog("[Internal Error] Unknown result")
+			return [:]
 		}
 	}
 
@@ -85,6 +88,9 @@ public class KLBuiltinScripts
 			return result
 		case .error(let err):
 			NSLog("[Internal Error] \(err.description)")
+			return [:]
+		@unknown default:
+			NSLog("[Internal Error] Unknown result")
 			return [:]
 		}
 	}

@@ -31,9 +31,10 @@ import Foundation
 	public func isRunning() -> Bool {
 		var result: Bool
 		switch mProcess.status {
-		case .Idle:	result = false
-		case .Running:	result = true
-		case .Finished:	result = false
+		case .Idle:		result = false
+		case .Running:		result = true
+		case .Finished:		result = false
+		@unknown default:	result = false
 		}
 		return result
 	}

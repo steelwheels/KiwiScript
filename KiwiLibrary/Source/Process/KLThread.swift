@@ -86,6 +86,9 @@ public class KLThreadObject: CNThread
 				console.error(string: "Failed to load thread: \(name)\n")
 				return false
 			}
+		@unknown default:
+			console.error(string: "Unexpected resource\n")
+			return false
 		}
 		mSourceFile = .resource(resource)
 
@@ -132,6 +135,8 @@ public class KLThreadObject: CNThread
 				usleep(100)
 			}
 		case .terminal:
+			break
+		@unknown default:
 			break
 		}
 		#endif

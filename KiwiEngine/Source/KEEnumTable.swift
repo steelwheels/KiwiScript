@@ -6,6 +6,11 @@
  */
 
 import CoconutData
+#if os(OSX)
+import AppKit
+#else
+import UIKit
+#endif
 import Foundation
 
 public class KEEnumTable

@@ -1,0 +1,900 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		05C412C52517583900F07DB2 /* KiwiShell.h in Headers */ = {isa = PBXBuildFile; fileRef = 05C412C32517583900F07DB2 /* KiwiShell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		05C412D32517584F00F07DB2 /* KiwiShell.h in Headers */ = {isa = PBXBuildFile; fileRef = 05C412D12517584F00F07DB2 /* KiwiShell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		05C412E52517590A00F07DB2 /* KHShellCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412DA2517590900F07DB2 /* KHShellCompiler.swift */; };
+		05C412E62517590A00F07DB2 /* KHShellCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412DA2517590900F07DB2 /* KHShellCompiler.swift */; };
+		05C412E72517590A00F07DB2 /* KHShellThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412DB2517590900F07DB2 /* KHShellThread.swift */; };
+		05C412E82517590A00F07DB2 /* KHShellThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412DB2517590900F07DB2 /* KHShellThread.swift */; };
+		05C412E92517590A00F07DB2 /* KHShellConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412DC2517590900F07DB2 /* KHShellConverter.swift */; };
+		05C412EA2517590A00F07DB2 /* KHShellConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412DC2517590900F07DB2 /* KHShellConverter.swift */; };
+		05C412EB2517590A00F07DB2 /* KHShellVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412DD2517590900F07DB2 /* KHShellVisitor.swift */; };
+		05C412EC2517590A00F07DB2 /* KHShellVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412DD2517590900F07DB2 /* KHShellVisitor.swift */; };
+		05C412ED2517590A00F07DB2 /* KHPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412DE2517590900F07DB2 /* KHPreference.swift */; };
+		05C412EE2517590A00F07DB2 /* KHPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412DE2517590900F07DB2 /* KHPreference.swift */; };
+		05C412EF2517590A00F07DB2 /* KHConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412DF2517590900F07DB2 /* KHConfig.swift */; };
+		05C412F02517590A00F07DB2 /* KHConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412DF2517590900F07DB2 /* KHConfig.swift */; };
+		05C412F12517590A00F07DB2 /* KHShellParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412E02517590900F07DB2 /* KHShellParser.swift */; };
+		05C412F22517590A00F07DB2 /* KHShellParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412E02517590900F07DB2 /* KHShellParser.swift */; };
+		05C412F32517590A00F07DB2 /* KHShellStatement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412E12517590A00F07DB2 /* KHShellStatement.swift */; };
+		05C412F42517590A00F07DB2 /* KHShellStatement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412E12517590A00F07DB2 /* KHShellStatement.swift */; };
+		05C412F52517590A00F07DB2 /* KHComplementor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412E22517590A00F07DB2 /* KHComplementor.swift */; };
+		05C412F62517590A00F07DB2 /* KHComplementor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412E22517590A00F07DB2 /* KHComplementor.swift */; };
+		05C412F72517590A00F07DB2 /* KHScriptThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412E32517590A00F07DB2 /* KHScriptThread.swift */; };
+		05C412F82517590A00F07DB2 /* KHScriptThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412E32517590A00F07DB2 /* KHScriptThread.swift */; };
+		05C412F92517590A00F07DB2 /* KHShellCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412E42517590A00F07DB2 /* KHShellCoder.swift */; };
+		05C412FA2517590A00F07DB2 /* KHShellCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412E42517590A00F07DB2 /* KHShellCoder.swift */; };
+		05FC882A25175A7F00301544 /* CoconutShell.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC882725175A7F00301544 /* CoconutShell.xcframework */; };
+		05FC882B25175A7F00301544 /* CoconutShell.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC882725175A7F00301544 /* CoconutShell.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05FC882C25175A7F00301544 /* KiwiEngine.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC882825175A7F00301544 /* KiwiEngine.xcframework */; };
+		05FC882D25175A7F00301544 /* KiwiEngine.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC882825175A7F00301544 /* KiwiEngine.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05FC882E25175A7F00301544 /* KiwiLibrary.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC882925175A7F00301544 /* KiwiLibrary.xcframework */; };
+		05FC882F25175A7F00301544 /* KiwiLibrary.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC882925175A7F00301544 /* KiwiLibrary.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05FC883325175A9100301544 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC883225175A9100301544 /* CoconutData.xcframework */; };
+		05FC883425175A9100301544 /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC883225175A9100301544 /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05FC883625175ACF00301544 /* CoconutShell.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC882725175A7F00301544 /* CoconutShell.xcframework */; };
+		05FC883725175ACF00301544 /* CoconutShell.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC882725175A7F00301544 /* CoconutShell.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05FC883825175ACF00301544 /* KiwiEngine.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC882825175A7F00301544 /* KiwiEngine.xcframework */; };
+		05FC883925175ACF00301544 /* KiwiEngine.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC882825175A7F00301544 /* KiwiEngine.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05FC883A25175ACF00301544 /* KiwiLibrary.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC882925175A7F00301544 /* KiwiLibrary.xcframework */; };
+		05FC883B25175ACF00301544 /* KiwiLibrary.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC882925175A7F00301544 /* KiwiLibrary.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05FC883D25175ADF00301544 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC883225175A9100301544 /* CoconutData.xcframework */; };
+		05FC883E25175ADF00301544 /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC883225175A9100301544 /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		05FC8843251766C000301544 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 059A6B0E251757FF00C06139 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05C412BF2517583900F07DB2;
+			remoteInfo = KiwiShell_macOS;
+		};
+		05FC8845251766C600301544 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 059A6B0E251757FF00C06139 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05C412CE2517584F00F07DB2;
+			remoteInfo = KiwiShell_iOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		05FC883025175A7F00301544 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				05FC882F25175A7F00301544 /* KiwiLibrary.xcframework in Embed Frameworks */,
+				05FC882B25175A7F00301544 /* CoconutShell.xcframework in Embed Frameworks */,
+				05FC882D25175A7F00301544 /* KiwiEngine.xcframework in Embed Frameworks */,
+				05FC883425175A9100301544 /* CoconutData.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05FC883C25175ACF00301544 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				05FC883B25175ACF00301544 /* KiwiLibrary.xcframework in Embed Frameworks */,
+				05FC883725175ACF00301544 /* CoconutShell.xcframework in Embed Frameworks */,
+				05FC883925175ACF00301544 /* KiwiEngine.xcframework in Embed Frameworks */,
+				05FC883E25175ADF00301544 /* CoconutData.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		05C412C02517583900F07DB2 /* KiwiShell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiShell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		05C412C32517583900F07DB2 /* KiwiShell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiShell.h; sourceTree = "<group>"; };
+		05C412C42517583900F07DB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05C412CF2517584F00F07DB2 /* KiwiShell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiShell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		05C412D12517584F00F07DB2 /* KiwiShell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiShell.h; sourceTree = "<group>"; };
+		05C412D22517584F00F07DB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05C412DA2517590900F07DB2 /* KHShellCompiler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHShellCompiler.swift; sourceTree = "<group>"; };
+		05C412DB2517590900F07DB2 /* KHShellThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHShellThread.swift; sourceTree = "<group>"; };
+		05C412DC2517590900F07DB2 /* KHShellConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHShellConverter.swift; sourceTree = "<group>"; };
+		05C412DD2517590900F07DB2 /* KHShellVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHShellVisitor.swift; sourceTree = "<group>"; };
+		05C412DE2517590900F07DB2 /* KHPreference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHPreference.swift; sourceTree = "<group>"; };
+		05C412DF2517590900F07DB2 /* KHConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHConfig.swift; sourceTree = "<group>"; };
+		05C412E02517590900F07DB2 /* KHShellParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHShellParser.swift; sourceTree = "<group>"; };
+		05C412E12517590A00F07DB2 /* KHShellStatement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHShellStatement.swift; sourceTree = "<group>"; };
+		05C412E22517590A00F07DB2 /* KHComplementor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHComplementor.swift; sourceTree = "<group>"; };
+		05C412E32517590A00F07DB2 /* KHScriptThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHScriptThread.swift; sourceTree = "<group>"; };
+		05C412E42517590A00F07DB2 /* KHShellCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHShellCoder.swift; sourceTree = "<group>"; };
+		05FC882725175A7F00301544 /* CoconutShell.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutShell.xcframework; path = ../../../../Library/Frameworks/CoconutShell.xcframework; sourceTree = "<group>"; };
+		05FC882825175A7F00301544 /* KiwiEngine.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiEngine.xcframework; path = ../../../../Library/Frameworks/KiwiEngine.xcframework; sourceTree = "<group>"; };
+		05FC882925175A7F00301544 /* KiwiLibrary.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiLibrary.xcframework; path = ../../../../Library/Frameworks/KiwiLibrary.xcframework; sourceTree = "<group>"; };
+		05FC883225175A9100301544 /* CoconutData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutData.xcframework; path = ../../../../Library/Frameworks/CoconutData.xcframework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		05C412BD2517583900F07DB2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05FC882E25175A7F00301544 /* KiwiLibrary.xcframework in Frameworks */,
+				05FC882A25175A7F00301544 /* CoconutShell.xcframework in Frameworks */,
+				05FC882C25175A7F00301544 /* KiwiEngine.xcframework in Frameworks */,
+				05FC883325175A9100301544 /* CoconutData.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05C412CC2517584F00F07DB2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05FC883A25175ACF00301544 /* KiwiLibrary.xcframework in Frameworks */,
+				05FC883625175ACF00301544 /* CoconutShell.xcframework in Frameworks */,
+				05FC883825175ACF00301544 /* KiwiEngine.xcframework in Frameworks */,
+				05FC883D25175ADF00301544 /* CoconutData.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		059A6B0D251757FF00C06139 = {
+			isa = PBXGroup;
+			children = (
+				05C412D9251758DA00F07DB2 /* Source */,
+				05C412C22517583900F07DB2 /* KiwiShell_macOS */,
+				05C412D02517584F00F07DB2 /* KiwiShell_iOS */,
+				05C412C12517583900F07DB2 /* Products */,
+				05FC882625175A7F00301544 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		05C412C12517583900F07DB2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				05C412C02517583900F07DB2 /* KiwiShell.framework */,
+				05C412CF2517584F00F07DB2 /* KiwiShell.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		05C412C22517583900F07DB2 /* KiwiShell_macOS */ = {
+			isa = PBXGroup;
+			children = (
+				05C412C32517583900F07DB2 /* KiwiShell.h */,
+				05C412C42517583900F07DB2 /* Info.plist */,
+			);
+			path = KiwiShell_macOS;
+			sourceTree = "<group>";
+		};
+		05C412D02517584F00F07DB2 /* KiwiShell_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				05C412D12517584F00F07DB2 /* KiwiShell.h */,
+				05C412D22517584F00F07DB2 /* Info.plist */,
+			);
+			path = KiwiShell_iOS;
+			sourceTree = "<group>";
+		};
+		05C412D9251758DA00F07DB2 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				05C412E22517590A00F07DB2 /* KHComplementor.swift */,
+				05C412DF2517590900F07DB2 /* KHConfig.swift */,
+				05C412DE2517590900F07DB2 /* KHPreference.swift */,
+				05C412E32517590A00F07DB2 /* KHScriptThread.swift */,
+				05C412E42517590A00F07DB2 /* KHShellCoder.swift */,
+				05C412DA2517590900F07DB2 /* KHShellCompiler.swift */,
+				05C412DC2517590900F07DB2 /* KHShellConverter.swift */,
+				05C412E02517590900F07DB2 /* KHShellParser.swift */,
+				05C412E12517590A00F07DB2 /* KHShellStatement.swift */,
+				05C412DB2517590900F07DB2 /* KHShellThread.swift */,
+				05C412DD2517590900F07DB2 /* KHShellVisitor.swift */,
+			);
+			name = Source;
+			path = ../Source;
+			sourceTree = "<group>";
+		};
+		05FC882625175A7F00301544 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				05FC883225175A9100301544 /* CoconutData.xcframework */,
+				05FC882725175A7F00301544 /* CoconutShell.xcframework */,
+				05FC882825175A7F00301544 /* KiwiEngine.xcframework */,
+				05FC882925175A7F00301544 /* KiwiLibrary.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		05C412BB2517583900F07DB2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05C412C52517583900F07DB2 /* KiwiShell.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05C412CA2517584F00F07DB2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05C412D32517584F00F07DB2 /* KiwiShell.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXLegacyTarget section */
+		05FC883F251766B500301544 /* Install */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f ../../Script/install_xc.mk";
+			buildConfigurationList = 05FC8840251766B500301544 /* Build configuration list for PBXLegacyTarget "Install" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+				05FC8846251766C600301544 /* PBXTargetDependency */,
+				05FC8844251766C000301544 /* PBXTargetDependency */,
+			);
+			name = Install;
+			passBuildSettingsInEnvironment = 1;
+			productName = Install;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXNativeTarget section */
+		05C412BF2517583900F07DB2 /* KiwiShell_macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05C412C82517583900F07DB2 /* Build configuration list for PBXNativeTarget "KiwiShell_macOS" */;
+			buildPhases = (
+				05C412BB2517583900F07DB2 /* Headers */,
+				05C412BC2517583900F07DB2 /* Sources */,
+				05C412BD2517583900F07DB2 /* Frameworks */,
+				05C412BE2517583900F07DB2 /* Resources */,
+				05FC883025175A7F00301544 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KiwiShell_macOS;
+			productName = KiwiShell_macOS;
+			productReference = 05C412C02517583900F07DB2 /* KiwiShell.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		05C412CE2517584F00F07DB2 /* KiwiShell_iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05C412D42517584F00F07DB2 /* Build configuration list for PBXNativeTarget "KiwiShell_iOS" */;
+			buildPhases = (
+				05C412CA2517584F00F07DB2 /* Headers */,
+				05C412CB2517584F00F07DB2 /* Sources */,
+				05C412CC2517584F00F07DB2 /* Frameworks */,
+				05C412CD2517584F00F07DB2 /* Resources */,
+				05FC883C25175ACF00301544 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KiwiShell_iOS;
+			productName = KiwiShell_iOS;
+			productReference = 05C412CF2517584F00F07DB2 /* KiwiShell.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		059A6B0E251757FF00C06139 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1200;
+				TargetAttributes = {
+					05C412BF2517583900F07DB2 = {
+						CreatedOnToolsVersion = 12.0;
+						LastSwiftMigration = 1200;
+					};
+					05C412CE2517584F00F07DB2 = {
+						CreatedOnToolsVersion = 12.0;
+						LastSwiftMigration = 1200;
+					};
+					05FC883F251766B500301544 = {
+						CreatedOnToolsVersion = 12.0;
+					};
+				};
+			};
+			buildConfigurationList = 059A6B11251757FF00C06139 /* Build configuration list for PBXProject "KiwiShell" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 059A6B0D251757FF00C06139;
+			productRefGroup = 05C412C12517583900F07DB2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				05C412BF2517583900F07DB2 /* KiwiShell_macOS */,
+				05C412CE2517584F00F07DB2 /* KiwiShell_iOS */,
+				05FC883F251766B500301544 /* Install */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		05C412BE2517583900F07DB2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05C412CD2517584F00F07DB2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		05C412BC2517583900F07DB2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05C412EF2517590A00F07DB2 /* KHConfig.swift in Sources */,
+				05C412F32517590A00F07DB2 /* KHShellStatement.swift in Sources */,
+				05C412F12517590A00F07DB2 /* KHShellParser.swift in Sources */,
+				05C412F72517590A00F07DB2 /* KHScriptThread.swift in Sources */,
+				05C412ED2517590A00F07DB2 /* KHPreference.swift in Sources */,
+				05C412E52517590A00F07DB2 /* KHShellCompiler.swift in Sources */,
+				05C412E92517590A00F07DB2 /* KHShellConverter.swift in Sources */,
+				05C412EB2517590A00F07DB2 /* KHShellVisitor.swift in Sources */,
+				05C412E72517590A00F07DB2 /* KHShellThread.swift in Sources */,
+				05C412F92517590A00F07DB2 /* KHShellCoder.swift in Sources */,
+				05C412F52517590A00F07DB2 /* KHComplementor.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05C412CB2517584F00F07DB2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05C412F02517590A00F07DB2 /* KHConfig.swift in Sources */,
+				05C412F42517590A00F07DB2 /* KHShellStatement.swift in Sources */,
+				05C412F22517590A00F07DB2 /* KHShellParser.swift in Sources */,
+				05C412F82517590A00F07DB2 /* KHScriptThread.swift in Sources */,
+				05C412EE2517590A00F07DB2 /* KHPreference.swift in Sources */,
+				05C412E62517590A00F07DB2 /* KHShellCompiler.swift in Sources */,
+				05C412EA2517590A00F07DB2 /* KHShellConverter.swift in Sources */,
+				05C412EC2517590A00F07DB2 /* KHShellVisitor.swift in Sources */,
+				05C412E82517590A00F07DB2 /* KHShellThread.swift in Sources */,
+				05C412FA2517590A00F07DB2 /* KHShellCoder.swift in Sources */,
+				05C412F62517590A00F07DB2 /* KHComplementor.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		05FC8844251766C000301544 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05C412BF2517583900F07DB2 /* KiwiShell_macOS */;
+			targetProxy = 05FC8843251766C000301544 /* PBXContainerItemProxy */;
+		};
+		05FC8846251766C600301544 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05C412CE2517584F00F07DB2 /* KiwiShell_iOS */;
+			targetProxy = 05FC8845251766C600301544 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		059A6B12251757FF00C06139 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		059A6B13251757FF00C06139 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		05C412C62517583900F07DB2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = KiwiShell_macOS/Info.plist;
+				INSTALL_PATH = "$(HOME)/local/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "github.com.steelwheels.KiwiShell-macOS";
+				PRODUCT_NAME = KiwiShell;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		05C412C72517583900F07DB2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = KiwiShell_macOS/Info.plist;
+				INSTALL_PATH = "$(HOME)/local/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "github.com.steelwheels.KiwiShell-macOS";
+				PRODUCT_NAME = KiwiShell;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		05C412D52517584F00F07DB2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = KiwiShell_iOS/Info.plist;
+				INSTALL_PATH = "$(HOME)/local/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "github.com.steelwheels.KiwiShell-iOS";
+				PRODUCT_NAME = KiwiShell;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		05C412D62517584F00F07DB2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = KiwiShell_iOS/Info.plist;
+				INSTALL_PATH = "$(HOME)/local/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "github.com.steelwheels.KiwiShell-iOS";
+				PRODUCT_NAME = KiwiShell;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		05FC8841251766B500301544 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		05FC8842251766B500301544 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		059A6B11251757FF00C06139 /* Build configuration list for PBXProject "KiwiShell" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				059A6B12251757FF00C06139 /* Debug */,
+				059A6B13251757FF00C06139 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05C412C82517583900F07DB2 /* Build configuration list for PBXNativeTarget "KiwiShell_macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05C412C62517583900F07DB2 /* Debug */,
+				05C412C72517583900F07DB2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05C412D42517584F00F07DB2 /* Build configuration list for PBXNativeTarget "KiwiShell_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05C412D52517584F00F07DB2 /* Debug */,
+				05C412D62517584F00F07DB2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05FC8840251766B500301544 /* Build configuration list for PBXLegacyTarget "Install" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05FC8841251766B500301544 /* Debug */,
+				05FC8842251766B500301544 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 059A6B0E251757FF00C06139 /* Project object */;
+}

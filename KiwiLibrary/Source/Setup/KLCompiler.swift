@@ -8,6 +8,11 @@
 import KiwiEngine
 import CoconutData
 import JavaScriptCore
+#if os(OSX)
+import AppKit
+#else
+import UIKit
+#endif
 import Foundation
 
 public protocol KLExternalCompiler
@@ -312,6 +317,9 @@ open class KLCompiler: KECompiler
 				}
 			#endif
 			ctxt.set(name: "exit", function: exitFunc)
+		@unknown default:
+			NSLog("Unknown application type")
+			break
 		}
 
 		/* _select_exit_code */
@@ -543,6 +551,8 @@ open class KLCompiler: KECompiler
 			resource = res
 		case .thread(_, let res):
 			resource = res
+		@unknown default:
+			resource = nil
 		}
 
 		/* Thread */
@@ -630,6 +640,12 @@ open class KLCompiler: KECompiler
 	}
 
 	#if os(OSX)
+	private enum Application {
+	case textEdit
+	case safari
+	case other
+	}
+
 	private func defineApplicationFunction(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
 		/* Launch */
 		let launchfunc: @convention(block) (_ docval: JSValue, _ appcal: JSValue) -> JSValue = {
@@ -638,13 +654,40 @@ open class KLCompiler: KECompiler
 			let docurl: URL? = KLCompiler.anyToURL(anyValue: docval)
 			let appurl: URL? = KLCompiler.anyToURL(anyValue: appval)
 			if let runapp = CNRemoteApplication.launch(application: appurl, document: docurl) {
-				let appobj = KLApplication(applicationInfo: runapp, context: ctxt)
-				return JSValue(object: appobj, in: ctxt)
+				let newapp: KLApplication
+				switch self.applicationKind(application: runapp) {
+				case .textEdit:
+					let newobj = CNTextEditApplication(application: runapp)
+					newapp     = KLTextEditApplication(textEditApplication: newobj, context: ctxt)
+				case .safari:
+					let newobj = CNSafariApplication(application: runapp)
+					newapp     = KLSafariApplication(safariApplication: newobj, context: ctxt)
+				case .other:
+					let newobj = CNEventReceiverApplication(application: runapp)
+					newapp     = KLApplication(application: newobj, context: ctxt)
+				}
+				return JSValue(object: newapp, in: ctxt)
 			}
 			return JSValue(nullIn: ctxt)
 		}
 		ctxt.set(name: "launch", function: launchfunc)
 	}
+
+	private func applicationKind(application app: NSRunningApplication) -> Application {
+		var result: Application = .other
+		if let ident = app.bundleIdentifier {
+			switch ident {
+			case "com.apple.TextEdit":
+				result = .textEdit
+			case "com.apple.Safari":
+				result = .safari
+			default:
+				break
+			}
+		}
+		return result
+	}
+
 	#endif
 
 	private func compileExternalModule(context ctxt: KEContext, externalCompiler extcomp: KLExternalCompiler?, config conf: KEConfig) -> Bool {

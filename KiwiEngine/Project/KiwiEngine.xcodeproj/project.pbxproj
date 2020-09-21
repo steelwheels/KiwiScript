@@ -1,0 +1,838 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0540D6312516D17300C5AE52 /* KiwiEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 0540D62F2516D17300C5AE52 /* KiwiEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0540D63F2516D18600C5AE52 /* KiwiEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 0540D63D2516D18600C5AE52 /* KiwiEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0540D6512516D20700C5AE52 /* KEEnumTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0540D6462516D20700C5AE52 /* KEEnumTable.swift */; };
+		0540D6522516D20700C5AE52 /* KEEnumTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0540D6462516D20700C5AE52 /* KEEnumTable.swift */; };
+		0540D6532516D20700C5AE52 /* KEConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0540D6472516D20700C5AE52 /* KEConfig.swift */; };
+		0540D6542516D20700C5AE52 /* KEConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0540D6472516D20700C5AE52 /* KEConfig.swift */; };
+		0540D6552516D20700C5AE52 /* KEManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0540D6482516D20700C5AE52 /* KEManifest.swift */; };
+		0540D6562516D20700C5AE52 /* KEManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0540D6482516D20700C5AE52 /* KEManifest.swift */; };
+		0540D6572516D20700C5AE52 /* KEContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0540D6492516D20700C5AE52 /* KEContext.swift */; };
+		0540D6582516D20700C5AE52 /* KEContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0540D6492516D20700C5AE52 /* KEContext.swift */; };
+		0540D6592516D20700C5AE52 /* KEException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0540D64A2516D20700C5AE52 /* KEException.swift */; };
+		0540D65A2516D20700C5AE52 /* KEException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0540D64A2516D20700C5AE52 /* KEException.swift */; };
+		0540D65B2516D20700C5AE52 /* KEProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0540D64B2516D20700C5AE52 /* KEProcess.swift */; };
+		0540D65C2516D20700C5AE52 /* KEProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0540D64B2516D20700C5AE52 /* KEProcess.swift */; };
+		0540D65D2516D20700C5AE52 /* KECompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0540D64C2516D20700C5AE52 /* KECompiler.swift */; };
+		0540D65E2516D20700C5AE52 /* KECompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0540D64C2516D20700C5AE52 /* KECompiler.swift */; };
+		0540D65F2516D20700C5AE52 /* KEObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0540D64D2516D20700C5AE52 /* KEObject.swift */; };
+		0540D6602516D20700C5AE52 /* KEObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0540D64D2516D20700C5AE52 /* KEObject.swift */; };
+		0540D6612516D20700C5AE52 /* KEResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0540D64E2516D20700C5AE52 /* KEResource.swift */; };
+		0540D6622516D20700C5AE52 /* KEResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0540D64E2516D20700C5AE52 /* KEResource.swift */; };
+		0540D6632516D20700C5AE52 /* KEEnumType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0540D64F2516D20700C5AE52 /* KEEnumType.swift */; };
+		0540D6642516D20700C5AE52 /* KEEnumType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0540D64F2516D20700C5AE52 /* KEEnumType.swift */; };
+		0540D6652516D20700C5AE52 /* KEError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0540D6502516D20700C5AE52 /* KEError.swift */; };
+		0540D6662516D20700C5AE52 /* KEError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0540D6502516D20700C5AE52 /* KEError.swift */; };
+		0540D66B2516D23100C5AE52 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0540D66A2516D23100C5AE52 /* CoconutData.xcframework */; };
+		0540D66C2516D23100C5AE52 /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0540D66A2516D23100C5AE52 /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0540D6722516D36E00C5AE52 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0540D66A2516D23100C5AE52 /* CoconutData.xcframework */; };
+		0540D6732516D36E00C5AE52 /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0540D66A2516D23100C5AE52 /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0540D66D2516D23100C5AE52 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0540D66C2516D23100C5AE52 /* CoconutData.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0540D6742516D36E00C5AE52 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0540D6732516D36E00C5AE52 /* CoconutData.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0540D62C2516D17300C5AE52 /* KiwiEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0540D62F2516D17300C5AE52 /* KiwiEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiEngine.h; sourceTree = "<group>"; };
+		0540D6302516D17300C5AE52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0540D63B2516D18600C5AE52 /* KiwiEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0540D63D2516D18600C5AE52 /* KiwiEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiEngine.h; sourceTree = "<group>"; };
+		0540D63E2516D18600C5AE52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0540D6462516D20700C5AE52 /* KEEnumTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEEnumTable.swift; sourceTree = "<group>"; };
+		0540D6472516D20700C5AE52 /* KEConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEConfig.swift; sourceTree = "<group>"; };
+		0540D6482516D20700C5AE52 /* KEManifest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEManifest.swift; sourceTree = "<group>"; };
+		0540D6492516D20700C5AE52 /* KEContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEContext.swift; sourceTree = "<group>"; };
+		0540D64A2516D20700C5AE52 /* KEException.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEException.swift; sourceTree = "<group>"; };
+		0540D64B2516D20700C5AE52 /* KEProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEProcess.swift; sourceTree = "<group>"; };
+		0540D64C2516D20700C5AE52 /* KECompiler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KECompiler.swift; sourceTree = "<group>"; };
+		0540D64D2516D20700C5AE52 /* KEObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEObject.swift; sourceTree = "<group>"; };
+		0540D64E2516D20700C5AE52 /* KEResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEResource.swift; sourceTree = "<group>"; };
+		0540D64F2516D20700C5AE52 /* KEEnumType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEEnumType.swift; sourceTree = "<group>"; };
+		0540D6502516D20700C5AE52 /* KEError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEError.swift; sourceTree = "<group>"; };
+		0540D66A2516D23100C5AE52 /* CoconutData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutData.xcframework; path = ../../../../Library/Frameworks/CoconutData.xcframework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0540D6292516D17300C5AE52 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0540D66B2516D23100C5AE52 /* CoconutData.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0540D6382516D18600C5AE52 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0540D6722516D36E00C5AE52 /* CoconutData.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		051DF6ED2516D13200F32F34 = {
+			isa = PBXGroup;
+			children = (
+				0540D6452516D1EB00C5AE52 /* Source */,
+				0540D62E2516D17300C5AE52 /* KiwiEngine_macOS */,
+				0540D63C2516D18600C5AE52 /* KiwiEngine_iOS */,
+				0540D62D2516D17300C5AE52 /* Products */,
+				0540D6692516D23100C5AE52 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		0540D62D2516D17300C5AE52 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0540D62C2516D17300C5AE52 /* KiwiEngine.framework */,
+				0540D63B2516D18600C5AE52 /* KiwiEngine.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0540D62E2516D17300C5AE52 /* KiwiEngine_macOS */ = {
+			isa = PBXGroup;
+			children = (
+				0540D62F2516D17300C5AE52 /* KiwiEngine.h */,
+				0540D6302516D17300C5AE52 /* Info.plist */,
+			);
+			path = KiwiEngine_macOS;
+			sourceTree = "<group>";
+		};
+		0540D63C2516D18600C5AE52 /* KiwiEngine_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				0540D63D2516D18600C5AE52 /* KiwiEngine.h */,
+				0540D63E2516D18600C5AE52 /* Info.plist */,
+			);
+			path = KiwiEngine_iOS;
+			sourceTree = "<group>";
+		};
+		0540D6452516D1EB00C5AE52 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				0540D64C2516D20700C5AE52 /* KECompiler.swift */,
+				0540D6472516D20700C5AE52 /* KEConfig.swift */,
+				0540D6492516D20700C5AE52 /* KEContext.swift */,
+				0540D6462516D20700C5AE52 /* KEEnumTable.swift */,
+				0540D64F2516D20700C5AE52 /* KEEnumType.swift */,
+				0540D6502516D20700C5AE52 /* KEError.swift */,
+				0540D64A2516D20700C5AE52 /* KEException.swift */,
+				0540D6482516D20700C5AE52 /* KEManifest.swift */,
+				0540D64D2516D20700C5AE52 /* KEObject.swift */,
+				0540D64B2516D20700C5AE52 /* KEProcess.swift */,
+				0540D64E2516D20700C5AE52 /* KEResource.swift */,
+			);
+			name = Source;
+			path = ../Source;
+			sourceTree = "<group>";
+		};
+		0540D6692516D23100C5AE52 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0540D66A2516D23100C5AE52 /* CoconutData.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		0540D6272516D17300C5AE52 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0540D6312516D17300C5AE52 /* KiwiEngine.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0540D6362516D18600C5AE52 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0540D63F2516D18600C5AE52 /* KiwiEngine.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXLegacyTarget section */
+		0540D6752516D38E00C5AE52 /* Install */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f ../../Script/install_xc.mk";
+			buildConfigurationList = 0540D6762516D38E00C5AE52 /* Build configuration list for PBXLegacyTarget "Install" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+			);
+			name = Install;
+			passBuildSettingsInEnvironment = 1;
+			productName = Install;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXNativeTarget section */
+		0540D62B2516D17300C5AE52 /* KiwiEngine_macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0540D6342516D17300C5AE52 /* Build configuration list for PBXNativeTarget "KiwiEngine_macOS" */;
+			buildPhases = (
+				0540D6272516D17300C5AE52 /* Headers */,
+				0540D6282516D17300C5AE52 /* Sources */,
+				0540D6292516D17300C5AE52 /* Frameworks */,
+				0540D62A2516D17300C5AE52 /* Resources */,
+				0540D66D2516D23100C5AE52 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KiwiEngine_macOS;
+			productName = KiwiEngine_macOS;
+			productReference = 0540D62C2516D17300C5AE52 /* KiwiEngine.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		0540D63A2516D18600C5AE52 /* KiwiEngine_iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0540D6402516D18600C5AE52 /* Build configuration list for PBXNativeTarget "KiwiEngine_iOS" */;
+			buildPhases = (
+				0540D6362516D18600C5AE52 /* Headers */,
+				0540D6372516D18600C5AE52 /* Sources */,
+				0540D6382516D18600C5AE52 /* Frameworks */,
+				0540D6392516D18600C5AE52 /* Resources */,
+				0540D6742516D36E00C5AE52 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KiwiEngine_iOS;
+			productName = KiwiEngine_iOS;
+			productReference = 0540D63B2516D18600C5AE52 /* KiwiEngine.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		051DF6EE2516D13200F32F34 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1200;
+				TargetAttributes = {
+					0540D62B2516D17300C5AE52 = {
+						CreatedOnToolsVersion = 12.0;
+						LastSwiftMigration = 1200;
+					};
+					0540D63A2516D18600C5AE52 = {
+						CreatedOnToolsVersion = 12.0;
+						LastSwiftMigration = 1200;
+					};
+					0540D6752516D38E00C5AE52 = {
+						CreatedOnToolsVersion = 12.0;
+					};
+				};
+			};
+			buildConfigurationList = 051DF6F12516D13200F32F34 /* Build configuration list for PBXProject "KiwiEngine" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 051DF6ED2516D13200F32F34;
+			productRefGroup = 0540D62D2516D17300C5AE52 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0540D62B2516D17300C5AE52 /* KiwiEngine_macOS */,
+				0540D63A2516D18600C5AE52 /* KiwiEngine_iOS */,
+				0540D6752516D38E00C5AE52 /* Install */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0540D62A2516D17300C5AE52 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0540D6392516D18600C5AE52 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0540D6282516D17300C5AE52 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0540D65F2516D20700C5AE52 /* KEObject.swift in Sources */,
+				0540D6512516D20700C5AE52 /* KEEnumTable.swift in Sources */,
+				0540D6652516D20700C5AE52 /* KEError.swift in Sources */,
+				0540D65B2516D20700C5AE52 /* KEProcess.swift in Sources */,
+				0540D6552516D20700C5AE52 /* KEManifest.swift in Sources */,
+				0540D6632516D20700C5AE52 /* KEEnumType.swift in Sources */,
+				0540D65D2516D20700C5AE52 /* KECompiler.swift in Sources */,
+				0540D6592516D20700C5AE52 /* KEException.swift in Sources */,
+				0540D6532516D20700C5AE52 /* KEConfig.swift in Sources */,
+				0540D6612516D20700C5AE52 /* KEResource.swift in Sources */,
+				0540D6572516D20700C5AE52 /* KEContext.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0540D6372516D18600C5AE52 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0540D6602516D20700C5AE52 /* KEObject.swift in Sources */,
+				0540D6522516D20700C5AE52 /* KEEnumTable.swift in Sources */,
+				0540D6662516D20700C5AE52 /* KEError.swift in Sources */,
+				0540D65C2516D20700C5AE52 /* KEProcess.swift in Sources */,
+				0540D6562516D20700C5AE52 /* KEManifest.swift in Sources */,
+				0540D6642516D20700C5AE52 /* KEEnumType.swift in Sources */,
+				0540D65E2516D20700C5AE52 /* KECompiler.swift in Sources */,
+				0540D65A2516D20700C5AE52 /* KEException.swift in Sources */,
+				0540D6542516D20700C5AE52 /* KEConfig.swift in Sources */,
+				0540D6622516D20700C5AE52 /* KEResource.swift in Sources */,
+				0540D6582516D20700C5AE52 /* KEContext.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		051DF6F22516D13200F32F34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		051DF6F32516D13200F32F34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		0540D6322516D17300C5AE52 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = KiwiEngine_macOS/Info.plist;
+				INSTALL_PATH = "$(HOME)/local/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "github.com.steelwheels.KiwiEngine-macOS";
+				PRODUCT_NAME = KiwiEngine;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		0540D6332516D17300C5AE52 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = KiwiEngine_macOS/Info.plist;
+				INSTALL_PATH = "$(HOME)/local/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "github.com.steelwheels.KiwiEngine-macOS";
+				PRODUCT_NAME = KiwiEngine;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		0540D6412516D18600C5AE52 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = KiwiEngine_iOS/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "github.com.steelwheels.KiwiEngine-iOS";
+				PRODUCT_NAME = KiwiEngine;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		0540D6422516D18600C5AE52 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = KiwiEngine_iOS/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "github.com.steelwheels.KiwiEngine-iOS";
+				PRODUCT_NAME = KiwiEngine;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		0540D6772516D38E00C5AE52 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		0540D6782516D38E00C5AE52 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		051DF6F12516D13200F32F34 /* Build configuration list for PBXProject "KiwiEngine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				051DF6F22516D13200F32F34 /* Debug */,
+				051DF6F32516D13200F32F34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0540D6342516D17300C5AE52 /* Build configuration list for PBXNativeTarget "KiwiEngine_macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0540D6322516D17300C5AE52 /* Debug */,
+				0540D6332516D17300C5AE52 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0540D6402516D18600C5AE52 /* Build configuration list for PBXNativeTarget "KiwiEngine_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0540D6412516D18600C5AE52 /* Debug */,
+				0540D6422516D18600C5AE52 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0540D6762516D38E00C5AE52 /* Build configuration list for PBXLegacyTarget "Install" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0540D6772516D38E00C5AE52 /* Debug */,
+				0540D6782516D38E00C5AE52 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 051DF6EE2516D13200F32F34 /* Project object */;
+}

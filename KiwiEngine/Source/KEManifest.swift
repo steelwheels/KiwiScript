@@ -37,6 +37,8 @@ open class KEManifestLoader
 			return value
 		case .error(let err):
 			throw err
+		@unknown default:
+			throw NSError.parseError(message: "Can not happen")
 		}
 	}
 

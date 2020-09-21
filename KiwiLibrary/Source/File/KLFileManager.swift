@@ -69,6 +69,8 @@ import Foundation
 				return JSValue(object: fileobj, in: mContext)
 			case .error(_):
 				mConsole.error(string: "Failed to write \(pathval)\n")
+			@unknown default:
+				mConsole.error(string: "Unknown error\n")
 			}
 		} else if let pathurl = decodePathURL(pathval) {
 			switch fmanager.openFile(URL: pathurl, accessType: acctype) {
@@ -77,6 +79,8 @@ import Foundation
 				return JSValue(object: fileobj, in: mContext)
 			case .error(_):
 				mConsole.error(string: "Failed to write \(pathval)\n")
+			@unknown default:
+				mConsole.error(string: "Unknown error\n")
 			}
 		}
 		return JSValue(nullIn: mContext)
