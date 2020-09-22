@@ -36,7 +36,7 @@ import Foundation
 
 @objc public protocol KLSafariApplicationProtocol: JSExport
 {
-	func open(_ val: JSValue) -> JSValue
+	func newTab() -> JSValue
 }
 
 @objc public class KLApplication: NSObject, KLApplicationProtocol
@@ -292,22 +292,23 @@ import Foundation
 		super.init(application: app, context: ctxt)
 	}
 
-	public func open(_ val: JSValue) -> JSValue {
-		guard let url = valueToURL(value: val) else {
-			return JSValue(bool: false, in: context)
-		}
-		let result: Bool
-		switch mApplication.open(fileURL: url) {
-		case .ok(_):
-			result = true
+	public func newTab() -> JSValue {
+		let result: NSAppleEventDescriptor?
+		switch mApplication.newTab() {
+		case .ok(let desc):
+			result = desc
 		case .error(let err):
 			CNLog(logLevel: .error, message: "AppleEventError open: \(err.toString())")
-			result = false
+			result = nil
 		@unknown default:
 			CNLog(logLevel: .error, message: "AppleEventError open: <unknown>")
-			result = false
+			result = nil
 		}
-		return JSValue(bool: result, in: context)
+		if let res = result {
+			return JSValue(object: res, in: context)
+		} else {
+			return JSValue(nullIn: context)
+		}
 	}
 }
 
