@@ -469,7 +469,7 @@
 				};
 			};
 			buildConfigurationList = 05A95B0D2516CD0300775737 /* Build configuration list for PBXProject "KiwiLibrary" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 11.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (

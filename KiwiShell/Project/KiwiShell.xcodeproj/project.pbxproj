@@ -316,7 +316,7 @@
 				};
 			};
 			buildConfigurationList = 059A6B11251757FF00C06139 /* Build configuration list for PBXProject "KiwiShell" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 11.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (

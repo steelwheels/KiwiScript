@@ -267,7 +267,7 @@
 				};
 			};
 			buildConfigurationList = 051DF6F12516D13200F32F34 /* Build configuration list for PBXProject "KiwiEngine" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 11.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
