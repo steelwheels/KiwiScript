@@ -54,6 +54,9 @@ extension CNNativeValue {
 			result = JSValue(image: val, in: ctxt)
 		case .anyObjectValue(let val):
 			result = JSValue(object: val, in: ctxt)
+		case .colorValue(let col):
+			let colval = col.escapeCode()
+			result = JSValue(int32: colval, in: ctxt)
 		@unknown default:
 			result = JSValue(nullIn: ctxt)
 		}

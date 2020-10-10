@@ -15,11 +15,6 @@ import UIKit
 #endif
 import Foundation
 
-public protocol KLExternalCompiler
-{
-	func compileExternalModule(context ctxt: KEContext, config conf: KEConfig) -> Bool
-}
-
 open class KLCompiler: KECompiler
 {
 	open override func compileBase(context ctxt: KEContext, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
@@ -43,14 +38,13 @@ open class KLCompiler: KECompiler
 		return true
 	}
 
-	open func compileLibrary(context ctxt: KEContext, sourceFile srcfile: KESourceFile, processManager procmgr: CNProcessManager, externalCompiler extcomp: KLExternalCompiler?, environment env: CNEnvironment, console cons: CNConsole, config conf: KEConfig) -> Bool {
+	open func compileLibrary(context ctxt: KEContext, sourceFile srcfile: KESourceFile, processManager procmgr: CNProcessManager, environment env: CNEnvironment, console cons: CNConsole, config conf: KEConfig) -> Bool {
 		if super.compileLibrary(context: ctxt, sourceFile: srcfile, console: cons, config: conf) {
-			defineThreadFunction(context: ctxt, sourceFile: srcfile, processManager: procmgr, externalCompiler: extcomp, environment: env, console: cons, config: conf)
+			defineThreadFunction(context: ctxt, sourceFile: srcfile, processManager: procmgr, environment: env, console: cons, config: conf)
 			#if os(OSX)
 				defineApplicationFunction(context: ctxt, console: cons, config: conf)
 			#endif
-			let res = compileExternalModule(context: ctxt, externalCompiler: extcomp, config: conf)
-			return (ctxt.errorCount == 0) && res
+			return (ctxt.errorCount == 0)
 		} else {
 			return false
 		}
@@ -541,7 +535,7 @@ open class KLCompiler: KECompiler
 		ctxt.set(name: "OperationQueue", function: queuefunc)
 	}
 
-	private func defineThreadFunction(context ctxt: KEContext, sourceFile srcfile: KESourceFile, processManager procmgr: CNProcessManager, externalCompiler extcomp: KLExternalCompiler?, environment env: CNEnvironment, console cons: CNConsole, config conf: KEConfig) {
+	private func defineThreadFunction(context ctxt: KEContext, sourceFile srcfile: KESourceFile, processManager procmgr: CNProcessManager, environment env: CNEnvironment, console cons: CNConsole, config conf: KEConfig) {
 		/* Get resource */
 		let resource: KEResource?
 		switch srcfile {
@@ -564,7 +558,7 @@ open class KLCompiler: KECompiler
 			   let errfile = KLCompiler.vallueToFileStream(value: errval) {
 				if let res = resource {
 					let srcfile   = KESourceFile.thread(name, res)
-					let threadobj = KLThreadObject(sourceFile: srcfile, processManager: procmgr, input:  infile, output: outfile, error: errfile, externalCompiler: extcomp, environment: env, config: conf)
+					let threadobj = KLThreadObject(sourceFile: srcfile, processManager: procmgr, input:  infile, output: outfile, error: errfile, environment: env, config: conf)
 					let thread    = KLThread(thread: threadobj)
 					let _         = procmgr.addProcess(process: threadobj)
 					return JSValue(object: thread, in: ctxt)
@@ -596,7 +590,7 @@ open class KLCompiler: KECompiler
 				} else {
 					srcfile = .none
 				}
-				let threadobj = KLThreadObject(sourceFile: srcfile, processManager: procmgr, input:  infile, output: outfile, error: errfile, externalCompiler: extcomp, environment: env, config: conf)
+				let threadobj = KLThreadObject(sourceFile: srcfile, processManager: procmgr, input:  infile, output: outfile, error: errfile, environment: env, config: conf)
 				let thread    = KLThread(thread: threadobj)
 				let _         = procmgr.addProcess(process: threadobj)
 				return JSValue(object: thread, in: ctxt)
@@ -689,16 +683,6 @@ open class KLCompiler: KECompiler
 	}
 
 	#endif
-
-	private func compileExternalModule(context ctxt: KEContext, externalCompiler extcomp: KLExternalCompiler?, config conf: KEConfig) -> Bool {
-		let result: Bool
-		if let comp = extcomp {
-			result = comp.compileExternalModule(context: ctxt, config: conf)
-		} else {
-			result = true
-		}
-		return result
-	}
 
 	private func pathToFullPath(path pathval: JSValue, environment env: CNEnvironment) -> URL? {
 		let pathstr: String

@@ -21,16 +21,14 @@ public class KLThreadObject: CNThread
 {
 	private var mContext:			KEContext
 	private var mChildProcessManager:	CNProcessManager
-	private var mExternalCompiler:		KLExternalCompiler?
 	private var mSourceFile:		KESourceFile
 	private var mTerminalInfo:		CNTerminalInfo
 	private var mConfig:			KEConfig
 
-	public init(sourceFile file: KESourceFile, processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, externalCompiler extcomp: KLExternalCompiler?, environment env: CNEnvironment, config conf: KEConfig) {
+	public init(sourceFile file: KESourceFile, processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, config conf: KEConfig) {
 		let vm			= JSVirtualMachine()
 		mContext   		= KEContext(virtualMachine: vm!)
 		mChildProcessManager	= CNProcessManager()
-		mExternalCompiler	= extcomp
 		mSourceFile		= file
 		mTerminalInfo		= CNTerminalInfo(width: 80, height: 25)
 		mConfig			= KEConfig(applicationType: conf.applicationType,
@@ -97,7 +95,7 @@ public class KLThreadObject: CNThread
 		guard compiler.compileBase(context: mContext, terminalInfo: self.mTerminalInfo, environment: self.environment, console: self.console, config: conf) else {
 			return false
 		}
-		guard compiler.compileLibrary(context: mContext, sourceFile: mSourceFile, processManager: procmgr, externalCompiler: mExternalCompiler, environment: self.environment, console: self.console, config: conf) else {
+		guard compiler.compileLibrary(context: mContext, sourceFile: mSourceFile, processManager: procmgr, environment: self.environment, console: self.console, config: conf) else {
 			return false
 		}
 
