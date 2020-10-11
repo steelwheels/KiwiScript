@@ -12,14 +12,7 @@ import KiwiLibrary
 import JavaScriptCore
 import Foundation
 
-@objc public protocol KHThreadProtocol: JSExport
-{
-	var  isExecuting: Bool { get }
-	func start(_ args: JSValue)
-	func waitUntilExit() -> Int32
-}
-
-public class KHScriptThreadObject: CNThread
+public class KHScriptThread: CNThread
 {
 	private var mContext:			KEContext?
 	private var mChildProcessManager:	CNProcessManager
@@ -150,30 +143,6 @@ public class KHScriptThreadObject: CNThread
 
 	private func hasNoException() -> Bool {
 		return mExceptionCount == 0
-	}
-}
-
-@objc public class KHScriptThread: NSObject, KHThreadProtocol
-{
-	private var mThread:	KHScriptThreadObject
-
-	public init(thread threadobj: KHScriptThreadObject){
-		mThread = threadobj
-	}
-
-	public var isExecuting:	Bool  { get { return mThread.isRunning }}
-
-	public func start(argument arg: CNNativeValue) {
-		mThread.start(argument: arg)
-	}
-
-	public func start(_ args: JSValue){
-		let nargs = args.toNativeValue()
-		mThread.start(argument: nargs)
-	}
-
-	public func waitUntilExit() -> Int32 {
-		return mThread.waitUntilExit()
 	}
 }
 

@@ -12,14 +12,7 @@ import KiwiLibrary
 import JavaScriptCore
 import Foundation
 
-@objc public protocol KHShellThreadProtocol: JSExport
-{
-	var  isExecuting: Bool { get }
-	func start()
-	func waitUntilExit() -> Int32
-}
-
-public class KHShellThreadObject: CNShellThread
+public class KHShellThread: CNShellThread
 {
 	public enum InputMode {
 		case JavaScript
@@ -65,7 +58,7 @@ public class KHShellThreadObject: CNShellThread
 
 		/* Setup built-in script location */
 		let manager = KLBuiltinScripts.shared
-		manager.setup(subdirectory: "Documents/Script", forClass: KHShellThreadObject.self)
+		manager.setup(subdirectory: "Documents/Script", forClass: KHShellThread.self)
 	}
 
 	public override func main(argument arg: CNNativeValue) -> Int32
@@ -219,29 +212,6 @@ public class KHShellThreadObject: CNShellThread
 			}
 		}
 		return result
-	}
-}
-
-@objc public class KHShellThread: NSObject, KHShellThreadProtocol
-{
-	private var mThread: KHShellThreadObject
-
-	public var isExecuting: Bool { get { return mThread.isRunning	}}
-
-	public init(thread threadobj: KHShellThreadObject){
-		mThread = threadobj
-	}
-
-	public func start() {
-		mThread.start(argument: .nullValue)
-	}
-
-	public func cancel(){
-		mThread.cancel()
-	}
-
-	public func waitUntilExit() -> Int32 {
-		return mThread.waitUntilExit()
 	}
 }
 
