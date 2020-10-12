@@ -12,6 +12,7 @@ open class KEResource: CNResource
 {
 	public static let ApplicationCategory		= "application"
 	public static let LibrariesCategory		= "libraries"
+	public static let ViewsCategory			= "views"
 	public static let ThreadsCategory		= "threads"
 
 	public static let DefaultIdentifier		= "_default"
@@ -106,6 +107,37 @@ open class KEResource: CNResource
 
 	public func loadLibrary(index idx: Int) -> String? {
 		if let script:String = super.load(category: KEResource.LibrariesCategory, identifier: KEResource.DefaultIdentifier, index: idx) {
+			return script
+		} else {
+			return nil
+		}
+	}
+
+	/*
+	 * view section
+	 */
+	public func addView(path pathstr: String){
+		super.add(category: KEResource.ViewsCategory, identifier: KEResource.DefaultIdentifier, path: pathstr)
+	}
+
+	public func countOfViews() -> Int? {
+		return super.count(category: KEResource.ViewsCategory, identifier: KEResource.DefaultIdentifier)
+	}
+
+	public func pathStringOfView(index idx: Int) -> String? {
+		return super.pathString(category: KEResource.ViewsCategory, identifier: KEResource.DefaultIdentifier, index: idx)
+	}
+
+	public func URLOfView(index idx: Int) -> URL? {
+		if let url = super.fullPathURL(category: KEResource.ViewsCategory, identifier: KEResource.DefaultIdentifier, index: idx) {
+			return url
+		} else {
+			return nil
+		}
+	}
+
+	public func loadView(index idx: Int) -> String? {
+		if let script:String = super.load(category: KEResource.ViewsCategory, identifier: KEResource.DefaultIdentifier, index: idx) {
 			return script
 		} else {
 			return nil
