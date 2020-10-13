@@ -39,14 +39,12 @@ public class KHShellThread: CNShellThread
 	}
 
 	private var mContext:			KEContext?
-	private var mResource:			KEResource
 	private var mConfig:			KEConfig
 	private var mChildProcessManager:	CNProcessManager
 	private var mInputMode:			InputMode
 
-	public init(processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, resource res: KEResource, config conf: KEConfig){
+	public init(processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, config conf: KEConfig){
 		mContext		= nil
-		mResource		= res
 		mConfig			= conf
 		mChildProcessManager	= CNProcessManager()
 		mInputMode		= .shellScript
