@@ -82,6 +82,7 @@ public class KHScriptThread: CNThread
 			if let scr = url.loadContents() {
 				script = String(scr)
 			} else {
+				CNLog(logLevel: .error, message: "Failed to load \(url.absoluteString)")
 				return false
 			}
 		case .script(let scr):
@@ -103,7 +104,6 @@ public class KHScriptThread: CNThread
 			return false
 		}
 		let _ = compiler.compile(context: ctxt, statement: script, console: console, config: conf)
-
 		return hasNoException()
 	}
 
