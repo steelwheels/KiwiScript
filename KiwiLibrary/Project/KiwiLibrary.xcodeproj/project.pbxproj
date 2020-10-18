@@ -20,6 +20,7 @@
 		0540D6892516D4E100C5AE52 /* KiwiEngine.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0540D6812516D4B300C5AE52 /* KiwiEngine.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0543B051253B3A5D00A9BAA1 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0543B050253B3A5D00A9BAA1 /* main.swift */; };
 		0543B067253B3BF600A9BAA1 /* UTApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0543B066253B3BF600A9BAA1 /* UTApplication.swift */; };
+		0592AC6A253BE6D3007B398C /* UTSuspend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0592AC69253BE6D3007B398C /* UTSuspend.swift */; };
 		05A1F44E253BBAD500D4789F /* UTEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A1F44D253BBAD400D4789F /* UTEnvironment.swift */; };
 		05A1F452253BBBD500D4789F /* UTFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A1F451253BBBD400D4789F /* UTFileManager.swift */; };
 		05A1F456253BC0F500D4789F /* UTFontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A1F455253BC0F500D4789F /* UTFontManager.swift */; };
@@ -184,6 +185,7 @@
 		0543B050253B3A5D00A9BAA1 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		0543B058253B3A9F00A9BAA1 /* KiwiLibrary.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiLibrary.xcframework; path = ../../../../Library/Frameworks/KiwiLibrary.xcframework; sourceTree = "<group>"; };
 		0543B066253B3BF600A9BAA1 /* UTApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTApplication.swift; sourceTree = "<group>"; };
+		0592AC69253BE6D3007B398C /* UTSuspend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTSuspend.swift; sourceTree = "<group>"; };
 		05A1F44D253BBAD400D4789F /* UTEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTEnvironment.swift; sourceTree = "<group>"; };
 		05A1F451253BBBD400D4789F /* UTFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTFileManager.swift; sourceTree = "<group>"; };
 		05A1F455253BC0F500D4789F /* UTFontManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTFontManager.swift; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 				05A1F488253BCE2600D4789F /* UTPreference.swift */,
 				05A1F48E253BCEE200D4789F /* UTRun.swift */,
 				05A1F498253BD36100D4789F /* UTScriptManager.swift */,
+				0592AC69253BE6D3007B398C /* UTSuspend.swift */,
 				05A1F49E253BD75A00D4789F /* UTThread.swift */,
 				053F2C48253BDDCE009CFCA1 /* UTType.swift */,
 				053F2C4E253BDEA8009CFCA1 /* UTURL.swift */,
@@ -722,6 +725,7 @@
 				05A1F45A253BC19A00D4789F /* UTMath.swift in Sources */,
 				053F2C4F253BDEA8009CFCA1 /* UTURL.swift in Sources */,
 				05A1F499253BD36100D4789F /* UTScriptManager.swift in Sources */,
+				0592AC6A253BE6D3007B398C /* UTSuspend.swift in Sources */,
 				05A1F44E253BBAD500D4789F /* UTEnvironment.swift in Sources */,
 				053F2C55253BE147009CFCA1 /* UTDatabase.swift in Sources */,
 				053F2C49253BDDCE009CFCA1 /* UTType.swift in Sources */,
