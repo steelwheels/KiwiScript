@@ -36,7 +36,7 @@ public func UTOperation2(console cons: CNFileConsole, config conf: KEConfig) -> 
 					environment:	env,
 					config:		opconf)
 
-	switch CNFilePath.URLForBundleFile(bundleName: "UnitTest", fileName: "unit-test-1", ofType: "js") {
+	switch CNFilePath.URLForBundleFile(bundleName: "UnitTestBundle", fileName: "unit-test-1", ofType: "js") {
 	case .ok(let url):
 		if op.compile(userStructs:[], userScripts: [url]) {
 			cons.print(string: "MainThread: [Compile] OK\n")
@@ -45,6 +45,8 @@ public func UTOperation2(console cons: CNFileConsole, config conf: KEConfig) -> 
 		}
 	case .error(let err):
 		cons.error(string: "[Error] \(err.description)")
+	@unknown default:
+		cons.error(string: "[Error] Unsupported result")
 	}
 
 	cons.print(string: "* Test1\n")

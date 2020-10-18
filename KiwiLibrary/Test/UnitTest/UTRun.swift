@@ -26,18 +26,24 @@ public func UTRun(context ctxt: KEContext, console cons: CNFileConsole) -> Bool
 		return false
 	}
 
-	let config    = KEConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
-	let url       = URL(fileURLWithPath: "../Test/Sample/sample-1.js")
-	let srcfile   = KESourceFile.file(url)
-	let threadobj = KLThreadObject(sourceFile: srcfile, processManager: manager, input: instrm, output: outstrm, error: errstrm, externalCompiler: nil,  environment: env, config: config)
-	let thread    = KLThread(thread: threadobj)
-	thread.start(args)
+	switch CNFilePath.URLForBundleFile(bundleName: "UnitTestBundle", fileName: "sample-1", ofType: "js") {
+	case .ok(let url):
+		let config    = KEConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
+		let srcfile   = KESourceFile.file(url)
+		let threadobj = KLThreadObject(sourceFile: srcfile, processManager: manager, input: instrm, output: outstrm, error: errstrm, environment: env, config: config)
+		let thread    = KLThread(thread: threadobj)
+		thread.start(args)
+		/* Wait until exist */
+		let ecode = thread.waitUntilExit()
+		cons.print(string: "Thread is finished with error code: \(ecode)\n")
+	case .error(let err):
+		cons.print(string: "[Error] \(err.toString())")
+		return false
+	@unknown default:
+		cons.print(string: "[Error] Unsupported result")
+		return false
+	}
 
-	/* Wait until exist */
-	let ecode = thread.waitUntilExit()
-	cons.print(string: "Thread is finished with error code: \(ecode)\n")
-
-	/* Test passed */
-	return (ecode == 0)
+	return true
 }
 

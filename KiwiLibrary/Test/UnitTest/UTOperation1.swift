@@ -11,7 +11,7 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-public func UTOperation(context ctxt: KEContext, console cons: CNFileConsole, config conf: KEConfig) -> Bool
+public func UTOperation1(context ctxt: KEContext, console cons: CNFileConsole, config conf: KEConfig) -> Bool
 {
 	let terminfo	= CNTerminalInfo(width: 80, height: 25)
 	let env		= CNEnvironment()
@@ -84,7 +84,7 @@ private func allocateOperation(context ctxt: KEContext, terminalInfo terminfo: C
 					environment:	env,
 					config:		conf)
 
-	switch CNFilePath.URLForBundleFile(bundleName: "UnitTest", fileName: "unit-test-0", ofType: "js") {
+	switch CNFilePath.URLForBundleFile(bundleName: "UnitTestBundle", fileName: "unit-test-0", ofType: "js") {
 	case .ok(let url):
 		if op.compile(userStructs:[strct], userScripts: [url]) {
 			return op
@@ -93,6 +93,8 @@ private func allocateOperation(context ctxt: KEContext, terminalInfo terminfo: C
 		}
 	case .error(let err):
 		cons.error(string: "[Error] \(err.description)")
+	@unknown default:
+		cons.error(string: "[Error] Unsupported result")
 	}
 	return nil
 }

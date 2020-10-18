@@ -25,8 +25,9 @@ private func launchApplication(context ctxt: KEContext, console cons: CNFileCons
 	let appurl: URL? = URL(fileURLWithPath: "/System/Applications/TextEdit.app")
 	let docurl: URL? = URL(fileURLWithPath: "Info.plist")
 	if let runapp = CNRemoteApplication.launch(application: appurl, document: docurl) {
-		let app = KLApplication(applicationInfo: runapp, context: ctxt)
-		let name = app.name
+		let remote = CNEventReceiverApplication(application: runapp)
+		let app    = KLApplication(application: remote, context: ctxt)
+		let name   = app.name
 		cons.print(string: "Launch ... \(String(describing: name.toString()))\n")
 	} else {
 		cons.print(string: "[Error] Failed to launch\n")

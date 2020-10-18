@@ -91,7 +91,7 @@ private func normalizeTest(fileManager manager: KLFileManager, context ctxt: KEC
 
 private func accessibilityTest(fileManager manager: KLFileManager, context ctxt: KEContext, console cons: CNConsole) -> Bool
 {
-	if let pathval = JSValue(object: FileManager.default.currentDirectoryPath + "/Info.plist", in: ctxt),
+	if let pathval = JSValue(object: FileManager.default.currentDirectoryPath + "/UnitTest", in: ctxt),
 	   let accval  = JSValue(int32: CNFileAccessType.ReadAccess.rawValue, in: ctxt) {
 		let retval  = manager.isAccessible(pathval, accval)
 		if retval.isBoolean {

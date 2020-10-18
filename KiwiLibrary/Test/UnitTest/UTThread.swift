@@ -15,10 +15,18 @@ public func UTThread(context ctxt: KEContext, processManager procmgr: CNProcessM
 {
 	var result = false
 
-	let pkgurl = URL(fileURLWithPath: "../Test/Sample/sample-0.jspkg")
-	cons.print(string: "Source URL: \(pkgurl.absoluteString)\n")
-
-	//cons.print(string: "Package: \(pkgurl.absoluteString)\n")
+	let pkgurl: URL
+	switch CNFilePath.URLForBundleFile(bundleName: "UnitTestBundle", fileName: "sample-0", ofType: "jspkg") {
+	case .ok(let url):
+		pkgurl = url
+		cons.print(string: "Source URL: \(pkgurl.absoluteString)\n")
+	case .error(let err):
+		cons.print(string: "[Error] \(err.toString())\n")
+		return result
+	@unknown default:
+		cons.print(string: "[Error] Unsupported result\n")
+		return result
+	}
 
 	let resource = KEResource(baseURL: pkgurl)
 	let loader   = KEManifestLoader()
@@ -36,7 +44,7 @@ public func UTThread(context ctxt: KEContext, processManager procmgr: CNProcessM
 		let errstrm:	CNFileStream		= .fileHandle(cons.errorHandle)
 		let env:     	CNEnvironment		= CNEnvironment()
 		let config   = KEConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
-		let threadobj = KLThreadObject(sourceFile: srcfile, processManager: procmgr, input: instrm, output: outstrm, error: errstrm, externalCompiler: nil, environment: env, config: config)
+		let threadobj = KLThreadObject(sourceFile: srcfile, processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: env, config: config)
 		let thread    = KLThread(thread: threadobj)
 
 		/* Start thread */
