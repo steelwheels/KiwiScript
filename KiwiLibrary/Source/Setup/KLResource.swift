@@ -34,4 +34,16 @@ public extension KEResource
 		}
 		return result
 	}
+
+	#if os(OSX)
+	static func allocateBySelectFile() -> AllocationResult {
+		let selector = CNFileSelector()
+		if let url = selector.selectInputFile(title: "Select script file", extensions: ["js", "jspkg"]) {
+			return allocateResource(from: url)
+		} else {
+			let err = NSError.fileError(message: "File selection is cancelled")
+			return .error(err)
+		}
+	}
+	#endif
 }

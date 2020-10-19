@@ -38,9 +38,9 @@ open class KLCompiler: KECompiler
 		return true
 	}
 
-	open func compileLibrary(context ctxt: KEContext, sourceFile srcfile: KESourceFile, processManager procmgr: CNProcessManager, environment env: CNEnvironment, console cons: CNConsole, config conf: KEConfig) -> Bool {
-		if super.compileLibrary(context: ctxt, sourceFile: srcfile, console: cons, config: conf) {
-			defineThreadFunction(context: ctxt, sourceFile: srcfile, processManager: procmgr, environment: env, console: cons, config: conf)
+	open func compileLibrary(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, environment env: CNEnvironment, console cons: CNConsole, config conf: KEConfig) -> Bool {
+		if super.compileLibrary(context: ctxt, resource: res, console: cons, config: conf) {
+			defineThreadFunction(context: ctxt, resource: res, processManager: procmgr, environment: env, console: cons, config: conf)
 			#if os(OSX)
 				defineApplicationFunction(context: ctxt, console: cons, config: conf)
 			#endif
@@ -535,20 +535,7 @@ open class KLCompiler: KECompiler
 		ctxt.set(name: "OperationQueue", function: queuefunc)
 	}
 
-	private func defineThreadFunction(context ctxt: KEContext, sourceFile srcfile: KESourceFile, processManager procmgr: CNProcessManager, environment env: CNEnvironment, console cons: CNConsole, config conf: KEConfig) {
-		/* Get resource */
-		let resource: KEResource?
-		switch srcfile {
-		case .none, .file(_), .script(_):
-			resource = nil
-		case .resource(let res):
-			resource = res
-		case .thread(_, let res):
-			resource = res
-		@unknown default:
-			resource = nil
-		}
-
+	private func defineThreadFunction(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, environment env: CNEnvironment, console cons: CNConsole, config conf: KEConfig) {
 		/* Thread */
 		let thfunc: @convention(block) (_ nameval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue = {
 			(_ nameval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue in
@@ -556,15 +543,10 @@ open class KLCompiler: KECompiler
 			   let infile  = KLCompiler.vallueToFileStream(value: inval),
 			   let outfile = KLCompiler.vallueToFileStream(value: outval),
 			   let errfile = KLCompiler.vallueToFileStream(value: errval) {
-				if let res = resource {
-					let srcfile   = KESourceFile.thread(name, res)
-					let threadobj = KLThreadObject(sourceFile: srcfile, processManager: procmgr, input:  infile, output: outfile, error: errfile, environment: env, config: conf)
-					let thread    = KLThread(thread: threadobj)
-					let _         = procmgr.addProcess(process: threadobj)
-					return JSValue(object: thread, in: ctxt)
-				} else {
-					cons.error(string: "The jspgk file is required to execute thread\n")
-				}
+				let threadobj = KLThreadObject(threadName: name, resource: res, processManager: procmgr, input:  infile, output: outfile, error: errfile, environment: env, config: conf)
+				let thread    = KLThread(thread: threadobj)
+				let _         = procmgr.addProcess(process: threadobj)
+				return JSValue(object: thread, in: ctxt)
 			} else {
 				cons.error(string: "Invalid parameters for Thread function\n")
 			}
@@ -578,19 +560,30 @@ open class KLCompiler: KECompiler
 			if let infile  = KLCompiler.vallueToFileStream(value: inval),
 			   let outfile = KLCompiler.vallueToFileStream(value: outval),
 			   let errfile = KLCompiler.vallueToFileStream(value: errval) {
-				let srcfile: KESourceFile
+				let srcres: KEResource
 				if let inurl = self.pathToFullPath(path: pathval, environment: env) {
 					switch KEResource.allocateResource(from: inurl) {
 					case .ok(let res):
-						srcfile = .resource(res)
+						srcres = res
 					case .error(let err):
 						NSLog("\(#file) \(err.description)")
 						return JSValue(nullIn: ctxt)
 					}
 				} else {
-					srcfile = .none
+					#if os(OSX)
+					switch KEResource.allocateBySelectFile() {
+					case .ok(let res):
+						srcres = res
+					case .error(let err):
+						NSLog("\(#file) \(err.description)")
+						return JSValue(nullIn: ctxt)
+					}
+					#else
+					NSLog("\(#file) No source file is given")
+					return JSValue(nullIn: ctxt)
+					#endif
 				}
-				let threadobj = KLThreadObject(sourceFile: srcfile, processManager: procmgr, input:  infile, output: outfile, error: errfile, environment: env, config: conf)
+				let threadobj = KLThreadObject(threadName: nil, resource: srcres, processManager: procmgr, input:  infile, output: outfile, error: errfile, environment: env, config: conf)
 				let thread    = KLThread(thread: threadobj)
 				let _         = procmgr.addProcess(process: threadobj)
 				return JSValue(object: thread, in: ctxt)
