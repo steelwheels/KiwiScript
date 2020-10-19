@@ -9,14 +9,6 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-public enum KESourceFile {
-	case none
-	case file(URL)
-	case script(String)			// script
-	case resource(KEResource)
-	case thread(String, KEResource)		// thread name, resource
-}
-
 open class KECompiler
 {
 	public init(){
@@ -65,30 +57,24 @@ open class KECompiler
 	}
 
 	/* Call this afer "CompileBase" method is called */
-	open func compileLibrary(context ctxt: KEContext, sourceFile srcfile: KESourceFile, console cons: CNConsole, config conf: KEConfig) -> Bool {
-		var result = true
+	open func compileLibrary(context ctxt: KEContext, resource res: KEResource, console cons: CNConsole, config conf: KEConfig) -> Bool {
 		/* Compile library */
-		switch srcfile {
-		case .resource(let res):
-			if let libnum = res.countOfLibraries() {
-				for i in 0..<libnum {
-					if let scr = res.loadLibrary(index: i) {
-						let _ = self.compile(context: ctxt, statement: scr, console: cons, config: conf)
+		var result = true
+		if let libnum = res.countOfLibraries() {
+			for i in 0..<libnum {
+				if let scr = res.loadLibrary(index: i) {
+					let _ = self.compile(context: ctxt, statement: scr, console: cons, config: conf)
+				} else {
+					if let fname = res.URLOfLibrary(index: i) {
+						cons.error(string: "Failed to load library: \(fname.absoluteString)\n")
+						result = false
 					} else {
-						if let fname = res.URLOfLibrary(index: i) {
-							cons.error(string: "Failed to load library: \(fname.absoluteString)\n")
-							result = false
-						} else {
-							cons.error(string: "Failed to load file in library section\n")
-							result = false
-						}
+						cons.error(string: "Failed to load file in library section\n")
+						result = false
 					}
 				}
 			}
-		case .none, .script(_), .file(_), .thread(_, _):
-			break
 		}
-
 		return result && (ctxt.errorCount == 0)
 	}
 

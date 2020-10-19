@@ -114,37 +114,6 @@ open class KEResource: CNResource
 	}
 
 	/*
-	 * view section
-	 */
-	public func addView(path pathstr: String){
-		super.add(category: KEResource.ViewsCategory, identifier: KEResource.DefaultIdentifier, path: pathstr)
-	}
-
-	public func countOfViews() -> Int? {
-		return super.count(category: KEResource.ViewsCategory, identifier: KEResource.DefaultIdentifier)
-	}
-
-	public func pathStringOfView(index idx: Int) -> String? {
-		return super.pathString(category: KEResource.ViewsCategory, identifier: KEResource.DefaultIdentifier, index: idx)
-	}
-
-	public func URLOfView(index idx: Int) -> URL? {
-		if let url = super.fullPathURL(category: KEResource.ViewsCategory, identifier: KEResource.DefaultIdentifier, index: idx) {
-			return url
-		} else {
-			return nil
-		}
-	}
-
-	public func loadView(index idx: Int) -> String? {
-		if let script:String = super.load(category: KEResource.ViewsCategory, identifier: KEResource.DefaultIdentifier, index: idx) {
-			return script
-		} else {
-			return nil
-		}
-	}
-
-	/*
 	 * threads
 	 */
 	public func identifiersOfThread() -> Array<String>? {
@@ -169,6 +138,37 @@ open class KEResource: CNResource
 
 	public func loadThread(identifier ident: String) -> String? {
 		if let script:String = super.load(category: KEResource.ThreadsCategory, identifier: ident, index: 0) {
+			return script
+		} else {
+			return nil
+		}
+	}
+
+	/*
+	 * view
+	 */
+	public func identifiersOfView() -> Array<String>? {
+		return super.identifiers(category: KEResource.ViewsCategory)
+	}
+
+	public func setView(identifier ident: String, path pathstr: String){
+		super.set(category: KEResource.ViewsCategory, identifier: ident, path: pathstr)
+	}
+
+	public func pathStringOfView(identifier ident: String) -> String? {
+		return super.pathString(category: KEResource.ViewsCategory, identifier: ident, index: 0)
+	}
+
+	public func URLOfView(identifier ident: String) -> URL? {
+		if let url = super.fullPathURL(category: KEResource.ViewsCategory, identifier: ident, index: 0) {
+			return url
+		} else {
+			return nil
+		}
+	}
+
+	public func loadView(identifier ident: String) -> String? {
+		if let script:String = super.load(category: KEResource.ViewsCategory, identifier: ident, index: 0) {
 			return script
 		} else {
 			return nil

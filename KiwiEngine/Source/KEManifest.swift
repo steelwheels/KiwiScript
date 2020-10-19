@@ -74,6 +74,17 @@ open class KEManifestLoader
 				throw NSError.parseError(message: "threads section must has object property")
 			}
 		}
+		/* Decode: "views" */
+		if let scrsval = data["views"] {
+			if let scrsdict = scrsval.toDictionary() {
+				let fmap = try decodeFileMap(properties: scrsdict)
+				for (ident, path) in fmap {
+					res.setView(identifier: ident, path: path)
+				}
+			} else {
+				throw NSError.parseError(message: "views section must has object property")
+			}
+		}
 	}
 
 	public func decodeFileMap(properties data: Dictionary<String, CNNativeValue>) throws -> Dictionary<String, String> {
