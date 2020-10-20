@@ -39,12 +39,14 @@ public class KHShellThread: CNShellThread
 	}
 
 	private var mContext:			KEContext?
+	private var mResource:			KEResource
 	private var mConfig:			KEConfig
 	private var mChildProcessManager:	CNProcessManager
 	private var mInputMode:			InputMode
 
 	public init(processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, config conf: KEConfig){
 		mContext		= nil
+		mResource		= KEResource(baseURL: Bundle.main.bundleURL)
 		mConfig			= conf
 		mChildProcessManager	= CNProcessManager()
 		mInputMode		= .shellScript
@@ -71,7 +73,7 @@ public class KHShellThread: CNShellThread
 		/* Compile the context */
 		let compiler  = KHShellCompiler()
 		guard compiler.compileBaseAndLibrary(context:		ctxt,
-						     sourceFile: 	.none,
+						     resource: 		mResource,
 						     processManager:	mChildProcessManager,
 						     terminalInfo:	self.terminalInfo,
 						     environment:	self.environment,

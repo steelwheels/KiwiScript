@@ -15,19 +15,20 @@ import Foundation
 public class KHScriptThread: CNThread
 {
 	private var mContext:			KEContext?
+	private var mThreadName:		String?
+	private var mResource:			KEResource
 	private var mChildProcessManager:	CNProcessManager
 	private var mTerminalInfo:		CNTerminalInfo
 	private var mConfig:			KHConfig
-
-	private var mSourceFile:		KESourceFile
 	private var mExceptionCount:		Int
 
-	public init(sourceFile srcfile: KESourceFile, processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, config conf: KHConfig){
+	public init(threadName thname: String?, resource res: KEResource, processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, config conf: KHConfig){
 		mContext		= nil
+		mThreadName		= thname
+		mResource		= res
 		mChildProcessManager	= CNProcessManager()
 		mTerminalInfo		= CNTerminalInfo(width: 80, height: 25)
 		mConfig			= conf
-		mSourceFile		= srcfile
 		mExceptionCount		= 0
 		super.init(processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: env)
 
@@ -53,7 +54,7 @@ public class KHScriptThread: CNThread
 		}
 
 		/* Compile the script */
-		if compile(sourceFile: mSourceFile, processManager: mChildProcessManager, context: ctxt, config: mConfig) {
+		if compile(threadName: mThreadName, resource: mResource, processManager: mChildProcessManager, context: ctxt, config: mConfig) {
 			if mConfig.hasMainFunction {
 				return execOperation(argument: arg, context: ctxt)
 			} else {
@@ -64,44 +65,30 @@ public class KHScriptThread: CNThread
 		}
 	}
 
-	private func compile(sourceFile srcfile: KESourceFile, processManager procmgr: CNProcessManager, context ctxt: KEContext, config conf: KEConfig) -> Bool {
+	private func compile(threadName thname: String?, resource res: KEResource, processManager procmgr: CNProcessManager, context ctxt: KEContext, config conf: KEConfig) -> Bool {
 		/* Compile the context */
 		let compiler = KHShellCompiler()
-		guard compiler.compileBaseAndLibrary(context: ctxt, sourceFile: srcfile, processManager: procmgr, terminalInfo: mTerminalInfo, environment: self.environment, console: self.console, config: conf) else {
+		guard compiler.compileBaseAndLibrary(context: ctxt, resource: res, processManager: procmgr, terminalInfo: mTerminalInfo, environment: self.environment, console: self.console, config: conf) else {
 			console.error(string: "Failed to compile script thread context\n")
 			return false
 		}
 
 		/* Make script */
 		let script: String
-		switch srcfile {
-		case .none:
-			CNLog(logLevel: .error, message: "No script")
-			return false
-		case .file(let url):
-			if let scr = url.loadContents() {
-				script = String(scr)
-			} else {
-				CNLog(logLevel: .error, message: "Failed to load \(url.absoluteString)")
-				return false
-			}
-		case .script(let scr):
-			script = scr
-		case .resource(let res):
-			if let scr = res.loadApplication() {
+		if let name = thname {
+			if let scr = mResource.loadThread(identifier: name) {
 				script = scr
 			} else {
+				CNLog(logLevel: .error, message: "Failed to load thread: \(name)")
 				return false
 			}
-		case .thread(let name, let res):
-			if let scr = res.loadThread(identifier: name) {
+		} else {
+			if let scr = mResource.loadApplication() {
 				script = scr
 			} else {
+				CNLog(logLevel: .error, message: "Failed to load application script")
 				return false
 			}
-		@unknown default:
-			CNLog(logLevel: .error, message: "Unknown script type")
-			return false
 		}
 		let _ = compiler.compile(context: ctxt, statement: script, console: console, config: conf)
 		return hasNoException()
