@@ -38,6 +38,7 @@ open class KEResource: CNResource
 		addCategory(category: KEResource.ApplicationCategory,	loader: mFileLoader)
 		addCategory(category: KEResource.LibrariesCategory,	loader: mFileLoader)
 		addCategory(category: KEResource.ThreadsCategory,	loader: mFileLoader)
+		addCategory(category: KEResource.ViewsCategory, 	loader: mFileLoader)
 	}
 
 	public convenience init(singleFileURL url: URL) {
