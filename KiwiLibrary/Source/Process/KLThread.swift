@@ -19,19 +19,45 @@ import Foundation
 
 public class KLThreadObject: CNThread
 {
+	public enum SourceFile {
+		case application(KEResource)
+		case resource(String, KEResource)	// thread-name, resource
+		case file(URL)				// URL of source file
+	}
+
 	private var mContext:			KEContext
-	private var mChildProcessManager:	CNProcessManager
-	private var mThreadName:		String?
 	private var mResource:			KEResource
+	private var mChildProcessManager:	CNProcessManager
+	private var mSourceFile:		SourceFile
 	private var mTerminalInfo:		CNTerminalInfo
 	private var mConfig:			KEConfig
 
 	public init(threadName thname: String?, resource res: KEResource, processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, config conf: KEConfig) {
 		let vm			= JSVirtualMachine()
 		mContext   		= KEContext(virtualMachine: vm!)
-		mChildProcessManager	= CNProcessManager()
-		mThreadName		= thname
 		mResource		= res
+		mChildProcessManager	= CNProcessManager()
+		if let name = thname {
+			mSourceFile	= .resource(name, res)
+		} else {
+			mSourceFile	= .application(res)
+		}
+		mTerminalInfo		= CNTerminalInfo(width: 80, height: 25)
+		mConfig			= KEConfig(applicationType: conf.applicationType,
+						   doStrict: conf.doStrict,
+						   logLevel: conf.logLevel)
+		super.init(processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: env)
+
+		/* Add to parent manager */
+		procmgr.addChildManager(childManager: mChildProcessManager)
+	}
+
+	public init(scriptURL scrurl: URL, processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, config conf: KEConfig) {
+		let vm			= JSVirtualMachine()
+		mContext   		= KEContext(virtualMachine: vm!)
+		mResource		= KEResource(singleFileURL: scrurl)
+		mChildProcessManager	= CNProcessManager()
+		mSourceFile		= .file(scrurl)
 		mTerminalInfo		= CNTerminalInfo(width: 80, height: 25)
 		mConfig			= KEConfig(applicationType: conf.applicationType,
 						   doStrict: conf.doStrict,
@@ -51,7 +77,6 @@ public class KLThreadObject: CNThread
 	}
 
 	private func compile(processManager procmgr: CNProcessManager, config conf: KEConfig) -> Bool {
-
 		/* Compile */
 		let compiler = KLCompiler()
 		guard compiler.compileBase(context: mContext, terminalInfo: self.mTerminalInfo, environment: self.environment, console: self.console, config: conf) else {
@@ -63,11 +88,19 @@ public class KLThreadObject: CNThread
 
 		/* Load main script */
 		let script: String?
-		if let name = mThreadName {
-			script = mResource.loadThread(identifier: name)
-		} else {
-			script = mResource.loadApplication()
+		switch mSourceFile {
+		case .application(let res):
+			script = res.loadApplication()
+		case .file(let url):
+			if let scr = url.loadContents() {
+				script = scr as String
+			} else {
+				script = nil
+			}
+		case .resource(let thname, let res):
+			script = res.loadThread(identifier: thname)
 		}
+
 		if let scr = script {
 			let _ = compiler.compile(context: mContext, statement: scr, console: console, config: conf)
 		} else {

@@ -26,11 +26,12 @@ public func UTRun(context ctxt: KEContext, console cons: CNFileConsole) -> Bool
 		return false
 	}
 
+
+
 	switch CNFilePath.URLForBundleFile(bundleName: "UnitTestBundle", fileName: "sample-1", ofType: "js") {
 	case .ok(let url):
 		let config    = KEConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
-		let srcfile   = KESourceFile.file(url)
-		let threadobj = KLThreadObject(sourceFile: srcfile, processManager: manager, input: instrm, output: outstrm, error: errstrm, environment: env, config: config)
+		let threadobj = KLThreadObject(scriptURL: url, processManager: manager, input: instrm, output: outstrm, error: errstrm, environment: env, config: config)
 		let thread    = KLThread(thread: threadobj)
 		thread.start(args)
 		/* Wait until exist */

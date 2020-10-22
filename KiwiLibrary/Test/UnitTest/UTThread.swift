@@ -38,13 +38,12 @@ public func UTThread(context ctxt: KEContext, processManager procmgr: CNProcessM
 		let text = resource.toText()
 		text.print(console: cons, terminal: "")
 
-		let srcfile:	KESourceFile		= .thread("sample0", resource)
 		let instrm: 	CNFileStream		= .fileHandle(cons.inputHandle)
 		let outstrm:	CNFileStream		= .fileHandle(cons.outputHandle)
 		let errstrm:	CNFileStream		= .fileHandle(cons.errorHandle)
 		let env:     	CNEnvironment		= CNEnvironment()
 		let config   = KEConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
-		let threadobj = KLThreadObject(sourceFile: srcfile, processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: env, config: config)
+		let threadobj = KLThreadObject(threadName: "sample0", resource: resource, processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: env, config: config)
 		let thread    = KLThread(thread: threadobj)
 
 		/* Start thread */

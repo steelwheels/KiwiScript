@@ -15,6 +15,7 @@ public func main()
 {
 	let filecons = CNFileConsole()
 	let terminfo = CNTerminalInfo(width: 80, height: 25)
+	let resource = KEResource(baseURL: Bundle.main.bundleURL)
 	let env      = CNEnvironment()
 	let config   = KEConfig(applicationType: .terminal, doStrict: true, logLevel: .warning)
 	
@@ -32,7 +33,7 @@ public func main()
 	} else {
 		filecons.print(string: "  -> Compiler: NG\n")
 	}
-	if compiler.compileLibrary(context: context, sourceFile: .none, processManager: pmanager, environment: env, console: filecons, config: config) {
+	if compiler.compileLibrary(context: context, resource: resource, processManager: pmanager, environment: env, console: filecons, config: config) {
 		filecons.print(string: "  -> Compile Library: OK\n")
 	} else {
 		filecons.print(string: "  -> Compile Library: NG\n")
