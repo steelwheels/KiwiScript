@@ -89,10 +89,6 @@ public func main()
 	filecons.print(string: "/* Unit test for ScriptManager */\n")
 	let result10 = UTScriptManager(console: filecons)
 
-	/* suspend function */
-	filecons.print(string: "/* Unit test for suspend/resume func */\n")
-	let result15 = UTSuspend(context: context, console: filecons)
-
 	/* Thread */
 	filecons.print(string: "/* Unit test for Thread */\n")
 	let result11 = UTThread(context: context, processManager: pmanager, console: filecons, config: config)
@@ -107,7 +103,7 @@ public func main()
 
 	let summary = result0 && result1 && result2 && result3 && result4 && result5
 			&& result6 && result7 && result8 && result9 && result10 && result11
-			&& result12 && result13 && result14 && result15
+			&& result12 && result13 && result14
 	if summary {
 		filecons.print(string: "SUMMARY: OK\n")
 	} else {

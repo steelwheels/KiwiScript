@@ -111,61 +111,6 @@ public class KLThreadObject: CNThread
 		return true
 	}
 
-	private var mDidSelected : Bool = false
-	private var mSelectedURL : URL? = nil
-
-	private func selectInputFile() -> URL? {
-		mSelectedURL	= nil
-		mDidSelected	= false
-		#if os(OSX)
-		switch mConfig.applicationType {
-		case .window:
-			/* open panel to select */
-			CNExecuteInMainThread(doSync: false, execute: {
-				URL.openPanelWithAsync(title: "Select script to execute", selection: .SelectFile, fileTypes: ["js", "jspkg"], callback: {
-					(_ urls: Array<URL>) -> Void in
-					if urls.count >= 1 {
-						self.mSelectedURL = urls[0]
-					}
-					self.mDidSelected = true
-				})
-			})
-			while !self.mDidSelected {
-				usleep(100)
-			}
-		case .terminal:
-			break
-		@unknown default:
-			break
-		}
-		#endif
-		return self.mSelectedURL
-	}
-
-	/*
-	private func loadSourceFile(from url: URL, processManager procmgr: CNProcessManager, config conf: KEConfig) -> String? {
-		let result: String?
-		switch pathExtension(of: url.path) {
-		case "js":
-			result = loadScript(from: url)
-		case "jspkg":
-			let res = KEResource(baseURL: url)
-			let srcfile: KESourceFile = .resource(res)
-			/* Compile */
-			let compiler = KLCompiler()
-			guard compiler.compileBase(context: mContext, terminalInfo: self.mTerminalInfo, environment: self.environment, console: self.console, config: conf) else {
-				return nil
-			}
-			guard compiler.compileLibrary(context: mContext, sourceFile: srcfile, processManager: procmgr, environment: self.environment, console: self.console, config: conf) else {
-				return nil
-			}
-			result = res.loadApplication()
-		default:
-			result = nil
-		}
-		return result
-	}*/
-
 	private func pathExtension(of file: String) -> String {
 		let strobj = NSString(string: file)
 		return strobj.pathExtension

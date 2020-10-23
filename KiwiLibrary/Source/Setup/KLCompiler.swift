@@ -592,14 +592,6 @@ open class KLCompiler: KECompiler
 		}
 		ctxt.set(name: "run", function: runfunc)
 
-		/* wait function: Wait the signal which is given by the other process */
-		let suspendfunc: @convention(block) () -> JSValue = {
-			() -> JSValue in
-			ctxt.suspend()
-			return JSValue(bool: true, in: ctxt)
-		}
-		ctxt.set(name: "suspend", function: suspendfunc)
-
 		#if os(OSX)
 		/* _waitUtilExitAll */
 		let waitExtFunc: @convention(block) (_ procval: JSValue) -> JSValue = {
