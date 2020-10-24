@@ -543,9 +543,8 @@ open class KLCompiler: KECompiler
 			   let infile  = KLCompiler.vallueToFileStream(value: inval),
 			   let outfile = KLCompiler.vallueToFileStream(value: outval),
 			   let errfile = KLCompiler.vallueToFileStream(value: errval) {
-				let threadobj = KLThreadObject(threadName: name, resource: res, processManager: procmgr, input:  infile, output: outfile, error: errfile, environment: env, config: conf)
-				let thread    = KLThread(thread: threadobj)
-				let _         = procmgr.addProcess(process: threadobj)
+				let thread = KLThread(threadName: name, resource: res, processManager: procmgr, input:  infile, output: outfile, error: errfile, environment: env, config: conf)
+				let _         = procmgr.addProcess(process: thread)
 				return JSValue(object: thread, in: ctxt)
 			} else {
 				cons.error(string: "Invalid parameters for Thread function\n")
@@ -583,9 +582,8 @@ open class KLCompiler: KECompiler
 					return JSValue(nullIn: ctxt)
 					#endif
 				}
-				let threadobj = KLThreadObject(threadName: nil, resource: srcres, processManager: procmgr, input:  infile, output: outfile, error: errfile, environment: env, config: conf)
-				let thread    = KLThread(thread: threadobj)
-				let _         = procmgr.addProcess(process: threadobj)
+				let thread = KLThread(threadName: nil, resource: srcres, processManager: procmgr, input:  infile, output: outfile, error: errfile, environment: env, config: conf)
+				let _      = procmgr.addProcess(process: thread)
 				return JSValue(object: thread, in: ctxt)
 			}
 			return JSValue(nullIn: ctxt)

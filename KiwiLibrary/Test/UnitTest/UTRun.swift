@@ -30,9 +30,8 @@ public func UTRun(context ctxt: KEContext, console cons: CNFileConsole) -> Bool
 
 	switch CNFilePath.URLForBundleFile(bundleName: "UnitTestBundle", fileName: "sample-1", ofType: "js") {
 	case .ok(let url):
-		let config    = KEConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
-		let threadobj = KLThreadObject(scriptURL: url, processManager: manager, input: instrm, output: outstrm, error: errstrm, environment: env, config: config)
-		let thread    = KLThread(thread: threadobj)
+		let config = KEConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
+		let thread = KLThread(scriptURL: url, processManager: manager, input: instrm, output: outstrm, error: errstrm, environment: env, config: config)
 		thread.start(args)
 		/* Wait until exist */
 		let ecode = thread.waitUntilExit()

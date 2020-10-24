@@ -17,7 +17,7 @@ import Foundation
 	func terminate()
 }
 
-public class KLThreadObject: CNThread
+@objc public class KLThread: CNThread, KLThreadProtocol
 {
 	public enum SourceFile {
 		case application(KEResource)
@@ -66,6 +66,11 @@ public class KLThreadObject: CNThread
 
 		/* Add to parent manager */
 		procmgr.addChildManager(childManager: mChildProcessManager)
+	}
+
+	public func start(_ args: JSValue) {
+		let nargs = args.toNativeValue()
+		super.start(argument: nargs)
 	}
 
 	public override func main(argument arg: CNNativeValue) -> Int32 {
@@ -141,8 +146,21 @@ public class KLThreadObject: CNThread
 		}
 		return result
 	}
+
+	public func isRunning() -> Bool {
+		return super.isRunning
+	}
+
+	public override func terminate() {
+		super.terminate()
+	}
+
+	public override func waitUntilExit() -> Int32 {
+		return super.waitUntilExit()
+	}
 }
 
+/*
 @objc public class KLThread: NSObject, KLThreadProtocol
 {
 	private var mThread: KLThreadObject
@@ -176,4 +194,5 @@ public class KLThreadObject: CNThread
 		mThread.errorFileHandle.write(string: str)
 	}
 }
+*/
 
