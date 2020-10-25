@@ -15,7 +15,7 @@ import UIKit
 #endif
 import Foundation
 
-open class KLCompiler: KECompiler
+public class KLCompiler: KECompiler
 {
 	open override func compileBase(context ctxt: KEContext, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
 		/* Expand enum table before they are defined */
@@ -39,15 +39,36 @@ open class KLCompiler: KECompiler
 	}
 
 	open func compileLibrary(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, environment env: CNEnvironment, console cons: CNConsole, config conf: KEConfig) -> Bool {
-		if super.compileLibrary(context: ctxt, resource: res, console: cons, config: conf) {
-			defineThreadFunction(context: ctxt, resource: res, processManager: procmgr, environment: env, console: cons, config: conf)
-			#if os(OSX)
-				defineApplicationFunction(context: ctxt, console: cons, config: conf)
-			#endif
-			return (ctxt.errorCount == 0)
-		} else {
+		guard compileLibraryFiles(context: ctxt, resource: res, processManager: procmgr, environment: env, console: cons, config: conf) else {
 			return false
 		}
+
+		defineThreadFunction(context: ctxt, resource: res, processManager: procmgr, environment: env, console: cons, config: conf)
+		#if os(OSX)
+			defineApplicationFunction(context: ctxt, console: cons, config: conf)
+		#endif
+		return (ctxt.errorCount == 0)
+	}
+
+	private func compileLibraryFiles(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, environment env: CNEnvironment, console cons: CNConsole, config conf: KEConfig) -> Bool {
+		/* Compile library */
+		var result = true
+		if let libnum = res.countOfLibraries() {
+			for i in 0..<libnum {
+				if let scr = res.loadLibrary(index: i) {
+					let _ = self.compile(context: ctxt, statement: scr, console: cons, config: conf)
+				} else {
+					if let fname = res.URLOfLibrary(index: i) {
+						cons.error(string: "Failed to load library: \(fname.absoluteString)\n")
+						result = false
+					} else {
+						cons.error(string: "Failed to load file in library section\n")
+						result = false
+					}
+				}
+			}
+		}
+		return result && (ctxt.errorCount == 0)
 	}
 
 	private func addEnumTypes() {
@@ -539,54 +560,16 @@ open class KLCompiler: KECompiler
 		/* Thread */
 		let thfunc: @convention(block) (_ nameval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue = {
 			(_ nameval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue in
-			if let name    = nameval.toString(),
-			   let infile  = KLCompiler.vallueToFileStream(value: inval),
-			   let outfile = KLCompiler.vallueToFileStream(value: outval),
-			   let errfile = KLCompiler.vallueToFileStream(value: errval) {
-				let thread = KLThread(threadName: name, resource: res, processManager: procmgr, input:  infile, output: outfile, error: errfile, environment: env, config: conf)
-				let _         = procmgr.addProcess(process: thread)
-				return JSValue(object: thread, in: ctxt)
-			} else {
-				cons.error(string: "Invalid parameters for Thread function\n")
-			}
-			return JSValue(nullIn: ctxt)
+			let launcher = KLThreadLauncher(context: ctxt, resource: res, processManager: procmgr, environment: env, config: conf)
+			return launcher.run(name: nameval, input: inval, output: outval, error: errval)
 		}
 		ctxt.set(name: "Thread", function: thfunc)
 
 		/* Run */
 		let runfunc: @convention(block) (_ pathval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue = {
 			(_ pathval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue in
-			if let infile  = KLCompiler.vallueToFileStream(value: inval),
-			   let outfile = KLCompiler.vallueToFileStream(value: outval),
-			   let errfile = KLCompiler.vallueToFileStream(value: errval) {
-				let srcres: KEResource
-				if let inurl = self.pathToFullPath(path: pathval, environment: env) {
-					switch KEResource.allocateResource(from: inurl) {
-					case .ok(let res):
-						srcres = res
-					case .error(let err):
-						NSLog("\(#file) \(err.description)")
-						return JSValue(nullIn: ctxt)
-					}
-				} else {
-					#if os(OSX)
-					switch KEResource.allocateBySelectFile() {
-					case .ok(let res):
-						srcres = res
-					case .error(let err):
-						NSLog("\(#file) \(err.description)")
-						return JSValue(nullIn: ctxt)
-					}
-					#else
-					NSLog("\(#file) No source file is given")
-					return JSValue(nullIn: ctxt)
-					#endif
-				}
-				let thread = KLThread(threadName: nil, resource: srcres, processManager: procmgr, input:  infile, output: outfile, error: errfile, environment: env, config: conf)
-				let _      = procmgr.addProcess(process: thread)
-				return JSValue(object: thread, in: ctxt)
-			}
-			return JSValue(nullIn: ctxt)
+			let launcher = KLThreadLauncher(context: ctxt, resource: res, processManager: procmgr, environment: env, config: conf)
+			return launcher.run(path: pathval, input: inval, output: outval, error: errval)
 		}
 		ctxt.set(name: "run", function: runfunc)
 
@@ -675,23 +658,6 @@ open class KLCompiler: KECompiler
 
 	#endif
 
-	private func pathToFullPath(path pathval: JSValue, environment env: CNEnvironment) -> URL? {
-		let pathstr: String
-		if pathval.isURL {
-			pathstr = pathval.toURL().path
-		} else if pathval.isString {
-			pathstr = pathval.toString()
-		} else {
-			return nil
-		}
-		if FileManager.default.isAbsolutePath(pathString: pathstr) {
-			return URL(fileURLWithPath: pathstr)
-		} else {
-			let curdir = env.currentDirectory
-			return URL(fileURLWithPath: pathstr, relativeTo: curdir)
-		}
-	}
-
 	private class func valueToConsole(consoleValue consval: JSValue, context ctxt: KEContext, logConsole logcons: CNConsole) -> CNFileConsole {
 		let opconsole: CNFileConsole
 		if consval.isObject {
@@ -721,17 +687,6 @@ open class KLCompiler: KECompiler
 			return result
 		}
 		cons.error(string: "Invalid URL parameters\n")
-		return nil
-	}
-
-	private class func vallueToFileStream(value val: JSValue) -> CNFileStream? {
-		if let obj = val.toObject() {
-			if let file = obj as? KLFile {
-				return .fileHandle(file.fileHandle)
-			} else if let pipe = obj as? KLPipe {
-				return .pipe(pipe.pipe)
-			}
-		}
 		return nil
 	}
 

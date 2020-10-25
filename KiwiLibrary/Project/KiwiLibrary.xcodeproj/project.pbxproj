@@ -105,6 +105,8 @@
 		05C0379225187019002A9C41 /* Debug.js in Resources */ = {isa = PBXBuildFile; fileRef = 05C0378925186FF3002A9C41 /* Debug.js */; };
 		05C037932518701A002A9C41 /* Math.js in Resources */ = {isa = PBXBuildFile; fileRef = 05C0378825186FF3002A9C41 /* Math.js */; };
 		05C037942518701A002A9C41 /* Operation.js in Resources */ = {isa = PBXBuildFile; fileRef = 05C0378625186FF3002A9C41 /* Operation.js */; };
+		05CFDFE2254505E50089C1AE /* KLThreadLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CFDFE1254505E50089C1AE /* KLThreadLauncher.swift */; };
+		05CFDFE3254505E50089C1AE /* KLThreadLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CFDFE1254505E50089C1AE /* KLThreadLauncher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -241,6 +243,7 @@
 		05C0378825186FF3002A9C41 /* Math.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Math.js; sourceTree = "<group>"; };
 		05C0378925186FF3002A9C41 /* Debug.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Debug.js; sourceTree = "<group>"; };
 		05C0378A25186FF3002A9C41 /* Curses.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Curses.js; sourceTree = "<group>"; };
+		05CFDFE1254505E50089C1AE /* KLThreadLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLThreadLauncher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -427,6 +430,7 @@
 				05A95B462516CFF300775737 /* KLProcess.swift */,
 				05A95B452516CFF300775737 /* KLProcessManager.swift */,
 				05A95B492516CFF300775737 /* KLThread.swift */,
+				05CFDFE1254505E50089C1AE /* KLThreadLauncher.swift */,
 			);
 			path = Process;
 			sourceTree = "<group>";
@@ -748,6 +752,7 @@
 				05A95B942516D08500775737 /* KLContext.swift in Sources */,
 				05A95B6E2516D03300775737 /* KLFileManager.swift in Sources */,
 				05A95B4C2516CFF300775737 /* KLProcessManager.swift in Sources */,
+				05CFDFE2254505E50089C1AE /* KLThreadLauncher.swift in Sources */,
 				05A95B722516D03300775737 /* KLURL.swift in Sources */,
 				05A95B782516D05100775737 /* KLDatabase.swift in Sources */,
 				05A95B922516D08500775737 /* KLValueConverter.swift in Sources */,
@@ -784,6 +789,7 @@
 				05A95B952516D08500775737 /* KLContext.swift in Sources */,
 				05A95B6F2516D03300775737 /* KLFileManager.swift in Sources */,
 				05A95B4D2516CFF300775737 /* KLProcessManager.swift in Sources */,
+				05CFDFE3254505E50089C1AE /* KLThreadLauncher.swift in Sources */,
 				05A95B732516D03300775737 /* KLURL.swift in Sources */,
 				05A95B792516D05100775737 /* KLDatabase.swift in Sources */,
 				05A95B932516D08500775737 /* KLValueConverter.swift in Sources */,

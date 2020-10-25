@@ -17,9 +17,9 @@ import Foundation
 	func terminate()
 }
 
-@objc public class KLThread: CNThread, KLThreadProtocol
+@objc open class KLThread: CNThread, KLThreadProtocol
 {
-	public enum SourceFile {
+	private enum SourceFile {
 		case application(KEResource)
 		case resource(String, KEResource)	// thread-name, resource
 		case file(URL)				// URL of source file
@@ -31,6 +31,9 @@ import Foundation
 	private var mSourceFile:		SourceFile
 	private var mTerminalInfo:		CNTerminalInfo
 	private var mConfig:			KEConfig
+	private var mExceptionCount:		Int
+
+	public var context: KEContext { get { return mContext }}
 
 	public init(threadName thname: String?, resource res: KEResource, processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, config conf: KEConfig) {
 		let vm			= JSVirtualMachine()
@@ -46,6 +49,7 @@ import Foundation
 		mConfig			= KEConfig(applicationType: conf.applicationType,
 						   doStrict: conf.doStrict,
 						   logLevel: conf.logLevel)
+		mExceptionCount		= 0
 		super.init(processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: env)
 
 		/* Add to parent manager */
@@ -62,6 +66,7 @@ import Foundation
 		mConfig			= KEConfig(applicationType: conf.applicationType,
 						   doStrict: conf.doStrict,
 						   logLevel: conf.logLevel)
+		mExceptionCount		= 0
 		super.init(processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: env)
 
 		/* Add to parent manager */
@@ -74,20 +79,26 @@ import Foundation
 	}
 
 	public override func main(argument arg: CNNativeValue) -> Int32 {
-		if compile(processManager: mChildProcessManager, config: mConfig) {
+		if setup(processManager: mChildProcessManager, config: mConfig) {
 			return execOperation(argument: arg)
 		} else {
 			return -1
 		}
 	}
 
-	private func compile(processManager procmgr: CNProcessManager, config conf: KEConfig) -> Bool {
-		/* Compile */
-		let compiler = KLCompiler()
-		guard compiler.compileBase(context: mContext, terminalInfo: self.mTerminalInfo, environment: self.environment, console: self.console, config: conf) else {
-			return false
+	private func setup(processManager procmgr: CNProcessManager, config conf: KEConfig) -> Bool {
+		/* Set exception handler */
+		mContext.exceptionCallback = {
+			[weak self]  (_ excep: KEException) -> Void in
+			if let myself = self {
+				myself.console.error(string: excep.description + "\n")
+				myself.mExceptionCount += 1
+			}
 		}
-		guard compiler.compileLibrary(context: mContext, resource: mResource, processManager: procmgr, environment: self.environment, console: self.console, config: conf) else {
+
+		/* Compile */
+		guard compile(context: mContext, resource: mResource, processManager: mChildProcessManager, terminalInfo: mTerminalInfo, environment: self.environment, console: self.console, config: mConfig) else {
+			console.error(string: "Compile error")
 			return false
 		}
 
@@ -100,17 +111,36 @@ import Foundation
 			if let scr = url.loadContents() {
 				script = scr as String
 			} else {
+				console.error(string: "Failed to load contents: \(url.absoluteString)\n")
 				script = nil
 			}
 		case .resource(let thname, let res):
-			script = res.loadThread(identifier: thname)
+			if let scr = res.loadThread(identifier: thname) {
+				script = scr
+			} else {
+				console.error(string: "Failed to load from resource: name=\(thname)\n")
+				script = nil
+			}
 		}
 
+		/* Execute the script */
 		if let scr = script {
+			let compiler = KECompiler()
 			let _ = compiler.compile(context: mContext, statement: scr, console: console, config: conf)
 		} else {
-			console.error(string: "Failed to load script\n")
-			mResource.toText().print(console: console, terminal: ",")
+			//console.error(string: "Failed to load script\n")
+			//mResource.toText().print(console: console, terminal: ",")
+			return false
+		}
+		return true
+	}
+
+	open func compile(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
+		let compiler = KLCompiler()
+		guard compiler.compileBase(context: ctxt, terminalInfo: terminfo, environment: env, console: cons, config: conf) else {
+			return false
+		}
+		guard compiler.compileLibrary(context: ctxt, resource: res, processManager: procmgr, environment: env, console: cons, config: conf) else {
 			return false
 		}
 		return true
@@ -137,7 +167,10 @@ import Foundation
 			let jsarg = arg.toJSValue(context: mContext)
 			/* Call main function */
 			if let retval = funcval.call(withArguments: [jsarg]) {
-				result = retval.toInt32()
+				let retval = retval.toInt32()
+				if retval == 0 && mExceptionCount == 0 {
+					result = 0
+				}
 			} else {
 				self.console.error(string: "Failed to call main function\n")
 			}
@@ -151,7 +184,7 @@ import Foundation
 		return super.isRunning
 	}
 
-	public override func terminate() {
+	open override func terminate() {
 		super.terminate()
 	}
 
@@ -159,40 +192,3 @@ import Foundation
 		return super.waitUntilExit()
 	}
 }
-
-/*
-@objc public class KLThread: NSObject, KLThreadProtocol
-{
-	private var mThread: KLThreadObject
-
-	public init(thread threadobj: KLThreadObject) {
-		mThread = threadobj
-	}
-
-	public func start(_ arg: JSValue) {
-		let nval = arg.toNativeValue()
-		mThread.start(argument: nval)
-	}
-
-	public func isRunning() -> Bool {
-		return mThread.isRunning
-	}
-
-	public func waitUntilExit() -> Int32 {
-		return mThread.waitUntilExit()
-	}
-
-	public func terminate() {
-		return mThread.terminate()
-	}
-
-	public func print(string str: String) {
-		mThread.outputFileHandle.write(string: str)
-	}
-
-	public func error(string str: String) {
-		mThread.errorFileHandle.write(string: str)
-	}
-}
-*/
-
