@@ -12,7 +12,7 @@ import KiwiLibrary
 import JavaScriptCore
 import Foundation
 
-public class KHShellThread: CNShellThread
+open class KHShellThread: CNShellThread
 {
 	public enum InputMode {
 		case JavaScript
@@ -38,20 +38,22 @@ public class KHShellThread: CNShellThread
 		}
 	}
 
-	private var mContext:			KEContext?
+	private var mContext:			KEContext
 	private var mResource:			KEResource
 	private var mConfig:			KEConfig
 	private var mChildProcessManager:	CNProcessManager
 	private var mInputMode:			InputMode
 
 	public init(processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, config conf: KEConfig){
-		mContext		= nil
+		guard let vm = JSVirtualMachine() else {
+			fatalError("Failed to allocate VM")
+		}
+		mContext		= KEContext(virtualMachine: vm)
 		mResource		= KEResource(baseURL: Bundle.main.bundleURL)
 		mConfig			= conf
 		mChildProcessManager	= CNProcessManager()
 		mInputMode		= .shellScript
-		let compl		= KHComplementor()
-		super.init(processManager: procmgr, input: instrm, output: outstrm, error: errstrm, complementor: compl, environment: env)
+		super.init(processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: env)
 
 		/* Allocate process manager for child processes */
 		procmgr.addChildManager(childManager: mChildProcessManager)
@@ -63,23 +65,9 @@ public class KHShellThread: CNShellThread
 
 	public override func main(argument arg: CNNativeValue) -> Int32
 	{
-		guard let vm = JSVirtualMachine() else {
-			console.error(string: "Failed to allocate VM\n")
-			return -1
-		}
-		let ctxt = KEContext(virtualMachine: vm)
-		mContext = ctxt
-
 		/* Compile the context */
-		let compiler  = KHShellCompiler()
-		guard compiler.compileBaseAndLibrary(context:		ctxt,
-						     resource: 		mResource,
-						     processManager:	mChildProcessManager,
-						     terminalInfo:	self.terminalInfo,
-						     environment:	self.environment,
-						     console:		self.console,
-						     config: 		mConfig) else {
-			console.error(string: "Failed to compile script thread context\n")
+		guard compile(context: mContext, resource: mResource, processManager: mChildProcessManager, terminalInfo: self.terminalInfo, environment: self.environment, console: self.console, config: mConfig) else {
+			console.error(string: "Failed to compile\n")
 			return -1
 		}
 
@@ -88,12 +76,13 @@ public class KHShellThread: CNShellThread
 		let rcfile = URL(fileURLWithPath: ".jshrc", relativeTo: rcdir)
 		if FileManager.default.isReadableFile(atPath: rcfile.path) {
 			if let content = rcfile.loadContents() {
-				let _ = compiler.compile(context: ctxt, statement: content as String, console: self.console, config: mConfig)
+				let compiler = KECompiler()
+				let _ = compiler.compile(context: mContext, statement: content as String, console: self.console, config: mConfig)
 			}
 		}
 
 		/* Set exception handler */
-		ctxt.exceptionCallback = {
+		mContext.exceptionCallback = {
 			[weak self]  (_ excep: KEException) -> Void in
 			if let myself = self {
 				let desc = excep.description
@@ -104,12 +93,22 @@ public class KHShellThread: CNShellThread
 		return super.main(argument: arg)
 	}
 
-	open override func execute(command cmd: String) -> Bool {
-		guard let ctxt = mContext else {
-			console.error(string: "No context\n")
+	open func compile(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
+		let libcompiler = KLCompiler()
+		guard libcompiler.compileBase(context: ctxt, terminalInfo: terminfo, environment: env, console: cons, config: conf) else {
 			return false
 		}
+		guard libcompiler.compileLibrary(context: ctxt, resource: res, processManager: procmgr, environment: env, console: cons, config: conf) else {
+			return false
+		}
+		let shcompiler  = KHShellCompiler()
+		guard shcompiler.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, config: conf) else {
+			return false
+		}
+		return true
+	}
 
+	open override func execute(command cmd: String) -> Bool {
 		var result = false
 		if !isEmpty(string: cmd) {
 			/* decode mode */
@@ -124,7 +123,7 @@ public class KHShellThread: CNShellThread
 				let stmts1  = KHCompileShellStatement(statements: stmts0)
 				let script0 = KHGenerateScript(from: stmts1)
 				let script1 = script0.joined(separator: "\n")
-				if let retval = ctxt.evaluateScript(script1) {
+				if let retval = mContext.evaluateScript(script1) {
 					if !retval.isUndefined, let retstr = retval.toString() {
 						self.outputFileHandle.write(string: retstr)
 					}

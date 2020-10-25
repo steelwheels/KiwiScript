@@ -25,8 +25,6 @@
 		05C412F22517590A00F07DB2 /* KHShellParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412E02517590900F07DB2 /* KHShellParser.swift */; };
 		05C412F32517590A00F07DB2 /* KHShellStatement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412E12517590A00F07DB2 /* KHShellStatement.swift */; };
 		05C412F42517590A00F07DB2 /* KHShellStatement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412E12517590A00F07DB2 /* KHShellStatement.swift */; };
-		05C412F52517590A00F07DB2 /* KHComplementor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412E22517590A00F07DB2 /* KHComplementor.swift */; };
-		05C412F62517590A00F07DB2 /* KHComplementor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412E22517590A00F07DB2 /* KHComplementor.swift */; };
 		05C412F72517590A00F07DB2 /* KHScriptThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412E32517590A00F07DB2 /* KHScriptThread.swift */; };
 		05C412F82517590A00F07DB2 /* KHScriptThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412E32517590A00F07DB2 /* KHScriptThread.swift */; };
 		05C412F92517590A00F07DB2 /* KHShellCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412E42517590A00F07DB2 /* KHShellCoder.swift */; };
@@ -112,7 +110,6 @@
 		05C412DF2517590900F07DB2 /* KHConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHConfig.swift; sourceTree = "<group>"; };
 		05C412E02517590900F07DB2 /* KHShellParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHShellParser.swift; sourceTree = "<group>"; };
 		05C412E12517590A00F07DB2 /* KHShellStatement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHShellStatement.swift; sourceTree = "<group>"; };
-		05C412E22517590A00F07DB2 /* KHComplementor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHComplementor.swift; sourceTree = "<group>"; };
 		05C412E32517590A00F07DB2 /* KHScriptThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHScriptThread.swift; sourceTree = "<group>"; };
 		05C412E42517590A00F07DB2 /* KHShellCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHShellCoder.swift; sourceTree = "<group>"; };
 		05FC882725175A7F00301544 /* CoconutShell.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutShell.xcframework; path = ../../../../Library/Frameworks/CoconutShell.xcframework; sourceTree = "<group>"; };
@@ -188,7 +185,6 @@
 		05C412D9251758DA00F07DB2 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				05C412E22517590A00F07DB2 /* KHComplementor.swift */,
 				05C412DF2517590900F07DB2 /* KHConfig.swift */,
 				05C412DE2517590900F07DB2 /* KHPreference.swift */,
 				05C412E32517590A00F07DB2 /* KHScriptThread.swift */,
@@ -367,7 +363,6 @@
 				05C412EB2517590A00F07DB2 /* KHShellVisitor.swift in Sources */,
 				05C412E72517590A00F07DB2 /* KHShellThread.swift in Sources */,
 				05C412F92517590A00F07DB2 /* KHShellCoder.swift in Sources */,
-				05C412F52517590A00F07DB2 /* KHComplementor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,7 +380,6 @@
 				05C412EC2517590A00F07DB2 /* KHShellVisitor.swift in Sources */,
 				05C412E82517590A00F07DB2 /* KHShellThread.swift in Sources */,
 				05C412FA2517590A00F07DB2 /* KHShellCoder.swift in Sources */,
-				05C412F62517590A00F07DB2 /* KHComplementor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,18 +12,13 @@ import CoconutShell
 import JavaScriptCore
 import Foundation
 
-open class KHShellCompiler: KLCompiler
+public class KHShellCompiler: KECompiler
 {
-	open func compileBaseAndLibrary(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
-		if super.compileBase(context: ctxt, terminalInfo: terminfo, environment: env, console: cons, config: conf) {
-			if super.compileLibrary(context: ctxt, resource: res, processManager: procmgr, environment: env, console: cons, config: conf) {
-				defineGlobalVariables(context: ctxt)
-				defineEnvironmentVariables(environment: env)
-				defineBuiltinFunctions(context: ctxt, processManager: procmgr, environment: env, console: cons)
-				return true
-			}
-		}
-		return false
+	open func compile(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, config conf: KEConfig) -> Bool {
+		defineGlobalVariables(context: ctxt)
+		defineEnvironmentVariables(environment: env)
+		defineBuiltinFunctions(context: ctxt, processManager: procmgr, environment: env)
+		return true
 	}
 
 	private func defineGlobalVariables(context ctxt: KEContext){
@@ -36,7 +31,7 @@ open class KHShellCompiler: KLCompiler
 		env.set(name: "JSH_VERSION", value: .stringValue(verstr))
 	}
 
-	private func defineBuiltinFunctions(context ctxt: KEContext, processManager procmgr: CNProcessManager, environment env: CNEnvironment, console cons: CNConsole) {
+	private func defineBuiltinFunctions(context ctxt: KEContext, processManager procmgr: CNProcessManager, environment env: CNEnvironment) {
 		#if os(OSX)
 			defineSystemFunction(context: ctxt, processManager: procmgr, environment: env)
 		#endif
