@@ -56,28 +56,6 @@ open class KECompiler
 		}
 	}
 
-	/* Call this afer "CompileBase" method is called */
-	open func compileLibrary(context ctxt: KEContext, resource res: KEResource, console cons: CNConsole, config conf: KEConfig) -> Bool {
-		/* Compile library */
-		var result = true
-		if let libnum = res.countOfLibraries() {
-			for i in 0..<libnum {
-				if let scr = res.loadLibrary(index: i) {
-					let _ = self.compile(context: ctxt, statement: scr, console: cons, config: conf)
-				} else {
-					if let fname = res.URLOfLibrary(index: i) {
-						cons.error(string: "Failed to load library: \(fname.absoluteString)\n")
-						result = false
-					} else {
-						cons.error(string: "Failed to load file in library section\n")
-						result = false
-					}
-				}
-			}
-		}
-		return result && (ctxt.errorCount == 0)
-	}
-
 	public func compile(context ctxt: KEContext, statement stmt: String, console cons: CNConsole, config conf: KEConfig) -> JSValue? {
 		switch conf.logLevel {
 		case .nolog, .error, .warning, .debug:
