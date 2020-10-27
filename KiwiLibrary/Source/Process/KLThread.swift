@@ -17,34 +17,34 @@ import Foundation
 	func terminate()
 }
 
+public enum KLSource {
+	case	script(URL)			// URL of the script
+	case	application(KEResource)		// application in resource
+}
+
 @objc open class KLThread: CNThread, KLThreadProtocol
 {
-	private enum SourceFile {
-		case application(KEResource)
-		case resource(String, KEResource)	// thread-name, resource
-		case file(URL)				// URL of source file
-	}
-
 	private var mContext:			KEContext
+	private var mSourceFile:		KLSource
 	private var mResource:			KEResource
 	private var mChildProcessManager:	CNProcessManager
-	private var mSourceFile:		SourceFile
 	private var mTerminalInfo:		CNTerminalInfo
 	private var mConfig:			KEConfig
 	private var mExceptionCount:		Int
 
 	public var context: KEContext { get { return mContext }}
 
-	public init(threadName thname: String?, resource res: KEResource, processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, config conf: KEConfig) {
+	public init(source src: KLSource, processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, config conf: KEConfig) {
 		let vm			= JSVirtualMachine()
 		mContext   		= KEContext(virtualMachine: vm!)
-		mResource		= res
-		mChildProcessManager	= CNProcessManager()
-		if let name = thname {
-			mSourceFile	= .resource(name, res)
-		} else {
-			mSourceFile	= .application(res)
+		mSourceFile		= src
+		switch src {
+		case .script(let url):
+			mResource = KLThread.URLtoResource(url)
+		case .application(let res):
+			mResource = res
 		}
+		mChildProcessManager	= CNProcessManager()
 		mTerminalInfo		= CNTerminalInfo(width: 80, height: 25)
 		mConfig			= KEConfig(applicationType: conf.applicationType,
 						   doStrict: conf.doStrict,
@@ -56,21 +56,20 @@ import Foundation
 		procmgr.addChildManager(childManager: mChildProcessManager)
 	}
 
-	public init(scriptURL scrurl: URL, processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, config conf: KEConfig) {
-		let vm			= JSVirtualMachine()
-		mContext   		= KEContext(virtualMachine: vm!)
-		mResource		= KEResource(singleFileURL: scrurl)
-		mChildProcessManager	= CNProcessManager()
-		mSourceFile		= .file(scrurl)
-		mTerminalInfo		= CNTerminalInfo(width: 80, height: 25)
-		mConfig			= KEConfig(applicationType: conf.applicationType,
-						   doStrict: conf.doStrict,
-						   logLevel: conf.logLevel)
-		mExceptionCount		= 0
-		super.init(processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: env)
-
-		/* Add to parent manager */
-		procmgr.addChildManager(childManager: mChildProcessManager)
+	private static func URLtoResource(_ url: URL) -> KEResource {
+		let result: KEResource
+		switch url.pathExtension {
+		case "jspkg":
+			let resource = KEResource(baseURL: url)
+			let loader = KEManifestLoader()
+			if let err = loader.load(into: resource) {
+				CNLog(logLevel: .error, message: "Failed to load resource: \(err.toString())")
+			}
+			result = resource
+		default:
+			result = KEResource(singleFileURL: url)
+		}
+		return result
 	}
 
 	public func start(_ args: JSValue) {
@@ -103,35 +102,18 @@ import Foundation
 		}
 
 		/* Load main script */
-		let script: String?
-		switch mSourceFile {
-		case .application(let res):
-			script = res.loadApplication()
-		case .file(let url):
-			if let scr = url.loadContents() {
-				script = scr as String
-			} else {
-				console.error(string: "Failed to load contents: \(url.absoluteString)\n")
-				script = nil
-			}
-		case .resource(let thname, let res):
-			if let scr = res.loadThread(identifier: thname) {
-				script = scr
-			} else {
-				console.error(string: "Failed to load from resource: name=\(thname)\n")
-				script = nil
-			}
+		let script: String
+		if let scr = mResource.loadApplication() {
+			script = scr
+		} else {
+			console.error(string: "Failed to load application")
+			return false
 		}
 
 		/* Execute the script */
-		if let scr = script {
-			let compiler = KECompiler()
-			let _ = compiler.compile(context: mContext, statement: scr, console: console, config: conf)
-		} else {
-			//console.error(string: "Failed to load script\n")
-			//mResource.toText().print(console: console, terminal: ",")
-			return false
-		}
+		let compiler = KECompiler()
+		let _ = compiler.compile(context: mContext, statement: script, console: console, config: conf)
+
 		return true
 	}
 

@@ -43,7 +43,12 @@ public func UTThread(context ctxt: KEContext, processManager procmgr: CNProcessM
 		let errstrm:	CNFileStream		= .fileHandle(cons.errorHandle)
 		let env:     	CNEnvironment		= CNEnvironment()
 		let config   = KEConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
-		let thread   = KLThread(threadName: "sample0", resource: resource, processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: env, config: config)
+
+		guard let url = resource.URLOfThread(identifier: "sample0") else {
+			return false
+		}
+
+		let thread   = KLThread(source: .script(url), processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: env, config: config)
 
 		/* Start thread */
 		let arg0   = JSValue(object: "Thread", in: ctxt)
