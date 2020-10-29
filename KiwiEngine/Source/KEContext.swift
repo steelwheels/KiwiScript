@@ -14,14 +14,28 @@ public class KEContext : JSContext
 	public typealias ExceptionCallback =  (_ exception: KEException) -> Void
 
 	public var exceptionCallback	: ExceptionCallback
+	public var mDispatchSemaphore	: DispatchSemaphore?
 	private var mErrorCount		: Int
+
+	private var dispatchSemaphore: DispatchSemaphore {
+		get {
+			if let sem = mDispatchSemaphore {
+				return sem
+			} else {
+				let sem = DispatchSemaphore(value: 0)
+				mDispatchSemaphore = sem
+				return sem
+			}
+		}
+	}
 
 	public override init(virtualMachine vm: JSVirtualMachine) {
 		exceptionCallback = {
 			(_ exception: KEException) -> Void in
 			NSLog("JavaScriptCore [Exception] \(exception.description)")
 		}
-		mErrorCount = 0
+		mDispatchSemaphore	= nil
+		mErrorCount		= 0
 		super.init(virtualMachine: vm)
 
 		/* Set handler */
@@ -63,6 +77,14 @@ public class KEContext : JSContext
 
 	public func getValue(name n:String) -> JSValue? {
 		return self.objectForKeyedSubscript(NSString(string: n))
+	}
+
+	public func suspend() {
+		self.dispatchSemaphore.wait()
+	}
+
+	public func resume() {
+		self.dispatchSemaphore.signal()
 	}
 }
 

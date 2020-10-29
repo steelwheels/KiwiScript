@@ -38,4 +38,13 @@ public class KEEnumType
 	public func add(members memb: Array<Member>){
 		mMembers = memb
 	}
+
+	public func search(byMemberName name: String) -> Int32? {
+		for memb in mMembers {
+			if memb.name == name {
+				return memb.value
+			}
+		}
+		return nil
+	}
 }
