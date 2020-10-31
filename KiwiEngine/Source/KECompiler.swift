@@ -37,24 +37,6 @@ open class KECompiler
 			}
 		}
 	}
-	
-	public func defineSetter(context ctxt: KEContext, instance inst:String, accessType access: CNAccessType, propertyName name:String, console cons: CNConsole, config conf: KEConfig){
-		if access.isReadable {
-			let stmt = "\(inst).__defineGetter__(\"\(name)\", function(   ){ return this.get(\"\(name)\"     ); }) ;\n"
-			let _ = compile(context: ctxt, statement: stmt, console: cons, config: conf)
-		}
-		if access.isWritable {
-			let stmt = "\(inst).__defineSetter__(\"\(name)\", function(val){ return this.set(\"\(name)\", val); }) ;\n"
-			let _ = compile(context: ctxt, statement: stmt, console: cons, config: conf)
-		}
-	}
-
-	public func defineSetters(context ctxt: KEContext, instance inst: String, object obj: KEObject, console cons: CNConsole, config conf: KEConfig) {
-		/* Define setter and getter */
-		for pname in obj.propertyNames {
-			defineSetter(context: ctxt, instance: inst, accessType: .ReadWriteAccess, propertyName: pname, console: cons, config: conf)
-		}
-	}
 
 	public func compile(context ctxt: KEContext, statement stmt: String, console cons: CNConsole, config conf: KEConfig) -> JSValue? {
 		switch conf.logLevel {
