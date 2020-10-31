@@ -63,14 +63,14 @@ public class KEEnumTable
 		])
 		mEnumTypes[acctype.typeName] = acctype
 
-		let axis = KEEnumType(typeName: "Axis")
+		let axis = KEEnumType(typeName: CNAxis.typeName)
 		axis.add(members: [
 			KEEnumType.Member(name: "horizontal",	value: CNAxis.horizontal.rawValue),
 			KEEnumType.Member(name: "vertical",	value: CNAxis.vertical.rawValue)
 		])
 		mEnumTypes[axis.typeName] = axis
 
-		let alignment = KEEnumType(typeName: "Alignment")
+		let alignment = KEEnumType(typeName: CNAlignment.typeName)
 		alignment.add(members: [
 			KEEnumType.Member(name: "leading",	value: CNAlignment.leading.rawValue),
 			KEEnumType.Member(name: "trailing",	value: CNAlignment.trailing.rawValue),
@@ -79,7 +79,7 @@ public class KEEnumTable
 		])
 		mEnumTypes[alignment.typeName] = alignment
 
-		let distribution = KEEnumType(typeName: "Distribution")
+		let distribution = KEEnumType(typeName: CNDistribution.typeName)
 		distribution.add(members: [
 			KEEnumType.Member(name: "fillProportinally",	value: CNDistribution.fillProportinally.rawValue),
 			KEEnumType.Member(name: "fillEqually",		value: CNDistribution.fillEqually.rawValue),

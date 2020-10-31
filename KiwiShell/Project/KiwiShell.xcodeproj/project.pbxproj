@@ -30,21 +30,13 @@
 		05C412F92517590A00F07DB2 /* KHShellCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412E42517590A00F07DB2 /* KHShellCoder.swift */; };
 		05C412FA2517590A00F07DB2 /* KHShellCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412E42517590A00F07DB2 /* KHShellCoder.swift */; };
 		05FC882A25175A7F00301544 /* CoconutShell.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC882725175A7F00301544 /* CoconutShell.xcframework */; };
-		05FC882B25175A7F00301544 /* CoconutShell.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC882725175A7F00301544 /* CoconutShell.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05FC882C25175A7F00301544 /* KiwiEngine.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC882825175A7F00301544 /* KiwiEngine.xcframework */; };
-		05FC882D25175A7F00301544 /* KiwiEngine.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC882825175A7F00301544 /* KiwiEngine.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05FC882E25175A7F00301544 /* KiwiLibrary.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC882925175A7F00301544 /* KiwiLibrary.xcframework */; };
-		05FC882F25175A7F00301544 /* KiwiLibrary.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC882925175A7F00301544 /* KiwiLibrary.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05FC883325175A9100301544 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC883225175A9100301544 /* CoconutData.xcframework */; };
-		05FC883425175A9100301544 /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC883225175A9100301544 /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05FC883625175ACF00301544 /* CoconutShell.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC882725175A7F00301544 /* CoconutShell.xcframework */; };
-		05FC883725175ACF00301544 /* CoconutShell.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC882725175A7F00301544 /* CoconutShell.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05FC883825175ACF00301544 /* KiwiEngine.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC882825175A7F00301544 /* KiwiEngine.xcframework */; };
-		05FC883925175ACF00301544 /* KiwiEngine.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC882825175A7F00301544 /* KiwiEngine.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05FC883A25175ACF00301544 /* KiwiLibrary.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC882925175A7F00301544 /* KiwiLibrary.xcframework */; };
-		05FC883B25175ACF00301544 /* KiwiLibrary.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC882925175A7F00301544 /* KiwiLibrary.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05FC883D25175ADF00301544 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC883225175A9100301544 /* CoconutData.xcframework */; };
-		05FC883E25175ADF00301544 /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC883225175A9100301544 /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,37 +55,6 @@
 			remoteInfo = KiwiShell_iOS;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		05FC883025175A7F00301544 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				05FC882F25175A7F00301544 /* KiwiLibrary.xcframework in Embed Frameworks */,
-				05FC882B25175A7F00301544 /* CoconutShell.xcframework in Embed Frameworks */,
-				05FC882D25175A7F00301544 /* KiwiEngine.xcframework in Embed Frameworks */,
-				05FC883425175A9100301544 /* CoconutData.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		05FC883C25175ACF00301544 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				05FC883B25175ACF00301544 /* KiwiLibrary.xcframework in Embed Frameworks */,
-				05FC883725175ACF00301544 /* CoconutShell.xcframework in Embed Frameworks */,
-				05FC883925175ACF00301544 /* KiwiEngine.xcframework in Embed Frameworks */,
-				05FC883E25175ADF00301544 /* CoconutData.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		05C412C02517583900F07DB2 /* KiwiShell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiShell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -260,7 +221,6 @@
 				05C412BC2517583900F07DB2 /* Sources */,
 				05C412BD2517583900F07DB2 /* Frameworks */,
 				05C412BE2517583900F07DB2 /* Resources */,
-				05FC883025175A7F00301544 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -279,7 +239,6 @@
 				05C412CB2517584F00F07DB2 /* Sources */,
 				05C412CC2517584F00F07DB2 /* Frameworks */,
 				05C412CD2517584F00F07DB2 /* Resources */,
-				05FC883C25175ACF00301544 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

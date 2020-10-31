@@ -32,35 +32,8 @@
 		0540D6652516D20700C5AE52 /* KEError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0540D6502516D20700C5AE52 /* KEError.swift */; };
 		0540D6662516D20700C5AE52 /* KEError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0540D6502516D20700C5AE52 /* KEError.swift */; };
 		0540D66B2516D23100C5AE52 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0540D66A2516D23100C5AE52 /* CoconutData.xcframework */; };
-		0540D66C2516D23100C5AE52 /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0540D66A2516D23100C5AE52 /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0540D6722516D36E00C5AE52 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0540D66A2516D23100C5AE52 /* CoconutData.xcframework */; };
-		0540D6732516D36E00C5AE52 /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0540D66A2516D23100C5AE52 /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		0540D66D2516D23100C5AE52 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				0540D66C2516D23100C5AE52 /* CoconutData.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0540D6742516D36E00C5AE52 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				0540D6732516D36E00C5AE52 /* CoconutData.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0540D62C2516D17300C5AE52 /* KiwiEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -215,7 +188,6 @@
 				0540D6282516D17300C5AE52 /* Sources */,
 				0540D6292516D17300C5AE52 /* Frameworks */,
 				0540D62A2516D17300C5AE52 /* Resources */,
-				0540D66D2516D23100C5AE52 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -234,7 +206,6 @@
 				0540D6372516D18600C5AE52 /* Sources */,
 				0540D6382516D18600C5AE52 /* Frameworks */,
 				0540D6392516D18600C5AE52 /* Resources */,
-				0540D6742516D36E00C5AE52 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
