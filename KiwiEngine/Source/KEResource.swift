@@ -54,6 +54,16 @@ open class KEResource: CNResource
 		super.allocate(category: cname, loader: ldr)
 	}
 
+	public func subset() -> KEResource {
+		let newres = KEResource(baseURL: super.baseURL)
+
+		let srccats:Array<String> = [KEResource.LibrariesCategory, KEResource.ThreadsCategory, KEResource.SubViewsCategory]
+		for srccat in srccats {
+			self.copy(destination: newres, category: srccat)
+		}
+		return newres
+	}
+
 	/*
 	 * application section
 	 */
