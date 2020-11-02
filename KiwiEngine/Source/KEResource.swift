@@ -11,9 +11,10 @@ import Foundation
 open class KEResource: CNResource
 {
 	public static let ApplicationCategory		= "application"
+	public static let ViewCategory			= "view"
 	public static let LibrariesCategory		= "libraries"
-	public static let ViewsCategory			= "views"
 	public static let ThreadsCategory		= "threads"
+	public static let SubViewsCategory		= "subviews"
 
 	public static let DefaultIdentifier		= "_default"
 
@@ -36,9 +37,10 @@ open class KEResource: CNResource
 
 		/* Setup categories */
 		addCategory(category: KEResource.ApplicationCategory,	loader: mFileLoader)
+		addCategory(category: KEResource.ViewCategory, 		loader: mFileLoader)
 		addCategory(category: KEResource.LibrariesCategory,	loader: mFileLoader)
 		addCategory(category: KEResource.ThreadsCategory,	loader: mFileLoader)
-		addCategory(category: KEResource.ViewsCategory, 	loader: mFileLoader)
+		addCategory(category: KEResource.SubViewsCategory,	loader: mFileLoader)
 	}
 
 	public convenience init(singleFileURL url: URL) {
@@ -81,6 +83,33 @@ open class KEResource: CNResource
 
 	public func storeAppilication(script scr: String) {
 		super.store(category: KEResource.ApplicationCategory, identifier: KEResource.DefaultIdentifier, index: 0, content: scr)
+	}
+
+	/*
+	 * view
+	 */
+	public func setView(path pathstr: String){
+		super.set(category: KEResource.ViewCategory, identifier: KEResource.DefaultIdentifier, path: pathstr)
+	}
+
+	public func pathStringOfView() -> String? {
+		return super.pathString(category: KEResource.ViewCategory, identifier: KEResource.DefaultIdentifier, index: 0)
+	}
+
+	public func URLOfView() -> URL? {
+		if let url = super.fullPathURL(category: KEResource.ViewCategory, identifier: KEResource.DefaultIdentifier, index: 0) {
+			return url
+		} else {
+			return nil
+		}
+	}
+
+	public func loadView() -> String? {
+		if let script:String = super.load(category: KEResource.ViewCategory, identifier: KEResource.DefaultIdentifier, index: 0) {
+			return script
+		} else {
+			return nil
+		}
 	}
 
 	/*
@@ -146,30 +175,30 @@ open class KEResource: CNResource
 	}
 
 	/*
-	 * view
+	 * subviews
 	 */
-	public func identifiersOfView() -> Array<String>? {
-		return super.identifiers(category: KEResource.ViewsCategory)
+	public func identifiersOfSubView() -> Array<String>? {
+		return super.identifiers(category: KEResource.SubViewsCategory)
 	}
 
-	public func setView(identifier ident: String, path pathstr: String){
-		super.set(category: KEResource.ViewsCategory, identifier: ident, path: pathstr)
+	public func setSubView(identifier ident: String, path pathstr: String){
+		super.set(category: KEResource.SubViewsCategory, identifier: ident, path: pathstr)
 	}
 
-	public func pathStringOfView(identifier ident: String) -> String? {
-		return super.pathString(category: KEResource.ViewsCategory, identifier: ident, index: 0)
+	public func pathStringOfSubView(identifier ident: String) -> String? {
+		return super.pathString(category: KEResource.SubViewsCategory, identifier: ident, index: 0)
 	}
 
-	public func URLOfView(identifier ident: String) -> URL? {
-		if let url = super.fullPathURL(category: KEResource.ViewsCategory, identifier: ident, index: 0) {
+	public func URLOfSubView(identifier ident: String) -> URL? {
+		if let url = super.fullPathURL(category: KEResource.SubViewsCategory, identifier: ident, index: 0) {
 			return url
 		} else {
 			return nil
 		}
 	}
 
-	public func loadView(identifier ident: String) -> String? {
-		if let script:String = super.load(category: KEResource.ViewsCategory, identifier: ident, index: 0) {
+	public func loadSubview(identifier ident: String) -> String? {
+		if let script:String = super.load(category: KEResource.SubViewsCategory, identifier: ident, index: 0) {
 			return script
 		} else {
 			return nil

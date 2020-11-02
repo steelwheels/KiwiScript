@@ -8,7 +8,7 @@
 import CoconutData
 import Foundation
 
-open class KEManifestLoader
+public class KEManifestLoader
 {
 	public init() {
 
@@ -42,18 +42,25 @@ open class KEManifestLoader
 		}
 	}
 
-	open func decode(resource res: KEResource, properties data: Dictionary<String, CNNativeValue>) throws {
+	private func decode(resource res: KEResource, properties data: Dictionary<String, CNNativeValue>) throws {
 		/* Decode: "application" */
-		if let appval = data["application"] {
+		if let appval = data[KEResource.ApplicationCategory] {
 			if let apppath = appval.toString() {
 				res.setApprication(path: apppath)
 			} else {
-				throw NSError.parseError(message: "application must has array property")
+				throw NSError.parseError(message: "application must has string property")
 			}
 		}
-
+		/* Decode: "view" */
+		if let viewval = data[KEResource.ViewCategory] {
+			if let viewpath = viewval.toString() {
+				res.setView(path: viewpath)
+			} else {
+				throw NSError.parseError(message: "view must has string property")
+			}
+		}
 		/* Decode: "libraries" */
-		if let libval = data["libraries"] {
+		if let libval = data[KEResource.LibrariesCategory] {
 			if let libarr = libval.toArray() {
 				let patharr = try decodeFileArray(arrayValue: libarr)
 				for path in patharr {
@@ -64,7 +71,7 @@ open class KEManifestLoader
 			}
 		}
 		/* Decode: "threads" */
-		if let scrsval = data["threads"] {
+		if let scrsval = data[KEResource.ThreadsCategory] {
 			if let scrsdict = scrsval.toDictionary() {
 				let fmap = try decodeFileMap(properties: scrsdict)
 				for (ident, path) in fmap {
@@ -74,20 +81,20 @@ open class KEManifestLoader
 				throw NSError.parseError(message: "threads section must has object property")
 			}
 		}
-		/* Decode: "views" */
-		if let scrsval = data["views"] {
-			if let scrsdict = scrsval.toDictionary() {
-				let fmap = try decodeFileMap(properties: scrsdict)
+		/* Decode: "subviews" */
+		if let sviewsval = data[KEResource.SubViewsCategory] {
+			if let sviewsdict = sviewsval.toDictionary() {
+				let fmap = try decodeFileMap(properties: sviewsdict)
 				for (ident, path) in fmap {
-					res.setView(identifier: ident, path: path)
+					res.setSubView(identifier: ident, path: path)
 				}
 			} else {
-				throw NSError.parseError(message: "views section must has object property")
+				throw NSError.parseError(message: "subviews section must has object property")
 			}
 		}
 	}
 
-	public func decodeFileMap(properties data: Dictionary<String, CNNativeValue>) throws -> Dictionary<String, String> {
+	private func decodeFileMap(properties data: Dictionary<String, CNNativeValue>) throws -> Dictionary<String, String> {
 		var result: Dictionary<String, String> = [:]
 		for key in data.keys {
 			if let val = data[key] {
@@ -103,7 +110,7 @@ open class KEManifestLoader
 		return result
 	}
 
-	public func decodeFileArray(arrayValue data: Array<CNNativeValue>) throws -> Array<String> {
+	private func decodeFileArray(arrayValue data: Array<CNNativeValue>) throws -> Array<String> {
 		var result: Array<String> = []
 		for elm in data {
 			if let path = elm.toString() {
