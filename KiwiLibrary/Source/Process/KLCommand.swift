@@ -12,46 +12,27 @@ import Foundation
 
 @objc open class KLCommand: NSObject, KLThreadProtocol
 {
-	public typealias EvalFunc = (_ args: Array<JSValue>, _ env: CNEnvironment) -> Int32
+	public typealias EvalFunc = (_ arg: JSValue, _ env: CNEnvironment) -> Int32
 
 	private var mContext:			KEContext
 	private var mFunction: 			EvalFunc
+	private var mConsole:			CNConsole
 	private var mEnvironment:		CNEnvironment
 	private var mTerminationStatus:		Int32
 
-	public init(function efunc: @escaping EvalFunc, context ctxt: KEContext, environment env: CNEnvironment) {
+	public var console: CNConsole { get { return mConsole }}
+
+	public init(function efunc: @escaping EvalFunc, context ctxt: KEContext, console cons: CNConsole, environment env: CNEnvironment) {
 		mFunction 		= efunc
 		mContext		= ctxt
+		mConsole		= cons
 		mEnvironment		= env
 		mTerminationStatus	= -1
 	}
 
-	public func start(_ args: JSValue) {
-		/* get arguments */
-		let params = divideArgs(args)
+	public func start(_ arg: JSValue) {
 		/* Call function */
-		mTerminationStatus = mFunction(params, mEnvironment)
-	}
-
-	private func divideArgs(_ args: JSValue) -> Array<JSValue> {
-		if args.isArray {
-			if let arr = args.toArray() {
-				var result: Array<JSValue> = []
-				for elm in arr {
-					if let val = elm as? JSValue {
-						result.append(val)
-					} else {
-						if let newval = JSValue(object: elm, in: mContext) {
-							result.append(newval)
-						} else {
-							NSLog("Failed to allocate value")
-						}
-					}
-				}
-				return result
-			}
-		}
-		return [args]
+		mTerminationStatus = mFunction(arg, mEnvironment)
 	}
 
 	public func isRunning() -> Bool {
@@ -70,39 +51,37 @@ import Foundation
 
 @objc open class KLCdCommand: KLCommand
 {
-	public init(context ctxt: KEContext, environment env: CNEnvironment) {
+	public init(context ctxt: KEContext, console cons: CNConsole, environment env: CNEnvironment) {
 		super.init(function: {
-			(_ args: Array<JSValue>, _ env: CNEnvironment) -> Int32 in
-			return KLCdCommand.execute(args, env)
-		}, context: ctxt, environment: env)
+			(_ arg: JSValue, _ env: CNEnvironment) -> Int32 in
+			return KLCdCommand.execute(arg, cons, env)
+		}, context: ctxt, console: cons, environment: env)
 	}
 
-	private static func execute(_ args: Array<JSValue>, _ env: CNEnvironment) -> Int32 {
-		var result: Int32 = -1
-		switch args.count {
-		case 0:
-			/* Change to current directory */
+	private static func execute(_ arg: JSValue, _ console: CNConsole, _ env: CNEnvironment) -> Int32 {
+		var result: Int32	= -1
+
+		let fmanager 		= FileManager.default
+		if arg.isString {
+			if let path = arg.toString() {
+				let basedir = env.currentDirectory
+				let newpath = fmanager.fullPath(pathString: path, baseURL: basedir)
+				switch fmanager.checkFileType(pathString: newpath.path) {
+				case .Directory:
+					env.currentDirectory = newpath
+					result = 0 // No error
+				default:
+					console.error(string: "Error: not directory")
+				}
+			} else {
+				console.error(string: "Error: Failed to convert to string")
+			}
+		} else if arg.isNull {
 			let home = CNPreference.shared.userPreference.homeDirectory
 			env.currentDirectory = home
 			result = 0
-		case 1:
-			let fmanager = FileManager.default
-			if args[0].isString {
-				if let path = args[0].toString() {
-					let basedir = env.currentDirectory
-					let newpath = fmanager.fullPath(pathString: path, baseURL: basedir)
-					switch fmanager.checkFileType(pathString: newpath.path) {
-					case .Directory:
-						env.currentDirectory = newpath
-						result = 0 // No error
-					default:
-						break
-					}
-				}
-			}
-			break
-		default:
-			break
+		} else {
+			console.error(string: "Error: Invalid parameter for path")
 		}
 		return result
 	}

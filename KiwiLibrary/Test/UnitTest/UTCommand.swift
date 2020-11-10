@@ -45,14 +45,21 @@ private func UTCdCommand(context ctxt: KEContext, console cons: CNFileConsole, e
 		result = false
 	}
 
+	/* Change directory to "Home" directory */
+	let res3 = execCdCommand(context: ctxt, path: nil, cons: cons, environment: env)
+	if res3 != 0 {
+		cons.print(string: "[Error] cd is failed\n")
+		result = false
+	}
+
 	return result
 }
 
-private func execCdCommand(context ctxt: KEContext, path pstr: String, cons: CNFileConsole, environment env: CNEnvironment) -> Int32 {
-	cons.print(string: "cd command: \(pstr)\n")
+private func execCdCommand(context ctxt: KEContext, path pstr: String?, cons: CNFileConsole, environment env: CNEnvironment) -> Int32 {
+	cons.print(string: "cd command: \(String(describing: pstr))\n")
 	cons.print(string: "(prev) dir \(env.currentDirectory.absoluteString)\n")
 	let cdparam = makeCdParameter(context: ctxt, path: pstr)
-	let cdcmd   = KLCdCommand(context: ctxt, environment: env)
+	let cdcmd   = KLCdCommand(context: ctxt, console: cons, environment: env)
 	cdcmd.start(cdparam)
 	let res = cdcmd.waitUntilExit()
 	cons.print(string: " -> result \(res)\n")
@@ -60,10 +67,9 @@ private func execCdCommand(context ctxt: KEContext, path pstr: String, cons: CNF
 	return res
 }
 
-private func makeCdParameter(context ctxt: KEContext, path pstr: String) -> JSValue {
-	if let jpath  = JSValue(object: pstr, in: ctxt) {
-		let arr = NSArray(array: [jpath])
-		return JSValue(object: arr, in: ctxt)
+private func makeCdParameter(context ctxt: KEContext, path pstr: String?) -> JSValue {
+	if let path = pstr {
+		return JSValue(object: path, in: ctxt)
 	} else {
 		return JSValue(nullIn: ctxt)
 	}
