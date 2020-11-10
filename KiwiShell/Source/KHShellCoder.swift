@@ -51,6 +51,12 @@ private class KHProcessIdConverter: KHShellStatementVisitor
 		return nil
 	}
 
+	open override func visit(cdCommandStatement stmt: KHCdCommandStatement) -> KHSingleStatement? {
+		stmt.processId = processId
+		processId += 1
+		return nil
+	}
+
 	open override func visit(builtinCommandStatement stmt: KHBuiltinCommandStatement) -> KHSingleStatement? {
 		stmt.processId = processId
 		processId += 1
@@ -154,6 +160,20 @@ private class KHCodeConverter: KHShellStatementVisitor
 		let proc  = processName(stmt)
 		let stmt0 = "let \(proc) = run(\(path), \(stmt.inputNameString), \(stmt.outputNameString), \(stmt.errorNameString)) ;"
 		let stmt1 = "\(proc).start(\(arg)) ;"
+		add(statements: [stmt0, stmt1])
+		return nil
+	}
+
+	open override func visit(cdCommandStatement stmt: KHCdCommandStatement) -> KHSingleStatement? {
+		let path: String
+		if let p = stmt.path {
+			path = "\"\(p)\""
+		} else {
+			path = "null"
+		}
+		let proc  = processName(stmt)
+		let stmt0 = "let \(proc) = cdcmd() ;"
+		let stmt1 = "\(proc).start(\(path)) ;"
 		add(statements: [stmt0, stmt1])
 		return nil
 	}

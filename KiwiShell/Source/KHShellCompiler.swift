@@ -14,10 +14,10 @@ import Foundation
 
 public class KHShellCompiler: KECompiler
 {
-	open func compile(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, config conf: KEConfig) -> Bool {
+	open func compile(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, console cons: CNConsole, environment env: CNEnvironment, config conf: KEConfig) -> Bool {
 		defineGlobalVariables(context: ctxt)
 		defineEnvironmentVariables(environment: env)
-		defineBuiltinFunctions(context: ctxt, processManager: procmgr, environment: env)
+		defineBuiltinFunctions(context: ctxt, console: cons, processManager: procmgr, environment: env)
 		return true
 	}
 
@@ -31,10 +31,21 @@ public class KHShellCompiler: KECompiler
 		env.set(name: "JSH_VERSION", value: .stringValue(verstr))
 	}
 
-	private func defineBuiltinFunctions(context ctxt: KEContext, processManager procmgr: CNProcessManager, environment env: CNEnvironment) {
+	private func defineBuiltinFunctions(context ctxt: KEContext, console cons: CNConsole, processManager procmgr: CNProcessManager, environment env: CNEnvironment) {
+		defineCdFunction(context: ctxt, console: cons, environment: env)
 		#if os(OSX)
 			defineSystemFunction(context: ctxt, processManager: procmgr, environment: env)
 		#endif
+	}
+
+	private func defineCdFunction(context ctxt: KEContext, console cons: CNConsole, environment env: CNEnvironment) {
+		/* cd command */
+		let cdfunc: @convention(block) () -> JSValue = {
+			() -> JSValue in
+			let cdcmd = KLCdCommand(context: ctxt, console: cons, environment: env)
+			return JSValue(object: cdcmd, in: ctxt)
+		}
+		ctxt.set(name: "cdcmd", function: cdfunc)
 	}
 
 	/* Define "system" built-in command */

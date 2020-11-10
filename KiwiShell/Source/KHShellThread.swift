@@ -102,7 +102,7 @@ open class KHShellThread: CNShellThread
 			return false
 		}
 		let shcompiler  = KHShellCompiler()
-		guard shcompiler.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, config: conf) else {
+		guard shcompiler.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, console: cons, environment: env, config: conf) else {
 			return false
 		}
 		return true

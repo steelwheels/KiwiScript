@@ -55,6 +55,14 @@ private class KHBuiltinCommandConverter: KHShellStatementConverter
 				let newstmt = KHRunCommandStatement(scriptPath: path, argument: arg)
 				newstmt.importProperties(source: stmt)
 				return newstmt
+			case "cd":
+				var path: String? = nil
+				if let rest = restp {
+					(path, _) = CNStringUtil.cutFirstWord(string: rest)
+				}
+				let newstmt = KHCdCommandStatement(path: path)
+				newstmt.importProperties(source: stmt)
+				return newstmt
 			default:
 				break
 			}

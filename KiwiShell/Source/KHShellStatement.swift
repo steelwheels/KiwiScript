@@ -146,6 +146,32 @@ public class KHRunCommandStatement: KHSingleStatement
 	}
 }
 
+public class KHCdCommandStatement: KHSingleStatement
+{
+	private var mPath:	String?
+
+	public var path: String? { get { return mPath }}
+
+	public init(path pth: String?) {
+		mPath = pth
+	}
+
+	open override func dump(indent idt: Int, to console: CNConsole) {
+		let spaces0 = indentToString(indent: idt)
+		let spaces1 = indentToString(indent: idt)
+		console.print(string: spaces0 + "cd-command: {\n")
+		super.dump(indent: idt+1, to: console)
+		let path: String
+		if let p = mPath {
+			path = p
+		} else {
+			path = "<nil>"
+		}
+		console.print(string: spaces1 + "cd:  \"\(path)\"\n")
+		console.print(string: spaces0 + "}\n")
+	}
+}
+
 public class KHBuiltinCommandStatement: KHSingleStatement
 {
 	private var mScriptURL:	URL
