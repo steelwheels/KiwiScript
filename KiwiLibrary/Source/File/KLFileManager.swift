@@ -27,6 +27,9 @@ import Foundation
 	func homeDirectory() -> JSValue
 	func temporaryDirectory() -> JSValue
 
+	func currentDirectory() -> JSValue
+	func setCurrentDirectory(_ path: JSValue) -> JSValue
+
 	func checkFileType(_ pathstr: JSValue) -> JSValue
 	func uti(_ pathstr: JSValue) -> JSValue
 }
@@ -194,6 +197,37 @@ import Foundation
 		let home = CNPreference.shared.userPreference.homeDirectory
 		let urlobj = KLURL(URL: home, context: mContext)
 		return JSValue(object: urlobj, in: mContext)
+	}
+
+	public func currentDirectory() -> JSValue {
+		let dir    = mEnvironment.currentDirectory
+		let urlobj = KLURL(URL: dir, context: mContext)
+		return JSValue(object: urlobj, in: mContext)
+	}
+
+	public func setCurrentDirectory(_ pathval: JSValue) -> JSValue {
+		let path: URL?
+		let fmanager = FileManager.default
+		if pathval.isURL {
+			path = pathval.toURL()
+		} else if pathval.isString {
+
+			path = fmanager.fullPath(pathString: pathval.toString(), baseURL: mEnvironment.currentDirectory)
+		} else {
+			path = nil
+		}
+		if let url = path {
+			/* Check the URL is accessible directry */
+			var isdir    = ObjCBool(false)
+			if fmanager.fileExists(atPath: url.path, isDirectory: &isdir) {
+				if isdir.boolValue {
+					/* Update current directory */
+					mEnvironment.currentDirectory = url
+					return JSValue(bool: true, in: mContext)
+				}
+			}
+		}
+		return JSValue(bool: false, in: mContext)
 	}
 
 	public func temporaryDirectory() -> JSValue {

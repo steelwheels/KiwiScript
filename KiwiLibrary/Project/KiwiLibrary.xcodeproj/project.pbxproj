@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		051D09E82559914D0083336F /* KLCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D09E72559914D0083336F /* KLCommand.swift */; };
+		051D09E92559914D0083336F /* KLCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D09E72559914D0083336F /* KLCommand.swift */; };
 		053F2C49253BDDCE009CFCA1 /* UTType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F2C48253BDDCE009CFCA1 /* UTType.swift */; };
 		053F2C4F253BDEA8009CFCA1 /* UTURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F2C4E253BDEA8009CFCA1 /* UTURL.swift */; };
 		053F2C55253BE147009CFCA1 /* UTDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F2C54253BE147009CFCA1 /* UTDatabase.swift */; };
@@ -16,6 +18,7 @@
 		0540D6882516D4E100C5AE52 /* KiwiEngine.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0540D6812516D4B300C5AE52 /* KiwiEngine.xcframework */; };
 		0543B051253B3A5D00A9BAA1 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0543B050253B3A5D00A9BAA1 /* main.swift */; };
 		0543B067253B3BF600A9BAA1 /* UTApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0543B066253B3BF600A9BAA1 /* UTApplication.swift */; };
+		056FBE52255A3B8B0069A0C2 /* UTCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FBE51255A3B8B0069A0C2 /* UTCommand.swift */; };
 		05A1F44E253BBAD500D4789F /* UTEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A1F44D253BBAD400D4789F /* UTEnvironment.swift */; };
 		05A1F452253BBBD500D4789F /* UTFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A1F451253BBBD400D4789F /* UTFileManager.swift */; };
 		05A1F456253BC0F500D4789F /* UTFontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A1F455253BC0F500D4789F /* UTFontManager.swift */; };
@@ -149,6 +152,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		051D09E72559914D0083336F /* KLCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLCommand.swift; sourceTree = "<group>"; };
 		053F2C48253BDDCE009CFCA1 /* UTType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTType.swift; sourceTree = "<group>"; };
 		053F2C4E253BDEA8009CFCA1 /* UTURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTURL.swift; sourceTree = "<group>"; };
 		053F2C54253BE147009CFCA1 /* UTDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTDatabase.swift; sourceTree = "<group>"; };
@@ -158,6 +162,7 @@
 		0543B050253B3A5D00A9BAA1 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		0543B058253B3A9F00A9BAA1 /* KiwiLibrary.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiLibrary.xcframework; path = ../../../../Library/Frameworks/KiwiLibrary.xcframework; sourceTree = "<group>"; };
 		0543B066253B3BF600A9BAA1 /* UTApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTApplication.swift; sourceTree = "<group>"; };
+		056FBE51255A3B8B0069A0C2 /* UTCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTCommand.swift; sourceTree = "<group>"; };
 		05A1F44D253BBAD400D4789F /* UTEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTEnvironment.swift; sourceTree = "<group>"; };
 		05A1F451253BBBD400D4789F /* UTFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTFileManager.swift; sourceTree = "<group>"; };
 		05A1F455253BC0F500D4789F /* UTFontManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTFontManager.swift; sourceTree = "<group>"; };
@@ -269,6 +274,7 @@
 			children = (
 				0543B050253B3A5D00A9BAA1 /* main.swift */,
 				0543B066253B3BF600A9BAA1 /* UTApplication.swift */,
+				056FBE51255A3B8B0069A0C2 /* UTCommand.swift */,
 				053F2C54253BE147009CFCA1 /* UTDatabase.swift */,
 				05A1F44D253BBAD400D4789F /* UTEnvironment.swift */,
 				05A1F451253BBBD400D4789F /* UTFileManager.swift */,
@@ -397,6 +403,7 @@
 			isa = PBXGroup;
 			children = (
 				05A95B442516CFF300775737 /* KLApplication.swift */,
+				051D09E72559914D0083336F /* KLCommand.swift */,
 				05A95B482516CFF300775737 /* KLOperationContext.swift */,
 				05A95B472516CFF300775737 /* KLOperationQueue.swift */,
 				05A95B462516CFF300775737 /* KLProcess.swift */,
@@ -692,6 +699,7 @@
 				05A1F49F253BD75A00D4789F /* UTThread.swift in Sources */,
 				05A1F456253BC0F500D4789F /* UTFontManager.swift in Sources */,
 				0543B051253B3A5D00A9BAA1 /* main.swift in Sources */,
+				056FBE52255A3B8B0069A0C2 /* UTCommand.swift in Sources */,
 				05A1F45E253BC23900D4789F /* UTNativeValue.swift in Sources */,
 				05A1F45A253BC19A00D4789F /* UTMath.swift in Sources */,
 				053F2C4F253BDEA8009CFCA1 /* UTURL.swift in Sources */,
@@ -742,6 +750,7 @@
 				05A95B962516D08500775737 /* KLNativeValue.swift in Sources */,
 				05A95B6C2516D03300775737 /* KLPipe.swift in Sources */,
 				05A95B5A2516D01700775737 /* KLPreference.swift in Sources */,
+				051D09E82559914D0083336F /* KLCommand.swift in Sources */,
 				05A95B502516CFF300775737 /* KLOperationQueue.swift in Sources */,
 				05A95B812516D06900775737 /* KLImage.swift in Sources */,
 				05A95B832516D06900775737 /* KLEscapeCode.swift in Sources */,
@@ -779,6 +788,7 @@
 				05A95B972516D08500775737 /* KLNativeValue.swift in Sources */,
 				05A95B6D2516D03300775737 /* KLPipe.swift in Sources */,
 				05A95B5B2516D01700775737 /* KLPreference.swift in Sources */,
+				051D09E92559914D0083336F /* KLCommand.swift in Sources */,
 				05A95B512516CFF300775737 /* KLOperationQueue.swift in Sources */,
 				05A95B822516D06900775737 /* KLImage.swift in Sources */,
 				05A95B842516D06900775737 /* KLEscapeCode.swift in Sources */,

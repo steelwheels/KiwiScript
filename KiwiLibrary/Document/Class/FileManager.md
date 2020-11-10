@@ -108,6 +108,32 @@ none
 ### Return value
 The [URL object](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md) which presents the current user's home directory.
 
+## `currentDirectory` method
+Get the URL of current directory
+````
+let url = FileManager.currentDirectory() ;
+````
+
+### Parameter(s)
+none
+
+### Return value
+The [URL object](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md) which presents the current user's current directory.
+
+## `setCurrentDirectory` method
+Set the URL of current directory
+````
+FileManager.setCurrentDirectory(url) ;
+````
+
+### Parameter(s)
+The [URL](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md) or string for the new current directory.
+You can path the relative path string against the current directory.
+
+### Return value
+If the changing current directory succeeded, this value will be true.
+Otherwise this value will be false.
+
 ## `temporaryDirectory` method
 Get the URL of temporary directory of current user.
 ````

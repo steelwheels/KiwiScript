@@ -18,7 +18,14 @@ public func UTFileManager(fileManager manager: KLFileManager, context ctxt: KECo
 	let res1 = printURL(URLValue: manager.temporaryDirectory(), fileManager: manager, console: cons)
 	let res2 = normalizePath(fileManager: manager, context: ctxt, console: cons)
 	let res3 = accessibilityTest(fileManager: manager, context: ctxt, console: cons)
-	return res0 && res1 && res2 && res3
+	let res4 = currentDirectoryTest(fileManager: manager, context: ctxt, console: cons)
+	let summary = res0 && res1 && res2 && res3 && res4
+	if summary {
+		cons.print(string: "UTFileManager ... OK\n")
+	} else {
+		cons.print(string: "UTFileManager ... NG\n")
+	}
+	return summary
 }
 
 private func printURL(URLValue val: JSValue, fileManager manager: KLFileManager, console cons: CNConsole) -> Bool
@@ -109,4 +116,62 @@ private func accessibilityTest(fileManager manager: KLFileManager, context ctxt:
 	}
 	return false
 }
+
+private func printCurrentDirectory(fileManager manager: KLFileManager, console cons: CNConsole) -> Bool {
+	let result: Bool
+	let pathval = manager.currentDirectory()
+	if pathval.isURL {
+		let url = pathval.toURL()
+		cons.print(string: "current directory: \(url.absoluteString)\n")
+		result = true
+	} else {
+		cons.print(string: "Failed to get current director\n")
+		result = false
+	}
+	return result
+}
+
+private func changeCurrentDirectory(fileManager manager: KLFileManager, changePath path: String, context ctxt: KEContext, console cons: CNConsole) -> Bool {
+	let result: Bool
+	let resval = manager.setCurrentDirectory(JSValue(object: path, in: ctxt))
+	if resval.isBoolean {
+		if resval.toBool() {
+			if printCurrentDirectory(fileManager: manager, console: cons) {
+				result = true
+			} else {
+				result = false
+			}
+		} else {
+			cons.print(string: "Invalid result (not true)\n")
+			result = false
+		}
+	} else {
+		cons.print(string: "Invalid result type (not boolean)\n")
+		result = false
+	}
+	return result
+}
+
+private func currentDirectoryTest(fileManager manager: KLFileManager, context ctxt: KEContext, console cons: CNConsole) -> Bool
+{
+	var result = true
+
+	/* Get current directory */
+	if !printCurrentDirectory(fileManager: manager, console: cons) {
+		result = false
+	}
+
+	/* move to parent */
+	if !changeCurrentDirectory(fileManager: manager, changePath: "..", context: ctxt, console: cons) {
+		result = false
+	}
+
+	/* move to "Debug" directory */
+	if !changeCurrentDirectory(fileManager: manager, changePath: "./Debug", context: ctxt, console: cons) {
+		result = false
+	}
+
+	return result
+}
+
 
