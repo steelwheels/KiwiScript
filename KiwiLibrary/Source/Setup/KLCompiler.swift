@@ -42,11 +42,7 @@ public class KLCompiler: KECompiler
 		guard compileLibraryFiles(context: ctxt, resource: res, processManager: procmgr, environment: env, console: cons, config: conf) else {
 			return false
 		}
-
 		defineThreadFunction(context: ctxt, resource: res, processManager: procmgr, environment: env, console: cons, config: conf)
-		#if os(OSX)
-			defineApplicationFunction(context: ctxt, console: cons, config: conf)
-		#endif
 		return (ctxt.errorCount == 0)
 	}
 
@@ -612,33 +608,6 @@ public class KLCompiler: KECompiler
 	case textEdit
 	case safari
 	case other
-	}
-
-	private func defineApplicationFunction(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
-		/* Launch */
-		let launchfunc: @convention(block) (_ docval: JSValue, _ appcal: JSValue) -> JSValue = {
-			(_ docval: JSValue, _ appval: JSValue) -> JSValue in
-
-			let docurl: URL? = KLCompiler.anyToURL(anyValue: docval)
-			let appurl: URL? = KLCompiler.anyToURL(anyValue: appval)
-			if let runapp = CNRemoteApplication.launch(application: appurl, document: docurl) {
-				let newapp: KLApplication
-				switch self.applicationKind(application: runapp) {
-				case .textEdit:
-					let newobj = CNTextEditApplication(application: runapp)
-					newapp     = KLTextEditApplication(textEditApplication: newobj, context: ctxt)
-				case .safari:
-					let newobj = CNSafariApplication(application: runapp)
-					newapp     = KLSafariApplication(safariApplication: newobj, context: ctxt)
-				case .other:
-					let newobj = CNEventReceiverApplication(application: runapp)
-					newapp     = KLApplication(application: newobj, context: ctxt)
-				}
-				return JSValue(object: newapp, in: ctxt)
-			}
-			return JSValue(nullIn: ctxt)
-		}
-		ctxt.set(name: "launch", function: launchfunc)
 	}
 
 	private func applicationKind(application app: NSRunningApplication) -> Application {

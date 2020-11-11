@@ -44,10 +44,6 @@ public func main()
 		return
 	}
 
-	/* Application */
-	filecons.print(string: "/* Unit test for Application */\n")
-	let result0 = UTApplication(context: context, console: filecons)
-
 	/* Database */
 	filecons.print(string: "/* Unit test for Database */\n")
 	let result14 = UTDatabase(context: context, console: filecons)
@@ -105,7 +101,7 @@ public func main()
 	filecons.print(string: "/* Unit test for URL */\n")
 	let result13 = UTURL(fileManager: fmanager, context: context, console: filecons)
 
-	let summary = result0 && result1 && result2 && result3 && result4 && result5
+	let summary = result1 && result2 && result3 && result4 && result5
 			&& result6 && result7 && result8 && result9 && result10 && result11
 			&& result12 && result13 && result14 && result15
 	if summary {
