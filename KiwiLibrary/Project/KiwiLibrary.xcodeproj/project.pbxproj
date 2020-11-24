@@ -9,9 +9,11 @@
 /* Begin PBXBuildFile section */
 		051D09E82559914D0083336F /* KLCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D09E72559914D0083336F /* KLCommand.swift */; };
 		051D09E92559914D0083336F /* KLCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D09E72559914D0083336F /* KLCommand.swift */; };
+		05211A87256C7A7D005FB7A2 /* KiwiLibrary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05211A85256C7A7D005FB7A2 /* KiwiLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05211A88256C7A7D005FB7A2 /* KiwiEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05211A86256C7A7D005FB7A2 /* KiwiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05211A8A256C7ADB005FB7A2 /* CoconutData.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05211A89256C7ADB005FB7A2 /* CoconutData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		053F2C49253BDDCE009CFCA1 /* UTType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F2C48253BDDCE009CFCA1 /* UTType.swift */; };
 		053F2C4F253BDEA8009CFCA1 /* UTURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F2C4E253BDEA8009CFCA1 /* UTURL.swift */; };
-		053F2C55253BE147009CFCA1 /* UTDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F2C54253BE147009CFCA1 /* UTDatabase.swift */; };
 		0540D67D2516D4A100C5AE52 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0540D67C2516D4A100C5AE52 /* CoconutData.xcframework */; };
 		0540D6822516D4B300C5AE52 /* KiwiEngine.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0540D6812516D4B300C5AE52 /* KiwiEngine.xcframework */; };
 		0540D6852516D4D200C5AE52 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0540D67C2516D4A100C5AE52 /* CoconutData.xcframework */; };
@@ -69,8 +71,6 @@
 		05A95B712516D03300775737 /* KLNativeValueFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B642516D03300775737 /* KLNativeValueFile.swift */; };
 		05A95B722516D03300775737 /* KLURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B652516D03300775737 /* KLURL.swift */; };
 		05A95B732516D03300775737 /* KLURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B652516D03300775737 /* KLURL.swift */; };
-		05A95B782516D05100775737 /* KLDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B772516D05100775737 /* KLDatabase.swift */; };
-		05A95B792516D05100775737 /* KLDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B772516D05100775737 /* KLDatabase.swift */; };
 		05A95B812516D06900775737 /* KLImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B7D2516D06900775737 /* KLImage.swift */; };
 		05A95B822516D06900775737 /* KLImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B7D2516D06900775737 /* KLImage.swift */; };
 		05A95B832516D06900775737 /* KLEscapeCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B7E2516D06900775737 /* KLEscapeCode.swift */; };
@@ -137,6 +137,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		05211A84256C7A63005FB7A2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				05211A8A256C7ADB005FB7A2 /* CoconutData.framework in CopyFiles */,
+				05211A87256C7A7D005FB7A2 /* KiwiLibrary.framework in CopyFiles */,
+				05211A88256C7A7D005FB7A2 /* KiwiEngine.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0543B04C253B3A5D00A9BAA1 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -150,9 +162,11 @@
 
 /* Begin PBXFileReference section */
 		051D09E72559914D0083336F /* KLCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLCommand.swift; sourceTree = "<group>"; };
+		05211A85256C7A7D005FB7A2 /* KiwiLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiLibrary.framework; path = ../../../../local/Frameworks/macos/KiwiLibrary.framework; sourceTree = "<group>"; };
+		05211A86256C7A7D005FB7A2 /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../local/Frameworks/macos/KiwiEngine.framework; sourceTree = "<group>"; };
+		05211A89256C7ADB005FB7A2 /* CoconutData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutData.framework; path = ../../../../local/Frameworks/macos/CoconutData.framework; sourceTree = "<group>"; };
 		053F2C48253BDDCE009CFCA1 /* UTType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTType.swift; sourceTree = "<group>"; };
 		053F2C4E253BDEA8009CFCA1 /* UTURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTURL.swift; sourceTree = "<group>"; };
-		053F2C54253BE147009CFCA1 /* UTDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTDatabase.swift; sourceTree = "<group>"; };
 		0540D67C2516D4A100C5AE52 /* CoconutData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutData.xcframework; path = ../../../../Library/Frameworks/CoconutData.xcframework; sourceTree = "<group>"; };
 		0540D6812516D4B300C5AE52 /* KiwiEngine.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiEngine.xcframework; path = ../../../../Library/Frameworks/KiwiEngine.xcframework; sourceTree = "<group>"; };
 		0543B04E253B3A5D00A9BAA1 /* UnitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,7 +179,7 @@
 		05A1F459253BC19A00D4789F /* UTMath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTMath.swift; sourceTree = "<group>"; };
 		05A1F45D253BC23800D4789F /* UTNativeValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTNativeValue.swift; sourceTree = "<group>"; };
 		05A1F461253BC2CE00D4789F /* UTOperation1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTOperation1.swift; sourceTree = "<group>"; };
-		05A1F469253BC6E100D4789F /* UnitTestBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTestBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		05A1F469253BC6E100D4789F /* UnitTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		05A1F46B253BC6E200D4789F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05A1F478253BC76E00D4789F /* unit-test-0.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "unit-test-0.js"; sourceTree = "<group>"; };
 		05A1F47E253BCCC400D4789F /* unit-test-1.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "unit-test-1.js"; sourceTree = "<group>"; };
@@ -199,7 +213,6 @@
 		05A95B632516D03300775737 /* KLFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLFileManager.swift; sourceTree = "<group>"; };
 		05A95B642516D03300775737 /* KLNativeValueFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLNativeValueFile.swift; sourceTree = "<group>"; };
 		05A95B652516D03300775737 /* KLURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLURL.swift; sourceTree = "<group>"; };
-		05A95B772516D05100775737 /* KLDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLDatabase.swift; sourceTree = "<group>"; };
 		05A95B7D2516D06900775737 /* KLImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLImage.swift; sourceTree = "<group>"; };
 		05A95B7E2516D06900775737 /* KLEscapeCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLEscapeCode.swift; sourceTree = "<group>"; };
 		05A95B7F2516D06900775737 /* KLChar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLChar.swift; sourceTree = "<group>"; };
@@ -269,7 +282,6 @@
 			children = (
 				0543B050253B3A5D00A9BAA1 /* main.swift */,
 				056FBE51255A3B8B0069A0C2 /* UTCommand.swift */,
-				053F2C54253BE147009CFCA1 /* UTDatabase.swift */,
 				05A1F44D253BBAD400D4789F /* UTEnvironment.swift */,
 				05A1F451253BBBD400D4789F /* UTFileManager.swift */,
 				05A1F455253BC0F500D4789F /* UTFontManager.swift */,
@@ -320,6 +332,9 @@
 		05A95B092516CD0300775737 = {
 			isa = PBXGroup;
 			children = (
+				05211A89256C7ADB005FB7A2 /* CoconutData.framework */,
+				05211A86256C7A7D005FB7A2 /* KiwiEngine.framework */,
+				05211A85256C7A7D005FB7A2 /* KiwiLibrary.framework */,
 				05A95B2E2516CF5100775737 /* Source */,
 				05C0378425186FB0002A9C41 /* Resource */,
 				05A95B172516CD2800775737 /* KiwiLibrary_macOS */,
@@ -336,7 +351,7 @@
 				05A95B152516CD2800775737 /* KiwiLibrary.framework */,
 				05A95B242516CF4500775737 /* KiwiLibrary.framework */,
 				0543B04E253B3A5D00A9BAA1 /* UnitTest */,
-				05A1F469253BC6E100D4789F /* UnitTestBundle.bundle */,
+				05A1F469253BC6E100D4789F /* UnitTest.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -364,7 +379,6 @@
 			children = (
 				05A95B8B2516D06E00775737 /* Base */,
 				05A95B7C2516D05A00775737 /* Data */,
-				05A95B762516D03C00775737 /* Database */,
 				05A95B5E2516D02100775737 /* File */,
 				05A95B582516D00600775737 /* Preference */,
 				05A95B432516CFE000775737 /* Process */,
@@ -427,14 +441,6 @@
 				05A95B652516D03300775737 /* KLURL.swift */,
 			);
 			path = File;
-			sourceTree = "<group>";
-		};
-		05A95B762516D03C00775737 /* Database */ = {
-			isa = PBXGroup;
-			children = (
-				05A95B772516D05100775737 /* KLDatabase.swift */,
-			);
-			path = Database;
 			sourceTree = "<group>";
 		};
 		05A95B7C2516D05A00775737 /* Data */ = {
@@ -548,6 +554,7 @@
 				05A1F465253BC6E100D4789F /* Sources */,
 				05A1F466253BC6E100D4789F /* Frameworks */,
 				05A1F467253BC6E100D4789F /* Resources */,
+				05211A84256C7A63005FB7A2 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -556,7 +563,7 @@
 			);
 			name = UnitTestBundle;
 			productName = UnitTestBundle;
-			productReference = 05A1F469253BC6E100D4789F /* UnitTestBundle.bundle */;
+			productReference = 05A1F469253BC6E100D4789F /* UnitTest.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 		05A95B142516CD2800775737 /* KiwiLibrary_macOS */ = {
@@ -698,7 +705,6 @@
 				053F2C4F253BDEA8009CFCA1 /* UTURL.swift in Sources */,
 				05A1F499253BD36100D4789F /* UTScriptManager.swift in Sources */,
 				05A1F44E253BBAD500D4789F /* UTEnvironment.swift in Sources */,
-				053F2C55253BE147009CFCA1 /* UTDatabase.swift in Sources */,
 				053F2C49253BDDCE009CFCA1 /* UTType.swift in Sources */,
 				05A1F452253BBBD500D4789F /* UTFileManager.swift in Sources */,
 				05A1F462253BC2CE00D4789F /* UTOperation1.swift in Sources */,
@@ -724,7 +730,6 @@
 				05A95B4C2516CFF300775737 /* KLProcessManager.swift in Sources */,
 				05CFDFE2254505E50089C1AE /* KLThreadLauncher.swift in Sources */,
 				05A95B722516D03300775737 /* KLURL.swift in Sources */,
-				05A95B782516D05100775737 /* KLDatabase.swift in Sources */,
 				05A95B922516D08500775737 /* KLValueConverter.swift in Sources */,
 				05A95B522516CFF300775737 /* KLOperationContext.swift in Sources */,
 				05A95B6A2516D03300775737 /* KLFile.swift in Sources */,
@@ -761,7 +766,6 @@
 				05A95B4D2516CFF300775737 /* KLProcessManager.swift in Sources */,
 				05CFDFE3254505E50089C1AE /* KLThreadLauncher.swift in Sources */,
 				05A95B732516D03300775737 /* KLURL.swift in Sources */,
-				05A95B792516D05100775737 /* KLDatabase.swift in Sources */,
 				05A95B932516D08500775737 /* KLValueConverter.swift in Sources */,
 				05A95B532516CFF300775737 /* KLOperationContext.swift in Sources */,
 				05A95B6B2516D03300775737 /* KLFile.swift in Sources */,
@@ -1121,7 +1125,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UnitTestBundle;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = UnitTest;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = bundle;
@@ -1182,7 +1186,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UnitTestBundle;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = UnitTest;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = bundle;

@@ -44,10 +44,6 @@ public func main()
 		return
 	}
 
-	/* Database */
-	filecons.print(string: "/* Unit test for Database */\n")
-	let result14 = UTDatabase(context: context, console: filecons)
-
 	/* Environment */
 	filecons.print(string: "/* Unit test for Environment */\n")
 	let result1 = UTEnvironment(context: context, console: filecons)
@@ -103,7 +99,7 @@ public func main()
 
 	let summary = result1 && result2 && result3 && result4 && result5
 			&& result6 && result7 && result8 && result9 && result10 && result11
-			&& result12 && result13 && result14 && result15
+			&& result12 && result13 && result15
 	if summary {
 		filecons.print(string: "SUMMARY: OK\n")
 	} else {
