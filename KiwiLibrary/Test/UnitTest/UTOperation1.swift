@@ -84,7 +84,7 @@ private func allocateOperation(context ctxt: KEContext, terminalInfo terminfo: C
 					environment:	env,
 					config:		conf)
 
-	switch CNFilePath.URLForBundleFile(bundleName: "UnitTestBundle", fileName: "unit-test-0", ofType: "js") {
+	switch CNFilePath.URLForBundleFile(bundleName: "UnitTest", fileName: "unit-test-0", ofType: "js") {
 	case .ok(let url):
 		if op.compile(userStructs:[strct], userScripts: [url]) {
 			return op

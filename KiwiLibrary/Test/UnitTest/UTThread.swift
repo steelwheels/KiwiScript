@@ -16,7 +16,7 @@ public func UTThread(context ctxt: KEContext, processManager procmgr: CNProcessM
 	var result = false
 
 	let pkgurl: URL
-	switch CNFilePath.URLForBundleFile(bundleName: "UnitTestBundle", fileName: "sample-0", ofType: "jspkg") {
+	switch CNFilePath.URLForBundleFile(bundleName: "UnitTest", fileName: "sample-0", ofType: "jspkg") {
 	case .ok(let url):
 		pkgurl = url
 		cons.print(string: "Source URL: \(pkgurl.absoluteString)\n")

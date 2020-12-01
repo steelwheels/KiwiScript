@@ -106,7 +106,13 @@ public enum KLSource {
 		if let scr = mResource.loadApplication() {
 			script = scr
 		} else {
-			console.error(string: "Failed to load application")
+			let path: String
+			if let p = mResource.pathStringOfApplication() {
+				path = ": \(p)"
+			} else {
+				path = ""
+			}
+			console.error(string: "Failed to load application sctipt\(path)")
 			return false
 		}
 
