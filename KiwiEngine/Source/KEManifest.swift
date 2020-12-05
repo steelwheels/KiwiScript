@@ -92,6 +92,17 @@ public class KEManifestLoader
 				throw NSError.parseError(message: "subviews section must has object property")
 			}
 		}
+		/* Decode: "images" */
+		if let imgval = data[KEResource.ImagesCategory] {
+			if let imgdict = imgval.toDictionary() {
+				let imap = try decodeFileMap(properties: imgdict)
+				for (ident, path) in imap {
+					res.setImage(identifier: ident, path: path)
+				}
+			} else {
+				throw NSError.parseError(message: "libraries section must has array property")
+			}
+		}
 	}
 
 	private func decodeFileMap(properties data: Dictionary<String, CNNativeValue>) throws -> Dictionary<String, String> {
