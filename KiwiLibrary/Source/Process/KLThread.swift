@@ -51,12 +51,6 @@ public enum KLSource {
 						   logLevel: conf.logLevel)
 		mExceptionCount		= 0
 		super.init(processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: env)
-
-		/* Dump resource context */
-		if mConfig.logLevel.isIncluded(in: .detail) {
-			let txt = mResource.toText()
-			NSLog("Loaded resource: " + txt.toStrings(terminal: "").joined(separator: "\n"))
-		}
 		/* Add to parent manager */
 		procmgr.addChildManager(childManager: mChildProcessManager)
 	}
@@ -69,22 +63,26 @@ public enum KLSource {
 			let loader = KEManifestLoader()
 			if let err = loader.load(into: resource) {
 				let msg = "[Error] Failed to load resource: \(err.toString())\n"
-				switch errstrm {
-				case .fileHandle(let hdl):
-					hdl.write(string: msg)
-				case .pipe(let pipe):
-					pipe.fileHandleForWriting.write(string: msg)
-				case .null:
-					break
-				@unknown default:
-					NSLog("Unknown condition")
-				}
+				dumpLog(string: msg, stream: errstrm)
 			}
 			result = resource
 		default:
 			result = KEResource(singleFileURL: url)
 		}
 		return result
+	}
+
+	private static func dumpLog(string str: String, stream strm: CNFileStream) {
+		switch strm {
+		case .fileHandle(let hdl):
+			hdl.write(string: str)
+		case .pipe(let pipe):
+			pipe.fileHandleForWriting.write(string: str)
+		case .null:
+			break
+		@unknown default:
+			NSLog("Unknown case at \(#file)")
+		}
 	}
 
 	public func start(_ args: JSValue) {
