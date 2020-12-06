@@ -40,7 +40,7 @@ public enum KLSource {
 		mSourceFile		= src
 		switch src {
 		case .script(let url):
-			mResource = KLThread.URLtoResource(url)
+			mResource = KLThread.URLtoResource(fileURL: url, error: errstrm)
 		case .application(let res):
 			mResource = res
 		}
@@ -52,18 +52,33 @@ public enum KLSource {
 		mExceptionCount		= 0
 		super.init(processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: env)
 
+		/* Dump resource context */
+		if mConfig.logLevel.isIncluded(in: .detail) {
+			let txt = mResource.toText()
+			NSLog("Loaded resource: " + txt.toStrings(terminal: "").joined(separator: "\n"))
+		}
 		/* Add to parent manager */
 		procmgr.addChildManager(childManager: mChildProcessManager)
 	}
 
-	private static func URLtoResource(_ url: URL) -> KEResource {
+	private static func URLtoResource(fileURL url: URL, error errstrm: CNFileStream) -> KEResource {
 		let result: KEResource
 		switch url.pathExtension {
 		case "jspkg":
 			let resource = KEResource(baseURL: url)
 			let loader = KEManifestLoader()
 			if let err = loader.load(into: resource) {
-				CNLog(logLevel: .error, message: "Failed to load resource: \(err.toString())")
+				let msg = "[Error] Failed to load resource: \(err.toString())\n"
+				switch errstrm {
+				case .fileHandle(let hdl):
+					hdl.write(string: msg)
+				case .pipe(let pipe):
+					pipe.fileHandleForWriting.write(string: msg)
+				case .null:
+					break
+				@unknown default:
+					NSLog("Unknown condition")
+				}
 			}
 			result = resource
 		default:

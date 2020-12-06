@@ -100,7 +100,7 @@ public class KEManifestLoader
 					res.setImage(identifier: ident, path: path)
 				}
 			} else {
-				throw NSError.parseError(message: "libraries section must has array property")
+				throw NSError.parseError(message: "libraries section must has object property")
 			}
 		}
 	}
