@@ -130,6 +130,10 @@ open class KEResource: CNResource
 		}
 	}
 
+	public func storeApplication(script scr: String) {
+		super.store(category: KEResource.ApplicationCategory, identifier: KEResource.DefaultIdentifier, index: 0, content: scr)
+	}
+
 	/*
 	 * view
 	 */
