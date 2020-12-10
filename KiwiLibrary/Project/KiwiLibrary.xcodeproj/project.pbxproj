@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		050D1DB82581C64A00D968ED /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050D1DB72581C64A00D968ED /* CoconutData.framework */; };
+		050D1DB92581C64A00D968ED /* CoconutData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050D1DB72581C64A00D968ED /* CoconutData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		050D1DBC2581C6FF00D968ED /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050D1DBB2581C6FF00D968ED /* KiwiEngine.framework */; };
+		050D1DBD2581C6FF00D968ED /* KiwiEngine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050D1DBB2581C6FF00D968ED /* KiwiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		050D1DBF2581C71000D968ED /* KiwiLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050D1DBE2581C71000D968ED /* KiwiLibrary.framework */; };
+		050D1DC02581C71000D968ED /* KiwiLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050D1DBE2581C71000D968ED /* KiwiLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		051D09E82559914D0083336F /* KLCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D09E72559914D0083336F /* KLCommand.swift */; };
 		051D09E92559914D0083336F /* KLCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D09E72559914D0083336F /* KLCommand.swift */; };
-		05211A87256C7A7D005FB7A2 /* KiwiLibrary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05211A85256C7A7D005FB7A2 /* KiwiLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		05211A88256C7A7D005FB7A2 /* KiwiEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05211A86256C7A7D005FB7A2 /* KiwiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		05211A8A256C7ADB005FB7A2 /* CoconutData.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05211A89256C7ADB005FB7A2 /* CoconutData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		053F2C49253BDDCE009CFCA1 /* UTType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F2C48253BDDCE009CFCA1 /* UTType.swift */; };
 		053F2C4F253BDEA8009CFCA1 /* UTURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F2C4E253BDEA8009CFCA1 /* UTURL.swift */; };
 		0540D67D2516D4A100C5AE52 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0540D67C2516D4A100C5AE52 /* CoconutData.xcframework */; };
@@ -43,8 +46,6 @@
 		05A95B352516CF9900775737 /* KLCurses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B312516CF9900775737 /* KLCurses.swift */; };
 		05A95B3D2516CFD400775737 /* KLCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B3B2516CFD400775737 /* KLCompiler.swift */; };
 		05A95B3E2516CFD400775737 /* KLCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B3B2516CFD400775737 /* KLCompiler.swift */; };
-		05A95B4C2516CFF300775737 /* KLProcessManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B452516CFF300775737 /* KLProcessManager.swift */; };
-		05A95B4D2516CFF300775737 /* KLProcessManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B452516CFF300775737 /* KLProcessManager.swift */; };
 		05A95B4E2516CFF300775737 /* KLProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B462516CFF300775737 /* KLProcess.swift */; };
 		05A95B4F2516CFF300775737 /* KLProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B462516CFF300775737 /* KLProcess.swift */; };
 		05A95B502516CFF300775737 /* KLOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B472516CFF300775737 /* KLOperationQueue.swift */; };
@@ -132,19 +133,27 @@
 			remoteGlobalIDString = 056067FD251759740034F8BD;
 			remoteInfo = Install;
 		};
+		05AAF7782581D14200FBB726 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05A95B0A2516CD0300775737 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0543B04D253B3A5D00A9BAA1;
+			remoteInfo = UnitTest;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		05211A84256C7A63005FB7A2 /* CopyFiles */ = {
+		050D1DBA2581C64A00D968ED /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				05211A8A256C7ADB005FB7A2 /* CoconutData.framework in CopyFiles */,
-				05211A87256C7A7D005FB7A2 /* KiwiLibrary.framework in CopyFiles */,
-				05211A88256C7A7D005FB7A2 /* KiwiEngine.framework in CopyFiles */,
+				050D1DBD2581C6FF00D968ED /* KiwiEngine.framework in Embed Frameworks */,
+				050D1DC02581C71000D968ED /* KiwiLibrary.framework in Embed Frameworks */,
+				050D1DB92581C64A00D968ED /* CoconutData.framework in Embed Frameworks */,
 			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		0543B04C253B3A5D00A9BAA1 /* CopyFiles */ = {
@@ -159,10 +168,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		050D1DB72581C64A00D968ED /* CoconutData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutData.framework; path = ../../../../local/Frameworks/macos/CoconutData.framework; sourceTree = "<group>"; };
+		050D1DBB2581C6FF00D968ED /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../local/Frameworks/macos/KiwiEngine.framework; sourceTree = "<group>"; };
+		050D1DBE2581C71000D968ED /* KiwiLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiLibrary.framework; path = ../../../../local/Frameworks/macos/KiwiLibrary.framework; sourceTree = "<group>"; };
 		051D09E72559914D0083336F /* KLCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLCommand.swift; sourceTree = "<group>"; };
-		05211A85256C7A7D005FB7A2 /* KiwiLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiLibrary.framework; path = ../../../../local/Frameworks/macos/KiwiLibrary.framework; sourceTree = "<group>"; };
-		05211A86256C7A7D005FB7A2 /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../local/Frameworks/macos/KiwiEngine.framework; sourceTree = "<group>"; };
-		05211A89256C7ADB005FB7A2 /* CoconutData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutData.framework; path = ../../../../local/Frameworks/macos/CoconutData.framework; sourceTree = "<group>"; };
 		053F2C48253BDDCE009CFCA1 /* UTType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTType.swift; sourceTree = "<group>"; };
 		053F2C4E253BDEA8009CFCA1 /* UTURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTURL.swift; sourceTree = "<group>"; };
 		0540D67C2516D4A100C5AE52 /* CoconutData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutData.xcframework; path = ../../../../Library/Frameworks/CoconutData.xcframework; sourceTree = "<group>"; };
@@ -197,7 +206,6 @@
 		05A95B302516CF9900775737 /* KLFontManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLFontManager.swift; sourceTree = "<group>"; };
 		05A95B312516CF9900775737 /* KLCurses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLCurses.swift; sourceTree = "<group>"; };
 		05A95B3B2516CFD400775737 /* KLCompiler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLCompiler.swift; sourceTree = "<group>"; };
-		05A95B452516CFF300775737 /* KLProcessManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLProcessManager.swift; sourceTree = "<group>"; };
 		05A95B462516CFF300775737 /* KLProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLProcess.swift; sourceTree = "<group>"; };
 		05A95B472516CFF300775737 /* KLOperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLOperationQueue.swift; sourceTree = "<group>"; };
 		05A95B482516CFF300775737 /* KLOperationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLOperationContext.swift; sourceTree = "<group>"; };
@@ -240,6 +248,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				050D1DBC2581C6FF00D968ED /* KiwiEngine.framework in Frameworks */,
+				050D1DBF2581C71000D968ED /* KiwiLibrary.framework in Frameworks */,
+				050D1DB82581C64A00D968ED /* CoconutData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +278,9 @@
 		0540D67B2516D4A100C5AE52 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				050D1DBE2581C71000D968ED /* KiwiLibrary.framework */,
+				050D1DBB2581C6FF00D968ED /* KiwiEngine.framework */,
+				050D1DB72581C64A00D968ED /* CoconutData.framework */,
 				0543B058253B3A9F00A9BAA1 /* KiwiLibrary.xcframework */,
 				0540D6812516D4B300C5AE52 /* KiwiEngine.xcframework */,
 				0540D67C2516D4A100C5AE52 /* CoconutData.xcframework */,
@@ -329,9 +343,6 @@
 		05A95B092516CD0300775737 = {
 			isa = PBXGroup;
 			children = (
-				05211A89256C7ADB005FB7A2 /* CoconutData.framework */,
-				05211A86256C7A7D005FB7A2 /* KiwiEngine.framework */,
-				05211A85256C7A7D005FB7A2 /* KiwiLibrary.framework */,
 				05A95B2E2516CF5100775737 /* Source */,
 				05C0378425186FB0002A9C41 /* Resource */,
 				05A95B172516CD2800775737 /* KiwiLibrary_macOS */,
@@ -410,7 +421,6 @@
 				05A95B482516CFF300775737 /* KLOperationContext.swift */,
 				05A95B472516CFF300775737 /* KLOperationQueue.swift */,
 				05A95B462516CFF300775737 /* KLProcess.swift */,
-				05A95B452516CFF300775737 /* KLProcessManager.swift */,
 				05A95B492516CFF300775737 /* KLThread.swift */,
 				05CFDFE1254505E50089C1AE /* KLThreadLauncher.swift */,
 			);
@@ -522,6 +532,21 @@
 			passBuildSettingsInEnvironment = 1;
 			productName = Install;
 		};
+		05AAF7712581D13900FBB726 /* Check */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f ../../Script/unit_test.mk";
+			buildConfigurationList = 05AAF7722581D13900FBB726 /* Build configuration list for PBXLegacyTarget "Check" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+				05AAF7792581D14200FBB726 /* PBXTargetDependency */,
+			);
+			name = Check;
+			passBuildSettingsInEnvironment = 1;
+			productName = Check;
+		};
 /* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
@@ -550,7 +575,7 @@
 				05A1F465253BC6E100D4789F /* Sources */,
 				05A1F466253BC6E100D4789F /* Frameworks */,
 				05A1F467253BC6E100D4789F /* Resources */,
-				05211A84256C7A63005FB7A2 /* CopyFiles */,
+				050D1DBA2581C64A00D968ED /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -624,6 +649,9 @@
 						CreatedOnToolsVersion = 12.0;
 						LastSwiftMigration = 1200;
 					};
+					05AAF7712581D13900FBB726 = {
+						CreatedOnToolsVersion = 12.2;
+					};
 				};
 			};
 			buildConfigurationList = 05A95B0D2516CD0300775737 /* Build configuration list for PBXProject "KiwiLibrary" */;
@@ -644,6 +672,7 @@
 				056067FD251759740034F8BD /* Install */,
 				05A1F468253BC6E100D4789F /* UnitTestBundle */,
 				0543B04D253B3A5D00A9BAA1 /* UnitTest */,
+				05AAF7712581D13900FBB726 /* Check */,
 			);
 		};
 /* End PBXProject section */
@@ -723,7 +752,6 @@
 				05A95B852516D06900775737 /* KLChar.swift in Sources */,
 				05A95B942516D08500775737 /* KLContext.swift in Sources */,
 				05A95B6E2516D03300775737 /* KLFileManager.swift in Sources */,
-				05A95B4C2516CFF300775737 /* KLProcessManager.swift in Sources */,
 				05CFDFE2254505E50089C1AE /* KLThreadLauncher.swift in Sources */,
 				05A95B722516D03300775737 /* KLURL.swift in Sources */,
 				05A95B922516D08500775737 /* KLValueConverter.swift in Sources */,
@@ -758,7 +786,6 @@
 				05A95B862516D06900775737 /* KLChar.swift in Sources */,
 				05A95B952516D08500775737 /* KLContext.swift in Sources */,
 				05A95B6F2516D03300775737 /* KLFileManager.swift in Sources */,
-				05A95B4D2516CFF300775737 /* KLProcessManager.swift in Sources */,
 				05CFDFE3254505E50089C1AE /* KLThreadLauncher.swift in Sources */,
 				05A95B732516D03300775737 /* KLURL.swift in Sources */,
 				05A95B932516D08500775737 /* KLValueConverter.swift in Sources */,
@@ -809,6 +836,11 @@
 			target = 056067FD251759740034F8BD /* Install */;
 			targetProxy = 05A1F475253BC6FC00D4789F /* PBXContainerItemProxy */;
 		};
+		05AAF7792581D14200FBB726 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0543B04D253B3A5D00A9BAA1 /* UnitTest */;
+			targetProxy = 05AAF7782581D14200FBB726 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -845,8 +877,8 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
@@ -915,8 +947,8 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = TR2DNF3P93;
@@ -1098,6 +1130,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
@@ -1127,6 +1160,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UnitTestBundle;
 				PRODUCT_NAME = UnitTest;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = bundle;
@@ -1166,6 +1200,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
@@ -1189,6 +1224,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UnitTestBundle;
 				PRODUCT_NAME = UnitTest;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = bundle;
@@ -1295,8 +1331,8 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1379,8 +1415,8 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1585,6 +1621,75 @@
 			};
 			name = Release;
 		};
+		05AAF7732581D13900FBB726 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		05AAF7742581D13900FBB726 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1638,6 +1743,15 @@
 			buildConfigurations = (
 				05A95B2A2516CF4500775737 /* Debug */,
 				05A95B2B2516CF4500775737 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05AAF7722581D13900FBB726 /* Build configuration list for PBXLegacyTarget "Check" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05AAF7732581D13900FBB726 /* Debug */,
+				05AAF7742581D13900FBB726 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

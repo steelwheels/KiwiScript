@@ -1,1352 +1,9 @@
-'use strict' ;
-/* Define Enum: AccessType */
-let AccessType = {
-	read : 0,
-	write : 1,
-	append : 2
-};
-/* Define Enum: Alignment */
-let Alignment = {
-	leading : 0,
-	trailing : 1,
-	fill : 2,
-	center : 3
-};
-/* Define Enum: Authorize */
-let Authorize = {
-	undetermined : 0,
-	denied : 2,
-	authorized : 3
-};
-/* Define Enum: Axis */
-let Axis = {
-	horizontal : 0,
-	vertical : 1
-};
-/* Define Enum: Color */
-let Color = {
-	black : 0,
-	red : 1,
-	green : 2,
-	yellow : 3,
-	blue : 4,
-	magenta : 5,
-	cyan : 6,
-	white : 7,
-	min : 0,
-	max : 7
-};
-/* Define Enum: Distribution */
-let Distribution = {
-	fillProportinally : 0,
-	fillEqually : 1,
-	equalSpacing : 2
-};
-/* Define Enum: ExitCode */
-let ExitCode = {
-	noError : 0,
-	internalError : 1,
-	commaneLineError : 2,
-	syntaxError : 3,
-	exception : 4
-};
-/* Define Enum: FileType */
-let FileType = {
-	notExist : 0,
-	file : 1,
-	directory : 2
-};
-/* Define Enum: LogLevel */
-let LogLevel = {
-	nolog : 0,
-	error : 1,
-	warning : 2,
-	debug : 3,
-	detail : 4
-};
-/* Define Enum: TextAlign */
-let TextAlign = {
-	left : 0,
-	center : 2,
-	right : 1,
-	justfied : 3,
-	normal : 4
-};
-/* Define Enum: TypeID */
-let TypeID = {
-	Undefined : 0,
-	Null : 1,
-	Boolean : 2,
-	Number : 3,
-	String : 4,
-	Date : 5,
-	URL : 6,
-	Image : 7,
-	Array : 8,
-	Dictionary : 9,
-	Range : 10,
-	Rect : 13,
-	Point : 11,
-	Size : 12,
-	Object : 14
-};
-class CancelException extends Error
-{
-        constructor (code){
-                super("CancelException") ;
-                this.code = code ;
-        }
-}
-
-function _cancel() {
-	throw new CancelException(ExitCode.exception) ;
-}
-
-/**
- * Debug.js
- */
-
-function checkVariables(place, ...vars)
-{
-	let result = true ;
-	vars.forEach(function(value, index){
-		if(isUndefined(value)){
-			console.log("check at " + place + ": Undefined at index " + index) ;
-			result = false ;
-		} else if(isNull(value)) {
-			console.log("check at " + place + ": Null at index " + index) ;
-			result = false ;
-		}
-	}) ;
-	return result ;
-}
-/* Math.js */
-
-/* randomInt: Get random integer value between min and max */
-Math.randomInt = function(min, max) {
-  const range = max - min + 1 ;
-  const rval  = Math.floor(Math.random() * range) ;
-  return rval + min ;
-} ;
-
-/* Convert value to integer */
-function int(value) {
-	return Math.floor(value) ;
-}
-/* CUI.js */
-
-class CObject
-{
-	/* construcor(origin: Point, size: Size) */
-	constructor(origin, size) {
-		this.parent				= null ;
-		this.visible			= true ;
-		this.origin 			= origin ;
-		this.size				= size ;
-		this.foregroundColor	= Color.black ;
-		this.backgroundColor	= Color.white ;
-	}
-
-	get frame()		{ return Rect(this.origin.x, this.origin.y, this.size.width, this.size.height) ; }
-	get left()		{ return this.origin.x ; 					}	
-	get right()		{ return this.origin.x + this.size.width ; 	}
-	get top()		{ return this.origin.y ;					}
-	get bottom()	{ return this.origin.y + this.size.height ;	}
-
-	/* func moveTo(x: Int, y: Int) */
-	moveTo(x, y) {
-		this.origin = Point(x, y) ;
-	}
-
-	/* func draw() */
-	draw() {
-		console.error("CObject: Not supported") ;
-	}
-
-	/* func erace() */
-	hide() {
-		let parent = this.parent ;
-		if(parent != null) {
-			Curses.foregroundColor = parent.foregroundColor ;
-			Curses.backgroundColor = parent.backgroundColor ;
-		} else {
-			Curses.foregroundColor = this.foregroundColor ;
-			Curses.backgroundColor = this.backgroundColor ;
-		}
-		let frame = this.frame ;
-		Curses.fill(frame.x, frame.y, frame.width, frame.height, " ") ;
-		this.visible = false ;
-	}
-
-	/* func drawRect(rect: Rect) */
-	drawRect(rect) {
-		/* Setup colors */
-		Curses.foregroundColor = this.foregroundColor ;
-		Curses.backgroundColor = this.backgroundColor ;
-		/* Fill by spaces */
-		Curses.fill(rect.x, rect.y, rect.width, rect.height, " ") ;
-	}
-
-	/* func sectRect(rect0: Rect, rect1: Rect) -> Rect? */
-	sectRect(rect0, rect1) {
-		let left0   = rect0.x ;
-		let right0  = left0 + rect0.width ;
-		let top0    = rect0.y ;
-		let bottom0 = top0 + rect0.height ; 
-
-		let left1   = rect1.x ;
-		let right1  = left1 + rect1.width ;
-		let top1    = rect1.y ;
-		let bottom1 = top1 + rect1.height ; 
-
-		let newleft   = Math.max(left0, left1) ;
-		let newright  = Math.min(right0, right1) ; 
-		let newtop    = Math.max(top0, top1) ;
-		let newbottom = Math.min(bottom0, bottom1) ;
-		if(newleft<newright && newtop<newbottom) {
-			return Rect(newleft, newtop, newright - newleft, newbottom - newtop) ;
-		} else {
-			return null
-		}
-	}
-}
-
-class CComponent extends CObject
-{
-	constructor(origin, size) {
-		super(origin, size) ;
-		this.items = [] ;		/* : Array<CObject> 	*/
-	}
-
-	/* addItem(item: CObject) */
-	addItem(item) {
-		this.items.push(item) ;
-		item.parent = this ;
-	}
-
-	draw() {
-		/* Draw background */
-		this.drawRect(this.frame) ;
-		/* Draw items */
-		for(let item of this.items) {
-			item.draw() ;
-		}
-	}
-}
-
-class CLabel extends CObject
-{
-	/* constructor(origin: Point, size: Size) */
-	constructor(origin, size) {
-		super(origin, size) ;
-		this.text   = "" ;
-	}
-
-	/* func drawInRect(parent: CObject) */
-	draw() {
-		if(this.parent != null) {
-			let sect = this.sectRect(this.frame, this.parent.frame) ;
-			if(sect != null) {
-				this.drawRect(sect) ;
-			}
-		} else {
-			this.drawRect(this.frame) ;
-		}
-	}
-}
-
   -> Compiler: OK
-/* Unit test for Type operation */
-* Test: JSValue(bool):
-type = bool
-native: 1
-native -> js: 1
-duplicate: 1
-* Test: JSValue(Int32):
-type = number
-native: 1
-native -> js: 1
-duplicate: 1
-* Test: JSValue(Double):
-type = number
-native: 1.23
-native -> js: 1.23
-duplicate: 1.23
-* Test: JSValue(String):
-type = string
-native: "Hello, world"
-native -> js: "Hello, world"
-duplicate: "Hello, world"
-* Test: JSValue(Date):
-type = date
-native: 1970-01-01 00:00:00 +0000
-native -> js: 1970-01-01 00:00:00 +0000
-duplicate: 1970-01-01 00:00:00 +0000
-* Test: JSValue(URL):
-type = URL
-native: https://github.com/steelwheels
-native -> js: https://github.com/steelwheels
-duplicate: https://github.com/steelwheels
-* Test: JSValue(Image):
-type = image
-native: {image: name:<unknown>, size:0.0 x 0.0}
-native -> js: {image: name:<unknown>, size:0.0 x 0.0}
-duplicate: {image: name:<unknown>, size:0.0 x 0.0}
-* Test: JSValue(Array):
-type = array
-native: [
-  1
-  1
-  1.23
-  "Hello, world"
-  1970-01-01 00:00:00 +0000
-  https://github.com/steelwheels
-  {image: name:<unknown>, size:0.0 x 0.0}
-]
-native -> js: [
-  1
-  1
-  1.23
-  "Hello, world"
-  1970-01-01 00:00:00 +0000
-  https://github.com/steelwheels
-  {image: name:<unknown>, size:0.0 x 0.0}
-]
-duplicate: [
-  1
-  1
-  1.23
-  "Hello, world"
-  1970-01-01 00:00:00 +0000
-  https://github.com/steelwheels
-  {image: name:<unknown>, size:0.0 x 0.0}
-]
-* Test: JSValue(Dictionary):
-type = dictionary
-native: {
-  bool: 1
-  date: 1970-01-01 00:00:00 +0000
-  double: 1.23
-  image: {image: name:<unknown>, size:0.0 x 0.0}
-  int32: 1
-  string: "Hello, world"
-  url: https://github.com/steelwheels
-}
-native -> js: {
-  bool: 1
-  date: 1970-01-01 00:00:00 +0000
-  double: 1.23
-  image: {image: name:<unknown>, size:0.0 x 0.0}
-  int32: 1
-  string: "Hello, world"
-  url: https://github.com/steelwheels
-}
-duplicate: {
-  bool: 1
-  date: 1970-01-01 00:00:00 +0000
-  double: 1.23
-  image: {image: name:<unknown>, size:0.0 x 0.0}
-  int32: 1
-  string: "Hello, world"
-  url: https://github.com/steelwheels
-}
-* Test: JSValue(Range):
-type = range
-native: {10, 3}
-native -> js: {10, 3}
-duplicate: {10, 3}
-* Test: JSValue(Point):
-type = point
-native: {x:1.0, y:2.0}
-native -> js: {x:1.0, y:2.0}
-duplicate: {x:1.0, y:2.0}
-* Test: JSValue(Size):
-type = size
-native: {width:3.0, height:4.0}
-native -> js: {width:3.0, height:4.0}
-duplicate: {width:3.0, height:4.0}
-* Test: JSValue(Rect):
-type = rect
-native: {x:1.0, y:2.0, width:3.0, height:4.0}
-native -> js: {x:1.0, y:2.0, width:3.0, height:4.0}
-duplicate: {x:1.0, y:2.0, width:3.0, height:4.0}
-/* Unit test for Math operation */
-sqrt(4.0) = 2.0
-asin(1.0/1.41421) = 0.25PI
-acos(1.41421/2.0) = 0.25PI
-/* Unit test for Database */
-read(d0) -> 1234
-write(d2, -5) -> 1
-read(d2) -> -5
-/* Unit test for Operation */
-// Allocate operation
-'use strict' ;
-/* Define Enum: AccessType */
-let AccessType = {
-	read : 0,
-	write : 1,
-	append : 2
-};
-/* Define Enum: Alignment */
-let Alignment = {
-	leading : 0,
-	trailing : 1,
-	fill : 2,
-	center : 3
-};
-/* Define Enum: Authorize */
-let Authorize = {
-	undetermined : 0,
-	denied : 2,
-	authorized : 3
-};
-/* Define Enum: Axis */
-let Axis = {
-	horizontal : 0,
-	vertical : 1
-};
-/* Define Enum: Color */
-let Color = {
-	black : 0,
-	red : 1,
-	green : 2,
-	yellow : 3,
-	blue : 4,
-	magenta : 5,
-	cyan : 6,
-	white : 7,
-	min : 0,
-	max : 7
-};
-/* Define Enum: Distribution */
-let Distribution = {
-	fillProportinally : 0,
-	fillEqually : 1,
-	equalSpacing : 2
-};
-/* Define Enum: ExitCode */
-let ExitCode = {
-	noError : 0,
-	internalError : 1,
-	commaneLineError : 2,
-	syntaxError : 3,
-	exception : 4
-};
-/* Define Enum: FileType */
-let FileType = {
-	notExist : 0,
-	file : 1,
-	directory : 2
-};
-/* Define Enum: LogLevel */
-let LogLevel = {
-	nolog : 0,
-	error : 1,
-	warning : 2,
-	debug : 3,
-	detail : 4
-};
-/* Define Enum: TextAlign */
-let TextAlign = {
-	left : 0,
-	center : 2,
-	right : 1,
-	justfied : 3,
-	normal : 4
-};
-/* Define Enum: TypeID */
-let TypeID = {
-	Undefined : 0,
-	Null : 1,
-	Boolean : 2,
-	Number : 3,
-	String : 4,
-	Date : 5,
-	URL : 6,
-	Image : 7,
-	Array : 8,
-	Dictionary : 9,
-	Range : 10,
-	Rect : 13,
-	Point : 11,
-	Size : 12,
-	Object : 14
-};
-class CancelException extends Error
-{
-        constructor (code){
-                super("CancelException") ;
-                this.code = code ;
-        }
-}
-
-function _cancel() {
-	throw new CancelException(ExitCode.exception) ;
-}
-
-/**
- * Debug.js
- */
-
-function checkVariables(place, ...vars)
-{
-	let result = true ;
-	vars.forEach(function(value, index){
-		if(isUndefined(value)){
-			console.log("check at " + place + ": Undefined at index " + index) ;
-			result = false ;
-		} else if(isNull(value)) {
-			console.log("check at " + place + ": Null at index " + index) ;
-			result = false ;
-		}
-	}) ;
-	return result ;
-}
-/* Math.js */
-
-/* randomInt: Get random integer value between min and max */
-Math.randomInt = function(min, max) {
-  const range = max - min + 1 ;
-  const rval  = Math.floor(Math.random() * range) ;
-  return rval + min ;
-} ;
-
-/* Convert value to integer */
-function int(value) {
-	return Math.floor(value) ;
-}
-/* CUI.js */
-
-class CObject
-{
-	/* construcor(origin: Point, size: Size) */
-	constructor(origin, size) {
-		this.parent				= null ;
-		this.visible			= true ;
-		this.origin 			= origin ;
-		this.size				= size ;
-		this.foregroundColor	= Color.black ;
-		this.backgroundColor	= Color.white ;
-	}
-
-	get frame()		{ return Rect(this.origin.x, this.origin.y, this.size.width, this.size.height) ; }
-	get left()		{ return this.origin.x ; 					}	
-	get right()		{ return this.origin.x + this.size.width ; 	}
-	get top()		{ return this.origin.y ;					}
-	get bottom()	{ return this.origin.y + this.size.height ;	}
-
-	/* func moveTo(x: Int, y: Int) */
-	moveTo(x, y) {
-		this.origin = Point(x, y) ;
-	}
-
-	/* func draw() */
-	draw() {
-		console.error("CObject: Not supported") ;
-	}
-
-	/* func erace() */
-	hide() {
-		let parent = this.parent ;
-		if(parent != null) {
-			Curses.foregroundColor = parent.foregroundColor ;
-			Curses.backgroundColor = parent.backgroundColor ;
-		} else {
-			Curses.foregroundColor = this.foregroundColor ;
-			Curses.backgroundColor = this.backgroundColor ;
-		}
-		let frame = this.frame ;
-		Curses.fill(frame.x, frame.y, frame.width, frame.height, " ") ;
-		this.visible = false ;
-	}
-
-	/* func drawRect(rect: Rect) */
-	drawRect(rect) {
-		/* Setup colors */
-		Curses.foregroundColor = this.foregroundColor ;
-		Curses.backgroundColor = this.backgroundColor ;
-		/* Fill by spaces */
-		Curses.fill(rect.x, rect.y, rect.width, rect.height, " ") ;
-	}
-
-	/* func sectRect(rect0: Rect, rect1: Rect) -> Rect? */
-	sectRect(rect0, rect1) {
-		let left0   = rect0.x ;
-		let right0  = left0 + rect0.width ;
-		let top0    = rect0.y ;
-		let bottom0 = top0 + rect0.height ; 
-
-		let left1   = rect1.x ;
-		let right1  = left1 + rect1.width ;
-		let top1    = rect1.y ;
-		let bottom1 = top1 + rect1.height ; 
-
-		let newleft   = Math.max(left0, left1) ;
-		let newright  = Math.min(right0, right1) ; 
-		let newtop    = Math.max(top0, top1) ;
-		let newbottom = Math.min(bottom0, bottom1) ;
-		if(newleft<newright && newtop<newbottom) {
-			return Rect(newleft, newtop, newright - newleft, newbottom - newtop) ;
-		} else {
-			return null
-		}
-	}
-}
-
-class CComponent extends CObject
-{
-	constructor(origin, size) {
-		super(origin, size) ;
-		this.items = [] ;		/* : Array<CObject> 	*/
-	}
-
-	/* addItem(item: CObject) */
-	addItem(item) {
-		this.items.push(item) ;
-		item.parent = this ;
-	}
-
-	draw() {
-		/* Draw background */
-		this.drawRect(this.frame) ;
-		/* Draw items */
-		for(let item of this.items) {
-			item.draw() ;
-		}
-	}
-}
-
-class CLabel extends CObject
-{
-	/* constructor(origin: Point, size: Size) */
-	constructor(origin, size) {
-		super(origin, size) ;
-		this.text   = "" ;
-	}
-
-	/* func drawInRect(parent: CObject) */
-	draw() {
-		if(this.parent != null) {
-			let sect = this.sectRect(this.frame, this.parent.frame) ;
-			if(sect != null) {
-				this.drawRect(sect) ;
-			}
-		} else {
-			this.drawRect(this.frame) ;
-		}
-	}
-}
-
-/*
- * Operation.js : Define Operation class
- */
-
-/* This class must be inherited */
-class Operation
-{
-	constructor(){
-		this.parameters = {} ;
-	}
-
-	setParameter(name, value){
-		this.parameters[name] = value ;
-	}
-
-	parameter(name){
-		return this.parameters[name] ;
-	}
-
-	main(){
-		try {
-			this.execute() ;
-		} catch(err){
-			return err.code ;
-		}
-	}
-
-	execute(){
-		console.error("[Error] Operation.execute must be override\n") ;
-		return 0 ;
-	}
-
-	cancel(){
-		_cancel() ;
-	}
-}
-
-function _set_operation(op, name, value)
-{
-	op.setParameter(name, value) ;
-}
-
-function _get_operation(op, name)
-{
-	return op.parameter(name) ;
-}
-
-function _exec_operation(op)
-{
-	op.main() ;
-}
-class UTStruct {
-  constructor(object) {
-    this._a = object.a ;
-    this._b = object.b ;
-  }
-  get a() { return this._a ; }
-  set a(newval) { this._a = newval ; }
-  get b() { return this._b ; }
-  set b(newval) { this._b = newval ; }
-  toParameter(){
-    let object = {
-    a: this._a,
-    b: this._b,
-    } ;
-    return object ;
-  }
-}
-/* unit-test-0.js */
-
-class Task extends Operation
-{
-	execute(){
-		console.log("Task: Hello, World !!") ;
-	}
-}
-
-operation = new Task() ;
-
-// Set input
-// Get input
-Input value: 1.23
-// Execute the operation
-// Wait operations are finished
-Task: Hello, World !!
-/* Unit test for Operation2 */
-'use strict' ;
-/* Define Enum: AccessType */
-let AccessType = {
-	read : 0,
-	write : 1,
-	append : 2
-};
-/* Define Enum: Alignment */
-let Alignment = {
-	leading : 0,
-	trailing : 1,
-	fill : 2,
-	center : 3
-};
-/* Define Enum: Authorize */
-let Authorize = {
-	undetermined : 0,
-	denied : 2,
-	authorized : 3
-};
-/* Define Enum: Axis */
-let Axis = {
-	horizontal : 0,
-	vertical : 1
-};
-/* Define Enum: Color */
-let Color = {
-	black : 0,
-	red : 1,
-	green : 2,
-	yellow : 3,
-	blue : 4,
-	magenta : 5,
-	cyan : 6,
-	white : 7,
-	min : 0,
-	max : 7
-};
-/* Define Enum: Distribution */
-let Distribution = {
-	fillProportinally : 0,
-	fillEqually : 1,
-	equalSpacing : 2
-};
-/* Define Enum: ExitCode */
-let ExitCode = {
-	noError : 0,
-	internalError : 1,
-	commaneLineError : 2,
-	syntaxError : 3,
-	exception : 4
-};
-/* Define Enum: FileType */
-let FileType = {
-	notExist : 0,
-	file : 1,
-	directory : 2
-};
-/* Define Enum: LogLevel */
-let LogLevel = {
-	nolog : 0,
-	error : 1,
-	warning : 2,
-	debug : 3,
-	detail : 4
-};
-/* Define Enum: TextAlign */
-let TextAlign = {
-	left : 0,
-	center : 2,
-	right : 1,
-	justfied : 3,
-	normal : 4
-};
-/* Define Enum: TypeID */
-let TypeID = {
-	Undefined : 0,
-	Null : 1,
-	Boolean : 2,
-	Number : 3,
-	String : 4,
-	Date : 5,
-	URL : 6,
-	Image : 7,
-	Array : 8,
-	Dictionary : 9,
-	Range : 10,
-	Rect : 13,
-	Point : 11,
-	Size : 12,
-	Object : 14
-};
-class CancelException extends Error
-{
-        constructor (code){
-                super("CancelException") ;
-                this.code = code ;
-        }
-}
-
-function _cancel() {
-	throw new CancelException(ExitCode.exception) ;
-}
-
-/**
- * Debug.js
- */
-
-function checkVariables(place, ...vars)
-{
-	let result = true ;
-	vars.forEach(function(value, index){
-		if(isUndefined(value)){
-			console.log("check at " + place + ": Undefined at index " + index) ;
-			result = false ;
-		} else if(isNull(value)) {
-			console.log("check at " + place + ": Null at index " + index) ;
-			result = false ;
-		}
-	}) ;
-	return result ;
-}
-/* Math.js */
-
-/* randomInt: Get random integer value between min and max */
-Math.randomInt = function(min, max) {
-  const range = max - min + 1 ;
-  const rval  = Math.floor(Math.random() * range) ;
-  return rval + min ;
-} ;
-
-/* Convert value to integer */
-function int(value) {
-	return Math.floor(value) ;
-}
-/* CUI.js */
-
-class CObject
-{
-	/* construcor(origin: Point, size: Size) */
-	constructor(origin, size) {
-		this.parent				= null ;
-		this.visible			= true ;
-		this.origin 			= origin ;
-		this.size				= size ;
-		this.foregroundColor	= Color.black ;
-		this.backgroundColor	= Color.white ;
-	}
-
-	get frame()		{ return Rect(this.origin.x, this.origin.y, this.size.width, this.size.height) ; }
-	get left()		{ return this.origin.x ; 					}	
-	get right()		{ return this.origin.x + this.size.width ; 	}
-	get top()		{ return this.origin.y ;					}
-	get bottom()	{ return this.origin.y + this.size.height ;	}
-
-	/* func moveTo(x: Int, y: Int) */
-	moveTo(x, y) {
-		this.origin = Point(x, y) ;
-	}
-
-	/* func draw() */
-	draw() {
-		console.error("CObject: Not supported") ;
-	}
-
-	/* func erace() */
-	hide() {
-		let parent = this.parent ;
-		if(parent != null) {
-			Curses.foregroundColor = parent.foregroundColor ;
-			Curses.backgroundColor = parent.backgroundColor ;
-		} else {
-			Curses.foregroundColor = this.foregroundColor ;
-			Curses.backgroundColor = this.backgroundColor ;
-		}
-		let frame = this.frame ;
-		Curses.fill(frame.x, frame.y, frame.width, frame.height, " ") ;
-		this.visible = false ;
-	}
-
-	/* func drawRect(rect: Rect) */
-	drawRect(rect) {
-		/* Setup colors */
-		Curses.foregroundColor = this.foregroundColor ;
-		Curses.backgroundColor = this.backgroundColor ;
-		/* Fill by spaces */
-		Curses.fill(rect.x, rect.y, rect.width, rect.height, " ") ;
-	}
-
-	/* func sectRect(rect0: Rect, rect1: Rect) -> Rect? */
-	sectRect(rect0, rect1) {
-		let left0   = rect0.x ;
-		let right0  = left0 + rect0.width ;
-		let top0    = rect0.y ;
-		let bottom0 = top0 + rect0.height ; 
-
-		let left1   = rect1.x ;
-		let right1  = left1 + rect1.width ;
-		let top1    = rect1.y ;
-		let bottom1 = top1 + rect1.height ; 
-
-		let newleft   = Math.max(left0, left1) ;
-		let newright  = Math.min(right0, right1) ; 
-		let newtop    = Math.max(top0, top1) ;
-		let newbottom = Math.min(bottom0, bottom1) ;
-		if(newleft<newright && newtop<newbottom) {
-			return Rect(newleft, newtop, newright - newleft, newbottom - newtop) ;
-		} else {
-			return null
-		}
-	}
-}
-
-class CComponent extends CObject
-{
-	constructor(origin, size) {
-		super(origin, size) ;
-		this.items = [] ;		/* : Array<CObject> 	*/
-	}
-
-	/* addItem(item: CObject) */
-	addItem(item) {
-		this.items.push(item) ;
-		item.parent = this ;
-	}
-
-	draw() {
-		/* Draw background */
-		this.drawRect(this.frame) ;
-		/* Draw items */
-		for(let item of this.items) {
-			item.draw() ;
-		}
-	}
-}
-
-class CLabel extends CObject
-{
-	/* constructor(origin: Point, size: Size) */
-	constructor(origin, size) {
-		super(origin, size) ;
-		this.text   = "" ;
-	}
-
-	/* func drawInRect(parent: CObject) */
-	draw() {
-		if(this.parent != null) {
-			let sect = this.sectRect(this.frame, this.parent.frame) ;
-			if(sect != null) {
-				this.drawRect(sect) ;
-			}
-		} else {
-			this.drawRect(this.frame) ;
-		}
-	}
-}
-
-MainThread: Compile OK
-'use strict' ;
-/* Define Enum: AccessType */
-let AccessType = {
-	read : 0,
-	write : 1,
-	append : 2
-};
-/* Define Enum: Alignment */
-let Alignment = {
-	leading : 0,
-	trailing : 1,
-	fill : 2,
-	center : 3
-};
-/* Define Enum: Authorize */
-let Authorize = {
-	undetermined : 0,
-	denied : 2,
-	authorized : 3
-};
-/* Define Enum: Axis */
-let Axis = {
-	horizontal : 0,
-	vertical : 1
-};
-/* Define Enum: Color */
-let Color = {
-	black : 0,
-	red : 1,
-	green : 2,
-	yellow : 3,
-	blue : 4,
-	magenta : 5,
-	cyan : 6,
-	white : 7,
-	min : 0,
-	max : 7
-};
-/* Define Enum: Distribution */
-let Distribution = {
-	fillProportinally : 0,
-	fillEqually : 1,
-	equalSpacing : 2
-};
-/* Define Enum: ExitCode */
-let ExitCode = {
-	noError : 0,
-	internalError : 1,
-	commaneLineError : 2,
-	syntaxError : 3,
-	exception : 4
-};
-/* Define Enum: FileType */
-let FileType = {
-	notExist : 0,
-	file : 1,
-	directory : 2
-};
-/* Define Enum: LogLevel */
-let LogLevel = {
-	nolog : 0,
-	error : 1,
-	warning : 2,
-	debug : 3,
-	detail : 4
-};
-/* Define Enum: TextAlign */
-let TextAlign = {
-	left : 0,
-	center : 2,
-	right : 1,
-	justfied : 3,
-	normal : 4
-};
-/* Define Enum: TypeID */
-let TypeID = {
-	Undefined : 0,
-	Null : 1,
-	Boolean : 2,
-	Number : 3,
-	String : 4,
-	Date : 5,
-	URL : 6,
-	Image : 7,
-	Array : 8,
-	Dictionary : 9,
-	Range : 10,
-	Rect : 13,
-	Point : 11,
-	Size : 12,
-	Object : 14
-};
-class CancelException extends Error
-{
-        constructor (code){
-                super("CancelException") ;
-                this.code = code ;
-        }
-}
-
-function _cancel() {
-	throw new CancelException(ExitCode.exception) ;
-}
-
-/**
- * Debug.js
- */
-
-function checkVariables(place, ...vars)
-{
-	let result = true ;
-	vars.forEach(function(value, index){
-		if(isUndefined(value)){
-			console.log("check at " + place + ": Undefined at index " + index) ;
-			result = false ;
-		} else if(isNull(value)) {
-			console.log("check at " + place + ": Null at index " + index) ;
-			result = false ;
-		}
-	}) ;
-	return result ;
-}
-/* Math.js */
-
-/* randomInt: Get random integer value between min and max */
-Math.randomInt = function(min, max) {
-  const range = max - min + 1 ;
-  const rval  = Math.floor(Math.random() * range) ;
-  return rval + min ;
-} ;
-
-/* Convert value to integer */
-function int(value) {
-	return Math.floor(value) ;
-}
-/* CUI.js */
-
-class CObject
-{
-	/* construcor(origin: Point, size: Size) */
-	constructor(origin, size) {
-		this.parent				= null ;
-		this.visible			= true ;
-		this.origin 			= origin ;
-		this.size				= size ;
-		this.foregroundColor	= Color.black ;
-		this.backgroundColor	= Color.white ;
-	}
-
-	get frame()		{ return Rect(this.origin.x, this.origin.y, this.size.width, this.size.height) ; }
-	get left()		{ return this.origin.x ; 					}	
-	get right()		{ return this.origin.x + this.size.width ; 	}
-	get top()		{ return this.origin.y ;					}
-	get bottom()	{ return this.origin.y + this.size.height ;	}
-
-	/* func moveTo(x: Int, y: Int) */
-	moveTo(x, y) {
-		this.origin = Point(x, y) ;
-	}
-
-	/* func draw() */
-	draw() {
-		console.error("CObject: Not supported") ;
-	}
-
-	/* func erace() */
-	hide() {
-		let parent = this.parent ;
-		if(parent != null) {
-			Curses.foregroundColor = parent.foregroundColor ;
-			Curses.backgroundColor = parent.backgroundColor ;
-		} else {
-			Curses.foregroundColor = this.foregroundColor ;
-			Curses.backgroundColor = this.backgroundColor ;
-		}
-		let frame = this.frame ;
-		Curses.fill(frame.x, frame.y, frame.width, frame.height, " ") ;
-		this.visible = false ;
-	}
-
-	/* func drawRect(rect: Rect) */
-	drawRect(rect) {
-		/* Setup colors */
-		Curses.foregroundColor = this.foregroundColor ;
-		Curses.backgroundColor = this.backgroundColor ;
-		/* Fill by spaces */
-		Curses.fill(rect.x, rect.y, rect.width, rect.height, " ") ;
-	}
-
-	/* func sectRect(rect0: Rect, rect1: Rect) -> Rect? */
-	sectRect(rect0, rect1) {
-		let left0   = rect0.x ;
-		let right0  = left0 + rect0.width ;
-		let top0    = rect0.y ;
-		let bottom0 = top0 + rect0.height ; 
-
-		let left1   = rect1.x ;
-		let right1  = left1 + rect1.width ;
-		let top1    = rect1.y ;
-		let bottom1 = top1 + rect1.height ; 
-
-		let newleft   = Math.max(left0, left1) ;
-		let newright  = Math.min(right0, right1) ; 
-		let newtop    = Math.max(top0, top1) ;
-		let newbottom = Math.min(bottom0, bottom1) ;
-		if(newleft<newright && newtop<newbottom) {
-			return Rect(newleft, newtop, newright - newleft, newbottom - newtop) ;
-		} else {
-			return null
-		}
-	}
-}
-
-class CComponent extends CObject
-{
-	constructor(origin, size) {
-		super(origin, size) ;
-		this.items = [] ;		/* : Array<CObject> 	*/
-	}
-
-	/* addItem(item: CObject) */
-	addItem(item) {
-		this.items.push(item) ;
-		item.parent = this ;
-	}
-
-	draw() {
-		/* Draw background */
-		this.drawRect(this.frame) ;
-		/* Draw items */
-		for(let item of this.items) {
-			item.draw() ;
-		}
-	}
-}
-
-class CLabel extends CObject
-{
-	/* constructor(origin: Point, size: Size) */
-	constructor(origin, size) {
-		super(origin, size) ;
-		this.text   = "" ;
-	}
-
-	/* func drawInRect(parent: CObject) */
-	draw() {
-		if(this.parent != null) {
-			let sect = this.sectRect(this.frame, this.parent.frame) ;
-			if(sect != null) {
-				this.drawRect(sect) ;
-			}
-		} else {
-			this.drawRect(this.frame) ;
-		}
-	}
-}
-
-/*
- * Operation.js : Define Operation class
- */
-
-/* This class must be inherited */
-class Operation
-{
-	constructor(){
-		this.parameters = {} ;
-	}
-
-	setParameter(name, value){
-		this.parameters[name] = value ;
-	}
-
-	parameter(name){
-		return this.parameters[name] ;
-	}
-
-	main(){
-		try {
-			this.execute() ;
-		} catch(err){
-			return err.code ;
-		}
-	}
-
-	execute(){
-		console.error("[Error] Operation.execute must be override\n") ;
-		return 0 ;
-	}
-
-	cancel(){
-		_cancel() ;
-	}
-}
-
-function _set_operation(op, name, value)
-{
-	op.setParameter(name, value) ;
-}
-
-function _get_operation(op, name)
-{
-	return op.parameter(name) ;
-}
-
-function _exec_operation(op)
-{
-	op.main() ;
-}
-/* unit-test-1.js */
-
-class Machine extends Operation
-{
-	execute(){
-		console.log("[Machine] Hello, world");
-	}
-} ;
-
-operation = new Machine() ;
-
-MainThread: [Compile] OK
-* Test1
-MainThread: Set command: param0 <- 1
-* Test3
-MainThread: Set command: param2 <- {image: name:<unknown>, size:0.0 x 0.0}
-* Test5
-[Machine] Hello, world
-exec result: OK
-/* Unit test for native value */
-*** Class definition ***
-class UTStruct {
-  constructor(object) {
-    this._a = object.a ;
-    this._b = object.b ;
-  }
-  get a() { return this._a ; }
-  set a(newval) { this._a = newval ; }
-  get b() { return this._b ; }
-  set b(newval) { this._b = newval ; }
-  toParameter(){
-    let object = {
-    a: this._a,
-    b: this._b,
-    } ;
-    return object ;
-  }
-}
-/* Unit test for Thread */
-Source URL: file:///Users/tomoo/Project/KiwiScript/KiwiLibrary/Test/Sample/sample-0.jspkg/
-{
-  URL: ../Test/Sample/sample-0.jspkg/
-  application: {
-  }
-  libraries: {
-  }
-  threads: {
-    sample0: {
-      "sample0.js"
-    }
-  }
-}
-Message from thread: Hello, threading !! Thread,123, undefined
-Thread is finished with error code: 0
-/* Unit test for Run */
-Message from run: Hello, running !! 123, Message from UTRun
-Thread is finished with error code: 0
-/* Unit test for Application */
+  -> Compile Library: OK
+/* Unit test for Environment */
+Environment("MSG") = hello
+current_directory => true
+temporary_directory => true
 /* Unit test for FileManager */
 Home directory:
   * path: <skipped>
@@ -1363,10 +20,11 @@ FileType: Not exit
 FileType: Directory
 normalize: /home/user + tmp => /home/user/tmp
 normalize: /home/user/tmp + .. => /home/user
-Expected value: true
-/* Unit test for URL */
-- test appendingPathComponent
-  URL: /home/user/Document/Script
+[Error] Unexpected value: false
+current directory: file:///Users/tomoo/Project/KiwiScript/KiwiLibrary/Project/
+current directory: file:///Users/tomoo/Project/KiwiScript/KiwiLibrary/
+Invalid result (not true)
+UTFileManager ... NG
 /* Unit test for FontManager */
 [Available fonts]
 ..SFCompactDisplay-Regular
@@ -2441,14 +1099,376 @@ YuppySC-Regular
 YuppyTC-Regular
 ZapfDingbatsITC
 Zapfino
-/* Unit test for ScriptManager */
-ScriptManager
- - script: unit-test-0
- - script: unit-test-1
-/* Unit test for environmrnt */
-Environment("MSG") = hello
-current_directory => true
-temporary_directory => true
-/* Unit test for preference */
+/* Unit test for math functions */
+sqrt(4.0) = 2.0
+asin(1.0/1.41421) = 0.25PI
+acos(1.41421/2.0) = 0.25PI
+/* Unit test for native value conversion */
+*** Class definition ***
+class UTStruct {
+  constructor(object) {
+    this._a = object.a ;
+    this._b = object.b ;
+  }
+  get a() { return this._a ; }
+  set a(newval) { this._a = newval ; }
+  get b() { return this._b ; }
+  set b(newval) { this._b = newval ; }
+  toParameter(){
+    let object = {
+    a: this._a,
+    b: this._b,
+    } ;
+    return object ;
+  }
+}
+/* Unit test for native Operation */
+// Allocate operation
+// Set input
+// Get input
+Input value: 1.23
+// Execute the operation
+// Wait operations are finished
+Task: Hello, World !!
+MainThread: Compile OK
+'use strict' ;
+/* Define Enum: AccessType */
+let AccessType = {
+	read : 0,
+	write : 1,
+	append : 2
+};
+/* Define Enum: Alignment */
+let Alignment = {
+	leading : 0,
+	trailing : 1,
+	fill : 2,
+	center : 3
+};
+/* Define Enum: Authorize */
+let Authorize = {
+	undetermined : 0,
+	denied : 2,
+	authorized : 3
+};
+/* Define Enum: Axis */
+let Axis = {
+	horizontal : 0,
+	vertical : 1
+};
+/* Define Enum: Color */
+let Color = {
+	black : 0,
+	red : 1,
+	green : 2,
+	yellow : 3,
+	blue : 4,
+	magenta : 5,
+	cyan : 6,
+	white : 7,
+	min : 0,
+	max : 7
+};
+/* Define Enum: Distribution */
+let Distribution = {
+	fillProportinally : 0,
+	fillEqually : 1,
+	equalSpacing : 2
+};
+/* Define Enum: ExitCode */
+let ExitCode = {
+	noError : 0,
+	internalError : 1,
+	commaneLineError : 2,
+	syntaxError : 3,
+	exception : 4
+};
+/* Define Enum: FileType */
+let FileType = {
+	notExist : 0,
+	file : 1,
+	directory : 2
+};
+/* Define Enum: LogLevel */
+let LogLevel = {
+	nolog : 0,
+	error : 1,
+	warning : 2,
+	debug : 3,
+	detail : 4
+};
+/* Define Enum: TextAlign */
+let TextAlign = {
+	left : 0,
+	center : 2,
+	right : 1,
+	justfied : 3,
+	normal : 4
+};
+/* Define Enum: TypeID */
+let TypeID = {
+	Undefined : 0,
+	Null : 1,
+	Boolean : 2,
+	Number : 3,
+	String : 4,
+	Date : 5,
+	URL : 6,
+	Image : 7,
+	Array : 8,
+	Dictionary : 9,
+	Range : 10,
+	Rect : 13,
+	Point : 11,
+	Size : 12,
+	Object : 14
+};
+class CancelException extends Error
+{
+        constructor (code){
+                super("CancelException") ;
+                this.code = code ;
+        }
+}
+
+function _cancel() {
+	throw new CancelException(ExitCode.exception) ;
+}
+
+/**
+ * Debug.js
+ */
+
+function checkVariables(place, ...vars)
+{
+	let result = true ;
+	vars.forEach(function(value, index){
+		if(isUndefined(value)){
+			console.log("check at " + place + ": Undefined at index " + index) ;
+			result = false ;
+		} else if(isNull(value)) {
+			console.log("check at " + place + ": Null at index " + index) ;
+			result = false ;
+		}
+	}) ;
+	return result ;
+}
+/* Math.js */
+
+/* randomInt: Get random integer value between min and max */
+Math.randomInt = function(min, max) {
+  const range = max - min + 1 ;
+  const rval  = Math.floor(Math.random() * range) ;
+  return rval + min ;
+} ;
+
+/* Convert value to integer */
+function int(value) {
+	return Math.floor(value) ;
+}
+/* CUI.js */
+
+class CObject
+{
+	/* construcor(origin: Point, size: Size) */
+	constructor(origin, size) {
+		this.parent				= null ;
+		this.visible			= true ;
+		this.origin 			= origin ;
+		this.size				= size ;
+		this.foregroundColor	= Color.black ;
+		this.backgroundColor	= Color.white ;
+	}
+
+	get frame()		{ return Rect(this.origin.x, this.origin.y, this.size.width, this.size.height) ; }
+	get left()		{ return this.origin.x ; 					}	
+	get right()		{ return this.origin.x + this.size.width ; 	}
+	get top()		{ return this.origin.y ;					}
+	get bottom()	{ return this.origin.y + this.size.height ;	}
+
+	/* func moveTo(x: Int, y: Int) */
+	moveTo(x, y) {
+		this.origin = Point(x, y) ;
+	}
+
+	/* func draw() */
+	draw() {
+		console.error("CObject: Not supported") ;
+	}
+
+	/* func erace() */
+	hide() {
+		let parent = this.parent ;
+		if(parent != null) {
+			Curses.foregroundColor = parent.foregroundColor ;
+			Curses.backgroundColor = parent.backgroundColor ;
+		} else {
+			Curses.foregroundColor = this.foregroundColor ;
+			Curses.backgroundColor = this.backgroundColor ;
+		}
+		let frame = this.frame ;
+		Curses.fill(frame.x, frame.y, frame.width, frame.height, " ") ;
+		this.visible = false ;
+	}
+
+	/* func drawRect(rect: Rect) */
+	drawRect(rect) {
+		/* Setup colors */
+		Curses.foregroundColor = this.foregroundColor ;
+		Curses.backgroundColor = this.backgroundColor ;
+		/* Fill by spaces */
+		Curses.fill(rect.x, rect.y, rect.width, rect.height, " ") ;
+	}
+
+	/* func sectRect(rect0: Rect, rect1: Rect) -> Rect? */
+	sectRect(rect0, rect1) {
+		let left0   = rect0.x ;
+		let right0  = left0 + rect0.width ;
+		let top0    = rect0.y ;
+		let bottom0 = top0 + rect0.height ; 
+
+		let left1   = rect1.x ;
+		let right1  = left1 + rect1.width ;
+		let top1    = rect1.y ;
+		let bottom1 = top1 + rect1.height ; 
+
+		let newleft   = Math.max(left0, left1) ;
+		let newright  = Math.min(right0, right1) ; 
+		let newtop    = Math.max(top0, top1) ;
+		let newbottom = Math.min(bottom0, bottom1) ;
+		if(newleft<newright && newtop<newbottom) {
+			return Rect(newleft, newtop, newright - newleft, newbottom - newtop) ;
+		} else {
+			return null
+		}
+	}
+}
+
+class CComponent extends CObject
+{
+	constructor(origin, size) {
+		super(origin, size) ;
+		this.items = [] ;		/* : Array<CObject> 	*/
+	}
+
+	/* addItem(item: CObject) */
+	addItem(item) {
+		this.items.push(item) ;
+		item.parent = this ;
+	}
+
+	draw() {
+		/* Draw background */
+		this.drawRect(this.frame) ;
+		/* Draw items */
+		for(let item of this.items) {
+			item.draw() ;
+		}
+	}
+}
+
+class CLabel extends CObject
+{
+	/* constructor(origin: Point, size: Size) */
+	constructor(origin, size) {
+		super(origin, size) ;
+		this.text   = "" ;
+	}
+
+	/* func drawInRect(parent: CObject) */
+	draw() {
+		if(this.parent != null) {
+			let sect = this.sectRect(this.frame, this.parent.frame) ;
+			if(sect != null) {
+				this.drawRect(sect) ;
+			}
+		} else {
+			this.drawRect(this.frame) ;
+		}
+	}
+}
+
+/*
+ * Operation.js : Define Operation class
+ */
+
+/* This class must be inherited */
+class Operation
+{
+	constructor(){
+		this.parameters = {} ;
+	}
+
+	setParameter(name, value){
+		this.parameters[name] = value ;
+	}
+
+	parameter(name){
+		return this.parameters[name] ;
+	}
+
+	main(){
+		try {
+			this.execute() ;
+		} catch(err){
+			return err.code ;
+		}
+	}
+
+	execute(){
+		console.error("[Error] Operation.execute must be override\n") ;
+		return 0 ;
+	}
+
+	cancel(){
+		_cancel() ;
+	}
+}
+
+function _set_operation(op, name, value)
+{
+	op.setParameter(name, value) ;
+}
+
+function _get_operation(op, name)
+{
+	return op.parameter(name) ;
+}
+
+function _exec_operation(op)
+{
+	op.main() ;
+}
+/* unit-test-1.js */
+
+class Machine extends Operation
+{
+	execute(){
+		console.log("[Machine] Hello, world");
+	}
+} ;
+
+operation = new Machine() ;
+
+MainThread: [Compile] OK
+* Test1
+MainThread: Set command: param0 <- 1
+* Test3
+MainThread: Set command: param2 <- {image: name:<unknown>, size:0.0 x 0.0}
+* Test5
+[Machine] Hello, world
+exec result: OK
+/* Unit test for Preference */
 preference.system.version = unknown
-Summary: OK
+/* Unit test for run function */
+Message from run: Hello, running !! 123, Message from UTRun
+Thread is finished with error code: 0
+/* Unit test for ScriptManager */
+dyld: lazy symbol binding failed: Symbol not found: _$s11KiwiLibrary16KLBuiltinScriptsC6sharedACvau
+  Referenced from: /Users/tomoo/build/DerivedData/KiwiLibrary-drbjanamxeoihwhgnyztfalrvplk/Build/Products/Debug/UnitTest
+  Expected in: /Users/tomoo/build/DerivedData/KiwiLibrary-drbjanamxeoihwhgnyztfalrvplk/Build/Products/Debug/UnitTest.bundle/Contents/Frameworks/KiwiLibrary.framework/Versions/A/KiwiLibrary
+
+dyld: Symbol not found: _$s11KiwiLibrary16KLBuiltinScriptsC6sharedACvau
+  Referenced from: /Users/tomoo/build/DerivedData/KiwiLibrary-drbjanamxeoihwhgnyztfalrvplk/Build/Products/Debug/UnitTest
+  Expected in: /Users/tomoo/build/DerivedData/KiwiLibrary-drbjanamxeoihwhgnyztfalrvplk/Build/Products/Debug/UnitTest.bundle/Contents/Frameworks/KiwiLibrary.framework/Versions/A/KiwiLibrary
+

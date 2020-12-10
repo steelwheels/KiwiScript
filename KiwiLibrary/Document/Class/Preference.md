@@ -23,6 +23,15 @@ let version_string = Preference.system.version ;
 Preference.system.logLevel = LogLevel.error ;
 ````
 
+## `user` preference
+The preference for user's information.
+
+This is a list of properties in the preference:
+|Name               |Type       |Description                |
+|:---               |:---       |:---                       |
+|homeDirectory      |[URL](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md)  |The URL of the path of user's home directory. The initial value is `null`  |
+
+
 ## `terminal` preference
 The preference of terminal attributes.
 

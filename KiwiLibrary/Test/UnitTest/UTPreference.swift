@@ -12,9 +12,10 @@ import Foundation
 
 public func UTPreference(context ctxt: KEContext, console cons: CNFileConsole) -> Bool
 {
+	let pref   = KLPreference(context: ctxt)
+
 	/* Ger version */
 	var hasversion = false
-	let pref   = KLPreference(context: ctxt)
 	let sysval = pref.system
 	if let sysobj = sysval.toObject() as? KLSystemPreference {
 		let verval = sysobj.version
@@ -23,7 +24,24 @@ public func UTPreference(context ctxt: KEContext, console cons: CNFileConsole) -
 			hasversion = true
 		}
 	}
+	if !hasversion {
+		cons.print(string: "[Error] Failed to get version\n")
+	}
 
-	return hasversion
+	/* Get home directory */
+	var hashome = false
+	let userval = pref.user
+	if let userobj = userval.toObject() as? KLUserPreference {
+		let homeval = userobj.homeDirectory
+		let homeurl = homeval.toURL()
+		cons.print(string: "preference.user.homeDirectory = \(homeurl.path)\n")
+		hashome = true
+	}
+	if !hashome {
+		cons.print(string: "[Error] Failed to get home directory\n")
+	}
+
+
+	return hasversion && hashome
 }
 

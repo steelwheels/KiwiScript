@@ -80,7 +80,7 @@ public func main()
 	/* ScriptManager */
 	filecons.print(string: "/* Unit test for ScriptManager */\n")
 	let result10 = UTScriptManager(console: filecons)
-
+	
 	/* Thread */
 	filecons.print(string: "/* Unit test for Thread */\n")
 	let result11 = UTThread(context: context, processManager: pmanager, console: filecons, config: config)

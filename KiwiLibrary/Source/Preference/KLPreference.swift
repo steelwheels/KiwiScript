@@ -29,6 +29,7 @@ public extension CNPreferenceTable
 {
 	var system:	JSValue { get }
 	var terminal:	JSValue { get }
+	var user:	JSValue { get }
 }
 
 @objc open class KLPreference: NSObject, KLPreferenceProtocol
@@ -48,6 +49,11 @@ public extension CNPreferenceTable
 
 	public var terminal: JSValue { get {
 		let pref = KLTerminalPreference(context: mContext)
+		return JSValue(object: pref, in: mContext)
+	}}
+
+	public var user: JSValue { get {
+		let pref = KLUserPreference(context: mContext)
 		return JSValue(object: pref, in: mContext)
 	}}
 }
@@ -137,6 +143,44 @@ public extension CNPreferenceTable
 				}
 			}
 			NSLog("Failed to set foregound color")
+		}
+	}
+}
+
+@objc public protocol KLUserPreferenceProtocol: JSExport
+{
+	var homeDirectory: JSValue { get set }
+}
+
+@objc public class KLUserPreference: NSObject, KLUserPreferenceProtocol
+{
+	private var mContext: KEContext
+
+	public init(context ctxt: KEContext){
+		mContext = ctxt
+	}
+
+	public var homeDirectory: JSValue {
+		get {
+			let pref = CNPreference.shared.userPreference
+			let home = pref.homeDirectory
+			return JSValue(URL: home, in: mContext)
+		}
+		set(newval) {
+			if newval.isURL {
+				let url  = newval.toURL()
+				let pref = CNPreference.shared.userPreference
+				pref.homeDirectory = url
+			} else if newval.isString {
+				if let str = newval.toString() {
+					let pref = CNPreference.shared.userPreference
+					pref.homeDirectory = URL(fileURLWithPath: str)
+				} else {
+					NSLog("Failed to set Preference.user.homeDirectory")
+				}
+			} else {
+				NSLog("Failed to set Preference.user.homeDirectory")
+			}
 		}
 	}
 }
