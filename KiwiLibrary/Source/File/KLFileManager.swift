@@ -24,6 +24,10 @@ import Foundation
 
 	func fullPath(_ path: JSValue, _ base: JSValue) -> JSValue
 
+	#if os(OSX)
+	func openPanel(_ title: JSValue, _ type: JSValue, _ exts: JSValue) -> JSValue
+	#endif
+
 	func homeDirectory() -> JSValue
 	func temporaryDirectory() -> JSValue
 
@@ -192,6 +196,63 @@ import Foundation
 		}
 		return JSValue(nullIn: mContext)
 	}
+
+	#if os(OSX)
+	public func openPanel(_ titleval: JSValue, _ typeval: JSValue, _ extval: JSValue) -> JSValue
+	{
+		if let title = panelTitle(title: titleval), let type = panelFileType(type: typeval), let exts = panelExtensions(extensions: extval) {
+			var result: URL? = nil
+			CNExecuteInMainThread(doSync: true, execute: {
+				() -> Void in
+				NSLog("title:\(title), type:\(type.description) exts:\(exts)" )
+				result = URL.openPanel(title: title, type: type, extensions: exts)
+			})
+			if let url = result {
+				return JSValue(URL: url, in: mContext)
+			} else {
+				return JSValue(nullIn: mContext)
+			}
+		} else {
+			return JSValue(nullIn: mContext)
+		}
+	}
+
+	private func panelTitle(title tval: JSValue) -> String? {
+		if tval.isString {
+			if let str = tval.toString() {
+				return str
+			}
+		}
+		return nil
+	}
+
+	private func panelFileType(type tval: JSValue) -> CNFileType? {
+		if let num = tval.toNumber() {
+			if let sel = CNFileType(rawValue: num.int32Value) {
+				return sel
+			}
+		}
+		return nil
+	}
+
+	private func panelExtensions(extensions tval: JSValue) -> Array<String>? {
+		if tval.isArray {
+			var types: Array<String> = []
+			if let vals = tval.toArray() {
+				for elm in vals {
+					if let str = elm as? String {
+						types.append(str)
+					} else {
+						return nil
+					}
+				}
+			}
+			return types
+		}
+		return nil
+	}
+
+	#endif
 
 	public func homeDirectory() -> JSValue {
 		let home = CNPreference.shared.userPreference.homeDirectory
