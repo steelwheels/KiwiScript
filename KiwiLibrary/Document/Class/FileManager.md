@@ -100,7 +100,7 @@ If the opening the file is succeeded, the *File* object is returned. The file-ob
 ## `openPanel` method
 Display the dialog to select a file by the user.
 ````
-let url = FileManager.openPanel("Title", FileType.File, ["js"]) ;
+let url = FileManager.openPanel("Title", FileType.file, ["js"]) ;
 if(url != null) {
   // The url variable has the URL of selected file
 } else {

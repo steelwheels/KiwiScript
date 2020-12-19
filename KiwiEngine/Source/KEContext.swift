@@ -45,6 +45,10 @@ public class KEContext : JSContext
 
 	public var errorCount: Int { get { return mErrorCount }}
 
+	public func resetErrorCount() {
+		mErrorCount = 0
+	}
+
 	public func set(name n: String, object o: JSExport){
 		self.setObject(o, forKeyedSubscript: NSString(string: n))
 	}

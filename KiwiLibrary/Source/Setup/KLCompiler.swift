@@ -515,7 +515,7 @@ public class KLCompiler: KECompiler
 		/* Operaion */
 		let opfunc: @convention(block) (_ urlsval: JSValue, _ consval: JSValue) -> JSValue = {
 			(_ urlsval: JSValue, _ consval: JSValue) -> JSValue in
-			let opconsole = KLCompiler.valueToConsole(consoleValue: consval, context: ctxt, logConsole: cons)
+			//let opconsole = KLCompiler.valueToConsole(consoleValue: consval, context: ctxt, logConsole: cons)
 			let opconfig  = KEConfig(applicationType: conf.applicationType,
 						 doStrict: conf.doStrict,
 						 logLevel: conf.logLevel)
@@ -530,7 +530,7 @@ public class KLCompiler: KECompiler
 
 			/* User scripts */
 			var urls: Array<URL> = []
-			if let users = KLCompiler.valueToURLs(URLvalues: urlsval, console: opconsole) {
+			if let users = KLCompiler.valueToURLs(URLvalues: urlsval, console: cons) {
 				urls.append(contentsOf: users)
 			}
 			/* Compile */
@@ -546,7 +546,7 @@ public class KLCompiler: KECompiler
 		/* OperaionQueue */
 		let queuefunc: @convention(block) () -> JSValue = {
 			() -> JSValue in
-			let queue   = KLOperationQueue(context: ctxt, console: ctxt.console)
+			let queue   = KLOperationQueue(context: ctxt, console: cons)
 			return JSValue(object: queue, in: ctxt)
 		}
 		ctxt.set(name: "OperationQueue", function: queuefunc)
@@ -626,20 +626,6 @@ public class KLCompiler: KECompiler
 	}
 
 	#endif
-
-	private class func valueToConsole(consoleValue consval: JSValue, context ctxt: KEContext, logConsole logcons: CNConsole) -> CNFileConsole {
-		let opconsole: CNFileConsole
-		if consval.isObject {
-			if let consobj = consval.toObject() as? KLConsole {
-				opconsole = consobj.console
-			} else {
-				opconsole = ctxt.console
-			}
-		} else {
-			opconsole = ctxt.console
-		}
-		return opconsole
-	}
 
 	private class func valueToURLs(URLvalues urlval: JSValue, console cons: CNConsole) -> Array<URL>? {
 		if urlval.isArray {

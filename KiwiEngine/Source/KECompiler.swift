@@ -20,6 +20,11 @@ open class KECompiler
 		setStrictMode(context: ctxt, console: cons, config: conf)
 		/* Define Enum Types */
 		defineEnumTypes(context: ctxt, console: cons, config: conf)
+		/* Set exception */
+		ctxt.exceptionCallback = {
+			(_ exception: KEException) -> Void in
+			cons.error(string: "[Exception] \(exception.description)")
+		}
 		return true
 	}
 
