@@ -26,10 +26,14 @@ URL object. The object is always returned even if it's contains
 invalid value.
 
 ## Properties
-### `isValid` property
-When the object has valid URL, this value will be true.
+### `isNull` property
+When the object has `/dev/null`, this value will be true.
 ````
-let str = url.isValid ? url.absoluteString : "<unknown>" ;
+if(url.isNull{
+  has_valid_url = false ;
+} else {
+  has_valid_url = true ;
+}
 ````
 
 ### `absoluteString` property

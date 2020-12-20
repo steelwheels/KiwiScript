@@ -11,7 +11,7 @@ import Foundation
 
 @objc public protocol KLURLProtocol: JSExport
 {
-	var isValid: JSValue { get }
+	var isNull: JSValue { get }
 	var absoluteString: JSValue { get }
 	var path: JSValue { get }
 
@@ -35,13 +35,13 @@ import Foundation
 
 	public var url: URL? { get { return mURL }}
 
-	public var isValid: JSValue {
+	public var isNull: JSValue {
 		get {
 			let result: Bool
 			if let url = mURL {
-				result = url.isValid
+				result = url.isNull
 			} else {
-				result = false
+				result = true
 			}
 			return JSValue(bool: result, in: mContext)
 		}
