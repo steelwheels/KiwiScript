@@ -98,6 +98,8 @@ public extension CNPreferenceTable
 
 @objc public protocol KLTerminalPreferenceProtocol: JSExport
 {
+	var width:  JSValue { get set }
+	var height: JSValue { get set }
 	var foregroundColor: JSValue { get set }
 	var backgroundColor: JSValue { get set }
 }
@@ -108,6 +110,34 @@ public extension CNPreferenceTable
 
 	public init(context ctxt: KEContext){
 		mContext = ctxt
+	}
+
+	public var width: JSValue {
+		get {
+			let pref  = CNPreference.shared.terminalPreference
+			return JSValue(int32: Int32(pref.width), in: mContext)
+		}
+		set(newval) {
+			if newval.isNumber {
+				let pref     = CNPreference.shared.terminalPreference
+				let newwidth = newval.toInt32()
+				pref.width   = Int(newwidth)
+			}
+		}
+	}
+
+	public var height: JSValue {
+		get {
+			let pref  = CNPreference.shared.terminalPreference
+			return JSValue(int32: Int32(pref.height), in: mContext)
+		}
+		set(newval) {
+			if newval.isNumber {
+				let pref      = CNPreference.shared.terminalPreference
+				let newheight = newval.toInt32()
+				pref.height   = Int(newheight)
+			}
+		}
 	}
 
 	public var foregroundColor: JSValue {

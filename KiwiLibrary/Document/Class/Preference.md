@@ -38,6 +38,8 @@ The preference of terminal attributes.
 This is a list of properties in the preference:
 |Name               |Type       |Description                |
 |:---               |:---       |:---                       |
+|width              |Int        |Terminal width             |
+|height             |Int        |Terminal height            |
 |foregroundColor    |[Color](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/Color.md)  |The integer value to present foreground color |
 |backgoundColor     |[Color](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/Color.md) |The integer value to present background color  |
 
