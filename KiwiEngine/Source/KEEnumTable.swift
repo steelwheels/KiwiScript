@@ -87,6 +87,14 @@ public class KEEnumTable
 		])
 		mEnumTypes[distribution.typeName] = distribution
 
+		let fontsize = KEEnumType(typeName: "FontSize")
+		fontsize.add(members: [
+			KEEnumType.Member(name: "small",	value: Int32(CNFont.smallSystemFontSize)),
+			KEEnumType.Member(name: "regular",	value: Int32(CNFont.systemFontSize)),
+			KEEnumType.Member(name: "large",	value: Int32(CNFont.systemFontSize * 1.5))
+		])
+		mEnumTypes[fontsize.typeName] = fontsize
+
 		let textalign = KEEnumType(typeName: "TextAlign")
 		textalign.add(members: [
 			KEEnumType.Member(name: "left",		value: Int32(NSTextAlignment.left.rawValue)),
