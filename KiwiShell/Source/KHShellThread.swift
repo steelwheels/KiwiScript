@@ -55,6 +55,12 @@ open class KHShellThread: CNShellThread
 		mInputMode		= .shellScript
 		super.init(processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: env)
 
+		/* Update current directory to home */
+		let curdir = CNPreference.shared.userPreference.homeDirectory
+		if !curdir.isNull {
+			FileManager.default.changeCurrentDirectoryPath(curdir.path)
+		}
+
 		/* Allocate process manager for child processes */
 		procmgr.addChildManager(childManager: mChildProcessManager)
 
