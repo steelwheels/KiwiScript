@@ -33,6 +33,7 @@ public class KHShellCompiler: KECompiler
 
 	private func defineBuiltinFunctions(context ctxt: KEContext, console cons: CNConsole, processManager procmgr: CNProcessManager, environment env: CNEnvironment) {
 		defineCdFunction(context: ctxt, console: cons, environment: env)
+		defineSetupFunction(context: ctxt, console: cons, environment: env)
 		#if os(OSX)
 			defineSystemFunction(context: ctxt, processManager: procmgr, environment: env)
 		#endif
@@ -46,6 +47,16 @@ public class KHShellCompiler: KECompiler
 			return JSValue(object: cdcmd, in: ctxt)
 		}
 		ctxt.set(name: "cdcmd", function: cdfunc)
+	}
+
+	private func defineSetupFunction(context ctxt: KEContext, console cons: CNConsole, environment env: CNEnvironment) {
+		/* setup command */
+		let setupfunc: @convention(block) () -> JSValue = {
+			() -> JSValue in
+			let cdcmd = KLSetupCommand(context: ctxt, console: cons, environment: env)
+			return JSValue(object: cdcmd, in: ctxt)
+		}
+		ctxt.set(name: "setupcmd", function: setupfunc)
 	}
 
 	/* Define "system" built-in command */

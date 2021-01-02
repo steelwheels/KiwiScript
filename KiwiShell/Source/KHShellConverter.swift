@@ -46,6 +46,14 @@ private class KHBuiltinCommandConverter: KHShellStatementConverter
 		let (cmdnamep, restp) = CNStringUtil.cutFirstWord(string: stmt.shellCommand)
 		if let cmdname = cmdnamep {
 			switch cmdname {
+			case "cd":
+				var path: String? = nil
+				if let rest = restp {
+					(path, _) = CNStringUtil.cutFirstWord(string: rest)
+				}
+				let newstmt = KHCdCommandStatement(path: path)
+				newstmt.importProperties(source: stmt)
+				return newstmt
 			case "run":
 				var path: String? = nil
 				var arg:  String? = nil
@@ -55,12 +63,13 @@ private class KHBuiltinCommandConverter: KHShellStatementConverter
 				let newstmt = KHRunCommandStatement(scriptPath: path, argument: arg)
 				newstmt.importProperties(source: stmt)
 				return newstmt
-			case "cd":
+			case "setup":
 				var path: String? = nil
+				var arg:  String? = nil
 				if let rest = restp {
-					(path, _) = CNStringUtil.cutFirstWord(string: rest)
+					(path, arg) = CNStringUtil.cutFirstWord(string: rest)
 				}
-				let newstmt = KHCdCommandStatement(path: path)
+				let newstmt = KHSetupCommandStatement(scriptPath: path, argument: arg)
 				newstmt.importProperties(source: stmt)
 				return newstmt
 			default:

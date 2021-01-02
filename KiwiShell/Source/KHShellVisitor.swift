@@ -15,10 +15,12 @@ open class KHShellStatementVisitor
 			result = visit(scriptStatement: nstmt)
 		} else if let nstmt = stmt as? KHShellCommandStatement {
 			result = visit(shellCommandStatement: nstmt)
-		} else if let nstmt = stmt as? KHRunCommandStatement {
-			result = visit(runCommandStatement: nstmt)
 		} else if let nstmt = stmt as? KHCdCommandStatement {
 			result = visit(cdCommandStatement: nstmt)
+		} else if let nstmt = stmt as? KHRunCommandStatement {
+			result = visit(runCommandStatement: nstmt)
+		} else if let nstmt = stmt as? KHSetupCommandStatement {
+			result = visit(setupCommandStatement: nstmt)
 		} else if let nstmt = stmt as? KHBuiltinCommandStatement {
 			result = visit(builtinCommandStatement: nstmt)
 		} else if let nstmt = stmt as? KHPipelineStatement {
@@ -34,8 +36,9 @@ open class KHShellStatementVisitor
 
 	open func visit(scriptStatement stmt: KHScriptStatement) -> KHSingleStatement? { return nil }
 	open func visit(shellCommandStatement stmt: KHShellCommandStatement) -> KHSingleStatement? { return nil }
-	open func visit(runCommandStatement stmt: KHRunCommandStatement) -> KHSingleStatement? { return nil }
 	open func visit(cdCommandStatement stmt: KHCdCommandStatement) -> KHSingleStatement? { return nil }
+	open func visit(runCommandStatement stmt: KHRunCommandStatement) -> KHSingleStatement? { return nil }
+	open func visit(setupCommandStatement stmt: KHSetupCommandStatement) -> KHSingleStatement? { return nil }
 	open func visit(builtinCommandStatement stmt: KHBuiltinCommandStatement) -> KHSingleStatement? { return nil }
 	open func visit(pipelineStatement stmt: KHPipelineStatement) -> KHPipelineStatement? { return nil }
 	open func visit(multiStatements stmts: KHMultiStatements) -> KHMultiStatements? { return nil }
@@ -51,11 +54,15 @@ open class KHShellStatementConverter: KHShellStatementVisitor
 		return nil
 	}
 
+	open override func visit(cdCommandStatement stmt: KHCdCommandStatement) -> KHSingleStatement? {
+		return nil
+	}
+
 	open override func visit(runCommandStatement stmt: KHRunCommandStatement) -> KHSingleStatement? {
 		return nil
 	}
 
-	open override func visit(cdCommandStatement stmt: KHCdCommandStatement) -> KHSingleStatement? {
+	open override func visit(setupCommandStatement stmt: KHSetupCommandStatement) -> KHSingleStatement? {
 		return nil
 	}
 

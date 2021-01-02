@@ -86,3 +86,26 @@ import Foundation
 		return result
 	}
 }
+
+@objc open class KLSetupCommand: KLCommand
+{
+	public init(context ctxt: KEContext, console cons: CNConsole, environment env: CNEnvironment) {
+		super.init(function: {
+			(_ arg: JSValue, _ env: CNEnvironment) -> Int32 in
+			return KLSetupCommand.execute(arg, cons, env)
+		}, context: ctxt, console: cons, environment: env)
+	}
+
+	private static func execute(_ arg: JSValue, _ console: CNConsole, _ env: CNEnvironment) -> Int32 {
+		let result: Int32
+		let fmanager 		= FileManager.default
+		if let err = fmanager.setupFileSystem(console: console) {
+			console.error(string: "setup: [Error] \(err.toString())\n")
+			result = 1 ;
+		} else {
+			/* No error */
+			result = 0
+		}
+		return result
+	}
+}

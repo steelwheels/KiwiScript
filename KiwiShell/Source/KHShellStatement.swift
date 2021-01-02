@@ -117,6 +117,32 @@ public class KHShellCommandStatement: KHSingleStatement
 	}
 }
 
+public class KHCdCommandStatement: KHSingleStatement
+{
+	private var mPath:	String?
+
+	public var path: String? { get { return mPath }}
+
+	public init(path pth: String?) {
+		mPath = pth
+	}
+
+	open override func dump(indent idt: Int, to console: CNConsole) {
+		let spaces0 = indentToString(indent: idt)
+		let spaces1 = indentToString(indent: idt)
+		console.print(string: spaces0 + "cd-command: {\n")
+		super.dump(indent: idt+1, to: console)
+		let path: String
+		if let p = mPath {
+			path = p
+		} else {
+			path = "<nil>"
+		}
+		console.print(string: spaces1 + "cd:  \"\(path)\"\n")
+		console.print(string: spaces0 + "}\n")
+	}
+}
+
 public class KHRunCommandStatement: KHSingleStatement
 {
 	private var mScriptPath:	String?
@@ -146,28 +172,31 @@ public class KHRunCommandStatement: KHSingleStatement
 	}
 }
 
-public class KHCdCommandStatement: KHSingleStatement
+public class KHSetupCommandStatement: KHSingleStatement
 {
-	private var mPath:	String?
+	private var mScriptPath:	String?
+	private var mArgument:		String?
 
-	public var path: String? { get { return mPath }}
+	public var scriptPath: String? { get { return mScriptPath }}
+	public var argument:   String? { get { return mArgument   }}
 
-	public init(path pth: String?) {
-		mPath = pth
+	public init(scriptPath path: String?, argument arg: String?) {
+		mScriptPath = path
+		mArgument   = arg
 	}
 
 	open override func dump(indent idt: Int, to console: CNConsole) {
 		let spaces0 = indentToString(indent: idt)
 		let spaces1 = indentToString(indent: idt)
-		console.print(string: spaces0 + "cd-command: {\n")
+		console.print(string: spaces0 + "setup-command: {\n")
 		super.dump(indent: idt+1, to: console)
 		let path: String
-		if let p = mPath {
+		if let p = mScriptPath {
 			path = p
 		} else {
 			path = "<nil>"
 		}
-		console.print(string: spaces1 + "cd:  \"\(path)\"\n")
+		console.print(string: spaces1 + "setup:  \"\(path)\"\n")
 		console.print(string: spaces0 + "}\n")
 	}
 }
