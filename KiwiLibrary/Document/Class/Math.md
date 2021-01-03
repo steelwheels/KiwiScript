@@ -75,6 +75,18 @@ Math.sqrt(src) ;
 The square root of the source value.
 When the parameter is NOT number, the return value is `undefined`.
 
+### `randomInt`
+Return the random value between given range/
+````
+let val = Math.randomInt(min, max) ;
+````
+
+#### Parameter
+|Name       |Type       |Description                    |
+|:--        |:--        |:--                            |
+|min        |Int        |Minimum value                  |
+|max        |Int        |Maximum value                  |
+
 ## References
 * [Kiwi Standard Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library
 * BSD Library Reference Manual: Manual page on macOS.

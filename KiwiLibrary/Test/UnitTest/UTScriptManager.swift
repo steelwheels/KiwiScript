@@ -13,7 +13,7 @@ import Foundation
 
 public func UTScriptManager(console cons: CNConsole) -> Bool
 {
-	let manager = KLBuiltinScripts()
+	let manager = KLBuiltinScripts.shared
 	manager.setup(subdirectory: nil, bundleName: "UnitTest")
 
 	let names = manager.scriptNames()

@@ -17,6 +17,20 @@ import Foundation
 
 public class KLBuiltinScripts
 {
+	private static var mSingleton: KLBuiltinScripts? = nil
+
+	public static var shared: KLBuiltinScripts {
+		get {
+			if let obj = mSingleton {
+				return obj
+			} else {
+				let newobj = KLBuiltinScripts()
+				mSingleton = newobj
+				return newobj
+			}
+		}
+	}
+
 	public class ScriptInfo {
 		var url:	URL
 		public init(file furl: URL){
@@ -26,7 +40,7 @@ public class KLBuiltinScripts
 
 	private var mScriptTable:	Dictionary<String, ScriptInfo>	// script-name, script-info
 
-	public init(){
+	private init(){
 		mScriptTable = [:]
 	}
 
@@ -101,7 +115,7 @@ public class KLBuiltinScripts
 
 	public init(context ctxt: KEContext){
 		mContext	= ctxt
-		mBuiltinScript	= KLBuiltinScripts()
+		mBuiltinScript	= KLBuiltinScripts.shared
 		super.init()
 	}
 
