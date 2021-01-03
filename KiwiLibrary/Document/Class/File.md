@@ -5,7 +5,7 @@ This object will be allocated by [FileManager](https://github.com/steelwheels/Ki
 ## `getc` method
 Read a character from file. When there are no characters to be read, the *nil* will be returned.
 ````
-var c = file.getc()
+let c = file.getc()
 ````
 ### Parameter(s)
 none
@@ -15,23 +15,33 @@ The string which contains a character. If there are no characters to be read, th
 ## `getl` method
 Read a line string from file. When there are no lines to be read, the *nil* will be returned.
 ````
-var l = file.getl()
+let l = file.getl() ;
 ````
 ### Parameter(s)
 none
 ### Return value
 The string which contains a line string. The string is always terminalted by newline code. If there are no lines to be read, the *nil* will be returned.
 
+## `input` method
+Read a line string from file. This method is blocked until the file (or user) inputs the newline code.
+````
+let l = file.input() ;
+````
+### Parametrer(s)
+none
+### Return value
+The string which does *NOT* contains newline code.
+
 ## `put` method
 Write the string into the file.
 ```
-var size = file.put(string)
+let size = file.put(string)
 ```
 ### Parameter(s)
 |Parameter    |Type   |Description                    |
 |:---         |:---   |:---                           |
 |string       |String |The string to write into the file |
-## Return value
+### Return value
 If the write operation is succeeded, the size　(unit: byte) of parameter string is returned. If it is failed, this value will be 0.
 
 # References

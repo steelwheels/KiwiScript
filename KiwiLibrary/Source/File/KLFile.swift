@@ -14,6 +14,7 @@ import Foundation
 {
 	func getc() -> JSValue
 	func getl() -> JSValue
+	func input() -> JSValue
 	func put(_ str: JSValue) -> JSValue
 	func close()
 }
@@ -51,6 +52,11 @@ import Foundation
 		} else {
 			return JSValue(nullIn: mContext)
 		}
+	}
+
+	public func input() -> JSValue {
+		let line = mFile.input()
+		return JSValue(object: line, in: mContext)
 	}
 
 	public func put(_ strval: JSValue) -> JSValue {
