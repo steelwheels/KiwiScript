@@ -1100,9 +1100,12 @@ YuppyTC-Regular
 ZapfDingbatsITC
 Zapfino
 /* Unit test for math functions */
-sqrt(4.0) = 2.0
-asin(1.0/1.41421) = 0.25PI
+Math.sin(PI/2.0) = 1.0
+Math.cos(PI/2.0) = 6.123233995736766e-17
+Math.tan(PI/4.0) = 0.9999999999999999
+Math.asin(1.0/1.41421) = 0.25PI
 acos(1.41421/2.0) = 0.25PI
+Math.sqrt(4.0) = 2.0
 /* Unit test for native value conversion */
 *** Class definition ***
 class UTStruct {
@@ -1188,6 +1191,12 @@ let FileType = {
 	notExist : 0,
 	file : 1,
 	directory : 2
+};
+/* Define Enum: FontSize */
+let FontSize = {
+	small : 11,
+	regular : 13,
+	large : 19
 };
 /* Define Enum: LogLevel */
 let LogLevel = {
@@ -1460,15 +1469,55 @@ MainThread: Set command: param2 <- {image: name:<unknown>, size:0.0 x 0.0}
 exec result: OK
 /* Unit test for Preference */
 preference.system.version = unknown
+preference.user.homeDirectory = /Users/tomoo/Project/KiwiScript/KiwiLibrary/~
 /* Unit test for run function */
 Message from run: Hello, running !! 123, Message from UTRun
 Thread is finished with error code: 0
 /* Unit test for ScriptManager */
-dyld: lazy symbol binding failed: Symbol not found: _$s11KiwiLibrary16KLBuiltinScriptsC6sharedACvau
-  Referenced from: /Users/tomoo/build/DerivedData/KiwiLibrary-drbjanamxeoihwhgnyztfalrvplk/Build/Products/Debug/UnitTest
-  Expected in: /Users/tomoo/build/DerivedData/KiwiLibrary-drbjanamxeoihwhgnyztfalrvplk/Build/Products/Debug/UnitTest.bundle/Contents/Frameworks/KiwiLibrary.framework/Versions/A/KiwiLibrary
-
-dyld: Symbol not found: _$s11KiwiLibrary16KLBuiltinScriptsC6sharedACvau
-  Referenced from: /Users/tomoo/build/DerivedData/KiwiLibrary-drbjanamxeoihwhgnyztfalrvplk/Build/Products/Debug/UnitTest
-  Expected in: /Users/tomoo/build/DerivedData/KiwiLibrary-drbjanamxeoihwhgnyztfalrvplk/Build/Products/Debug/UnitTest.bundle/Contents/Frameworks/KiwiLibrary.framework/Versions/A/KiwiLibrary
-
+ScriptManager
+ - script: sample-1
+ - script: unit-test-0
+ - script: unit-test-1
+/* Unit test for Thread */
+Source URL: file:///Users/tomoo/build/DerivedData/KiwiLibrary-drbjanamxeoihwhgnyztfalrvplk/Build/Products/Debug/UnitTest.bundle/Contents/Resources/sample-0.jspkg
+{
+  URL: file:///Users/tomoo/build/DerivedData/KiwiLibrary-drbjanamxeoihwhgnyztfalrvplk/Build/Products/Debug/UnitTest.bundle/Contents/Resources/sample-0.jspkg
+  application: {
+  }
+  images: {
+  }
+  libraries: {
+  }
+  subviews: {
+  }
+  threads: {
+    sample0: {
+      "sample0.js"
+    }
+  }
+  view: {
+  }
+}
+Message from thread: Hello, threading !! Thread,123, undefined
+Thread is finished with error code: 0
+/* Unit test for Command */
+Before execute cd command: curdir=file:///Users/tomoo/Project/KiwiScript/KiwiLibrary/ 
+cd command: Optional("..")
+(prev) dir file:///Users/tomoo/Project/KiwiScript/KiwiLibrary/
+ -> result 0
+(after) dir file:///Users/tomoo/Project/KiwiScript/
+cd command: Optional("Hoge")
+(prev) dir file:///Users/tomoo/Project/KiwiScript/
+[31mError: not directory[0m -> result -1
+(after) dir file:///Users/tomoo/Project/KiwiScript/
+cd command: Optional("./Debug")
+(prev) dir file:///Users/tomoo/Project/KiwiScript/
+[31mError: not directory[0m -> result -1
+(after) dir file:///Users/tomoo/Project/KiwiScript/
+[Error] cd is failed
+cd command: nil
+(prev) dir file:///Users/tomoo/Project/KiwiScript/
+ -> result 0
+(after) dir file:///Users/tomoo/Project/KiwiScript/
+/* Unit test for Type */
+* Test: JSValue(bool):

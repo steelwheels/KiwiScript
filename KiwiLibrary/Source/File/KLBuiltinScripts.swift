@@ -17,8 +17,6 @@ import Foundation
 
 public class KLBuiltinScripts
 {
-	public static let shared = KLBuiltinScripts()
-
 	public class ScriptInfo {
 		var url:	URL
 		public init(file furl: URL){
@@ -103,7 +101,7 @@ public class KLBuiltinScripts
 
 	public init(context ctxt: KEContext){
 		mContext	= ctxt
-		mBuiltinScript	= KLBuiltinScripts.shared
+		mBuiltinScript	= KLBuiltinScripts()
 		super.init()
 	}
 
