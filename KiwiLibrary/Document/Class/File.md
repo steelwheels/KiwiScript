@@ -22,16 +22,6 @@ none
 ### Return value
 The string which contains a line string. The string is always terminalted by newline code. If there are no lines to be read, the *nil* will be returned.
 
-## `input` method
-Read a line string from file. This method is blocked until the file (or user) inputs the newline code.
-````
-let l = file.input() ;
-````
-### Parametrer(s)
-none
-### Return value
-The string which does *NOT* contains newline code.
-
 ## `put` method
 Write the string into the file.
 ```

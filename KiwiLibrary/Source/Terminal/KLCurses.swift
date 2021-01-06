@@ -30,8 +30,8 @@ import Foundation
 
 @objc public class KLCurses: NSObject, KLCursesProtocol
 {
-	private var		mCurses:	CNCurses
-	private var 		mContext:	KEContext
+	private var	mCurses:	CNCurses
+	private var 	mContext:	KEContext
 
 
 	public init(console cons: CNFileConsole, terminalInfo terminfo: CNTerminalInfo, context ctxt: KEContext){

@@ -98,6 +98,8 @@
 		05C0379225187019002A9C41 /* Debug.js in Resources */ = {isa = PBXBuildFile; fileRef = 05C0378925186FF3002A9C41 /* Debug.js */; };
 		05C037932518701A002A9C41 /* Math.js in Resources */ = {isa = PBXBuildFile; fileRef = 05C0378825186FF3002A9C41 /* Math.js */; };
 		05C037942518701A002A9C41 /* Operation.js in Resources */ = {isa = PBXBuildFile; fileRef = 05C0378625186FF3002A9C41 /* Operation.js */; };
+		05C3B2A025A2087F005256E1 /* KLReadline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C3B29F25A2087F005256E1 /* KLReadline.swift */; };
+		05C3B2A125A2087F005256E1 /* KLReadline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C3B29F25A2087F005256E1 /* KLReadline.swift */; };
 		05CFDFE2254505E50089C1AE /* KLThreadLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CFDFE1254505E50089C1AE /* KLThreadLauncher.swift */; };
 		05CFDFE3254505E50089C1AE /* KLThreadLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CFDFE1254505E50089C1AE /* KLThreadLauncher.swift */; };
 /* End PBXBuildFile section */
@@ -230,6 +232,7 @@
 		05C0378825186FF3002A9C41 /* Math.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Math.js; sourceTree = "<group>"; };
 		05C0378925186FF3002A9C41 /* Debug.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Debug.js; sourceTree = "<group>"; };
 		05C0378A25186FF3002A9C41 /* Curses.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Curses.js; sourceTree = "<group>"; };
+		05C3B29F25A2087F005256E1 /* KLReadline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLReadline.swift; sourceTree = "<group>"; };
 		05CFDFE1254505E50089C1AE /* KLThreadLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLThreadLauncher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -441,6 +444,7 @@
 				05A95B632516D03300775737 /* KLFileManager.swift */,
 				05A95B642516D03300775737 /* KLNativeValueFile.swift */,
 				05A95B622516D03300775737 /* KLPipe.swift */,
+				05C3B29F25A2087F005256E1 /* KLReadline.swift */,
 				05A95B652516D03300775737 /* KLURL.swift */,
 			);
 			path = File;
@@ -750,6 +754,7 @@
 				05CFDFE2254505E50089C1AE /* KLThreadLauncher.swift in Sources */,
 				05A95B722516D03300775737 /* KLURL.swift in Sources */,
 				05A95B922516D08500775737 /* KLValueConverter.swift in Sources */,
+				05C3B2A025A2087F005256E1 /* KLReadline.swift in Sources */,
 				05A95B522516CFF300775737 /* KLOperationContext.swift in Sources */,
 				05A95B6A2516D03300775737 /* KLFile.swift in Sources */,
 				05A95B982516D08500775737 /* KLScriptValue.swift in Sources */,
@@ -783,6 +788,7 @@
 				05CFDFE3254505E50089C1AE /* KLThreadLauncher.swift in Sources */,
 				05A95B732516D03300775737 /* KLURL.swift in Sources */,
 				05A95B932516D08500775737 /* KLValueConverter.swift in Sources */,
+				05C3B2A125A2087F005256E1 /* KLReadline.swift in Sources */,
 				05A95B532516CFF300775737 /* KLOperationContext.swift in Sources */,
 				05A95B6B2516D03300775737 /* KLFile.swift in Sources */,
 				05A95B992516D08500775737 /* KLScriptValue.swift in Sources */,

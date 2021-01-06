@@ -44,6 +44,7 @@ There are some pre-defined objects. They are instance of built-in classes:
 Generate escape sequence string to be passed to terminal.
 * [Image class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Image.md): The class for image object.
 * [Math](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Math.md): The singleton object which has class methods for mathematical operation and such as `PI`, `sin()`, `cos()`.
+* [Readline](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Readline.md): The singleton object which manages the console input.
 
 ## Classes
 ### Preference

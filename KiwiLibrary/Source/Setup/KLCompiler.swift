@@ -365,8 +365,8 @@ public class KLCompiler: KECompiler
 		ctxt.set(name: "EscapeCode", object: ecode)
 
 		/* Environment */
-		let env = KLEnvironment(environment: env, context: ctxt)
-		ctxt.set(name: "Environment", object: env)
+		let envobj = KLEnvironment(environment: env, context: ctxt)
+		ctxt.set(name: "Environment", object: envobj)
 
 		/* Preference: This value will be override by KiwiShell */
 		let pref = KLPreference(context: ctxt)
@@ -375,6 +375,10 @@ public class KLCompiler: KECompiler
 		/* Built-in script manager */
 		let scrmgr = KLBuiltinScriptManager(context: ctxt)
 		ctxt.set(name: "ScriptManager", object: scrmgr)
+
+		/* Readline */
+		let readln = KLReadline(context: ctxt, terminalInfo: terminfo, environment: env, console: cons)
+		ctxt.set(name: "Readline", object: readln)
 	}
 
 	private func defineGlobalObjects(context ctxt: KEContext, console cons: CNFileConsole, config conf: KEConfig) {
