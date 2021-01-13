@@ -5,19 +5,14 @@
  *   Copyright (C) 2018 Steel Wheels Project
  */
 
+import CoconutData
+import KiwiEngine
+import JavaScriptCore
+import Foundation
 #if os(OSX)
 import AppKit
 #else
 import UIKit
-#endif
-import KiwiEngine
-import JavaScriptCore
-import Foundation
-
-#if os(OSX)
-public typealias KLImageCore = NSImage
-#else
-public typealias KLImageCore = UIImage
 #endif
 
 @objc public protocol KLImageProtocol: JSExport
@@ -27,11 +22,16 @@ public typealias KLImageCore = UIImage
 
 @objc public class KLImage: NSObject, KLImageProtocol, KLEmbeddedObject
 {
-	public var  coreImage:	KLImageCore?
+	public var  coreImage:	CNImage?
 	private var mContext:	KEContext
 
 	public init(context ctxt: KEContext) {
 		coreImage = nil
+		mContext  = ctxt
+	}
+
+	public init(image img: CNImage, context ctxt: KEContext) {
+		coreImage = img
 		mContext  = ctxt
 	}
 
