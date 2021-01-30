@@ -23,6 +23,8 @@
 		0540D6882516D4E100C5AE52 /* KiwiEngine.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0540D6812516D4B300C5AE52 /* KiwiEngine.xcframework */; };
 		0543B051253B3A5D00A9BAA1 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0543B050253B3A5D00A9BAA1 /* main.swift */; };
 		056FBE52255A3B8B0069A0C2 /* UTCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FBE51255A3B8B0069A0C2 /* UTCommand.swift */; };
+		05950CA125C4304500D659A1 /* KLGraphicsContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05950CA025C4304500D659A1 /* KLGraphicsContext.swift */; };
+		05950CA225C4304500D659A1 /* KLGraphicsContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05950CA025C4304500D659A1 /* KLGraphicsContext.swift */; };
 		05A1F44E253BBAD500D4789F /* UTEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A1F44D253BBAD400D4789F /* UTEnvironment.swift */; };
 		05A1F452253BBBD500D4789F /* UTFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A1F451253BBBD400D4789F /* UTFileManager.swift */; };
 		05A1F456253BC0F500D4789F /* UTFontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A1F455253BC0F500D4789F /* UTFontManager.swift */; };
@@ -180,6 +182,7 @@
 		0543B050253B3A5D00A9BAA1 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		0543B058253B3A9F00A9BAA1 /* KiwiLibrary.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiLibrary.xcframework; path = ../../../../Library/Frameworks/KiwiLibrary.xcframework; sourceTree = "<group>"; };
 		056FBE51255A3B8B0069A0C2 /* UTCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTCommand.swift; sourceTree = "<group>"; };
+		05950CA025C4304500D659A1 /* KLGraphicsContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLGraphicsContext.swift; sourceTree = "<group>"; };
 		05A1F44D253BBAD400D4789F /* UTEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTEnvironment.swift; sourceTree = "<group>"; };
 		05A1F451253BBBD400D4789F /* UTFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTFileManager.swift; sourceTree = "<group>"; };
 		05A1F455253BC0F500D4789F /* UTFontManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTFontManager.swift; sourceTree = "<group>"; };
@@ -320,6 +323,14 @@
 			path = ../Test;
 			sourceTree = "<group>";
 		};
+		05950C9F25C42FE500D659A1 /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				05950CA025C4304500D659A1 /* KLGraphicsContext.swift */,
+			);
+			path = Graphics;
+			sourceTree = "<group>";
+		};
 		05A1F46A253BC6E200D4789F /* UnitTestBundle */ = {
 			isa = PBXGroup;
 			children = (
@@ -388,6 +399,7 @@
 				05A95B8B2516D06E00775737 /* Base */,
 				05A95B7C2516D05A00775737 /* Data */,
 				05A95B5E2516D02100775737 /* File */,
+				05950C9F25C42FE500D659A1 /* Graphics */,
 				05A95B582516D00600775737 /* Preference */,
 				05A95B432516CFE000775737 /* Process */,
 				05A95B3A2516CFC000775737 /* Setup */,
@@ -630,7 +642,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1200;
-				LastUpgradeCheck = 1230;
+				LastUpgradeCheck = 1240;
 				TargetAttributes = {
 					0543B04D253B3A5D00A9BAA1 = {
 						CreatedOnToolsVersion = 12.0.1;
@@ -754,6 +766,7 @@
 				05CFDFE2254505E50089C1AE /* KLThreadLauncher.swift in Sources */,
 				05A95B722516D03300775737 /* KLURL.swift in Sources */,
 				05A95B922516D08500775737 /* KLValueConverter.swift in Sources */,
+				05950CA125C4304500D659A1 /* KLGraphicsContext.swift in Sources */,
 				05C3B2A025A2087F005256E1 /* KLReadline.swift in Sources */,
 				05A95B522516CFF300775737 /* KLOperationContext.swift in Sources */,
 				05A95B6A2516D03300775737 /* KLFile.swift in Sources */,
@@ -788,6 +801,7 @@
 				05CFDFE3254505E50089C1AE /* KLThreadLauncher.swift in Sources */,
 				05A95B732516D03300775737 /* KLURL.swift in Sources */,
 				05A95B932516D08500775737 /* KLValueConverter.swift in Sources */,
+				05950CA225C4304500D659A1 /* KLGraphicsContext.swift in Sources */,
 				05C3B2A125A2087F005256E1 /* KLReadline.swift in Sources */,
 				05A95B532516CFF300775737 /* KLOperationContext.swift in Sources */,
 				05A95B6B2516D03300775737 /* KLFile.swift in Sources */,
