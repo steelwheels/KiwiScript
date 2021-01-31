@@ -176,7 +176,7 @@ public enum KLSource {
 				self.console.error(string: "Failed to call main function\n")
 			}
 		} else {
-			self.console.error(string: "main function is NOT found\n")
+			self.console.error(string: "main function is NOT defined\n")
 		}
 		return result
 	}

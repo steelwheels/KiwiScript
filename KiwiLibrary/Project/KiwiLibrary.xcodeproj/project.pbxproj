@@ -90,13 +90,13 @@
 		05A95B9B2516D08500775737 /* KLNativeStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B902516D08500775737 /* KLNativeStruct.swift */; };
 		05A95B9C2516D08500775737 /* KLType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B912516D08500775737 /* KLType.swift */; };
 		05A95B9D2516D08500775737 /* KLType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B912516D08500775737 /* KLType.swift */; };
+		05B12A5B25C6783900273421 /* Turtle.js in Resources */ = {isa = PBXBuildFile; fileRef = 05B12A5A25C6783900273421 /* Turtle.js */; };
+		05B12A5C25C6783900273421 /* Turtle.js in Resources */ = {isa = PBXBuildFile; fileRef = 05B12A5A25C6783900273421 /* Turtle.js */; };
 		05C0378B25187007002A9C41 /* Cancel.js in Resources */ = {isa = PBXBuildFile; fileRef = 05C0378725186FF3002A9C41 /* Cancel.js */; };
-		05C0378C25187007002A9C41 /* Curses.js in Resources */ = {isa = PBXBuildFile; fileRef = 05C0378A25186FF3002A9C41 /* Curses.js */; };
 		05C0378D25187007002A9C41 /* Debug.js in Resources */ = {isa = PBXBuildFile; fileRef = 05C0378925186FF3002A9C41 /* Debug.js */; };
 		05C0378E25187007002A9C41 /* Math.js in Resources */ = {isa = PBXBuildFile; fileRef = 05C0378825186FF3002A9C41 /* Math.js */; };
 		05C0378F25187007002A9C41 /* Operation.js in Resources */ = {isa = PBXBuildFile; fileRef = 05C0378625186FF3002A9C41 /* Operation.js */; };
 		05C0379025187019002A9C41 /* Cancel.js in Resources */ = {isa = PBXBuildFile; fileRef = 05C0378725186FF3002A9C41 /* Cancel.js */; };
-		05C0379125187019002A9C41 /* Curses.js in Resources */ = {isa = PBXBuildFile; fileRef = 05C0378A25186FF3002A9C41 /* Curses.js */; };
 		05C0379225187019002A9C41 /* Debug.js in Resources */ = {isa = PBXBuildFile; fileRef = 05C0378925186FF3002A9C41 /* Debug.js */; };
 		05C037932518701A002A9C41 /* Math.js in Resources */ = {isa = PBXBuildFile; fileRef = 05C0378825186FF3002A9C41 /* Math.js */; };
 		05C037942518701A002A9C41 /* Operation.js in Resources */ = {isa = PBXBuildFile; fileRef = 05C0378625186FF3002A9C41 /* Operation.js */; };
@@ -230,11 +230,11 @@
 		05A95B8F2516D08500775737 /* KLScriptValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLScriptValue.swift; sourceTree = "<group>"; };
 		05A95B902516D08500775737 /* KLNativeStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLNativeStruct.swift; sourceTree = "<group>"; };
 		05A95B912516D08500775737 /* KLType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLType.swift; sourceTree = "<group>"; };
+		05B12A5A25C6783900273421 /* Turtle.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Turtle.js; sourceTree = "<group>"; };
 		05C0378625186FF3002A9C41 /* Operation.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Operation.js; sourceTree = "<group>"; };
 		05C0378725186FF3002A9C41 /* Cancel.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Cancel.js; sourceTree = "<group>"; };
 		05C0378825186FF3002A9C41 /* Math.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Math.js; sourceTree = "<group>"; };
 		05C0378925186FF3002A9C41 /* Debug.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Debug.js; sourceTree = "<group>"; };
-		05C0378A25186FF3002A9C41 /* Curses.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Curses.js; sourceTree = "<group>"; };
 		05C3B29F25A2087F005256E1 /* KLReadline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLReadline.swift; sourceTree = "<group>"; };
 		05CFDFE1254505E50089C1AE /* KLThreadLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLThreadLauncher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -498,10 +498,10 @@
 			isa = PBXGroup;
 			children = (
 				05C0378725186FF3002A9C41 /* Cancel.js */,
-				05C0378A25186FF3002A9C41 /* Curses.js */,
 				05C0378925186FF3002A9C41 /* Debug.js */,
 				05C0378825186FF3002A9C41 /* Math.js */,
 				05C0378625186FF3002A9C41 /* Operation.js */,
+				05B12A5A25C6783900273421 /* Turtle.js */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -706,8 +706,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				05C0378B25187007002A9C41 /* Cancel.js in Resources */,
-				05C0378C25187007002A9C41 /* Curses.js in Resources */,
 				05C0378D25187007002A9C41 /* Debug.js in Resources */,
+				05B12A5B25C6783900273421 /* Turtle.js in Resources */,
 				05C0378E25187007002A9C41 /* Math.js in Resources */,
 				05C0378F25187007002A9C41 /* Operation.js in Resources */,
 			);
@@ -718,8 +718,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				05C0379025187019002A9C41 /* Cancel.js in Resources */,
-				05C0379125187019002A9C41 /* Curses.js in Resources */,
 				05C0379225187019002A9C41 /* Debug.js in Resources */,
+				05B12A5C25C6783900273421 /* Turtle.js in Resources */,
 				05C037932518701A002A9C41 /* Math.js in Resources */,
 				05C037942518701A002A9C41 /* Operation.js in Resources */,
 			);

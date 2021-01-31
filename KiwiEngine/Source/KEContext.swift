@@ -66,7 +66,11 @@ public class KEContext : JSContext
 	}
 
 	public func getValue(name n:String) -> JSValue? {
-		return self.objectForKeyedSubscript(NSString(string: n))
+		if let obj = self.objectForKeyedSubscript(NSString(string: n)) {
+			return obj.isUndefined ? nil : obj 
+		} else {
+			return nil
+		}
 	}
 }
 

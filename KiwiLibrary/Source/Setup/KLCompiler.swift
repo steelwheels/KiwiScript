@@ -410,18 +410,18 @@ public class KLCompiler: KECompiler
 
 	private func importBuiltinLibrary(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig)
 	{
-		let libnames = ["Cancel", "Debug", "Math", "Curses"]
+		let libnames = ["Cancel", "Debug", "Math", "Turtle"]
 		do {
 			for libname in libnames {
 				if let url = CNFilePath.URLForResourceFile(fileName: libname, fileExtension: "js", forClass: KLCompiler.self) {
 					let script = try String(contentsOf: url, encoding: .utf8)
 					let _ = compile(context: ctxt, statement: script, console: cons, config: conf)
 				} else {
-					NSLog("Failed to read built-in script")
+					cons.error(string: "Built-in script \"\(libname)\" is not found.")
 				}
 			}
 		} catch {
-			NSLog("Failed to read built-in script")
+			cons.error(string: "Failed to read built-in script in KiwiLibrary")
 		}
 	}
 
