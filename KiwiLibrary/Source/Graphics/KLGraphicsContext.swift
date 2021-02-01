@@ -25,7 +25,7 @@ import Foundation
 
 	func setFillColor(_ val: JSValue)
 	func setStrokeColor(_ val: JSValue)
-	func setLineWidth(_ val: JSValue)
+	func setPenSize(_ val: JSValue)
 	func moveTo(_ xval: JSValue, _ yval: JSValue)
 	func lineTo(_ xval: JSValue, _ yval: JSValue)
 	func circle(_ xval: JSValue, _ yval: JSValue, _ radval: JSValue)
@@ -75,10 +75,10 @@ import Foundation
 		}
 	}
 
-	public func setLineWidth(_ val: JSValue) {
+	public func setPenSize(_ val: JSValue) {
 		if val.isNumber {
 			let width = val.toDouble()
-			mGContext.setLineWidth(width: CGFloat(width))
+			mGContext.setPenSize(width: CGFloat(width))
 		} else {
 			mConsole.error(string: "Invalid parameter at \(#function)\n")
 		}

@@ -4,26 +4,46 @@
 
 class Turtle {
     // The context "ctxt" is given by Graphic2D component
-    constructor(ctxt, x, y){
+    constructor(ctxt){
         this.mContext            = ctxt ;
-        this.mCurrentX           = x ;
-        this.mCurrentY           = y ;
+        this.mCurrentX           = 0.0 ;
+        this.mCurrentY           = 0.0 ;
         this.mCurrentAngle	     = 0 ;
         this.mMovingAngle        = Math.PI / 2.0 ;
         this.mMovingDistance     = ctxt.logicalFrame.width / 10.0 ;
+	    this.mPenSize		     = this.mMovingDistance / 10.0 ;
         this.mHistory            = [] ;
-
-        ctxt.moveTo(this.currentX, this.currentY) ;
     }
+
+    setup(x, y, angle, pen) {
+        this.mCurrentX      = x ;
+        this.mCurrentY      = y ;
+        this.mCurrentAngle  = angle ;
+        this.mPenSize       = pen ;
+
+        this.mContext.moveTo(x, y) ;
+	    this.mContext.setPenSize(pen) ;
+    }
+
+    get logicalFrame()          { return this.mContext.logicalFrame ; }
 
     get currentX()              { return this.mCurrentX ;         }
     get currentY()              { return this.mCurrentY ;         }
     get currentAngle()          { return this.mCurrentAngle ;     }
+    get penSize()               { return this.mPenSize ;          }
 
     get movingAngle()           { return this.mMovingAngle ;      }
     set movingAngle(newval)     { this.mMovingAngle = newval ;    }
     get movingDistance()        { return this.mMovingDistance ;   }
     set movingDistance(newval)  { this.mMovingDistance = newval ; }
+
+    get penSize()        {
+        return this.mPenSize ;
+    }
+    set penSize(newval)  {
+	    this.mContext.setPenSize(newval) ;
+	    this.mPenSize = newval ;
+    }
 
     forward(dodraw) {
         this.mCurrentX += Math.sin(this.mCurrentAngle) * this.mMovingDistance ;
@@ -70,6 +90,8 @@ class Turtle {
             } else {
                 console.error("[Error] No angle property in Turtle\n") ;
             }
+	    /* Update current position */
+	    this.mContext.moveTo(this.mCurrentX, this.mCurrentY) ;
         } else {
             console.error("[Error] No history in Turtle\n") ;
         }
