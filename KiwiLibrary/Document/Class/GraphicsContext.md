@@ -3,6 +3,8 @@ The object to draw 2D graphics.
 This object is allocated by [2D Graphics component](https://github.com/steelwheels/KiwiCompnents/blob/master/Document/Components/Graphics2D.md)
 and used in the user's script.
 
+The [Turtle class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/BuiltIn/Turtle.md) uses this instance to draw graphics.
+
 # Constants
 
 |Property name  |Type   |Description                    |
@@ -16,7 +18,8 @@ and used in the user's script.
 |cyan           |Color  |The cyan color object          |
 |white          |Color  |The white color object         |
 
-example:
+
+This is an example using color constant.
 ````
 context.setFillColor(context.blue) ;
 ````
@@ -51,14 +54,14 @@ context.setStrokeColor(color) ;
 ### Return value
 none
 
-## `setLinewidth`
+## `setPenSize`
 ````
-context.setLineWidth(width) ;
+context.setPenSize(width) ;
 ````
 ### Parameters
 |Parameter name |Type   |Description                    |
 |:---           |:---   |:---                           |
-|width          |Float  |The width of the pen to draw the line|
+|width          |Float  |The logical width/height of the pen to draw the line|
 
 ### Return value
 none
@@ -71,8 +74,8 @@ context.moveTo(x, y) ;
 ### Parameters
 |Parameter name |Type   |Description                    |
 |:---           |:---   |:---                           |
-|x              |Float  |The X position                 |
-|y              |Float  |The Y position                 |
+|x              |Float  |The logical X position                 |
+|y              |Float  |The logical Y position                 |
 
 ### Return value
 none
@@ -85,8 +88,8 @@ context.lineTo(x, y) ;
 ### Parameters
 |Parameter name |Type   |Description                    |
 |:---           |:---   |:---                           |
-|x              |Float  |The X position                 |
-|y              |Float  |The Y position                 |
+|x              |Float  |The logical X position                 |
+|y              |Float  |The logical Y position                 |
 
 ### Return value
 none
@@ -99,12 +102,15 @@ context.circule(x, y, radius) ;
 ### Parameters
 |Parameter name |Type   |Description                    |
 |:---           |:---   |:---                           |
-|x              |Float  |The X position                 |
-|y              |Float  |The Y position                 |
-|radius         |Float  |The radius of the circle       |
+|x              |Float  |The logical X position                 |
+|y              |Float  |The logical Y position                 |
+|radius         |Float  |The logical radius of the circle       |
 
 ### Return value
 none
 
 # References
 * [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library
+* [Turtle class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/BuiltIn/Turtle.md): Buillt-in JavaScript class for turtle graphics.
+
+
