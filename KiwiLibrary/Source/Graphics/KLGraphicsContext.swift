@@ -1,6 +1,6 @@
 /**
  * @file	KLGraphicsContext.swift
- * @brief	Extend KLGraphicsContext class
+ * @brief	Define KLGraphicsContext class
  * @par Copyright
  *   Copyright (C) 2021 Steel Wheels Project
  */
