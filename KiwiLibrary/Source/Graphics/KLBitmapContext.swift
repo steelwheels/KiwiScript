@@ -21,7 +21,8 @@ import Foundation
 	var cyan:	JSValue { get }
 	var white:	JSValue { get }
 
-	var logicalSize: JSValue { get }
+	var width:  JSValue { get }
+	var height: JSValue { get }
 
 	func setColor(_ val: JSValue)
 
@@ -53,11 +54,8 @@ import Foundation
 	public var cyan:	JSValue { get { return JSValue(int32: Int32(Color.cyan.rawValue),	in: mJContext) }}
 	public var white: 	JSValue { get { return JSValue(int32: Int32(Color.white.rawValue),	in: mJContext) }}
 
-	public var logicalSize: JSValue {
-		get {
-			return JSValue(size: mBContext.logicalSize, in: mJContext)
-		}
-	}
+	public var width:  JSValue { get { return JSValue(int32: Int32(mBContext.width),  in: mJContext) }}
+	public var height: JSValue { get { return JSValue(int32: Int32(mBContext.height), in: mJContext) }}
 
 	public func setColor(_ val: JSValue) {
 		if let col = valueToColor(value: val) {
