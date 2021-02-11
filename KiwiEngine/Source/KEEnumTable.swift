@@ -128,6 +128,14 @@ public class KEEnumTable
 			KEEnumType.Member(name: "authorized",	value: CNAuthorizeState.Authorized.rawValue)
 		])
 		mEnumTypes[authorize.typeName] = authorize
+
+		let animstate = KEEnumType(typeName: "AnimationState")
+		animstate.add(members: [
+			KEEnumType.Member(name: "idle",		value: CNAnimationState.idle.rawValue),
+			KEEnumType.Member(name: "run",		value: CNAnimationState.run.rawValue),
+			KEEnumType.Member(name: "pause",	value: CNAnimationState.pause.rawValue)
+		])
+		mEnumTypes[animstate.typeName] = animstate
 	}
 
 	public func search(by typename: String) -> KEEnumType? {
