@@ -21,13 +21,17 @@ import Foundation
 	var cyan:	JSValue { get }
 	var white:	JSValue { get }
 
-	var width:  JSValue { get }
-	var height: JSValue { get }
+	var width:      JSValue { get }
+	var height:     JSValue { get }
+	var baseBitmap: JSValue { get }
 
-	func setColor(_ val: JSValue)
+	func draw(_ bitmap: JSValue)
+}
 
-	func drawPoint(_ x: JSValue, _ y: JSValue)
-	func drawRect(_ x: JSValue, _ y: JSValue, _ width: JSValue, _ height: JSValue)
+@objc public protocol KLBitmapDataProtocol: JSExport
+{
+	func set(_ x: JSValue, _ y: JSValue, _ col: JSValue)
+	func get(_ x: JSValue, _ y: JSValue) -> JSValue
 }
 
 @objc public class KLBitmapContext: NSObject, KLBitmapContextProtocol
@@ -52,31 +56,51 @@ import Foundation
 	public var cyan:	JSValue { get { return JSValue(object: CNColor.cyan,	in: mJContext) }}
 	public var white: 	JSValue { get { return JSValue(object: CNColor.white,	in: mJContext) }}
 
-	public var width:  JSValue { get { return JSValue(int32: Int32(mBContext.width),  in: mJContext) }}
-	public var height: JSValue { get { return JSValue(int32: Int32(mBContext.height), in: mJContext) }}
+	public var width:      JSValue { get { return JSValue(int32: Int32(mBContext.width),  in: mJContext) }}
+	public var height:     JSValue { get { return JSValue(int32: Int32(mBContext.height), in: mJContext) }}
+	public var baseBitmap: JSValue { get {
+		let baseobj = KLBitmapData(bitmap: mBContext.baseBitmap, context: mJContext, console: mConsole)
+		return JSValue(object: baseobj, in: mJContext)
+	}}
 
-	public func setColor(_ val: JSValue) {
-		if let col = valueToColor(value: val) {
-			mBContext.set(color: col)
-		} else {
-			mConsole.error(string: "Invalid parameter at \(#function)\n")
+	public func draw(_ val: JSValue) {
+		if val.isObject {
+			if let bm = val.toObject() as? KLBitmapData {
+				mBContext.draw(bitmap: bm.data)
+				return
+			}
+		}
+		mConsole.error(string: "Bitmap object is required but \(val) is given\n")
+	}
+}
+
+@objc public class KLBitmapData: NSObject, KLBitmapDataProtocol
+{
+	private var mBitmapData:	CNBitmapData
+	private var mContext:		KEContext
+	private var mConsole:		CNConsole
+
+	public var data: CNBitmapData { get { return mBitmapData }}
+
+	public init(bitmap bm: CNBitmapData, context ctxt: KEContext, console cons: CNConsole) {
+		mBitmapData	= bm
+		mContext	= ctxt
+		mConsole	= cons
+	}
+
+	public func set(_ xv: JSValue, _ yv: JSValue, _ colv: JSValue) {
+		if let x = valueToInt(value: xv), let y = valueToInt(value: yv), let col = valueToColor(value: colv) {
+			mBitmapData.set(x: x, y: y, color: col)
 		}
 	}
 
-	public func drawPoint(_ xv: JSValue, _ yv: JSValue) {
+	public func get(_ xv: JSValue, _ yv: JSValue) -> JSValue {
 		if let x = valueToInt(value: xv), let y = valueToInt(value: yv) {
-			mBContext.drawPoint(x: x, y: y)
-		} else {
-			mConsole.error(string: "Invalid parameter at \(#function)\n")
+			if let col = mBitmapData.get(x: x, y: y) {
+				return JSValue(object: col, in: mContext)
+			}
 		}
-	}
-
-	public func drawRect(_ xv: JSValue, _ yv: JSValue, _ widthv: JSValue, _ heightv: JSValue) {
-		if let x = valueToInt(value: xv), let y = valueToInt(value: yv), let width = valueToInt(value: widthv), let height = valueToInt(value: heightv) {
-			mBContext.drawRect(x: x, y: y, width: width, height: height)
-		} else {
-			mConsole.error(string: "Invalid parameter at \(#function)\n")
-		}
+		return JSValue(nullIn: mContext)
 	}
 
 	private func valueToInt(value val: JSValue) -> Int? {
