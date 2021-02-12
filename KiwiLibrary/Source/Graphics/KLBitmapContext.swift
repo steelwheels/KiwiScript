@@ -32,8 +32,6 @@ import Foundation
 
 @objc public class KLBitmapContext: NSObject, KLBitmapContextProtocol
 {
-	public typealias Color = CNColor.CursesColor
-
 	private var mBContext:	CNBitmapContext
 	private var mJContext:	KEContext
 	private var mConsole:	CNConsole
@@ -45,14 +43,14 @@ import Foundation
 		super.init()
 	}
 
-	public var black: 	JSValue { get { return JSValue(int32: Int32(Color.black.rawValue),	in: mJContext) }}
-	public var red:		JSValue { get { return JSValue(int32: Int32(Color.red.rawValue),	in: mJContext) }}
-	public var green:	JSValue { get { return JSValue(int32: Int32(Color.green.rawValue),	in: mJContext) }}
-	public var yellow:	JSValue { get { return JSValue(int32: Int32(Color.yellow.rawValue),	in: mJContext) }}
-	public var blue:	JSValue { get { return JSValue(int32: Int32(Color.blue.rawValue),	in: mJContext) }}
-	public var magenta:	JSValue { get { return JSValue(int32: Int32(Color.magenta.rawValue),	in: mJContext) }}
-	public var cyan:	JSValue { get { return JSValue(int32: Int32(Color.cyan.rawValue),	in: mJContext) }}
-	public var white: 	JSValue { get { return JSValue(int32: Int32(Color.white.rawValue),	in: mJContext) }}
+	public var black: 	JSValue { get { return JSValue(object: CNColor.black,	in: mJContext) }}
+	public var red:		JSValue { get { return JSValue(object: CNColor.red,	in: mJContext) }}
+	public var green:	JSValue { get { return JSValue(object: CNColor.green,	in: mJContext) }}
+	public var yellow:	JSValue { get { return JSValue(object: CNColor.yellow,	in: mJContext) }}
+	public var blue:	JSValue { get { return JSValue(object: CNColor.blue,	in: mJContext) }}
+	public var magenta:	JSValue { get { return JSValue(object: CNColor.magenta,	in: mJContext) }}
+	public var cyan:	JSValue { get { return JSValue(object: CNColor.cyan,	in: mJContext) }}
+	public var white: 	JSValue { get { return JSValue(object: CNColor.white,	in: mJContext) }}
 
 	public var width:  JSValue { get { return JSValue(int32: Int32(mBContext.width),  in: mJContext) }}
 	public var height: JSValue { get { return JSValue(int32: Int32(mBContext.height), in: mJContext) }}
@@ -90,12 +88,10 @@ import Foundation
 		return nil
 	}
 
-	private func valueToColor(value val: JSValue) -> Color? {
-		if val.isNumber {
-			if let num = val.toNumber() {
-				if let col = Color(rawValue: num.intValue) {
-					return col
-				}
+	private func valueToColor(value val: JSValue) -> CNColor? {
+		if val.isObject {
+			if let col = val.toObject() as? CNColor {
+				return col
 			}
 		}
 		return nil

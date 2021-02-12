@@ -61,7 +61,7 @@ import Foundation
 
 	public func setFillColor(_ val: JSValue) {
 		if let col = val.toObject() as? CNColor {
-			mGContext.setFillColor(color: col.cgColor)
+			mGContext.setFillColor(color: col)
 		} else {
 			mConsole.error(string: "Invalid parameter at \(#function)\n")
 		}
@@ -69,7 +69,7 @@ import Foundation
 
 	public func setStrokeColor(_ val: JSValue) {
 		if let col = val.toObject() as? CNColor {
-			mGContext.setStrokeColor(color: col.cgColor)
+			mGContext.setStrokeColor(color: col)
 		} else {
 			mConsole.error(string: "Invalid parameter at \(#function)\n")
 		}
