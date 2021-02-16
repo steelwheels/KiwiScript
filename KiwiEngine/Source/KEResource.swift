@@ -15,6 +15,7 @@ open class KEResource: CNResource
 	public static let LibrariesCategory		= "libraries"
 	public static let ThreadsCategory		= "threads"
 	public static let SubViewsCategory		= "subviews"
+	public static let DataCategory			= "data"
 	public static let ImagesCategory		= "images"
 
 	public static let DefaultIdentifier		= "_default"
@@ -58,6 +59,7 @@ open class KEResource: CNResource
 		addCategory(category: KEResource.LibrariesCategory,	loader: mFileLoader)
 		addCategory(category: KEResource.ThreadsCategory,	loader: mFileLoader)
 		addCategory(category: KEResource.SubViewsCategory,	loader: mFileLoader)
+		addCategory(category: KEResource.DataCategory,		loader: mFileLoader)
 		addCategory(category: KEResource.ImagesCategory, 	loader: mImageLoader)
 	}
 
@@ -248,6 +250,37 @@ open class KEResource: CNResource
 
 	public func loadSubview(identifier ident: String) -> String? {
 		if let script:String = super.load(category: KEResource.SubViewsCategory, identifier: ident, index: 0) {
+			return script
+		} else {
+			return nil
+		}
+	}
+
+	/*
+	 * data
+	 */
+	public func identifiersOfData() -> Array<String>? {
+		return super.identifiers(category: KEResource.DataCategory)
+	}
+
+	public func setData(identifier ident: String, path pathstr: String){
+		super.set(category: KEResource.DataCategory, identifier: ident, path: pathstr)
+	}
+
+	public func pathStringOfData(identifier ident: String) -> String? {
+		return super.pathString(category: KEResource.DataCategory, identifier: ident, index: 0)
+	}
+
+	public func URLOfData(identifier ident: String) -> URL? {
+		if let url = super.fullPathURL(category: KEResource.DataCategory, identifier: ident, index: 0) {
+			return url
+		} else {
+			return nil
+		}
+	}
+
+	public func loadData(identifier ident: String) -> String? {
+		if let script:String = super.load(category: KEResource.DataCategory, identifier: ident, index: 0) {
 			return script
 		} else {
 			return nil

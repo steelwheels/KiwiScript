@@ -48,7 +48,7 @@ public class KEManifestLoader
 			if let apppath = appval.toString() {
 				res.setApprication(path: apppath)
 			} else {
-				throw NSError.parseError(message: "application must has string property")
+				throw NSError.parseError(message: "application section must have script file name properties")
 			}
 		}
 		/* Decode: "view" */
@@ -56,7 +56,7 @@ public class KEManifestLoader
 			if let viewpath = viewval.toString() {
 				res.setView(path: viewpath)
 			} else {
-				throw NSError.parseError(message: "view must has string property")
+				throw NSError.parseError(message: "view section must have script file name properties")
 			}
 		}
 		/* Decode: "libraries" */
@@ -67,7 +67,7 @@ public class KEManifestLoader
 					res.addLibrary(path: path)
 				}
 			} else {
-				throw NSError.parseError(message: "libraries section must has array property")
+				throw NSError.parseError(message: "libraries section must have library file name properties")
 			}
 		}
 		/* Decode: "threads" */
@@ -78,7 +78,7 @@ public class KEManifestLoader
 					res.setThread(identifier: ident, path: path)
 				}
 			} else {
-				throw NSError.parseError(message: "threads section must has object property")
+				throw NSError.parseError(message: "threads section must have thread script file name properties")
 			}
 		}
 		/* Decode: "subviews" */
@@ -89,7 +89,18 @@ public class KEManifestLoader
 					res.setSubView(identifier: ident, path: path)
 				}
 			} else {
-				throw NSError.parseError(message: "subviews section must has object property")
+				throw NSError.parseError(message: "subviews section must have subview script file name properties")
+			}
+		}
+		/* Decode: "data" */
+		if let dataval = data[KEResource.DataCategory] {
+			if let datadict = dataval.toDictionary() {
+				let fmap = try decodeFileMap(properties: datadict)
+				for (ident, path) in fmap {
+					res.setData(identifier: ident, path: path)
+				}
+			} else {
+				throw NSError.parseError(message: "data section must have data file name properties")
 			}
 		}
 		/* Decode: "images" */
@@ -100,7 +111,7 @@ public class KEManifestLoader
 					res.setImage(identifier: ident, path: path)
 				}
 			} else {
-				throw NSError.parseError(message: "libraries section must has object property")
+				throw NSError.parseError(message: "libraries section must have image file name properties")
 			}
 		}
 	}
