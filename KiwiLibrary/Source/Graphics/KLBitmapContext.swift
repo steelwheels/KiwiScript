@@ -57,11 +57,11 @@ import Foundation
 	}}
 
 	public func draw(_ val: JSValue) {
-		if let bm = val.toBitmap() {
+		if let bm = val.toBitmapData() {
 			mBContext.draw(bitmap: bm)
-			return
+		} else {
+			mConsole.error(string: "Bitmap object is required but \(val) is given\n")
 		}
-		mConsole.error(string: "Bitmap object is required but \(val) is given\n")
 	}
 }
 

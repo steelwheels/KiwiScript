@@ -14,14 +14,14 @@ private let BitmapDataClassName	= "BitmapData"
 
 extension JSValue
 {
-	public var isBitmap: Bool {
+	public var isBitmapData: Bool {
 		get {
 			return self.isClass(name: BitmapDataClassName)
 		}
 	}
 
-	public func toBitmap() -> CNBitmapData? {
-		if isBitmap {
+	public func toBitmapData() -> CNBitmapData? {
+		if isBitmapData {
 			if let dict = self.toDictionary() {
 				if let data = dict["data"] as? Array<Array<Int>> {
 					return CNBitmapData(monoData: data)

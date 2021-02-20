@@ -172,6 +172,25 @@ public class KLCompiler: KECompiler
 		}
 		ctxt.set(name: "isURL", function: isURLFunc)
 
+		/* isBitmapData */
+		let isBitmapDataFunc: @convention(block) (_ value: JSValue) -> JSValue = {
+			(_ value: JSValue) -> JSValue in
+			let result: Bool = value.isBitmapData
+			return JSValue(bool: result, in: ctxt)
+		}
+		ctxt.set(name: "isBitmapData", function: isBitmapDataFunc)
+
+		/* className */
+		let classNameFunc: @convention(block) (_ value: JSValue) -> JSValue = {
+			(_ value: JSValue) -> JSValue in
+			if let name = value.classPropertyName {
+				return JSValue(object: name, in: ctxt)
+			} else {
+				return JSValue(nullIn: ctxt)
+			}
+		}
+		ctxt.set(name: "className", function: classNameFunc)
+
 		/* typeID */
 		let typeidFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in

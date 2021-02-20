@@ -68,13 +68,21 @@ extension JSValue
 		self.init(object: imgobj, in: context)
 	}
 
-	public func isClass(name nm: String) -> Bool {
-		if let dict = self.toDictionary() {
-			if let prop = dict[JSValue.classPropertyName] as? String {
-				return (prop == nm)
+	public var classPropertyName: String? {
+		if let dict = self.toObject() as? Dictionary<AnyHashable, Any> {
+			if let name = dict[JSValue.classPropertyName] as? String {
+				return name
 			}
 		}
-		return false
+		return nil
+	}
+
+	public func isClass(name nm: String) -> Bool {
+		if let thisname = classPropertyName {
+			return (thisname == nm)
+		} else {
+			return false
+		}
 	}
 
 	public var isPoint: Bool {
