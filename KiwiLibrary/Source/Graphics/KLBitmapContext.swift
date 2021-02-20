@@ -53,16 +53,13 @@ import Foundation
 	public var width:      JSValue { get { return JSValue(int32: Int32(mBContext.width),  in: mJContext) }}
 	public var height:     JSValue { get { return JSValue(int32: Int32(mBContext.height), in: mJContext) }}
 	public var baseBitmap: JSValue { get {
-		let baseobj = KLBitmapData(bitmap: mBContext.baseBitmap, context: mJContext, console: mConsole)
-		return JSValue(object: baseobj, in: mJContext)
+		return mBContext.baseBitmap.toJSValue(context: mJContext)
 	}}
 
 	public func draw(_ val: JSValue) {
-		if val.isObject {
-			if let bm = val.toObject() as? KLBitmapData {
-				mBContext.draw(bitmap: bm.data)
-				return
-			}
+		if let bm = val.toBitmap() {
+			mBContext.draw(bitmap: bm)
+			return
 		}
 		mConsole.error(string: "Bitmap object is required but \(val) is given\n")
 	}

@@ -54,6 +54,9 @@ public enum JSValueType: Int {
 
 extension JSValue
 {
+	public static let classPropertyName: String	= "className"
+	public static let instancePropertyName: String	= "instanceName"
+
 	public convenience init(URL url: URL, in context: KEContext) {
 		let urlobj = KLURL(URL: url, context: context)
 		self.init(object: urlobj, in: context)
@@ -63,6 +66,15 @@ extension JSValue
 		let imgobj = KLImage(context: context)
 		imgobj.coreImage = img
 		self.init(object: imgobj, in: context)
+	}
+
+	public func isClass(name nm: String) -> Bool {
+		if let dict = self.toDictionary() {
+			if let prop = dict[JSValue.classPropertyName] as? String {
+				return (prop == nm)
+			}
+		}
+		return false
 	}
 
 	public var isPoint: Bool {
@@ -259,7 +271,7 @@ extension JSValue
 					result = .ObjectType
 				}
 			} else {
-				fatalError("Unknown type")
+				fatalError("Unknown type: \"\(self.description)\"")
 			}
 			return result
 		}

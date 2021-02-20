@@ -1148,6 +1148,12 @@ let Alignment = {
 	fill : 2,
 	center : 3
 };
+/* Define Enum: AnimationState */
+let AnimationState = {
+	idle : 0,
+	run : 1,
+	pause : 2
+};
 /* Define Enum: Authorize */
 let Authorize = {
 	undetermined : 0,
@@ -1174,9 +1180,10 @@ let Color = {
 };
 /* Define Enum: Distribution */
 let Distribution = {
-	fillProportinally : 0,
-	fillEqually : 1,
-	equalSpacing : 2
+	fill : 0,
+	fillProportinally : 1,
+	fillEqually : 2,
+	equalSpacing : 3
 };
 /* Define Enum: ExitCode */
 let ExitCode = {
@@ -1275,127 +1282,135 @@ Math.randomInt = function(min, max) {
 function int(value) {
 	return Math.floor(value) ;
 }
-/* CUI.js */
+/*
+ * turtle.js: Support Turtle Graphics
+ */
 
-class CObject
-{
-	/* construcor(origin: Point, size: Size) */
-	constructor(origin, size) {
-		this.parent				= null ;
-		this.visible			= true ;
-		this.origin 			= origin ;
-		this.size				= size ;
-		this.foregroundColor	= Color.black ;
-		this.backgroundColor	= Color.white ;
-	}
+class Turtle {
+    // The context "ctxt" is given by Graphic2D component
+    constructor(ctxt){
+        this.mContext            = ctxt ;
+        this.mCurrentX           = 0.0 ;
+        this.mCurrentY           = 0.0 ;
+        this.mCurrentAngle	     = 0 ;
+        this.mMovingAngle        = Math.PI / 2.0 ;
+        this.mMovingDistance     = ctxt.logicalFrame.width / 10.0 ;
+	    this.mPenSize		     = this.mMovingDistance / 10.0 ;
+        this.mHistory            = [] ;
+    }
 
-	get frame()		{ return Rect(this.origin.x, this.origin.y, this.size.width, this.size.height) ; }
-	get left()		{ return this.origin.x ; 					}	
-	get right()		{ return this.origin.x + this.size.width ; 	}
-	get top()		{ return this.origin.y ;					}
-	get bottom()	{ return this.origin.y + this.size.height ;	}
+    setup(x, y, angle, pen) {
+        this.mCurrentX      = x ;
+        this.mCurrentY      = y ;
+        this.mCurrentAngle  = angle ;
+        this.mPenSize       = pen ;
 
-	/* func moveTo(x: Int, y: Int) */
-	moveTo(x, y) {
-		this.origin = Point(x, y) ;
-	}
+        this.mContext.moveTo(x, y) ;
+	    this.mContext.setPenSize(pen) ;
+    }
 
-	/* func draw() */
-	draw() {
-		console.error("CObject: Not supported") ;
-	}
+    get logicalFrame()          { return this.mContext.logicalFrame ; }
 
-	/* func erace() */
-	hide() {
-		let parent = this.parent ;
-		if(parent != null) {
-			Curses.foregroundColor = parent.foregroundColor ;
-			Curses.backgroundColor = parent.backgroundColor ;
-		} else {
-			Curses.foregroundColor = this.foregroundColor ;
-			Curses.backgroundColor = this.backgroundColor ;
-		}
-		let frame = this.frame ;
-		Curses.fill(frame.x, frame.y, frame.width, frame.height, " ") ;
-		this.visible = false ;
-	}
+    get currentX()              { return this.mCurrentX ;         }
+    get currentY()              { return this.mCurrentY ;         }
+    get currentAngle()          { return this.mCurrentAngle ;     }
+    get penSize()               { return this.mPenSize ;          }
 
-	/* func drawRect(rect: Rect) */
-	drawRect(rect) {
-		/* Setup colors */
-		Curses.foregroundColor = this.foregroundColor ;
-		Curses.backgroundColor = this.backgroundColor ;
-		/* Fill by spaces */
-		Curses.fill(rect.x, rect.y, rect.width, rect.height, " ") ;
-	}
+    get movingAngle()           { return this.mMovingAngle ;      }
+    set movingAngle(newval)     { this.mMovingAngle = newval ;    }
+    get movingDistance()        { return this.mMovingDistance ;   }
+    set movingDistance(newval)  { this.mMovingDistance = newval ; }
 
-	/* func sectRect(rect0: Rect, rect1: Rect) -> Rect? */
-	sectRect(rect0, rect1) {
-		let left0   = rect0.x ;
-		let right0  = left0 + rect0.width ;
-		let top0    = rect0.y ;
-		let bottom0 = top0 + rect0.height ; 
+    get penSize()        {
+        return this.mPenSize ;
+    }
+    set penSize(newval)  {
+	    this.mContext.setPenSize(newval) ;
+	    this.mPenSize = newval ;
+    }
 
-		let left1   = rect1.x ;
-		let right1  = left1 + rect1.width ;
-		let top1    = rect1.y ;
-		let bottom1 = top1 + rect1.height ; 
+    forward(dodraw) {
+        this.mCurrentX += Math.sin(this.mCurrentAngle) * this.mMovingDistance ;
+        this.mCurrentY += Math.cos(this.mCurrentAngle) * this.mMovingDistance ;
+        if(dodraw) {
+            this.mContext.lineTo(this.mCurrentX, this.mCurrentY) ;
+        } else {
+            this.mContext.moveTo(this.mCurrentX, this.mCurrentY) ;
+        }
+    }
 
-		let newleft   = Math.max(left0, left1) ;
-		let newright  = Math.min(right0, right1) ; 
-		let newtop    = Math.max(top0, top1) ;
-		let newbottom = Math.min(bottom0, bottom1) ;
-		if(newleft<newright && newtop<newbottom) {
-			return Rect(newleft, newtop, newright - newleft, newbottom - newtop) ;
-		} else {
-			return null
-		}
-	}
-}
+    turn(doright) {
+        if(doright){
+            this.mCurrentAngle += this.mMovingAngle ;
+        } else {
+            this.mCurrentAngle -= this.mMovingAngle ;
+        }
+    }
 
-class CComponent extends CObject
-{
-	constructor(origin, size) {
-		super(origin, size) ;
-		this.items = [] ;		/* : Array<CObject> 	*/
-	}
+    push() {
+        let obj = {
+            x:          this.mCurrentX,
+            y:          this.mCurrentY,
+            angle:      this.mCurrentAngle
+        }
+        this.mHistory.push(obj) ;
+    }
 
-	/* addItem(item: CObject) */
-	addItem(item) {
-		this.items.push(item) ;
-		item.parent = this ;
-	}
+    pop() {
+        let ret = this.mHistory.pop() ;
+        if(!isUndefined(ret)) {
+            if(!isUndefined(ret.x)) {
+                this.mCurrentX = ret.x ;
+            } else {
+                console.error("[Error] No X property in Turtle\n") ;
+            }
+            if(!isUndefined(ret.y)) {
+                this.mCurrentY = ret.y ;
+            } else {
+                console.error("[Error] No Y property in Turtle\n") ;
+            }
+            if(!isUndefined(ret.angle)) {
+                this.mCurrentAngle = ret.angle ;
+            } else {
+                console.error("[Error] No angle property in Turtle\n") ;
+            }
+	    /* Update current position */
+	    this.mContext.moveTo(this.mCurrentX, this.mCurrentY) ;
+        } else {
+            console.error("[Error] No history in Turtle\n") ;
+        }
+    }
 
-	draw() {
-		/* Draw background */
-		this.drawRect(this.frame) ;
-		/* Draw items */
-		for(let item of this.items) {
-			item.draw() ;
-		}
-	}
-}
-
-class CLabel extends CObject
-{
-	/* constructor(origin: Point, size: Size) */
-	constructor(origin, size) {
-		super(origin, size) ;
-		this.text   = "" ;
-	}
-
-	/* func drawInRect(parent: CObject) */
-	draw() {
-		if(this.parent != null) {
-			let sect = this.sectRect(this.frame, this.parent.frame) ;
-			if(sect != null) {
-				this.drawRect(sect) ;
-			}
-		} else {
-			this.drawRect(this.frame) ;
-		}
-	}
-}
+    exec(commands) { /* commands: String */
+        let cmdlen = commands.length ;
+        for(let i=0 ; i<cmdlen ; i++){
+            let cmd = commands.charAt(i) ;
+            switch(cmd){
+                case "F":
+                    this.forward(true) ;
+                break ;
+                case "f":
+                    this.forward(false) ;
+                break ;
+                case "+":
+                    this.turn(true) ;
+                break ;
+                case "-":
+                    this.turn(false) ;
+                break ;
+                case "[":
+                    this.push() ;
+                break ;
+                case "]":
+                    this.pop() ;
+                break ;
+                default:
+                    console.error(`[Error] Unknown turtle command: ${cmd}\n`) ;
+                break ;
+            }
+        }
+    }
+} ;
 
 /*
  * Operation.js : Define Operation class
@@ -1483,6 +1498,8 @@ Source URL: file:///Users/tomoo/build/DerivedData/KiwiLibrary-drbjanamxeoihwhgny
 {
   URL: file:///Users/tomoo/build/DerivedData/KiwiLibrary-drbjanamxeoihwhgnyztfalrvplk/Build/Products/Debug/UnitTest.bundle/Contents/Resources/sample-0.jspkg
   application: {
+  }
+  data: {
   }
   images: {
   }
