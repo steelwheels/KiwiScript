@@ -17,8 +17,9 @@ const flag = isUndefined(value) ;
 |isObject       |Object                     |
 |isArray        |Array                      |
 |isDate         |Date                       |
-|isURL          |URL                        |
-|isImage        |Image                      |
+|isURL          |[URL](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md) |
+|isImage        |[Image](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Image.md) |
+|isBitmap       |[Bitmap](https://github.com/steelwheels/Amber/blob/master/Document/DataFormat/Bitmap.md) |
 
 ## Type obtaining function
 ### `typeID` function
