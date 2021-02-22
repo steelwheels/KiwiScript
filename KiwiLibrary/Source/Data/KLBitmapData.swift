@@ -1,6 +1,6 @@
 /**
- * @file	KLBitmapData.swift
- * @brief	Define KLBitmapData class
+ * @file	KLBitmapValue.swift
+ * @brief	Define KLBitmapValue class
  * @par Copyright
  *   Copyright (C) 2021 Steel Wheels Project
  */
@@ -10,18 +10,18 @@ import KiwiEngine
 import JavaScriptCore
 import Foundation
 
-private let BitmapDataClassName	= "BitmapData"
+private let BitmapValueClassName = "BitmapValue"
 
 extension JSValue
 {
-	public var isBitmapData: Bool {
+	public var isBitmapValue: Bool {
 		get {
-			return self.isClass(name: BitmapDataClassName)
+			return self.isClass(name: BitmapValueClassName)
 		}
 	}
 
-	public func toBitmapData() -> Array<Array<Int>>? {
-		if isBitmapData {
+	public func toBitmapValue() -> Array<Array<Int>>? {
+		if isBitmapValue {
 			if let dict = self.toDictionary() {
 				if let data = dict["data"] as? Array<Array<Int>> {
 					return data

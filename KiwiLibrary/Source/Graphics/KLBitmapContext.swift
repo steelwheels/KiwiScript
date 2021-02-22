@@ -24,8 +24,10 @@ import Foundation
 	var width:      JSValue { get }
 	var height:     JSValue { get }
 
+	var data: 	JSValue { get }
+
 	func set(_ xval: JSValue, _ yval: JSValue, _ colval: JSValue)
-	func clear()
+	func clean()
 	func get(_ xval: JSValue, _ yval: JSValue) -> JSValue
 }
 
@@ -50,9 +52,17 @@ import Foundation
 	public var magenta:	JSValue { get { return JSValue(object: CNColor.magenta,	in: mJContext) }}
 	public var cyan:	JSValue { get { return JSValue(object: CNColor.cyan,	in: mJContext) }}
 	public var white: 	JSValue { get { return JSValue(object: CNColor.white,	in: mJContext) }}
+	public var transparent: JSValue { get { return JSValue(object: CNColor.clear,	in: mJContext) }}
 
 	public var width:      JSValue { get { return JSValue(int32: Int32(mBContext.width),  in: mJContext) }}
 	public var height:     JSValue { get { return JSValue(int32: Int32(mBContext.height), in: mJContext) }}
+
+	public var data: JSValue {
+		get {
+			let val = mBContext.data
+			return JSValue(object: val, in: mJContext)
+		}
+	}
 
 	public func set(_ xval: JSValue, _ yval: JSValue, _ colval: JSValue) {
 		if xval.isNumber && yval.isNumber && colval.isObject {
@@ -64,7 +74,7 @@ import Foundation
 				mBContext.set(x: x, y: y, bitmap: cols)
 			} else if let cols = colval.toObject() as? Array<Array<Int>> {
 				let fcol = CNPreference.shared.viewPreference.foregroundColor
-				let bcol = CNPreference.shared.viewPreference.backgroundColor
+				let bcol = CNColor.clear
 				var newcols: Array<Array<CNColor>> = []
 				for col in cols {
 					var newrow: Array<CNColor> = []
@@ -83,8 +93,8 @@ import Foundation
 		}
 	}
 
-	public func clear() {
-		mBContext.clear()
+	public func clean() {
+		mBContext.clean()
 	}
 
 	public func get(_ xval: JSValue, _ yval: JSValue) -> JSValue {
