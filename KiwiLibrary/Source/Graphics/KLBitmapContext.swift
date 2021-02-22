@@ -23,9 +23,10 @@ import Foundation
 
 	var width:      JSValue { get }
 	var height:     JSValue { get }
-	var baseBitmap: JSValue { get }
 
-	func draw(_ bitmap: JSValue)
+	func set(_ xval: JSValue, _ yval: JSValue, _ colval: JSValue)
+	func clear()
+	func get(_ xval: JSValue, _ yval: JSValue) -> JSValue
 }
 
 @objc public class KLBitmapContext: NSObject, KLBitmapContextProtocol
@@ -52,16 +53,49 @@ import Foundation
 
 	public var width:      JSValue { get { return JSValue(int32: Int32(mBContext.width),  in: mJContext) }}
 	public var height:     JSValue { get { return JSValue(int32: Int32(mBContext.height), in: mJContext) }}
-	public var baseBitmap: JSValue { get {
-		return mBContext.baseBitmap.toJSValue(context: mJContext)
-	}}
 
-	public func draw(_ val: JSValue) {
-		if let bm = val.toBitmapData() {
-			mBContext.draw(bitmap: bm)
+	public func set(_ xval: JSValue, _ yval: JSValue, _ colval: JSValue) {
+		if xval.isNumber && yval.isNumber && colval.isObject {
+			let x = Int(xval.toInt32())
+			let y = Int(yval.toInt32())
+			if let col = colval.toObject() as? CNColor {
+				mBContext.set(x: x, y: y, color: col)
+			} else if let cols = colval.toObject() as? Array<Array<CNColor>> {
+				mBContext.set(x: x, y: y, bitmap: cols)
+			} else if let cols = colval.toObject() as? Array<Array<Int>> {
+				let fcol = CNPreference.shared.viewPreference.foregroundColor
+				let bcol = CNPreference.shared.viewPreference.backgroundColor
+				var newcols: Array<Array<CNColor>> = []
+				for col in cols {
+					var newrow: Array<CNColor> = []
+					for pix in col {
+						let newpix = pix != 0 ? fcol : bcol
+						newrow.append(newpix)
+					}
+					newcols.append(newrow)
+				}
+				mBContext.set(x: x, y: y, bitmap: newcols)
+			} else {
+				mConsole.error(string: "[Error] Invalid color parameter: \(String(describing: colval.toString()))\n")
+			}
 		} else {
-			mConsole.error(string: "Bitmap object is required but \(val) is given\n")
+			mConsole.error(string: "[Error] Invalid parameter at \(#file)\n")
 		}
+	}
+
+	public func clear() {
+		mBContext.clear()
+	}
+
+	public func get(_ xval: JSValue, _ yval: JSValue) -> JSValue {
+		if xval.isNumber && yval.isNumber {
+			let x = Int(xval.toInt32())
+			let y = Int(yval.toInt32())
+			if let col = mBContext.get(x: x, y: y) {
+				return JSValue(object: col, in: mJContext)
+			}
+		}
+		return JSValue(nullIn: mJContext)
 	}
 }
 

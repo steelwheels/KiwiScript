@@ -20,26 +20,15 @@ extension JSValue
 		}
 	}
 
-	public func toBitmapData() -> CNBitmapData? {
+	public func toBitmapData() -> Array<Array<Int>>? {
 		if isBitmapData {
 			if let dict = self.toDictionary() {
 				if let data = dict["data"] as? Array<Array<Int>> {
-					return CNBitmapData(monoData: data)
+					return data
 				}
 			}
 		}
 		return nil
-	}
-}
-
-extension CNBitmapData
-{
-	public func toJSValue(context ctxt: KEContext) -> JSValue {
-		let dict: Dictionary<String, Any> = [
-			JSValue.classPropertyName:	BitmapDataClassName,
-			"data":				self.data
-		]
-		return JSValue(object: dict, in: ctxt)
 	}
 }
 
