@@ -23,6 +23,8 @@
 		0540D6882516D4E100C5AE52 /* KiwiEngine.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0540D6812516D4B300C5AE52 /* KiwiEngine.xcframework */; };
 		0543B051253B3A5D00A9BAA1 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0543B050253B3A5D00A9BAA1 /* main.swift */; };
 		056FBE52255A3B8B0069A0C2 /* UTCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FBE51255A3B8B0069A0C2 /* UTCommand.swift */; };
+		058C8D9A25E4ACB2002B4273 /* Data.js in Resources */ = {isa = PBXBuildFile; fileRef = 058C8D9925E4ACB2002B4273 /* Data.js */; };
+		058C8D9B25E4ACB2002B4273 /* Data.js in Resources */ = {isa = PBXBuildFile; fileRef = 058C8D9925E4ACB2002B4273 /* Data.js */; };
 		05950CA125C4304500D659A1 /* KLGraphicsContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05950CA025C4304500D659A1 /* KLGraphicsContext.swift */; };
 		05950CA225C4304500D659A1 /* KLGraphicsContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05950CA025C4304500D659A1 /* KLGraphicsContext.swift */; };
 		0598000525CB5F5F00499B6E /* KLBitmapContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0598000425CB5F5F00499B6E /* KLBitmapContext.swift */; };
@@ -188,6 +190,7 @@
 		0543B050253B3A5D00A9BAA1 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		0543B058253B3A9F00A9BAA1 /* KiwiLibrary.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiLibrary.xcframework; path = ../../../../Library/Frameworks/KiwiLibrary.xcframework; sourceTree = "<group>"; };
 		056FBE51255A3B8B0069A0C2 /* UTCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTCommand.swift; sourceTree = "<group>"; };
+		058C8D9925E4ACB2002B4273 /* Data.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Data.js; sourceTree = "<group>"; };
 		05950CA025C4304500D659A1 /* KLGraphicsContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLGraphicsContext.swift; sourceTree = "<group>"; };
 		0598000425CB5F5F00499B6E /* KLBitmapContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLBitmapContext.swift; sourceTree = "<group>"; };
 		05A1F44D253BBAD400D4789F /* UTEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTEnvironment.swift; sourceTree = "<group>"; };
@@ -510,6 +513,7 @@
 			isa = PBXGroup;
 			children = (
 				05C0378725186FF3002A9C41 /* Cancel.js */,
+				058C8D9925E4ACB2002B4273 /* Data.js */,
 				05C0378925186FF3002A9C41 /* Debug.js */,
 				05C0378825186FF3002A9C41 /* Math.js */,
 				05C0378625186FF3002A9C41 /* Operation.js */,
@@ -717,6 +721,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				058C8D9A25E4ACB2002B4273 /* Data.js in Resources */,
 				05C0378B25187007002A9C41 /* Cancel.js in Resources */,
 				05C0378D25187007002A9C41 /* Debug.js in Resources */,
 				05B12A5B25C6783900273421 /* Turtle.js in Resources */,
@@ -729,6 +734,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				058C8D9B25E4ACB2002B4273 /* Data.js in Resources */,
 				05C0379025187019002A9C41 /* Cancel.js in Resources */,
 				05C0379225187019002A9C41 /* Debug.js in Resources */,
 				05B12A5C25C6783900273421 /* Turtle.js in Resources */,

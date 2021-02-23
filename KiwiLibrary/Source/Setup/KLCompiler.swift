@@ -429,15 +429,28 @@ public class KLCompiler: KECompiler
 		/* Bitmap */
 		let allocBitmapFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in
-			let result = value.toBitmap()
-			return JSValue(object: result, in: ctxt)
+			var result: KLBitmapData? = nil
+			if value.isBitmap {
+				result = value.toBitmap()
+			} else if value.isObject {
+				if let arr = value.toObject() as? Array<Array<KLColor>> {
+					let carr = arr.map { $0.map { $0.core } }
+					let bm   = CNBitmapData(colorData: carr)
+					result = KLBitmapData(bitmap: bm, context: ctxt)
+				}
+			}
+			if let r = result {
+				return JSValue(object: r, in: ctxt)
+			} else {
+				return JSValue(nullIn: ctxt)
+			}
 		}
 		ctxt.set(name: "Bitmap", function: allocBitmapFunc)
 	}
 
 	private func importBuiltinLibrary(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig)
 	{
-		let libnames = ["Cancel", "Debug", "Math", "Turtle"]
+		let libnames = ["Cancel", "Data", "Debug", "Math", "Turtle"]
 		do {
 			for libname in libnames {
 				if let url = CNFilePath.URLForResourceFile(fileName: libname, fileExtension: "js", forClass: KLCompiler.self) {

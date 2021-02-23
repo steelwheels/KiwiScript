@@ -21,6 +21,7 @@ The built-in class, function, data types for JavaScript.
 
 ## Functions
 * character: [asciiCodeName](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/AsciiCodeName.md): Get ascii code name for given character
+* [Data](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Data.md): Functions for data operations.
 * [exit](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Exit.md): Exit the caller process with exit code
 * [Graphics](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Graphics.md): Functions for graphics.
 * [launch](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Run.md): Launch the macOS application with/without the documents.

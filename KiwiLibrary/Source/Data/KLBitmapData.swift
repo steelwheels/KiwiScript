@@ -74,7 +74,8 @@ extension JSValue
 			let x = Int(xval.toInt32())
 			let y = Int(yval.toInt32())
 			if let col = mBitmap.get(x: x, y: y) {
-				return JSValue(object: col, in: mContext)
+				let obj = KLColor(color: col, context: mContext)
+				return JSValue(object: obj, in: mContext)
 			}
 		}
 		return JSValue(nullIn: mContext)
