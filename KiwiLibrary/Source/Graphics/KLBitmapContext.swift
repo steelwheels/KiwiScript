@@ -24,11 +24,11 @@ import Foundation
 	var width:      JSValue { get }
 	var height:     JSValue { get }
 
-	var data: 	JSValue { get }
+	var data: 	JSExport { get }
 
 	func set(_ xval: JSValue, _ yval: JSValue, _ colval: JSValue)
-	func clean()
 	func get(_ xval: JSValue, _ yval: JSValue) -> JSValue
+	func clean()
 }
 
 @objc public class KLBitmapContext: NSObject, KLBitmapContextProtocol
@@ -57,10 +57,9 @@ import Foundation
 	public var width:      JSValue { get { return JSValue(int32: Int32(mBContext.width),  in: mJContext) }}
 	public var height:     JSValue { get { return JSValue(int32: Int32(mBContext.height), in: mJContext) }}
 
-	public var data: JSValue {
+	public var data: JSExport {
 		get {
-			let val = mBContext.data
-			return JSValue(object: val, in: mJContext)
+			return KLBitmapData(bitmap: mBContext.data, context: mJContext)
 		}
 	}
 
@@ -70,21 +69,8 @@ import Foundation
 			let y = Int(yval.toInt32())
 			if let col = colval.toObject() as? CNColor {
 				mBContext.set(x: x, y: y, color: col)
-			} else if let cols = colval.toObject() as? Array<Array<CNColor>> {
-				mBContext.set(x: x, y: y, bitmap: cols)
-			} else if let cols = colval.toObject() as? Array<Array<Int>> {
-				let fcol = CNPreference.shared.viewPreference.foregroundColor
-				let bcol = CNColor.clear
-				var newcols: Array<Array<CNColor>> = []
-				for col in cols {
-					var newrow: Array<CNColor> = []
-					for pix in col {
-						let newpix = pix != 0 ? fcol : bcol
-						newrow.append(newpix)
-					}
-					newcols.append(newrow)
-				}
-				mBContext.set(x: x, y: y, bitmap: newcols)
+			} else if let bm = colval.toObject() as? KLBitmapData {
+				mBContext.set(x: x, y: y, bitmap: bm.core)
 			} else {
 				mConsole.error(string: "[Error] Invalid color parameter: \(String(describing: colval.toString()))\n")
 			}

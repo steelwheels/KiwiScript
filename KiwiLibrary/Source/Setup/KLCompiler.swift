@@ -172,13 +172,13 @@ public class KLCompiler: KECompiler
 		}
 		ctxt.set(name: "isURL", function: isURLFunc)
 
-		/* isBitmapValue */
-		let isBitmapValueFunc: @convention(block) (_ value: JSValue) -> JSValue = {
+		/* isBitmap */
+		let isBitmapFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in
-			let result: Bool = value.isBitmapValue
+			let result: Bool = value.isBitmap
 			return JSValue(bool: result, in: ctxt)
 		}
-		ctxt.set(name: "isBitmapValue", function: isBitmapValueFunc)
+		ctxt.set(name: "isBitmap", function: isBitmapFunc)
 
 		/* className */
 		let classNameFunc: @convention(block) (_ value: JSValue) -> JSValue = {
@@ -425,6 +425,14 @@ public class KLCompiler: KECompiler
 			return JSValue(nullIn: ctxt)
 		}
 		ctxt.set(name: "URL", function: urlFunc)
+
+		/* Bitmap */
+		let allocBitmapFunc: @convention(block) (_ value: JSValue) -> JSValue = {
+			(_ value: JSValue) -> JSValue in
+			let result = value.toBitmap()
+			return JSValue(object: result, in: ctxt)
+		}
+		ctxt.set(name: "Bitmap", function: allocBitmapFunc)
 	}
 
 	private func importBuiltinLibrary(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig)
