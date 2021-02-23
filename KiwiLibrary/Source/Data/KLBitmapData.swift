@@ -87,8 +87,8 @@ extension JSValue
 		var result: Bool
 		let x = Int(xval.toInt32())
 		let y = Int(yval.toInt32())
-		if let col = data.toObject() as? CNColor {
-			mBitmap.set(x: x, y: y, color: col)
+		if let col = data.toObject() as? KLColor {
+			mBitmap.set(x: x, y: y, color: col.core)
 			result = true
 		} else if let bm = data.toObject() as? KLBitmapData {
 			mBitmap.set(x: x, y: y, bitmap: bm.core)

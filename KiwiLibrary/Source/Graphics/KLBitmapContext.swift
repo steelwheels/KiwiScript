@@ -12,14 +12,15 @@ import Foundation
 
 @objc public protocol KLBitmapContextProtocol: JSExport
 {
-	var black:	JSValue { get }
-	var red:	JSValue { get }
-	var green:	JSValue { get }
-	var yellow:	JSValue { get }
-	var blue:	JSValue { get }
-	var magenta:	JSValue { get }
-	var cyan:	JSValue { get }
-	var white:	JSValue { get }
+	var black:	JSExport { get }
+	var red:	JSExport { get }
+	var green:	JSExport { get }
+	var yellow:	JSExport { get }
+	var blue:	JSExport { get }
+	var magenta:	JSExport { get }
+	var cyan:	JSExport { get }
+	var white:	JSExport { get }
+	var clear:	JSExport { get }
 
 	var width:      JSValue { get }
 	var height:     JSValue { get }
@@ -44,15 +45,15 @@ import Foundation
 		super.init()
 	}
 
-	public var black: 	JSValue { get { return JSValue(object: CNColor.black,	in: mJContext) }}
-	public var red:		JSValue { get { return JSValue(object: CNColor.red,	in: mJContext) }}
-	public var green:	JSValue { get { return JSValue(object: CNColor.green,	in: mJContext) }}
-	public var yellow:	JSValue { get { return JSValue(object: CNColor.yellow,	in: mJContext) }}
-	public var blue:	JSValue { get { return JSValue(object: CNColor.blue,	in: mJContext) }}
-	public var magenta:	JSValue { get { return JSValue(object: CNColor.magenta,	in: mJContext) }}
-	public var cyan:	JSValue { get { return JSValue(object: CNColor.cyan,	in: mJContext) }}
-	public var white: 	JSValue { get { return JSValue(object: CNColor.white,	in: mJContext) }}
-	public var transparent: JSValue { get { return JSValue(object: CNColor.clear,	in: mJContext) }}
+	public var black: 	JSExport { get { return KLColor(color: CNColor.black,   context: mJContext) }}
+	public var red: 	JSExport { get { return KLColor(color: CNColor.red,     context: mJContext) }}
+	public var green: 	JSExport { get { return KLColor(color: CNColor.green,   context: mJContext) }}
+	public var yellow: 	JSExport { get { return KLColor(color: CNColor.yellow,  context: mJContext) }}
+	public var blue: 	JSExport { get { return KLColor(color: CNColor.blue,    context: mJContext) }}
+	public var magenta: 	JSExport { get { return KLColor(color: CNColor.magenta, context: mJContext) }}
+	public var cyan: 	JSExport { get { return KLColor(color: CNColor.cyan,    context: mJContext) }}
+	public var white: 	JSExport { get { return KLColor(color: CNColor.white,   context: mJContext) }}
+	public var clear: 	JSExport { get { return KLColor(color: CNColor.clear,   context: mJContext) }}
 
 	public var width:      JSValue { get { return JSValue(int32: Int32(mBContext.width),  in: mJContext) }}
 	public var height:     JSValue { get { return JSValue(int32: Int32(mBContext.height), in: mJContext) }}
@@ -67,8 +68,8 @@ import Foundation
 		if xval.isNumber && yval.isNumber && colval.isObject {
 			let x = Int(xval.toInt32())
 			let y = Int(yval.toInt32())
-			if let col = colval.toObject() as? CNColor {
-				mBContext.set(x: x, y: y, color: col)
+			if let col = colval.toObject() as? KLColor {
+				mBContext.set(x: x, y: y, color: col.core)
 			} else if let bm = colval.toObject() as? KLBitmapData {
 				mBContext.set(x: x, y: y, bitmap: bm.core)
 			} else {
@@ -88,7 +89,8 @@ import Foundation
 			let x = Int(xval.toInt32())
 			let y = Int(yval.toInt32())
 			if let col = mBContext.get(x: x, y: y) {
-				return JSValue(object: col, in: mJContext)
+				let obj = KLColor(color: col, context: mJContext)
+				return JSValue(object: obj, in: mJContext)
 			}
 		}
 		return JSValue(nullIn: mJContext)

@@ -12,14 +12,15 @@ import Foundation
 
 @objc public protocol KLGraphicsContextProtocol: JSExport
 {
-	var black:	JSValue { get }
-	var red:	JSValue { get }
-	var green:	JSValue { get }
-	var yellow:	JSValue { get }
-	var blue:	JSValue { get }
-	var magenta:	JSValue { get }
-	var cyan:	JSValue { get }
-	var white:	JSValue { get }
+	var black:	JSExport { get }
+	var red:	JSExport { get }
+	var green:	JSExport { get }
+	var yellow:	JSExport { get }
+	var blue:	JSExport { get }
+	var magenta:	JSExport { get }
+	var cyan:	JSExport { get }
+	var white:	JSExport { get }
+	var clear:	JSExport { get }
 
 	var logicalFrame: JSValue { get }
 
@@ -44,14 +45,15 @@ import Foundation
 		super.init()
 	}
 
-	public var black: 	JSValue { get { return JSValue(object: CNColor.black,	in: mJContext) }}
-	public var red:		JSValue { get { return JSValue(object: CNColor.red,	in: mJContext) }}
-	public var green:	JSValue { get { return JSValue(object: CNColor.green,	in: mJContext) }}
-	public var yellow:	JSValue { get { return JSValue(object: CNColor.yellow,	in: mJContext) }}
-	public var blue:	JSValue { get { return JSValue(object: CNColor.blue,	in: mJContext) }}
-	public var magenta:	JSValue { get { return JSValue(object: CNColor.magenta,	in: mJContext) }}
-	public var cyan:	JSValue { get { return JSValue(object: CNColor.cyan,	in: mJContext) }}
-	public var white: 	JSValue { get { return JSValue(object: CNColor.white,	in: mJContext) }}
+	public var black: 	JSExport { get { return KLColor(color: CNColor.black,   context: mJContext) }}
+	public var red: 	JSExport { get { return KLColor(color: CNColor.red,     context: mJContext) }}
+	public var green: 	JSExport { get { return KLColor(color: CNColor.green,   context: mJContext) }}
+	public var yellow: 	JSExport { get { return KLColor(color: CNColor.yellow,  context: mJContext) }}
+	public var blue: 	JSExport { get { return KLColor(color: CNColor.blue,    context: mJContext) }}
+	public var magenta: 	JSExport { get { return KLColor(color: CNColor.magenta, context: mJContext) }}
+	public var cyan: 	JSExport { get { return KLColor(color: CNColor.cyan,    context: mJContext) }}
+	public var white: 	JSExport { get { return KLColor(color: CNColor.white,   context: mJContext) }}
+	public var clear: 	JSExport { get { return KLColor(color: CNColor.clear,   context: mJContext) }}
 
 	public var logicalFrame: JSValue {
 		get {
@@ -60,16 +62,16 @@ import Foundation
 	}
 
 	public func setFillColor(_ val: JSValue) {
-		if let col = val.toObject() as? CNColor {
-			mGContext.setFillColor(color: col)
+		if let col = val.toObject() as? KLColor {
+			mGContext.setFillColor(color: col.core)
 		} else {
 			mConsole.error(string: "Invalid parameter at \(#function)\n")
 		}
 	}
 
 	public func setStrokeColor(_ val: JSValue) {
-		if let col = val.toObject() as? CNColor {
-			mGContext.setStrokeColor(color: col)
+		if let col = val.toObject() as? KLColor {
+			mGContext.setStrokeColor(color: col.core)
 		} else {
 			mConsole.error(string: "Invalid parameter at \(#function)\n")
 		}
