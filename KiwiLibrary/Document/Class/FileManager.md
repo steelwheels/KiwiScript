@@ -100,7 +100,7 @@ If the opening the file is succeeded, the *File* object is returned. The file-ob
 ## `openPanel` method
 Display the dialog to select a file by the user.
 ````
-let url = FileManager.openPanel("Title", FileType.file, ["js"]) ;
+let url = FileManager.openPanel("Title", FileType.file, ["js"], callback) ;
 if(url != null) {
   // The url variable has the URL of selected file
 } else {
@@ -114,6 +114,15 @@ if(url != null) {
 |title        |String |Title of the dialog            |
 |file-type    |[FileType](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/FileType.md) |The type of the file to be selected. |
 |extensions   |Array<String> |The array of strings. Each string is an file extension to be opened. |
+|callback     |Callback |Callback function |
+
+This is the prototype of callback function:
+````
+function(URL) {
+  ...
+}
+````
+The parameter `URL` is instance of [URL](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md) class. If user did not select any files, this value will be `null`.
 
 ### Return value
 If the user select a file (or directory) and close the dialog,

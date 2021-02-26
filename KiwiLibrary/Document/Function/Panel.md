@@ -4,7 +4,7 @@ This document describes about panel functions.
 # Functions
 ## `openPanel` function
 ````
-var url = openPanel(title, isDirectory, [extensions]) ;
+var url = openPanel(title, isDirectory, [extensions], callback) ;
 ````
 ### Parameters
 |Name     |Type     |Description              |
@@ -12,6 +12,19 @@ var url = openPanel(title, isDirectory, [extensions]) ;
 |title    |string   |Title of the panel       |
 |isDirectory |bool  |*true*: Select directory, *false*: Select file|
 |extensions |Array of string | Array of file extensions |
+|callback |func     | Callback function         |
+
+The prototype of callback function is:
+````
+function (URL) {
+    if(URL != null) {
+        /* Valid URL */
+    } else {
+        /* No result */
+    }
+}
+````
+The parameter `URL` will have instance of [URL](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md) object. When user did not select any files, this value will be `null`.
 
 ### Return value
 |Type     |Description              |

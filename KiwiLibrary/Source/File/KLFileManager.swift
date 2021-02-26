@@ -25,7 +25,7 @@ import Foundation
 	func fullPath(_ path: JSValue, _ base: JSValue) -> JSValue
 
 	#if os(OSX)
-	func openPanel(_ title: JSValue, _ type: JSValue, _ exts: JSValue) -> JSValue
+	func openPanel(_ title: JSValue, _ type: JSValue, _ exts: JSValue, _ cbfunc: JSValue)
 	#endif
 
 	func homeDirectory() -> JSValue
@@ -198,22 +198,21 @@ import Foundation
 	}
 
 	#if os(OSX)
-	public func openPanel(_ titleval: JSValue, _ typeval: JSValue, _ extval: JSValue) -> JSValue
+	public func openPanel(_ titleval: JSValue, _ typeval: JSValue, _ extval: JSValue, _ cbval: JSValue)
 	{
-		if let title = panelTitle(title: titleval), let type = panelFileType(type: typeval), let exts = panelExtensions(extensions: extval) {
-			var result: URL? = nil
-			CNExecuteInMainThread(doSync: true, execute: {
+		if let title = panelTitle(title: titleval), let type = panelFileType(type: typeval), let exts = panelExtensions(extensions: extval), let cbfunc = panelCallback(callbackValue: cbval) {
+			DispatchQueue.main.async {
 				() -> Void in
-				NSLog("title:\(title), type:\(type.description) exts:\(exts)" )
-				result = URL.openPanel(title: title, type: type, extensions: exts)
-			})
-			if let url = result {
-				return JSValue(URL: url, in: mContext)
-			} else {
-				return JSValue(nullIn: mContext)
+				let urlobj: JSValue
+				if let url = URL.openPanel(title: title, type: type, extensions: exts) {
+					urlobj = JSValue(URL: url, in: self.mContext)
+				} else {
+					urlobj = JSValue(nullIn: self.mContext)
+				}
+				cbfunc.call(withArguments: [urlobj])
 			}
 		} else {
-			return JSValue(nullIn: mContext)
+			NSLog("Invalid parameters")
 		}
 	}
 
@@ -250,6 +249,14 @@ import Foundation
 			return types
 		}
 		return nil
+	}
+
+	private func panelCallback(callbackValue cbval: JSValue) -> JSValue? {
+		if cbval.isUndefined {
+			return nil
+		} else {
+			return cbval
+		}
 	}
 
 	#endif
