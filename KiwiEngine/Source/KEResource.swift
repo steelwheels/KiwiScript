@@ -89,18 +89,6 @@ open class KEResource: CNResource
 		return result
 	}
 
-	#if os(OSX)
-	static public func allocateBySelectFile() -> AllocationResult {
-		let selector = CNFileSelector()
-		if let url = selector.selectInputFile(title: "Select script file", extensions: ["js", "jspkg"]) {
-			return allocateResource(from: url)
-		} else {
-			let err = NSError.fileError(message: "File selection is cancelled")
-			return .error(err)
-		}
-	}
-	#endif
-
 	public func addCategory(category cname: String, loader ldr: @escaping LoaderFunc) {
 		super.allocate(category: cname, loader: ldr)
 	}

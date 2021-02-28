@@ -29,8 +29,7 @@ open class KLThreadLauncher
 	public func run(path pathval: JSValue,input inval: JSValue,output outval: JSValue,error errval: JSValue) -> JSValue {
 		if pathval.isNull {
 			#if os(OSX)
-			let selector = CNFileSelector()
-			if let url = selector.selectInputFile(title: "Select script file", extensions: ["js", "jspkg"]) {
+			if let url = URL.openPanel(title: "Select script file", type: .File, extensions: ["js", "jspkg"]) {
 				let src: KLSource = .script(url)
 				return run(source: src, input: inval, output: outval, error: errval)
 			}

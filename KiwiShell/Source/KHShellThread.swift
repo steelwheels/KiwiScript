@@ -114,26 +114,27 @@ open class KHShellThread: CNShellThread
 		return true
 	}
 
-	open override func execute(command cmd: String) -> Bool {
-		var result = false
+	open override func execute(command cmd: String) {
 		if !isEmpty(string: cmd) {
 			/* decode mode */
 			guard let line = decodeMode(command: cmd) else {
-				return result
+				return
 			}
 
 			/* convert script */
 			let parser = KHShellParser()
 			switch parser.parse(lines: [line]) {
 			case .ok(let stmts0):
+				/* Execute as main thread */
 				let stmts1  = KHCompileShellStatement(statements: stmts0)
 				let script0 = KHGenerateScript(from: stmts1)
 				let script1 = script0.joined(separator: "\n")
-				if let retval = mContext.evaluateScript(script1) {
-					if !retval.isUndefined, let retstr = retval.toString() {
-						self.outputFileHandle.write(string: retstr)
+				DispatchQueue.main.async {
+					if let retval = self.mContext.evaluateScript(script1) {
+						if !retval.isUndefined, let retstr = retval.toString() {
+							self.outputFileHandle.write(string: retstr)
+						}
 					}
-					result = true
 				}
 			case .error(let err):
 				let errobj = err as NSError
@@ -141,7 +142,6 @@ open class KHShellThread: CNShellThread
 				self.errorFileHandle.write(string: errmsg + "\n")
 			}
 		}
-		return result
 	}
 
 	private var mUseablePromptFunc = true
