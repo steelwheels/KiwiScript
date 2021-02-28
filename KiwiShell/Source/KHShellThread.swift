@@ -129,13 +129,13 @@ open class KHShellThread: CNShellThread
 				let stmts1  = KHCompileShellStatement(statements: stmts0)
 				let script0 = KHGenerateScript(from: stmts1)
 				let script1 = script0.joined(separator: "\n")
-				DispatchQueue.main.async {
+				CNExecuteInMainThread(doSync: false, execute: {
 					if let retval = self.mContext.evaluateScript(script1) {
 						if !retval.isUndefined, let retstr = retval.toString() {
 							self.outputFileHandle.write(string: retstr)
 						}
 					}
-				}
+				})
 			case .error(let err):
 				let errobj = err as NSError
 				let errmsg = errobj.toString()
