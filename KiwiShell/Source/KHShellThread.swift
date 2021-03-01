@@ -114,10 +114,11 @@ open class KHShellThread: CNShellThread
 		return true
 	}
 
-	open override func execute(command cmd: String) {
+	open override func execute(command cmd: String, doneCallback cbfunc: @escaping () -> Void) {
 		if !isEmpty(string: cmd) {
 			/* decode mode */
 			guard let line = decodeMode(command: cmd) else {
+				cbfunc() /* callback to tell done */
 				return
 			}
 
@@ -135,12 +136,16 @@ open class KHShellThread: CNShellThread
 							self.outputFileHandle.write(string: retstr)
 						}
 					}
+					cbfunc() /* callback to tell done */
 				})
 			case .error(let err):
 				let errobj = err as NSError
 				let errmsg = errobj.toString()
 				self.errorFileHandle.write(string: errmsg + "\n")
+				cbfunc() /* callback to tell done */
 			}
+		} else {
+			cbfunc() /* callback to tell done */
 		}
 	}
 
