@@ -354,13 +354,19 @@ public class KLCompiler: KECompiler
 					 error:   	cons.errorHandle)
 		ctxt.set(name: "FileManager", object: file)
 
-		let stdin = KLFile(file: CNTextFile(fileHandle: cons.inputHandle), context: ctxt)
+		if let eofval = JSValue(int32: KLFile.EOFValue, in: ctxt) {
+			ctxt.set(name: "EOF", value: eofval)
+		} else {
+			cons.error(string: "Failed to allocate EOF value\n")
+		}
+
+		let stdin = KLFile(file: CNFile(fileHandle: cons.inputHandle), context: ctxt)
 		ctxt.set(name: "stdin", object: stdin)
 
-		let stdout = KLFile(file: CNTextFile(fileHandle: cons.outputHandle), context: ctxt)
+		let stdout = KLFile(file: CNFile(fileHandle: cons.outputHandle), context: ctxt)
 		ctxt.set(name: "stdout", object: stdout)
 
-		let stderr = KLFile(file: CNTextFile(fileHandle: cons.errorHandle), context: ctxt)
+		let stderr = KLFile(file: CNFile(fileHandle: cons.errorHandle), context: ctxt)
 		ctxt.set(name: "stderr", object: stderr)
 
 		/* Curses */

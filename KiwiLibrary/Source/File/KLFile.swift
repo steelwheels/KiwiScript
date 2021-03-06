@@ -20,16 +20,18 @@ import Foundation
 
 @objc public class KLFile: NSObject, KLFileProtocol
 {
-	private var mFile:	CNTextFile
+	public static let EOFValue:Int32	= -1
+
+	private var mFile:	CNFile
 	private var mContext:	KEContext
 
-	public init(file fl: CNTextFile, context ctxt: KEContext){
+	public init(file fl: CNFile, context ctxt: KEContext){
 		mFile    = fl
 		mContext = ctxt
 	}
 
-	public var file: CNTextFile {
-		get { return mFile }
+	public var endOfFile: JSValue {
+		get { return JSValue(int32: KLFile.EOFValue, in: mContext )}
 	}
 
 	public var fileHandle: FileHandle {
@@ -37,20 +39,35 @@ import Foundation
 	}
 
 	public func getc() -> JSValue {
-		if let c = mFile.getc() {
-			let str = String(c)
-			return JSValue(object: str, in: mContext)
-		} else {
-			return JSValue(nullIn: mContext)
+		let result: JSValue
+		switch mFile.getc() {
+		case .char(let c):
+			result = JSValue(object: String(c), in: mContext)
+		case .endOfFile:
+			result = self.endOfFile
+		case .null:
+			result = JSValue(nullIn: mContext)
+		@unknown default:
+			NSLog("Unknown case at \(#function)")
+			result = self.endOfFile
 		}
+		return result
 	}
 
 	public func getl() -> JSValue {
-		if let l = mFile.getl() {
-			return JSValue(object: l, in: mContext)
-		} else {
-			return JSValue(nullIn: mContext)
+		let result: JSValue
+		switch mFile.getl() {
+		case .line(let str):
+			result = JSValue(object: str, in: mContext)
+		case .endOfFile:
+			result = self.endOfFile
+		case .null:
+			result = JSValue(nullIn: mContext)
+		@unknown default:
+			NSLog("Unknown case at \(#function)")
+			result = self.endOfFile
 		}
+		return result
 	}
 
 	public func put(_ strval: JSValue) -> JSValue {
