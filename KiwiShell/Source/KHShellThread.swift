@@ -114,38 +114,36 @@ open class KHShellThread: CNShellThread
 		return true
 	}
 
-	open override func execute(command cmd: String, doneCallback cbfunc: @escaping () -> Void) {
+	open override func execute(command cmd: String) {
 		if !isEmpty(string: cmd) {
 			/* decode mode */
 			guard let line = decodeMode(command: cmd) else {
-				cbfunc() /* callback to tell done */
 				return
 			}
 
 			/* convert script */
+			NSLog("exec *1")
 			let parser = KHShellParser()
 			switch parser.parse(lines: [line]) {
 			case .ok(let stmts0):
+				NSLog("exec *2")
 				/* Execute as main thread */
 				let stmts1  = KHCompileShellStatement(statements: stmts0)
 				let script0 = KHGenerateScript(from: stmts1)
 				let script1 = script0.joined(separator: "\n")
-				CNExecuteInMainThread(doSync: false, execute: {
-					if let retval = self.mContext.evaluateScript(script1) {
-						if !retval.isUndefined, let retstr = retval.toString() {
-							self.outputFileHandle.write(string: retstr)
-						}
+				NSLog("exec *3 \(script1)")
+				if let retval = self.mContext.evaluateScript(script1) {
+					NSLog("exec *4")
+					if !retval.isUndefined, let retstr = retval.toString() {
+						self.outputFileHandle.write(string: retstr)
 					}
-					cbfunc() /* callback to tell done */
-				})
+				}
+				NSLog("exec *5")
 			case .error(let err):
 				let errobj = err as NSError
 				let errmsg = errobj.toString()
 				self.errorFileHandle.write(string: errmsg + "\n")
-				cbfunc() /* callback to tell done */
 			}
-		} else {
-			cbfunc() /* callback to tell done */
 		}
 	}
 

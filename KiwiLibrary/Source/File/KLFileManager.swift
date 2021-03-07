@@ -201,13 +201,13 @@ import Foundation
 	public func openPanel(_ titleval: JSValue, _ typeval: JSValue, _ extval: JSValue) -> JSValue
 	{
 		if let title = panelTitle(title: titleval), let type = panelFileType(type: typeval), let exts = panelExtensions(extensions: extval) {
-			let urlobj: JSValue
+			let result: JSValue
 			if let url = URL.openPanel(title: title, type: type, extensions: exts) {
-				urlobj = JSValue(URL: url, in: self.mContext)
+				result = JSValue(URL: url, in: mContext)
 			} else {
-				urlobj = JSValue(nullIn: self.mContext)
+				result = JSValue(nullIn: self.mContext)
 			}
-			return urlobj
+			return result
 		} else {
 			NSLog("Invalid parameters")
 			return JSValue(nullIn: self.mContext)

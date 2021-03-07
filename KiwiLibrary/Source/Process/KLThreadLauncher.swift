@@ -32,6 +32,8 @@ open class KLThreadLauncher
 			if let url = URL.openPanel(title: "Select script file", type: .File, extensions: ["js", "jspkg"]) {
 				let src: KLSource = .script(url)
 				return run(source: src, input: inval, output: outval, error: errval)
+			} else {
+				return JSValue(nullIn: mContext)
 			}
 			#endif
 		} else if let url = self.pathToFullPath(path: pathval, environment: mEnvironment) {
