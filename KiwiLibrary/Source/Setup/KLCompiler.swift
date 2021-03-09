@@ -456,7 +456,7 @@ public class KLCompiler: KECompiler
 
 	private func importBuiltinLibrary(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig)
 	{
-		let libnames = ["Cancel", "Data", "Debug", "Math", "Turtle"]
+		let libnames = ["Cancel", "Data", "Debug", "Math", "Process", "Turtle"]
 		do {
 			for libname in libnames {
 				if let url = CNFilePath.URLForResourceFile(fileName: libname, fileExtension: "js", forClass: KLCompiler.self) {
@@ -528,39 +528,6 @@ public class KLCompiler: KECompiler
 			return launcher.run(path: pathval, input: inval, output: outval, error: errval)
 		}
 		ctxt.set(name: "run", function: runfunc)
-
-		#if os(OSX)
-		/* _waitUtilExitAll */
-		let waitExtFunc: @convention(block) (_ procval: JSValue) -> JSValue = {
-			(_ procval: JSValue) -> JSValue in
-			if procval.isArray {
-				if let procarr = procval.toArray() {
-					/* Collect process object */
-					var procs: Array<KLProcessProtocol> = []
-					for procelm in procarr {
-						if let procelm = KLCompiler.anyToProcess(anyValue: procelm) {
-							procs.append(procelm)
-						} else {
-							cons.error(string: "_waitUntilExitAll: Unexpected type parameter")
-						}
-					}
-					/* Wait all processes */
-					var ecode: Int32 = 0
-					for proc in procs {
-						let code = proc.waitUntilExit()
-						if code != 0 {
-							ecode = code
-							break
-						}
-					}
-					return JSValue(int32: ecode, in: ctxt)
-				}
-			}
-			cons.error(string: "_waitUntilExitAll: Unexpected type parameters")
-			return JSValue(nullIn: ctxt)
-		}
-		ctxt.set(name: "_waitUntilExitAll", function: waitExtFunc)
-		#endif
 	}
 
 	#if os(OSX)

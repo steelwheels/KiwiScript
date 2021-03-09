@@ -34,7 +34,16 @@ public func UTRun(context ctxt: KEContext, console cons: CNFileConsole) -> Bool
 		let thread = KLThread(source: .script(url), processManager: manager, input: instrm, output: outstrm, error: errstrm, environment: env, config: config)
 		thread.start(args)
 		/* Wait until exist */
-		let ecode = thread.waitUntilExit()
+		var dowait = true
+		while dowait {
+			let val = thread.isRunning
+			if val.isBoolean {
+				dowait = val.toBool()
+			} else {
+				cons.print(string: "[Error] Invalid data type\n")
+			}
+		}
+		let ecode = thread.exitCode.toInt32()
 		cons.print(string: "Thread is finished with error code: \(ecode)\n")
 	case .error(let err):
 		cons.print(string: "[Error] \(err.toString())")

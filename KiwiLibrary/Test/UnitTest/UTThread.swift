@@ -60,7 +60,16 @@ public func UTThread(context ctxt: KEContext, processManager procmgr: CNProcessM
 		thread.start(args)
 
 		/* Wait until exist */
-		let ecode = thread.waitUntilExit()
+		var dowait = true
+		while dowait {
+			let val = thread.isRunning
+			if val.isBoolean {
+				dowait = val.toBool()
+			} else {
+				cons.print(string: "[Error] Invalid data type")
+			}
+		}
+		let ecode = thread.exitCode.toInt32()
 		cons.print(string: "Thread is finished with error code: \(ecode)\n")
 
 		/* Test passed */

@@ -22,6 +22,8 @@
 		0540D6852516D4D200C5AE52 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0540D67C2516D4A100C5AE52 /* CoconutData.xcframework */; };
 		0540D6882516D4E100C5AE52 /* KiwiEngine.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0540D6812516D4B300C5AE52 /* KiwiEngine.xcframework */; };
 		0543B051253B3A5D00A9BAA1 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0543B050253B3A5D00A9BAA1 /* main.swift */; };
+		054AF16925F78237001DB03B /* Process.js in Resources */ = {isa = PBXBuildFile; fileRef = 054AF16825F78237001DB03B /* Process.js */; };
+		054AF16A25F78237001DB03B /* Process.js in Resources */ = {isa = PBXBuildFile; fileRef = 054AF16825F78237001DB03B /* Process.js */; };
 		056FBE52255A3B8B0069A0C2 /* UTCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FBE51255A3B8B0069A0C2 /* UTCommand.swift */; };
 		058C8D9A25E4ACB2002B4273 /* Data.js in Resources */ = {isa = PBXBuildFile; fileRef = 058C8D9925E4ACB2002B4273 /* Data.js */; };
 		058C8D9B25E4ACB2002B4273 /* Data.js in Resources */ = {isa = PBXBuildFile; fileRef = 058C8D9925E4ACB2002B4273 /* Data.js */; };
@@ -189,6 +191,7 @@
 		0543B04E253B3A5D00A9BAA1 /* UnitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0543B050253B3A5D00A9BAA1 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		0543B058253B3A9F00A9BAA1 /* KiwiLibrary.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiLibrary.xcframework; path = ../../../../Library/Frameworks/KiwiLibrary.xcframework; sourceTree = "<group>"; };
+		054AF16825F78237001DB03B /* Process.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Process.js; sourceTree = "<group>"; };
 		056FBE51255A3B8B0069A0C2 /* UTCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTCommand.swift; sourceTree = "<group>"; };
 		058C8D9925E4ACB2002B4273 /* Data.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Data.js; sourceTree = "<group>"; };
 		05950CA025C4304500D659A1 /* KLGraphicsContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLGraphicsContext.swift; sourceTree = "<group>"; };
@@ -517,6 +520,7 @@
 				05C0378925186FF3002A9C41 /* Debug.js */,
 				05C0378825186FF3002A9C41 /* Math.js */,
 				05C0378625186FF3002A9C41 /* Operation.js */,
+				054AF16825F78237001DB03B /* Process.js */,
 				05B12A5A25C6783900273421 /* Turtle.js */,
 			);
 			path = Library;
@@ -727,6 +731,7 @@
 				05B12A5B25C6783900273421 /* Turtle.js in Resources */,
 				05C0378E25187007002A9C41 /* Math.js in Resources */,
 				05C0378F25187007002A9C41 /* Operation.js in Resources */,
+				054AF16925F78237001DB03B /* Process.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -740,6 +745,7 @@
 				05B12A5C25C6783900273421 /* Turtle.js in Resources */,
 				05C037932518701A002A9C41 /* Math.js in Resources */,
 				05C037942518701A002A9C41 /* Operation.js in Resources */,
+				054AF16A25F78237001DB03B /* Process.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

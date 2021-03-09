@@ -230,8 +230,7 @@ private class KHCodeConverter: KHShellStatementVisitor
 		/* generate code for the statement */
 		let _ = accept(statement: stmt)
 		/* statement to wait process */
-		let ecode = exitCode(parent)
-		add(statement: "let \(ecode) = _proc\(pid).waitUntilExit() ;")
+		add(statement: "_waitUntilExitOne(_proc\(pid));")
 	}
 
 	private func visitMultiPipeline(statements stmts: Array<KHSingleStatement>, pipelineStatement parent: KHPipelineStatement) {
@@ -295,9 +294,8 @@ private class KHCodeConverter: KHShellStatementVisitor
 			waitprocs += processName(stmt)
 		}
 		waitprocs += "] "
-		add(statement: "for(let proc of \(waitprocs)){")
-		add(statement: "\t\(ecode) = _select_exit_code(proc.waitUntilExit(), \(ecode)) ;")
-		add(statement: "}")
+
+		add(statement: "_waitUntilExitAll(\(waitprocs)) ;\n")
 	}
 
 	open override func visit(multiStatements stmts: KHMultiStatements) -> KHMultiStatements? {

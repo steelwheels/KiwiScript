@@ -35,12 +35,16 @@ import Foundation
 		mTerminationStatus = mFunction(arg, mEnvironment)
 	}
 
-	public func isRunning() -> Bool {
-		return false
+	public var isRunning: JSValue {
+		return JSValue(bool: false, in: mContext)
 	}
 
-	public func waitUntilExit() -> Int32 {
-		return mTerminationStatus
+	public var didFinished: JSValue {
+		return JSValue(bool: true, in: mContext)
+	}
+
+	public var exitCode: JSValue {
+		return JSValue(int32: mTerminationStatus, in: mContext)
 	}
 
 	public func terminate() {

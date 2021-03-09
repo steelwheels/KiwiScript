@@ -10,13 +10,14 @@ import KiwiEngine
 import JavaScriptCore
 import Foundation
 
-#if os(OSX)
-
 @objc public protocol KLProcessProtocol: JSExport {
-	func isRunning() -> Bool
-	func waitUntilExit() -> Int32
+	var isRunning:   JSValue	{ get }
+	var didFinished: JSValue	{ get }
+	var exitCode:    JSValue	{ get }
 	func terminate()
 }
+
+#if os(OSX)
 
 @objc public class KLProcess: NSObject, KLProcessProtocol
 {
@@ -28,19 +29,16 @@ import Foundation
 		mContext = ctxt
 	}
 
-	public func isRunning() -> Bool {
-		var result: Bool
-		switch mProcess.status {
-		case .Idle:		result = false
-		case .Running:		result = true
-		case .Finished:		result = false
-		@unknown default:	result = false
-		}
-		return result
+	public var isRunning: JSValue {
+		get { return JSValue(bool: mProcess.status.isRunning, in: mContext) }
 	}
 
-	public func waitUntilExit() -> Int32 {
-		return mProcess.waitUntilExit()
+	public var didFinished: JSValue {
+		get { return JSValue(bool: mProcess.status.isStopped, in: mContext) }
+	}
+
+	public var exitCode: JSValue {
+		return JSValue(int32: mProcess.terminationStatus, in: mContext)
 	}
 
 	public func terminate() {

@@ -10,11 +10,8 @@ import KiwiEngine
 import JavaScriptCore
 import Foundation
 
-@objc public protocol KLThreadProtocol: JSExport {
+@objc public protocol KLThreadProtocol: KLProcessProtocol {
 	func start(_ args: JSValue)
-	func isRunning() -> Bool
-	func waitUntilExit() -> Int32
-	func terminate()
 }
 
 public enum KLSource {
@@ -55,6 +52,18 @@ public enum KLSource {
 		procmgr.addChildManager(childManager: mChildProcessManager)
 	}
 
+	public var isRunning: JSValue {
+		get { return JSValue(bool: super.status.isRunning, in: mContext) }
+	}
+
+	public var didFinished: JSValue {
+		get { return JSValue(bool: super.status.isStopped, in: mContext) }
+	}
+
+	public var exitCode: JSValue {
+		return JSValue(int32: super.terminationStatus, in: mContext)
+	}
+	
 	private static func URLtoResource(fileURL url: URL, error errstrm: CNFileStream) -> KEResource {
 		let result: KEResource
 		switch url.pathExtension {
@@ -181,15 +190,7 @@ public enum KLSource {
 		return result
 	}
 
-	public func isRunning() -> Bool {
-		return super.isRunning
-	}
-
 	open override func terminate() {
 		super.terminate()
-	}
-
-	public override func waitUntilExit() -> Int32 {
-		return super.waitUntilExit()
 	}
 }

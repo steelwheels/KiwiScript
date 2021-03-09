@@ -61,7 +61,17 @@ private func execCdCommand(context ctxt: KEContext, path pstr: String?, cons: CN
 	let cdparam = makeCdParameter(context: ctxt, path: pstr)
 	let cdcmd   = KLCdCommand(context: ctxt, console: cons, environment: env)
 	cdcmd.start(cdparam)
-	let res = cdcmd.waitUntilExit()
+
+	var dowait = true
+	while dowait {
+		let val = cdcmd.isRunning
+		if val.isBoolean {
+			dowait = val.toBool()
+		} else {
+			cons.print(string: "[Error] Invalid data type")
+		}
+	}
+	let res = cdcmd.exitCode.toInt32()
 	cons.print(string: " -> result \(res)\n")
 	cons.print(string: "(after) dir \(env.currentDirectory.absoluteString)\n")
 	return res
