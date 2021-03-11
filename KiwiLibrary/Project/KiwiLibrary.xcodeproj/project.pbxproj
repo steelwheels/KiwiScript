@@ -110,6 +110,9 @@
 		05C3B2A125A2087F005256E1 /* KLReadline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C3B29F25A2087F005256E1 /* KLReadline.swift */; };
 		05CFDFE2254505E50089C1AE /* KLThreadLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CFDFE1254505E50089C1AE /* KLThreadLauncher.swift */; };
 		05CFDFE3254505E50089C1AE /* KLThreadLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CFDFE1254505E50089C1AE /* KLThreadLauncher.swift */; };
+		05E08D7625F8F968001E48EE /* KLLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E08D7525F8F968001E48EE /* KLLock.swift */; };
+		05E08D7725F8F968001E48EE /* KLLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E08D7525F8F968001E48EE /* KLLock.swift */; };
+		05E08D7C25F904DB001E48EE /* UTProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E08D7B25F904DB001E48EE /* UTProcess.swift */; };
 		05EBD8B625E4982200CA1480 /* KLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EBD8B525E4982200CA1480 /* KLColor.swift */; };
 		05EBD8B725E4982200CA1480 /* KLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EBD8B525E4982200CA1480 /* KLColor.swift */; };
 		05F3DC3725D8C004003EBD1E /* KLBitmapData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F3DC3625D8C004003EBD1E /* KLBitmapData.swift */; };
@@ -250,6 +253,8 @@
 		05C0378925186FF3002A9C41 /* Debug.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Debug.js; sourceTree = "<group>"; };
 		05C3B29F25A2087F005256E1 /* KLReadline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLReadline.swift; sourceTree = "<group>"; };
 		05CFDFE1254505E50089C1AE /* KLThreadLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLThreadLauncher.swift; sourceTree = "<group>"; };
+		05E08D7525F8F968001E48EE /* KLLock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLLock.swift; sourceTree = "<group>"; };
+		05E08D7B25F904DB001E48EE /* UTProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTProcess.swift; sourceTree = "<group>"; };
 		05EBD8B525E4982200CA1480 /* KLColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLColor.swift; sourceTree = "<group>"; };
 		05F3DC3625D8C004003EBD1E /* KLBitmapData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLBitmapData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -319,6 +324,7 @@
 				05A1F461253BC2CE00D4789F /* UTOperation1.swift */,
 				05A1F482253BCCE700D4789F /* UTOperation2.swift */,
 				05A1F488253BCE2600D4789F /* UTPreference.swift */,
+				05E08D7B25F904DB001E48EE /* UTProcess.swift */,
 				05A1F48E253BCEE200D4789F /* UTRun.swift */,
 				05A1F498253BD36100D4789F /* UTScriptManager.swift */,
 				05A1F49E253BD75A00D4789F /* UTThread.swift */,
@@ -451,6 +457,7 @@
 				05A95B462516CFF300775737 /* KLProcess.swift */,
 				05A95B492516CFF300775737 /* KLThread.swift */,
 				05CFDFE1254505E50089C1AE /* KLThreadLauncher.swift */,
+				05E08D7525F8F968001E48EE /* KLLock.swift */,
 			);
 			path = Process;
 			sourceTree = "<group>";
@@ -758,6 +765,7 @@
 			files = (
 				05A1F483253BCCE700D4789F /* UTOperation2.swift in Sources */,
 				05A1F49F253BD75A00D4789F /* UTThread.swift in Sources */,
+				05E08D7C25F904DB001E48EE /* UTProcess.swift in Sources */,
 				05A1F456253BC0F500D4789F /* UTFontManager.swift in Sources */,
 				0543B051253B3A5D00A9BAA1 /* main.swift in Sources */,
 				056FBE52255A3B8B0069A0C2 /* UTCommand.swift in Sources */,
@@ -792,6 +800,7 @@
 				05A95B922516D08500775737 /* KLValueConverter.swift in Sources */,
 				05950CA125C4304500D659A1 /* KLGraphicsContext.swift in Sources */,
 				05C3B2A025A2087F005256E1 /* KLReadline.swift in Sources */,
+				05E08D7625F8F968001E48EE /* KLLock.swift in Sources */,
 				05A95B522516CFF300775737 /* KLOperationContext.swift in Sources */,
 				05A95B6A2516D03300775737 /* KLFile.swift in Sources */,
 				05A95B982516D08500775737 /* KLScriptValue.swift in Sources */,
@@ -830,6 +839,7 @@
 				05A95B932516D08500775737 /* KLValueConverter.swift in Sources */,
 				05950CA225C4304500D659A1 /* KLGraphicsContext.swift in Sources */,
 				05C3B2A125A2087F005256E1 /* KLReadline.swift in Sources */,
+				05E08D7725F8F968001E48EE /* KLLock.swift in Sources */,
 				05A95B532516CFF300775737 /* KLOperationContext.swift in Sources */,
 				05A95B6B2516D03300775737 /* KLFile.swift in Sources */,
 				05A95B992516D08500775737 /* KLScriptValue.swift in Sources */,

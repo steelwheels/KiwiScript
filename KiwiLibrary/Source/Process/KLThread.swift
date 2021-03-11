@@ -10,8 +10,12 @@ import KiwiEngine
 import JavaScriptCore
 import Foundation
 
-@objc public protocol KLThreadProtocol: KLProcessProtocol {
+@objc public protocol KLThreadProtocol: JSExport {
+	var isRunning:   JSValue	{ get }
+	var didFinished: JSValue	{ get }
+	var exitCode:    JSValue	{ get }
 	func start(_ args: JSValue)
+	func terminate()
 }
 
 public enum KLSource {

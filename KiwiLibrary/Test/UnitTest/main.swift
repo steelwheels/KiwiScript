@@ -64,6 +64,10 @@ public func main()
 	filecons.print(string: "/* Unit test for native value conversion */\n")
 	let result5 = UTNativeValue(context: context, console: filecons)
 
+	/* Process */
+	filecons.print(string: "/* Unit test for Process classes */\n")
+	let result14 = UTProcess(context: context, console: filecons)
+
 	/* Operation */
 	filecons.print(string: "/* Unit test for native Operation */\n")
 	let result6 = UTOperation1(context: context, console: filecons, config: config)
@@ -99,7 +103,7 @@ public func main()
 
 	let summary = result1 && result2 && result3 && result4 && result5
 			&& result6 && result7 && result8 && result9 && result10 && result11
-			&& result12 && result13 && result15
+			&& result12 && result13 && result14 && result15
 	if summary {
 		filecons.print(string: "SUMMARY: OK\n")
 	} else {

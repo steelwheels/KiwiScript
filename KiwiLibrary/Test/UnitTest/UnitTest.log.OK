@@ -1125,6 +1125,9 @@ class UTStruct {
     return object ;
   }
 }
+/* Unit test for Process classes */
+between semaphore
+Semaphore result = undefined
 /* Unit test for native Operation */
 // Allocate operation
 // Set input
@@ -1290,6 +1293,55 @@ Math.randomInt = function(min, max) {
 /* Convert value to integer */
 function int(value) {
 	return Math.floor(value) ;
+}
+/* Process.js */
+
+function _waitUntilExitOne(process)
+{
+	while(!process.didFinished) {
+		/* wait until exit */
+	}
+	return process.exitCode ;
+}
+
+function _waitUntilExitAll(processes)
+{
+	let ecode = 0 ;
+	for(process of processes) {
+		let state = _waitUntilExitOne(process) ;
+		if(state != 0){
+			ecode = state ;
+		}
+	}
+	return ecode ;
+}
+
+class Semaphore {
+	constructor(initval) {	// (Int)
+		this.mValue = initval ;
+		this.mLock  = Lock() ;
+	}
+
+	signal() {
+		this.mLock.lock() ;
+			this.mValue -= 1 ;
+		this.mLock.unlock() ;
+	}
+
+	wait() {
+		while(true) {
+			let count = 0 ;
+			this.mLock.lock() ;
+				count = this.mValue ;
+			this.mLock.unlock() ;
+			if(count < 0) {
+				break ;
+			}
+		}
+		/* Discard lock resource */
+		this.mLock.discard() ;
+		this.mLock = null ;
+	}
 }
 /*
  * turtle.js: Support Turtle Graphics
@@ -1493,7 +1545,7 @@ MainThread: Set command: param2 <- {image: name:<unknown>, size:0.0 x 0.0}
 exec result: OK
 /* Unit test for Preference */
 preference.system.version = unknown
-preference.user.homeDirectory = /Users/tomoo/Project/KiwiScript/KiwiLibrary/~
+preference.user.homeDirectory = /Users/tomoo/Project/KiwiScript/KiwiLibrary/Project/~
 /* Unit test for run function */
 Message from run: Hello, running !! 123, Message from UTRun
 Thread is finished with error code: 0
@@ -1544,6 +1596,6 @@ cd command: Optional("./Debug")
 cd command: nil
 (prev) dir file:///Users/tomoo/Project/KiwiScript/
  -> result 0
-(after) dir file:///Users/tomoo/Project/KiwiScript/
+(after) dir file:///Users/tomoo/Project/KiwiScript/KiwiLibrary/Project/~
 /* Unit test for Type */
 * Test: JSValue(bool):

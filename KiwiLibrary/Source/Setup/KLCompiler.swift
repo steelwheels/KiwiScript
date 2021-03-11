@@ -452,6 +452,13 @@ public class KLCompiler: KECompiler
 			}
 		}
 		ctxt.set(name: "Bitmap", function: allocBitmapFunc)
+
+		/* Lock */
+		let allocLockFunc: @convention(block) () -> JSValue = {
+			() -> JSValue in
+			return JSValue(object: KLLock(), in: ctxt)
+		}
+		ctxt.set(name: "Lock", function: allocLockFunc)
 	}
 
 	private func importBuiltinLibrary(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig)
