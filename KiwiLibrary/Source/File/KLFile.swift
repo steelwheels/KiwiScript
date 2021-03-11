@@ -45,6 +45,8 @@ import Foundation
 			result = JSValue(object: String(c), in: mContext)
 		case .endOfFile:
 			result = self.endOfFile
+		case .null:
+			result = JSValue(nullIn: mContext)
 		@unknown default:
 			NSLog("Unknown case at \(#function)")
 			result = self.endOfFile
@@ -59,6 +61,8 @@ import Foundation
 			result = JSValue(object: str, in: mContext)
 		case .endOfFile:
 			result = self.endOfFile
+		case .null:
+			result = JSValue(nullIn: mContext)
 		@unknown default:
 			NSLog("Unknown case at \(#function)")
 			result = self.endOfFile
