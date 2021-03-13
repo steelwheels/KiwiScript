@@ -33,7 +33,6 @@ public class KLCompiler: KECompiler
 		defineGlobalObjects(context: ctxt, console: cons, config: conf)
 		defineConstructors(context: ctxt, console: cons, config: conf)
 		importBuiltinLibrary(context: ctxt, console: cons, config: conf)
-		defineOperationObjects(context: ctxt, terminalInfo: terminfo, environment: env, console: cons, config: conf)
 
 		return true
 	}
@@ -520,47 +519,6 @@ public class KLCompiler: KECompiler
 		} catch {
 			cons.error(string: "Failed to read built-in script in KiwiLibrary")
 		}
-	}
-
-	private func defineOperationObjects(context ctxt: KEContext, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) {
-		/* Operaion */
-		let opfunc: @convention(block) (_ urlsval: JSValue, _ consval: JSValue) -> JSValue = {
-			(_ urlsval: JSValue, _ consval: JSValue) -> JSValue in
-			//let opconsole = KLCompiler.valueToConsole(consoleValue: consval, context: ctxt, logConsole: cons)
-			let opconfig  = KEConfig(applicationType: conf.applicationType,
-						 doStrict: conf.doStrict,
-						 logLevel: conf.logLevel)
-			let op        = KLOperationContext(ownerContext:	ctxt,
-							   libraries:		[],
-							   input:		cons.inputHandle,
-							   output:		cons.outputHandle,
-							   error:		cons.errorHandle,
-							   terminalInfo:	terminfo,
-							   environment:		env,
-							   config:		opconfig)
-
-			/* User scripts */
-			var urls: Array<URL> = []
-			if let users = KLCompiler.valueToURLs(URLvalues: urlsval, console: cons) {
-				urls.append(contentsOf: users)
-			}
-			/* Compile */
-			if op.compile(userStructs: [], userScripts: urls) {
-				return JSValue(object: op, in: ctxt)
-			} else {
-				cons.error(string: "Failed to allocate Operation object\n")
-				return JSValue(undefinedIn: ctxt)
-			}
-		}
-		ctxt.set(name: "Operation", function: opfunc)
-
-		/* OperaionQueue */
-		let queuefunc: @convention(block) () -> JSValue = {
-			() -> JSValue in
-			let queue   = KLOperationQueue(context: ctxt, console: cons)
-			return JSValue(object: queue, in: ctxt)
-		}
-		ctxt.set(name: "OperationQueue", function: queuefunc)
 	}
 
 	private func defineThreadFunction(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, environment env: CNEnvironment, console cons: CNConsole, config conf: KEConfig) {
