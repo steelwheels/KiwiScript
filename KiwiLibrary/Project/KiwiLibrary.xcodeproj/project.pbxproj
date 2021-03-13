@@ -13,6 +13,8 @@
 		050D1DBD2581C6FF00D968ED /* KiwiEngine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050D1DBB2581C6FF00D968ED /* KiwiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		050D1DBF2581C71000D968ED /* KiwiLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050D1DBE2581C71000D968ED /* KiwiLibrary.framework */; };
 		050D1DC02581C71000D968ED /* KiwiLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050D1DBE2581C71000D968ED /* KiwiLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		050FDBF825FC87BE00331107 /* KLDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FDBF725FC87BE00331107 /* KLDictionary.swift */; };
+		050FDBF925FC87BE00331107 /* KLDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FDBF725FC87BE00331107 /* KLDictionary.swift */; };
 		051D09E82559914D0083336F /* KLCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D09E72559914D0083336F /* KLCommand.swift */; };
 		051D09E92559914D0083336F /* KLCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D09E72559914D0083336F /* KLCommand.swift */; };
 		053F2C49253BDDCE009CFCA1 /* UTType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F2C48253BDDCE009CFCA1 /* UTType.swift */; };
@@ -186,6 +188,7 @@
 		050D1DB72581C64A00D968ED /* CoconutData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutData.framework; path = ../../../../local/Frameworks/macos/CoconutData.framework; sourceTree = "<group>"; };
 		050D1DBB2581C6FF00D968ED /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../local/Frameworks/macos/KiwiEngine.framework; sourceTree = "<group>"; };
 		050D1DBE2581C71000D968ED /* KiwiLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiLibrary.framework; path = ../../../../local/Frameworks/macos/KiwiLibrary.framework; sourceTree = "<group>"; };
+		050FDBF725FC87BE00331107 /* KLDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLDictionary.swift; sourceTree = "<group>"; };
 		051D09E72559914D0083336F /* KLCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLCommand.swift; sourceTree = "<group>"; };
 		053F2C48253BDDCE009CFCA1 /* UTType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTType.swift; sourceTree = "<group>"; };
 		053F2C4E253BDEA8009CFCA1 /* UTURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTURL.swift; sourceTree = "<group>"; };
@@ -491,6 +494,7 @@
 				05F3DC3625D8C004003EBD1E /* KLBitmapData.swift */,
 				05EBD8B525E4982200CA1480 /* KLColor.swift */,
 				05A95B7F2516D06900775737 /* KLChar.swift */,
+				050FDBF725FC87BE00331107 /* KLDictionary.swift */,
 				05A95B802516D06900775737 /* KLEnvironment.swift */,
 				05A95B7E2516D06900775737 /* KLEscapeCode.swift */,
 				05A95B7D2516D06900775737 /* KLImage.swift */,
@@ -811,6 +815,7 @@
 				05EBD8B625E4982200CA1480 /* KLColor.swift in Sources */,
 				05A95B542516CFF300775737 /* KLThread.swift in Sources */,
 				05A95B682516D03300775737 /* KLConsole.swift in Sources */,
+				050FDBF825FC87BE00331107 /* KLDictionary.swift in Sources */,
 				05A95B702516D03300775737 /* KLNativeValueFile.swift in Sources */,
 				0598000525CB5F5F00499B6E /* KLBitmapContext.swift in Sources */,
 				05A95B342516CF9900775737 /* KLCurses.swift in Sources */,
@@ -850,6 +855,7 @@
 				05EBD8B725E4982200CA1480 /* KLColor.swift in Sources */,
 				05A95B552516CFF300775737 /* KLThread.swift in Sources */,
 				05A95B692516D03300775737 /* KLConsole.swift in Sources */,
+				050FDBF925FC87BE00331107 /* KLDictionary.swift in Sources */,
 				05A95B712516D03300775737 /* KLNativeValueFile.swift in Sources */,
 				0598000625CB5F5F00499B6E /* KLBitmapContext.swift in Sources */,
 				05A95B352516CF9900775737 /* KLCurses.swift in Sources */,

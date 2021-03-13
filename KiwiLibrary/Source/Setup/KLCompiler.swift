@@ -225,6 +225,43 @@ public class KLCompiler: KECompiler
 		}
 		ctxt.set(name: "sleep", function: sleepFunc)
 
+		/* _openPanel */
+
+		let openPanelFunc: @convention(block) (_ titleval: JSValue, _ typeval: JSValue, _ extsval: JSValue, _ cbfunc: JSValue) -> Void = {
+			(_ titleval: JSValue, _ typeval: JSValue, _ extsval: JSValue, _ cbfunc: JSValue) -> Void in
+			#if os(OSX)
+			if let title = KLCompiler.valueToString(value: titleval),
+			   let type  = KLCompiler.valueToFileType(type: typeval),
+			   let exts  = KLCompiler.valueToExtensions(extensions: extsval) {
+				URL.openPanel(title: title, type: type, extensions: exts, callback: {
+					(_ urlp: URL?) -> Void in
+					let param: JSValue
+					if let url = urlp {
+						param = JSValue(URL: url, in: ctxt)
+					} else {
+						param = JSValue(nullIn: ctxt)
+					}
+					CNExecuteInUserThread(level: .event, execute: {
+						cbfunc.call(withArguments: [param])
+					})
+				})
+			} else {
+				if let param = JSValue(nullIn: ctxt) {
+					cbfunc.call(withArguments: [param])
+				} else {
+					NSLog("Failed to allocate return value")
+				}
+			}
+			#else
+			if let param = JSValue(nullIn: ctxt) {
+				cbfunc.call(withArguments: [param])
+			} else {
+				NSLog("Failed to allocate return value")
+			}
+			#endif
+		}
+		ctxt.set(name: "_openPanel", function: openPanelFunc)
+
 		/* exit */
 		let exitFunc: @convention(block) (_ value: JSValue) -> JSValue
 		switch conf.applicationType {
@@ -459,6 +496,13 @@ public class KLCompiler: KECompiler
 			return JSValue(object: KLLock(), in: ctxt)
 		}
 		ctxt.set(name: "Lock", function: allocLockFunc)
+
+		/* Dictionary */
+		let allocDictFunc: @convention(block) () -> JSValue = {
+			() -> JSValue in
+			return JSValue(object: KLDictionary(context: ctxt), in: ctxt)
+		}
+		ctxt.set(name: "Dictionary", function: allocDictFunc)
 	}
 
 	private func importBuiltinLibrary(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig)
@@ -561,6 +605,14 @@ public class KLCompiler: KECompiler
 
 	#endif
 
+	private class func valueToString(value val: JSValue) -> String? {
+		if val.isString	{
+			return val.toString()
+		} else {
+			return nil
+		}
+	}
+
 	private class func valueToURLs(URLvalues urlval: JSValue, console cons: CNConsole) -> Array<URL>? {
 		if urlval.isArray {
 			var result: Array<URL> = []
@@ -576,6 +628,32 @@ public class KLCompiler: KECompiler
 			return result
 		}
 		cons.error(string: "Invalid URL parameters\n")
+		return nil
+	}
+
+	private class func valueToFileType(type tval: JSValue) -> CNFileType? {
+		if let num = tval.toNumber() {
+			if let sel = CNFileType(rawValue: num.int32Value) {
+				return sel
+			}
+		}
+		return nil
+	}
+
+	private static func valueToExtensions(extensions tval: JSValue) -> Array<String>? {
+		if tval.isArray {
+			var types: Array<String> = []
+			if let vals = tval.toArray() {
+				for elm in vals {
+					if let str = elm as? String {
+						types.append(str)
+					} else {
+						return nil
+					}
+				}
+			}
+			return types
+		}
 		return nil
 	}
 

@@ -1343,6 +1343,18 @@ class Semaphore {
 		this.mLock = null ;
 	}
 }
+
+function openPanel(title, type, exts) {
+    let result = nil ;
+    let sem    = Semaphore(0) ;
+    _openPanel(title, type, exts, function(url) {
+	result = url ;
+	sem.signal() ;  // Tell finish operation
+    })
+    sem.wait() ; // Wait finish operation
+    return result ;
+}
+
 /*
  * turtle.js: Support Turtle Graphics
  */

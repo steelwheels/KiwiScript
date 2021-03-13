@@ -22,28 +22,34 @@ function _waitUntilExitAll(processes)
 
 class Semaphore {
 	constructor(initval) {	// (Int)
-		this.mValue = initval ;
-		this.mLock  = Lock() ;
+		this.mValue = new Dictionary() ;
+		this.mValue.set("count", initval) ;
 	}
 
 	signal() {
-		this.mLock.lock() ;
-			this.mValue -= 1 ;
-		this.mLock.unlock() ;
+		let val = this.mValue.get("count") ;
+		this.mValue.set("count", val - 1) ;
 	}
 
 	wait() {
 		while(true) {
-			let count = 0 ;
-			this.mLock.lock() ;
-				count = this.mValue ;
-			this.mLock.unlock() ;
+			let count = this.mValue.get("count") ;
 			if(count < 0) {
 				break ;
 			}
 		}
-		/* Discard lock resource */
-		this.mLock.discard() ;
-		this.mLock = null ;
 	}
 }
+
+function openPanel(title, type, exts) {
+	let result = null ;
+	let sem    = new Semaphore(0) ;
+	let cbfunc = function(url) {
+		result = url ;
+		sem.signal() ;  // Tell finish operation
+	} ;
+	_openPanel(title, type, exts, cbfunc) ;
+	sem.wait() ; // Wait finish operation
+	return result ;
+}
+
