@@ -27,6 +27,21 @@ open class KLThreadLauncher
 	}
 
 	public func run(path pathval: JSValue,input inval: JSValue,output outval: JSValue,error errval: JSValue) -> JSValue {
+		if let path    = self.pathToFullPath(path: pathval, environment: mEnvironment),
+		   let instrm  = KLThreadLauncher.valueToFileStream(value: inval),
+		   let outstrm = KLThreadLauncher.valueToFileStream(value: outval),
+		   let errstrm = KLThreadLauncher.valueToFileStream(value: errval) {
+			let thread = allocateThread(source: .script(path), processManager: mProcessManager, input: instrm, output: outstrm, error: errstrm, environment: mEnvironment, config: mConfig)
+			let _      = mProcessManager.addProcess(process: thread)
+			return JSValue(object: thread, in: mContext)
+		} else {
+			return JSValue(nullIn: mContext)
+		}
+	}
+
+
+	/*
+	public func run(path pathval: JSValue,input inval: JSValue,output outval: JSValue,error errval: JSValue) -> JSValue {
 		if pathval.isNull {
 			#if os(OSX)
 			let semaphore = DispatchSemaphore(value: 0)
@@ -69,7 +84,7 @@ open class KLThreadLauncher
 			return JSValue(object: thread, in: mContext)
 		}
 		return JSValue(nullIn: mContext)
-	}
+	}*/
 
 	open func allocateThread(source src: KLSource, processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, config conf: KEConfig) -> KLThread {
 		let result = KLThread(source: src, processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: env, config: conf)

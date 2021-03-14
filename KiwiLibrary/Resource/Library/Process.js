@@ -53,3 +53,14 @@ function openPanel(title, type, exts) {
 	return result ;
 }
 
+function run(path, input, output, error) {
+	if(path == null) {
+		let newpath = openPanel("Select script file to execute", FileType.file, ["js", "jspkg"]) ;
+		if(newpath != null) {
+			path = newpath ;
+		} else {
+			return null ;
+		}
+	}
+	return _run(path, input, output, error) ;
+}
