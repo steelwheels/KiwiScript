@@ -5,6 +5,7 @@
  *   Copyright (C) 2019 Steel Wheels Project
  */
 
+import KiwiLibrary
 import CoconutData
 import Foundation
 
@@ -40,9 +41,9 @@ open class KHSingleStatement: KHStatement
 	public var outputName:	String?
 	public var errorName:	String?
 
-	public var inputNameString:  String { get { return select(inputName,  "stdin") }}
-	public var outputNameString: String { get { return select(outputName, "stdout") }}
-	public var errorNameString:  String { get { return select(errorName,  "stderr") }}
+	public var inputNameString:  String { get { return select(inputName,  KLFile.StdInName) }}
+	public var outputNameString: String { get { return select(outputName, KLFile.StdOutName) }}
+	public var errorNameString:  String { get { return select(errorName,  KLFile.StdErrName) }}
 
 	public var exitCodeString: String { get { return "_ecode\(self.processId)" }}
 

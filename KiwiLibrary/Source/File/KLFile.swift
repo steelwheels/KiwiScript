@@ -20,6 +20,10 @@ import Foundation
 
 @objc public class KLFile: NSObject, KLFileProtocol
 {
+	public static let StdInName	= "_stdin"
+	public static let StdOutName	= "_stdout"
+	public static let StdErrName	= "_stderr"
+
 	public static let EOFValue:Int32	= -1
 
 	private var mFile:	CNFile

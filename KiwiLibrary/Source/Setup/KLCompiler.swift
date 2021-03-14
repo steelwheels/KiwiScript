@@ -425,13 +425,13 @@ open class KLLibraryCompiler: KECompiler
 		}
 
 		let stdin = KLFile(file: CNFile(fileHandle: cons.inputHandle), context: ctxt)
-		ctxt.set(name: "stdin", object: stdin)
+		ctxt.set(name: KLFile.StdInName, object: stdin)
 
 		let stdout = KLFile(file: CNFile(fileHandle: cons.outputHandle), context: ctxt)
-		ctxt.set(name: "stdout", object: stdout)
+		ctxt.set(name: KLFile.StdOutName, object: stdout)
 
 		let stderr = KLFile(file: CNFile(fileHandle: cons.errorHandle), context: ctxt)
-		ctxt.set(name: "stderr", object: stderr)
+		ctxt.set(name: KLFile.StdErrName, object: stderr)
 
 		/* Curses */
 		let curses = KLCurses(console: cons, terminalInfo: terminfo, context: ctxt)
@@ -534,7 +534,7 @@ open class KLLibraryCompiler: KECompiler
 
 	private func importBuiltinLibrary(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig)
 	{
-		let libnames = ["Cancel", "Data", "Debug", "Math", "Process", "Turtle"]
+		let libnames = ["Cancel", "Data", "Debug", "File", "Math", "Process", "Turtle"]
 		do {
 			for libname in libnames {
 				if let url = CNFilePath.URLForResourceFile(fileName: libname, fileExtension: "js", forClass: KLLibraryCompiler.self) {
