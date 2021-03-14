@@ -15,9 +15,25 @@ import UIKit
 #endif
 import Foundation
 
-public class KLCompiler: KECompiler
+open class KLLibraryCompiler: KECompiler
 {
-	open override func compileBase(context ctxt: KEContext, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
+	public func compile(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
+		guard compileBase(context: ctxt, terminalInfo: terminfo, environment: env, console: cons, config: conf) else {
+			return false
+		}
+		guard compileThreadFunctions(context: ctxt, resource: res, processManager: procmgr, environment: env, console: cons, config: conf) else {
+			return false
+		}
+		guard compileBuiltinScripts(context: ctxt, terminalInfo: terminfo, environment: env, console: cons, config: conf) else {
+			return false
+		}
+		guard compileUserScripts(context: ctxt, resource: res, processManager: procmgr, environment: env, console: cons, config: conf) else {
+			return false
+		}
+		return true
+	}
+
+	public override func compileBase(context ctxt: KEContext, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
 		/* Expand enum table before they are defined */
 		addEnumTypes()
 
@@ -32,17 +48,29 @@ public class KLCompiler: KECompiler
 		defineClassObjects(context: ctxt, terminalInfo: terminfo, environment: env, console: cons, config: conf)
 		defineGlobalObjects(context: ctxt, console: cons, config: conf)
 		defineConstructors(context: ctxt, console: cons, config: conf)
-		importBuiltinLibrary(context: ctxt, console: cons, config: conf)
 
 		return true
 	}
 
-	open func compileLibrary(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, environment env: CNEnvironment, console cons: CNConsole, config conf: KEConfig) -> Bool {
-		guard compileLibraryFiles(context: ctxt, resource: res, processManager: procmgr, environment: env, console: cons, config: conf) else {
+	open func compileThreadFunctions(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, environment env: CNEnvironment, console cons: CNConsole, config conf: KEConfig) -> Bool {
+		if defineThreadFunction(context: ctxt, resource: res, processManager: procmgr, environment: env, console: cons, config: conf) {
+			return (ctxt.errorCount == 0)
+		} else {
 			return false
 		}
-		defineThreadFunction(context: ctxt, resource: res, processManager: procmgr, environment: env, console: cons, config: conf)
+	}
+
+	public func compileBuiltinScripts(context ctxt: KEContext, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
+		importBuiltinLibrary(context: ctxt, console: cons, config: conf)
 		return (ctxt.errorCount == 0)
+	}
+
+	public func compileUserScripts(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, environment env: CNEnvironment, console cons: CNConsole, config conf: KEConfig) -> Bool {
+		if compileLibraryFiles(context: ctxt, resource: res, processManager: procmgr, environment: env, console: cons, config: conf) {
+			return (ctxt.errorCount == 0)
+		} else {
+			return false
+		}
 	}
 
 	private func compileLibraryFiles(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, environment env: CNEnvironment, console cons: CNConsole, config conf: KEConfig) -> Bool {
@@ -229,9 +257,9 @@ public class KLCompiler: KECompiler
 		let openPanelFunc: @convention(block) (_ titleval: JSValue, _ typeval: JSValue, _ extsval: JSValue, _ cbfunc: JSValue) -> Void = {
 			(_ titleval: JSValue, _ typeval: JSValue, _ extsval: JSValue, _ cbfunc: JSValue) -> Void in
 			#if os(OSX)
-			if let title = KLCompiler.valueToString(value: titleval),
-			   let type  = KLCompiler.valueToFileType(type: typeval),
-			   let exts  = KLCompiler.valueToExtensions(extensions: extsval) {
+			if let title = KLLibraryCompiler.valueToString(value: titleval),
+			   let type  = KLLibraryCompiler.valueToFileType(type: typeval),
+			   let exts  = KLLibraryCompiler.valueToExtensions(extensions: extsval) {
 				URL.openPanel(title: title, type: type, extensions: exts, callback: {
 					(_ urlp: URL?) -> Void in
 					let param: JSValue
@@ -509,7 +537,7 @@ public class KLCompiler: KECompiler
 		let libnames = ["Cancel", "Data", "Debug", "Math", "Process", "Turtle"]
 		do {
 			for libname in libnames {
-				if let url = CNFilePath.URLForResourceFile(fileName: libname, fileExtension: "js", forClass: KLCompiler.self) {
+				if let url = CNFilePath.URLForResourceFile(fileName: libname, fileExtension: "js", forClass: KLLibraryCompiler.self) {
 					let script = try String(contentsOf: url, encoding: .utf8)
 					let _ = compile(context: ctxt, statement: script, console: cons, config: conf)
 				} else {
@@ -521,7 +549,7 @@ public class KLCompiler: KECompiler
 		}
 	}
 
-	private func defineThreadFunction(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, environment env: CNEnvironment, console cons: CNConsole, config conf: KEConfig) {
+	private func defineThreadFunction(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, environment env: CNEnvironment, console cons: CNConsole, config conf: KEConfig) -> Bool {
 		/* Thread */
 		let thfunc: @convention(block) (_ nameval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue = {
 			(_ nameval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue in
@@ -537,6 +565,7 @@ public class KLCompiler: KECompiler
 			return launcher.run(path: pathval, input: inval, output: outval, error: errval)
 		}
 		ctxt.set(name: "run", function: runfunc)
+		return true
 	}
 
 	#if os(OSX)

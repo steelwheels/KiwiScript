@@ -1,5 +1,3 @@
-  -> Compiler: OK
-  -> Compile Library: OK
 /* Unit test for Environment */
 Environment("MSG") = hello
 current_directory => true

@@ -100,18 +100,13 @@ open class KHShellThread: CNShellThread
 	}
 
 	open func compile(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
-		let libcompiler = KLCompiler()
-		guard libcompiler.compileBase(context: ctxt, terminalInfo: terminfo, environment: env, console: cons, config: conf) else {
+		let libcompiler = KLLibraryCompiler()
+		if libcompiler.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf) {
+			let shellcompiler = KHShellCompiler()
+			return shellcompiler.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, console: cons, environment: env, config: conf)
+		} else {
 			return false
 		}
-		guard libcompiler.compileLibrary(context: ctxt, resource: res, processManager: procmgr, environment: env, console: cons, config: conf) else {
-			return false
-		}
-		let shcompiler  = KHShellCompiler()
-		guard shcompiler.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, console: cons, environment: env, config: conf) else {
-			return false
-		}
-		return true
 	}
 
 	open override func execute(command cmd: String) {

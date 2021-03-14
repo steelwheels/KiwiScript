@@ -122,7 +122,7 @@ public enum KLSource {
 		}
 
 		/* Compile */
-		guard compile(context: mContext, resource: mResource, processManager: mChildProcessManager, terminalInfo: mTerminalInfo, environment: self.environment, console: self.console, config: mConfig) else {
+		guard self.compile(context: mContext, resource: mResource, processManager: mChildProcessManager, terminalInfo: mTerminalInfo, environment: self.environment, console: self.console, config: mConfig) else {
 			console.error(string: "Compile error")
 			return false
 		}
@@ -143,21 +143,15 @@ public enum KLSource {
 		}
 
 		/* Execute the script */
-		let compiler = KECompiler()
-		let _ = compiler.compile(context: mContext, statement: script, console: console, config: conf)
+		let runner = KECompiler()
+		let _ = runner.compile(context: mContext, statement: script, console: console, config: conf)
 
 		return true
 	}
 
 	open func compile(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
-		let compiler = KLCompiler()
-		guard compiler.compileBase(context: ctxt, terminalInfo: terminfo, environment: env, console: cons, config: conf) else {
-			return false
-		}
-		guard compiler.compileLibrary(context: ctxt, resource: res, processManager: procmgr, environment: env, console: cons, config: conf) else {
-			return false
-		}
-		return true
+		let compiler = KLLibraryCompiler()
+		return compiler.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf)
 	}
 
 	private func pathExtension(of file: String) -> String {

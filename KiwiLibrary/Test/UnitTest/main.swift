@@ -27,16 +27,10 @@ public func main()
 
 	let pmanager = CNProcessManager()
 
-	let compiler = KLCompiler()
-	if(compiler.compileBase(context: context, terminalInfo: terminfo, environment: env, console: filecons, config: config)){
-		filecons.print(string: "  -> Compiler: OK\n")
-	} else {
+	let compiler = KLLibraryCompiler()
+	guard compiler.compile(context: context, resource: resource, processManager: pmanager, terminalInfo: terminfo, environment: env, console: filecons, config: config) else {
 		filecons.print(string: "  -> Compiler: NG\n")
-	}
-	if compiler.compileLibrary(context: context, resource: resource, processManager: pmanager, environment: env, console: filecons, config: config) {
-		filecons.print(string: "  -> Compile Library: OK\n")
-	} else {
-		filecons.print(string: "  -> Compile Library: NG\n")
+		return
 	}
 
 	guard let fmanager = getFileManager(from: context) else {
