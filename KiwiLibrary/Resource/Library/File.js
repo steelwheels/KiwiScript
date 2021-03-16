@@ -25,6 +25,10 @@ class File
             }
         }
     }
+
+    put(str) {
+        this.mCore.put(str) ;
+    }
 }
 
 /* Global variables */
