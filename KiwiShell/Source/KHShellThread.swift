@@ -124,10 +124,8 @@ open class KHShellThread: CNShellThread
 				let stmts1  = KHCompileShellStatement(statements: stmts0)
 				let script0 = KHGenerateScript(from: stmts1)
 				let script1 = script0.joined(separator: "\n")
-				if let retval = self.mContext.evaluateScript(script1) {
-					if !retval.isUndefined, let retstr = retval.toString() {
-						self.outputFileHandle.write(string: retstr)
-					}
+				if let _ = self.mContext.evaluateScript(script1) {
+					//self.printResult(returnValue: retval)
 				}
 			case .error(let err):
 				let errobj = err as NSError
@@ -200,6 +198,21 @@ open class KHShellThread: CNShellThread
 			}
 		}
 	}
+
+	/*
+	private func printResult(returnValue retval: JSValue) {
+		var iserror = true
+		if retval.isNumber {
+			iserror = (retval.toInt32() != 0)
+		}
+		if iserror {
+			if let retstr = retval.toString() {
+				self.errorFileHandle.write(string: "Failed to execute: \(retstr)\n")
+			} else {
+				self.errorFileHandle.write(string: "Failed to execute: internal error\n")
+			}
+		}
+	}*/
 
 	private func isEmpty(string str: String) -> Bool {
 		var result = true
