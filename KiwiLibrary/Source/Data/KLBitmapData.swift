@@ -85,7 +85,7 @@ extension JSValue
 		guard xval.isNumber && yval.isNumber else {
 			return JSValue(bool: false, in: mContext)
 		}
-		var result: Bool
+		let result: Bool
 		let x = Int(xval.toInt32())
 		let y = Int(yval.toInt32())
 		if let col = data.toObject() as? KLColor {
