@@ -22,7 +22,7 @@ function _waitUntilExitAll(processes)
 
 class Semaphore {
 	constructor(initval) {	// (Int)
-		this.mValue = new Dictionary() ;
+		this.mValue = Dictionary() ;
 		this.mValue.set("count", initval) ;
 	}
 
@@ -34,7 +34,9 @@ class Semaphore {
 	wait() {
 		while(true) {
 			let count = this.mValue.get("count") ;
-			if(count < 0) {
+			if(count >= 0) {
+				sleep(0.1) ;
+			} else {
 				break ;
 			}
 		}
