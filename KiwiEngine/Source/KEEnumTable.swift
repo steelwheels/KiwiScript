@@ -115,9 +115,7 @@ public class KEEnumTable
 			KEEnumType.Member(name: "blue",		value: CNColor.blue.escapeCode()),
 			KEEnumType.Member(name: "magenta",	value: CNColor.magenta.escapeCode()),
 			KEEnumType.Member(name: "cyan",		value: CNColor.cyan.escapeCode()),
-			KEEnumType.Member(name: "white",	value: CNColor.white.escapeCode()),
-			KEEnumType.Member(name: "min",		value: CNColor.black.escapeCode()),
-			KEEnumType.Member(name: "max",		value: CNColor.white.escapeCode())
+			KEEnumType.Member(name: "white",	value: CNColor.white.escapeCode())
 		])
 		mEnumTypes[color.typeName] = color
 

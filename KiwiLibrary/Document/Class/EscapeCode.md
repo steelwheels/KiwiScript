@@ -86,6 +86,14 @@ let code = EscapeCode.scrollDown(lines: Int) -> String
 |:---         |:---     |:---                           |
 |lines        |Int      |Number of lines to scroll down |
 
+## `minColor`, `maxColor` property
+The integer value to present the color which has minimum value (black)
+and maximum value (white).
+````
+let min = EscapeCode.minColor ;         // Int
+let max = EscapeCode.maxColoe ;        // Int
+````
+
 ## `color` method
 Generate escape sequence to set the foreground or background color.
 ````
