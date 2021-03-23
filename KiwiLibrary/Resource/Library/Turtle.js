@@ -5,14 +5,14 @@
 class Turtle {
     // The context "ctxt" is given by Graphic2D component
     constructor(ctxt){
-        this.mContext            = ctxt ;
-        this.mCurrentX           = 0.0 ;
-        this.mCurrentY           = 0.0 ;
-        this.mCurrentAngle	     = 0 ;
-        this.mMovingAngle        = Math.PI / 2.0 ;
-        this.mMovingDistance     = ctxt.logicalFrame.width / 10.0 ;
-	    this.mPenSize		     = this.mMovingDistance / 10.0 ;
-        this.mHistory            = [] ;
+        this.mContext		= ctxt ;
+        this.mCurrentX		= 0.0 ;
+        this.mCurrentY		= 0.0 ;
+        this.mCurrentAngle	= 0 ;
+        this.mMovingAngle	= Math.PI / 2.0 ;
+        this.mMovingDistance	= ctxt.logicalFrame.width / 10.0 ;
+	this.mPenSize		= this.mMovingDistance / 10.0 ;
+        this.mHistory		= [] ;
     }
 
     setup(x, y, angle, pen) {

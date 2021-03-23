@@ -20,6 +20,7 @@ import Foundation
 	var magenta:	JSValue { get }
 	var cyan:	JSValue { get }
 	var white:	JSValue { get }
+	var clear:	JSValue { get }
 }
 
 @objc public class KLColorManager: NSObject, KLColorManagerProtocol
@@ -38,6 +39,7 @@ import Foundation
 	public var magenta:	JSValue { get { return allocate(color: CNColor.magenta	) }}
 	public var cyan:	JSValue { get { return allocate(color: CNColor.cyan	) }}
 	public var white:	JSValue { get { return allocate(color: CNColor.white	) }}
+	public var clear:	JSValue { get { return allocate(color: CNColor.clear	) }}
 
 	private func allocate(color col: CNColor) -> JSValue {
 		let obj = KLColor(color: col, context: mContext)
