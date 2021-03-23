@@ -33,9 +33,6 @@ import Foundation
 	func scrollUp(_ lines: JSValue) -> JSValue
 	func scrollDown(_ lines: JSValue) -> JSValue
 
-	var minColor: JSValue { get }
-	var maxColor: JSValue { get }
-
 	func color(_ type: JSValue, _ color: JSValue) -> JSValue
 	func reset() -> JSValue
 }
@@ -166,14 +163,6 @@ import Foundation
 	private func escapeCodeToValue(escapeCode code: CNEscapeCode) -> JSValue {
 		let estr = code.encode()
 		return JSValue(object: estr, in: mContext)
-	}
-
-	public var minColor: JSValue {
-		get { return JSValue(int32: Int32(CNColor.CursesColor.black.rawValue), in: mContext) }
-	}
-
-	public var maxColor: JSValue {
-		get { return JSValue(int32: Int32(CNColor.CursesColor.white.rawValue), in: mContext)}
 	}
 
 	public func color(_ type: JSValue, _ color: JSValue) -> JSValue {

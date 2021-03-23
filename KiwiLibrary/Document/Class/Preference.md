@@ -38,10 +38,12 @@ The preference of terminal attributes.
 This is a list of properties in the preference:
 |Name               |Type       |Description                |
 |:---               |:---       |:---                       |
-|width              |Int        |Terminal width             |
-|height             |Int        |Terminal height            |
-|foregroundColor    |[Color](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/Color.md)  |The integer value to present foreground color |
-|backgoundColor     |[Color](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/Color.md) |The integer value to present background color  |
+|width              |Int    |Terminal width             |
+|height             |Int    |Terminal height            |
+|foregroundColor    |Int    |Present foreground color   |
+|backgoundColor     |Int    |Present background color   |
+
+The integer value for the color is defined as the properties of [Curses class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Curses.md).
 
 ## `shell` preference
 *This preference is exist only in interractive mode in shell.* This has properties for shell operation.

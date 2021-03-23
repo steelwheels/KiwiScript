@@ -106,19 +106,6 @@ public class KEEnumTable
 		])
 		mEnumTypes[textalign.typeName] = textalign
 
-		let color = KEEnumType(typeName: "Color")
-		color.add(members: [
-			KEEnumType.Member(name: "black",	value: CNColor.black.escapeCode()),
-			KEEnumType.Member(name: "red",		value: CNColor.red.escapeCode()),
-			KEEnumType.Member(name: "green",	value: CNColor.green.escapeCode()),
-			KEEnumType.Member(name: "yellow",	value: CNColor.yellow.escapeCode()),
-			KEEnumType.Member(name: "blue",		value: CNColor.blue.escapeCode()),
-			KEEnumType.Member(name: "magenta",	value: CNColor.magenta.escapeCode()),
-			KEEnumType.Member(name: "cyan",		value: CNColor.cyan.escapeCode()),
-			KEEnumType.Member(name: "white",	value: CNColor.white.escapeCode())
-		])
-		mEnumTypes[color.typeName] = color
-
 		let authorize = KEEnumType(typeName: "Authorize")
 		authorize.add(members: [
 			KEEnumType.Member(name: "undetermined",	value: CNAuthorizeState.Undetermined.rawValue),

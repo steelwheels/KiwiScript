@@ -58,6 +58,10 @@ public func main()
 	filecons.print(string: "/* Unit test for native value conversion */\n")
 	let result5 = UTNativeValue(context: context, console: filecons)
 
+	/* Color */
+	filecons.print(string: "/* Unit test for color manager */\n")
+	let result6 = UTColor(context: context, console: filecons)
+
 	/* Process */
 	filecons.print(string: "/* Unit test for Process classes */\n")
 	let result14 = UTProcess(context: context, console: filecons)
@@ -91,7 +95,7 @@ public func main()
 	let result13 = UTURL(fileManager: fmanager, context: context, console: filecons)
 
 	let summary = result1 && result2 && result3 && result4 && result5
-			&& result8 && result9 && result10 && result11
+			&& result6 && result8 && result9 && result10 && result11
 			&& result12 && result13 && result14 && result15
 	if summary {
 		filecons.print(string: "SUMMARY: OK\n")

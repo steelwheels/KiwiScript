@@ -106,6 +106,8 @@
 		05C3B2A125A2087F005256E1 /* KLReadline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C3B29F25A2087F005256E1 /* KLReadline.swift */; };
 		05CFDFE2254505E50089C1AE /* KLThreadLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CFDFE1254505E50089C1AE /* KLThreadLauncher.swift */; };
 		05CFDFE3254505E50089C1AE /* KLThreadLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CFDFE1254505E50089C1AE /* KLThreadLauncher.swift */; };
+		05DF53592609902300C7837C /* KLColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DF53582609902300C7837C /* KLColorManager.swift */; };
+		05DF535A2609902300C7837C /* KLColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DF53582609902300C7837C /* KLColorManager.swift */; };
 		05E08D7625F8F968001E48EE /* KLLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E08D7525F8F968001E48EE /* KLLock.swift */; };
 		05E08D7725F8F968001E48EE /* KLLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E08D7525F8F968001E48EE /* KLLock.swift */; };
 		05E08D7C25F904DB001E48EE /* UTProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E08D7B25F904DB001E48EE /* UTProcess.swift */; };
@@ -113,6 +115,7 @@
 		05EBD8B725E4982200CA1480 /* KLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EBD8B525E4982200CA1480 /* KLColor.swift */; };
 		05F3DC3725D8C004003EBD1E /* KLBitmapData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F3DC3625D8C004003EBD1E /* KLBitmapData.swift */; };
 		05F3DC3825D8C004003EBD1E /* KLBitmapData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F3DC3625D8C004003EBD1E /* KLBitmapData.swift */; };
+		05F8571A2609BA61003D14FF /* UTColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F857192609BA61003D14FF /* UTColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -246,10 +249,12 @@
 		05C0378925186FF3002A9C41 /* Debug.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Debug.js; sourceTree = "<group>"; };
 		05C3B29F25A2087F005256E1 /* KLReadline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLReadline.swift; sourceTree = "<group>"; };
 		05CFDFE1254505E50089C1AE /* KLThreadLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLThreadLauncher.swift; sourceTree = "<group>"; };
+		05DF53582609902300C7837C /* KLColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLColorManager.swift; sourceTree = "<group>"; };
 		05E08D7525F8F968001E48EE /* KLLock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLLock.swift; sourceTree = "<group>"; };
 		05E08D7B25F904DB001E48EE /* UTProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTProcess.swift; sourceTree = "<group>"; };
 		05EBD8B525E4982200CA1480 /* KLColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLColor.swift; sourceTree = "<group>"; };
 		05F3DC3625D8C004003EBD1E /* KLBitmapData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLBitmapData.swift; sourceTree = "<group>"; };
+		05F857192609BA61003D14FF /* UTColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -308,6 +313,7 @@
 			isa = PBXGroup;
 			children = (
 				0543B050253B3A5D00A9BAA1 /* main.swift */,
+				05F857192609BA61003D14FF /* UTColor.swift */,
 				056FBE51255A3B8B0069A0C2 /* UTCommand.swift */,
 				05A1F44D253BBAD400D4789F /* UTEnvironment.swift */,
 				05A1F451253BBBD400D4789F /* UTFileManager.swift */,
@@ -479,6 +485,7 @@
 			children = (
 				05F3DC3625D8C004003EBD1E /* KLBitmapData.swift */,
 				05EBD8B525E4982200CA1480 /* KLColor.swift */,
+				05DF53582609902300C7837C /* KLColorManager.swift */,
 				05A95B7F2516D06900775737 /* KLChar.swift */,
 				050FDBF725FC87BE00331107 /* KLDictionary.swift */,
 				05A95B802516D06900775737 /* KLEnvironment.swift */,
@@ -755,6 +762,7 @@
 			files = (
 				05A1F49F253BD75A00D4789F /* UTThread.swift in Sources */,
 				05E08D7C25F904DB001E48EE /* UTProcess.swift in Sources */,
+				05F8571A2609BA61003D14FF /* UTColor.swift in Sources */,
 				05A1F456253BC0F500D4789F /* UTFontManager.swift in Sources */,
 				0543B051253B3A5D00A9BAA1 /* main.swift in Sources */,
 				056FBE52255A3B8B0069A0C2 /* UTCommand.swift in Sources */,
@@ -781,6 +789,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05DF53592609902300C7837C /* KLColorManager.swift in Sources */,
 				05A95B852516D06900775737 /* KLChar.swift in Sources */,
 				05A95B6E2516D03300775737 /* KLFileManager.swift in Sources */,
 				05CFDFE2254505E50089C1AE /* KLThreadLauncher.swift in Sources */,
@@ -819,6 +828,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05DF535A2609902300C7837C /* KLColorManager.swift in Sources */,
 				05A95B862516D06900775737 /* KLChar.swift in Sources */,
 				05A95B6F2516D03300775737 /* KLFileManager.swift in Sources */,
 				05CFDFE3254505E50089C1AE /* KLThreadLauncher.swift in Sources */,

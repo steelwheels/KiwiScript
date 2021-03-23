@@ -433,6 +433,10 @@ open class KLLibraryCompiler: KECompiler
 		let stderr = KLFile(file: CNFile(fileHandle: cons.errorHandle), context: ctxt)
 		ctxt.set(name: KLFile.StdErrName, object: stderr)
 
+		/* Color manager */
+		let colmgr = KLColorManager(context: ctxt)
+		ctxt.set(name: "Color", object: colmgr)
+
 		/* Curses */
 		let curses = KLCurses(console: cons, terminalInfo: terminfo, context: ctxt)
 		ctxt.set(name: "Curses", object: curses)

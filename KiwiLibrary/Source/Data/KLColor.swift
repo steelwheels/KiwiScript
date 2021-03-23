@@ -1,6 +1,6 @@
 /**
  * @file	KLColor.swift
- * @brief	Define KLColor object
+ * @brief	Define KLColor class
  * @par Copyright
  *   Copyright (C) 2021 Steel Wheels Project
  */
@@ -16,6 +16,8 @@ import Foundation
 	var green:	JSValue { get }
 	var blue:	JSValue { get }
 	var alpha:	JSValue { get }
+
+	func toString() -> JSValue
 }
 
 @objc public class KLColor: NSObject, KLColorProtocol {
@@ -33,6 +35,12 @@ import Foundation
 	public var green:  JSValue { get { return anyComponent(component: mColor.greenComponent) }}
 	public var blue:   JSValue { get { return anyComponent(component: mColor.blueComponent)	 }}
 	public var alpha:  JSValue { get { return anyComponent(component: mColor.alphaComponent) }}
+
+	public func toString() -> JSValue {
+		let (red, green, blue, alpha) = mColor.toRGBA()
+		let str = "Color(red=\(red), green=\(green), blue=\(blue), alpha=\(alpha))"
+		return JSValue(object: str, in: mContext)
+	}
 
 	private func anyComponent(component comp: CGFloat) -> JSValue {
 		return JSValue(double: Double(comp), in: mContext)

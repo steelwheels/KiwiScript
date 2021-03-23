@@ -12,6 +12,17 @@ import Foundation
 
 @objc public protocol KLCursesProtocol: JSExport
 {
+	var minColor:	JSValue { get }
+	var maxColor:	JSValue { get }
+	var black:	JSValue { get }
+	var red:	JSValue { get }
+	var green:	JSValue { get }
+	var yellow:	JSValue { get }
+	var blue:	JSValue { get }
+	var magenta:	JSValue { get }
+	var cyan:	JSValue { get }
+	var white:	JSValue { get }
+
 	func start()
 	func end()
 
@@ -38,6 +49,18 @@ import Foundation
 		mCurses  = CNCurses(console: cons, terminalInfo: terminfo)
 		mContext = ctxt
 	}
+
+	public var minColor:	JSValue { get { return JSValue(int32: CNCurses.Color.black.rawValue, in: mContext) }}
+	public var maxColor:	JSValue { get { return JSValue(int32: CNCurses.Color.white.rawValue, in: mContext) }}
+
+	public var black:	JSValue { get { return JSValue(int32: CNCurses.Color.black.rawValue,	in: mContext)} }
+	public var red:		JSValue { get { return JSValue(int32: CNCurses.Color.red.rawValue,	in: mContext)}}
+	public var green:	JSValue { get { return JSValue(int32: CNCurses.Color.green.rawValue,	in: mContext)}}
+	public var yellow:	JSValue { get { return JSValue(int32: CNCurses.Color.yellow.rawValue,	in: mContext)}}
+	public var blue:	JSValue { get { return JSValue(int32: CNCurses.Color.blue.rawValue,	in: mContext)}}
+	public var magenta:	JSValue { get { return JSValue(int32: CNCurses.Color.magenta.rawValue,	in: mContext)}}
+	public var cyan:	JSValue { get { return JSValue(int32: CNCurses.Color.cyan.rawValue,	in: mContext)}}
+	public var white:	JSValue { get { return JSValue(int32: CNCurses.Color.white.rawValue,	in: mContext)}}
 
 	public func start() {
 		mCurses.start()

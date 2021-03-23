@@ -86,24 +86,19 @@ let code = EscapeCode.scrollDown(lines: Int) -> String
 |:---         |:---     |:---                           |
 |lines        |Int      |Number of lines to scroll down |
 
-## `minColor`, `maxColor` property
-The integer value to present the color which has minimum value (black)
-and maximum value (white).
-````
-let min = EscapeCode.minColor ;         // Int
-let max = EscapeCode.maxColoe ;        // Int
-````
 
 ## `color` method
 Generate escape sequence to set the foreground or background color.
 ````
-let code = EscapeCode.color(type: Int, color: Color) -> String
+let code = EscapeCode.color(type: Int, color: Int) -> String
 ````
+The value of the color is defined as the property of [Curses class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Curses.md).
+
 ### Parameters
 |Parameter    |Type   |Description                    |
 |:---         |:---   |:---                           |
 |target       |Int    |Select target. "0":Background, "1":Foreground |
-|color        |[Color](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/Color.md) |The color to set as foreground or background color|
+|color        |Int    |The color to set as foreground or background color. The value of the color is defined as the property of [Curses class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Curses.md).|
 
 ### Return value
 Escape sequence string to set the color.
@@ -111,8 +106,8 @@ If the parameter is not acceptable, the return value will be `null`.
 
 ### Sample
 ````
-let bgstr = EscapeCode.color(0, Color.black) ; // for background color
-let fgstr = EscapeCode.color(1, Color.red ) ;  // for foreground color
+let bgstr = EscapeCode.color(0, Curses.black) ; // for background color
+let fgstr = EscapeCode.color(1, Curses.red ) ;  // for foreground color
 console.print(fgstr + bgstr + "red message on black\n") ;
 ````
 

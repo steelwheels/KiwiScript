@@ -10,6 +10,16 @@ The singleton object is defined for Curses class.
 |:---        |:---              |:---                           |
 |`Curses`    |Curses            |Singleton object of the class  |
 
+## Properties
+### Color code
+Following properties has unique integer value to present colors.
+
+`black`, `red`, `green`, `yellow`, `blue`, `maganta`, `cyan`, `white`
+
+### Minimum/Maximum value of Color code
+`minColor`, `maxColor`
+
+
 ## Setup/Release
 ### `start` method
 Startup the screen for CUI
@@ -57,17 +67,17 @@ let c = Curses.inkey() ;
 
 ## Color
 ### `foregroundColor` Property
-The foreground color which type is defined as [Color](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/Color.md).
+The foreground color of the terminal.
 ````
 let fcol = Curses.foregroundColor ;
-Curses.foregroundColor = Color.black ;
+Curses.foregroundColor = Curses.black ;
 ````
 
 ### `backgroundColor` Property
-The background color which type is defined as [Color](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/Color.md).
+The background color of the terminal.
 ````
 let bcol = Curses.backgroundColor ;
-Curses.backgroundColor = Color.white ;
+Curses.backgroundColor = Curses.white ;
 ````
 
 ## Related Links
