@@ -5,25 +5,6 @@ and used in the user's script.
 
 The [Turtle class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/BuiltIn/Turtle.md) uses this instance to draw graphics.
 
-# Constants
-
-|Property name  |Type   |Description                    |
-|:---           |:---   |:---                           |
-|black          |Color  |The black color object         |
-|red            |Color  |The red color object           |
-|green          |Color  |The green color object         |
-|yellow         |Color  |The yellow color object        |
-|blue           |Color  |The blue color object          |
-|magenta        |Color  |The magenta color object       |
-|cyan           |Color  |The cyan color object          |
-|white          |Color  |The white color object         |
-
-
-This is an example using color constant.
-````
-context.setFillColor(context.blue) ;
-````
-
 # Properties
 |Property name  |Type   |Description                    |
 |:---           |:---   |:---                           |
@@ -37,7 +18,7 @@ context.setFillColor(color) ;
 ### Parameters
 |Parameter name |Type   |Description                    |
 |:---           |:---   |:---                           |
-|color          |Color  |The color for fill operation   |
+|color          |[Color](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Color.md)  |The color for fill operation   |
 
 ### Return value
 none
@@ -49,7 +30,7 @@ context.setStrokeColor(color) ;
 ### Parameters
 |Parameter name |Type   |Description                    |
 |:---           |:---   |:---                           |
-|color          |Color  |The color to draw the line     |
+|color          |[Color](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Color.md)  |The color to draw the line     |
 
 ### Return value
 none

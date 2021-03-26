@@ -39,53 +39,6 @@ open class KLThreadLauncher
 		}
 	}
 
-
-	/*
-	public func run(path pathval: JSValue,input inval: JSValue,output outval: JSValue,error errval: JSValue) -> JSValue {
-		if pathval.isNull {
-			#if os(OSX)
-			let semaphore = DispatchSemaphore(value: 0)
-			var pathurl: URL? = nil
-			URL.openPanel(title: "Select script file", type: .File, extensions: ["js", "jspkg"], callback: {
-				(_ url: URL?) -> Void in
-				pathurl = url
-				semaphore.signal()
-			})
-			semaphore.wait()
-			if let url = pathurl {
-				let src: KLSource = .script(url)
-				return run(source: src, input: inval, output: outval, error: errval)
-			} else {
-				return JSValue(nullIn: mContext)
-			}
-			#endif
-		} else if let url = self.pathToFullPath(path: pathval, environment: mEnvironment) {
-			let src: KLSource = .script(url)
-			return run(source: src, input: inval, output: outval, error: errval)
-		}
-		return JSValue(nullIn: mContext)
-	}
-
-	public func run(name nameval: JSValue, input inval: JSValue,output outval: JSValue,error errval: JSValue) -> JSValue {
-		if nameval.isString {
-			if let url = mResource.URLOfThread(identifier: nameval.toString()) {
-				return run(source: .script(url), input: inval, output: outval, error: errval)
-			}
-		}
-		return JSValue(nullIn: mContext)
-	}
-
-	private func run(source src: KLSource, input inval: JSValue,output outval: JSValue,error errval: JSValue) -> JSValue {
-		if let instrm  = KLThreadLauncher.valueToFileStream(value: inval),
-		   let outstrm = KLThreadLauncher.valueToFileStream(value: outval),
-		   let errstrm = KLThreadLauncher.valueToFileStream(value: errval) {
-			let thread = allocateThread(source: src, processManager: mProcessManager, input: instrm, output: outstrm, error: errstrm, environment: mEnvironment, config: mConfig)
-			let _      = mProcessManager.addProcess(process: thread)
-			return JSValue(object: thread, in: mContext)
-		}
-		return JSValue(nullIn: mContext)
-	}*/
-
 	open func allocateThread(source src: KLSource, processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, config conf: KEConfig) -> KLThread {
 		let result = KLThread(source: src, processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: env, config: conf)
 		return result

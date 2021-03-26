@@ -15,7 +15,7 @@ import UIKit
 #endif
 import Foundation
 
-open class KLLibraryCompiler: KECompiler
+public class KLLibraryCompiler: KECompiler
 {
 	public func compile(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
 		guard compileBase(context: ctxt, terminalInfo: terminfo, environment: env, console: cons, config: conf) else {

@@ -38,6 +38,8 @@ The built-in class, function, data types for JavaScript.
 
 ## Objects
 There are some pre-defined objects. They are instance of built-in classes:
+
+* [BitmapContext](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/BitmapContext.md): The class for 2D bitmap drawing
 * [Char class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Char.md): The character class
 * [Color](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/Color.md): Define and allocate color object
 * [Console class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Console.md): The object to print messages into the terminal.

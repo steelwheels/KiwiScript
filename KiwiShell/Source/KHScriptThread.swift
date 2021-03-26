@@ -32,6 +32,44 @@ open class KHScriptThread: KLThread
 		}
 	}
 
+	open override func convert(script scr: String, pathExtension ext: String?) -> String? {
+		var isshellscr = false
+		if let e = ext {
+			if e == "sh" || e == "jsh" {
+				isshellscr = true
+			}
+		}
+		if isshellscr {
+			return convertShellScript(script: scr)
+		} else {
+			return scr	// needless to convert
+		}
+	}
+
+	private func convertShellScript(script scr: String) -> String? {
+		let lines = scr.components(separatedBy: "\n")
+		let result: String?
+		/* convert script */
+		let parser = KHShellParser()
+		switch parser.parse(lines: lines) {
+		case .ok(let stmts0):
+			let stmts1  = KHCompileShellStatement(statements: stmts0)
+			let script2 = KHGenerateScript(from: stmts1)
+
+			var stmts3: Array<String> = ["function main(){\n"]
+			stmts3.append(contentsOf: script2)
+			stmts3.append("}\n")
+
+			result = stmts3.joined(separator: "\n")
+		case .error(let err):
+			let errobj  = err as NSError
+			let errmsg  = errobj.toString()
+			self.errorFileHandle.write(string: errmsg + "\n")
+			result      = nil
+		}
+		return result
+	}
+
 	open override func terminate() {
 		if super.status.isRunning {
 			//NSLog("Terminate script by _cancel()")

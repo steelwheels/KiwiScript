@@ -138,13 +138,24 @@ public enum KLSource {
 			} else {
 				path = ""
 			}
-			console.error(string: "Failed to load application sctipt\(path)")
+			console.error(string: "Failed to load application sctipt: \(path)\n")
+			return false
+		}
+
+		/* Convert script */
+		var ext: String? = nil
+		if let p = mResource.pathStringOfApplication() {
+			let nsstr = p as NSString
+			ext = nsstr.pathExtension
+		}
+		guard let newscript = convert(script: script, pathExtension: ext) else {
+			console.error(string: "Failed to convert sctipt\n")
 			return false
 		}
 
 		/* Execute the script */
 		let runner = KECompiler()
-		let _ = runner.compile(context: mContext, statement: script, console: console, config: conf)
+		let _ = runner.compile(context: mContext, statement: newscript, console: console, config: conf)
 
 		return true
 	}
@@ -152,6 +163,10 @@ public enum KLSource {
 	open func compile(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
 		let compiler = KLLibraryCompiler()
 		return compiler.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf)
+	}
+
+	open func convert(script scr: String, pathExtension ext: String?) -> String? {
+		return scr
 	}
 
 	private func pathExtension(of file: String) -> String {
