@@ -57,7 +57,7 @@ function openPanel(title, type, exts) {
 
 function run(path, input, output, error) {
 	if(path == null) {
-		let newpath = openPanel("Select script file to execute", FileType.file, ["js", "jspkg"]) ;
+		let newpath = openPanel("Select script file to execute", FileType.file, ["js", "jsh", "jspkg"]) ;
 		if(newpath != null) {
 			path = newpath ;
 		} else {
