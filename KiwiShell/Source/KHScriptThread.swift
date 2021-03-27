@@ -51,7 +51,7 @@ open class KHScriptThread: KLThread
 		let result: String?
 		/* convert script */
 		let parser = KHShellParser()
-		switch parser.parse(lines: lines) {
+		switch parser.parse(lines: lines, environment: self.environment) {
 		case .ok(let stmts0):
 			let stmts1  = KHCompileShellStatement(statements: stmts0)
 			let script2 = KHGenerateScript(from: stmts1)

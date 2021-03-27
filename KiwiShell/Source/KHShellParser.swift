@@ -27,16 +27,28 @@ public class KHShellParser
 	}
 
 	/* lines: The array of lines which is terminated by '\n' */
-	public func parse(lines lns: Array<String>) -> Result {
+	public func parse(lines lns: Array<String>, environment env: CNEnvironment) -> Result {
 		do {
-			let stmts = try parseMain(lines: lns)
+			let stmts = try parseMain(lines: lns, environment: env)
 			return .ok(stmts)
 		} catch let err {
 			return .error(err)
 		}
 	}
 
-	public func parseMain(lines lns: Array<String>) throws -> Array<KHStatement> {
+	public func parseMain(lines lns: Array<String>, environment env: CNEnvironment) throws -> Array<KHStatement> {
+		/* Make environment value table */
+		var envdict: Dictionary<String, String> = [:]
+		for name in env.variableNames {
+			if let val = env.get(name: name) {
+				if let str = environmentValueToString(value: val) {
+					envdict["${" + name + "}"] = str
+				} else {
+					NSLog("Failed to get environment value: \(name)")
+				}
+			}
+		}
+
 		var result: Array<KHStatement>   = []
 		var buffer: Array<String>   = []
 		var mode:   TranslationMode = .script
@@ -50,7 +62,9 @@ public class KHShellParser
 						let newstmt = KHScriptStatement(script: buffer)
 						result.append(newstmt)
 					}
-					buffer = [line]
+					/* Replace environment variable */
+					let eline = replaceEnvironmentVariable(line: line, dictionary: envdict)
+					buffer = [eline]
 					mode = .shell
 					/* Keep indent for shell statements */
 					indent = CNStringUtil.spacePrefix(string: line)
@@ -62,7 +76,9 @@ public class KHShellParser
 			case .shell:
 				if isShellLine(line: line) {
 					/* shell -> shell */
-					buffer.append(line)
+					/* Replace environment variable */
+					let eline = replaceEnvironmentVariable(line: line, dictionary: envdict)
+					buffer.append(eline)
 					mode = .shell
 				} else {
 					/* shell -> script */
@@ -105,6 +121,41 @@ public class KHShellParser
 			idx = ln.index(after: idx)
 		}
 		return false
+	}
+
+	private func environmentValueToString(value val: CNNativeValue) -> String? {
+		var result: String? = nil
+		switch val {
+		case .stringValue(let str):
+			result = str
+		case .URLValue(let url):
+			result = url.path
+		case .numberValue(let num):
+			result = num.description
+		case .arrayValue(let arr):
+			var is1st = true
+			var str   = ""
+			for elm in arr {
+				if is1st {
+					is1st = false
+				} else {
+					str += ":"
+				}
+				if let estr = environmentValueToString(value: elm) {
+					str += estr
+				}
+			}
+			result = str
+		default:
+			NSLog("Unsupported environment value type: \(val.valueType.toString())")
+		}
+		return result
+	}
+
+	private func replaceEnvironmentVariable(line ln: String, dictionary dict: Dictionary<String, String>) -> String {
+		return dict.reduce(ln){
+			$0.replacingOccurrences(of: $1.key, with: $1.value)
+		}
 	}
 
 	private func convertToShellStatement(lines lns: Array<String>, indent idt: String) throws -> KHMultiStatements {

@@ -118,7 +118,7 @@ open class KHShellThread: CNShellThread
 
 			/* convert script */
 			let parser = KHShellParser()
-			switch parser.parse(lines: [line]) {
+			switch parser.parse(lines: [line], environment: self.environment) {
 			case .ok(let stmts0):
 				/* Execute as main thread */
 				let stmts1  = KHCompileShellStatement(statements: stmts0)

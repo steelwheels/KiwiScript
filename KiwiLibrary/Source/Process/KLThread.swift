@@ -75,7 +75,7 @@ public enum KLSource {
 			let resource = KEResource(baseURL: url)
 			let loader = KEManifestLoader()
 			if let err = loader.load(into: resource) {
-				let msg = "[Error] Failed to load resource: \(err.toString())\n"
+				let msg = "[Error] Failed to load resource from \(url.path): \(err.toString())\n"
 				dumpLog(string: msg, stream: errstrm)
 			}
 			result = resource
