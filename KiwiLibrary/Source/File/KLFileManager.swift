@@ -12,7 +12,7 @@ import Foundation
 
 @objc public protocol KLFileManagerProtocol: JSExport
 {
-	func setupFileSystem() -> JSValue
+	func installResourceFiles() -> JSValue
 
 	func open(_ pathstr: JSValue, _ acctype: JSValue) -> JSValue
 
@@ -40,6 +40,8 @@ import Foundation
 
 @objc public class KLFileManager: NSObject, KLFileManagerProtocol
 {
+	public static let resourceDirectories = ["Game", "Sample", "Test"]
+
 	private var mContext:			KEContext
 	private var mEnvironment:		CNEnvironment
 	private var mConsole:			CNFileConsole
@@ -50,9 +52,9 @@ import Foundation
 		mConsole		= CNFileConsole(input: inhdl, output: outhdl, error: errhdl)
 	}
 
-	public func setupFileSystem() -> JSValue {
+	public func installResourceFiles() -> JSValue {
 		let result: Bool
-		if let _ = FileManager.default.setupFileSystem(console: mConsole) {
+		if let _ = FileManager.default.installResourceFiles(targetDirectories: KLFileManager.resourceDirectories, console: mConsole){
 			/* There are some errors */
 			result = false
 		} else {

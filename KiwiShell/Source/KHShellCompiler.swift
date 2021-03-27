@@ -53,10 +53,10 @@ public class KHShellCompiler: KECompiler
 		/* setup command */
 		let setupfunc: @convention(block) () -> JSValue = {
 			() -> JSValue in
-			let cdcmd = KLSetupCommand(context: ctxt, console: cons, environment: env)
+			let cdcmd = KLInstallCommand(context: ctxt, console: cons, environment: env)
 			return JSValue(object: cdcmd, in: ctxt)
 		}
-		ctxt.set(name: "setupcmd", function: setupfunc)
+		ctxt.set(name: KLInstallCommand.builtinFunctionName, function: setupfunc)
 	}
 
 	/* Define "system" built-in command */

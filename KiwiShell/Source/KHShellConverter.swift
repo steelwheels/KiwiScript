@@ -63,13 +63,13 @@ private class KHBuiltinCommandConverter: KHShellStatementConverter
 				let newstmt = KHRunCommandStatement(scriptPath: path, argument: arg)
 				newstmt.importProperties(source: stmt)
 				return newstmt
-			case "setup":
+			case "install":
 				var path: String? = nil
 				var arg:  String? = nil
 				if let rest = restp {
 					(path, arg) = CNStringUtil.cutFirstWord(string: rest)
 				}
-				let newstmt = KHSetupCommandStatement(scriptPath: path, argument: arg)
+				let newstmt = KHInstallCommandStatement(scriptPath: path, argument: arg)
 				newstmt.importProperties(source: stmt)
 				return newstmt
 			default:

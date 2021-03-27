@@ -91,20 +91,22 @@ import Foundation
 	}
 }
 
-@objc open class KLSetupCommand: KLCommand
+@objc open class KLInstallCommand: KLCommand
 {
+	static public let builtinFunctionName = "_install"
+
 	public init(context ctxt: KEContext, console cons: CNConsole, environment env: CNEnvironment) {
 		super.init(function: {
 			(_ arg: JSValue, _ env: CNEnvironment) -> Int32 in
-			return KLSetupCommand.execute(arg, cons, env)
+			return KLInstallCommand.execute(arg, cons, env)
 		}, context: ctxt, console: cons, environment: env)
 	}
 
 	private static func execute(_ arg: JSValue, _ console: CNConsole, _ env: CNEnvironment) -> Int32 {
 		let result: Int32
-		let fmanager 		= FileManager.default
-		if let err = fmanager.setupFileSystem(console: console) {
-			console.error(string: "setup: [Error] \(err.toString())\n")
+		let fmanager = FileManager.default
+		if let err = fmanager.installResourceFiles(targetDirectories: KLFileManager.resourceDirectories, console: console) {
+			console.error(string: "install: [Error] \(err.toString())\n")
 			result = 1 ;
 		} else {
 			/* No error */

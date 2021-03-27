@@ -173,7 +173,7 @@ public class KHRunCommandStatement: KHSingleStatement
 	}
 }
 
-public class KHSetupCommandStatement: KHSingleStatement
+public class KHInstallCommandStatement: KHSingleStatement
 {
 	private var mScriptPath:	String?
 	private var mArgument:		String?
@@ -189,7 +189,7 @@ public class KHSetupCommandStatement: KHSingleStatement
 	open override func dump(indent idt: Int, to console: CNConsole) {
 		let spaces0 = indentToString(indent: idt)
 		let spaces1 = indentToString(indent: idt)
-		console.print(string: spaces0 + "setup-command: {\n")
+		console.print(string: spaces0 + "install-command: {\n")
 		super.dump(indent: idt+1, to: console)
 		let path: String
 		if let p = mScriptPath {
@@ -197,7 +197,7 @@ public class KHSetupCommandStatement: KHSingleStatement
 		} else {
 			path = "<nil>"
 		}
-		console.print(string: spaces1 + "setup:  \"\(path)\"\n")
+		console.print(string: spaces1 + "install: \"\(path)\"\n")
 		console.print(string: spaces0 + "}\n")
 	}
 }

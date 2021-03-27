@@ -57,7 +57,7 @@ private class KHProcessIdConverter: KHShellStatementVisitor
 		return nil
 	}
 
-	open override func visit(setupCommandStatement stmt: KHSetupCommandStatement) -> KHSingleStatement? {
+	open override func visit(installCommandStatement stmt: KHInstallCommandStatement) -> KHSingleStatement? {
 		stmt.processId = processId
 		processId += 1
 		return nil
@@ -184,9 +184,9 @@ private class KHCodeConverter: KHShellStatementVisitor
 		return nil
 	}
 
-	open override func visit(setupCommandStatement stmt: KHSetupCommandStatement) -> KHSingleStatement? {
+	open override func visit(installCommandStatement stmt: KHInstallCommandStatement) -> KHSingleStatement? {
 		let proc  = processName(stmt)
-		let stmt0 = "let \(proc) = setupcmd() ;"
+		let stmt0 = "let \(proc) = \(KLInstallCommand.builtinFunctionName)() ;"
 		let stmt1 = "\(proc).start() ;"
 		add(statements: [stmt0, stmt1])
 		return nil
