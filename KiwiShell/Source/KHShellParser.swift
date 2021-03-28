@@ -174,6 +174,7 @@ public class KHShellParser
 		/* Get exit code after '->' */
 		let exitcode: String?
 		(script, exitcode) = decodeExitCode(script: script)
+		//NSLog("decodeExitCode \"\(script)\" \"\(String(describing: exitcode))\"")
 
 		/* Allocate shell processes */
 		let pipes = script.components(separatedBy: ";")
@@ -231,7 +232,8 @@ public class KHShellParser
 					let ptr4 = scr.index(before: ptr3)
 					/* Check prev '-' */
 					if scr[ptr4] == "-" {
-						let prevscr = scr.prefix(upTo: ptr4)
+						let lastidx = scr.index(before: ptr4)
+						let prevscr = scr.prefix(upTo: lastidx)
 						let aftscr  = scr.suffix(from: ptr1)
 						return (String(prevscr), String(aftscr))
 					}
