@@ -19,8 +19,6 @@
 		05C412EC2517590A00F07DB2 /* KHShellVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412DD2517590900F07DB2 /* KHShellVisitor.swift */; };
 		05C412ED2517590A00F07DB2 /* KHPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412DE2517590900F07DB2 /* KHPreference.swift */; };
 		05C412EE2517590A00F07DB2 /* KHPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412DE2517590900F07DB2 /* KHPreference.swift */; };
-		05C412EF2517590A00F07DB2 /* KHConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412DF2517590900F07DB2 /* KHConfig.swift */; };
-		05C412F02517590A00F07DB2 /* KHConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412DF2517590900F07DB2 /* KHConfig.swift */; };
 		05C412F12517590A00F07DB2 /* KHShellParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412E02517590900F07DB2 /* KHShellParser.swift */; };
 		05C412F22517590A00F07DB2 /* KHShellParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412E02517590900F07DB2 /* KHShellParser.swift */; };
 		05C412F32517590A00F07DB2 /* KHShellStatement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412E12517590A00F07DB2 /* KHShellStatement.swift */; };
@@ -68,7 +66,6 @@
 		05C412DC2517590900F07DB2 /* KHShellConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHShellConverter.swift; sourceTree = "<group>"; };
 		05C412DD2517590900F07DB2 /* KHShellVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHShellVisitor.swift; sourceTree = "<group>"; };
 		05C412DE2517590900F07DB2 /* KHPreference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHPreference.swift; sourceTree = "<group>"; };
-		05C412DF2517590900F07DB2 /* KHConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHConfig.swift; sourceTree = "<group>"; };
 		05C412E02517590900F07DB2 /* KHShellParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHShellParser.swift; sourceTree = "<group>"; };
 		05C412E12517590A00F07DB2 /* KHShellStatement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHShellStatement.swift; sourceTree = "<group>"; };
 		05C412E32517590A00F07DB2 /* KHScriptThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHScriptThread.swift; sourceTree = "<group>"; };
@@ -146,7 +143,6 @@
 		05C412D9251758DA00F07DB2 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				05C412DF2517590900F07DB2 /* KHConfig.swift */,
 				05C412DE2517590900F07DB2 /* KHPreference.swift */,
 				05C412E32517590A00F07DB2 /* KHScriptThread.swift */,
 				05C412E42517590A00F07DB2 /* KHShellCoder.swift */,
@@ -312,7 +308,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05C412EF2517590A00F07DB2 /* KHConfig.swift in Sources */,
 				05C412F32517590A00F07DB2 /* KHShellStatement.swift in Sources */,
 				05C412F12517590A00F07DB2 /* KHShellParser.swift in Sources */,
 				05C412F72517590A00F07DB2 /* KHScriptThread.swift in Sources */,
@@ -329,7 +324,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05C412F02517590A00F07DB2 /* KHConfig.swift in Sources */,
 				05C412F42517590A00F07DB2 /* KHShellStatement.swift in Sources */,
 				05C412F22517590A00F07DB2 /* KHShellParser.swift in Sources */,
 				05C412F82517590A00F07DB2 /* KHScriptThread.swift in Sources */,
