@@ -31,6 +31,7 @@ import Foundation
 	func eraceEntireBuffer() -> JSValue
 	func eraceFromCursorToRight() -> JSValue
 	func eraceFromCursorToLeft() -> JSValue
+	func eraceEntireLine() -> JSValue
 
 	func scrollUp(_ lines: JSValue) -> JSValue
 	func scrollDown(_ lines: JSValue) -> JSValue
@@ -152,6 +153,10 @@ import Foundation
 
 	public func eraceFromCursorToLeft() -> JSValue {
 		return escapeCodeToValue(escapeCode: .eraceFromCursorToLeft)
+	}
+
+	public func eraceEntireLine() -> JSValue {
+		return escapeCodeToValue(escapeCode: .eraceEntireLine)
 	}
 
 	public func scrollUp(_ lines: JSValue) -> JSValue {
