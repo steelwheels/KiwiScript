@@ -1,4 +1,6 @@
 # EscapeCode class
+This class is used to generate [escape sequence](https://www.xfree86.org/current/ctlseqs.html) string. 
+
 
 ## Global variable
 The singleton object is defined for EscapeCode class.
@@ -7,64 +9,76 @@ The singleton object is defined for EscapeCode class.
 |:---       |:---       |:---                                   |
 |EscapeCode |EscapeCode |Singleton object of EscapeCode class   |
 
+## `cursorUp`, `cursorDown`, `cursorForward`, `cursorBackward` method
+Return the escape sequence to move cursor. Each method has an argument to present number of movements.
+`````
+let code = EscapeCode.cursorUp(1) ;
+`````
+
 ## `cursorNextLine` method
-Move cursor to head of next line.
+Return the escape sequence to move cursor to head of next line.
 The number of lines to move is given as a parameter.
 ````
 let code = EscapeCode.cursorNextLine(1) ;
 ````
 
 ## `cursorPreviousLine` method
-Move cursor to head of previous line.
+Return the escape sequence to move cursor to head of previous line.
 The number of lines to move is given as a parameter.
 ````
 let code = EscapeCode.escapeCode.cursorPreviousLine(1) ;
 ````
 
+## `cursorMoveTo` method
+Return the escape sequence to move cursor to cursor (x, y). These parameters are started from 1 (Not 0).
+````
+let code = EscapeCode.moveCursorTo(y, x) ;
+````
+
 ## `saveCursorPosition` method
-Save current cursor position.
+Return the escape sequence to save current cursor position.
 ````
 let code = EscapeCode.saveCursorPosition()
 ````
 
 ## `restoreCursorPosition` method
-Restore cursor position which is stored by `saveCursorPosition` method.
+Return the escape sequence to restore cursor position which is stored by `saveCursorPosition` method.
 ````
 let code = EscapeCode.restoreCursorPosition()
 ````
 
 ## `eraceFromCursorToEnd` method
-Erace all text from cursor to the end of string.
+Return the escape sequence to erace all text from cursor to the end of string.
 ````
 let code = EscapeCode.eraceFromCursorToEnd()
 ````
 
 ## `eraceFromCursorToBegin` method
-Erace all text from beginning to the cursor.
+Return the escape sequence to erace all text from beginning to the cursor.
 ````
 let code = EscapeCode.eraceFromCursorToBegin()
 ````
 
 ## `eraceEntireBuffer` method
-Erace all text.
+Return the escape sequence to erace all text.
 ````
 let code = EscapeCode.eraceEntiferBuffer()
 ````
 
 ## `eraceFromCursorToRight` method
-Erace string from cursor to the end of the line.
+Return the escape sequence to erace string from cursor to the end of the line.
 ````
 let code = EscapeCode.eraceFromCursorToRight()
 ````
 
 ## `eraceFromCursorToLeft` method
-Erace string from beginning of the line to the cursor
+Return the escape sequence to erace string from beginning of the line to the cursor
 ````
 let code = EscapeCode.eraceFromCursorToLeft()
 ````
 
 ## `scrollUp` method
-Generate escape sequence to scroll up the terminal.
+Return the escape sequence to scroll up the terminal.
 ````
 let code = EscapeCode.scrollUp(lines: Int) -> String
 ````

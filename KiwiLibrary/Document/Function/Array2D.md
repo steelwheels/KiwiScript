@@ -1,7 +1,7 @@
-# Data 
+# Array2D
 
-## Data operations
-### `Allocate2D`: Allocate 2D array
+## `Array2D`
+Allocate 2D array data.
 ````
 let array = Array2D(width, height, initval) ;
 ````

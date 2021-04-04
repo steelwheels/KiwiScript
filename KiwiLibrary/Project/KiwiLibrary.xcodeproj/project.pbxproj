@@ -27,6 +27,8 @@
 		054AF16925F78237001DB03B /* Process.js in Resources */ = {isa = PBXBuildFile; fileRef = 054AF16825F78237001DB03B /* Process.js */; };
 		054AF16A25F78237001DB03B /* Process.js in Resources */ = {isa = PBXBuildFile; fileRef = 054AF16825F78237001DB03B /* Process.js */; };
 		056FBE52255A3B8B0069A0C2 /* UTCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FBE51255A3B8B0069A0C2 /* UTCommand.swift */; };
+		05763BEC2610AA89004D7B15 /* Graphics.js in Resources */ = {isa = PBXBuildFile; fileRef = 05763BEB2610AA89004D7B15 /* Graphics.js */; };
+		05763BED2610AA89004D7B15 /* Graphics.js in Resources */ = {isa = PBXBuildFile; fileRef = 05763BEB2610AA89004D7B15 /* Graphics.js */; };
 		0577476225FE388A00ADC6E7 /* File.js in Resources */ = {isa = PBXBuildFile; fileRef = 0577476125FE388A00ADC6E7 /* File.js */; };
 		0577476325FE388A00ADC6E7 /* File.js in Resources */ = {isa = PBXBuildFile; fileRef = 0577476125FE388A00ADC6E7 /* File.js */; };
 		058C8D9A25E4ACB2002B4273 /* Data.js in Resources */ = {isa = PBXBuildFile; fileRef = 058C8D9925E4ACB2002B4273 /* Data.js */; };
@@ -96,10 +98,8 @@
 		05A95B9D2516D08500775737 /* KLType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B912516D08500775737 /* KLType.swift */; };
 		05B12A5B25C6783900273421 /* Turtle.js in Resources */ = {isa = PBXBuildFile; fileRef = 05B12A5A25C6783900273421 /* Turtle.js */; };
 		05B12A5C25C6783900273421 /* Turtle.js in Resources */ = {isa = PBXBuildFile; fileRef = 05B12A5A25C6783900273421 /* Turtle.js */; };
-		05C0378B25187007002A9C41 /* Cancel.js in Resources */ = {isa = PBXBuildFile; fileRef = 05C0378725186FF3002A9C41 /* Cancel.js */; };
 		05C0378D25187007002A9C41 /* Debug.js in Resources */ = {isa = PBXBuildFile; fileRef = 05C0378925186FF3002A9C41 /* Debug.js */; };
 		05C0378E25187007002A9C41 /* Math.js in Resources */ = {isa = PBXBuildFile; fileRef = 05C0378825186FF3002A9C41 /* Math.js */; };
-		05C0379025187019002A9C41 /* Cancel.js in Resources */ = {isa = PBXBuildFile; fileRef = 05C0378725186FF3002A9C41 /* Cancel.js */; };
 		05C0379225187019002A9C41 /* Debug.js in Resources */ = {isa = PBXBuildFile; fileRef = 05C0378925186FF3002A9C41 /* Debug.js */; };
 		05C037932518701A002A9C41 /* Math.js in Resources */ = {isa = PBXBuildFile; fileRef = 05C0378825186FF3002A9C41 /* Math.js */; };
 		05C3B2A025A2087F005256E1 /* KLReadline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C3B29F25A2087F005256E1 /* KLReadline.swift */; };
@@ -196,6 +196,7 @@
 		0543B058253B3A9F00A9BAA1 /* KiwiLibrary.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiLibrary.xcframework; path = ../../../../Library/Frameworks/KiwiLibrary.xcframework; sourceTree = "<group>"; };
 		054AF16825F78237001DB03B /* Process.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Process.js; sourceTree = "<group>"; };
 		056FBE51255A3B8B0069A0C2 /* UTCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTCommand.swift; sourceTree = "<group>"; };
+		05763BEB2610AA89004D7B15 /* Graphics.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Graphics.js; sourceTree = "<group>"; };
 		0577476125FE388A00ADC6E7 /* File.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = File.js; sourceTree = "<group>"; };
 		058C8D9925E4ACB2002B4273 /* Data.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Data.js; sourceTree = "<group>"; };
 		05950CA025C4304500D659A1 /* KLGraphicsContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLGraphicsContext.swift; sourceTree = "<group>"; };
@@ -244,7 +245,6 @@
 		05A95B902516D08500775737 /* KLNativeStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLNativeStruct.swift; sourceTree = "<group>"; };
 		05A95B912516D08500775737 /* KLType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLType.swift; sourceTree = "<group>"; };
 		05B12A5A25C6783900273421 /* Turtle.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Turtle.js; sourceTree = "<group>"; };
-		05C0378725186FF3002A9C41 /* Cancel.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Cancel.js; sourceTree = "<group>"; };
 		05C0378825186FF3002A9C41 /* Math.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Math.js; sourceTree = "<group>"; };
 		05C0378925186FF3002A9C41 /* Debug.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Debug.js; sourceTree = "<group>"; };
 		05C3B29F25A2087F005256E1 /* KLReadline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLReadline.swift; sourceTree = "<group>"; };
@@ -519,10 +519,10 @@
 		05C0378525186FD9002A9C41 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				05C0378725186FF3002A9C41 /* Cancel.js */,
 				058C8D9925E4ACB2002B4273 /* Data.js */,
 				05C0378925186FF3002A9C41 /* Debug.js */,
 				0577476125FE388A00ADC6E7 /* File.js */,
+				05763BEB2610AA89004D7B15 /* Graphics.js */,
 				05C0378825186FF3002A9C41 /* Math.js */,
 				054AF16825F78237001DB03B /* Process.js */,
 				05B12A5A25C6783900273421 /* Turtle.js */,
@@ -730,12 +730,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				058C8D9A25E4ACB2002B4273 /* Data.js in Resources */,
-				05C0378B25187007002A9C41 /* Cancel.js in Resources */,
 				05C0378D25187007002A9C41 /* Debug.js in Resources */,
 				05B12A5B25C6783900273421 /* Turtle.js in Resources */,
 				0577476225FE388A00ADC6E7 /* File.js in Resources */,
 				05C0378E25187007002A9C41 /* Math.js in Resources */,
 				054AF16925F78237001DB03B /* Process.js in Resources */,
+				05763BEC2610AA89004D7B15 /* Graphics.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -744,12 +744,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				058C8D9B25E4ACB2002B4273 /* Data.js in Resources */,
-				05C0379025187019002A9C41 /* Cancel.js in Resources */,
 				05C0379225187019002A9C41 /* Debug.js in Resources */,
 				05B12A5C25C6783900273421 /* Turtle.js in Resources */,
 				0577476325FE388A00ADC6E7 /* File.js in Resources */,
 				05C037932518701A002A9C41 /* Math.js in Resources */,
 				054AF16A25F78237001DB03B /* Process.js in Resources */,
+				05763BED2610AA89004D7B15 /* Graphics.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

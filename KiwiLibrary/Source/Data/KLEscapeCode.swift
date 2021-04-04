@@ -21,6 +21,8 @@ import Foundation
 	func cursorBackward(_ delta: JSValue) -> JSValue
 	func cursorNextLine(_ delta: JSValue) -> JSValue
 	func cursorPreviousLine(_ delta: JSValue) -> JSValue
+	func cursorMoveTo(_ y: JSValue, _ x: JSValue) -> JSValue
+
 	func saveCursorPosition() -> JSValue
 	func restoreCursorPosition() -> JSValue
 
@@ -107,6 +109,16 @@ import Foundation
 		if delta.isNumber {
 			let n = Int(delta.toInt32())
 			return escapeCodeToValue(escapeCode: .cursorPreviousLine(n))
+		} else {
+			return JSValue(nullIn: mContext)
+		}
+	}
+
+	public func cursorMoveTo(_ yval: JSValue, _ xval: JSValue) -> JSValue {
+		if yval.isNumber && xval.isNumber {
+			let x = Int(xval.toInt32())
+			let y = Int(yval.toInt32())
+			return escapeCodeToValue(escapeCode: .cursorPosition(y, x))
 		} else {
 			return JSValue(nullIn: mContext)
 		}

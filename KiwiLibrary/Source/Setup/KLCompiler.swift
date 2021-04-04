@@ -199,6 +199,30 @@ public class KLLibraryCompiler: KECompiler
 		}
 		ctxt.set(name: "isURL", function: isURLFunc)
 
+		/* isPoint */
+		let isPointFunc: @convention(block) (_ value: JSValue) -> JSValue = {
+			(_ value: JSValue) -> JSValue in
+			let result: Bool = value.isPoint
+			return JSValue(bool: result, in: ctxt)
+		}
+		ctxt.set(name: "isPoint", function: isPointFunc)
+
+		/* isSize */
+		let isSizeFunc: @convention(block) (_ value: JSValue) -> JSValue = {
+			(_ value: JSValue) -> JSValue in
+			let result: Bool = value.isSize
+			return JSValue(bool: result, in: ctxt)
+		}
+		ctxt.set(name: "isSize", function: isSizeFunc)
+
+		/* isRect */
+		let isRectFunc: @convention(block) (_ value: JSValue) -> JSValue = {
+			(_ value: JSValue) -> JSValue in
+			let result: Bool = value.isRect
+			return JSValue(bool: result, in: ctxt)
+		}
+		ctxt.set(name: "isRect", function: isRectFunc)
+
 		/* isBitmap */
 		let isBitmapFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in
@@ -384,6 +408,7 @@ public class KLLibraryCompiler: KECompiler
 		}
 		ctxt.set(name: "Size", function: sizeFunc)
 
+
 		/* Rect */
 		let rectFunc: @convention(block) (_ xval: JSValue, _ yval: JSValue, _ widthval: JSValue, _ heightval: JSValue) -> JSValue = {
 			(_ xval: JSValue, _ yval: JSValue, _ widthval: JSValue, _ heightval: JSValue) -> JSValue in
@@ -394,6 +419,11 @@ public class KLLibraryCompiler: KECompiler
 				let height = heightval.toDouble()
 				let rect   = CGRect(x: x, y: y, width: width, height: height)
 				return JSValue(rect: rect, in: ctxt)
+			} else if xval.isPoint && yval.isSize {
+				if let org = xval.toPoint(), let size = yval.toSize() {
+					let rect = CGRect(origin: org, size: size)
+					return JSValue(rect: rect, in: ctxt)
+				}
 			}
 			cons.error(string: "Invalid parameter for Rect constructor\n")
 			return JSValue(undefinedIn: ctxt)
@@ -538,7 +568,7 @@ public class KLLibraryCompiler: KECompiler
 
 	private func importBuiltinLibrary(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig)
 	{
-		let libnames = ["Cancel", "Data", "Debug", "File", "Math", "Process", "Turtle"]
+		let libnames = ["Data", "Debug", "File", "Graphics", "Math", "Process", "Turtle"]
 		do {
 			for libname in libnames {
 				if let url = CNFilePath.URLForResourceFile(fileName: libname, fileExtension: "js", forClass: KLLibraryCompiler.self) {
