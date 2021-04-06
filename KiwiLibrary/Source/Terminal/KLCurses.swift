@@ -23,7 +23,7 @@ import Foundation
 	var cyan:	JSValue { get }
 	var white:	JSValue { get }
 
-	func start()
+	func begin()
 	func end()
 
 	var width:  JSValue { get }
@@ -62,8 +62,8 @@ import Foundation
 	public var cyan:	JSValue { get { return JSValue(int32: CNCurses.Color.cyan.rawValue,	in: mContext)}}
 	public var white:	JSValue { get { return JSValue(int32: CNCurses.Color.white.rawValue,	in: mContext)}}
 
-	public func start() {
-		mCurses.start()
+	public func begin() {
+		mCurses.begin()
 	}
 
 	public func end() {
