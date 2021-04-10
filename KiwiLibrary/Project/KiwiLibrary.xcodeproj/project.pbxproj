@@ -15,6 +15,8 @@
 		050D1DC02581C71000D968ED /* KiwiLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050D1DBE2581C71000D968ED /* KiwiLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		050FDBF825FC87BE00331107 /* KLDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FDBF725FC87BE00331107 /* KLDictionary.swift */; };
 		050FDBF925FC87BE00331107 /* KLDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FDBF725FC87BE00331107 /* KLDictionary.swift */; };
+		0516CC4626213502000B9796 /* Curses.js in Resources */ = {isa = PBXBuildFile; fileRef = 0516CC4526213502000B9796 /* Curses.js */; };
+		0516CC4726213502000B9796 /* Curses.js in Resources */ = {isa = PBXBuildFile; fileRef = 0516CC4526213502000B9796 /* Curses.js */; };
 		051D09E82559914D0083336F /* KLCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D09E72559914D0083336F /* KLCommand.swift */; };
 		051D09E92559914D0083336F /* KLCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D09E72559914D0083336F /* KLCommand.swift */; };
 		053F2C49253BDDCE009CFCA1 /* UTType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F2C48253BDDCE009CFCA1 /* UTType.swift */; };
@@ -186,6 +188,7 @@
 		050D1DBB2581C6FF00D968ED /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../local/Frameworks/macos/KiwiEngine.framework; sourceTree = "<group>"; };
 		050D1DBE2581C71000D968ED /* KiwiLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiLibrary.framework; path = ../../../../local/Frameworks/macos/KiwiLibrary.framework; sourceTree = "<group>"; };
 		050FDBF725FC87BE00331107 /* KLDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLDictionary.swift; sourceTree = "<group>"; };
+		0516CC4526213502000B9796 /* Curses.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Curses.js; sourceTree = "<group>"; };
 		051D09E72559914D0083336F /* KLCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLCommand.swift; sourceTree = "<group>"; };
 		053F2C48253BDDCE009CFCA1 /* UTType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTType.swift; sourceTree = "<group>"; };
 		053F2C4E253BDEA8009CFCA1 /* UTURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTURL.swift; sourceTree = "<group>"; };
@@ -519,6 +522,7 @@
 		05C0378525186FD9002A9C41 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				0516CC4526213502000B9796 /* Curses.js */,
 				058C8D9925E4ACB2002B4273 /* Data.js */,
 				05C0378925186FF3002A9C41 /* Debug.js */,
 				0577476125FE388A00ADC6E7 /* File.js */,
@@ -730,6 +734,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				058C8D9A25E4ACB2002B4273 /* Data.js in Resources */,
+				0516CC4626213502000B9796 /* Curses.js in Resources */,
 				05C0378D25187007002A9C41 /* Debug.js in Resources */,
 				05B12A5B25C6783900273421 /* Turtle.js in Resources */,
 				0577476225FE388A00ADC6E7 /* File.js in Resources */,
@@ -744,6 +749,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				058C8D9B25E4ACB2002B4273 /* Data.js in Resources */,
+				0516CC4726213502000B9796 /* Curses.js in Resources */,
 				05C0379225187019002A9C41 /* Debug.js in Resources */,
 				05B12A5C25C6783900273421 /* Turtle.js in Resources */,
 				0577476325FE388A00ADC6E7 /* File.js in Resources */,
