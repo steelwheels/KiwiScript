@@ -35,7 +35,7 @@ public enum KLSource {
 
 	public var context: KEContext { get { return mContext }}
 
-	public init(source src: KLSource, processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, config conf: KEConfig) {
+	public init(source src: KLSource, processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, config conf: KEConfig) {
 		let vm			= JSVirtualMachine()
 		mContext   		= KEContext(virtualMachine: vm!)
 		mSourceFile		= src
@@ -46,7 +46,7 @@ public enum KLSource {
 			mResource = res
 		}
 		mChildProcessManager	= CNProcessManager()
-		mTerminalInfo		= CNTerminalInfo(width: 80, height: 25)
+		mTerminalInfo		= terminfo
 		mConfig			= KEConfig(applicationType: conf.applicationType,
 						   doStrict: conf.doStrict,
 						   logLevel: conf.logLevel)

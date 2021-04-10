@@ -21,7 +21,7 @@ public class KLLibraryCompiler: KECompiler
 		guard compileBase(context: ctxt, terminalInfo: terminfo, environment: env, console: cons, config: conf) else {
 			return false
 		}
-		guard compileThreadFunctions(context: ctxt, resource: res, processManager: procmgr, environment: env, console: cons, config: conf) else {
+		guard compileThreadFunctions(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf) else {
 			return false
 		}
 		guard compileBuiltinScripts(context: ctxt, terminalInfo: terminfo, environment: env, console: cons, config: conf) else {
@@ -52,8 +52,8 @@ public class KLLibraryCompiler: KECompiler
 		return true
 	}
 
-	open func compileThreadFunctions(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, environment env: CNEnvironment, console cons: CNConsole, config conf: KEConfig) -> Bool {
-		if defineThreadFunction(context: ctxt, resource: res, processManager: procmgr, environment: env, console: cons, config: conf) {
+	open func compileThreadFunctions(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNConsole, config conf: KEConfig) -> Bool {
+		if defineThreadFunction(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf) {
 			return (ctxt.errorCount == 0)
 		} else {
 			return false
@@ -583,11 +583,11 @@ public class KLLibraryCompiler: KECompiler
 		}
 	}
 
-	private func defineThreadFunction(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, environment env: CNEnvironment, console cons: CNConsole, config conf: KEConfig) -> Bool {
+	private func defineThreadFunction(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNConsole, config conf: KEConfig) -> Bool {
 		/* Thread */
 		let thfunc: @convention(block) (_ pathval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue = {
 			(_ pathval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue in
-			let launcher = KLThreadLauncher(context: ctxt, resource: res, processManager: procmgr, environment: env, config: conf)
+			let launcher = KLThreadLauncher(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, config: conf)
 			return launcher.run(path: pathval, input: inval, output: outval, error: errval)
 		}
 		ctxt.set(name: "Thread", function: thfunc)
@@ -595,7 +595,7 @@ public class KLLibraryCompiler: KECompiler
 		/* Run */
 		let runfunc: @convention(block) (_ pathval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue = {
 			(_ pathval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue in
-			let launcher = KLThreadLauncher(context: ctxt, resource: res, processManager: procmgr, environment: env, config: conf)
+			let launcher = KLThreadLauncher(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, config: conf)
 			return launcher.run(path: pathval, input: inval, output: outval, error: errval)
 		}
 		ctxt.set(name: "_run", function: runfunc)

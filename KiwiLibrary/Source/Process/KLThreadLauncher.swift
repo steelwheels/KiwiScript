@@ -15,13 +15,15 @@ open class KLThreadLauncher
 	private var mContext:		KEContext
 	private var mResource:		KEResource
 	private var mProcessManager:	CNProcessManager
+	private var mTerminalInfo:	CNTerminalInfo
 	private var mEnvironment:	CNEnvironment
 	private var mConfig:		KEConfig
 
-	public init(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, environment env: CNEnvironment, config conf: KEConfig) {
+	public init(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, config conf: KEConfig) {
 		mContext	= ctxt
 		mResource	= res
 		mProcessManager	= procmgr
+		mTerminalInfo	= terminfo
 		mEnvironment	= env
 		mConfig		= conf
 	}
@@ -31,7 +33,7 @@ open class KLThreadLauncher
 		   let instrm  = KLThreadLauncher.valueToFileStream(value: inval),
 		   let outstrm = KLThreadLauncher.valueToFileStream(value: outval),
 		   let errstrm = KLThreadLauncher.valueToFileStream(value: errval) {
-			let thread = allocateThread(source: .script(path), processManager: mProcessManager, input: instrm, output: outstrm, error: errstrm, environment: mEnvironment, config: mConfig)
+			let thread = allocateThread(source: .script(path), processManager: mProcessManager, input: instrm, output: outstrm, error: errstrm, terminalInfo: mTerminalInfo, environment: mEnvironment, config: mConfig)
 			let _      = mProcessManager.addProcess(process: thread)
 			return JSValue(object: thread, in: mContext)
 		} else {
@@ -39,8 +41,8 @@ open class KLThreadLauncher
 		}
 	}
 
-	open func allocateThread(source src: KLSource, processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, environment env: CNEnvironment, config conf: KEConfig) -> KLThread {
-		let result = KLThread(source: src, processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: env, config: conf)
+	open func allocateThread(source src: KLSource, processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, config conf: KEConfig) -> KLThread {
+		let result = KLThread(source: src, processManager: procmgr, input: instrm, output: outstrm, error: errstrm, terminalInfo: terminfo, environment: env, config: conf)
 		return result
 	}
 
