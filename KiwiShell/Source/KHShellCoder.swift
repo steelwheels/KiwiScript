@@ -171,15 +171,9 @@ private class KHCodeConverter: KHShellStatementVisitor
 	}
 
 	open override func visit(historyCommandStatement stmt: KHHistoryCommandStatement) -> KHSingleStatement? {
-		let path: String
-		if let p = stmt.path {
-			path = "\"\(p)\""
-		} else {
-			path = "null"
-		}
 		let proc  = processName(stmt)
 		let stmt0 = "let \(proc) = \(KHHistoryCommandStatement.commandName)() ;"
-		let stmt1 = "\(proc).start(\(path)) ;"
+		let stmt1 = "\(proc).start(null) ;"
 		add(statements: [stmt0, stmt1])
 		return nil
 	}
@@ -207,7 +201,7 @@ private class KHCodeConverter: KHShellStatementVisitor
 	open override func visit(installCommandStatement stmt: KHInstallCommandStatement) -> KHSingleStatement? {
 		let proc  = processName(stmt)
 		let stmt0 = "let \(proc) = \(KLInstallCommand.builtinFunctionName)() ;"
-		let stmt1 = "\(proc).start() ;"
+		let stmt1 = "\(proc).start(null) ;"
 		add(statements: [stmt0, stmt1])
 		return nil
 	}

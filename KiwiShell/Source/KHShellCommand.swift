@@ -24,8 +24,10 @@ public class KHHistoryCommand: KLCommand
 	private static func execute(_ arg: JSValue, _ ctxt: KEContext, _ console: CNConsole, _ env: CNEnvironment) -> Int32 {
 		let script =   "do {\n"
 			     + "  let hists = Readline.history() ;\n"
+			     + "  let idx   = 0 ;\n"
 			     + "  for(hist of hists){\n"
-			     + "    console.log(hist) ;\n"
+			     + "    console.log(`#${idx} ${hist}`) ;\n"
+			     + "    idx += 1 ;\n"
 			     + "  }\n"
 			     + "} while(false) ;\n"
 		if let _ = ctxt.evaluateScript(script) {

@@ -26,13 +26,6 @@ open class KHStatement
 	open func importProperties(source stmt: KHStatement) {
 		self.processId = stmt.processId
 	}
-
-	open func dump(indent idt: Int, to console: CNConsole) {
-	}
-
-	public func indentToString(indent idt: Int) -> String {
-		return String(repeating: "  ", count: idt)
-	}
 }
 
 open class KHSingleStatement: KHStatement
@@ -67,15 +60,6 @@ open class KHSingleStatement: KHStatement
 		self.outputName = stmt.outputName
 		self.errorName  = stmt.errorName
 	}
-
-	open override func dump(indent idt: Int, to console: CNConsole) {
-		super.dump(indent: idt, to: console)
-
-		let spaces = indentToString(indent: idt)
-		console.print(string: spaces + "input-file:  \(inputNameString)\n")
-		console.print(string: spaces + "output-file: \(outputNameString)\n")
-		console.print(string: spaces + "error-file:  \(errorNameString)\n")
-	}
 }
 
 public class KHScriptStatement: KHSingleStatement
@@ -86,15 +70,6 @@ public class KHScriptStatement: KHSingleStatement
 
 	public init(script scr: Array<String>){
 		mScript 	= scr
-	}
-
-	open override func dump(indent idt: Int, to console: CNConsole) {
-		let spaces0 = indentToString(indent: idt)
-		let spaces1 = indentToString(indent: idt+1)
-		console.print(string: spaces0 + "script: {\n")
-		super.dump(indent: idt+1, to: console)
-		console.print(string: spaces1 + "script:  \"\(mScript)\"\n")
-		console.print(string: spaces0 + "}\n")
 	}
 }
 
@@ -107,15 +82,6 @@ public class KHShellCommandStatement: KHSingleStatement
 	public init(shellCommand cmd: String){
 		mShellCommand	= cmd
 	}
-
-	open override func dump(indent idt: Int, to console: CNConsole) {
-		let spaces0 = indentToString(indent: idt)
-		let spaces1 = indentToString(indent: idt+1)
-		console.print(string: spaces0 + "shell-command: {\n")
-		super.dump(indent: idt+1, to: console)
-		console.print(string: spaces1 + "command:  \"\(mShellCommand)\"\n")
-		console.print(string: spaces0 + "}\n")
-	}
 }
 
 public class KHCdCommandStatement: KHSingleStatement
@@ -127,51 +93,15 @@ public class KHCdCommandStatement: KHSingleStatement
 	public init(path pth: String?) {
 		mPath = pth
 	}
-
-	open override func dump(indent idt: Int, to console: CNConsole) {
-		let spaces0 = indentToString(indent: idt)
-		let spaces1 = indentToString(indent: idt)
-		console.print(string: spaces0 + "cd-command: {\n")
-		super.dump(indent: idt+1, to: console)
-		let path: String
-		if let p = mPath {
-			path = p
-		} else {
-			path = "<nil>"
-		}
-		console.print(string: spaces1 + "cd:  \"\(path)\"\n")
-		console.print(string: spaces0 + "}\n")
-	}
 }
 
 public class KHHistoryCommandStatement: KHSingleStatement
 {
 	public static let commandName: String = "_historyCommand"
 
-	private var mPath:	String?
-
-	public var path: String? { get { return mPath }}
-
-	public init(path pth: String?) {
-		mPath = pth
-	}
-
-	open override func dump(indent idt: Int, to console: CNConsole) {
-		let spaces0 = indentToString(indent: idt)
-		let spaces1 = indentToString(indent: idt)
-		console.print(string: spaces0 + "history-command: {\n")
-		super.dump(indent: idt+1, to: console)
-		let path: String
-		if let p = mPath {
-			path = p
-		} else {
-			path = "<nil>"
-		}
-		console.print(string: spaces1 + "history:  \"\(path)\"\n")
-		console.print(string: spaces0 + "}\n")
+	public override init() {
 	}
 }
-
 
 public class KHRunCommandStatement: KHSingleStatement
 {
@@ -184,21 +114,6 @@ public class KHRunCommandStatement: KHSingleStatement
 	public init(scriptPath path: String?, argument arg: String?) {
 		mScriptPath = path
 		mArgument   = arg
-	}
-
-	open override func dump(indent idt: Int, to console: CNConsole) {
-		let spaces0 = indentToString(indent: idt)
-		let spaces1 = indentToString(indent: idt)
-		console.print(string: spaces0 + "run-command: {\n")
-		super.dump(indent: idt+1, to: console)
-		let path: String
-		if let p = mScriptPath {
-			path = p
-		} else {
-			path = "<nil>"
-		}
-		console.print(string: spaces1 + "run:  \"\(path)\"\n")
-		console.print(string: spaces0 + "}\n")
 	}
 }
 
@@ -214,21 +129,6 @@ public class KHInstallCommandStatement: KHSingleStatement
 		mScriptPath = path
 		mArgument   = arg
 	}
-
-	open override func dump(indent idt: Int, to console: CNConsole) {
-		let spaces0 = indentToString(indent: idt)
-		let spaces1 = indentToString(indent: idt)
-		console.print(string: spaces0 + "install-command: {\n")
-		super.dump(indent: idt+1, to: console)
-		let path: String
-		if let p = mScriptPath {
-			path = p
-		} else {
-			path = "<nil>"
-		}
-		console.print(string: spaces1 + "install: \"\(path)\"\n")
-		console.print(string: spaces0 + "}\n")
-	}
 }
 
 public class KHBuiltinCommandStatement: KHSingleStatement
@@ -242,15 +142,6 @@ public class KHBuiltinCommandStatement: KHSingleStatement
 	public init(scriptURL url: URL, arguments args: Array<String>) {
 		mScriptURL = url
 		mArguments = args
-	}
-
-	open override func dump(indent idt: Int, to console: CNConsole) {
-		let spaces0 = indentToString(indent: idt)
-		let spaces1 = indentToString(indent: idt)
-		console.print(string: spaces0 + "builtin: {\n")
-		super.dump(indent: idt+1, to: console)
-		console.print(string: spaces1 + "script-url:  \"\(mScriptURL.path)\"\n")
-		console.print(string: spaces0 + "}\n")
 	}
 }
 
@@ -272,17 +163,6 @@ public class KHPipelineStatement: KHSingleStatement
 	public func copyProperties(toPipelineStatement stmt: KHPipelineStatement){
 		super.copyProperties(toStatement: stmt)
 	}
-
-	open override func dump(indent idt: Int, to console: CNConsole) {
-		let spaces = indentToString(indent: idt)
-		console.print(string: spaces + "pipeline: {\n")
-		super.dump(indent: idt+1, to: console)
-		console.print(string: spaces + "exit-code:  \(exitCodeString)\n")
-		for stmt in singleStatements {
-			stmt.dump(indent: idt+1, to: console)
-		}
-		console.print(string: spaces + "}\n")
-	}
 }
 
 public class KHMultiStatements: KHStatement
@@ -301,16 +181,6 @@ public class KHMultiStatements: KHStatement
 
 	public func copyProperties(toMultiStatements stmts: KHMultiStatements){
 		super.copyProperties(toStatement: stmts)
-	}
-
-	open override func dump(indent idt: Int, to console: CNConsole) {
-		let spaces = indentToString(indent: idt)
-		console.print(string: spaces + "multi: {\n")
-		super.dump(indent: idt+1, to: console)
-		for stmt in pipelineStatements {
-			stmt.dump(indent: idt+1, to: console)
-		}
-		console.print(string: spaces + "}\n")
 	}
 }
 
