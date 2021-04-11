@@ -54,6 +54,14 @@ private class KHBuiltinCommandConverter: KHShellStatementConverter
 				let newstmt = KHCdCommandStatement(path: path)
 				newstmt.importProperties(source: stmt)
 				return newstmt
+			case "history":
+				var path: String? = nil
+				if let rest = restp {
+					(path, _) = CNStringUtil.cutFirstWord(string: rest)
+				}
+				let newstmt = KHHistoryCommandStatement(path: path)
+				newstmt.importProperties(source: stmt)
+				return newstmt
 			case "run":
 				var path: String? = nil
 				var arg:  String? = nil

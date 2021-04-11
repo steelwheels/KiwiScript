@@ -14,16 +14,19 @@ import Foundation
 
 public class KHShellCompiler: KECompiler
 {
-	open func compile(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, console cons: CNConsole, environment env: CNEnvironment, config conf: KEConfig) -> Bool {
-		defineGlobalVariables(context: ctxt)
+	open func compile(context ctxt: KEContext, readline readln: CNReadline, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, console cons: CNConsole, environment env: CNEnvironment, config conf: KEConfig) -> Bool {
+		defineGlobalVariables(context: ctxt, readline: readln)
 		defineEnvironmentVariables(environment: env)
 		defineBuiltinFunctions(context: ctxt, console: cons, processManager: procmgr, environment: env)
 		return true
 	}
 
-	private func defineGlobalVariables(context ctxt: KEContext){
+	private func defineGlobalVariables(context ctxt: KEContext, readline readln: CNReadline){
 		let pref = KHPreference(context: ctxt)
 		ctxt.set(name: "Preference", object: pref)
+
+		let readobj = KLReadline(readline: readln, context: ctxt)
+		ctxt.set(name: "Readline", object: readobj)
 	}
 
 	private func defineEnvironmentVariables(environment env: CNEnvironment) {
@@ -33,6 +36,7 @@ public class KHShellCompiler: KECompiler
 
 	private func defineBuiltinFunctions(context ctxt: KEContext, console cons: CNConsole, processManager procmgr: CNProcessManager, environment env: CNEnvironment) {
 		defineCdFunction(context: ctxt, console: cons, environment: env)
+		defineHistoryFunction(context: ctxt, console: cons, environment: env)
 		defineSetupFunction(context: ctxt, console: cons, environment: env)
 		#if os(OSX)
 			defineSystemFunction(context: ctxt, processManager: procmgr, environment: env)
@@ -47,6 +51,16 @@ public class KHShellCompiler: KECompiler
 			return JSValue(object: cdcmd, in: ctxt)
 		}
 		ctxt.set(name: "cdcmd", function: cdfunc)
+	}
+
+	private func defineHistoryFunction(context ctxt: KEContext, console cons: CNConsole, environment env: CNEnvironment) {
+		/* history command */
+		let histfunc: @convention(block) () -> JSValue = {
+			() -> JSValue in
+			let cdcmd = KHHistoryCommand(context: ctxt, console: cons, environment: env)
+			return JSValue(object: cdcmd, in: ctxt)
+		}
+		ctxt.set(name: KHHistoryCommandStatement.commandName, function: histfunc)
 	}
 
 	private func defineSetupFunction(context ctxt: KEContext, console cons: CNConsole, environment env: CNEnvironment) {

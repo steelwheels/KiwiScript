@@ -371,14 +371,6 @@ public class KLLibraryCompiler: KECompiler
 			return JSValue(int32: result, in: ctxt)
 		}
 		ctxt.set(name: "_select_exit_code", function: selExitFunc)
-
-		/* history */
-		let historyFunc: @convention(block) () -> JSValue = {
-			() -> JSValue in
-			let history = CNCommandHistory.shared.history
-			return JSValue(object: history, in: ctxt)
-		}
-		ctxt.set(name: "commandHistory", function: historyFunc)
 	}
 
 	private func definePrimitiveObjects(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
@@ -498,10 +490,6 @@ public class KLLibraryCompiler: KECompiler
 		/* Built-in script manager */
 		let scrmgr = KLBuiltinScriptManager(context: ctxt)
 		ctxt.set(name: "ScriptManager", object: scrmgr)
-
-		/* Readline */
-		let readln = KLReadline(context: ctxt, terminalInfo: terminfo, environment: env, console: cons)
-		ctxt.set(name: "Readline", object: readln)
 	}
 
 	private func defineGlobalObjects(context ctxt: KEContext, console cons: CNFileConsole, config conf: KEConfig) {

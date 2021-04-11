@@ -11,9 +11,26 @@ import JavaScriptCore
 import Foundation
 
 @objc public protocol KLReadlineProtocol: JSExport {
-	func input() -> JSValue
+	//func input()	-> JSValue
+	func history()	-> JSValue
 }
 
+@objc public class KLReadline: NSObject, KLReadlineProtocol
+{
+	private var mReadline:		CNReadline
+	private var mContext:		KEContext
+
+	public init(readline rline: CNReadline, context ctxt: KEContext) {
+		mReadline	= rline
+		mContext	= ctxt
+	}
+
+	public func history() -> JSValue {
+		return JSValue(object: mReadline.history, in: mContext)
+	}
+}
+
+/*
 @objc public class KLReadline: NSObject, KLReadlineProtocol
 {
 	private struct ReadlineStatus {
@@ -30,7 +47,7 @@ import Foundation
 	private var	mEnvironment:		CNEnvironment
 	private var	mTerminalInfo:		CNTerminalInfo
 	private var	mConsole:		CNFileConsole
-	private var	mComplementor:		CNComplementor
+	private var	mHistory:		CNCommandHistory
 	private var 	mReadline:		CNReadline
 	private var 	mReadlineStatus:	ReadlineStatus
 
@@ -39,8 +56,8 @@ import Foundation
 		mTerminalInfo	= terminfo
 		mEnvironment	= env
 		mConsole	= cons
-		mComplementor	= CNComplementor()
-		mReadline 	= CNReadline(complementor: mComplementor, environment: env)
+		mHistory	= CNCommandHistory()
+		mReadline 	= CNReadline(commandHistory: mHistory)
 		mReadlineStatus	= ReadlineStatus()
 	}
 
@@ -50,31 +67,19 @@ import Foundation
 		}
 		var docont = true
 		while docont {
-			switch mReadline.readLine(console: mConsole, terminalInfo: mTerminalInfo) {
-			case .commandLine(let cmdline, let determined):
-				let newline	= cmdline.string
-				let newpos	= cmdline.position
+			switch mReadline.readLine(console: mConsole) {
+			case .string(let str, let idx, let determined):
 				if determined {
 					/* Return command line */
-					result = determineCommandLine(newLine: newline)
+					result = determineCommandLine(newLine: str)
 					docont = false
 				} else {
-					updateCommandLine(newLine: newline, newPosition: newpos)
-				}
-			case .escapeCode(let code):
-				switch code {
-				case .screenSize(let width, let height):
-					//NSLog("Update shell info: \(mTerminalInfo.width)->\(width) \(mTerminalInfo.height)->\(height)")
-					mTerminalInfo.width	= width
-					mTerminalInfo.height	= height
-				case .eot:
-					/* Stop process */
-					docont = false
-				default:
-					mConsole.error(string: "ECODE: \(code.description())\n")
+					updateCommandLine(newLine: str, newPosition: idx)
 				}
 			case .none:
 				break /* do continue loop */
+			case .error(let err):
+				NSLog("[Error] \(err.description()) at \(#function)")
 			@unknown default:
 				NSLog("Can not happen at \(#function)")
 				docont = false
@@ -85,10 +90,14 @@ import Foundation
 
 	private func determineCommandLine(newLine newline: String) -> JSValue {
 		/* Replace replay command */
+		/*
 		let newcmd = mReadline.replaceReplayCommand(source: newline)
+*/
 
 		/* Save current command */
+		/*
 		mReadline.addCommand(command: newcmd)
+*/
 
 		/* Reset terminal after newline */
 		let resetstr = CNEscapeCode.resetCharacterAttribute.encode()
@@ -98,7 +107,7 @@ import Foundation
 		mReadlineStatus.editingLine     = ""
 		mReadlineStatus.editingPosition	= 0
 
-		return JSValue(object: newcmd, in: mContext)
+		return JSValue(object: newline, in: mContext)
 	}
 
 	private func updateCommandLine(newLine newline: String, newPosition newpos: Int) {
@@ -133,3 +142,5 @@ import Foundation
 		mReadlineStatus.editingPosition = newpos
 	}
 }
+*/
+

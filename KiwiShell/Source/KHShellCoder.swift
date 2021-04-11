@@ -51,6 +51,12 @@ private class KHProcessIdConverter: KHShellStatementVisitor
 		return nil
 	}
 
+	open override func visit(historyCommandStatement stmt: KHHistoryCommandStatement) -> KHSingleStatement? {
+		stmt.processId = processId
+		processId += 1
+		return nil
+	}
+
 	open override func visit(runCommandStatement stmt: KHRunCommandStatement) -> KHSingleStatement? {
 		stmt.processId = processId
 		processId += 1
@@ -159,6 +165,20 @@ private class KHCodeConverter: KHShellStatementVisitor
 		}
 		let proc  = processName(stmt)
 		let stmt0 = "let \(proc) = cdcmd() ;"
+		let stmt1 = "\(proc).start(\(path)) ;"
+		add(statements: [stmt0, stmt1])
+		return nil
+	}
+
+	open override func visit(historyCommandStatement stmt: KHHistoryCommandStatement) -> KHSingleStatement? {
+		let path: String
+		if let p = stmt.path {
+			path = "\"\(p)\""
+		} else {
+			path = "null"
+		}
+		let proc  = processName(stmt)
+		let stmt0 = "let \(proc) = \(KHHistoryCommandStatement.commandName)() ;"
 		let stmt1 = "\(proc).start(\(path)) ;"
 		add(statements: [stmt0, stmt1])
 		return nil

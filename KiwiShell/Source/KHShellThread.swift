@@ -103,7 +103,7 @@ open class KHShellThread: CNShellThread
 		let libcompiler = KLLibraryCompiler()
 		if libcompiler.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf) {
 			let shellcompiler = KHShellCompiler()
-			return shellcompiler.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, console: cons, environment: env, config: conf)
+			return shellcompiler.compile(context: ctxt, readline: self.readline,resource: res, processManager: procmgr, terminalInfo: terminfo, console: cons, environment: env, config: conf)
 		} else {
 			return false
 		}

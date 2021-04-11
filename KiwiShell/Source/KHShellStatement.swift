@@ -144,6 +144,35 @@ public class KHCdCommandStatement: KHSingleStatement
 	}
 }
 
+public class KHHistoryCommandStatement: KHSingleStatement
+{
+	public static let commandName: String = "_historyCommand"
+
+	private var mPath:	String?
+
+	public var path: String? { get { return mPath }}
+
+	public init(path pth: String?) {
+		mPath = pth
+	}
+
+	open override func dump(indent idt: Int, to console: CNConsole) {
+		let spaces0 = indentToString(indent: idt)
+		let spaces1 = indentToString(indent: idt)
+		console.print(string: spaces0 + "history-command: {\n")
+		super.dump(indent: idt+1, to: console)
+		let path: String
+		if let p = mPath {
+			path = p
+		} else {
+			path = "<nil>"
+		}
+		console.print(string: spaces1 + "history:  \"\(path)\"\n")
+		console.print(string: spaces0 + "}\n")
+	}
+}
+
+
 public class KHRunCommandStatement: KHSingleStatement
 {
 	private var mScriptPath:	String?
