@@ -21,7 +21,7 @@ open class KHScriptThread: KLThread
 	open override func compile(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
 		if super.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf) {
 			/* Readline */
-			let readln   = CNReadline(commandHistory: CNCommandHistory())
+			let readln   = CNReadline()
 			let compiler = KHShellCompiler()
 			if compiler.compile(context: ctxt, readline: readln, resource: res, processManager: procmgr, terminalInfo: terminfo, console: cons, environment: env, config: conf) {
 				return true
