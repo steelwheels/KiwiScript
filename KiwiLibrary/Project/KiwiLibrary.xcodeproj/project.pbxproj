@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		050C3CD9262C5CC00008ED97 /* String.js in Resources */ = {isa = PBXBuildFile; fileRef = 050C3CD8262C5CC00008ED97 /* String.js */; };
+		050C3CDA262C5CC00008ED97 /* String.js in Resources */ = {isa = PBXBuildFile; fileRef = 050C3CD8262C5CC00008ED97 /* String.js */; };
 		050D1DB82581C64A00D968ED /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050D1DB72581C64A00D968ED /* CoconutData.framework */; };
 		050D1DB92581C64A00D968ED /* CoconutData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050D1DB72581C64A00D968ED /* CoconutData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		050D1DBC2581C6FF00D968ED /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050D1DBB2581C6FF00D968ED /* KiwiEngine.framework */; };
@@ -184,6 +186,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		050C3CD8262C5CC00008ED97 /* String.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = String.js; sourceTree = "<group>"; };
 		050D1DB72581C64A00D968ED /* CoconutData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutData.framework; path = ../../../../local/Frameworks/macos/CoconutData.framework; sourceTree = "<group>"; };
 		050D1DBB2581C6FF00D968ED /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../local/Frameworks/macos/KiwiEngine.framework; sourceTree = "<group>"; };
 		050D1DBE2581C71000D968ED /* KiwiLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiLibrary.framework; path = ../../../../local/Frameworks/macos/KiwiLibrary.framework; sourceTree = "<group>"; };
@@ -529,6 +532,7 @@
 				05763BEB2610AA89004D7B15 /* Graphics.js */,
 				05C0378825186FF3002A9C41 /* Math.js */,
 				054AF16825F78237001DB03B /* Process.js */,
+				050C3CD8262C5CC00008ED97 /* String.js */,
 				05B12A5A25C6783900273421 /* Turtle.js */,
 			);
 			path = Library;
@@ -741,6 +745,7 @@
 				05C0378E25187007002A9C41 /* Math.js in Resources */,
 				054AF16925F78237001DB03B /* Process.js in Resources */,
 				05763BEC2610AA89004D7B15 /* Graphics.js in Resources */,
+				050C3CD9262C5CC00008ED97 /* String.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -756,6 +761,7 @@
 				05C037932518701A002A9C41 /* Math.js in Resources */,
 				054AF16A25F78237001DB03B /* Process.js in Resources */,
 				05763BED2610AA89004D7B15 /* Graphics.js in Resources */,
+				050C3CDA262C5CC00008ED97 /* String.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
