@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		057B172C262290B9004035E6 /* KHShellCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B172B262290B9004035E6 /* KHShellCommand.swift */; };
 		057B172D262290B9004035E6 /* KHShellCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B172B262290B9004035E6 /* KHShellCommand.swift */; };
+		058B25FF262F126600203C4A /* Terminal.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058B25FD262F125600203C4A /* Terminal.js */; };
+		058B2605262F127800203C4A /* Terminal.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058B25FD262F125600203C4A /* Terminal.js */; };
 		05C412C52517583900F07DB2 /* KiwiShell.h in Headers */ = {isa = PBXBuildFile; fileRef = 05C412C32517583900F07DB2 /* KiwiShell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05C412D32517584F00F07DB2 /* KiwiShell.h in Headers */ = {isa = PBXBuildFile; fileRef = 05C412D12517584F00F07DB2 /* KiwiShell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05C412E52517590A00F07DB2 /* KHShellCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412DA2517590900F07DB2 /* KHShellCompiler.swift */; };
@@ -56,8 +58,32 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		058B25FE262F125D00203C4A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Library;
+			dstSubfolderSpec = 7;
+			files = (
+				058B25FF262F126600203C4A /* Terminal.js in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		058B2602262F126C00203C4A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Library;
+			dstSubfolderSpec = 7;
+			files = (
+				058B2605262F127800203C4A /* Terminal.js in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		057B172B262290B9004035E6 /* KHShellCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KHShellCommand.swift; sourceTree = "<group>"; };
+		058B25FD262F125600203C4A /* Terminal.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Terminal.js; sourceTree = "<group>"; };
 		05C412C02517583900F07DB2 /* KiwiShell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiShell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05C412C32517583900F07DB2 /* KiwiShell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiShell.h; sourceTree = "<group>"; };
 		05C412C42517583900F07DB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -105,12 +131,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		058B25FB262F122A00203C4A /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				058B25FC262F124300203C4A /* Library */,
+			);
+			name = Resource;
+			path = ../Resource;
+			sourceTree = "<group>";
+		};
+		058B25FC262F124300203C4A /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				058B25FD262F125600203C4A /* Terminal.js */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
 		059A6B0D251757FF00C06139 = {
 			isa = PBXGroup;
 			children = (
 				05C412D9251758DA00F07DB2 /* Source */,
 				05C412C22517583900F07DB2 /* KiwiShell_macOS */,
 				05C412D02517584F00F07DB2 /* KiwiShell_iOS */,
+				058B25FB262F122A00203C4A /* Resource */,
 				05C412C12517583900F07DB2 /* Products */,
 				05FC882625175A7F00301544 /* Frameworks */,
 			);
@@ -220,6 +264,7 @@
 				05C412BB2517583900F07DB2 /* Headers */,
 				05C412BC2517583900F07DB2 /* Sources */,
 				05C412BD2517583900F07DB2 /* Frameworks */,
+				058B25FE262F125D00203C4A /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -237,6 +282,7 @@
 				05C412CA2517584F00F07DB2 /* Headers */,
 				05C412CB2517584F00F07DB2 /* Sources */,
 				05C412CC2517584F00F07DB2 /* Frameworks */,
+				058B2602262F126C00203C4A /* CopyFiles */,
 			);
 			buildRules = (
 			);

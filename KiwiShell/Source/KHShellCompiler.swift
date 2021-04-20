@@ -15,17 +15,18 @@ import Foundation
 public class KHShellCompiler: KECompiler
 {
 	open func compile(context ctxt: KEContext, readline readln: CNReadline, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, console cons: CNConsole, environment env: CNEnvironment, config conf: KEConfig) -> Bool {
-		defineGlobalVariables(context: ctxt, readline: readln)
+		defineGlobalVariables(context: ctxt, readline: readln, console: cons)
 		defineEnvironmentVariables(environment: env)
 		defineBuiltinFunctions(context: ctxt, console: cons, processManager: procmgr, environment: env)
+		importBuiltinLibrary(context: ctxt, console: cons, config: conf)
 		return true
 	}
 
-	private func defineGlobalVariables(context ctxt: KEContext, readline readln: CNReadline){
+	private func defineGlobalVariables(context ctxt: KEContext, readline readln: CNReadline, console cons: CNConsole){
 		let pref = KHPreference(context: ctxt)
 		ctxt.set(name: "Preference", object: pref)
 
-		let readobj = KLReadline(readline: readln, context: ctxt)
+		let readobj = KLReadline(readline: readln, console: cons, context: ctxt)
 		ctxt.set(name: "Readline", object: readobj)
 	}
 
@@ -71,6 +72,22 @@ public class KHShellCompiler: KECompiler
 			return JSValue(object: cdcmd, in: ctxt)
 		}
 		ctxt.set(name: KLInstallCommand.builtinFunctionName, function: setupfunc)
+	}
+
+	private func importBuiltinLibrary(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
+		let libnames = ["Terminal"]
+		do {
+			for libname in libnames {
+				if let url = CNFilePath.URLForResourceFile(fileName: libname, fileExtension: "js", subdirectory: "Library", forClass: KHShellCompiler.self) {
+					let script = try String(contentsOf: url, encoding: .utf8)
+					let _ = compile(context: ctxt, statement: script, console: cons, config: conf)
+				} else {
+					cons.error(string: "Built-in script \"\(libname)\" is not found.")
+				}
+			}
+		} catch {
+			cons.error(string: "Failed to read built-in script in KiwiLibrary")
+		}
 	}
 
 	/* Define "system" built-in command */
