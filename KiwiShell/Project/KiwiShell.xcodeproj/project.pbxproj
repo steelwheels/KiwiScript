@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		057B172C262290B9004035E6 /* KHShellCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B172B262290B9004035E6 /* KHShellCommand.swift */; };
 		057B172D262290B9004035E6 /* KHShellCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B172B262290B9004035E6 /* KHShellCommand.swift */; };
-		058B25FF262F126600203C4A /* Terminal.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058B25FD262F125600203C4A /* Terminal.js */; };
-		058B2605262F127800203C4A /* Terminal.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058B25FD262F125600203C4A /* Terminal.js */; };
+		058B25FF262F126600203C4A /* Readline.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058B25FD262F125600203C4A /* Readline.js */; };
+		058B2605262F127800203C4A /* Readline.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058B25FD262F125600203C4A /* Readline.js */; };
 		05C412C52517583900F07DB2 /* KiwiShell.h in Headers */ = {isa = PBXBuildFile; fileRef = 05C412C32517583900F07DB2 /* KiwiShell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05C412D32517584F00F07DB2 /* KiwiShell.h in Headers */ = {isa = PBXBuildFile; fileRef = 05C412D12517584F00F07DB2 /* KiwiShell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05C412E52517590A00F07DB2 /* KHShellCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412DA2517590900F07DB2 /* KHShellCompiler.swift */; };
@@ -65,7 +65,7 @@
 			dstPath = Library;
 			dstSubfolderSpec = 7;
 			files = (
-				058B25FF262F126600203C4A /* Terminal.js in CopyFiles */,
+				058B25FF262F126600203C4A /* Readline.js in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,7 +75,7 @@
 			dstPath = Library;
 			dstSubfolderSpec = 7;
 			files = (
-				058B2605262F127800203C4A /* Terminal.js in CopyFiles */,
+				058B2605262F127800203C4A /* Readline.js in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,7 +83,7 @@
 
 /* Begin PBXFileReference section */
 		057B172B262290B9004035E6 /* KHShellCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KHShellCommand.swift; sourceTree = "<group>"; };
-		058B25FD262F125600203C4A /* Terminal.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Terminal.js; sourceTree = "<group>"; };
+		058B25FD262F125600203C4A /* Readline.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Readline.js; sourceTree = "<group>"; };
 		05C412C02517583900F07DB2 /* KiwiShell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiShell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05C412C32517583900F07DB2 /* KiwiShell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiShell.h; sourceTree = "<group>"; };
 		05C412C42517583900F07DB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -143,7 +143,7 @@
 		058B25FC262F124300203C4A /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				058B25FD262F125600203C4A /* Terminal.js */,
+				058B25FD262F125600203C4A /* Readline.js */,
 			);
 			path = Library;
 			sourceTree = "<group>";

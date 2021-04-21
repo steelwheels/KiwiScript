@@ -75,7 +75,7 @@ public class KHShellCompiler: KECompiler
 	}
 
 	private func importBuiltinLibrary(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
-		let libnames = ["Terminal"]
+		let libnames = ["Readline"]
 		do {
 			for libname in libnames {
 				if let url = CNFilePath.URLForResourceFile(fileName: libname, fileExtension: "js", subdirectory: "Library", forClass: KHShellCompiler.self) {
