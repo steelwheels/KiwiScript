@@ -6,7 +6,20 @@ Readline.inputLine = function(){
 	while(line == null){
 		line = Readline.input() ;
 	}
+	console.print("\n") ; // insert newline after the input
 	return line ;
+}
+
+Readline.inputInteger = function() {
+	let result = null ;
+	while(result == null){
+		let line = Readline.inputLine() ;
+		let val  = parseInt(line) ;
+		if(!isNaN(val)){
+			result = val ;
+		}
+	}
+	return result ;
 }
 
 Readline.menu = function(items){
@@ -18,7 +31,6 @@ Readline.menu = function(items){
                 }
                 console.print("number> ") ;
                 let line = Readline.inputLine() ;
-                console.print("\n") ; // insert newline after the input
                 let num  = parseInt(line) ;
                 if(!isNaN(num)){
                         if(0<=num && num<items.length){

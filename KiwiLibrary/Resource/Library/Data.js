@@ -2,12 +2,30 @@
 /*
  * Primitive data structures
  */
+function Array1D(length, value){
+	let result = new Array(length) ;
+	result.fill(value) ;
+	return result ;
+}
+
+// FillArray1D(dst: Array, value: object)
+function fillArray1D(dst, value){
+	dst.fill(value) ;
+}
+
 function Array2D(width, height, value) {
 	let result = new Array(height) ;
 	for(let i=0 ; i<height ; i++) {
 		result[i] = new Array(width).fill(value) ;
 	}
 	return result ;
+}
+
+// FillArray2D(dst: Array, value: object)
+function fillArray2D(dst, value){
+	for(let i=0 ; i<dst.length ; i++){
+		dst[i].fill(value) ;
+	}
 }
 
 function isInArray2D(array, x, y) {
@@ -33,17 +51,4 @@ function elementInArray2D(array, x, y) {
 	} else {
 		return null ;
 	}
-}
-
-/*
- * Graphics
- */
-
-function Point2D(xpos, ypos)
-{
-	return {x:xpos, y:ypos}
-}
-
-function addPoint2D(p0, p1) {
-	return Point2D(p0.x + p1.x, p0.y + p0.y) ;
 }
