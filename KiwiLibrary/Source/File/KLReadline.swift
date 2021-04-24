@@ -20,11 +20,13 @@ import Foundation
 	private var mReadline:		CNReadline
 	private var mConsole:		CNConsole
 	private var mContext:		KEContext
+	private var mNullValue:		JSValue
 
 	public init(readline rline: CNReadline, console cons: CNConsole, context ctxt: KEContext) {
 		mReadline	= rline
 		mConsole	= cons
 		mContext	= ctxt
+		mNullValue 	= JSValue(nullIn: ctxt)
 	}
 
 	public func input() -> JSValue {
@@ -44,7 +46,7 @@ import Foundation
 		if let str = result {
 			return JSValue(object: str, in: mContext)
 		} else {
-			return JSValue(nullIn: mContext)
+			return mNullValue
 		}
 	}
 

@@ -1,7 +1,8 @@
 # Array2D
+Utility functions to operate 2D array.
 
 ## `Array2D`
-Allocate 2D array data.
+Allocate 2D array data with initial value.
 ````
 let array = Array2D(width, height, initval) ;
 ````

@@ -87,6 +87,23 @@ let val = Math.randomInt(min, max) ;
 |min        |Int        |Minimum value                  |
 |max        |Int        |Maximum value                  |
 
+### `clamp`
+Return the source value with clipping by minimum and maximum value.
+````
+let val = Math.clamp(src, min, max) ;
+````
+The result is equals to:
+````
+let val = max(min(x, max), min) ;
+````
+
+#### Parameter
+|Name       |Type       |Description                    |
+|:--        |:--        |:--                            |
+|src        |Number     |Source value                   |
+|min        |Number     |Minimum value                  |
+|max        |Number     |Maximum value                  |
+
 ## References
 * [Kiwi Standard Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library
 * BSD Library Reference Manual: Manual page on macOS.

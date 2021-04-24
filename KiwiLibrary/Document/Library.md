@@ -20,6 +20,7 @@ The built-in class, function, data types for JavaScript.
 
 ## Functions
 * character: [asciiCodeName](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/AsciiCodeName.md): Get ascii code name for given character
+* [Array1D](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Array1D.md): Functions  to operate 1D array data.
 * [Array2D](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Array2D.md): Functions  to operate 2D array data.
 * [exit](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Exit.md): Exit the caller process with exit code
 * [Graphics](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Graphics.md): Data structures and functions for graphics.

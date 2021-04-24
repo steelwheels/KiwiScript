@@ -28,14 +28,18 @@ import Foundation
 
 	private var mFile:	CNFile
 	private var mContext:	KEContext
+	private var mEofValue:	JSValue
+	private var mNullValue:	JSValue
 
 	public init(file fl: CNFile, context ctxt: KEContext){
-		mFile    = fl
-		mContext = ctxt
+		mFile    	= fl
+		mContext 	= ctxt
+		mEofValue	= JSValue(int32: KLFile.EOFValue, in: ctxt)
+		mNullValue	= JSValue(nullIn: ctxt)
 	}
 
 	public var endOfFile: JSValue {
-		get { return JSValue(int32: KLFile.EOFValue, in: mContext )}
+		get { return mEofValue }
 	}
 
 	public var fileHandle: FileHandle {
@@ -50,7 +54,7 @@ import Foundation
 		case .endOfFile:
 			result = self.endOfFile
 		case .null:
-			result = JSValue(nullIn: mContext)
+			result = mNullValue
 		@unknown default:
 			NSLog("Unknown case at \(#function)")
 			result = self.endOfFile
@@ -66,7 +70,7 @@ import Foundation
 		case .endOfFile:
 			result = self.endOfFile
 		case .null:
-			result = JSValue(nullIn: mContext)
+			result = mNullValue
 		@unknown default:
 			NSLog("Unknown case at \(#function)")
 			result = self.endOfFile

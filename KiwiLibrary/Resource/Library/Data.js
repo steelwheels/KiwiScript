@@ -2,30 +2,26 @@
 /*
  * Primitive data structures
  */
+
+// Allocate 1D array with given size and initial value
 function Array1D(length, value){
 	let result = new Array(length) ;
 	result.fill(value) ;
 	return result ;
 }
 
-// FillArray1D(dst: Array, value: object)
-function fillArray1D(dst, value){
-	dst.fill(value) ;
+// removeFromArray1D(src: Array<Any>, value: Any) -> Array<Any>
+function removeFromArray1D(src, value){
+	return src.filter(e => (e != value)) ;
 }
 
+// Allocate 1D array with given size and initial value
 function Array2D(width, height, value) {
 	let result = new Array(height) ;
 	for(let i=0 ; i<height ; i++) {
 		result[i] = new Array(width).fill(value) ;
 	}
 	return result ;
-}
-
-// FillArray2D(dst: Array, value: object)
-function fillArray2D(dst, value){
-	for(let i=0 ; i<dst.length ; i++){
-		dst[i].fill(value) ;
-	}
 }
 
 function isInArray2D(array, x, y) {
