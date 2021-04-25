@@ -38,6 +38,10 @@ import Foundation
 		mNullValue	= JSValue(nullIn: ctxt)
 	}
 
+	public var file: CNFile {
+		get { return mFile }
+	}
+
 	public var endOfFile: JSValue {
 		get { return mEofValue }
 	}

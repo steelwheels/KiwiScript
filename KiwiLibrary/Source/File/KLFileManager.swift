@@ -46,10 +46,10 @@ import Foundation
 	private var mEnvironment:		CNEnvironment
 	private var mConsole:			CNFileConsole
 
-	public init(context ctxt: KEContext, environment env: CNEnvironment, input inhdl: FileHandle, output outhdl: FileHandle, error errhdl: FileHandle){
+	public init(context ctxt: KEContext, environment env: CNEnvironment, input ifile: CNFile, output ofile: CNFile, error efile: CNFile){
 		mContext		= ctxt
 		mEnvironment		= env
-		mConsole		= CNFileConsole(input: inhdl, output: outhdl, error: errhdl)
+		mConsole		= CNFileConsole(input: ifile, output: ofile, error: efile)
 	}
 
 	public func installResourceFiles() -> JSValue {

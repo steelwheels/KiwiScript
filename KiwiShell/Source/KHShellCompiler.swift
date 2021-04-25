@@ -14,7 +14,7 @@ import Foundation
 
 public class KHShellCompiler: KECompiler
 {
-	open func compile(context ctxt: KEContext, readline readln: CNReadline, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, console cons: CNConsole, environment env: CNEnvironment, config conf: KEConfig) -> Bool {
+	open func compile(context ctxt: KEContext, readline readln: CNReadline, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, console cons: CNFileConsole, environment env: CNEnvironment, config conf: KEConfig) -> Bool {
 		defineGlobalVariables(context: ctxt, readline: readln, console: cons)
 		defineEnvironmentVariables(environment: env)
 		defineBuiltinFunctions(context: ctxt, console: cons, processManager: procmgr, environment: env)
@@ -22,7 +22,7 @@ public class KHShellCompiler: KECompiler
 		return true
 	}
 
-	private func defineGlobalVariables(context ctxt: KEContext, readline readln: CNReadline, console cons: CNConsole){
+	private func defineGlobalVariables(context ctxt: KEContext, readline readln: CNReadline, console cons: CNFileConsole){
 		let pref = KHPreference(context: ctxt)
 		ctxt.set(name: "Preference", object: pref)
 
@@ -103,10 +103,10 @@ public class KHShellCompiler: KECompiler
 
 	private static func executeSystemCommand(processManager procmgr: CNProcessManager, commandValue cmdval: JSValue, inputValue inval: JSValue, outputValue outval: JSValue, errorValue errval: JSValue, context ctxt: KEContext, environment env: CNEnvironment) -> JSValue {
 		if let command = valueToString(value: cmdval),
-		   let instrm  = valueToFileStream(value: inval),
-		   let outstrm = valueToFileStream(value: outval),
-		   let errstrm = valueToFileStream(value: errval) {
-			let process = CNProcess(processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: env, terminationHander: nil)
+		   let ifile   = valueToInputFile(value: inval),
+		   let ofile   = valueToOutputFile(value: outval),
+		   let efile   = valueToOutputFile(value: errval) {
+			let process = CNProcess(processManager: procmgr, input: ifile, output: ofile, error: efile, environment: env, terminationHander: nil)
 			let _       = procmgr.addProcess(process: process)
 			process.execute(command: command)
 			let procval = KLProcess(process: process, context: ctxt)
@@ -124,12 +124,23 @@ public class KHShellCompiler: KECompiler
 		return nil
 	}
 
-	private static func valueToFileStream(value val: JSValue) -> CNFileStream? {
+	private static func valueToInputFile(value val: JSValue) -> CNFile? {
 		if val.isObject {
 			if let file = val.toObject() as? KLFile {
-				return .fileHandle(file.fileHandle)
+				return file.file
 			} else if let pipe = val.toObject() as? KLPipe {
-				return .pipe(pipe.pipe)
+				return pipe.readerFile
+			}
+		}
+		return nil
+	}
+
+	private static func valueToOutputFile(value val: JSValue) -> CNFile? {
+		if val.isObject {
+			if let file = val.toObject() as? KLFile {
+				return file.file
+			} else if let pipe = val.toObject() as? KLPipe {
+				return pipe.writerFile
 			}
 		}
 		return nil
@@ -143,15 +154,4 @@ public class KHShellCompiler: KECompiler
 		}
 	}
 	#endif
-
-	private class func vallueToFileStream(value val: JSValue) -> CNFileStream? {
-		if let obj = val.toObject() {
-			if let file = obj as? KLFile {
-				return .fileHandle(file.fileHandle)
-			} else if let pipe = obj as? KLPipe {
-				return .pipe(pipe.pipe)
-			}
-		}
-		return nil
-	}
 }

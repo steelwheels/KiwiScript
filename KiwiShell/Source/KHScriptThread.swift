@@ -14,8 +14,8 @@ import Foundation
 
 open class KHScriptThread: KLThread
 {
-	public override init(source src: KLSource, processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, config conf: KEConfig){
-		super.init(source: src, processManager: procmgr, input: instrm, output: outstrm, error: errstrm, terminalInfo: terminfo, environment: env, config: conf)
+	public override init(source src: KLSource, processManager procmgr: CNProcessManager, input ifile: CNFile, output ofile: CNFile, error efile: CNFile, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, config conf: KEConfig){
+		super.init(source: src, processManager: procmgr, input: ifile, output: ofile, error: efile, terminalInfo: terminfo, environment: env, config: conf)
 	}
 
 	open override func compile(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
@@ -66,7 +66,7 @@ open class KHScriptThread: KLThread
 		case .error(let err):
 			let errobj  = err as NSError
 			let errmsg  = errobj.toString()
-			self.errorFileHandle.write(string: errmsg + "\n")
+			self.console.error(string: errmsg + "\n")
 			result      = nil
 		}
 		return result

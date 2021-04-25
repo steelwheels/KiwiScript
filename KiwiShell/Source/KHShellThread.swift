@@ -44,7 +44,7 @@ open class KHShellThread: CNShellThread
 	private var mChildProcessManager:	CNProcessManager
 	private var mInputMode:			InputMode
 
-	public init(processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, config conf: KEConfig){
+	public init(processManager procmgr: CNProcessManager, input ifile: CNFile, output ofile: CNFile, error efile: CNFile, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, config conf: KEConfig){
 		guard let vm = JSVirtualMachine() else {
 			fatalError("Failed to allocate VM")
 		}
@@ -53,7 +53,7 @@ open class KHShellThread: CNShellThread
 		mConfig			= conf
 		mChildProcessManager	= CNProcessManager()
 		mInputMode		= .shellScript
-		super.init(processManager: procmgr, input: instrm, output: outstrm, error: errstrm, terminalInfo: terminfo, environment: env)
+		super.init(processManager: procmgr, input: ifile, output: ofile, error: efile, terminalInfo: terminfo, environment: env)
 
 		/* Update current directory to home */
 		let curdir = CNPreference.shared.userPreference.homeDirectory
@@ -130,7 +130,7 @@ open class KHShellThread: CNShellThread
 			case .error(let err):
 				let errobj = err as NSError
 				let errmsg = errobj.toString()
-				self.errorFileHandle.write(string: errmsg + "\n")
+				self.console.error(string: errmsg + "\n")
 			}
 		}
 	}

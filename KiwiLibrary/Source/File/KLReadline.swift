@@ -18,11 +18,11 @@ import Foundation
 @objc public class KLReadline: NSObject, KLReadlineProtocol
 {
 	private var mReadline:		CNReadline
-	private var mConsole:		CNConsole
+	private var mConsole:		CNFileConsole
 	private var mContext:		KEContext
 	private var mNullValue:		JSValue
 
-	public init(readline rline: CNReadline, console cons: CNConsole, context ctxt: KEContext) {
+	public init(readline rline: CNReadline, console cons: CNFileConsole, context ctxt: KEContext) {
 		mReadline	= rline
 		mConsole	= cons
 		mContext	= ctxt

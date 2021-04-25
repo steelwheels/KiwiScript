@@ -435,9 +435,9 @@ public class KLLibraryCompiler: KECompiler
 		/* File */
 		let file = KLFileManager(context: 	ctxt,
 					 environment:	env,
-					 input:   	cons.inputHandle,
-					 output:  	cons.outputHandle,
-					 error:   	cons.errorHandle)
+					 input:   	cons.inputFile,
+					 output:  	cons.outputFile,
+					 error:   	cons.errorFile)
 		ctxt.set(name: "FileManager", object: file)
 
 		if let eofval = JSValue(int32: KLFile.EOFValue, in: ctxt) {
@@ -446,13 +446,13 @@ public class KLLibraryCompiler: KECompiler
 			cons.error(string: "Failed to allocate EOF value\n")
 		}
 
-		let stdin = KLFile(file: CNFile(fileHandle: cons.inputHandle), context: ctxt)
+		let stdin = KLFile(file: cons.inputFile, context: ctxt)
 		ctxt.set(name: KLFile.StdInName, object: stdin)
 
-		let stdout = KLFile(file: CNFile(fileHandle: cons.outputHandle), context: ctxt)
+		let stdout = KLFile(file: cons.outputFile, context: ctxt)
 		ctxt.set(name: KLFile.StdOutName, object: stdout)
 
-		let stderr = KLFile(file: CNFile(fileHandle: cons.errorHandle), context: ctxt)
+		let stderr = KLFile(file: cons.errorFile, context: ctxt)
 		ctxt.set(name: KLFile.StdErrName, object: stderr)
 
 		/* Color manager */

@@ -35,13 +35,13 @@ public enum KLSource {
 
 	public var context: KEContext { get { return mContext }}
 
-	public init(source src: KLSource, processManager procmgr: CNProcessManager, input instrm: CNFileStream, output outstrm: CNFileStream, error errstrm: CNFileStream, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, config conf: KEConfig) {
+	public init(source src: KLSource, processManager procmgr: CNProcessManager, input ifile: CNFile, output ofile: CNFile, error efile: CNFile, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, config conf: KEConfig) {
 		let vm			= JSVirtualMachine()
 		mContext   		= KEContext(virtualMachine: vm!)
 		mSourceFile		= src
 		switch src {
 		case .script(let url):
-			mResource = KLThread.URLtoResource(fileURL: url, error: errstrm)
+			mResource = KLThread.URLtoResource(fileURL: url, error: efile)
 		case .application(let res):
 			mResource = res
 		}
@@ -51,7 +51,7 @@ public enum KLSource {
 						   doStrict: conf.doStrict,
 						   logLevel: conf.logLevel)
 		mExceptionCount		= 0
-		super.init(processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: env)
+		super.init(processManager: procmgr, input: ifile, output: ofile, error: efile, environment: env)
 		/* Add to parent manager */
 		procmgr.addChildManager(childManager: mChildProcessManager)
 	}
@@ -68,7 +68,7 @@ public enum KLSource {
 		return JSValue(int32: super.terminationStatus, in: mContext)
 	}
 	
-	private static func URLtoResource(fileURL url: URL, error errstrm: CNFileStream) -> KEResource {
+	private static func URLtoResource(fileURL url: URL, error efile: CNFile) -> KEResource {
 		let result: KEResource
 		switch url.pathExtension {
 		case "jspkg":
@@ -76,26 +76,13 @@ public enum KLSource {
 			let loader = KEManifestLoader()
 			if let err = loader.load(into: resource) {
 				let msg = "[Error] Failed to load resource from \(url.path): \(err.toString())\n"
-				dumpLog(string: msg, stream: errstrm)
+				efile.put(string: msg)
 			}
 			result = resource
 		default:
 			result = KEResource(singleFileURL: url)
 		}
 		return result
-	}
-
-	private static func dumpLog(string str: String, stream strm: CNFileStream) {
-		switch strm {
-		case .fileHandle(let hdl):
-			hdl.write(string: str)
-		case .pipe(let pipe):
-			pipe.fileHandleForWriting.write(string: str)
-		case .null:
-			break
-		@unknown default:
-			NSLog("Unknown case at \(#file)")
-		}
 	}
 
 	public func start(_ args: JSValue) {
