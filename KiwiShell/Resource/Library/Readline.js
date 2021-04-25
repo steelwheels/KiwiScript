@@ -5,6 +5,7 @@ Readline.inputLine = function(){
 	let line = null ;
 	while(line == null){
 		line = Readline.input() ;
+		sleep(0.1) ;
 	}
 	console.print("\n") ; // insert newline after the input
 	return line ;
