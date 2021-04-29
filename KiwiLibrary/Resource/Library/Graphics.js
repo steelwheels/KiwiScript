@@ -2,18 +2,16 @@
  * Graphics.js
  */
 
-/*
-function Rect(origin, size) {
-        return {origin: origin, size: size} ;
+// addPoint(p0: Point, p1: Point) -> Point
+function addPoint(p0, p1){
+	return Point(p0.x + p1.x, p0.y + p1.y) ;
 }
 
-function isRect(val) {
-        if(isObject(val.origin) && isObject(val.size)) {
-                if(isPoint(val.origin) && isSize(val.size)) {
-                        return true ;
-                }
-        }
-        return false ;
+// clampPoint(src: Point, x: Float, y: Float, width: Float, height: Float)
+function clampPoint(src, x, y, width, height) {
+	let newx = Math.clamp(src.x, x, x + width) ;
+	let newy = Math.clamp(src.y, y, y + height) ;
+	return Point(newx, newy) ;
 }
-*/
+
 
