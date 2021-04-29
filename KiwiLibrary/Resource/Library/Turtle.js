@@ -22,7 +22,7 @@ class Turtle {
         this.mPenSize       = pen ;
 
         this.mContext.moveTo(x, y) ;
-	    this.mContext.setPenSize(pen) ;
+        this.mContext.setPenSize(pen) ;
     }
 
     get logicalFrame()          { return this.mContext.logicalFrame ; }
@@ -30,7 +30,6 @@ class Turtle {
     get currentX()              { return this.mCurrentX ;         }
     get currentY()              { return this.mCurrentY ;         }
     get currentAngle()          { return this.mCurrentAngle ;     }
-    get penSize()               { return this.mPenSize ;          }
 
     get movingAngle()           { return this.mMovingAngle ;      }
     set movingAngle(newval)     { this.mMovingAngle = newval ;    }
@@ -68,7 +67,7 @@ class Turtle {
             x:          this.mCurrentX,
             y:          this.mCurrentY,
             angle:      this.mCurrentAngle
-        }
+        } ;
         this.mHistory.push(obj) ;
     }
 
@@ -90,8 +89,8 @@ class Turtle {
             } else {
                 console.error("[Error] No angle property in Turtle\n") ;
             }
-	    /* Update current position */
-	    this.mContext.moveTo(this.mCurrentX, this.mCurrentY) ;
+	        /* Update current position */
+	        this.mContext.moveTo(this.mCurrentX, this.mCurrentY) ;
         } else {
             console.error("[Error] No history in Turtle\n") ;
         }
@@ -126,5 +125,5 @@ class Turtle {
             }
         }
     }
-} ;
+}
 

@@ -1,0 +1,27 @@
+{
+	"extends": ["eslint:recommended"],
+	"plugins": [],
+	"parserOptions": {},
+	"env": {
+		"browser":	true,
+		"es6":		true
+	},
+	"globals": {
+		"_stdin":	false,
+		"_stdout":	false,
+		"_stderr":	false,
+		"_run":		false,
+		"Curses":	false,
+		"ExitCode":	false,
+		"FileType":	false,
+		"isNull":	false,
+		"isString":	false,
+		"isUndefined":	false,
+		"Point":	false,
+		"sleep":	false
+	},
+	"rules": {
+		"semi": 	"error"
+	}
+}
+

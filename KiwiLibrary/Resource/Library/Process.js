@@ -11,7 +11,7 @@ function _waitUntilExitOne(process)
 function _waitUntilExitAll(processes)
 {
 	let ecode = 0 ;
-	for(process of processes) {
+	for(let process of processes) {
 		let state = _waitUntilExitOne(process) ;
 		if(state != 0){
 			ecode = state ;

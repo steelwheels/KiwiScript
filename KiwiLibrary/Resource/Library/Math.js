@@ -17,8 +17,8 @@ Math.clamp = function(src, min, max){
 	if(src < min){
 		return min;
 	} else if(src > max) {
-		return max;
+		return max ;
 	} else {
-		return src;
+		return src ;
 	}
-}
+} ;
