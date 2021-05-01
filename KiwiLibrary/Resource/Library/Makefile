@@ -1,0 +1,37 @@
+#
+# Makefile
+#
+
+srcs	= Data.ts \
+	  File.ts \
+	  Math.ts \
+	  Debug.ts \
+	  Graphics.ts \
+	  Process.ts \
+	  String.ts \
+	  Turtle.ts
+
+dsts	= $(srcs:.ts=.js)
+decls	= $(srcs:.ts=.d.ts)
+
+dstdecl	= ./types/KiwiLibrary.d.ts
+
+tsc	= npx tsc
+tsc_opt	= -t ES2017 --lib "es2017" --declaration --declarationDir types \
+	  --typeRoots types \
+	  --alwaysStrict --pretty
+
+
+%.js: %.ts
+	$(tsc) $(tsc_opt) $<
+
+all: $(dsts) $(dstdecl)
+
+$(dstdecl): dummy
+	(cd types && cat Builtin.d.ts $(decls)) > $@
+
+clean:
+	rm -f $(dsts)
+
+dummy:
+

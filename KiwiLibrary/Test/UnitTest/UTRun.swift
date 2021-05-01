@@ -14,9 +14,10 @@ import Foundation
 public func UTRun(context ctxt: KEContext, console cons: CNFileConsole) -> Bool
 {
 	let manager:	CNProcessManager = CNProcessManager()
-	let instrm:	CNFileStream	 = .fileHandle(cons.inputHandle)
-	let outstrm:	CNFileStream	 = .fileHandle(cons.outputHandle)
-	let errstrm:	CNFileStream	 = .fileHandle(cons.errorHandle)
+	let infile:	CNFile		 = cons.inputFile
+	let outfile:	CNFile	 	 = cons.outputFile
+	let errfile:	CNFile		 = cons.errorFile
+	let terminfo:	CNTerminalInfo	 = CNTerminalInfo(width: 80, height: 25)
 	let env:	CNEnvironment	 = CNEnvironment()
 
 	let arg0	= JSValue(int32: 123, in: ctxt)
@@ -26,12 +27,10 @@ public func UTRun(context ctxt: KEContext, console cons: CNFileConsole) -> Bool
 		return false
 	}
 
-
-
 	switch CNFilePath.URLForBundleFile(bundleName: "UnitTest", fileName: "sample-1", ofType: "js") {
 	case .ok(let url):
 		let config = KEConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
-		let thread = KLThread(source: .script(url), processManager: manager, input: instrm, output: outstrm, error: errstrm, environment: env, config: config)
+		let thread = KLThread(source: .script(url), processManager: manager, input: infile, output: outfile, error: errfile, terminalInfo: terminfo, environment: env, config: config)
 		thread.start(args)
 		/* Wait until exist */
 		var dowait = true

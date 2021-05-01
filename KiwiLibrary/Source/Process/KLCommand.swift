@@ -104,12 +104,11 @@ import Foundation
 
 	private static func execute(_ arg: JSValue, _ context: KEContext, _ console: CNConsole, _ env: CNEnvironment) -> Int32 {
 		let result: Int32
-		let fmanager = FileManager.default
-		if let err = fmanager.installResourceFiles(targetDirectories: KLFileManager.resourceDirectories, console: console) {
+		let installer = KLFileInstaller(console: console)
+		if let err = installer.installFiles() {
 			console.error(string: "install: [Error] \(err.toString())\n")
-			result = 1 ;
+			result = 1
 		} else {
-			/* No error */
 			result = 0
 		}
 		return result

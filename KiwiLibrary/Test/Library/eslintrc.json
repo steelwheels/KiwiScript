@@ -3,25 +3,30 @@
 	"plugins": [],
 	"parserOptions": {},
 	"env": {
-		"browser":	true,
-		"es6":		true
+		"browser":		true,
+		"es6":			true
 	},
 	"globals": {
-		"_stdin":	false,
-		"_stdout":	false,
-		"_stderr":	false,
-		"_run":		false,
-		"Curses":	false,
-		"ExitCode":	false,
-		"FileType":	false,
-		"isNull":	false,
-		"isString":	false,
-		"isUndefined":	false,
-		"Point":	false,
-		"sleep":	false
+		"_stdin":		false,
+		"_stdout":		false,
+		"_stderr":		false,
+		"_run":			false,
+		"addPoint":		false,
+		"clampPoint":		false,
+		"Curses":		false,
+		"ExitCode":		false,
+		"FileType":		false,
+		"isNull":		false,
+		"isString":		false,
+		"isUndefined":		false,
+		"pasteStrings":		false,
+		"Point":		false,
+		"Readline":		false,
+		"sleep":		false,
+		"Table":		false
 	},
 	"rules": {
-		"semi": 	"error"
+		"semi": 		"error"
 	}
 }
 

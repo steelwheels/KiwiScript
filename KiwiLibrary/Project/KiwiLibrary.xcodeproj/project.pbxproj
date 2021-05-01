@@ -7,6 +7,42 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		050A3E69263BF597008172E7 /* Turtle.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E5F263BF596008172E7 /* Turtle.d.ts */; };
+		050A3E6A263BF597008172E7 /* Turtle.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E5F263BF596008172E7 /* Turtle.d.ts */; };
+		050A3E6B263BF597008172E7 /* String.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E60263BF596008172E7 /* String.d.ts */; };
+		050A3E6C263BF597008172E7 /* String.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E60263BF596008172E7 /* String.d.ts */; };
+		050A3E6D263BF597008172E7 /* Process.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E61263BF596008172E7 /* Process.d.ts */; };
+		050A3E6E263BF597008172E7 /* Process.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E61263BF596008172E7 /* Process.d.ts */; };
+		050A3E6F263BF597008172E7 /* Data.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E62263BF596008172E7 /* Data.d.ts */; };
+		050A3E70263BF597008172E7 /* Data.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E62263BF596008172E7 /* Data.d.ts */; };
+		050A3E71263BF597008172E7 /* File.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E63263BF596008172E7 /* File.d.ts */; };
+		050A3E72263BF597008172E7 /* File.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E63263BF596008172E7 /* File.d.ts */; };
+		050A3E73263BF597008172E7 /* KiwiLibrary.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E64263BF596008172E7 /* KiwiLibrary.d.ts */; };
+		050A3E74263BF597008172E7 /* KiwiLibrary.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E64263BF596008172E7 /* KiwiLibrary.d.ts */; };
+		050A3E75263BF597008172E7 /* Graphics.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E65263BF596008172E7 /* Graphics.d.ts */; };
+		050A3E76263BF597008172E7 /* Graphics.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E65263BF596008172E7 /* Graphics.d.ts */; };
+		050A3E77263BF597008172E7 /* Debug.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E66263BF596008172E7 /* Debug.d.ts */; };
+		050A3E78263BF597008172E7 /* Debug.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E66263BF596008172E7 /* Debug.d.ts */; };
+		050A3E79263BF597008172E7 /* Math.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E67263BF596008172E7 /* Math.d.ts */; };
+		050A3E7A263BF597008172E7 /* Math.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E67263BF596008172E7 /* Math.d.ts */; };
+		050A3E7B263BF597008172E7 /* Builtin.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E68263BF597008172E7 /* Builtin.d.ts */; };
+		050A3E7C263BF597008172E7 /* Builtin.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E68263BF597008172E7 /* Builtin.d.ts */; };
+		050A3E89263BF5C9008172E7 /* Graphics.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E80263BF5C9008172E7 /* Graphics.ts */; };
+		050A3E8A263BF5C9008172E7 /* Graphics.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E80263BF5C9008172E7 /* Graphics.ts */; };
+		050A3E8B263BF5C9008172E7 /* Data.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E81263BF5C9008172E7 /* Data.ts */; };
+		050A3E8C263BF5C9008172E7 /* Data.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E81263BF5C9008172E7 /* Data.ts */; };
+		050A3E8D263BF5C9008172E7 /* Math.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E82263BF5C9008172E7 /* Math.ts */; };
+		050A3E8E263BF5C9008172E7 /* Math.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E82263BF5C9008172E7 /* Math.ts */; };
+		050A3E8F263BF5C9008172E7 /* Debug.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E83263BF5C9008172E7 /* Debug.ts */; };
+		050A3E90263BF5C9008172E7 /* Debug.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E83263BF5C9008172E7 /* Debug.ts */; };
+		050A3E93263BF5C9008172E7 /* Turtle.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E85263BF5C9008172E7 /* Turtle.ts */; };
+		050A3E94263BF5C9008172E7 /* Turtle.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E85263BF5C9008172E7 /* Turtle.ts */; };
+		050A3E95263BF5C9008172E7 /* String.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E86263BF5C9008172E7 /* String.ts */; };
+		050A3E96263BF5C9008172E7 /* String.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E86263BF5C9008172E7 /* String.ts */; };
+		050A3E97263BF5C9008172E7 /* Process.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E87263BF5C9008172E7 /* Process.ts */; };
+		050A3E98263BF5C9008172E7 /* Process.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E87263BF5C9008172E7 /* Process.ts */; };
+		050A3E99263BF5C9008172E7 /* File.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E88263BF5C9008172E7 /* File.ts */; };
+		050A3E9A263BF5C9008172E7 /* File.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E88263BF5C9008172E7 /* File.ts */; };
 		050C3CD9262C5CC00008ED97 /* String.js in Resources */ = {isa = PBXBuildFile; fileRef = 050C3CD8262C5CC00008ED97 /* String.js */; };
 		050C3CDA262C5CC00008ED97 /* String.js in Resources */ = {isa = PBXBuildFile; fileRef = 050C3CD8262C5CC00008ED97 /* String.js */; };
 		050D1DB82581C64A00D968ED /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050D1DB72581C64A00D968ED /* CoconutData.framework */; };
@@ -102,6 +138,8 @@
 		05A95B9D2516D08500775737 /* KLType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B912516D08500775737 /* KLType.swift */; };
 		05B12A5B25C6783900273421 /* Turtle.js in Resources */ = {isa = PBXBuildFile; fileRef = 05B12A5A25C6783900273421 /* Turtle.js */; };
 		05B12A5C25C6783900273421 /* Turtle.js in Resources */ = {isa = PBXBuildFile; fileRef = 05B12A5A25C6783900273421 /* Turtle.js */; };
+		05BB6065263C428A000B44A8 /* KLFileInstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BB6064263C428A000B44A8 /* KLFileInstaller.swift */; };
+		05BB6066263C428A000B44A8 /* KLFileInstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BB6064263C428A000B44A8 /* KLFileInstaller.swift */; };
 		05C0378D25187007002A9C41 /* Debug.js in Resources */ = {isa = PBXBuildFile; fileRef = 05C0378925186FF3002A9C41 /* Debug.js */; };
 		05C0378E25187007002A9C41 /* Math.js in Resources */ = {isa = PBXBuildFile; fileRef = 05C0378825186FF3002A9C41 /* Math.js */; };
 		05C0379225187019002A9C41 /* Debug.js in Resources */ = {isa = PBXBuildFile; fileRef = 05C0378925186FF3002A9C41 /* Debug.js */; };
@@ -123,6 +161,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		050A3E59263BEE60008172E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05A95B0A2516CD0300775737 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 050A3E48263BED72008172E7;
+			remoteInfo = Transpile;
+		};
 		056068012517597D0034F8BD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 05A95B0A2516CD0300775737 /* Project object */;
@@ -186,6 +231,24 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		050A3E5F263BF596008172E7 /* Turtle.d.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = Turtle.d.ts; sourceTree = "<group>"; };
+		050A3E60263BF596008172E7 /* String.d.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = String.d.ts; sourceTree = "<group>"; };
+		050A3E61263BF596008172E7 /* Process.d.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = Process.d.ts; sourceTree = "<group>"; };
+		050A3E62263BF596008172E7 /* Data.d.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = Data.d.ts; sourceTree = "<group>"; };
+		050A3E63263BF596008172E7 /* File.d.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = File.d.ts; sourceTree = "<group>"; };
+		050A3E64263BF596008172E7 /* KiwiLibrary.d.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = KiwiLibrary.d.ts; sourceTree = "<group>"; };
+		050A3E65263BF596008172E7 /* Graphics.d.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = Graphics.d.ts; sourceTree = "<group>"; };
+		050A3E66263BF596008172E7 /* Debug.d.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = Debug.d.ts; sourceTree = "<group>"; };
+		050A3E67263BF596008172E7 /* Math.d.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = Math.d.ts; sourceTree = "<group>"; };
+		050A3E68263BF597008172E7 /* Builtin.d.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = Builtin.d.ts; sourceTree = "<group>"; };
+		050A3E80263BF5C9008172E7 /* Graphics.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = Graphics.ts; sourceTree = "<group>"; };
+		050A3E81263BF5C9008172E7 /* Data.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = Data.ts; sourceTree = "<group>"; };
+		050A3E82263BF5C9008172E7 /* Math.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = Math.ts; sourceTree = "<group>"; };
+		050A3E83263BF5C9008172E7 /* Debug.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = Debug.ts; sourceTree = "<group>"; };
+		050A3E85263BF5C9008172E7 /* Turtle.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = Turtle.ts; sourceTree = "<group>"; };
+		050A3E86263BF5C9008172E7 /* String.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = String.ts; sourceTree = "<group>"; };
+		050A3E87263BF5C9008172E7 /* Process.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = Process.ts; sourceTree = "<group>"; };
+		050A3E88263BF5C9008172E7 /* File.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = File.ts; sourceTree = "<group>"; };
 		050C3CD8262C5CC00008ED97 /* String.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = String.js; sourceTree = "<group>"; };
 		050D1DB72581C64A00D968ED /* CoconutData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutData.framework; path = ../../../../local/Frameworks/macos/CoconutData.framework; sourceTree = "<group>"; };
 		050D1DBB2581C6FF00D968ED /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../local/Frameworks/macos/KiwiEngine.framework; sourceTree = "<group>"; };
@@ -251,6 +314,7 @@
 		05A95B902516D08500775737 /* KLNativeStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLNativeStruct.swift; sourceTree = "<group>"; };
 		05A95B912516D08500775737 /* KLType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLType.swift; sourceTree = "<group>"; };
 		05B12A5A25C6783900273421 /* Turtle.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Turtle.js; sourceTree = "<group>"; };
+		05BB6064263C428A000B44A8 /* KLFileInstaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLFileInstaller.swift; sourceTree = "<group>"; };
 		05C0378825186FF3002A9C41 /* Math.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Math.js; sourceTree = "<group>"; };
 		05C0378925186FF3002A9C41 /* Debug.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Debug.js; sourceTree = "<group>"; };
 		05C3B29F25A2087F005256E1 /* KLReadline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLReadline.swift; sourceTree = "<group>"; };
@@ -302,6 +366,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		050A3E5E263BF572008172E7 /* types */ = {
+			isa = PBXGroup;
+			children = (
+				050A3E68263BF597008172E7 /* Builtin.d.ts */,
+				050A3E62263BF596008172E7 /* Data.d.ts */,
+				050A3E66263BF596008172E7 /* Debug.d.ts */,
+				050A3E63263BF596008172E7 /* File.d.ts */,
+				050A3E65263BF596008172E7 /* Graphics.d.ts */,
+				050A3E64263BF596008172E7 /* KiwiLibrary.d.ts */,
+				050A3E67263BF596008172E7 /* Math.d.ts */,
+				050A3E61263BF596008172E7 /* Process.d.ts */,
+				050A3E60263BF596008172E7 /* String.d.ts */,
+				050A3E5F263BF596008172E7 /* Turtle.d.ts */,
+			);
+			path = types;
+			sourceTree = "<group>";
+		};
 		0540D67B2516D4A100C5AE52 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -477,6 +558,7 @@
 				05A95B5F2516D03300775737 /* KLBuiltinScripts.swift */,
 				05A95B602516D03300775737 /* KLConsole.swift */,
 				05A95B612516D03300775737 /* KLFile.swift */,
+				05BB6064263C428A000B44A8 /* KLFileInstaller.swift */,
 				05A95B632516D03300775737 /* KLFileManager.swift */,
 				05A95B642516D03300775737 /* KLNativeValueFile.swift */,
 				05A95B622516D03300775737 /* KLPipe.swift */,
@@ -525,6 +607,15 @@
 		05C0378525186FD9002A9C41 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				050A3E5E263BF572008172E7 /* types */,
+				050A3E81263BF5C9008172E7 /* Data.ts */,
+				050A3E83263BF5C9008172E7 /* Debug.ts */,
+				050A3E88263BF5C9008172E7 /* File.ts */,
+				050A3E80263BF5C9008172E7 /* Graphics.ts */,
+				050A3E82263BF5C9008172E7 /* Math.ts */,
+				050A3E87263BF5C9008172E7 /* Process.ts */,
+				050A3E86263BF5C9008172E7 /* String.ts */,
+				050A3E85263BF5C9008172E7 /* Turtle.ts */,
 				0516CC4526213502000B9796 /* Curses.js */,
 				058C8D9925E4ACB2002B4273 /* Data.js */,
 				05C0378925186FF3002A9C41 /* Debug.js */,
@@ -560,6 +651,20 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXLegacyTarget section */
+		050A3E48263BED72008172E7 /* Transpile */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f ../../Script/transpile.mk";
+			buildConfigurationList = 050A3E4B263BED72008172E7 /* Build configuration list for PBXLegacyTarget "Transpile" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+			);
+			name = Transpile;
+			passBuildSettingsInEnvironment = 1;
+			productName = Transpile;
+		};
 		056067FD251759740034F8BD /* Install */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = "-f ../../Script/install_xc.mk";
@@ -569,6 +674,7 @@
 			buildToolPath = /usr/bin/make;
 			buildWorkingDirectory = "";
 			dependencies = (
+				050A3E5A263BEE60008172E7 /* PBXTargetDependency */,
 				05606804251759820034F8BD /* PBXTargetDependency */,
 				056068022517597D0034F8BD /* PBXTargetDependency */,
 			);
@@ -676,6 +782,9 @@
 				LastSwiftUpdateCheck = 1200;
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
+					050A3E48263BED72008172E7 = {
+						CreatedOnToolsVersion = 12.4;
+					};
 					0543B04D253B3A5D00A9BAA1 = {
 						CreatedOnToolsVersion = 12.0.1;
 					};
@@ -713,6 +822,7 @@
 			targets = (
 				05A95B142516CD2800775737 /* KiwiLibrary_macOS */,
 				05A95B232516CF4500775737 /* KiwiLibrary_iOS */,
+				050A3E48263BED72008172E7 /* Transpile */,
 				056067FD251759740034F8BD /* Install */,
 				05A1F468253BC6E100D4789F /* UnitTestBundle */,
 				0543B04D253B3A5D00A9BAA1 /* UnitTest */,
@@ -738,14 +848,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				058C8D9A25E4ACB2002B4273 /* Data.js in Resources */,
+				050A3E6F263BF597008172E7 /* Data.d.ts in Resources */,
+				050A3E73263BF597008172E7 /* KiwiLibrary.d.ts in Resources */,
+				050A3E8B263BF5C9008172E7 /* Data.ts in Resources */,
 				0516CC4626213502000B9796 /* Curses.js in Resources */,
 				05C0378D25187007002A9C41 /* Debug.js in Resources */,
+				050A3E99263BF5C9008172E7 /* File.ts in Resources */,
+				050A3E93263BF5C9008172E7 /* Turtle.ts in Resources */,
+				050A3E75263BF597008172E7 /* Graphics.d.ts in Resources */,
+				050A3E97263BF5C9008172E7 /* Process.ts in Resources */,
+				050A3E71263BF597008172E7 /* File.d.ts in Resources */,
 				05B12A5B25C6783900273421 /* Turtle.js in Resources */,
+				050A3E69263BF597008172E7 /* Turtle.d.ts in Resources */,
+				050A3E8D263BF5C9008172E7 /* Math.ts in Resources */,
 				0577476225FE388A00ADC6E7 /* File.js in Resources */,
+				050A3E77263BF597008172E7 /* Debug.d.ts in Resources */,
+				050A3E6D263BF597008172E7 /* Process.d.ts in Resources */,
 				05C0378E25187007002A9C41 /* Math.js in Resources */,
+				050A3E8F263BF5C9008172E7 /* Debug.ts in Resources */,
+				050A3E89263BF5C9008172E7 /* Graphics.ts in Resources */,
 				054AF16925F78237001DB03B /* Process.js in Resources */,
 				05763BEC2610AA89004D7B15 /* Graphics.js in Resources */,
 				050C3CD9262C5CC00008ED97 /* String.js in Resources */,
+				050A3E7B263BF597008172E7 /* Builtin.d.ts in Resources */,
+				050A3E79263BF597008172E7 /* Math.d.ts in Resources */,
+				050A3E6B263BF597008172E7 /* String.d.ts in Resources */,
+				050A3E95263BF5C9008172E7 /* String.ts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -754,14 +882,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				058C8D9B25E4ACB2002B4273 /* Data.js in Resources */,
+				050A3E70263BF597008172E7 /* Data.d.ts in Resources */,
+				050A3E74263BF597008172E7 /* KiwiLibrary.d.ts in Resources */,
+				050A3E8C263BF5C9008172E7 /* Data.ts in Resources */,
 				0516CC4726213502000B9796 /* Curses.js in Resources */,
 				05C0379225187019002A9C41 /* Debug.js in Resources */,
+				050A3E9A263BF5C9008172E7 /* File.ts in Resources */,
+				050A3E94263BF5C9008172E7 /* Turtle.ts in Resources */,
+				050A3E76263BF597008172E7 /* Graphics.d.ts in Resources */,
+				050A3E98263BF5C9008172E7 /* Process.ts in Resources */,
+				050A3E72263BF597008172E7 /* File.d.ts in Resources */,
 				05B12A5C25C6783900273421 /* Turtle.js in Resources */,
+				050A3E6A263BF597008172E7 /* Turtle.d.ts in Resources */,
+				050A3E8E263BF5C9008172E7 /* Math.ts in Resources */,
 				0577476325FE388A00ADC6E7 /* File.js in Resources */,
+				050A3E78263BF597008172E7 /* Debug.d.ts in Resources */,
+				050A3E6E263BF597008172E7 /* Process.d.ts in Resources */,
 				05C037932518701A002A9C41 /* Math.js in Resources */,
+				050A3E90263BF5C9008172E7 /* Debug.ts in Resources */,
+				050A3E8A263BF5C9008172E7 /* Graphics.ts in Resources */,
 				054AF16A25F78237001DB03B /* Process.js in Resources */,
 				05763BED2610AA89004D7B15 /* Graphics.js in Resources */,
 				050C3CDA262C5CC00008ED97 /* String.js in Resources */,
+				050A3E7C263BF597008172E7 /* Builtin.d.ts in Resources */,
+				050A3E7A263BF597008172E7 /* Math.d.ts in Resources */,
+				050A3E6C263BF597008172E7 /* String.d.ts in Resources */,
+				050A3E96263BF5C9008172E7 /* String.ts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -832,6 +978,7 @@
 				05A95B832516D06900775737 /* KLEscapeCode.swift in Sources */,
 				05A95B9A2516D08500775737 /* KLNativeStruct.swift in Sources */,
 				05A95B4E2516CFF300775737 /* KLProcess.swift in Sources */,
+				05BB6065263C428A000B44A8 /* KLFileInstaller.swift in Sources */,
 				05A95B9C2516D08500775737 /* KLType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -871,6 +1018,7 @@
 				05A95B842516D06900775737 /* KLEscapeCode.swift in Sources */,
 				05A95B9B2516D08500775737 /* KLNativeStruct.swift in Sources */,
 				05A95B4F2516CFF300775737 /* KLProcess.swift in Sources */,
+				05BB6066263C428A000B44A8 /* KLFileInstaller.swift in Sources */,
 				05A95B9D2516D08500775737 /* KLType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -878,6 +1026,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		050A3E5A263BEE60008172E7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 050A3E48263BED72008172E7 /* Transpile */;
+			targetProxy = 050A3E59263BEE60008172E7 /* PBXContainerItemProxy */;
+		};
 		056068022517597D0034F8BD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 05A95B142516CD2800775737 /* KiwiLibrary_macOS */;
@@ -906,6 +1059,75 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		050A3E49263BED72008172E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		050A3E4A263BED72008172E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		0543B052253B3A5D00A9BAA1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1755,6 +1977,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		050A3E4B263BED72008172E7 /* Build configuration list for PBXLegacyTarget "Transpile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				050A3E49263BED72008172E7 /* Debug */,
+				050A3E4A263BED72008172E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		0543B054253B3A5D00A9BAA1 /* Build configuration list for PBXNativeTarget "UnitTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

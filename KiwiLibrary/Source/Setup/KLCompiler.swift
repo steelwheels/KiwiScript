@@ -559,7 +559,7 @@ public class KLLibraryCompiler: KECompiler
 		let libnames = ["Data", "Debug", "File", "Graphics", "Curses", "Math", "Process", "String", "Turtle"]
 		do {
 			for libname in libnames {
-				if let url = CNFilePath.URLForResourceFile(fileName: libname, fileExtension: "js", forClass: KLLibraryCompiler.self) {
+				if let url = CNFilePath.URLForResourceFile(fileName: libname, fileExtension: "js", subdirectory: nil, forClass: KLLibraryCompiler.self) {
 					let script = try String(contentsOf: url, encoding: .utf8)
 					let _ = compile(context: ctxt, statement: script, console: cons, config: conf)
 				} else {

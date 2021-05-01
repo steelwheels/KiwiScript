@@ -38,17 +38,18 @@ public func UTThread(context ctxt: KEContext, processManager procmgr: CNProcessM
 		let text = resource.toText()
 		text.print(console: cons, terminal: "")
 
-		let instrm: 	CNFileStream		= .fileHandle(cons.inputHandle)
-		let outstrm:	CNFileStream		= .fileHandle(cons.outputHandle)
-		let errstrm:	CNFileStream		= .fileHandle(cons.errorHandle)
-		let env:     	CNEnvironment		= CNEnvironment()
+		let infile: 	CNFile = cons.inputFile
+		let outfile:	CNFile = cons.outputFile
+		let errfile:	CNFile = cons.errorFile
+		let terminfo:	CNTerminalInfo = CNTerminalInfo(width: 80, height: 25)
+		let env:     	CNEnvironment  = CNEnvironment()
 		let config   = KEConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
 
 		guard let url = resource.URLOfThread(identifier: "sample0") else {
 			return false
 		}
 
-		let thread   = KLThread(source: .script(url), processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: env, config: config)
+		let thread   = KLThread(source: .script(url), processManager: procmgr, input: infile, output: outfile, error: errfile, terminalInfo: terminfo, environment: env, config: config)
 
 		/* Start thread */
 		let arg0   = JSValue(object: "Thread", in: ctxt)
