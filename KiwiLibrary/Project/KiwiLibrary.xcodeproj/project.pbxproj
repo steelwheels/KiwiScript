@@ -7,44 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		050A3E69263BF597008172E7 /* Turtle.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E5F263BF596008172E7 /* Turtle.d.ts */; };
-		050A3E6A263BF597008172E7 /* Turtle.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E5F263BF596008172E7 /* Turtle.d.ts */; };
-		050A3E6B263BF597008172E7 /* String.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E60263BF596008172E7 /* String.d.ts */; };
-		050A3E6C263BF597008172E7 /* String.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E60263BF596008172E7 /* String.d.ts */; };
-		050A3E6D263BF597008172E7 /* Process.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E61263BF596008172E7 /* Process.d.ts */; };
-		050A3E6E263BF597008172E7 /* Process.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E61263BF596008172E7 /* Process.d.ts */; };
-		050A3E6F263BF597008172E7 /* Data.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E62263BF596008172E7 /* Data.d.ts */; };
-		050A3E70263BF597008172E7 /* Data.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E62263BF596008172E7 /* Data.d.ts */; };
-		050A3E71263BF597008172E7 /* File.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E63263BF596008172E7 /* File.d.ts */; };
-		050A3E72263BF597008172E7 /* File.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E63263BF596008172E7 /* File.d.ts */; };
-		050A3E73263BF597008172E7 /* KiwiLibrary.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E64263BF596008172E7 /* KiwiLibrary.d.ts */; };
-		050A3E74263BF597008172E7 /* KiwiLibrary.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E64263BF596008172E7 /* KiwiLibrary.d.ts */; };
-		050A3E75263BF597008172E7 /* Graphics.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E65263BF596008172E7 /* Graphics.d.ts */; };
-		050A3E76263BF597008172E7 /* Graphics.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E65263BF596008172E7 /* Graphics.d.ts */; };
-		050A3E77263BF597008172E7 /* Debug.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E66263BF596008172E7 /* Debug.d.ts */; };
-		050A3E78263BF597008172E7 /* Debug.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E66263BF596008172E7 /* Debug.d.ts */; };
-		050A3E79263BF597008172E7 /* Math.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E67263BF596008172E7 /* Math.d.ts */; };
-		050A3E7A263BF597008172E7 /* Math.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E67263BF596008172E7 /* Math.d.ts */; };
-		050A3E7B263BF597008172E7 /* Builtin.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E68263BF597008172E7 /* Builtin.d.ts */; };
-		050A3E7C263BF597008172E7 /* Builtin.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E68263BF597008172E7 /* Builtin.d.ts */; };
-		050A3E89263BF5C9008172E7 /* Graphics.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E80263BF5C9008172E7 /* Graphics.ts */; };
-		050A3E8A263BF5C9008172E7 /* Graphics.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E80263BF5C9008172E7 /* Graphics.ts */; };
-		050A3E8B263BF5C9008172E7 /* Data.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E81263BF5C9008172E7 /* Data.ts */; };
-		050A3E8C263BF5C9008172E7 /* Data.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E81263BF5C9008172E7 /* Data.ts */; };
-		050A3E8D263BF5C9008172E7 /* Math.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E82263BF5C9008172E7 /* Math.ts */; };
-		050A3E8E263BF5C9008172E7 /* Math.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E82263BF5C9008172E7 /* Math.ts */; };
-		050A3E8F263BF5C9008172E7 /* Debug.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E83263BF5C9008172E7 /* Debug.ts */; };
-		050A3E90263BF5C9008172E7 /* Debug.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E83263BF5C9008172E7 /* Debug.ts */; };
-		050A3E93263BF5C9008172E7 /* Turtle.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E85263BF5C9008172E7 /* Turtle.ts */; };
-		050A3E94263BF5C9008172E7 /* Turtle.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E85263BF5C9008172E7 /* Turtle.ts */; };
-		050A3E95263BF5C9008172E7 /* String.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E86263BF5C9008172E7 /* String.ts */; };
-		050A3E96263BF5C9008172E7 /* String.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E86263BF5C9008172E7 /* String.ts */; };
-		050A3E97263BF5C9008172E7 /* Process.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E87263BF5C9008172E7 /* Process.ts */; };
-		050A3E98263BF5C9008172E7 /* Process.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E87263BF5C9008172E7 /* Process.ts */; };
-		050A3E99263BF5C9008172E7 /* File.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E88263BF5C9008172E7 /* File.ts */; };
-		050A3E9A263BF5C9008172E7 /* File.ts in Resources */ = {isa = PBXBuildFile; fileRef = 050A3E88263BF5C9008172E7 /* File.ts */; };
-		050C3CD9262C5CC00008ED97 /* String.js in Resources */ = {isa = PBXBuildFile; fileRef = 050C3CD8262C5CC00008ED97 /* String.js */; };
-		050C3CDA262C5CC00008ED97 /* String.js in Resources */ = {isa = PBXBuildFile; fileRef = 050C3CD8262C5CC00008ED97 /* String.js */; };
+		050A3E69263BF597008172E7 /* Turtle.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E5F263BF596008172E7 /* Turtle.d.ts */; };
+		050A3E6B263BF597008172E7 /* String.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E60263BF596008172E7 /* String.d.ts */; };
+		050A3E6D263BF597008172E7 /* Process.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E61263BF596008172E7 /* Process.d.ts */; };
+		050A3E71263BF597008172E7 /* File.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E63263BF596008172E7 /* File.d.ts */; };
+		050A3E75263BF597008172E7 /* Graphics.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E65263BF596008172E7 /* Graphics.d.ts */; };
+		050A3E77263BF597008172E7 /* Debug.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E66263BF596008172E7 /* Debug.d.ts */; };
+		050A3E79263BF597008172E7 /* Math.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E67263BF596008172E7 /* Math.d.ts */; };
+		050A3E7B263BF597008172E7 /* Builtin.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E68263BF597008172E7 /* Builtin.d.ts */; };
+		050A3E89263BF5C9008172E7 /* Graphics.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E80263BF5C9008172E7 /* Graphics.ts */; };
+		050A3E8D263BF5C9008172E7 /* Math.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E82263BF5C9008172E7 /* Math.ts */; };
+		050A3E8F263BF5C9008172E7 /* Debug.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E83263BF5C9008172E7 /* Debug.ts */; };
+		050A3E95263BF5C9008172E7 /* String.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E86263BF5C9008172E7 /* String.ts */; };
+		050A3E97263BF5C9008172E7 /* Process.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E87263BF5C9008172E7 /* Process.ts */; };
+		050C3CD9262C5CC00008ED97 /* String.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050C3CD8262C5CC00008ED97 /* String.js */; };
 		050D1DB82581C64A00D968ED /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050D1DB72581C64A00D968ED /* CoconutData.framework */; };
 		050D1DB92581C64A00D968ED /* CoconutData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050D1DB72581C64A00D968ED /* CoconutData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		050D1DBC2581C6FF00D968ED /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050D1DBB2581C6FF00D968ED /* KiwiEngine.framework */; };
@@ -53,10 +29,43 @@
 		050D1DC02581C71000D968ED /* KiwiLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050D1DBE2581C71000D968ED /* KiwiLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		050FDBF825FC87BE00331107 /* KLDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FDBF725FC87BE00331107 /* KLDictionary.swift */; };
 		050FDBF925FC87BE00331107 /* KLDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FDBF725FC87BE00331107 /* KLDictionary.swift */; };
-		0516CC4626213502000B9796 /* Curses.js in Resources */ = {isa = PBXBuildFile; fileRef = 0516CC4526213502000B9796 /* Curses.js */; };
-		0516CC4726213502000B9796 /* Curses.js in Resources */ = {isa = PBXBuildFile; fileRef = 0516CC4526213502000B9796 /* Curses.js */; };
 		051D09E82559914D0083336F /* KLCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D09E72559914D0083336F /* KLCommand.swift */; };
 		051D09E92559914D0083336F /* KLCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D09E72559914D0083336F /* KLCommand.swift */; };
+		052927C7263D6EC900A8CD49 /* Data.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E81263BF5C9008172E7 /* Data.ts */; };
+		052927C8263D6EC900A8CD49 /* File.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E88263BF5C9008172E7 /* File.ts */; };
+		052927C9263D6EC900A8CD49 /* Turtle.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E85263BF5C9008172E7 /* Turtle.ts */; };
+		052927CA263D6EC900A8CD49 /* Curses.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0516CC4526213502000B9796 /* Curses.js */; };
+		052927CB263D6EC900A8CD49 /* Data.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058C8D9925E4ACB2002B4273 /* Data.js */; };
+		052927CC263D6EC900A8CD49 /* Debug.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05C0378925186FF3002A9C41 /* Debug.js */; };
+		052927D0263D6ED700A8CD49 /* Data.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E62263BF596008172E7 /* Data.d.ts */; };
+		052927D1263D6ED700A8CD49 /* KiwiLibrary.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E64263BF596008172E7 /* KiwiLibrary.d.ts */; };
+		052927EB263D6F3800A8CD49 /* Data.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E81263BF5C9008172E7 /* Data.ts */; };
+		052927EC263D6F3800A8CD49 /* Debug.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E83263BF5C9008172E7 /* Debug.ts */; };
+		052927ED263D6F3800A8CD49 /* File.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E88263BF5C9008172E7 /* File.ts */; };
+		052927EE263D6F3800A8CD49 /* Graphics.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E80263BF5C9008172E7 /* Graphics.ts */; };
+		052927EF263D6F3800A8CD49 /* Math.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E82263BF5C9008172E7 /* Math.ts */; };
+		052927F0263D6F3800A8CD49 /* Process.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E87263BF5C9008172E7 /* Process.ts */; };
+		052927F1263D6F3800A8CD49 /* String.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E86263BF5C9008172E7 /* String.ts */; };
+		052927F2263D6F3800A8CD49 /* Turtle.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E85263BF5C9008172E7 /* Turtle.ts */; };
+		052927F3263D6F3800A8CD49 /* Curses.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0516CC4526213502000B9796 /* Curses.js */; };
+		052927F4263D6F3800A8CD49 /* Data.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058C8D9925E4ACB2002B4273 /* Data.js */; };
+		052927F5263D6F3800A8CD49 /* Debug.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05C0378925186FF3002A9C41 /* Debug.js */; };
+		052927F6263D6F3800A8CD49 /* File.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0577476125FE388A00ADC6E7 /* File.js */; };
+		052927F7263D6F3800A8CD49 /* Graphics.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05763BEB2610AA89004D7B15 /* Graphics.js */; };
+		052927F8263D6F3800A8CD49 /* Math.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05C0378825186FF3002A9C41 /* Math.js */; };
+		052927F9263D6F3800A8CD49 /* Process.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 054AF16825F78237001DB03B /* Process.js */; };
+		052927FA263D6F3800A8CD49 /* String.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050C3CD8262C5CC00008ED97 /* String.js */; };
+		052927FB263D6F3800A8CD49 /* Turtle.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B12A5A25C6783900273421 /* Turtle.js */; };
+		05292800263D6F4C00A8CD49 /* Builtin.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E68263BF597008172E7 /* Builtin.d.ts */; };
+		05292801263D6F4C00A8CD49 /* Data.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E62263BF596008172E7 /* Data.d.ts */; };
+		05292802263D6F4C00A8CD49 /* Debug.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E66263BF596008172E7 /* Debug.d.ts */; };
+		05292803263D6F4C00A8CD49 /* File.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E63263BF596008172E7 /* File.d.ts */; };
+		05292804263D6F4C00A8CD49 /* Graphics.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E65263BF596008172E7 /* Graphics.d.ts */; };
+		05292805263D6F4C00A8CD49 /* KiwiLibrary.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E64263BF596008172E7 /* KiwiLibrary.d.ts */; };
+		05292806263D6F4C00A8CD49 /* Math.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E67263BF596008172E7 /* Math.d.ts */; };
+		05292807263D6F4C00A8CD49 /* Process.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E61263BF596008172E7 /* Process.d.ts */; };
+		05292808263D6F4C00A8CD49 /* String.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E60263BF596008172E7 /* String.d.ts */; };
+		05292809263D6F4C00A8CD49 /* Turtle.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E5F263BF596008172E7 /* Turtle.d.ts */; };
 		053F2C49253BDDCE009CFCA1 /* UTType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F2C48253BDDCE009CFCA1 /* UTType.swift */; };
 		053F2C4F253BDEA8009CFCA1 /* UTURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F2C4E253BDEA8009CFCA1 /* UTURL.swift */; };
 		0540D67D2516D4A100C5AE52 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0540D67C2516D4A100C5AE52 /* CoconutData.xcframework */; };
@@ -64,15 +73,10 @@
 		0540D6852516D4D200C5AE52 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0540D67C2516D4A100C5AE52 /* CoconutData.xcframework */; };
 		0540D6882516D4E100C5AE52 /* KiwiEngine.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0540D6812516D4B300C5AE52 /* KiwiEngine.xcframework */; };
 		0543B051253B3A5D00A9BAA1 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0543B050253B3A5D00A9BAA1 /* main.swift */; };
-		054AF16925F78237001DB03B /* Process.js in Resources */ = {isa = PBXBuildFile; fileRef = 054AF16825F78237001DB03B /* Process.js */; };
-		054AF16A25F78237001DB03B /* Process.js in Resources */ = {isa = PBXBuildFile; fileRef = 054AF16825F78237001DB03B /* Process.js */; };
+		054AF16925F78237001DB03B /* Process.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 054AF16825F78237001DB03B /* Process.js */; };
 		056FBE52255A3B8B0069A0C2 /* UTCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FBE51255A3B8B0069A0C2 /* UTCommand.swift */; };
-		05763BEC2610AA89004D7B15 /* Graphics.js in Resources */ = {isa = PBXBuildFile; fileRef = 05763BEB2610AA89004D7B15 /* Graphics.js */; };
-		05763BED2610AA89004D7B15 /* Graphics.js in Resources */ = {isa = PBXBuildFile; fileRef = 05763BEB2610AA89004D7B15 /* Graphics.js */; };
-		0577476225FE388A00ADC6E7 /* File.js in Resources */ = {isa = PBXBuildFile; fileRef = 0577476125FE388A00ADC6E7 /* File.js */; };
-		0577476325FE388A00ADC6E7 /* File.js in Resources */ = {isa = PBXBuildFile; fileRef = 0577476125FE388A00ADC6E7 /* File.js */; };
-		058C8D9A25E4ACB2002B4273 /* Data.js in Resources */ = {isa = PBXBuildFile; fileRef = 058C8D9925E4ACB2002B4273 /* Data.js */; };
-		058C8D9B25E4ACB2002B4273 /* Data.js in Resources */ = {isa = PBXBuildFile; fileRef = 058C8D9925E4ACB2002B4273 /* Data.js */; };
+		05763BEC2610AA89004D7B15 /* Graphics.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05763BEB2610AA89004D7B15 /* Graphics.js */; };
+		0577476225FE388A00ADC6E7 /* File.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0577476125FE388A00ADC6E7 /* File.js */; };
 		05950CA125C4304500D659A1 /* KLGraphicsContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05950CA025C4304500D659A1 /* KLGraphicsContext.swift */; };
 		05950CA225C4304500D659A1 /* KLGraphicsContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05950CA025C4304500D659A1 /* KLGraphicsContext.swift */; };
 		0598000525CB5F5F00499B6E /* KLBitmapContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0598000425CB5F5F00499B6E /* KLBitmapContext.swift */; };
@@ -136,14 +140,10 @@
 		05A95B9B2516D08500775737 /* KLNativeStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B902516D08500775737 /* KLNativeStruct.swift */; };
 		05A95B9C2516D08500775737 /* KLType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B912516D08500775737 /* KLType.swift */; };
 		05A95B9D2516D08500775737 /* KLType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B912516D08500775737 /* KLType.swift */; };
-		05B12A5B25C6783900273421 /* Turtle.js in Resources */ = {isa = PBXBuildFile; fileRef = 05B12A5A25C6783900273421 /* Turtle.js */; };
-		05B12A5C25C6783900273421 /* Turtle.js in Resources */ = {isa = PBXBuildFile; fileRef = 05B12A5A25C6783900273421 /* Turtle.js */; };
+		05B12A5B25C6783900273421 /* Turtle.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B12A5A25C6783900273421 /* Turtle.js */; };
 		05BB6065263C428A000B44A8 /* KLFileInstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BB6064263C428A000B44A8 /* KLFileInstaller.swift */; };
 		05BB6066263C428A000B44A8 /* KLFileInstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BB6064263C428A000B44A8 /* KLFileInstaller.swift */; };
-		05C0378D25187007002A9C41 /* Debug.js in Resources */ = {isa = PBXBuildFile; fileRef = 05C0378925186FF3002A9C41 /* Debug.js */; };
-		05C0378E25187007002A9C41 /* Math.js in Resources */ = {isa = PBXBuildFile; fileRef = 05C0378825186FF3002A9C41 /* Math.js */; };
-		05C0379225187019002A9C41 /* Debug.js in Resources */ = {isa = PBXBuildFile; fileRef = 05C0378925186FF3002A9C41 /* Debug.js */; };
-		05C037932518701A002A9C41 /* Math.js in Resources */ = {isa = PBXBuildFile; fileRef = 05C0378825186FF3002A9C41 /* Math.js */; };
+		05C0378E25187007002A9C41 /* Math.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05C0378825186FF3002A9C41 /* Math.js */; };
 		05C3B2A025A2087F005256E1 /* KLReadline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C3B29F25A2087F005256E1 /* KLReadline.swift */; };
 		05C3B2A125A2087F005256E1 /* KLReadline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C3B29F25A2087F005256E1 /* KLReadline.swift */; };
 		05CFDFE2254505E50089C1AE /* KLThreadLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CFDFE1254505E50089C1AE /* KLThreadLauncher.swift */; };
@@ -217,6 +217,96 @@
 				050D1DB92581C64A00D968ED /* CoconutData.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05292786263D6DF600A8CD49 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Library;
+			dstSubfolderSpec = 7;
+			files = (
+				052927C7263D6EC900A8CD49 /* Data.ts in CopyFiles */,
+				052927C8263D6EC900A8CD49 /* File.ts in CopyFiles */,
+				052927C9263D6EC900A8CD49 /* Turtle.ts in CopyFiles */,
+				052927CA263D6EC900A8CD49 /* Curses.js in CopyFiles */,
+				052927CB263D6EC900A8CD49 /* Data.js in CopyFiles */,
+				052927CC263D6EC900A8CD49 /* Debug.js in CopyFiles */,
+				050A3E8D263BF5C9008172E7 /* Math.ts in CopyFiles */,
+				0577476225FE388A00ADC6E7 /* File.js in CopyFiles */,
+				050A3E8F263BF5C9008172E7 /* Debug.ts in CopyFiles */,
+				050A3E95263BF5C9008172E7 /* String.ts in CopyFiles */,
+				050C3CD9262C5CC00008ED97 /* String.js in CopyFiles */,
+				05763BEC2610AA89004D7B15 /* Graphics.js in CopyFiles */,
+				05B12A5B25C6783900273421 /* Turtle.js in CopyFiles */,
+				050A3E89263BF5C9008172E7 /* Graphics.ts in CopyFiles */,
+				050A3E97263BF5C9008172E7 /* Process.ts in CopyFiles */,
+				05C0378E25187007002A9C41 /* Math.js in CopyFiles */,
+				054AF16925F78237001DB03B /* Process.js in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0529278A263D6E1200A8CD49 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Library/types;
+			dstSubfolderSpec = 7;
+			files = (
+				052927D0263D6ED700A8CD49 /* Data.d.ts in CopyFiles */,
+				052927D1263D6ED700A8CD49 /* KiwiLibrary.d.ts in CopyFiles */,
+				050A3E75263BF597008172E7 /* Graphics.d.ts in CopyFiles */,
+				050A3E71263BF597008172E7 /* File.d.ts in CopyFiles */,
+				050A3E69263BF597008172E7 /* Turtle.d.ts in CopyFiles */,
+				050A3E77263BF597008172E7 /* Debug.d.ts in CopyFiles */,
+				050A3E6D263BF597008172E7 /* Process.d.ts in CopyFiles */,
+				050A3E6B263BF597008172E7 /* String.d.ts in CopyFiles */,
+				050A3E79263BF597008172E7 /* Math.d.ts in CopyFiles */,
+				050A3E7B263BF597008172E7 /* Builtin.d.ts in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		052927EA263D6F2900A8CD49 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Library;
+			dstSubfolderSpec = 7;
+			files = (
+				052927EB263D6F3800A8CD49 /* Data.ts in CopyFiles */,
+				052927EC263D6F3800A8CD49 /* Debug.ts in CopyFiles */,
+				052927ED263D6F3800A8CD49 /* File.ts in CopyFiles */,
+				052927EE263D6F3800A8CD49 /* Graphics.ts in CopyFiles */,
+				052927EF263D6F3800A8CD49 /* Math.ts in CopyFiles */,
+				052927F0263D6F3800A8CD49 /* Process.ts in CopyFiles */,
+				052927F1263D6F3800A8CD49 /* String.ts in CopyFiles */,
+				052927F2263D6F3800A8CD49 /* Turtle.ts in CopyFiles */,
+				052927F3263D6F3800A8CD49 /* Curses.js in CopyFiles */,
+				052927F4263D6F3800A8CD49 /* Data.js in CopyFiles */,
+				052927F5263D6F3800A8CD49 /* Debug.js in CopyFiles */,
+				052927F6263D6F3800A8CD49 /* File.js in CopyFiles */,
+				052927F7263D6F3800A8CD49 /* Graphics.js in CopyFiles */,
+				052927F8263D6F3800A8CD49 /* Math.js in CopyFiles */,
+				052927F9263D6F3800A8CD49 /* Process.js in CopyFiles */,
+				052927FA263D6F3800A8CD49 /* String.js in CopyFiles */,
+				052927FB263D6F3800A8CD49 /* Turtle.js in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		052927FF263D6F3E00A8CD49 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Library/types;
+			dstSubfolderSpec = 7;
+			files = (
+				05292800263D6F4C00A8CD49 /* Builtin.d.ts in CopyFiles */,
+				05292801263D6F4C00A8CD49 /* Data.d.ts in CopyFiles */,
+				05292802263D6F4C00A8CD49 /* Debug.d.ts in CopyFiles */,
+				05292803263D6F4C00A8CD49 /* File.d.ts in CopyFiles */,
+				05292804263D6F4C00A8CD49 /* Graphics.d.ts in CopyFiles */,
+				05292805263D6F4C00A8CD49 /* KiwiLibrary.d.ts in CopyFiles */,
+				05292806263D6F4C00A8CD49 /* Math.d.ts in CopyFiles */,
+				05292807263D6F4C00A8CD49 /* Process.d.ts in CopyFiles */,
+				05292808263D6F4C00A8CD49 /* String.d.ts in CopyFiles */,
+				05292809263D6F4C00A8CD49 /* Turtle.d.ts in CopyFiles */,
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		0543B04C253B3A5D00A9BAA1 /* CopyFiles */ = {
@@ -744,7 +834,8 @@
 				05A95B102516CD2800775737 /* Headers */,
 				05A95B112516CD2800775737 /* Sources */,
 				05A95B122516CD2800775737 /* Frameworks */,
-				05A95B132516CD2800775737 /* Resources */,
+				05292786263D6DF600A8CD49 /* CopyFiles */,
+				0529278A263D6E1200A8CD49 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -762,7 +853,8 @@
 				05A95B1F2516CF4500775737 /* Headers */,
 				05A95B202516CF4500775737 /* Sources */,
 				05A95B212516CF4500775737 /* Frameworks */,
-				05A95B222516CF4500775737 /* Resources */,
+				052927EA263D6F2900A8CD49 /* CopyFiles */,
+				052927FF263D6F3E00A8CD49 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -840,74 +932,6 @@
 				05A1F479253BC76E00D4789F /* unit-test-0.js in Resources */,
 				05A1F4A5253BD8BC00D4789F /* sample-0.jspkg in Resources */,
 				05A1F495253BD01300D4789F /* sample-1.js in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		05A95B132516CD2800775737 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				058C8D9A25E4ACB2002B4273 /* Data.js in Resources */,
-				050A3E6F263BF597008172E7 /* Data.d.ts in Resources */,
-				050A3E73263BF597008172E7 /* KiwiLibrary.d.ts in Resources */,
-				050A3E8B263BF5C9008172E7 /* Data.ts in Resources */,
-				0516CC4626213502000B9796 /* Curses.js in Resources */,
-				05C0378D25187007002A9C41 /* Debug.js in Resources */,
-				050A3E99263BF5C9008172E7 /* File.ts in Resources */,
-				050A3E93263BF5C9008172E7 /* Turtle.ts in Resources */,
-				050A3E75263BF597008172E7 /* Graphics.d.ts in Resources */,
-				050A3E97263BF5C9008172E7 /* Process.ts in Resources */,
-				050A3E71263BF597008172E7 /* File.d.ts in Resources */,
-				05B12A5B25C6783900273421 /* Turtle.js in Resources */,
-				050A3E69263BF597008172E7 /* Turtle.d.ts in Resources */,
-				050A3E8D263BF5C9008172E7 /* Math.ts in Resources */,
-				0577476225FE388A00ADC6E7 /* File.js in Resources */,
-				050A3E77263BF597008172E7 /* Debug.d.ts in Resources */,
-				050A3E6D263BF597008172E7 /* Process.d.ts in Resources */,
-				05C0378E25187007002A9C41 /* Math.js in Resources */,
-				050A3E8F263BF5C9008172E7 /* Debug.ts in Resources */,
-				050A3E89263BF5C9008172E7 /* Graphics.ts in Resources */,
-				054AF16925F78237001DB03B /* Process.js in Resources */,
-				05763BEC2610AA89004D7B15 /* Graphics.js in Resources */,
-				050C3CD9262C5CC00008ED97 /* String.js in Resources */,
-				050A3E7B263BF597008172E7 /* Builtin.d.ts in Resources */,
-				050A3E79263BF597008172E7 /* Math.d.ts in Resources */,
-				050A3E6B263BF597008172E7 /* String.d.ts in Resources */,
-				050A3E95263BF5C9008172E7 /* String.ts in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		05A95B222516CF4500775737 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				058C8D9B25E4ACB2002B4273 /* Data.js in Resources */,
-				050A3E70263BF597008172E7 /* Data.d.ts in Resources */,
-				050A3E74263BF597008172E7 /* KiwiLibrary.d.ts in Resources */,
-				050A3E8C263BF5C9008172E7 /* Data.ts in Resources */,
-				0516CC4726213502000B9796 /* Curses.js in Resources */,
-				05C0379225187019002A9C41 /* Debug.js in Resources */,
-				050A3E9A263BF5C9008172E7 /* File.ts in Resources */,
-				050A3E94263BF5C9008172E7 /* Turtle.ts in Resources */,
-				050A3E76263BF597008172E7 /* Graphics.d.ts in Resources */,
-				050A3E98263BF5C9008172E7 /* Process.ts in Resources */,
-				050A3E72263BF597008172E7 /* File.d.ts in Resources */,
-				05B12A5C25C6783900273421 /* Turtle.js in Resources */,
-				050A3E6A263BF597008172E7 /* Turtle.d.ts in Resources */,
-				050A3E8E263BF5C9008172E7 /* Math.ts in Resources */,
-				0577476325FE388A00ADC6E7 /* File.js in Resources */,
-				050A3E78263BF597008172E7 /* Debug.d.ts in Resources */,
-				050A3E6E263BF597008172E7 /* Process.d.ts in Resources */,
-				05C037932518701A002A9C41 /* Math.js in Resources */,
-				050A3E90263BF5C9008172E7 /* Debug.ts in Resources */,
-				050A3E8A263BF5C9008172E7 /* Graphics.ts in Resources */,
-				054AF16A25F78237001DB03B /* Process.js in Resources */,
-				05763BED2610AA89004D7B15 /* Graphics.js in Resources */,
-				050C3CDA262C5CC00008ED97 /* String.js in Resources */,
-				050A3E7C263BF597008172E7 /* Builtin.d.ts in Resources */,
-				050A3E7A263BF597008172E7 /* Math.d.ts in Resources */,
-				050A3E6C263BF597008172E7 /* String.d.ts in Resources */,
-				050A3E96263BF5C9008172E7 /* String.ts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
