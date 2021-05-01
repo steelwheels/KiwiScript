@@ -231,6 +231,21 @@ public class KLLibraryCompiler: KECompiler
 		}
 		ctxt.set(name: "isBitmap", function: isBitmapFunc)
 
+		/* isEOF */
+		let isEofFunc: @convention(block) (_ value: JSValue) -> JSValue = {
+			(_ value: JSValue) -> JSValue in
+			var result = false
+			if value.isNumber {
+				if let num = value.toNumber() {
+					if num.int32Value == CNFile.EOF {
+						result = true
+					}
+				}
+			}
+			return JSValue(bool: result, in: ctxt)
+		}
+		ctxt.set(name: "isEOF", function: isEofFunc)
+
 		/* className */
 		let classNameFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in
@@ -439,12 +454,6 @@ public class KLLibraryCompiler: KECompiler
 					 output:  	cons.outputFile,
 					 error:   	cons.errorFile)
 		ctxt.set(name: "FileManager", object: file)
-
-		if let eofval = JSValue(int32: KLFile.EOFValue, in: ctxt) {
-			ctxt.set(name: "EOF", value: eofval)
-		} else {
-			cons.error(string: "Failed to allocate EOF value\n")
-		}
 
 		let stdin = KLFile(file: cons.inputFile, context: ctxt)
 		ctxt.set(name: KLFile.StdInName, object: stdin)

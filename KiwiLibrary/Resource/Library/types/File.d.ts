@@ -1,5 +1,4 @@
 /// <reference path="Builtin.d.ts" />
-declare const EOF: number;
 declare class File {
     mCore: _File;
     constructor(core: _File);

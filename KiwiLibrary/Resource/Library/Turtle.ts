@@ -87,20 +87,22 @@ class Turtle
         }
 
         pop(): void {
-                let ret: TurtleStatus = this.mHistory.pop() ;
+                let ret = this.mHistory.pop() ;
                 if(!isUndefined(ret)) {
-                        if(!isUndefined(ret.x)) {
-                                this.mCurrentX = ret.x ;
+			let stat: TurtleStatus = ret! ; // Cast force
+
+                        if(!isUndefined(stat.x)) {
+                                this.mCurrentX = stat.x ;
                         } else {
                                 console.error("[Error] No X property in Turtle\n") ;
                         }
-                        if(!isUndefined(ret.y)) {
-                                this.mCurrentY = ret.y ;
+                        if(!isUndefined(stat.y)) {
+                                this.mCurrentY = stat.y ;
                         } else {
                                 console.error("[Error] No Y property in Turtle\n") ;
                         }
-                        if(!isUndefined(ret.angle)) {
-                                this.mCurrentAngle = ret.angle ;
+                        if(!isUndefined(stat.angle)) {
+                                this.mCurrentAngle = stat.angle ;
                         } else {
                                 console.error("[Error] No angle property in Turtle\n") ;
                         }

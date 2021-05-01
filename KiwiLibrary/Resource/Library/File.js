@@ -1,7 +1,6 @@
 "use strict";
 /* File.js */
 /// <reference path="types/Builtin.d.ts"/>
-const EOF = -1;
 class File {
     constructor(core) {
         this.mCore = core;

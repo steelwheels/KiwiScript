@@ -22,6 +22,7 @@ const flag = isUndefined(value) ;
 |isURL          |[URL](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md) |
 |isImage        |[Image](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Image.md) |
 |isBitmap       |[Bitmap](https://github.com/steelwheels/Amber/blob/master/Document/DataFormat/Bitmap.md) |
+|isEOF          |The End-Of-File character      |
 
 ## Type obtaining function
 ### `typeID` function

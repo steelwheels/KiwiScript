@@ -2,8 +2,6 @@
 
 /// <reference path="types/Builtin.d.ts"/>
 
-const EOF : number = -1 ;
-
 class File
 {
     mCore : _File ;

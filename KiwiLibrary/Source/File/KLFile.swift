@@ -24,8 +24,6 @@ import Foundation
 	public static let StdOutName	= "_stdout"
 	public static let StdErrName	= "_stderr"
 
-	public static let EOFValue:Int32	= -1
-
 	private var mFile:	CNFile
 	private var mContext:	KEContext
 	private var mEofValue:	JSValue
@@ -34,7 +32,7 @@ import Foundation
 	public init(file fl: CNFile, context ctxt: KEContext){
 		mFile    	= fl
 		mContext 	= ctxt
-		mEofValue	= JSValue(int32: KLFile.EOFValue, in: ctxt)
+		mEofValue	= JSValue(int32: CNFile.EOF, in: ctxt)
 		mNullValue	= JSValue(nullIn: ctxt)
 	}
 

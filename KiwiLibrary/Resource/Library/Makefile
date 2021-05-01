@@ -19,7 +19,7 @@ dstdecl	= ./types/KiwiLibrary.d.ts
 tsc	= npx tsc
 tsc_opt	= -t ES2017 --lib "es2017" --declaration --declarationDir types \
 	  --typeRoots types \
-	  --alwaysStrict --pretty
+	  --alwaysStrict --strict --pretty
 
 
 %.js: %.ts

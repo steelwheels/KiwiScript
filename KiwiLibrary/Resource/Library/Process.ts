@@ -64,10 +64,10 @@ function _cancel() {
 	throw new CancelException(ExitCode.exception) ;
 }
 
-function openPanel(title: string, type: number, exts: string[]): _URL {
+function openPanel(title: string, type: number, exts: string[]): _URL | null {
 	let result = null ;
 	let sem    = new Semaphore(0) ;
-	let cbfunc = function(url) {
+	let cbfunc = function(url: _URL) {
 		result = url ;
 		sem.signal() ;  // Tell finish operation
 	} ;
