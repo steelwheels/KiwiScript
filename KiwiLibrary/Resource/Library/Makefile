@@ -9,6 +9,7 @@ srcs	= Data.ts \
 	  Graphics.ts \
 	  Process.ts \
 	  String.ts \
+	  Curses.ts \
 	  Turtle.ts
 
 dsts	= $(srcs:.ts=.js)
