@@ -31,6 +31,10 @@
 		05C412F82517590A00F07DB2 /* KHScriptThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412E32517590A00F07DB2 /* KHScriptThread.swift */; };
 		05C412F92517590A00F07DB2 /* KHShellCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412E42517590A00F07DB2 /* KHShellCoder.swift */; };
 		05C412FA2517590A00F07DB2 /* KHShellCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412E42517590A00F07DB2 /* KHShellCoder.swift */; };
+		05D9A897263E9EC4006D0FA2 /* Readline.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05D9A895263E9E80006D0FA2 /* Readline.ts */; };
+		05D9A89C263E9EEA006D0FA2 /* KiwiShell.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05D9A89A263E9EDC006D0FA2 /* KiwiShell.d.ts */; };
+		05D9A89F263E9F00006D0FA2 /* Readline.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05D9A895263E9E80006D0FA2 /* Readline.ts */; };
+		05D9A8A3263E9F0C006D0FA2 /* KiwiShell.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05D9A89A263E9EDC006D0FA2 /* KiwiShell.d.ts */; };
 		05FC882A25175A7F00301544 /* CoconutShell.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC882725175A7F00301544 /* CoconutShell.xcframework */; };
 		05FC882C25175A7F00301544 /* KiwiEngine.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC882825175A7F00301544 /* KiwiEngine.xcframework */; };
 		05FC882E25175A7F00301544 /* KiwiLibrary.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC882925175A7F00301544 /* KiwiLibrary.xcframework */; };
@@ -42,6 +46,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		05D9A88F263E9E52006D0FA2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 059A6B0E251757FF00C06139 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05D9A889263E9E30006D0FA2;
+			remoteInfo = Transpile;
+		};
+		05D9A891263E9E59006D0FA2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 059A6B0E251757FF00C06139 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05D9A889263E9E30006D0FA2;
+			remoteInfo = Transpile;
+		};
 		05FC8843251766C000301544 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 059A6B0E251757FF00C06139 /* Project object */;
@@ -66,6 +84,7 @@
 			dstSubfolderSpec = 7;
 			files = (
 				058B25FF262F126600203C4A /* Readline.js in CopyFiles */,
+				05D9A89F263E9F00006D0FA2 /* Readline.ts in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,7 +94,28 @@
 			dstPath = Library;
 			dstSubfolderSpec = 7;
 			files = (
+				05D9A897263E9EC4006D0FA2 /* Readline.ts in CopyFiles */,
 				058B2605262F127800203C4A /* Readline.js in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05D9A89B263E9EE1006D0FA2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Library/types;
+			dstSubfolderSpec = 7;
+			files = (
+				05D9A89C263E9EEA006D0FA2 /* KiwiShell.d.ts in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05D9A8A2263E9F04006D0FA2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Library/types;
+			dstSubfolderSpec = 7;
+			files = (
+				05D9A8A3263E9F0C006D0FA2 /* KiwiShell.d.ts in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +139,8 @@
 		05C412E12517590A00F07DB2 /* KHShellStatement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHShellStatement.swift; sourceTree = "<group>"; };
 		05C412E32517590A00F07DB2 /* KHScriptThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHScriptThread.swift; sourceTree = "<group>"; };
 		05C412E42517590A00F07DB2 /* KHShellCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHShellCoder.swift; sourceTree = "<group>"; };
+		05D9A895263E9E80006D0FA2 /* Readline.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readline.ts; sourceTree = "<group>"; };
+		05D9A89A263E9EDC006D0FA2 /* KiwiShell.d.ts */ = {isa = PBXFileReference; lastKnownFileType = text; path = KiwiShell.d.ts; sourceTree = "<group>"; };
 		05FC882725175A7F00301544 /* CoconutShell.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutShell.xcframework; path = ../../../../Library/Frameworks/CoconutShell.xcframework; sourceTree = "<group>"; };
 		05FC882825175A7F00301544 /* KiwiEngine.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiEngine.xcframework; path = ../../../../Library/Frameworks/KiwiEngine.xcframework; sourceTree = "<group>"; };
 		05FC882925175A7F00301544 /* KiwiLibrary.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiLibrary.xcframework; path = ../../../../Library/Frameworks/KiwiLibrary.xcframework; sourceTree = "<group>"; };
@@ -143,6 +185,8 @@
 		058B25FC262F124300203C4A /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				05D9A896263E9E88006D0FA2 /* types */,
+				05D9A895263E9E80006D0FA2 /* Readline.ts */,
 				058B25FD262F125600203C4A /* Readline.js */,
 			);
 			path = Library;
@@ -205,6 +249,14 @@
 			path = ../Source;
 			sourceTree = "<group>";
 		};
+		05D9A896263E9E88006D0FA2 /* types */ = {
+			isa = PBXGroup;
+			children = (
+				05D9A89A263E9EDC006D0FA2 /* KiwiShell.d.ts */,
+			);
+			path = types;
+			sourceTree = "<group>";
+		};
 		05FC882625175A7F00301544 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,6 +290,20 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXLegacyTarget section */
+		05D9A889263E9E30006D0FA2 /* Transpile */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f ../../Script/transpile.mk";
+			buildConfigurationList = 05D9A88C263E9E30006D0FA2 /* Build configuration list for PBXLegacyTarget "Transpile" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+			);
+			name = Transpile;
+			passBuildSettingsInEnvironment = 1;
+			productName = Transpile;
+		};
 		05FC883F251766B500301544 /* Install */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = "-f ../../Script/install_xc.mk";
@@ -265,10 +331,12 @@
 				05C412BC2517583900F07DB2 /* Sources */,
 				05C412BD2517583900F07DB2 /* Frameworks */,
 				058B25FE262F125D00203C4A /* CopyFiles */,
+				05D9A8A2263E9F04006D0FA2 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				05D9A890263E9E52006D0FA2 /* PBXTargetDependency */,
 			);
 			name = KiwiShell_macOS;
 			productName = KiwiShell_macOS;
@@ -283,10 +351,12 @@
 				05C412CB2517584F00F07DB2 /* Sources */,
 				05C412CC2517584F00F07DB2 /* Frameworks */,
 				058B2602262F126C00203C4A /* CopyFiles */,
+				05D9A89B263E9EE1006D0FA2 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				05D9A892263E9E59006D0FA2 /* PBXTargetDependency */,
 			);
 			name = KiwiShell_iOS;
 			productName = KiwiShell_iOS;
@@ -309,6 +379,9 @@
 						CreatedOnToolsVersion = 12.0;
 						LastSwiftMigration = 1200;
 					};
+					05D9A889263E9E30006D0FA2 = {
+						CreatedOnToolsVersion = 12.4;
+					};
 					05FC883F251766B500301544 = {
 						CreatedOnToolsVersion = 12.0;
 					};
@@ -330,6 +403,7 @@
 				05C412BF2517583900F07DB2 /* KiwiShell_macOS */,
 				05C412CE2517584F00F07DB2 /* KiwiShell_iOS */,
 				05FC883F251766B500301544 /* Install */,
+				05D9A889263E9E30006D0FA2 /* Transpile */,
 			);
 		};
 /* End PBXProject section */
@@ -372,6 +446,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		05D9A890263E9E52006D0FA2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05D9A889263E9E30006D0FA2 /* Transpile */;
+			targetProxy = 05D9A88F263E9E52006D0FA2 /* PBXContainerItemProxy */;
+		};
+		05D9A892263E9E59006D0FA2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05D9A889263E9E30006D0FA2 /* Transpile */;
+			targetProxy = 05D9A891263E9E59006D0FA2 /* PBXContainerItemProxy */;
+		};
 		05FC8844251766C000301544 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 05C412BF2517583900F07DB2 /* KiwiShell_macOS */;
@@ -775,6 +859,75 @@
 			};
 			name = Release;
 		};
+		05D9A88A263E9E30006D0FA2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		05D9A88B263E9E30006D0FA2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		05FC8841251766B500301544 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -920,6 +1073,15 @@
 			buildConfigurations = (
 				05C412D52517584F00F07DB2 /* Debug */,
 				05C412D62517584F00F07DB2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05D9A88C263E9E30006D0FA2 /* Build configuration list for PBXLegacyTarget "Transpile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05D9A88A263E9E30006D0FA2 /* Debug */,
+				05D9A88B263E9E30006D0FA2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

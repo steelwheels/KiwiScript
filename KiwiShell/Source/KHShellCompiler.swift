@@ -27,7 +27,7 @@ public class KHShellCompiler: KECompiler
 		ctxt.set(name: "Preference", object: pref)
 
 		let readobj = KLReadline(readline: readln, console: cons, context: ctxt)
-		ctxt.set(name: "Readline", object: readobj)
+		ctxt.set(name: "_readlineCore", object: readobj)
 	}
 
 	private func defineEnvironmentVariables(environment env: CNEnvironment) {
