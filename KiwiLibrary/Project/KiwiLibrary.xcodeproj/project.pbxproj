@@ -161,13 +161,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		050A3E59263BEE60008172E7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 05A95B0A2516CD0300775737 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 050A3E48263BED72008172E7;
-			remoteInfo = Transpile;
-		};
 		056068012517597D0034F8BD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 05A95B0A2516CD0300775737 /* Project object */;
@@ -181,6 +174,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 05A95B232516CF4500775737;
 			remoteInfo = KiwiLibrary_iOS;
+		};
+		05720622263E4EDF00CC4BBB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05A95B0A2516CD0300775737 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 050A3E48263BED72008172E7;
+			remoteInfo = Transpile;
+		};
+		05720624263E4EE500CC4BBB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05A95B0A2516CD0300775737 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 050A3E48263BED72008172E7;
+			remoteInfo = Transpile;
 		};
 		05A1F473253BC6F600D4789F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -764,7 +771,6 @@
 			buildToolPath = /usr/bin/make;
 			buildWorkingDirectory = "";
 			dependencies = (
-				050A3E5A263BEE60008172E7 /* PBXTargetDependency */,
 				05606804251759820034F8BD /* PBXTargetDependency */,
 				056068022517597D0034F8BD /* PBXTargetDependency */,
 			);
@@ -840,6 +846,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				05720623263E4EDF00CC4BBB /* PBXTargetDependency */,
 			);
 			name = KiwiLibrary_macOS;
 			productName = KiwiLibrary_macOS;
@@ -859,6 +866,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				05720625263E4EE500CC4BBB /* PBXTargetDependency */,
 			);
 			name = KiwiLibrary_iOS;
 			productName = KiwiLibrary_iOS;
@@ -1050,11 +1058,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		050A3E5A263BEE60008172E7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 050A3E48263BED72008172E7 /* Transpile */;
-			targetProxy = 050A3E59263BEE60008172E7 /* PBXContainerItemProxy */;
-		};
 		056068022517597D0034F8BD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 05A95B142516CD2800775737 /* KiwiLibrary_macOS */;
@@ -1064,6 +1067,16 @@
 			isa = PBXTargetDependency;
 			target = 05A95B232516CF4500775737 /* KiwiLibrary_iOS */;
 			targetProxy = 05606803251759820034F8BD /* PBXContainerItemProxy */;
+		};
+		05720623263E4EDF00CC4BBB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 050A3E48263BED72008172E7 /* Transpile */;
+			targetProxy = 05720622263E4EDF00CC4BBB /* PBXContainerItemProxy */;
+		};
+		05720625263E4EE500CC4BBB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 050A3E48263BED72008172E7 /* Transpile */;
+			targetProxy = 05720624263E4EE500CC4BBB /* PBXContainerItemProxy */;
 		};
 		05A1F474253BC6F600D4789F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

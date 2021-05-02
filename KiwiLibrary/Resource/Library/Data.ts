@@ -72,21 +72,19 @@ class Table
 
 	forEachColumn(x: number, childFunc: (value:any, y:number) => void): void {
 		if(0<=x && x<this.mWidth){
-			return ;
-		}
-		for(let y=0 ; y<this.mHeight ; y++){
-			let value = this.mTable[y][x] ;
-			childFunc(value, y) ;
+			for(let y=0 ; y<this.mHeight ; y++){
+                                let value = this.mTable[y][x] ;
+                                childFunc(value, y) ;
+                        }
 		}
 	}
 
 	forEachRow(y: number , childFunc: (value:any, x:number) => void): void {
 		if(0<=y && y<this.mHeight){
-			return ;
-		}
-		for(let x=0 ; x<this.mWidth ; x++){
-			let value = this.mTable[y][x] ;
-			childFunc(value, x) ;
+			for(let x=0 ; x<this.mWidth ; x++){
+                                let value = this.mTable[y][x] ;
+                                childFunc(value, x) ;
+                        }
 		}
 	}
 
