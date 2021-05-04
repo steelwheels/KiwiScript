@@ -10,6 +10,7 @@ const flag = isUndefined(value) ;
 |Function name  |Type to check              |
 |:---           |:---                       |
 |isUndefined    |Undefined                  |
+|isNaN          |NaN                        |
 |isNull         |Null                       |
 |isBoolean      |Boolean                    |
 |isNumber       |Number (integer or float)  |

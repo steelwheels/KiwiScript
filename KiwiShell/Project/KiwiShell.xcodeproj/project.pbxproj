@@ -139,7 +139,7 @@
 		05C412E12517590A00F07DB2 /* KHShellStatement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHShellStatement.swift; sourceTree = "<group>"; };
 		05C412E32517590A00F07DB2 /* KHScriptThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHScriptThread.swift; sourceTree = "<group>"; };
 		05C412E42517590A00F07DB2 /* KHShellCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHShellCoder.swift; sourceTree = "<group>"; };
-		05D9A895263E9E80006D0FA2 /* Readline.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readline.ts; sourceTree = "<group>"; };
+		05D9A895263E9E80006D0FA2 /* Readline.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = Readline.ts; sourceTree = "<group>"; };
 		05D9A89A263E9EDC006D0FA2 /* KiwiShell.d.ts */ = {isa = PBXFileReference; lastKnownFileType = text; path = KiwiShell.d.ts; sourceTree = "<group>"; };
 		05FC882725175A7F00301544 /* CoconutShell.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutShell.xcframework; path = ../../../../Library/Frameworks/CoconutShell.xcframework; sourceTree = "<group>"; };
 		05FC882825175A7F00301544 /* KiwiEngine.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiEngine.xcframework; path = ../../../../Library/Frameworks/KiwiEngine.xcframework; sourceTree = "<group>"; };
