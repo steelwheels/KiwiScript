@@ -104,12 +104,14 @@ import Foundation
 
 	private static func execute(_ arg: JSValue, _ context: KEContext, _ console: CNConsole, _ env: CNEnvironment) -> Int32 {
 		let result: Int32
-		let installer = KLFileInstaller(console: console)
-		if let err = installer.installFiles() {
-			console.error(string: "install: [Error] \(err.toString())\n")
-			result = 1
-		} else {
+
+		let dstdir = CNPreference.shared.userPreference.homeDirectory
+
+		let installer = CNResourceInstaller(console: console)
+		if installer.install(destinationDirectory: dstdir, sourceDirectoryNames: ["Library", "Game", "Sample"]) {
 			result = 0
+		} else {
+			result = 1
 		}
 		return result
 	}
