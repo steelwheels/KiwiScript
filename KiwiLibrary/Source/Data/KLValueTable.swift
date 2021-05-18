@@ -10,153 +10,88 @@ import KiwiEngine
 import JavaScriptCore
 import Foundation
 
-@objc public protocol KLValueColumnProtocol: JSExport
-{
-	var title: JSValue	{ get set }
-	var count: JSValue 	{ get }
-
-	func value(_ idx: JSValue) -> JSValue
-	func forEach(_ cbfunc: JSValue)
-	func setValue(_ idx: JSValue, _ val: JSValue)
-	func appendValue(_ val: JSValue)
-}
-
 @objc public protocol KLValueTableProtocol: JSExport
 {
-	var columnCount: JSValue	{ get }
-	var rowCount: JSValue		{ get }
+	var columnCount:	JSValue { get }
+	var rowCount:		JSValue { get }
 
-	func column(_ idx: JSValue) -> JSValue
-	func forEach(_ cbfunc: JSValue)
-	func setColumn(_ idx: JSValue, _ col: JSValue)
-	func appendColumn(_ col: JSValue)
-}
-
-@objc public class KLValueColumn: NSObject, KLValueColumnProtocol
-{
-	private var mNativeColumn:	CNNativeValueColumn
-	private var mContext:		KEContext
-
-	public init(nativeColumn colmun: CNNativeValueColumn, context ctxt: KEContext){
-		mNativeColumn	= colmun
-		mContext	= ctxt
-	}
-
-	public var nativeObject: CNNativeValueColumn { get { return mNativeColumn }}
-
-	public var title: JSValue {
-		get {
-			if let titlestr = mNativeColumn.title {
-				return JSValue(object: titlestr, in: mContext)
-			} else {
-				return JSValue(nullIn: mContext)
-			}
-		}
-		set(val){
-			if val.isString {
-				mNativeColumn.title = val.toString()
-			} else {
-				mNativeColumn.title = nil
-			}
-		}
-	}
-
-	public var count: JSValue {
-		get { return JSValue(int32: Int32(mNativeColumn.count), in: mContext) }
-	}
-
-	public func value(_ idx: JSValue) -> JSValue {
-		if let val = value(at: idx) {
-			return val.toJSValue(context: mContext)
-		} else {
-			return JSValue(undefinedIn: mContext)
-		}
-	}
-
-	public func forEach(_ cbfunc: JSValue){
-		mNativeColumn.forEach({
-			(_ val: CNNativeValue) -> Void in
-			let _ = cbfunc.call(withArguments: [val.toJSValue(context: mContext)])
-		})
-	}
-
-	public func setValue(_ idx: JSValue, _ val: JSValue){
-		if idx.isNumber {
-			let nidx = Int(idx.toInt32())
-			let nval = val.toNativeValue()
-			mNativeColumn.setValue(index: nidx, value: nval)
-		} else {
-			NSLog("Invalid index at \(#function)")
-		}
-	}
-
-	public func appendValue(_ val: JSValue){
-		let nval = val.toNativeValue()
-		mNativeColumn.appendValue(value: nval)
-	}
-
-	private func value(at idx: JSValue) -> CNNativeValue? {
-		if idx.isNumber {
-			if let num = idx.toNumber() {
-				if let val = mNativeColumn.value(index: Int(num.int32Value)) {
-					return val
-				}
-			}
-		}
-		NSLog("Invalid index at \(#function)")
-		return nil
-	}
+	func title(_ cidx: JSValue) -> JSValue
+	func setTitle(_ cidx: JSValue, _ title: JSValue)
+	func value(_ cidx: JSValue, _ ridx: JSValue) -> JSValue
+	func setValue(_ cidx: JSValue, _ ridx: JSValue, _ val: JSValue)
 }
 
 @objc public class KLValueTable: NSObject, KLValueTableProtocol
 {
-	private var mNativeTable:	CNNativeValueTable
-	private var mContext:		KEContext
+	private var mTable:	CNNativeValueTable
+	private var mContext: 	KEContext
 
-	public init(nativeTable table: CNNativeValueTable, context ctxt: KEContext){
-		mNativeTable	= table
-		mContext	= ctxt
+	public init(table tbl: CNNativeValueTable, context ctxt: KEContext){
+		mTable   = tbl
+		mContext = ctxt
 	}
 
-	public var columnCount: JSValue	{
-		get { return JSValue(int32: Int32(mNativeTable.columnCount), in: mContext) }
-	}
+	public var columnCount:	JSValue { get {
+		let num = mTable.columnCount
+		return JSValue(int32: Int32(num), in: mContext)
+	}}
 
-	public var rowCount: JSValue {
-		get { return JSValue(int32: Int32(mNativeTable.rowCount), in: mContext) }
-	}
+	public var rowCount: JSValue { get {
+		let num = mTable.rowCount
+		return JSValue(int32: Int32(num), in: mContext)
+	}}
 
-	public func column(_ idx: JSValue) -> JSValue {
-		if let nidx = idx.toNumber() {
-			if let ncol = mNativeTable.column(index: nidx.intValue) {
-				let colobj = KLValueColumn(nativeColumn: ncol, context: mContext)
-				return JSValue(object: colobj, in: mContext)
-			}
+	public func title(_ cidx: JSValue) -> JSValue {
+		if cidx.isNumber {
+			let title = mTable.title(column: Int(cidx.toInt32()))
+			return JSValue(object: title, in: mContext)
 		}
 		return JSValue(nullIn: mContext)
 	}
 
-	public func forEach(_ cbfunc: JSValue){
-		mNativeTable.forEach({
-			(_ val: CNNativeValueColumn) -> Void in
-			let obj = KLValueColumn(nativeColumn: val, context: mContext)
-			let _   = cbfunc.call(withArguments: [obj])
-		})
+	public func setTitle(_ cidx: JSValue, _ title: JSValue) {
+		if cidx.isNumber && title.isString {
+			let idx = Int(cidx.toInt32())
+			if let str = title.toString() {
+				mTable.setTitle(column: idx, title: str)
+				return
+			}
+		}
+		NSLog("Failed to set title at \(#function) in \(#file)")
 	}
 
-	public func setColumn(_ idx: JSValue, _ col: JSValue){
-		if let nidx = idx.toNumber(), let colobj = col.toObject() as? KLValueColumn {
-			mNativeTable.setColumn(index: nidx.intValue, column: colobj.nativeObject)
+	public func value(_ cidx: JSValue, _ ridx: JSValue) -> JSValue {
+		guard ridx.isNumber else {
+			return JSValue(nullIn: mContext)
+		}
+		let rval = Int(ridx.toInt32())
+		if cidx.isNumber {
+			let cval = Int(cidx.toInt32())
+			let ret  = mTable.value(column: cval, row: rval)
+			return ret.toJSValue(context: mContext)
+		} else if let cval = cidx.toString() {
+			let ret  = mTable.value(title: cval, row: rval)
+			return ret.toJSValue(context: mContext)
 		} else {
-			NSLog("Invalid index at \(#file)")
+			return JSValue(nullIn: mContext)
 		}
 	}
 
-	public func appendColumn(_ col: JSValue){
-		if let colobj = col.toObject() as? KLValueColumn {
-			mNativeTable.appendColumn(column: colobj.nativeObject)
+	public func setValue(_ cidx: JSValue, _ ridx: JSValue, _ val: JSValue) {
+		guard ridx.isNumber else {
+			NSLog("INvalid row index at \(#function) in \(#file)")
+			return
+		}
+		let rval = Int(ridx.toInt32())
+		if cidx.isNumber {
+			let cval = Int(cidx.toInt32())
+			let nval = val.toNativeValue()
+			mTable.setValue(column: cval, row: rval, value: nval)
+		} else if let cval = cidx.toString() {
+			let nval = val.toNativeValue()
+			mTable.setValue(title: cval, row: rval, value: nval)
 		} else {
-			NSLog("Invalid index at \(#file)")
+			NSLog("Invalid column name/index at \(#function) in \(#file)")
 		}
 	}
 }
