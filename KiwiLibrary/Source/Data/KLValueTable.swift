@@ -19,6 +19,8 @@ import Foundation
 	func setTitle(_ cidx: JSValue, _ title: JSValue)
 	func value(_ cidx: JSValue, _ ridx: JSValue) -> JSValue
 	func setValue(_ cidx: JSValue, _ ridx: JSValue, _ val: JSValue)
+
+	func load(_ url: JSValue) -> JSValue
 }
 
 @objc public class KLValueTable: NSObject, KLValueTableProtocol
@@ -93,6 +95,24 @@ import Foundation
 		} else {
 			NSLog("Invalid column name/index at \(#function) in \(#file)")
 		}
+	}
+
+	public func load(_ val: JSValue) -> JSValue {
+		var result = false
+		if val.isURL {
+			let url = val.toURL()
+			if let text = url.loadContents() {
+				switch mTable.load(source: text as String) {
+				case .ok:
+					result = true
+				case .error(_):
+					break
+				@unknown default:
+					NSLog("[Internal error] Unexpected case value at \(#function)")
+				}
+			}
+		}
+		return JSValue(bool: result, in: mContext)
 	}
 }
 
