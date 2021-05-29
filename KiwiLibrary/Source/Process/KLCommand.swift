@@ -108,7 +108,7 @@ import Foundation
 		let dstdir = CNPreference.shared.userPreference.homeDirectory
 
 		let installer = CNResourceInstaller(console: console)
-		if installer.install(destinationDirectory: dstdir, sourceDirectoryNames: ["Library", "Game", "Sample"]) {
+		if installer.install(destinationDirectory: dstdir, sourceDirectoryNames: ["Library", "Game", "Sample", "Utility"]) {
 			result = 0
 		} else {
 			result = 1
