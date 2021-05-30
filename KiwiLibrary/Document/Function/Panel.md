@@ -19,6 +19,21 @@ var url = openPanel(title, type, [extensions]) ;
 |URL      |Selected file or directory |
 |null     |Use does not select the file or directory  |
 
+## `savePanel` function
+````
+var url = savePanel(title) ;
+````
+### Parameters
+|Name     |Type     |Description              |
+|:---     |:---     |:---                     |
+|title    |string   |Title of the panel       |
+
+### Return value
+|Type     |Description              |
+|:---     |:---                     |
+|URL      |Selected file or directory |
+|null     |Use does not select the file or directory  |
+
 ## References
 * [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library
 

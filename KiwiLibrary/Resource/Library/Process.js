@@ -60,6 +60,17 @@ function openPanel(title, type, exts) {
     sem.wait(); // Wait finish operation
     return result;
 }
+function savePanel(title) {
+    let result = null;
+    let sem = new Semaphore(0);
+    let cbfunc = function (url) {
+        result = url;
+        sem.signal(); // Tell finish operation
+    };
+    _savePanel(title, cbfunc);
+    sem.wait(); // Wait finish operation
+    return result;
+}
 function run(path, input, output, error) {
     if (path == null) {
         let newpath = openPanel("Select script file to execute", FileType.file, ["js", "jsh", "jspkg"]);

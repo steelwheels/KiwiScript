@@ -328,6 +328,40 @@ public class KLLibraryCompiler: KECompiler
 		}
 		ctxt.set(name: "_openPanel", function: openPanelFunc)
 
+		let savePanelFunc: @convention(block) (_ titleval: JSValue, _ cbfunc: JSValue) -> Void = {
+			(_ titleval: JSValue, _ cbfunc: JSValue) -> Void in
+			#if os(OSX)
+			if let title = KLLibraryCompiler.valueToString(value: titleval) {
+				CNExecuteInMainThread(doSync: false, execute: {
+					() -> Void in
+					URL.savePanel(title: title, outputDirectory: nil, callback: {
+						(_ urlp: URL?) -> Void in
+						let param: JSValue
+						if let url = urlp {
+							param = JSValue(URL: url, in: ctxt)
+						} else {
+							param = JSValue(nullIn: ctxt)
+						}
+						cbfunc.call(withArguments: [param])
+					})
+				})
+			} else {
+				if let param = JSValue(nullIn: ctxt) {
+					cbfunc.call(withArguments: [param])
+				} else {
+					NSLog("Failed to allocate return value")
+				}
+			}
+			#else
+			if let param = JSValue(nullIn: ctxt) {
+				cbfunc.call(withArguments: [param])
+			} else {
+				NSLog("Failed to allocate return value")
+			}
+			#endif
+		}
+		ctxt.set(name: "_savePanel", function: savePanelFunc)
+
 		/* exit */
 		let exitFunc: @convention(block) (_ value: JSValue) -> JSValue
 		switch conf.applicationType {

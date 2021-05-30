@@ -76,6 +76,18 @@ function openPanel(title: string, type: number, exts: string[]): _URL | null {
 	return result ;
 }
 
+function savePanel(title: string): _URL | null {
+	let result = null ;
+	let sem    = new Semaphore(0) ;
+	let cbfunc = function(url: _URL) {
+		result = url ;
+		sem.signal() ;  // Tell finish operation
+	} ;
+	_savePanel(title, cbfunc) ;
+	sem.wait() ; // Wait finish operation
+	return result ;
+}
+
 function run(path: _URL | string | null,
 				input: _File, output: _File, error: _File) {
 	if(path == null) {

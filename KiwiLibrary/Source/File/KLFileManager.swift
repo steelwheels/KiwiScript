@@ -22,10 +22,6 @@ import Foundation
 
 	func fullPath(_ path: JSValue, _ base: JSValue) -> JSValue
 
-	#if os(OSX)
-	func openPanel(_ title: JSValue, _ type: JSValue, _ exts: JSValue) -> JSValue
-	#endif
-
 	func homeDirectory() -> JSValue
 	func temporaryDirectory() -> JSValue
 
@@ -183,75 +179,7 @@ import Foundation
 		}
 		return JSValue(nullIn: mContext)
 	}
-
-	#if os(OSX)
-	public func openPanel(_ titleval: JSValue, _ typeval: JSValue, _ extval: JSValue) -> JSValue
-	{
-		if let title = panelTitle(title: titleval), let type = panelFileType(type: typeval), let exts = panelExtensions(extensions: extval) {
-			let semaphore = DispatchSemaphore(value: 0)
-			var result: URL? = nil
-			URL.openPanel(title: title, type: type, extensions: exts, callback: {
-				(_ url: URL?) -> Void in
-				result = url
-				semaphore.signal()
-			})
-			semaphore.wait()
-			if let url = result {
-				return JSValue(URL: url, in: mContext)
-			} else {
-				return JSValue(nullIn: self.mContext)
-			}
-		} else {
-			NSLog("Invalid parameters")
-			return JSValue(nullIn: self.mContext)
-		}
-	}
-
-	private func panelTitle(title tval: JSValue) -> String? {
-		if tval.isString {
-			if let str = tval.toString() {
-				return str
-			}
-		}
-		return nil
-	}
-
-	private func panelFileType(type tval: JSValue) -> CNFileType? {
-		if let num = tval.toNumber() {
-			if let sel = CNFileType(rawValue: num.int32Value) {
-				return sel
-			}
-		}
-		return nil
-	}
-
-	private func panelExtensions(extensions tval: JSValue) -> Array<String>? {
-		if tval.isArray {
-			var types: Array<String> = []
-			if let vals = tval.toArray() {
-				for elm in vals {
-					if let str = elm as? String {
-						types.append(str)
-					} else {
-						return nil
-					}
-				}
-			}
-			return types
-		}
-		return nil
-	}
-
-	private func panelCallback(callbackValue cbval: JSValue) -> JSValue? {
-		if cbval.isUndefined {
-			return nil
-		} else {
-			return cbval
-		}
-	}
-
-	#endif
-
+	
 	public func homeDirectory() -> JSValue {
 		let home = CNPreference.shared.userPreference.homeDirectory
 		let urlobj = KLURL(URL: home, context: mContext)

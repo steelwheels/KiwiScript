@@ -19,7 +19,7 @@ public class KEContext : JSContext
 	public override init(virtualMachine vm: JSVirtualMachine) {
 		exceptionCallback = {
 			(_ exception: KEException) -> Void in
-			NSLog("JavaScriptCore [Exception] \(exception.description)")
+			CNLog(logLevel: .error, message: "JavaScriptCore exception: \(exception.description)", atFunction: #function, inFile: #file)
 		}
 		mErrorCount		= 0
 		super.init(virtualMachine: vm)
@@ -32,7 +32,7 @@ public class KEContext : JSContext
 				myself.exceptionCallback(except)
 				myself.mErrorCount += 1
 			} else {
-				NSLog("Internal error")
+				CNLog(logLevel: .error, message: "No context", atFunction: #function, inFile: #file)
 			}
 		}
 	}
@@ -61,7 +61,7 @@ public class KEContext : JSContext
 		if let val = JSValue(object: obj, in: self){
 			set(name: n, value: val)
 		} else {
-			NSLog("Can not allocate value")
+			CNLog(logLevel: .error, message: "Failed to allocate value", atFunction: #function, inFile: #file)
 		}
 	}
 
