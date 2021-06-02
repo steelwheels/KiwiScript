@@ -74,7 +74,6 @@ open class KHScriptThread: KLThread
 
 	open override func terminate() {
 		if super.status.isRunning {
-			//NSLog("Terminate script by _cancel()")
 			self.context.evaluateScript("_cancel() ;")
 			super.terminate()
 		}

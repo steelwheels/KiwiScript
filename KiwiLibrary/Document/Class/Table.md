@@ -1,6 +1,6 @@
 # Table class
 Table class has 2D array of immediate values.
-This class support load/save operation from/to the file. The file format is defined as [JSON: JavaScript object notation](https://en.wikipedia.org/wiki/JSON).
+This class support load/save operation from/to the file. The file format is defined by [table format](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Format/Table.md).
 
 ## Constructor
 The instance of this class is allocated as a property of [Data table component](https://github.com/steelwheels/KiwiCompnents/blob/master/Document/Components/Table.md).

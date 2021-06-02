@@ -91,7 +91,7 @@ public extension CNPreferenceTable
 					return // without error
 				}
 			}
-			NSLog("Invalid logLevel value: \(newval.description)")
+			CNLog(logLevel: .error, message: "Invalid logLevel value: \(newval.description)", atFunction: #function, inFile: #file)
 		}
 	}
 }
@@ -154,7 +154,7 @@ public extension CNPreferenceTable
 					return
 				}
 			}
-			NSLog("Failed to set foregound color")
+			CNLog(logLevel: .error, message: "Failed to set foregound color", atFunction: #function, inFile: #file)
 		}
 	}
 
@@ -172,7 +172,7 @@ public extension CNPreferenceTable
 					return
 				}
 			}
-			NSLog("Failed to set foregound color")
+			CNLog(logLevel: .error, message: "Failed to set foregound color", atFunction: #function, inFile: #file)
 		}
 	}
 }
@@ -206,10 +206,10 @@ public extension CNPreferenceTable
 					let pref = CNPreference.shared.userPreference
 					pref.homeDirectory = URL(fileURLWithPath: str)
 				} else {
-					NSLog("Failed to set Preference.user.homeDirectory")
+					CNLog(logLevel: .error, message: "Failed to set Preference.user.homeDirectory", atFunction: #function, inFile: #file)
 				}
 			} else {
-				NSLog("Failed to set Preference.user.homeDirectory")
+				CNLog(logLevel: .error, message: "Failed to set Preference.user.homeDirectory", atFunction: #function, inFile: #file)
 			}
 		}
 	}

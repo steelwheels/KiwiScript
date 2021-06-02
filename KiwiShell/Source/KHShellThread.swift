@@ -193,26 +193,10 @@ open class KHShellThread: CNShellThread
 		if let parent = self.processManager {
 			let childlen = parent.childProcessManagers
 			for child in childlen {
-				//NSLog("\(#file): Terminate child process")
 				child.terminate()
 			}
 		}
 	}
-
-	/*
-	private func printResult(returnValue retval: JSValue) {
-		var iserror = true
-		if retval.isNumber {
-			iserror = (retval.toInt32() != 0)
-		}
-		if iserror {
-			if let retstr = retval.toString() {
-				self.errorFileHandle.write(string: "Failed to execute: \(retstr)\n")
-			} else {
-				self.errorFileHandle.write(string: "Failed to execute: internal error\n")
-			}
-		}
-	}*/
 
 	private func isEmpty(string str: String) -> Bool {
 		var result = true

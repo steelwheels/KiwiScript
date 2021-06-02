@@ -58,7 +58,7 @@ import Foundation
 		case .null:
 			result = mNullValue
 		@unknown default:
-			NSLog("Unknown case at \(#function)")
+			CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
 			result = self.endOfFile
 		}
 		return result
@@ -74,7 +74,7 @@ import Foundation
 		case .null:
 			result = mNullValue
 		@unknown default:
-			NSLog("Unknown case at \(#function)")
+			CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
 			result = self.endOfFile
 		}
 		return result

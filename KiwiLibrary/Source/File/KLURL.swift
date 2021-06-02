@@ -5,6 +5,7 @@
  *   Copyright (C) 2018 Steel Wheels Project
  */
 
+import CoconutData
 import KiwiEngine
 import JavaScriptCore
 import Foundation
@@ -95,7 +96,7 @@ import Foundation
 			if let text = url.loadContents() {
 				return JSValue(object: text, in: mContext)
 			} else {
-				NSLog("Failed to load text at \(url.absoluteString)\n")
+				CNLog(logLevel: .error, message: "Failed to load text at \(url.absoluteString)", atFunction: #function, inFile: #file)
 			}
 		}
 		return JSValue(nullIn: mContext)

@@ -59,7 +59,7 @@ import Foundation
 				return
 			}
 		}
-		NSLog("Failed to set title at \(#function) in \(#file)")
+		CNLog(logLevel: .error, message: "Failed to set title", atFunction: #function, inFile: #file)
 	}
 
 	public func value(_ cidx: JSValue, _ ridx: JSValue) -> JSValue {
@@ -81,7 +81,7 @@ import Foundation
 
 	public func setValue(_ cidx: JSValue, _ ridx: JSValue, _ val: JSValue) {
 		guard ridx.isNumber else {
-			NSLog("INvalid row index at \(#function) in \(#file)")
+			CNLog(logLevel: .error, message: "Invalid row index", atFunction: #function, inFile: #file)
 			return
 		}
 		let rval = Int(ridx.toInt32())
@@ -93,7 +93,7 @@ import Foundation
 			let nval = val.toNativeValue()
 			mTable.setValue(title: cval, row: rval, value: nval)
 		} else {
-			NSLog("Invalid column name/index at \(#function) in \(#file)")
+			CNLog(logLevel: .error, message: "Invalid column name/index", atFunction: #function, inFile: #file)
 		}
 	}
 
@@ -108,7 +108,7 @@ import Foundation
 				case .error(_):
 					break
 				@unknown default:
-					NSLog("[Internal error] Unexpected case value at \(#function)")
+					CNLog(logLevel: .error, message: "Unexpected result", atFunction: #function, inFile: #file)
 				}
 			}
 		}

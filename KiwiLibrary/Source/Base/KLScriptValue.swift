@@ -169,7 +169,7 @@ extension JSValue
 				return url
 			}
 		}
-		NSLog("Failed to convert to URL")
+		CNLog(logLevel: .error, message: "Failed to convert to URL", atFunction: #function, inFile: #file)
 		return URL(string: "file:/dev/null")!
 	}
 
@@ -190,7 +190,7 @@ extension JSValue
 				return img
 			}
 		}
-		NSLog("Failed to convert to image")
+		CNLog(logLevel: .error, message: "Failed to convert to image", atFunction: #function, inFile: #file)
 		return CNImage(data: Data(capacity: 16))!
 	}
 
@@ -289,7 +289,7 @@ extension JSValue
 		let result: CNNativeValue
 		switch self.type {
 		case .UndefinedType:
-			NSLog("Undefined value is not supported")
+			CNLog(logLevel: .error, message: "Undefined value is not supported", atFunction: #function, inFile: #file)
 			result = .nullValue
 		case .NullType:
 			result = .nullValue
@@ -312,21 +312,21 @@ extension JSValue
 			if let point = self.toPoint() {
 				result = .pointValue(point)
 			} else {
-				NSLog("Failed to convert: point")
+				CNLog(logLevel: .error, message: "Failed to convert to Point", atFunction: #function, inFile: #file)
 				result = .nullValue
 			}
 		case .SizeType:
 			if let size = self.toSize() {
 				result = .sizeValue(size)
 			} else {
-				NSLog("Failed to convert: size")
+				CNLog(logLevel: .error, message: "Failed to convert to Size", atFunction: #function, inFile: #file)
 				result = .nullValue
 			}
 		case .RectType:
 			if let rect = self.toRect() {
 				result = .rectValue(rect)
 			} else {
-				NSLog("Failed to convert: rect")
+				CNLog(logLevel: .error, message: "Failed to convert to Rect", atFunction: #function, inFile: #file)
 				result = .nullValue
 			}
 		case .ArrayType:
@@ -336,7 +336,7 @@ extension JSValue
 				if let object = elementToValue(any: elm) {
 					dstarr.append(object)
 				} else {
-					NSLog("Failed to convert: array")
+					CNLog(logLevel: .error, message: "Failed to convert to Array", atFunction: #function, inFile: #file)
 				}
 			}
 			result = .arrayValue(dstarr)
@@ -347,15 +347,15 @@ extension JSValue
 					if let obj = elementToValue(any: value) {
 						dstdict[key] = obj
 					} else {
-						NSLog("Failed to convert: dictionary")
+						CNLog(logLevel: .error, message: "Failed to convert to Dictionary", atFunction: #function, inFile: #file)
 					}
 				}
 			} else {
-				NSLog("Failed to convert: dictionary")
+				CNLog(logLevel: .error, message: "Failed to convert to Dictionary", atFunction: #function, inFile: #file)
 			}
 			result = CNNativeValue.dictionaryToValue(dictionary: dstdict)
 		case .ObjectType:
-			NSLog("Failed to convert: unknown")
+			CNLog(logLevel: .error, message: "Failed to convert to Object", atFunction: #function, inFile: #file)
 			result = .nullValue
 		}
 		return result
@@ -368,14 +368,14 @@ extension JSValue
 			if let url = val.url {
 				return CNNativeValue.anyToValue(object: url)
 			} else {
-				NSLog("Null URL")
+				CNLog(logLevel: .error, message: "Null URL", atFunction: #function, inFile: #file)
 				return .nullValue
 			}
 		} else if let val = value as? KLImage {
 			if let image = val.coreImage {
 				return CNNativeValue.anyToValue(object: image)
 			} else {
-				NSLog("Null image")
+				CNLog(logLevel: .error, message: "Null Image", atFunction: #function, inFile: #file)
 				return .nullValue
 			}
 		} else {

@@ -315,14 +315,14 @@ public class KLLibraryCompiler: KECompiler
 				if let param = JSValue(nullIn: ctxt) {
 					cbfunc.call(withArguments: [param])
 				} else {
-					NSLog("Failed to allocate return value")
+					CNLog(logLevel: .error, message: "Failed to allocate return value", atFunction: #function, inFile: #file)
 				}
 			}
 			#else
 			if let param = JSValue(nullIn: ctxt) {
 				cbfunc.call(withArguments: [param])
 			} else {
-				NSLog("Failed to allocate return value")
+				CNLog(logLevel: .error, message: "Failed to allocate return value", atFunction: #function, inFile: #file)
 			}
 			#endif
 		}
@@ -349,14 +349,14 @@ public class KLLibraryCompiler: KECompiler
 				if let param = JSValue(nullIn: ctxt) {
 					cbfunc.call(withArguments: [param])
 				} else {
-					NSLog("Failed to allocate return value")
+					CNLog(logLevel: .error, message: "Failed to allocate return value", atFunction: #function, inFile: #file)
 				}
 			}
 			#else
 			if let param = JSValue(nullIn: ctxt) {
 				cbfunc.call(withArguments: [param])
 			} else {
-				NSLog("Failed to allocate return value")
+				CNLog(logLevel: .error, message: "Failed to allocate return value", atFunction: #function, inFile: #file)
 			}
 			#endif
 		}
@@ -395,7 +395,7 @@ public class KLLibraryCompiler: KECompiler
 			#endif
 			ctxt.set(name: "exit", function: exitFunc)
 		@unknown default:
-			NSLog("Unknown application type")
+			CNLog(logLevel: .error, message: "Unknown application type", atFunction: #function, inFile: #file)
 			break
 		}
 
@@ -414,7 +414,7 @@ public class KLLibraryCompiler: KECompiler
 					result = 0
 				}
 			} else {
-				NSLog("Invalid parameter")
+				CNLog(logLevel: .error, message: "Invalid parameter for exit() function")
 				result = -1
 			}
 			return JSValue(int32: result, in: ctxt)
@@ -583,11 +583,12 @@ public class KLLibraryCompiler: KECompiler
 		ctxt.set(name: "Bitmap", function: allocBitmapFunc)
 
 		/* Lock */
+		/*
 		let allocLockFunc: @convention(block) () -> JSValue = {
 			() -> JSValue in
 			return JSValue(object: KLLock(), in: ctxt)
 		}
-		ctxt.set(name: "Lock", function: allocLockFunc)
+		ctxt.set(name: "Lock", function: allocLockFunc)*/
 
 		/* Dictionary */
 		let allocDictFunc: @convention(block) () -> JSValue = {

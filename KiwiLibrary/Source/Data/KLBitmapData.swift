@@ -95,7 +95,7 @@ extension JSValue
 			mBitmap.set(x: x, y: y, bitmap: bm.core)
 			result = true
 		} else {
-			NSLog("Invalid parameter: \(String(describing: data.toString()))")
+			CNLog(logLevel: .error, message: "Invalid parameter: \(String(describing: data.toString()))", atFunction: #function, inFile: #file)
 			result = false
 		}
 		return JSValue(bool: result, in: mContext)

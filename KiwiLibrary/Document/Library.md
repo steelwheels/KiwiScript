@@ -60,7 +60,6 @@ Generate escape sequence string to be passed to terminal.
 Create and control processes and threads.
 * [Process](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Process.md): The object presents the process. This is allocated by process control functions such as [system](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/System.md) function.
 * [Thread](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Thread.md): The object presents the thread. This is allocated by thread control functions such as [thread](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Thread.md) function.
-* [Lock](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Lock.md): Mutex lock manager.
 * [Semaphore](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Semaphore.md): Semaphore
 * [Environment](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Environment.md): Operate environment variables such as `PWD`, `TMPDIR` and etc.
 
@@ -78,6 +77,9 @@ Create and control processes and threads.
 
 ### Built-in JavaScript class
 * [Turtle class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/BuiltIn/Turtle.md): Support [turtle graphics](https://en.wikipedia.org/wiki/Turtle_graphics). It uses [GraphicsContext](https://github.com/steelwheels/KiwiCompnents/blob/master/Document/Components/Graphics2D.md).
+
+## Data format
+* [Table](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Format/Table.md): The text file format to present the table data.　The [Table class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Table.md) is used to operate this data.
 
 ## Related links
 * [KiwiLibrary Framework](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/README.md): The framework contains this library.

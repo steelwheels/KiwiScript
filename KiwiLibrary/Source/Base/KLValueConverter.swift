@@ -36,7 +36,7 @@ public class KLValueDuplicator
 		} else if let _ = aval as? Date {
 			return aval
 		} else {
-			NSLog("Failed to duplicate (1): \(String(describing: type(of: aval)))")
+			CNLog(logLevel: .error, message: "Failed to duplicate: \(String(describing: type(of: aval)))", atFunction: #function, inFile: #file)
 			return aval
 		}
 	}
@@ -89,7 +89,7 @@ public class KLValueDuplicator
 		if let aval = obj {
 			return JSValue(object: aval, in: mTargetContext)
 		}
-		NSLog("Failed to duplicate (2)")
+		CNLog(logLevel: .error, message: "Failed to duplicate: any", atFunction: #function, inFile: #file)
 		return JSValue(undefinedIn: mTargetContext)
 	}
 }

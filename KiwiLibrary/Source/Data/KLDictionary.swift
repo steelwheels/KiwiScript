@@ -30,7 +30,7 @@ import Foundation
 		if name.isString {
 			mTable[name.toString()] = value.toNativeValue()
 		} else {
-			NSLog("Invalid key to set data at \(#function)")
+			CNLog(logLevel: .error, message: "Invalid key to set data at \(#function)", atFunction: #function, inFile: #file)
 		}
 	}
 
@@ -42,7 +42,7 @@ import Foundation
 				return JSValue(nullIn: mContext)
 			}
 		} else {
-			NSLog("Invalid key to set data at \(#function)")
+			CNLog(logLevel: .error, message: "Invalid key to set data", atFunction: #function, inFile: #file)
 			return JSValue(nullIn: mContext)
 		}
 	}

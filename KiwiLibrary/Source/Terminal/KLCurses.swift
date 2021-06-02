@@ -129,7 +129,7 @@ import Foundation
 		if let s = str.toString() {
 			mCurses.put(string: s)
 		} else {
-			NSLog("Failed to put string")
+			CNLog(logLevel: .error, message: "Failed to put string: \(str)", atFunction: #function, inFile: #file)
 		}
 	}
 

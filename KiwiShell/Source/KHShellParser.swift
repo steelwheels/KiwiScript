@@ -44,7 +44,7 @@ public class KHShellParser
 				if let str = environmentValueToString(value: val) {
 					envdict["${" + name + "}"] = str
 				} else {
-					NSLog("Failed to get environment value: \(name)")
+					CNLog(logLevel: .error, message: "Failed to get environment value: \(name)", atFunction: #function, inFile: #file)
 				}
 			}
 		}
@@ -147,7 +147,7 @@ public class KHShellParser
 			}
 			result = str
 		default:
-			NSLog("Unsupported environment value type: \(val.valueType.toString())")
+			CNLog(logLevel: .error, message: "Unsupported environment value type: \(val.valueType.toString())", atFunction: #function, inFile: #file)
 		}
 		return result
 	}
@@ -174,7 +174,6 @@ public class KHShellParser
 		/* Get exit code after '->' */
 		let exitcode: String?
 		(script, exitcode) = decodeExitCode(script: script)
-		//NSLog("decodeExitCode \"\(script)\" \"\(String(describing: exitcode))\"")
 
 		/* Allocate shell processes */
 		let pipes = script.components(separatedBy: ";")

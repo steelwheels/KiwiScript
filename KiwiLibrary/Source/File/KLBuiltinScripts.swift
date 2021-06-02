@@ -80,10 +80,10 @@ public class KLBuiltinScripts
 			}
 			return result
 		case .error(let err):
-			NSLog("[Internal Error] \(err.description)")
+			CNLog(logLevel: .error, message: err.description, atFunction: #function, inFile: #file)
 			return [:]
 		@unknown default:
-			NSLog("[Internal Error] Unknown result")
+			CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
 			return [:]
 		}
 	}
@@ -99,10 +99,10 @@ public class KLBuiltinScripts
 			}
 			return result
 		case .error(let err):
-			NSLog("[Internal Error] \(err.description)")
+			CNLog(logLevel: .error, message: err.description, atFunction: #function, inFile: #file)
 			return [:]
 		@unknown default:
-			NSLog("[Internal Error] Unknown result")
+			CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
 			return [:]
 		}
 	}
