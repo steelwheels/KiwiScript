@@ -105,8 +105,8 @@ import Foundation
 				switch mTable.load(source: text as String) {
 				case .ok:
 					result = true
-				case .error(_):
-					break
+				case .error(let err):
+					CNLog(logLevel: .error, message: "[Error] Failed to load table: " + err.description)
 				@unknown default:
 					CNLog(logLevel: .error, message: "Unexpected result", atFunction: #function, inFile: #file)
 				}
