@@ -21,6 +21,7 @@ import Foundation
 	func setValue(_ cidx: JSValue, _ ridx: JSValue, _ val: JSValue)
 
 	func load(_ url: JSValue) -> JSValue
+	func save(_ url: JSValue) -> JSValue
 }
 
 @objc public class KLValueTable: NSObject, KLValueTableProtocol
@@ -97,10 +98,10 @@ import Foundation
 		}
 	}
 
-	public func load(_ val: JSValue) -> JSValue {
+	public func load(_ urlval: JSValue) -> JSValue {
 		var result = false
-		if val.isURL {
-			let url = val.toURL()
+		if urlval.isURL {
+			let url = urlval.toURL()
 			if let text = url.loadContents() {
 				switch mTable.load(source: text as String) {
 				case .ok:
@@ -110,6 +111,18 @@ import Foundation
 				@unknown default:
 					CNLog(logLevel: .error, message: "Unexpected result", atFunction: #function, inFile: #file)
 				}
+			}
+		}
+		return JSValue(bool: result, in: mContext)
+	}
+
+	public func save(_ urlval: JSValue) -> JSValue {
+		var result = false
+		if urlval.isURL {
+			let url = urlval.toURL()
+			let txt = mTable.toNativeValue().toText().toStrings(terminal: "").joined(separator: "\n") + "\n"
+			if url.storeContents(contents: txt) {
+				result = true
 			}
 		}
 		return JSValue(bool: result, in: mContext)

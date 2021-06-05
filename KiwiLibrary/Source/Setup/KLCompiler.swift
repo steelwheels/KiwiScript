@@ -332,18 +332,15 @@ public class KLLibraryCompiler: KECompiler
 			(_ titleval: JSValue, _ cbfunc: JSValue) -> Void in
 			#if os(OSX)
 			if let title = KLLibraryCompiler.valueToString(value: titleval) {
-				CNExecuteInMainThread(doSync: false, execute: {
-					() -> Void in
-					URL.savePanel(title: title, outputDirectory: nil, callback: {
-						(_ urlp: URL?) -> Void in
-						let param: JSValue
-						if let url = urlp {
-							param = JSValue(URL: url, in: ctxt)
-						} else {
-							param = JSValue(nullIn: ctxt)
-						}
-						cbfunc.call(withArguments: [param])
-					})
+				URL.savePanel(title: title, outputDirectory: nil, callback: {
+					(_ urlp: URL?) -> Void in
+					let param: JSValue
+					if let url = urlp {
+						param = JSValue(URL: url, in: ctxt)
+					} else {
+						param = JSValue(nullIn: ctxt)
+					}
+					cbfunc.call(withArguments: [param])
 				})
 			} else {
 				if let param = JSValue(nullIn: ctxt) {

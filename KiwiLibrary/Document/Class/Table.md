@@ -26,6 +26,16 @@ Get the value on the table. If the value is NOT set, the return value is `null`.
 ### `setValue(columnIndex: Int, rowIndex: Int, value: Any)`
 Set the value to the table.
 
+### `load(url: URL) -> Bool`
+Load the table data from given [URL](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md).
+The text format of the URL is defined in [table format](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Format/Table.md).
+If the loading is succeeded, the return value will be `true`.
+
+### `save(url: URL) -> Bool`
+Save the content of the table into the file pointed by [URL](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md). 
+The text format of the URL is defined in [table format](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Format/Table.md).
+If the saving is succeeded, the return value will be `true`.
+
 ## Related Links
 * [Kiwi Standard Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): The built-in JavaScript library.
 
