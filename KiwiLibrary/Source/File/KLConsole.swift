@@ -45,8 +45,8 @@ import Foundation
 	}
 
 	public func dump(_ value: JSValue){
-		let native = value.toText()
-		native.print(console: mConsole, terminal: "")
+		let native = value.toText().toStrings().joined(separator: "\n")
+		mConsole.print(string: native + "\n")
 	}
 }
 

@@ -35,8 +35,8 @@ public func UTThread(context ctxt: KEContext, processManager procmgr: CNProcessM
 		result = false
 	} else {
 		/* Dump the resource file */
-		let text = resource.toText()
-		text.print(console: cons, terminal: "")
+		let text = resource.toText().toStrings().joined(separator: "\n")
+		cons.print(string: text + "\n")
 
 		let infile: 	CNFile = cons.inputFile
 		let outfile:	CNFile = cons.outputFile

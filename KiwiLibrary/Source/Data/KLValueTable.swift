@@ -120,7 +120,7 @@ import Foundation
 		var result = false
 		if urlval.isURL {
 			let url = urlval.toURL()
-			let txt = mTable.toNativeValue().toText().toStrings(terminal: "").joined(separator: "\n") + "\n"
+			let txt = mTable.toNativeValue().toText().toStrings().joined(separator: "\n") + "\n"
 			if url.storeContents(contents: txt) {
 				result = true
 			}

@@ -1142,22 +1142,22 @@ ScriptManager
 /* Unit test for Thread */
 Source URL: file:///Users/tomoo/build/DerivedData/KiwiLibrary-drbjanamxeoihwhgnyztfalrvplk/Build/Products/Debug/UnitTest.bundle/Contents/Resources/sample-0.jspkg
 {
-  URL: file:///Users/tomoo/build/DerivedData/KiwiLibrary-drbjanamxeoihwhgnyztfalrvplk/Build/Products/Debug/UnitTest.bundle/Contents/Resources/sample-0.jspkg
+  URL: file:///Users/tomoo/build/DerivedData/KiwiLibrary-drbjanamxeoihwhgnyztfalrvplk/Build/Products/Debug/UnitTest.bundle/Contents/Resources/sample-0.jspkg, 
   application: {
-  }
+  }, 
   data: {
-  }
+  }, 
   images: {
-  }
+  }, 
   libraries: {
-  }
+  }, 
   subviews: {
-  }
+  }, 
   threads: {
     sample0: {
       "sample0.js"
     }
-  }
+  }, 
   view: {
   }
 }
