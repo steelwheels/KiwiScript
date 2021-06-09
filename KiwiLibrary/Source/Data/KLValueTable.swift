@@ -70,10 +70,10 @@ import Foundation
 		let rval = Int(ridx.toInt32())
 		if cidx.isNumber {
 			let cval = Int(cidx.toInt32())
-			let ret  = mTable.value(column: cval, row: rval)
+			let ret  = mTable.value(columnIndex: .number(cval), row: rval)
 			return ret.toJSValue(context: mContext)
 		} else if let cval = cidx.toString() {
-			let ret  = mTable.value(title: cval, row: rval)
+			let ret  = mTable.value(columnIndex: .title(cval), row: rval)
 			return ret.toJSValue(context: mContext)
 		} else {
 			return JSValue(nullIn: mContext)
@@ -89,10 +89,10 @@ import Foundation
 		if cidx.isNumber {
 			let cval = Int(cidx.toInt32())
 			let nval = val.toNativeValue()
-			mTable.setValue(column: cval, row: rval, value: nval)
+			mTable.setValue(columnIndex: .number(cval), row: rval, value: nval)
 		} else if let cval = cidx.toString() {
 			let nval = val.toNativeValue()
-			mTable.setValue(title: cval, row: rval, value: nval)
+			mTable.setValue(columnIndex: .title(cval), row: rval, value: nval)
 		} else {
 			CNLog(logLevel: .error, message: "Invalid column name/index", atFunction: #function, inFile: #file)
 		}
