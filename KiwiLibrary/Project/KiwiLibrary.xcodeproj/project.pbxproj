@@ -141,6 +141,11 @@
 		05A95B9C2516D08500775737 /* KLType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B912516D08500775737 /* KLType.swift */; };
 		05A95B9D2516D08500775737 /* KLType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B912516D08500775737 /* KLType.swift */; };
 		05B12A5B25C6783900273421 /* Turtle.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B12A5A25C6783900273421 /* Turtle.js */; };
+		05B4EF47267F886A00E5D08F /* CoconutDatabase.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05B4EF46267F886A00E5D08F /* CoconutDatabase.xcframework */; };
+		05B4EF4B267F888100E5D08F /* CoconutDatabase.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05B4EF46267F886A00E5D08F /* CoconutDatabase.xcframework */; };
+		05B4EF50267F88F300E5D08F /* CoconutDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05B4EF4F267F88F300E5D08F /* CoconutDatabase.framework */; };
+		05B4EF56267F898C00E5D08F /* KLAddressBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B4EF55267F898C00E5D08F /* KLAddressBook.swift */; };
+		05B4EF57267F898C00E5D08F /* KLAddressBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B4EF55267F898C00E5D08F /* KLAddressBook.swift */; };
 		05C0378E25187007002A9C41 /* Math.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05C0378825186FF3002A9C41 /* Math.js */; };
 		05C3B2A025A2087F005256E1 /* KLReadline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C3B29F25A2087F005256E1 /* KLReadline.swift */; };
 		05C3B2A125A2087F005256E1 /* KLReadline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C3B29F25A2087F005256E1 /* KLReadline.swift */; };
@@ -409,6 +414,9 @@
 		05A95B902516D08500775737 /* KLNativeStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLNativeStruct.swift; sourceTree = "<group>"; };
 		05A95B912516D08500775737 /* KLType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLType.swift; sourceTree = "<group>"; };
 		05B12A5A25C6783900273421 /* Turtle.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Turtle.js; sourceTree = "<group>"; };
+		05B4EF46267F886A00E5D08F /* CoconutDatabase.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutDatabase.xcframework; path = ../../../../Library/Frameworks/CoconutDatabase.xcframework; sourceTree = "<group>"; };
+		05B4EF4F267F88F300E5D08F /* CoconutDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutDatabase.framework; path = "../../../../Library/Frameworks/CoconutDatabase.xcframework/macos-arm64_x86_64/CoconutDatabase.framework"; sourceTree = "<group>"; };
+		05B4EF55267F898C00E5D08F /* KLAddressBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLAddressBook.swift; sourceTree = "<group>"; };
 		05C0378825186FF3002A9C41 /* Math.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Math.js; sourceTree = "<group>"; };
 		05C0378925186FF3002A9C41 /* Debug.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Debug.js; sourceTree = "<group>"; };
 		05C3B29F25A2087F005256E1 /* KLReadline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLReadline.swift; sourceTree = "<group>"; };
@@ -433,6 +441,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05B4EF50267F88F300E5D08F /* CoconutDatabase.framework in Frameworks */,
 				050D1DBC2581C6FF00D968ED /* KiwiEngine.framework in Frameworks */,
 				050D1DBF2581C71000D968ED /* KiwiLibrary.framework in Frameworks */,
 				050D1DB82581C64A00D968ED /* CoconutData.framework in Frameworks */,
@@ -443,6 +452,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05B4EF47267F886A00E5D08F /* CoconutDatabase.xcframework in Frameworks */,
 				0540D67D2516D4A100C5AE52 /* CoconutData.xcframework in Frameworks */,
 				0540D6822516D4B300C5AE52 /* KiwiEngine.xcframework in Frameworks */,
 			);
@@ -452,6 +462,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05B4EF4B267F888100E5D08F /* CoconutDatabase.xcframework in Frameworks */,
 				0540D6852516D4D200C5AE52 /* CoconutData.xcframework in Frameworks */,
 				0540D6882516D4E100C5AE52 /* KiwiEngine.xcframework in Frameworks */,
 			);
@@ -480,6 +491,8 @@
 		0540D67B2516D4A100C5AE52 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				05B4EF4F267F88F300E5D08F /* CoconutDatabase.framework */,
+				05B4EF46267F886A00E5D08F /* CoconutDatabase.xcframework */,
 				050D1DBE2581C71000D968ED /* KiwiLibrary.framework */,
 				050D1DBB2581C6FF00D968ED /* KiwiEngine.framework */,
 				050D1DB72581C64A00D968ED /* CoconutData.framework */,
@@ -598,6 +611,7 @@
 			children = (
 				05A95B8B2516D06E00775737 /* Base */,
 				05A95B7C2516D05A00775737 /* Data */,
+				05B4EF54267F896100E5D08F /* Database */,
 				05A95B5E2516D02100775737 /* File */,
 				05950C9F25C42FE500D659A1 /* Graphics */,
 				05A95B582516D00600775737 /* Preference */,
@@ -686,6 +700,14 @@
 				05A95B8C2516D08500775737 /* KLValueConverter.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		05B4EF54267F896100E5D08F /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				05B4EF55267F898C00E5D08F /* KLAddressBook.swift */,
+			);
+			path = Database;
 			sourceTree = "<group>";
 		};
 		05C0378425186FB0002A9C41 /* Resource */ = {
@@ -1006,6 +1028,7 @@
 				05A95B9A2516D08500775737 /* KLNativeStruct.swift in Sources */,
 				05A95B4E2516CFF300775737 /* KLProcess.swift in Sources */,
 				05F969C026468BC500E676C5 /* KLValueTable.swift in Sources */,
+				05B4EF56267F898C00E5D08F /* KLAddressBook.swift in Sources */,
 				05A95B9C2516D08500775737 /* KLType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1045,6 +1068,7 @@
 				05A95B9B2516D08500775737 /* KLNativeStruct.swift in Sources */,
 				05A95B4F2516CFF300775737 /* KLProcess.swift in Sources */,
 				05F969C126468BC500E676C5 /* KLValueTable.swift in Sources */,
+				05B4EF57267F898C00E5D08F /* KLAddressBook.swift in Sources */,
 				05A95B9D2516D08500775737 /* KLType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1453,6 +1477,10 @@
 				DEVELOPMENT_TEAM = TR2DNF3P93;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks/CoconutDatabase.xcframework/macos-arm64_x86_64",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1523,6 +1551,10 @@
 				DEVELOPMENT_TEAM = TR2DNF3P93;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks/CoconutDatabase.xcframework/macos-arm64_x86_64",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 2;
