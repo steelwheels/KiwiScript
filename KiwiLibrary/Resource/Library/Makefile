@@ -10,7 +10,8 @@ srcs	= Data.ts \
 	  Process.ts \
 	  String.ts \
 	  Curses.ts \
-	  Turtle.ts
+	  Turtle.ts \
+	  Contacts.ts
 
 dsts	= $(srcs:.ts=.js)
 decls	= $(srcs:.ts=.d.ts)

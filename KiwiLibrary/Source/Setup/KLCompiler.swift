@@ -48,6 +48,7 @@ public class KLLibraryCompiler: KECompiler
 		defineClassObjects(context: ctxt, terminalInfo: terminfo, environment: env, console: cons, config: conf)
 		defineGlobalObjects(context: ctxt, console: cons, config: conf)
 		defineConstructors(context: ctxt, console: cons, config: conf)
+		defineDatabase(context: ctxt, console: cons, config: conf)
 
 		return true
 	}
@@ -593,11 +594,21 @@ public class KLLibraryCompiler: KECompiler
 			return JSValue(object: KLDictionary(context: ctxt), in: ctxt)
 		}
 		ctxt.set(name: "Dictionary", function: allocDictFunc)
+
+		/* Sheet */
+		let allocSheetFunc: @convention(block) () -> JSValue = {
+			() -> JSValue in
+			let tbldata = CNNativeValueTable()
+			let tblobj  = KLValueTable(table: tbldata, context: ctxt)
+			return JSValue(object: tblobj, in: ctxt)
+		}
+		ctxt.set(name: "WorkSheet", function: allocSheetFunc)
 	}
 
 	private func importBuiltinLibrary(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig)
 	{
-		let libnames = ["Data", "Debug", "File", "Graphics", "Curses", "Math", "Process", "String", "Turtle"]
+		/* Contacts.js depends on the Process.js */
+		let libnames = ["Data", "Debug", "File", "Graphics", "Curses", "Math", "Process", "String", "Turtle", "Contacts"]
 		do {
 			for libname in libnames {
 				if let url = CNFilePath.URLForResourceFile(fileName: libname, fileExtension: "js", subdirectory: "Library", forClass: KLLibraryCompiler.self) {
@@ -629,6 +640,12 @@ public class KLLibraryCompiler: KECompiler
 		}
 		ctxt.set(name: "_run", function: runfunc)
 		return true
+	}
+
+	private func defineDatabase(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
+		/* ContactTable */
+		let contact = KLContactTable(context: ctxt)
+		ctxt.set(name: "_Contacts", object: contact)
 	}
 
 	#if os(OSX)

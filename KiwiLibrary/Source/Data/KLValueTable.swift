@@ -34,6 +34,10 @@ import Foundation
 		mContext = ctxt
 	}
 
+	public var core: CNNativeValueTable {
+		get { return mTable }
+	}
+
 	public var columnCount:	JSValue { get {
 		let num = mTable.columnCount
 		return JSValue(int32: Int32(num), in: mContext)
