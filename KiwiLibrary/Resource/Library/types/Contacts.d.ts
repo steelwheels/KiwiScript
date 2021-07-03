@@ -5,4 +5,5 @@ declare class Contacts {
     constructor();
     get recordCount(): number;
     load(): boolean;
+    forEach(callback: (record: _ContactRecord) => void): void;
 }

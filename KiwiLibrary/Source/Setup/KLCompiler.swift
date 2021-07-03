@@ -644,8 +644,8 @@ public class KLLibraryCompiler: KECompiler
 
 	private func defineDatabase(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
 		/* ContactTable */
-		let contact = KLContactTable(context: ctxt)
-		ctxt.set(name: "_Contacts", object: contact)
+		let contact = KLContactDatabase(context: ctxt)
+		ctxt.set(name: "ContactDatabase", object: contact)
 	}
 
 	#if os(OSX)

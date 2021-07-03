@@ -7,17 +7,20 @@ class Contacts {
         this.mIsLoaded = false;
     }
     get recordCount() {
-        return _Contacts.recordCount;
+        return ContactDatabase.recordCount;
     }
     load() {
         let sem = new Semaphore(0);
         let loaded = false;
-        _Contacts.load(function (granted) {
+        ContactDatabase.load(function (granted) {
             loaded = granted;
             sem.signal();
         });
         sem.wait();
         this.mIsLoaded = loaded;
         return loaded;
+    }
+    forEach(callback) {
+        ContactDatabase.forEach(callback);
     }
 }

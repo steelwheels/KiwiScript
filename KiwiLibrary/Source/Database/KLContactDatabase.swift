@@ -11,7 +11,7 @@ import KiwiEngine
 import JavaScriptCore
 import Foundation
 
-@objc public protocol KLContactTableProtocol: JSExport
+@objc public protocol KLContactDatabaseProtocol: JSExport
 {
 	var recordCount: JSValue { get }
 
@@ -20,9 +20,10 @@ import Foundation
 
 	/* callback: (_ granted: Bool) -> Void */
 	func load(_ callback: JSValue)
+	func forEach(_ callback: JSValue)
 }
 
-@objc public class KLContactTable: NSObject, KLContactTableProtocol
+@objc public class KLContactDatabase: NSObject, KLContactDatabaseProtocol
 {
 	private var mContext: KEContext
 
@@ -77,6 +78,15 @@ import Foundation
 			}
 		}
 		CNLog(logLevel: .error, message: "Failed to append record", atFunction: #function, inFile: #file)
+	}
+
+	public func forEach(_ callback: JSValue) {
+		let db = CNContactDatabase.shared
+		db.forEach(callback: {
+			(_ record: CNContactRecord) -> Void in
+			let recobj = KLContactRecord(contact: record, context: mContext)
+			callback.call(withArguments: [recobj])
+		})
 	}
 }
 

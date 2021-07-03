@@ -12,19 +12,23 @@ class Contacts
 	}
 
         get recordCount(): number {
-                return _Contacts.recordCount ;
+                return ContactDatabase.recordCount ;
         }
 
 	load(): boolean {
 		let sem    = new Semaphore(0) ;
 		let loaded = false ;
-		_Contacts.load(function(granted): void {
+		ContactDatabase.load(function(granted): void {
 			loaded = granted ;
 			sem.signal() ;
 		}) ;
 		sem.wait() ;
 		this.mIsLoaded = loaded ;
 		return loaded ;
+	}
+
+	forEach(callback: (record: _ContactRecord) => void): void {
+		ContactDatabase.forEach(callback) ;
 	}
 }
 
