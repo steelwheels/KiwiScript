@@ -595,14 +595,14 @@ public class KLLibraryCompiler: KECompiler
 		}
 		ctxt.set(name: "Dictionary", function: allocDictFunc)
 
-		/* Sheet */
-		let allocSheetFunc: @convention(block) () -> JSValue = {
+		/* Table */
+		let allocTableFunc: @convention(block) () -> JSValue = {
 			() -> JSValue in
 			let tbldata = CNNativeValueTable()
 			let tblobj  = KLValueTable(table: tbldata, context: ctxt)
 			return JSValue(object: tblobj, in: ctxt)
 		}
-		ctxt.set(name: "WorkSheet", function: allocSheetFunc)
+		ctxt.set(name: "ValueTable", function: allocTableFunc)
 	}
 
 	private func importBuiltinLibrary(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig)
