@@ -7,6 +7,7 @@
 
 import KiwiEngine
 import CoconutData
+import CoconutDatabase
 import JavaScriptCore
 #if os(OSX)
 import AppKit
@@ -643,9 +644,13 @@ public class KLLibraryCompiler: KECompiler
 	}
 
 	private func defineDatabase(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
-		/* ContactTable */
+		/* ContactDatabase */
 		let contact = KLContactDatabase(context: ctxt)
 		ctxt.set(name: "ContactDatabase", object: contact)
+
+		/* ContactTable */
+		let ctable = KLContactTable(contactTable: CNContactTable(), context: ctxt)
+		ctxt.set(name: "_ContactTable", object: ctable)
 	}
 
 	#if os(OSX)

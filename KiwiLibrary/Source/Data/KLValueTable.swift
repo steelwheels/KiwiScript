@@ -10,6 +10,7 @@ import KiwiEngine
 import JavaScriptCore
 import Foundation
 
+/* The JavaScript interface for CNNativeTableInterface */
 @objc public protocol KLValueTableProtocol: JSExport
 {
 	var columnCount:	JSValue { get }
@@ -19,12 +20,15 @@ import Foundation
 	func setTitle(_ cidx: JSValue, _ title: JSValue)
 	func value(_ cidx: JSValue, _ ridx: JSValue) -> JSValue
 	func setValue(_ cidx: JSValue, _ ridx: JSValue, _ val: JSValue)
+}
 
+@objc public protocol KLValueTableLoaderProtocol: JSExport
+{
 	func load(_ url: JSValue) -> JSValue
 	func save(_ url: JSValue) -> JSValue
 }
 
-@objc public class KLValueTable: NSObject, KLValueTableProtocol
+@objc public class KLValueTable: NSObject, KLValueTableProtocol, KLValueTableLoaderProtocol
 {
 	private var mTable:	CNNativeValueTable
 	private var mContext: 	KEContext
@@ -34,7 +38,7 @@ import Foundation
 		mContext = ctxt
 	}
 
-	public var core: CNNativeValueTable {
+	public var core: CNNativeTableInterface {
 		get { return mTable }
 	}
 

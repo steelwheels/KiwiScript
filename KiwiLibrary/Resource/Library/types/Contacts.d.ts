@@ -7,3 +7,4 @@ declare class Contacts {
     load(): boolean;
     forEach(callback: (record: _ContactRecord) => void): void;
 }
+declare function ContactTable(): __ContactTable | null;

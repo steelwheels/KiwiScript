@@ -1,6 +1,6 @@
 /**
- * @file	KLContactTable.swift
- * @brief	Define KLContactTable class
+ * @file	KLContactDatabase.swift
+ * @brief	Define KLContactDatabase class
  * @par Copyright
  *   Copyright (C) 2021 Steel Wheels Project
  */

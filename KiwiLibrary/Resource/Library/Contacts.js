@@ -24,3 +24,14 @@ class Contacts {
         ContactDatabase.forEach(callback);
     }
 }
+function ContactTable() {
+    let table = _ContactTable;
+    let sem = new Semaphore(0);
+    let granted = false;
+    table.load(function (result) {
+        granted = result;
+        sem.signal();
+    });
+    sem.wait();
+    return granted ? table : null;
+}

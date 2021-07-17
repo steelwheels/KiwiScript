@@ -31,6 +31,8 @@
 		050FDBF925FC87BE00331107 /* KLDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FDBF725FC87BE00331107 /* KLDictionary.swift */; };
 		051D09E82559914D0083336F /* KLCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D09E72559914D0083336F /* KLCommand.swift */; };
 		051D09E92559914D0083336F /* KLCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D09E72559914D0083336F /* KLCommand.swift */; };
+		052655B2269F27B100CEF0EE /* KLContactTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052655B1269F27B100CEF0EE /* KLContactTable.swift */; };
+		052655B3269F27B100CEF0EE /* KLContactTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052655B1269F27B100CEF0EE /* KLContactTable.swift */; };
 		052927C7263D6EC900A8CD49 /* Data.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E81263BF5C9008172E7 /* Data.ts */; };
 		052927C8263D6EC900A8CD49 /* File.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E88263BF5C9008172E7 /* File.ts */; };
 		052927C9263D6EC900A8CD49 /* Turtle.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E85263BF5C9008172E7 /* Turtle.ts */; };
@@ -364,6 +366,7 @@
 		050FDBF725FC87BE00331107 /* KLDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLDictionary.swift; sourceTree = "<group>"; };
 		0516CC4526213502000B9796 /* Curses.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Curses.js; sourceTree = "<group>"; };
 		051D09E72559914D0083336F /* KLCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLCommand.swift; sourceTree = "<group>"; };
+		052655B1269F27B100CEF0EE /* KLContactTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLContactTable.swift; sourceTree = "<group>"; };
 		053F2C48253BDDCE009CFCA1 /* UTType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTType.swift; sourceTree = "<group>"; };
 		053F2C4E253BDEA8009CFCA1 /* UTURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTURL.swift; sourceTree = "<group>"; };
 		0540D67C2516D4A100C5AE52 /* CoconutData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutData.xcframework; path = ../../../../Library/Frameworks/CoconutData.xcframework; sourceTree = "<group>"; };
@@ -720,6 +723,7 @@
 			children = (
 				05B4EF55267F898C00E5D08F /* KLContactRecord.swift */,
 				055D516F268CA8F700304205 /* KLContactDatabase.swift */,
+				052655B1269F27B100CEF0EE /* KLContactTable.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -1046,6 +1050,7 @@
 				05A95B4E2516CFF300775737 /* KLProcess.swift in Sources */,
 				05F969C026468BC500E676C5 /* KLValueTable.swift in Sources */,
 				05B4EF56267F898C00E5D08F /* KLContactRecord.swift in Sources */,
+				052655B2269F27B100CEF0EE /* KLContactTable.swift in Sources */,
 				05A95B9C2516D08500775737 /* KLType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1087,6 +1092,7 @@
 				05A95B4F2516CFF300775737 /* KLProcess.swift in Sources */,
 				05F969C126468BC500E676C5 /* KLValueTable.swift in Sources */,
 				05B4EF57267F898C00E5D08F /* KLContactRecord.swift in Sources */,
+				052655B3269F27B100CEF0EE /* KLContactTable.swift in Sources */,
 				05A95B9D2516D08500775737 /* KLType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
