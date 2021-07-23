@@ -31,7 +31,7 @@ import Foundation
 	var phoneticMiddleName:		JSValue { get }
 	var phoneticFamilyName:		JSValue { get }
 	var jobTitle:			JSValue { get }
-	var depertmentName:		JSValue { get }
+	var departmentName:		JSValue { get }
 	var organizationName:		JSValue { get }
 	var phoneticOrganizationName:	JSValue { get }
 	var postalAddresses:		JSValue { get }
@@ -119,8 +119,8 @@ import Foundation
 		get { return mContact.jobTitle.toJSValue(context: mContext) }
 	}
 
-	public var depertmentName: JSValue {
-		get { return mContact.depertmentName.toJSValue(context: mContext) }
+	public var departmentName: JSValue {
+		get { return mContact.departmentName.toJSValue(context: mContext) }
 	}
 
 	public var organizationName: JSValue {
