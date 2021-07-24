@@ -43,7 +43,7 @@ import Foundation
 	var nonGregorianBirthday:	JSValue { get }
 	var dates:			JSValue { get }
 	var note:			JSValue { get }
-	var image:			JSValue { get }
+	var imageData:			JSValue { get }
 	var thumbnailImageData:		JSValue { get }
 	var imageDataAvailable:		JSValue { get }
 	var relations:			JSValue { get }
@@ -167,8 +167,8 @@ import Foundation
 		get { return mContact.note.toJSValue(context: mContext) }
 	}
 
-	public var image: JSValue {
-		get { return mContact.image.toJSValue(context: mContext) }
+	public var imageData: JSValue {
+		get { return mContact.imageData.toJSValue(context: mContext) }
 	}
 
 	public var thumbnailImageData: JSValue {
