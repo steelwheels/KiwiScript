@@ -12,7 +12,6 @@ The integer value to present number of columns.
 ### `rowCount`: Number
 The integer value to present number of rows.
 
-
 ## Methods
 ### `title(index: Int): String`
 Get title of the column.
