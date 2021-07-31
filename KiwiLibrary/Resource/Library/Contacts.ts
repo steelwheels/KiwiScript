@@ -3,45 +3,26 @@
 /// <reference path="types/Builtin.d.ts"/>
 /// <reference path="types/Process.d.ts"/>
 
-class Contacts
+function setupContacts(): boolean
 {
-	mIsLoaded:	boolean ;
-
-	constructor(){
-		this.mIsLoaded = false ;
-	}
-
-        get recordCount(): number {
-                return ContactDatabase.recordCount ;
-        }
-
-	load(): boolean {
-		let sem    = new Semaphore(0) ;
-		let loaded = false ;
-		ContactDatabase.load(function(granted): void {
-			loaded = granted ;
-			sem.signal() ;
-		}) ;
-		sem.wait() ;
-		this.mIsLoaded = loaded ;
-		return loaded ;
-	}
-
-	forEach(callback: (record: _ContactRecord) => void): void {
-		ContactDatabase.forEach(callback) ;
-	}
+        let sem    = new Semaphore(0) ;
+	let loaded = false ;
+	Contacts.load(function(granted): void {
+                loaded = granted ;
+		sem.signal() ;
+	}) ;
+	sem.wait() ;
+	return loaded ;
 }
 
-function ContactTable(): __ContactTable | null
+function setupContactTable(): boolean
 {
-	let table = _ContactTable ;
-
-	let sem     = new Semaphore(0) ;
-	let granted = false
-	table.load(function(result){
-		granted = result ;
+	let sem    = new Semaphore(0) ;
+	let loaded = false ;
+	ContactTable.load(function(granted): void {
+		loaded = granted ;
 		sem.signal() ;
-	})
+	}) ;
 	sem.wait() ;
-	return granted ? table : null ;
+	return loaded ;
 }

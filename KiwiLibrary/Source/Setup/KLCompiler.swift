@@ -646,11 +646,11 @@ public class KLLibraryCompiler: KECompiler
 	private func defineDatabase(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
 		/* ContactDatabase */
 		let contact = KLContactDatabase(context: ctxt)
-		ctxt.set(name: "ContactDatabase", object: contact)
+		ctxt.set(name: "Contacts", object: contact)
 
 		/* ContactTable */
 		let ctable = KLContactTable(contactTable: CNContactTable(), context: ctxt)
-		ctxt.set(name: "_ContactTable", object: ctable)
+		ctxt.set(name: "ContactTable", object: ctable)
 	}
 
 	#if os(OSX)
