@@ -1,6 +1,6 @@
 # Contacts
 
-You must call [setupContacts](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/TypeChecks.md) function and check the result before accessing `Contacts` object.
+You must call [setupContacts](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/SetupContacts.md) function and check the result before accessing `Contacts` object.
 
 This class accesses *ContactRecord* which presents the record of contact database. The contact record is implemented by [ContactRecord](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/ContactRecord.md) class.
 
@@ -41,7 +41,7 @@ load(callback: (granted: boolean) => void): void
 ````
 
 # Reference
-* [ContactRecord](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/ContactRecord.md)
-* [setupContacts](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/TypeChecks.md): The function to setup the contact database
+* [ContactRecord](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/ContactRecord.md): The record of contact database
+* [setupContacts](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/SetupContacts.md): The function to setup the contact database
 * [KiwiStandardLibrary](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Builtin data/function and classes.
 
