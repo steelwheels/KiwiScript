@@ -2,13 +2,13 @@
 /* Contacts.ts */
 /// <reference path="types/Builtin.d.ts"/>
 /// <reference path="types/Process.d.ts"/>
-function setupContacts() {
+function requestContactAccess() {
     let sem = new Semaphore(0);
-    let loaded = false;
-    Contacts.load(function (granted) {
-        loaded = granted;
+    let authorized = false;
+    Contacts.authorize(function (granted) {
+        authorized = granted;
         sem.signal();
     });
     sem.wait();
-    return loaded;
+    return authorized;
 }

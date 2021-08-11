@@ -164,9 +164,9 @@ interface ContactRecordIF {
 	fieldCount:		number ;
 
 	fieldName(idx: number): string | null ;
-	value(name): string | number | null ;
-	setValue(val, name): boolean ;
-	save() ;
+	value(name: string): any ;
+	setValue(val: any, name: string): boolean ;
+	save(): 		boolean ;
 	dumpToValue():		{[name: string]: any ;}[] ;
 
 	givenName:		string ;
@@ -185,7 +185,7 @@ interface ContactDatabaseIF {
         append(record: ContactRecordIF): void ;
 	forEach(callback: (record: ContactRecordIF) => void): void ;
 
-	save() ;
+	save():			boolean ;
 	dumpToValue():		{[name: string]: any ;}[] ;
 }
 
