@@ -35,7 +35,7 @@ import Foundation
 		case .string(let str, _):
 			result = str
 		case .error(let err):
-			mConsole.error(string: err.description())
+			mConsole.error(string: err.toString())
 			result = nil
 		case .none:
 			result = nil

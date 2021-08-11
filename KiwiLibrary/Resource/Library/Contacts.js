@@ -12,13 +12,3 @@ function setupContacts() {
     sem.wait();
     return loaded;
 }
-function setupContactTable() {
-    let sem = new Semaphore(0);
-    let loaded = false;
-    ContactTable.load(function (granted) {
-        loaded = granted;
-        sem.signal();
-    });
-    sem.wait();
-    return loaded;
-}

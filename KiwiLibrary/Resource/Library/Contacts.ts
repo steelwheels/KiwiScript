@@ -15,14 +15,3 @@ function setupContacts(): boolean
 	return loaded ;
 }
 
-function setupContactTable(): boolean
-{
-	let sem    = new Semaphore(0) ;
-	let loaded = false ;
-	ContactTable.load(function(granted): void {
-		loaded = granted ;
-		sem.signal() ;
-	}) ;
-	sem.wait() ;
-	return loaded ;
-}

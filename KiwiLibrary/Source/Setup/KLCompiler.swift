@@ -647,10 +647,6 @@ public class KLLibraryCompiler: KECompiler
 		/* ContactDatabase */
 		let contact = KLContactDatabase(context: ctxt)
 		ctxt.set(name: "Contacts", object: contact)
-
-		/* ContactTable */
-		let ctable = KLContactTable(contactTable: CNContactTable(), context: ctxt)
-		ctxt.set(name: "ContactTable", object: ctable)
 	}
 
 	#if os(OSX)
