@@ -23,7 +23,7 @@ open class KECompiler
 		/* Set exception */
 		ctxt.exceptionCallback = {
 			(_ exception: KEException) -> Void in
-			cons.error(string: "[Exception] \(exception.description)")
+			cons.error(string: "[Exception] \(exception.description)\n")
 		}
 		return true
 	}
