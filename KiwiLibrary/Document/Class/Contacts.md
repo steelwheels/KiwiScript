@@ -4,6 +4,13 @@ You must call [setupContacts](https://github.com/steelwheels/KiwiScript/blob/mas
 
 This class accesses *ContactRecord* which presents the record of contact database. The contact record is implemented by [ContactRecord](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/ContactRecord.md) class.
 
+## Functions
+You have to authorize access to contact database.
+````
+function requestContactAccess(): boolean
+````
+When the function returns true, you can access the contact database.
+
 ## Global variable
 The instance of Contacts class. It is singleton object.
 

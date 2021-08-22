@@ -108,11 +108,6 @@ import Foundation
 		NSLog("Not supported now")
 	}
 
-	public func dumpToValue() -> JSValue {
-		let nval = mTable.toNativeValue()
-		return nval.toJSValue(context: mContext)
-	}
-
 	private func allocateRecord(record rec: CNNativeValueRecord) -> KLValueRecord {
 		return KLValueRecord(record: rec, context: mContext)
 	}

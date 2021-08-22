@@ -20,7 +20,6 @@ import Foundation
 	func setValue(_ val: JSValue, _ name: JSValue) -> JSValue
 
 	func save()
-	func dumpToValue() -> JSValue
 }
 
 public protocol KLRecordCore
@@ -126,11 +125,6 @@ public protocol KLRecordCore
 
 	public func save() {
 		// not supported
-	}
-
-	public func dumpToValue() -> JSValue {
-		let nval = mContact.toNativeValue()
-		return nval.toJSValue(context: mContext)
 	}
 
 	public var identifier: JSValue {

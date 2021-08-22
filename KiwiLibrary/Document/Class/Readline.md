@@ -9,7 +9,7 @@ Following global variables are defined.
 
 ## `inputLine` method
 ````
-inputLine(): string
+input(): string
 ````
 Read a line string from standard input. This method is blocked until user inputs the newline.
 
@@ -18,13 +18,11 @@ none
 ### Return value
 The string which does *NOT* contains newline code.
 
-## `inputInteger` method
+## `history` method
 ````
-inputInteger(): number
+history(): string[]
 ````
-Read a line string from standard input. This method is blocked until user inputs the newline.
-If the string is NOT present the number, the result value will be `NaN`. The [isNaN() function](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/TypeChecks.md) can be used to check the value is NaN or not.
-
+Return the list of previous commandline inputs
 
 # References
 * [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library

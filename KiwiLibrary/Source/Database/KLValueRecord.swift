@@ -57,10 +57,5 @@ import Foundation
 	public func save() {
 		NSLog("Not supported yet")
 	}
-
-	public func dumpToValue() -> JSValue {
-		let nval = mRecord.toNativeValue()
-		return nval.toJSValue(context: mContext)
-	}
 }
 
