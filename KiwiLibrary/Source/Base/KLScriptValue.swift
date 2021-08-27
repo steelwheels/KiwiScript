@@ -10,48 +10,6 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-public enum JSValueType: Int {
-	case UndefinedType
-	case NullType
-	case BooleanType
-	case NumberType
-	case StringType
-	case DateType
-	case URLType
-	case ImageType
-	case ArrayType
-	case DictionaryType
-	case RangeType
-	case PointType
-	case SizeType
-	case RectType
-	case ObjectType
-
-	public var description: String {
-		get {
-			var result: String
-			switch self {
-			case .UndefinedType:	result = "undefined"
-			case .NullType:		result = "null"
-			case .BooleanType:	result = "bool"
-			case .NumberType:	result = "number"
-			case .StringType:	result = "string"
-			case .DateType:		result = "date"
-			case .URLType:		result = "URL"
-			case .ImageType:	result = "image"
-			case .ArrayType:	result = "array"
-			case .DictionaryType:	result = "dictionary"
-			case .RangeType:	result = "range"
-			case .PointType:	result = "point"
-			case .SizeType:		result = "size"
-			case .RectType:		result = "rect"
-			case .ObjectType:	result = "object"
-			}
-			return result
-		}
-	}
-}
-
 extension JSValue
 {
 	public static let classPropertyName: String	= "className"
@@ -152,6 +110,31 @@ extension JSValue
 		return nil
 	}
 
+	public var isEnum: Bool {
+		get {
+			if let dict = self.toObject() as? Dictionary<AnyHashable, Any> {
+				if let _ = anyToString(any: dict["name"]), let _ = anyToInt(any: dict["value"]) {
+					return true
+				}
+			}
+			return false
+		}
+	}
+
+	public func toEnum() -> Dictionary<String, CNNativeValue> {
+		if let dict = self.toObject() as? Dictionary<AnyHashable, Any> {
+			if let name = anyToString(any: dict["name"]), let value = anyToInt(any: dict["value"]) {
+				let dict: Dictionary<String, CNNativeValue> = [
+					"name":  CNNativeValue.stringValue(name),
+					"value": CNNativeValue.numberValue(NSNumber(integerLiteral: value))
+				]
+				return dict
+			}
+		}
+		CNLog(logLevel: .error, message: "Failed to convert to Enum", atFunction: #function, inFile: #file)
+		return [:]
+	}
+
 	public var isURL: Bool {
 		get {
 			if let urlobj = self.toObject() as? KLURL {
@@ -192,6 +175,14 @@ extension JSValue
 		}
 		CNLog(logLevel: .error, message: "Failed to convert to image", atFunction: #function, inFile: #file)
 		return CNImage(data: Data(capacity: 16))!
+	}
+
+	public func toColor() -> CNColor {
+		if let colobj = self.toObject() as? KLColor {
+			return colobj.core
+		}
+		CNLog(logLevel: .error, message: "Failed to convert to color", atFunction: #function, inFile: #file)
+		return CNColor.black
 	}
 
 	private func isSpecialDictionary(keys dictkeys: Array<AnyHashable>) -> Bool {
@@ -241,42 +232,50 @@ extension JSValue
 		}
 	}
 
-	public var type: JSValueType {
+	private func anyToString(any aval: Any?) -> String? {
+		if let val = aval as? String {
+			return val
+		} else {
+			return nil
+		}
+	}
+
+	public var type: CNNativeType? {
 		get {
-			var result: JSValueType
+			var result: CNNativeType?
 			if self.isUndefined {
-				result = .UndefinedType
+				result = nil
 			} else if self.isNull {
-				result = .NullType
+				result = .nullType
 			} else if self.isBoolean {
-				result = .BooleanType
+				result = .boolType
 			} else if self.isNumber {
-				result = .NumberType
+				result = .numberType
 			} else if self.isString {
-				result = .StringType
+				result = .stringType
 			} else if self.isArray {
-				result = .ArrayType
+				result = .arrayType
 			} else if self.isDate {
-				result = .DateType
+				result = .dateType
 			} else if self.isRange {
-				result = .RangeType
+				result = .rangeType
 			} else if self.isPoint {
-				result = .PointType
+				result = .pointType
 			} else if self.isSize {
-				result = .SizeType
+				result = .sizeType
 			} else if self.isRect {
-				result = .RectType
+				result = .rectType
 			} else if self.isURL {
 				result = .URLType
 			} else if self.isImage {
-				result = .ImageType
+				result = .imageType
 			} else if self.isObject {
 				if let _ = self.toObject() as? Dictionary<AnyHashable, Any> {
-					result = .DictionaryType
+					result = .dictionaryType
 				} else if let _ = self.toObject() as? NSRange {
-					result = .RangeType
+					result = .rangeType
 				} else {
-					result = .ObjectType
+					result = .objectType
 				}
 			} else {
 				fatalError("Unknown type: \"\(self.description)\"")
@@ -287,75 +286,93 @@ extension JSValue
 	
 	public func toNativeValue() -> CNNativeValue {
 		let result: CNNativeValue
-		switch self.type {
-		case .UndefinedType:
-			CNLog(logLevel: .error, message: "Undefined value is not supported", atFunction: #function, inFile: #file)
-			result = .nullValue
-		case .NullType:
-			result = .nullValue
-		case .BooleanType:
-			let num = NSNumber(integerLiteral: self.toBool() ? 1: 0)
-			result = .numberValue(num)
-		case .NumberType:
-			result = .numberValue(self.toNumber()!)
-		case .StringType:
-			result = .stringValue(self.toString())
-		case .DateType:
-			result = .dateValue(self.toDate())
-		case .URLType:
-			result = .URLValue(self.toURL())
-		case .ImageType:
-			result = .imageValue(self.toImage())
-		case .RangeType:
-			result = .rangeValue(self.toRange())
-		case .PointType:
-			if let point = self.toPoint() {
-				result = .pointValue(point)
-			} else {
-				CNLog(logLevel: .error, message: "Failed to convert to Point", atFunction: #function, inFile: #file)
+		if let type = self.type {
+			switch type {
+			case .nullType:
 				result = .nullValue
-			}
-		case .SizeType:
-			if let size = self.toSize() {
-				result = .sizeValue(size)
-			} else {
-				CNLog(logLevel: .error, message: "Failed to convert to Size", atFunction: #function, inFile: #file)
-				result = .nullValue
-			}
-		case .RectType:
-			if let rect = self.toRect() {
-				result = .rectValue(rect)
-			} else {
-				CNLog(logLevel: .error, message: "Failed to convert to Rect", atFunction: #function, inFile: #file)
-				result = .nullValue
-			}
-		case .ArrayType:
-			let srcarr = self.toArray()!
-			var dstarr: Array<CNNativeValue> = []
-			for elm in srcarr {
-				if let object = elementToValue(any: elm) {
-					dstarr.append(object)
-				} else {
-					CNLog(logLevel: .error, message: "Failed to convert to Array", atFunction: #function, inFile: #file)
-				}
-			}
-			result = .arrayValue(dstarr)
-		case .DictionaryType:
-			var dstdict: Dictionary<String, CNNativeValue> = [:]
-			if let srcdict = self.toDictionary() as? Dictionary<String, Any> {
-				for (key, value) in srcdict {
-					if let obj = elementToValue(any: value) {
-						dstdict[key] = obj
+			case .boolType:
+				result = .boolValue(self.toBool())
+			case .numberType:
+				result = .numberValue(self.toNumber())
+			case .stringType:
+				result = .stringValue(self.toString())
+			case .dateType:
+				result = .dateValue(self.toDate())
+			case .URLType:
+				result = .URLValue(self.toURL())
+			case .imageType:
+				result = .imageValue(self.toImage())
+			case .colorType:
+				result = .colorValue(self.toColor())
+			case .enumType:
+				let dict = self.toEnum()
+				if let name = dict["name"], let val = dict["value"] {
+					if let key = name.toString(), let num = val.toNumber() {
+						result = CNNativeValue.enumValue(key, num.int32Value)
 					} else {
-						CNLog(logLevel: .error, message: "Failed to convert to Dictionary", atFunction: #function, inFile: #file)
+						CNLog(logLevel: .error, message: "Failed to convert to Enum", atFunction: #function, inFile: #file)
+						result = .nullValue
+					}
+				} else {
+					CNLog(logLevel: .error, message: "Failed to convert to Enum", atFunction: #function, inFile: #file)
+					result = .nullValue
+				}
+			case .rangeType:
+				result = .rangeValue(self.toRange())
+			case .pointType:
+				if let point = self.toPoint() {
+					result = .pointValue(point)
+				} else {
+					CNLog(logLevel: .error, message: "Failed to convert to Point", atFunction: #function, inFile: #file)
+					result = .nullValue
+				}
+			case .sizeType:
+				if let size = self.toSize() {
+					result = .sizeValue(size)
+				} else {
+					CNLog(logLevel: .error, message: "Failed to convert to Size", atFunction: #function, inFile: #file)
+					result = .nullValue
+				}
+			case .rectType:
+				if let rect = self.toRect() {
+					result = .rectValue(rect)
+				} else {
+					CNLog(logLevel: .error, message: "Failed to convert to Rect", atFunction: #function, inFile: #file)
+					result = .nullValue
+				}
+			case .arrayType:
+				let srcarr = self.toArray()!
+				var dstarr: Array<CNNativeValue> = []
+				for elm in srcarr {
+					if let object = elementToValue(any: elm) {
+						dstarr.append(object)
+					} else {
+						CNLog(logLevel: .error, message: "Failed to convert to Array", atFunction: #function, inFile: #file)
 					}
 				}
-			} else {
-				CNLog(logLevel: .error, message: "Failed to convert to Dictionary", atFunction: #function, inFile: #file)
+				result = .arrayValue(dstarr)
+			case .dictionaryType:
+				var dstdict: Dictionary<String, CNNativeValue> = [:]
+				if let srcdict = self.toDictionary() as? Dictionary<String, Any> {
+					for (key, value) in srcdict {
+						if let obj = elementToValue(any: value) {
+							dstdict[key] = obj
+						} else {
+							CNLog(logLevel: .error, message: "Failed to convert to Dictionary", atFunction: #function, inFile: #file)
+						}
+					}
+				} else {
+					CNLog(logLevel: .error, message: "Failed to convert to Dictionary", atFunction: #function, inFile: #file)
+				}
+				result = CNNativeValue.dictionaryToValue(dictionary: dstdict)
+			case .objectType:
+				CNLog(logLevel: .error, message: "Failed to convert to Object", atFunction: #function, inFile: #file)
+				result = .nullValue
+			@unknown default:
+				CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
+				result = .nullValue
 			}
-			result = CNNativeValue.dictionaryToValue(dictionary: dstdict)
-		case .ObjectType:
-			CNLog(logLevel: .error, message: "Failed to convert to Object", atFunction: #function, inFile: #file)
+		} else {
 			result = .nullValue
 		}
 		return result

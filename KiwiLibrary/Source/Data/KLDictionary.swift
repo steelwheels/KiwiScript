@@ -26,6 +26,11 @@ import Foundation
 		mContext	= ctxt
 	}
 
+	public init(value val: Dictionary<String, CNNativeValue>, context ctxt: KEContext) {
+		mTable		= val
+		mContext	= ctxt
+	}
+
 	public func set(_ name: JSValue, _ value: JSValue) {
 		if name.isString {
 			mTable[name.toString()] = value.toNativeValue()

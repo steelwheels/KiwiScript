@@ -35,9 +35,6 @@ public class KLLibraryCompiler: KECompiler
 	}
 
 	public override func compileBase(context ctxt: KEContext, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
-		/* Expand enum table before they are defined */
-		addEnumTypes()
-
 		guard super.compileBase(context: ctxt, terminalInfo: terminfo, environment: env, console: cons, config: conf) else {
 			cons.error(string: "Failed to compile")
 			return false
@@ -94,31 +91,6 @@ public class KLLibraryCompiler: KECompiler
 			}
 		}
 		return result && (ctxt.errorCount == 0)
-	}
-
-	private func addEnumTypes() {
-		let etable = KEEnumTable.shared
-
-		/* Define enum TypeID */
-		let typeid = KEEnumType(typeName: "TypeID")
-		typeid.add(members: [
-			KEEnumType.Member(name: "Undefined",	value: Int32(JSValueType.UndefinedType.rawValue)),
-			KEEnumType.Member(name: "Null",		value: Int32(JSValueType.NullType.rawValue)),
-			KEEnumType.Member(name: "Boolean",	value: Int32(JSValueType.BooleanType.rawValue)),
-			KEEnumType.Member(name: "Number",	value: Int32(JSValueType.NumberType.rawValue)),
-			KEEnumType.Member(name: "String",	value: Int32(JSValueType.StringType.rawValue)),
-			KEEnumType.Member(name: "Date",		value: Int32(JSValueType.DateType.rawValue)),
-			KEEnumType.Member(name: "URL",		value: Int32(JSValueType.URLType.rawValue)),
-			KEEnumType.Member(name: "Image",	value: Int32(JSValueType.ImageType.rawValue)),
-			KEEnumType.Member(name: "Array",	value: Int32(JSValueType.ArrayType.rawValue)),
-			KEEnumType.Member(name: "Dictionary",	value: Int32(JSValueType.DictionaryType.rawValue)),
-			KEEnumType.Member(name: "Range",	value: Int32(JSValueType.RangeType.rawValue)),
-			KEEnumType.Member(name: "Rect",		value: Int32(JSValueType.RectType.rawValue)),
-			KEEnumType.Member(name: "Point",	value: Int32(JSValueType.PointType.rawValue)),
-			KEEnumType.Member(name: "Size",		value: Int32(JSValueType.SizeType.rawValue)),
-			KEEnumType.Member(name: "Object",	value: Int32(JSValueType.ObjectType.rawValue)),
-		])
-		etable.add(typeName: typeid.typeName, enumType: typeid)
 	}
 
 	private func defineConstants(context ctxt: KEContext) {
@@ -260,11 +232,15 @@ public class KLLibraryCompiler: KECompiler
 		ctxt.set(name: "className", function: classNameFunc)
 
 		/* typeID */
-		let typeidFunc: @convention(block) (_ value: JSValue) -> JSValue = {
+		let valtypeFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in
-			return JSValue(int32: Int32(value.type.rawValue), in: ctxt)
+			if let type = value.type {
+				return JSValue(int32: Int32(type.rawValue), in: ctxt)
+			} else {
+				return JSValue(undefinedIn: ctxt)
+			}
 		}
-		ctxt.set(name: "typeID", function: typeidFunc)
+		ctxt.set(name: "valueType", function: valtypeFunc)
 
 		/* asciiCodeName */
 		let asciiNameFunc: @convention(block) (_ value: JSValue) -> JSValue = {
@@ -596,7 +572,7 @@ public class KLLibraryCompiler: KECompiler
 		}
 		ctxt.set(name: "Dictionary", function: allocDictFunc)
 
-		/* Table */
+		/* ValueTable */
 		let allocTableFunc: @convention(block) () -> JSValue = {
 			() -> JSValue in
 			let tbldata = CNNativeValueTable()

@@ -16,6 +16,8 @@ extension CNNativeValue {
 		switch self {
 		case .nullValue:
 			result = JSValue(nullIn: ctxt)
+		case .boolValue(let val):
+			result = JSValue(bool: val, in: ctxt)
 		case .numberValue(let val):
 			result = JSValue(object: val, in: ctxt)
 		case .stringValue(let val):

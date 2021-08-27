@@ -43,22 +43,30 @@ public class KLValueDuplicator
 
 	public func duplicate(value src: JSValue) -> JSValue {
 		let dupval: JSValue
-		switch src.type {
-		case .UndefinedType:	dupval = JSValue(undefinedIn: mTargetContext)
-		case .NullType:		dupval = JSValue(nullIn: mTargetContext)
-		case .BooleanType:	dupval = JSValue(bool: src.toBool(), in: mTargetContext)
-		case .NumberType:	dupval = JSValue(object: src.toNumber(), in: mTargetContext)
-		case .StringType:	dupval = JSValue(object: src.toString(), in: mTargetContext)
-		case .DateType:		dupval = JSValue(object: src.toDate(), in: mTargetContext)
-		case .URLType:		dupval = JSValue(URL: src.toURL(), in: mTargetContext)
-		case .ImageType:	dupval = JSValue(image: src.toImage(), in: mTargetContext)
-		case .ArrayType:	dupval = duplicate(array: src.toArray())
-		case .DictionaryType:	dupval = duplicate(dictionary: src.toDictionary())
-		case .RangeType:	dupval = JSValue(range: src.toRange(), in: mTargetContext)
-		case .PointType:	dupval = JSValue(point: src.toPoint(), in: mTargetContext)
-		case .SizeType:		dupval = JSValue(size: src.toSize(), in: mTargetContext)
-		case .RectType:		dupval = JSValue(rect: src.toRect(), in: mTargetContext)
-		case .ObjectType:	dupval = duplicate(object: src.toObject())
+		if let type = src.type {
+			switch type {
+			case .nullType:		dupval = JSValue(nullIn: mTargetContext)
+			case .boolType:		dupval = JSValue(bool: src.toBool(), in: mTargetContext)
+			case .numberType:	dupval = JSValue(object: src.toNumber(), in: mTargetContext)
+			case .stringType:	dupval = JSValue(object: src.toString(), in: mTargetContext)
+			case .dateType:		dupval = JSValue(object: src.toDate(), in: mTargetContext)
+			case .enumType:		dupval = duplicate(dictionary: src.toEnum())
+			case .URLType:		dupval = JSValue(URL: src.toURL(), in: mTargetContext)
+			case .imageType:	dupval = JSValue(image: src.toImage(), in: mTargetContext)
+			case .colorType:	dupval = JSValue(object: src.toColor(), in: mTargetContext)
+			case .arrayType:	dupval = duplicate(array: src.toArray())
+			case .dictionaryType:	dupval = duplicate(dictionary: src.toDictionary())
+			case .rangeType:	dupval = JSValue(range: src.toRange(), in: mTargetContext)
+			case .pointType:	dupval = JSValue(point: src.toPoint(), in: mTargetContext)
+			case .sizeType:		dupval = JSValue(size: src.toSize(), in: mTargetContext)
+			case .rectType:		dupval = JSValue(rect: src.toRect(), in: mTargetContext)
+			case .objectType:	dupval = duplicate(object: src.toObject())
+			@unknown default:
+				CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
+				dupval = JSValue(undefinedIn: mTargetContext)
+			}
+		} else {
+			dupval = JSValue(undefinedIn: mTargetContext)
 		}
 		return dupval
 	}
