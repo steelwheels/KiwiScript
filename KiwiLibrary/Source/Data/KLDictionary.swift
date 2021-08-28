@@ -18,7 +18,7 @@ import Foundation
 
 @objc public class KLDictionary: NSObject, KLDictionaryProtocol
 {
-	private var mTable:	Dictionary<String, CNNativeValue>
+	private var mTable:	Dictionary<String, CNValue>
 	private var mContext:	KEContext
 
 	public init(context ctxt: KEContext) {
@@ -26,7 +26,7 @@ import Foundation
 		mContext	= ctxt
 	}
 
-	public init(value val: Dictionary<String, CNNativeValue>, context ctxt: KEContext) {
+	public init(value val: Dictionary<String, CNValue>, context ctxt: KEContext) {
 		mTable		= val
 		mContext	= ctxt
 	}

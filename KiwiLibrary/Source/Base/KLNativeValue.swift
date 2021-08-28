@@ -1,6 +1,6 @@
 /**
  * @file	KLNativeValue.swift
- * @brief	Extend CNNativeValue class
+ * @brief	Extend CNValue class
  * @par Copyright
  *   Copyright (C) 2018 Steel Wheels Project
  */
@@ -10,7 +10,7 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-extension CNNativeValue {
+extension CNValue {
 	public func toJSValue(context ctxt: KEContext) -> JSValue {
 		let result: JSValue
 		switch self {

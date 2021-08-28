@@ -123,7 +123,7 @@ public class KHShellParser
 		return false
 	}
 
-	private func environmentValueToString(value val: CNNativeValue) -> String? {
+	private func environmentValueToString(value val: CNValue) -> String? {
 		var result: String? = nil
 		switch val {
 		case .stringValue(let str):

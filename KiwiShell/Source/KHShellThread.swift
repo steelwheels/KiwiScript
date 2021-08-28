@@ -69,7 +69,7 @@ open class KHShellThread: CNShellThread
 		manager.setup(subdirectory: "Documents/Script", forClass: KHShellThread.self)
 	}
 
-	public override func main(argument arg: CNNativeValue) -> Int32
+	public override func main(argument arg: CNValue) -> Int32
 	{
 		/* Compile the context */
 		guard compile(context: mContext, resource: mResource, processManager: mChildProcessManager, terminalInfo: self.terminalInfo, environment: self.environment, console: self.console, config: mConfig) else {

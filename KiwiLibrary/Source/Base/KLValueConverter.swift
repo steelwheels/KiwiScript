@@ -1,6 +1,6 @@
 /**
  * @file	KLValueConverter.swift
- * @brief	Converter for CNNativeValue and JSValue
+ * @brief	Converter for CNValue and JSValue
  * @par Copyright
  *   Copyright (C) 2018-2019 Steel Wheels Project
  */

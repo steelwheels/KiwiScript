@@ -90,7 +90,7 @@ public enum KLSource {
 		super.start(argument: nargs)
 	}
 
-	public override func main(argument arg: CNNativeValue) -> Int32 {
+	public override func main(argument arg: CNValue) -> Int32 {
 		if setup(processManager: mChildProcessManager, config: mConfig) {
 			return execOperation(argument: arg)
 		} else {
@@ -169,7 +169,7 @@ public enum KLSource {
 		}
 	}
 
-	private func execOperation(argument arg: CNNativeValue) -> Int32 {
+	private func execOperation(argument arg: CNValue) -> Int32 {
 		/* Search main function */
 		var result: Int32 = -1
 		if let funcval = mContext.getValue(name: "main") {

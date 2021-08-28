@@ -26,7 +26,7 @@ import Foundation
 
 	public func read(_ fname: JSValue) -> JSValue {
 		if let url = valueToURL(value: fname) {
-			switch CNNativeValueFile.readFile(URL: url) {
+			switch CNValueFile.readFile(URL: url) {
 			case .ok(let value):
 				return value.toJSValue(context: mContext)
 			default:
@@ -40,7 +40,7 @@ import Foundation
 		var result = false
 		if let url = valueToURL(value: fname) {
 			let nval = json.toNativeValue()
-			let err  = CNNativeValueFile.writeFile(URL: url, nativeValue: nval)
+			let err  = CNValueFile.writeFile(URL: url, nativeValue: nval)
 			if err == nil {
 				/* No error */
 				result = true

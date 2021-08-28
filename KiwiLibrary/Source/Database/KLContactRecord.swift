@@ -110,7 +110,7 @@ public protocol KLRecordCore
 		let _ = mContact.setValue(value: val.toNativeValue(), forField: fld.toName())
 	}
 
-	private func setValue(value val: CNNativeValue, forFieldName name: String) -> JSValue {
+	private func setValue(value val: CNValue, forFieldName name: String) -> JSValue {
 		let res = mContact.setValue(value: val, forField: name)
 		return JSValue(bool: res, in: mContext)
 	}

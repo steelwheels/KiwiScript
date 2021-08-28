@@ -30,9 +30,9 @@ public class KEManifestLoader
 		}
 	}
 
-	private func readNativeValue(from url: URL) throws -> CNNativeValue {
+	private func readNativeValue(from url: URL) throws -> CNValue {
 		let fileurl = url.appendingPathComponent("manifest.json")
-		switch CNNativeValueFile.readFile(URL: fileurl) {
+		switch CNValueFile.readFile(URL: fileurl) {
 		case .ok(let value):
 			return value
 		case .error(let err):
@@ -42,7 +42,7 @@ public class KEManifestLoader
 		}
 	}
 
-	private func decode(resource res: KEResource, properties data: Dictionary<String, CNNativeValue>) throws {
+	private func decode(resource res: KEResource, properties data: Dictionary<String, CNValue>) throws {
 		/* Decode: "application" */
 		if let appval = data[KEResource.ApplicationCategory] {
 			if let apppath = appval.toString() {
@@ -116,7 +116,7 @@ public class KEManifestLoader
 		}
 	}
 
-	private func decodeFileMap(properties data: Dictionary<String, CNNativeValue>) throws -> Dictionary<String, String> {
+	private func decodeFileMap(properties data: Dictionary<String, CNValue>) throws -> Dictionary<String, String> {
 		var result: Dictionary<String, String> = [:]
 		for key in data.keys {
 			if let val = data[key] {
@@ -132,7 +132,7 @@ public class KEManifestLoader
 		return result
 	}
 
-	private func decodeFileArray(arrayValue data: Array<CNNativeValue>) throws -> Array<String> {
+	private func decodeFileArray(arrayValue data: Array<CNValue>) throws -> Array<String> {
 		var result: Array<String> = []
 		for elm in data {
 			if let path = elm.toString() {

@@ -121,12 +121,12 @@ extension JSValue
 		}
 	}
 
-	public func toEnum() -> Dictionary<String, CNNativeValue> {
+	public func toEnum() -> Dictionary<String, CNValue> {
 		if let dict = self.toObject() as? Dictionary<AnyHashable, Any> {
 			if let name = anyToString(any: dict["name"]), let value = anyToInt(any: dict["value"]) {
-				let dict: Dictionary<String, CNNativeValue> = [
-					"name":  CNNativeValue.stringValue(name),
-					"value": CNNativeValue.numberValue(NSNumber(integerLiteral: value))
+				let dict: Dictionary<String, CNValue> = [
+					"name":  CNValue.stringValue(name),
+					"value": CNValue.numberValue(NSNumber(integerLiteral: value))
 				]
 				return dict
 			}
@@ -284,8 +284,8 @@ extension JSValue
 		}
 	}
 	
-	public func toNativeValue() -> CNNativeValue {
-		let result: CNNativeValue
+	public func toNativeValue() -> CNValue {
+		let result: CNValue
 		if let type = self.type {
 			switch type {
 			case .nullType:
@@ -308,7 +308,7 @@ extension JSValue
 				let dict = self.toEnum()
 				if let name = dict["name"], let val = dict["value"] {
 					if let key = name.toString(), let num = val.toNumber() {
-						result = CNNativeValue.enumValue(key, num.int32Value)
+						result = CNValue.enumValue(key, num.int32Value)
 					} else {
 						CNLog(logLevel: .error, message: "Failed to convert to Enum", atFunction: #function, inFile: #file)
 						result = .nullValue
@@ -342,7 +342,7 @@ extension JSValue
 				}
 			case .arrayType:
 				let srcarr = self.toArray()!
-				var dstarr: Array<CNNativeValue> = []
+				var dstarr: Array<CNValue> = []
 				for elm in srcarr {
 					if let object = elementToValue(any: elm) {
 						dstarr.append(object)
@@ -352,7 +352,7 @@ extension JSValue
 				}
 				result = .arrayValue(dstarr)
 			case .dictionaryType:
-				var dstdict: Dictionary<String, CNNativeValue> = [:]
+				var dstdict: Dictionary<String, CNValue> = [:]
 				if let srcdict = self.toDictionary() as? Dictionary<String, Any> {
 					for (key, value) in srcdict {
 						if let obj = elementToValue(any: value) {
@@ -364,7 +364,7 @@ extension JSValue
 				} else {
 					CNLog(logLevel: .error, message: "Failed to convert to Dictionary", atFunction: #function, inFile: #file)
 				}
-				result = CNNativeValue.dictionaryToValue(dictionary: dstdict)
+				result = CNValue.dictionaryToValue(dictionary: dstdict)
 			case .objectType:
 				CNLog(logLevel: .error, message: "Failed to convert to Object", atFunction: #function, inFile: #file)
 				result = .nullValue
@@ -378,25 +378,25 @@ extension JSValue
 		return result
 	}
 
-	private func elementToValue(any value: Any) -> CNNativeValue? {
+	private func elementToValue(any value: Any) -> CNValue? {
 		if let val = value as? JSValue {
 			return val.toNativeValue()
 		} else if let val = value as? KLURL {
 			if let url = val.url {
-				return CNNativeValue.anyToValue(object: url)
+				return CNValue.anyToValue(object: url)
 			} else {
 				CNLog(logLevel: .error, message: "Null URL", atFunction: #function, inFile: #file)
 				return .nullValue
 			}
 		} else if let val = value as? KLImage {
 			if let image = val.coreImage {
-				return CNNativeValue.anyToValue(object: image)
+				return CNValue.anyToValue(object: image)
 			} else {
 				CNLog(logLevel: .error, message: "Null Image", atFunction: #function, inFile: #file)
 				return .nullValue
 			}
 		} else {
-			return CNNativeValue.anyToValue(object: value)
+			return CNValue.anyToValue(object: value)
 		}
 	}
 
