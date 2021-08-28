@@ -137,7 +137,13 @@ public func UTType(context ctxt: KEContext, console cons: CNConsole) -> Bool
 
 private func typeTest(value val: JSValue, context2 ctxt2: KEContext, console cons: CNConsole) -> Bool
 {
-	cons.print(string: "type = " + val.type.description + "\n")
+	let typename: String
+	if let type = val.type {
+		typename = type.description
+	} else {
+		typename = "<none>"
+	}
+	cons.print(string: "type = " + typename + "\n")
 	let nval = val.toNativeValue()
 
 	cons.print(string: "native: ")

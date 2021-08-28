@@ -12,10 +12,10 @@ import Foundation
 
 @objc public class KLValueTable: NSObject, KLTable, KLTableCore
 {
-	private var mTable: 	CNNativeValueTable
+	private var mTable: 	CNValueTable
 	private var mContext:	KEContext
 
-	public init(table tbl: CNNativeValueTable, context ctxt: KEContext){
+	public init(table tbl: CNValueTable, context ctxt: KEContext){
 		mTable		= tbl
 		mContext	= ctxt
 	}
