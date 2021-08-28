@@ -12,7 +12,7 @@ import Foundation
 
 public func UTNativeValue(context ctxt: KEContext, console cons: CNConsole) -> Bool
 {
-	let strct0 = CNNativeStruct(name: "UTStruct")
+	let strct0 = CNStruct(name: "UTStruct")
 	let parama = CNNativeValue.numberValue(NSNumber(floatLiteral: 1.2))
 	let paramb = CNNativeValue.stringValue("StringParam")
 	strct0.setMember(name: "a", value: parama)

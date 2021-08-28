@@ -138,8 +138,8 @@
 		05A95B972516D08500775737 /* KLNativeValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B8E2516D08500775737 /* KLNativeValue.swift */; };
 		05A95B982516D08500775737 /* KLScriptValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B8F2516D08500775737 /* KLScriptValue.swift */; };
 		05A95B992516D08500775737 /* KLScriptValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B8F2516D08500775737 /* KLScriptValue.swift */; };
-		05A95B9A2516D08500775737 /* KLNativeStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B902516D08500775737 /* KLNativeStruct.swift */; };
-		05A95B9B2516D08500775737 /* KLNativeStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B902516D08500775737 /* KLNativeStruct.swift */; };
+		05A95B9A2516D08500775737 /* KLStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B902516D08500775737 /* KLStruct.swift */; };
+		05A95B9B2516D08500775737 /* KLStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B902516D08500775737 /* KLStruct.swift */; };
 		05A95B9C2516D08500775737 /* KLType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B912516D08500775737 /* KLType.swift */; };
 		05A95B9D2516D08500775737 /* KLType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B912516D08500775737 /* KLType.swift */; };
 		05B12A5B25C6783900273421 /* Turtle.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B12A5A25C6783900273421 /* Turtle.js */; };
@@ -422,7 +422,7 @@
 		05A95B8C2516D08500775737 /* KLValueConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLValueConverter.swift; sourceTree = "<group>"; };
 		05A95B8E2516D08500775737 /* KLNativeValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLNativeValue.swift; sourceTree = "<group>"; };
 		05A95B8F2516D08500775737 /* KLScriptValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLScriptValue.swift; sourceTree = "<group>"; };
-		05A95B902516D08500775737 /* KLNativeStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLNativeStruct.swift; sourceTree = "<group>"; };
+		05A95B902516D08500775737 /* KLStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLStruct.swift; sourceTree = "<group>"; };
 		05A95B912516D08500775737 /* KLType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLType.swift; sourceTree = "<group>"; };
 		05B12A5A25C6783900273421 /* Turtle.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Turtle.js; sourceTree = "<group>"; };
 		05B4EF46267F886A00E5D08F /* CoconutDatabase.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutDatabase.xcframework; path = ../../../../Library/Frameworks/CoconutDatabase.xcframework; sourceTree = "<group>"; };
@@ -708,7 +708,7 @@
 		05A95B8B2516D06E00775737 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				05A95B902516D08500775737 /* KLNativeStruct.swift */,
+				05A95B902516D08500775737 /* KLStruct.swift */,
 				05A95B8E2516D08500775737 /* KLNativeValue.swift */,
 				05A95B8F2516D08500775737 /* KLScriptValue.swift */,
 				05A95B912516D08500775737 /* KLType.swift */,
@@ -1047,7 +1047,7 @@
 				05F3DC3725D8C004003EBD1E /* KLBitmapData.swift in Sources */,
 				05A95B812516D06900775737 /* KLImage.swift in Sources */,
 				05A95B832516D06900775737 /* KLEscapeCode.swift in Sources */,
-				05A95B9A2516D08500775737 /* KLNativeStruct.swift in Sources */,
+				05A95B9A2516D08500775737 /* KLStruct.swift in Sources */,
 				05A95B4E2516CFF300775737 /* KLProcess.swift in Sources */,
 				05BD118726C01AD200961535 /* KLValueTable.swift in Sources */,
 				05B4EF56267F898C00E5D08F /* KLContactRecord.swift in Sources */,
@@ -1089,7 +1089,7 @@
 				05F3DC3825D8C004003EBD1E /* KLBitmapData.swift in Sources */,
 				05A95B822516D06900775737 /* KLImage.swift in Sources */,
 				05A95B842516D06900775737 /* KLEscapeCode.swift in Sources */,
-				05A95B9B2516D08500775737 /* KLNativeStruct.swift in Sources */,
+				05A95B9B2516D08500775737 /* KLStruct.swift in Sources */,
 				05A95B4F2516CFF300775737 /* KLProcess.swift in Sources */,
 				05BD118826C01AD200961535 /* KLValueTable.swift in Sources */,
 				05B4EF57267F898C00E5D08F /* KLContactRecord.swift in Sources */,

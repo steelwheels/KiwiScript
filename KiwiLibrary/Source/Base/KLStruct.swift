@@ -1,6 +1,6 @@
 /**
- * @file	KLNativeStruct.swift
- * @brief	Extend CNNativeStruct class
+ * @file	KLStruct.swift
+ * @brief	Extend CNStruct class
  * @par Copyright
  *   Copyright (C) 2019 Steel Wheels Project
  */
@@ -9,7 +9,7 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-extension CNNativeStruct
+extension CNStruct
 {
 	public func JSClassDefinition() -> String {
 		var stmts: Array<String> = []
