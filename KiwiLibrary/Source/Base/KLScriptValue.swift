@@ -240,9 +240,9 @@ extension JSValue
 		}
 	}
 
-	public var type: CNNativeType? {
+	public var type: CNValueType? {
 		get {
-			var result: CNNativeType?
+			var result: CNValueType?
 			if self.isUndefined {
 				result = nil
 			} else if self.isNull {

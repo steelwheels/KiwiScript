@@ -49,22 +49,22 @@ public class KEEnumTable
 
 		let type = KEEnumType(typeName: "ValueType")
 		type.add(members: [
-			KEEnumType.Member(name: "nullType", 		value: Int32(CNNativeType.nullType.rawValue)),
-			KEEnumType.Member(name: "boolType", 		value: Int32(CNNativeType.boolType.rawValue)),
-			KEEnumType.Member(name: "numberType", 		value: Int32(CNNativeType.numberType.rawValue)),
-			KEEnumType.Member(name: "stringType", 		value: Int32(CNNativeType.stringType.rawValue)),
-			KEEnumType.Member(name: "dateType", 		value: Int32(CNNativeType.dateType.rawValue)),
-			KEEnumType.Member(name: "rangeType", 		value: Int32(CNNativeType.rangeType.rawValue)),
-			KEEnumType.Member(name: "pointType", 		value: Int32(CNNativeType.pointType.rawValue)),
-			KEEnumType.Member(name: "sizeType", 		value: Int32(CNNativeType.sizeType.rawValue)),
-			KEEnumType.Member(name: "rectType", 		value: Int32(CNNativeType.rectType.rawValue)),
-			KEEnumType.Member(name: "enumType", 		value: Int32(CNNativeType.enumType.rawValue)),
-			KEEnumType.Member(name: "dictionaryType", 	value: Int32(CNNativeType.dictionaryType.rawValue)),
-			KEEnumType.Member(name: "arrayType", 		value: Int32(CNNativeType.arrayType.rawValue)),
-			KEEnumType.Member(name: "URLType", 		value: Int32(CNNativeType.URLType.rawValue)),
-			KEEnumType.Member(name: "colorType", 		value: Int32(CNNativeType.colorType.rawValue)),
-			KEEnumType.Member(name: "imageType", 		value: Int32(CNNativeType.imageType.rawValue)),
-			KEEnumType.Member(name: "objectType", 		value: Int32(CNNativeType.objectType.rawValue)),
+			KEEnumType.Member(name: "nullType", 		value: Int32(CNValueType.nullType.rawValue)),
+			KEEnumType.Member(name: "boolType", 		value: Int32(CNValueType.boolType.rawValue)),
+			KEEnumType.Member(name: "numberType", 		value: Int32(CNValueType.numberType.rawValue)),
+			KEEnumType.Member(name: "stringType", 		value: Int32(CNValueType.stringType.rawValue)),
+			KEEnumType.Member(name: "dateType", 		value: Int32(CNValueType.dateType.rawValue)),
+			KEEnumType.Member(name: "rangeType", 		value: Int32(CNValueType.rangeType.rawValue)),
+			KEEnumType.Member(name: "pointType", 		value: Int32(CNValueType.pointType.rawValue)),
+			KEEnumType.Member(name: "sizeType", 		value: Int32(CNValueType.sizeType.rawValue)),
+			KEEnumType.Member(name: "rectType", 		value: Int32(CNValueType.rectType.rawValue)),
+			KEEnumType.Member(name: "enumType", 		value: Int32(CNValueType.enumType.rawValue)),
+			KEEnumType.Member(name: "dictionaryType", 	value: Int32(CNValueType.dictionaryType.rawValue)),
+			KEEnumType.Member(name: "arrayType", 		value: Int32(CNValueType.arrayType.rawValue)),
+			KEEnumType.Member(name: "URLType", 		value: Int32(CNValueType.URLType.rawValue)),
+			KEEnumType.Member(name: "colorType", 		value: Int32(CNValueType.colorType.rawValue)),
+			KEEnumType.Member(name: "imageType", 		value: Int32(CNValueType.imageType.rawValue)),
+			KEEnumType.Member(name: "objectType", 		value: Int32(CNValueType.objectType.rawValue)),
 		])
 		mEnumTypes[type.typeName] = type
 
