@@ -12,10 +12,10 @@ import Foundation
 
 @objc public class KLValueRecord: NSObject, KLRecord, KLRecordCore
 {
-	private var mRecord:	CNNativeValueRecord
+	private var mRecord:	CNValueRecord
 	private var mContext:	KEContext
 
-	public init(record rcd: CNNativeValueRecord, context ctxt: KEContext){
+	public init(record rcd: CNValueRecord, context ctxt: KEContext){
 		mRecord		= rcd
 		mContext	= ctxt
 		super.init()

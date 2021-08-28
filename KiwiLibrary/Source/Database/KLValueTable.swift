@@ -60,7 +60,7 @@ import Foundation
 	}
 
 	public func newRecord() -> JSValue {
-		if let rec = mTable.newRecord() as? CNNativeValueRecord {
+		if let rec = mTable.newRecord() as? CNValueRecord {
 			let newrec = allocateRecord(record: rec)
 			return JSValue(object: newrec, in: mContext)
 		} else {
@@ -72,7 +72,7 @@ import Foundation
 	public func record(_ row: JSValue) -> JSValue {
 		if row.isNumber {
 			let ridx = row.toInt32()
-			if let rec = mTable.record(at: Int(ridx)) as? CNNativeValueRecord {
+			if let rec = mTable.record(at: Int(ridx)) as? CNValueRecord {
 				let newrec = allocateRecord(record: rec)
 				return JSValue(object: newrec, in: mContext)
 			} else {
@@ -93,7 +93,7 @@ import Foundation
 	public func forEach(_ callback: JSValue) {
 		mTable.forEach(callback: {
 			(_ rec: CNRecord) -> Void in
-			if let nrec = rec as? CNNativeValueRecord {
+			if let nrec = rec as? CNValueRecord {
 				let vrec = allocateRecord(record: nrec)
 				if let vobj = JSValue(object: vrec, in: mContext) {
 					callback.call(withArguments: [vobj])
@@ -108,7 +108,7 @@ import Foundation
 		NSLog("Not supported now")
 	}
 
-	private func allocateRecord(record rec: CNNativeValueRecord) -> KLValueRecord {
+	private func allocateRecord(record rec: CNValueRecord) -> KLValueRecord {
 		return KLValueRecord(record: rec, context: mContext)
 	}
 

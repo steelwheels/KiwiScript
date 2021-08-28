@@ -147,7 +147,7 @@ public class KHShellParser
 			}
 			result = str
 		default:
-			CNLog(logLevel: .error, message: "Unsupported environment value type: \(val.valueType.toString())", atFunction: #function, inFile: #file)
+			CNLog(logLevel: .error, message: "Unsupported environment value type: \(val.valueType.description)", atFunction: #function, inFile: #file)
 		}
 		return result
 	}
