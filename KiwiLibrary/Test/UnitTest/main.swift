@@ -79,8 +79,8 @@ public func main()
 	let result10 = UTScriptManager(console: filecons)
 	
 	/* Thread */
-	filecons.print(string: "/* Unit test for Thread */\n")
-	let result11 = UTThread(context: context, processManager: pmanager, console: filecons, config: config)
+//	filecons.print(string: "/* Unit test for Thread */\n")
+//	let result11 = UTThread(context: context, processManager: pmanager, console: filecons, config: config)
 
 	/* Command */
 	filecons.print(string: "/* Unit test for Command */\n")
@@ -95,7 +95,7 @@ public func main()
 	let result13 = UTURL(fileManager: fmanager, context: context, console: filecons)
 
 	let summary = result1 && result2 && result3 && result4 && result5
-			&& result6 && result8 && result9 && result10 && result11
+			&& result6 && result8 && result9 && result10 // && result11
 			&& result12 && result13 && result14 && result15
 	if summary {
 		filecons.print(string: "SUMMARY: OK\n")

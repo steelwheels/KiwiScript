@@ -28,3 +28,13 @@ class File {
 const stdin = new File(_stdin);
 const stdout = new File(_stdout);
 const stderr = new File(_stderr);
+class JSONFile {
+    constructor() {
+    }
+    read(file) {
+        return _JSONFile.read(file.mCore);
+    }
+    write(file, src) {
+        return _JSONFile.write(file.mCore, src);
+    }
+}

@@ -32,7 +32,7 @@ public class KEManifestLoader
 
 	private func readNativeValue(from url: URL) throws -> CNValue {
 		let fileurl = url.appendingPathComponent("manifest.json")
-		switch CNValueFile.readFile(URL: fileurl) {
+		switch CNValueFile.read(URL: fileurl) {
 		case .ok(let value):
 			return value
 		case .error(let err):

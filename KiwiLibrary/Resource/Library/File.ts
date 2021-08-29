@@ -4,9 +4,9 @@
 
 class File
 {
-    mCore : _File ;
+    mCore : FileIF ;
 
-    constructor(core : _File){
+    constructor(core : FileIF){
         this.mCore = core ;
     }
 
@@ -34,11 +34,33 @@ class File
 }
 
 /* Global variables */
-declare var _stdin:  _File ;
-declare var _stdout: _File ;
-declare var _stderr: _File ;
+declare var _stdin:  FileIF ;
+declare var _stdout: FileIF ;
+declare var _stderr: FileIF ;
 
 const stdin  = new File(_stdin) ;
 const stdout = new File(_stdout) ;
 const stderr = new File(_stderr) ;
+
+/* JSON file */
+interface JSONFileIF {
+	read(file: FileIF): object | null ;
+	write(file: FileIF, src: object): boolean ;
+}
+
+declare var _JSONFile:		JSONFileIF ;
+
+class JSONFile
+{
+	constructor(){
+	}
+
+	read(file: File): object | null {
+		return _JSONFile.read(file.mCore) ;
+	}
+
+	write(file: File, src: object): boolean {
+		return _JSONFile.write(file.mCore, src) ;
+	}
+}
 

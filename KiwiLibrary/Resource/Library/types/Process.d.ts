@@ -14,4 +14,4 @@ declare class CancelException extends Error {
 declare function _cancel(): void;
 declare function openPanel(title: string, type: number, exts: string[]): _URL | null;
 declare function savePanel(title: string): _URL | null;
-declare function run(path: _URL | string | null, input: _File, output: _File, error: _File): object | null;
+declare function run(path: _URL | string | null, input: FileIF, output: FileIF, error: FileIF): object | null;

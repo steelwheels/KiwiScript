@@ -12,8 +12,8 @@ import Foundation
 
 @objc public protocol KLNativeValueFileProtocol: JSExport
 {
-	func read(_ fname: JSValue) -> JSValue
-	func write(_ fname: JSValue, _ json: JSValue) -> JSValue
+	func read(_ file: JSValue) -> JSValue
+	func write(_ file: JSValue, _ json: JSValue) -> JSValue
 }
 
 @objc public class KLNativeValueFile: NSObject, KLNativeValueFileProtocol
@@ -24,40 +24,33 @@ import Foundation
 		mContext = ctxt
 	}
 
-	public func read(_ fname: JSValue) -> JSValue {
-		if let url = valueToURL(value: fname) {
-			switch CNValueFile.readFile(URL: url) {
-			case .ok(let value):
-				return value.toJSValue(context: mContext)
-			default:
-				break
+	public func read(_ file: JSValue) -> JSValue {
+		if file.isObject {
+			if let fileobj = file.toObject() as? KLFile {
+				switch CNValueFile.read(file: fileobj.file) {
+				case .ok(let value):
+					return value.toJSValue(context: mContext)
+				default:
+					break
+				}
 			}
 		}
 		return JSValue(nullIn: mContext)
 	}
 
-	public func write(_ fname: JSValue, _ json: JSValue) -> JSValue {
+	public func write(_ file: JSValue, _ json: JSValue) -> JSValue {
 		var result = false
-		if let url = valueToURL(value: fname) {
-			let nval = json.toNativeValue()
-			let err  = CNValueFile.writeFile(URL: url, nativeValue: nval)
-			if err == nil {
-				/* No error */
-				result = true
+		if file.isObject {
+			if let fileobj = file.toObject() as? KLFile {
+				let nval = json.toNativeValue()
+				let err  = CNValueFile.write(file: fileobj.file, nativeValue: nval)
+				if err == nil {
+					/* No error */
+					result = true
+				}
 			}
 		}
 		return JSValue(bool: result, in: mContext)
-	}
-
-	private func valueToURL(value v: JSValue) -> URL? {
-		if v.isString {
-			return URL(fileURLWithPath: v.toString())
-		} else if v.isObject {
-			if let url = v.toObject() as? URL {
-				return url
-			}
-		}
-		return nil
 	}
 }
 

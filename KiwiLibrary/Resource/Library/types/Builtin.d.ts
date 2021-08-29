@@ -98,7 +98,7 @@ interface _ExitCode {
 	exception:		number ;
 }
 
-interface _File {
+interface FileIF {
 	getc(): string ;
 	getl(): string ;
 	put(str: string): void ;
@@ -112,8 +112,8 @@ interface _FileType {
 }
 
 interface _Pipe {
-        reading:        _File ;
-        writing:        _File ;
+        reading:        FileIF ;
+        writing:        FileIF ;
 }
 
 interface _Point {
@@ -219,6 +219,5 @@ declare function sleep(sec: number): boolean ;
 declare function _openPanel(title: string, type: number,
 					exts: string[], cbfunc: any): void ;
 declare function _savePanel(title: string, cbfunc: any): void ;
-declare function _run(path: _URL | string, input: _File, output: _File,
-					error: _File): object | null ;
+declare function _run(path: _URL | string, input: FileIF, output: FileIF, error: FileIF): object | null ;
 

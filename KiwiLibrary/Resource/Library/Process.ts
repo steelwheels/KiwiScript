@@ -89,7 +89,7 @@ function savePanel(title: string): _URL | null {
 }
 
 function run(path: _URL | string | null,
-				input: _File, output: _File, error: _File) {
+				input: FileIF, output: FileIF, error: FileIF) {
 	if(path == null) {
 		let newpath = openPanel("Select script file to execute", 
 					FileType.file, ["js", "jsh", "jspkg"]) ;
