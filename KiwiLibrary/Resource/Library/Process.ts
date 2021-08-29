@@ -26,7 +26,7 @@ function _waitUntilExitAll(processes: _Process[]): number
 
 class Semaphore
 {
-	mValue: _Dictionary ;
+	mValue: DictionaryIF ;
 
 	constructor(initval: number) {
 		this.mValue = Dictionary() ;

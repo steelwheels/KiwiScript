@@ -314,6 +314,17 @@ public class KLLibraryCompiler: KECompiler
 		}
 		ctxt.set(name: "isBitmap", function: isBitmapFunc)
 
+		/* toBitmap */
+		let toBitmapFunc: @convention(block) (_ value: JSValue) -> JSValue = {
+			(_ value: JSValue) -> JSValue in
+			if value.isBitmap {
+				return value
+			} else {
+				return JSValue(nullIn: ctxt)
+			}
+		}
+		ctxt.set(name: "toBitmap", function: toBitmapFunc)
+
 		/* isEOF */
 		let isEofFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in

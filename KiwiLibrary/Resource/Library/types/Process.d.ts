@@ -2,7 +2,7 @@
 declare function _waitUntilExitOne(process: _Process): number;
 declare function _waitUntilExitAll(processes: _Process[]): number;
 declare class Semaphore {
-    mValue: _Dictionary;
+    mValue: DictionaryIF;
     constructor(initval: number);
     signal(): void;
     wait(): void;
