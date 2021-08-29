@@ -2,7 +2,8 @@
 # Makefile
 #
 
-srcs	= Data.ts \
+srcs	= Object.ts \
+	  Data.ts \
 	  File.ts \
 	  Math.ts \
 	  Debug.ts \

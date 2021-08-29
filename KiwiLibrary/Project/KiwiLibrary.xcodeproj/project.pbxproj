@@ -364,6 +364,9 @@
 		050D1DBB2581C6FF00D968ED /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../local/Frameworks/macos/KiwiEngine.framework; sourceTree = "<group>"; };
 		050D1DBE2581C71000D968ED /* KiwiLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiLibrary.framework; path = ../../../../local/Frameworks/macos/KiwiLibrary.framework; sourceTree = "<group>"; };
 		050FDBF725FC87BE00331107 /* KLDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLDictionary.swift; sourceTree = "<group>"; };
+		0515051D26DB7B14007C29F0 /* Object.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Object.ts; sourceTree = "<group>"; };
+		0515052126DB7B41007C29F0 /* Object.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Object.js; sourceTree = "<group>"; };
+		0515052226DB7D47007C29F0 /* Object.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Object.d.ts; sourceTree = "<group>"; };
 		0516CC4526213502000B9796 /* Curses.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Curses.js; sourceTree = "<group>"; };
 		051D09E72559914D0083336F /* KLCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLCommand.swift; sourceTree = "<group>"; };
 		053F2C48253BDDCE009CFCA1 /* UTType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTType.swift; sourceTree = "<group>"; };
@@ -497,6 +500,7 @@
 				050A3E65263BF596008172E7 /* Graphics.d.ts */,
 				050A3E64263BF596008172E7 /* KiwiLibrary.d.ts */,
 				050A3E67263BF596008172E7 /* Math.d.ts */,
+				0515052226DB7D47007C29F0 /* Object.d.ts */,
 				050A3E61263BF596008172E7 /* Process.d.ts */,
 				050A3E60263BF596008172E7 /* String.d.ts */,
 				050A3E5F263BF596008172E7 /* Turtle.d.ts */,
@@ -747,6 +751,7 @@
 				050A3E88263BF5C9008172E7 /* File.ts */,
 				050A3E80263BF5C9008172E7 /* Graphics.ts */,
 				050A3E82263BF5C9008172E7 /* Math.ts */,
+				0515051D26DB7B14007C29F0 /* Object.ts */,
 				050A3E87263BF5C9008172E7 /* Process.ts */,
 				050A3E86263BF5C9008172E7 /* String.ts */,
 				050A3E85263BF5C9008172E7 /* Turtle.ts */,
@@ -757,6 +762,7 @@
 				0577476125FE388A00ADC6E7 /* File.js */,
 				05763BEB2610AA89004D7B15 /* Graphics.js */,
 				05C0378825186FF3002A9C41 /* Math.js */,
+				0515052126DB7B41007C29F0 /* Object.js */,
 				054AF16825F78237001DB03B /* Process.js */,
 				050C3CD8262C5CC00008ED97 /* String.js */,
 				05B12A5A25C6783900273421 /* Turtle.js */,

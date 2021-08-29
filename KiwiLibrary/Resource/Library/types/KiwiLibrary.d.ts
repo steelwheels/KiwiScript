@@ -221,6 +221,8 @@ declare function _openPanel(title: string, type: number,
 declare function _savePanel(title: string, cbfunc: any): void ;
 declare function _run(path: _URL | string, input: FileIF, output: FileIF, error: FileIF): object | null ;
 
+declare function isEmptyString(str: string): boolean;
+declare function isEmptyObject(obj: object): boolean;
 /// <reference path="Builtin.d.ts" />
 declare function Array1D(length: number, value: any): any[];
 declare function Array2D(width: number, height: number, value: any): any[][];
