@@ -60,7 +60,7 @@ class Table
 		}
 	}
 
-	forEach(childFunc: (value: any, index: _Point) => void): void {
+	forEach(childFunc: (value: any, index: PointIF) => void): void {
 		for(let y=0 ; y<this.mHeight ; y++){
 			for(let x=0 ; x<this.mWidth ; x++){
 				let value = this.mTable[y][x] ;
@@ -88,7 +88,7 @@ class Table
 		}
 	}
 
-	find(findFunc: (value: any, index: _Point) => boolean): void {
+	find(findFunc: (value: any, index: PointIF) => boolean): void {
 		for(let y=0 ; y<this.mHeight ; y++){
 			for(let x=0 ; x<this.mWidth ; x++){
 				let value = this.mTable[y][x] ;
@@ -101,7 +101,7 @@ class Table
 		return undefined ;
 	}
 
-	findIndex(findFunc: (value: any, index: _Point) => boolean): _Point {
+	findIndex(findFunc: (value: any, index: PointIF) => boolean): PointIF {
 		for(let y=0 ; y<this.mHeight ; y++){
 			for(let x=0 ; x<this.mWidth ; x++){
 				let value = this.mTable[y][x] ;
@@ -114,7 +114,7 @@ class Table
 		return Point(-1, -1) ;
 	}
 
-	map(mapFunc: (value: any, index: _Point) => any): Table {
+	map(mapFunc: (value: any, index: PointIF) => any): Table {
 		let newtable = new Table(this.mWidth, this.mHeight) ;
 		for(let y=0 ; y<this.mHeight ; y++){
 			for(let x=0 ; x<this.mWidth ; x++){
@@ -127,7 +127,7 @@ class Table
 		return newtable ;
 	}
 
-	toStrings(elm2str: (value: any, index: _Point) => any): string[] {
+	toStrings(elm2str: (value: any, index: PointIF) => any): string[] {
 		let strtable  = this.map(elm2str) ;
 		let maxwidths = Array1D(this.mWidth, 0) ;
 

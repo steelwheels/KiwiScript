@@ -6,13 +6,13 @@
 
 class CFrame
 {
-	mFrame:			_Rect ;
+	mFrame:			RectIF ;
 	mCursorX:		number ;
 	mCursorY:		number ;
 	mForegroundColor:	number ;
 	mBackgroundColor:	number ;
 
-	constructor(frame: _Rect){
+	constructor(frame: RectIF){
                 this.mFrame             = frame ;
                 this.mCursorX           = 0 ;
                 this.mCursorY           = 0 ;
@@ -20,7 +20,7 @@ class CFrame
                 this.mBackgroundColor   = Curses.backgroundColor ;
 	}
 
-        get frame(): _Rect	    { return this.mFrame ;              }
+        get frame(): RectIF	    { return this.mFrame ;              }
 
         get foregroundColor(): number {
 		return this.mForegroundColor ;

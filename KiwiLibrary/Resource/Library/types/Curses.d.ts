@@ -1,12 +1,12 @@
 /// <reference path="Builtin.d.ts" />
 declare class CFrame {
-    mFrame: _Rect;
+    mFrame: RectIF;
     mCursorX: number;
     mCursorY: number;
     mForegroundColor: number;
     mBackgroundColor: number;
-    constructor(frame: _Rect);
-    get frame(): _Rect;
+    constructor(frame: RectIF);
+    get frame(): RectIF;
     get foregroundColor(): number;
     set foregroundColor(newcol: number);
     get backgroundColor(): number;

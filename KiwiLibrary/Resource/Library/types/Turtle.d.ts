@@ -5,7 +5,7 @@ declare type TurtleStatus = {
     angle: number;
 };
 declare class Turtle {
-    mContext: _GraphicsContext;
+    mContext: GraphicsContextIF;
     mCurrentX: number;
     mCurrentY: number;
     mCurrentAngle: number;
@@ -13,9 +13,9 @@ declare class Turtle {
     mMovingDistance: number;
     mPenSize: number;
     mHistory: TurtleStatus[];
-    constructor(ctxt: _GraphicsContext);
+    constructor(ctxt: GraphicsContextIF);
     setup(x: number, y: number, angle: number, pen: number): void;
-    get logicalFrame(): _Rect;
+    get logicalFrame(): RectIF;
     get currentX(): number;
     get currentY(): number;
     get currentAngle(): number;

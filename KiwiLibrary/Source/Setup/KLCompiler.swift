@@ -125,6 +125,17 @@ public class KLLibraryCompiler: KECompiler
 		}
 		ctxt.set(name: "isBoolean", function: isBooleanFunc)
 
+		/* toBoolean */
+		let toBooleanFunc: @convention(block) (_ value: JSValue) -> JSValue = {
+			(_ value: JSValue) -> JSValue in
+			if value.isBoolean {
+				return value
+			} else {
+				return JSValue(nullIn: ctxt)
+			}
+		}
+		ctxt.set(name: "toBoolean", function: toBooleanFunc)
+
 		/* isNumber */
 		let isNumberFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in
@@ -132,6 +143,17 @@ public class KLLibraryCompiler: KECompiler
 			return JSValue(bool: result, in: ctxt)
 		}
 		ctxt.set(name: "isNumber", function: isNumberFunc)
+
+		/* toNumber */
+		let toNumberFunc: @convention(block) (_ value: JSValue) -> JSValue = {
+			(_ value: JSValue) -> JSValue in
+			if value.isNumber {
+				return value
+			} else {
+				return JSValue(nullIn: ctxt)
+			}
+		}
+		ctxt.set(name: "toNumber", function: toNumberFunc)
 
 		/* isString */
 		let isStringFunc: @convention(block) (_ value: JSValue) -> JSValue = {
@@ -141,6 +163,17 @@ public class KLLibraryCompiler: KECompiler
 		}
 		ctxt.set(name: "isString", function: isStringFunc)
 
+		/* toString */
+		let toStringFunc: @convention(block) (_ value: JSValue) -> JSValue = {
+			(_ value: JSValue) -> JSValue in
+			if value.isString {
+				return value
+			} else {
+				return JSValue(nullIn: ctxt)
+			}
+		}
+		ctxt.set(name: "toString", function: toStringFunc)
+
 		/* isObject */
 		let isObjectFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in
@@ -148,6 +181,17 @@ public class KLLibraryCompiler: KECompiler
 			return JSValue(bool: result, in: ctxt)
 		}
 		ctxt.set(name: "isObject", function: isObjectFunc)
+
+		/* toObject */
+		let toObjectFunc: @convention(block) (_ value: JSValue) -> JSValue = {
+			(_ value: JSValue) -> JSValue in
+			if value.isObject {
+				return value
+			} else {
+				return JSValue(nullIn: ctxt)
+			}
+		}
+		ctxt.set(name: "toObject", function: toObjectFunc)
 
 		/* isArray */
 		let isArrayFunc: @convention(block) (_ value: JSValue) -> JSValue = {
@@ -157,6 +201,17 @@ public class KLLibraryCompiler: KECompiler
 		}
 		ctxt.set(name: "isArray", function: isArrayFunc)
 
+		/* toArray */
+		let toArrayFunc: @convention(block) (_ value: JSValue) -> JSValue = {
+			(_ value: JSValue) -> JSValue in
+			if value.isArray {
+				return value
+			} else {
+				return JSValue(nullIn: ctxt)
+			}
+		}
+		ctxt.set(name: "toArray", function: toArrayFunc)
+
 		/* isDate */
 		let isDateFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in
@@ -164,6 +219,17 @@ public class KLLibraryCompiler: KECompiler
 			return JSValue(bool: result, in: ctxt)
 		}
 		ctxt.set(name: "isDate", function: isDateFunc)
+
+		/* toDate */
+		let toDateFunc: @convention(block) (_ value: JSValue) -> JSValue = {
+			(_ value: JSValue) -> JSValue in
+			if value.isDate {
+				return value
+			} else {
+				return JSValue(nullIn: ctxt)
+			}
+		}
+		ctxt.set(name: "toDate", function: toDateFunc)
 
 		/* isURL */
 		let isURLFunc: @convention(block) (_ value: JSValue) -> JSValue = {
@@ -173,6 +239,17 @@ public class KLLibraryCompiler: KECompiler
 		}
 		ctxt.set(name: "isURL", function: isURLFunc)
 
+		/* toURL */
+		let toURLFunc: @convention(block) (_ value: JSValue) -> JSValue = {
+			(_ value: JSValue) -> JSValue in
+			if value.isURL {
+				return value
+			} else {
+				return JSValue(nullIn: ctxt)
+			}
+		}
+		ctxt.set(name: "toURL", function: toURLFunc)
+
 		/* isPoint */
 		let isPointFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in
@@ -180,6 +257,16 @@ public class KLLibraryCompiler: KECompiler
 			return JSValue(bool: result, in: ctxt)
 		}
 		ctxt.set(name: "isPoint", function: isPointFunc)
+
+		let toPointFunc: @convention(block) (_ value: JSValue) -> JSValue = {
+			(_ value: JSValue) -> JSValue in
+			if value.isPoint {
+				return value
+			} else {
+				return JSValue(nullIn: ctxt)
+			}
+		}
+		ctxt.set(name: "toPoint", function: toPointFunc)
 
 		/* isSize */
 		let isSizeFunc: @convention(block) (_ value: JSValue) -> JSValue = {
@@ -189,6 +276,17 @@ public class KLLibraryCompiler: KECompiler
 		}
 		ctxt.set(name: "isSize", function: isSizeFunc)
 
+		/* toSize */
+		let toSizeFunc: @convention(block) (_ value: JSValue) -> JSValue = {
+			(_ value: JSValue) -> JSValue in
+			if value.isSize {
+				return value
+			} else {
+				return JSValue(nullIn: ctxt)
+			}
+		}
+		ctxt.set(name: "toSize", function: toSizeFunc)
+
 		/* isRect */
 		let isRectFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in
@@ -196,6 +294,17 @@ public class KLLibraryCompiler: KECompiler
 			return JSValue(bool: result, in: ctxt)
 		}
 		ctxt.set(name: "isRect", function: isRectFunc)
+
+		/* toRect */
+		let toRectFunc: @convention(block) (_ value: JSValue) -> JSValue = {
+			(_ value: JSValue) -> JSValue in
+			if value.isRect {
+				return value
+			} else {
+				return JSValue(nullIn: ctxt)
+			}
+		}
+		ctxt.set(name: "toRect", function: toRectFunc)
 
 		/* isBitmap */
 		let isBitmapFunc: @convention(block) (_ value: JSValue) -> JSValue = {

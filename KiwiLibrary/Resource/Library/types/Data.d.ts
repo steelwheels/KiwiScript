@@ -12,11 +12,11 @@ declare class Table {
     element(x: number, y: number): any | null | undefined;
     setElement(x: number, y: number, value: any | null): void;
     fill(value: any | null): void;
-    forEach(childFunc: (value: any, index: _Point) => void): void;
+    forEach(childFunc: (value: any, index: PointIF) => void): void;
     forEachColumn(x: number, childFunc: (value: any, y: number) => void): void;
     forEachRow(y: number, childFunc: (value: any, x: number) => void): void;
-    find(findFunc: (value: any, index: _Point) => boolean): void;
-    findIndex(findFunc: (value: any, index: _Point) => boolean): _Point;
-    map(mapFunc: (value: any, index: _Point) => any): Table;
-    toStrings(elm2str: (value: any, index: _Point) => any): string[];
+    find(findFunc: (value: any, index: PointIF) => boolean): void;
+    findIndex(findFunc: (value: any, index: PointIF) => boolean): PointIF;
+    map(mapFunc: (value: any, index: PointIF) => any): Table;
+    toStrings(elm2str: (value: any, index: PointIF) => any): string[];
 }

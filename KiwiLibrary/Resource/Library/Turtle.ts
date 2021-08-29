@@ -12,7 +12,7 @@ type TurtleStatus = {
 
 class Turtle
 {
-	mContext:	        _GraphicsContext ;
+	mContext:	        GraphicsContextIF ;
 	mCurrentX:	        number ;
 	mCurrentY:	        number ;
 	mCurrentAngle:	        number ;
@@ -21,7 +21,7 @@ class Turtle
 	mPenSize:	        number ;
         mHistory:               TurtleStatus[] ;
 
-        constructor(ctxt: _GraphicsContext){
+        constructor(ctxt: GraphicsContextIF){
                 this.mContext		= ctxt ;
                 this.mCurrentX		= 0.0 ;
                 this.mCurrentY		= 0.0 ;
@@ -42,7 +42,7 @@ class Turtle
                 this.mContext.setPenSize(pen) ;
         }
 
-        get logicalFrame(): _Rect               { return this.mContext.logicalFrame ; }
+        get logicalFrame(): RectIF              { return this.mContext.logicalFrame ; }
 
         get currentX(): number                  { return this.mCurrentX ;         }
         get currentY(): number                  { return this.mCurrentY ;         }

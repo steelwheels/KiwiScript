@@ -34,6 +34,7 @@ The built-in class, function, data types for JavaScript.
 * [system](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/System.md): Execute shell command
 * [thread](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Thread.md): Generate thread to execute JavaScript.
 * [Type checking](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/TypeChecks.md): Functions to check object types such as `isNull`, `isBoolean`, `isNumber`, etc...
+* [Objet checking](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/ObjectChecks.md): Functions to check object context such as `isEmptyString`, `isEmptyObject`, etc... 
 * [valueType](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/TypeGetter.md): Get the data type of given parameter.
 
 ## Objects

@@ -2,7 +2,7 @@
  * Builtin.d.ts
  */
 
-interface _Color {
+interface ColorIF {
 	red:			number ;
 	green:			number ;
 	blue:			number ;
@@ -18,14 +18,14 @@ interface _Console {
 }
 
 interface _ColorManager {
-        black:          _Color ;
-        red:            _Color ;
-        green:          _Color ;
-        yellow:         _Color ;
-        blue:           _Color ;
-        magenta:        _Color ;
-        cyan:           _Color ;
-        white:          _Color ;
+        black:          ColorIF ;
+        red:            ColorIF ;
+        green:          ColorIF ;
+        yellow:         ColorIF ;
+        blue:           ColorIF ;
+        magenta:        ColorIF ;
+        cyan:           ColorIF ;
+        white:          ColorIF ;
 }
 
 interface _Curses {
@@ -116,33 +116,42 @@ interface _Pipe {
         writing:        FileIF ;
 }
 
-interface _Point {
+interface PointIF {
 	x : number ;
 	y : number ;
 } 
 
-interface _Rect {
+interface RectIF {
 	x:		number ;
 	y: 		number ;
 	width:		number ;
 	height:		number ;
 } 
 
-interface _Size {
+interface SizeIF {
 	width:		number ;
 	height:		number ;
 }
 
 /* KLGraphicsContext in swift */
-interface _GraphicsContext {
-	logicalFrame:	_Rect ;
+interface GraphicsContextIF {
+	logicalFrame:	RectIF ;
 
-	setFillColor(col: _Color): void ;
-	setStrokeColor(col: _Color): void ;
+	setFillColor(col: ColorIF): void ;
+	setStrokeColor(col: ColorIF): void ;
 	setPenSize(size: number): void ;
 	moveTo(x: number, y: number): void ;
 	lineTo(x: number, y: number): void ;
 	circle(x: number, y: number, rad: number): void ;
+}
+
+interface BitmapIF
+{
+	width:		number
+	height:		number
+
+	get(x: number, y: number): ColorIF
+	set(x: number, y: number, color: ColorIF): void
 }
 
 interface _Process {
@@ -152,11 +161,11 @@ interface _Process {
 	terminate(): void ;
 }
 
-interface _URL {
+interface URLIF {
 	isNull:			boolean ;
 	absoluteString:		string ;
 	path:			string ;
-	appendingPathComponent(comp: string): _URL | null ;
+	appendingPathComponent(comp: string): URLIF | null ;
 	loadText():		string | null ;
 }
 
@@ -173,7 +182,7 @@ interface ContactDatabaseIF {
 	recordCount:		number ;
 
 	authorize(callback: (granted: boolean) => void): void
-	load(url: _URL | null): boolean ;
+	load(url: URLIF | null): boolean ;
 
 	newRecord(): ContactRecordIF ;
 	record(index: number): ContactRecordIF | null ;
@@ -193,9 +202,9 @@ declare var Contacts:	        ContactDatabaseIF ;
 
 declare function Dictionary(): _Dictionary ;
 declare function Pipe(): _Pipe ;
-declare function Point(x: number, y: number): _Point ;
-declare function Rect(x: number, y: number, width: number, height: number): _Rect ;
-declare function Size(width: number, height: number): _Size ;
+declare function Point(x: number, y: number): PointIF ;
+declare function Rect(x: number, y: number, width: number, height: number): RectIF ;
+declare function Size(width: number, height: number): SizeIF ;
 
 declare function isArray(value: any): boolean ;
 declare function isBitmap(value: any): boolean ;
@@ -212,6 +221,17 @@ declare function isUndefined(value: any): boolean ;
 declare function isURL(value: any): boolean ;
 declare function isEOF(value: any): boolean ;
 
+declare function tpArray(value: any): any[] | null ;
+declare function toBoolean(value: any): boolean | null ;
+declare function toDate(value: any): object | null ;
+declare function toNumber(value: any): number | null ;
+declare function toString(value: any): string | null ;
+declare function toObject(value: any): object | null ;
+declare function toPoint(value: any): PointIF | null ;
+declare function toRect(value: any): RectIF | null ;
+declare function toSize(value: any): SizeIF | null ;
+declare function toURL(value: any): URLIF | null ;
+
 declare function asciiCodeName(code: number): string | null ;
 
 declare function sleep(sec: number): boolean ;
@@ -219,5 +239,5 @@ declare function sleep(sec: number): boolean ;
 declare function _openPanel(title: string, type: number,
 					exts: string[], cbfunc: any): void ;
 declare function _savePanel(title: string, cbfunc: any): void ;
-declare function _run(path: _URL | string, input: FileIF, output: FileIF, error: FileIF): object | null ;
+declare function _run(path: URLIF | string, input: FileIF, output: FileIF, error: FileIF): object | null ;
 

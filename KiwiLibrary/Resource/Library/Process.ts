@@ -64,10 +64,10 @@ function _cancel() {
 	throw new CancelException(ExitCode.exception) ;
 }
 
-function openPanel(title: string, type: number, exts: string[]): _URL | null {
+function openPanel(title: string, type: number, exts: string[]): URLIF | null {
 	let result = null ;
 	let sem    = new Semaphore(0) ;
-	let cbfunc = function(url: _URL) {
+	let cbfunc = function(url: URLIF) {
 		result = url ;
 		sem.signal() ;  // Tell finish operation
 	} ;
@@ -76,10 +76,10 @@ function openPanel(title: string, type: number, exts: string[]): _URL | null {
 	return result ;
 }
 
-function savePanel(title: string): _URL | null {
+function savePanel(title: string): URLIF | null {
 	let result = null ;
 	let sem    = new Semaphore(0) ;
-	let cbfunc = function(url: _URL) {
+	let cbfunc = function(url: URLIF) {
 		result = url ;
 		sem.signal() ;  // Tell finish operation
 	} ;
@@ -88,7 +88,7 @@ function savePanel(title: string): _URL | null {
 	return result ;
 }
 
-function run(path: _URL | string | null,
+function run(path: URLIF | string | null,
 				input: FileIF, output: FileIF, error: FileIF) {
 	if(path == null) {
 		let newpath = openPanel("Select script file to execute", 
