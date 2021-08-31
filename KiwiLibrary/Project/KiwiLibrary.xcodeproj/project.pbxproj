@@ -153,6 +153,12 @@
 		05C0378E25187007002A9C41 /* Math.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05C0378825186FF3002A9C41 /* Math.js */; };
 		05C3B2A025A2087F005256E1 /* KLReadline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C3B29F25A2087F005256E1 /* KLReadline.swift */; };
 		05C3B2A125A2087F005256E1 /* KLReadline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C3B29F25A2087F005256E1 /* KLReadline.swift */; };
+		05C8362826DBCA3000861C51 /* Object.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0515051D26DB7B14007C29F0 /* Object.ts */; };
+		05C8362C26DBCA4300861C51 /* Object.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0515052126DB7B41007C29F0 /* Object.js */; };
+		05C8363026DBCA4E00861C51 /* Object.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0515052226DB7D47007C29F0 /* Object.d.ts */; };
+		05C8363426DBCA6800861C51 /* Object.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0515051D26DB7B14007C29F0 /* Object.ts */; };
+		05C8363526DBCA7000861C51 /* Object.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0515052126DB7B41007C29F0 /* Object.js */; };
+		05C8363626DBCA7B00861C51 /* Object.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0515052226DB7D47007C29F0 /* Object.d.ts */; };
 		05CFDFE2254505E50089C1AE /* KLThreadLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CFDFE1254505E50089C1AE /* KLThreadLauncher.swift */; };
 		05CFDFE3254505E50089C1AE /* KLThreadLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CFDFE1254505E50089C1AE /* KLThreadLauncher.swift */; };
 		05D4FD20268F5B9800780B83 /* Contacts.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05D4FD1F268F5B2C00780B83 /* Contacts.ts */; };
@@ -240,6 +246,8 @@
 			dstPath = Library;
 			dstSubfolderSpec = 7;
 			files = (
+				05C8362C26DBCA4300861C51 /* Object.js in CopyFiles */,
+				05C8362826DBCA3000861C51 /* Object.ts in CopyFiles */,
 				05D4FD20268F5B9800780B83 /* Contacts.ts in CopyFiles */,
 				05D4FD21268F5B9800780B83 /* Contacts.js in CopyFiles */,
 				052927C7263D6EC900A8CD49 /* Data.ts in CopyFiles */,
@@ -267,6 +275,7 @@
 			dstPath = Library/types;
 			dstSubfolderSpec = 7;
 			files = (
+				05C8363026DBCA4E00861C51 /* Object.d.ts in CopyFiles */,
 				052927D0263D6ED700A8CD49 /* Data.d.ts in CopyFiles */,
 				052927D1263D6ED700A8CD49 /* KiwiLibrary.d.ts in CopyFiles */,
 				050A3E75263BF597008172E7 /* Graphics.d.ts in CopyFiles */,
@@ -287,6 +296,8 @@
 			dstPath = Library;
 			dstSubfolderSpec = 7;
 			files = (
+				05C8363526DBCA7000861C51 /* Object.js in CopyFiles */,
+				05C8363426DBCA6800861C51 /* Object.ts in CopyFiles */,
 				052927EB263D6F3800A8CD49 /* Data.ts in CopyFiles */,
 				052927EC263D6F3800A8CD49 /* Debug.ts in CopyFiles */,
 				052927ED263D6F3800A8CD49 /* File.ts in CopyFiles */,
@@ -312,6 +323,7 @@
 			dstPath = Library/types;
 			dstSubfolderSpec = 7;
 			files = (
+				05C8363626DBCA7B00861C51 /* Object.d.ts in CopyFiles */,
 				05292800263D6F4C00A8CD49 /* Builtin.d.ts in CopyFiles */,
 				05292801263D6F4C00A8CD49 /* Data.d.ts in CopyFiles */,
 				05292802263D6F4C00A8CD49 /* Debug.d.ts in CopyFiles */,

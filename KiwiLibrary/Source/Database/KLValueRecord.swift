@@ -33,6 +33,18 @@ import Foundation
 		return JSValue(object: mRecord.fieldNames, in: mContext)
 	}}
 
+	public var filledFieldNames: JSValue { get {
+		var result: Array<String> = []
+		for name in mRecord.fieldNames {
+			if let val = mRecord.value(ofField: name) {
+				if !val.isEmpty() {
+					result.append(name)
+				}
+			}
+		}
+		return JSValue(object: result, in: mContext)
+	}}
+
 	public func value(_ name: JSValue) -> JSValue {
 		if name.isString {
 			if let nstr = name.toString() {

@@ -13,8 +13,9 @@ import Foundation
 
 @objc public protocol KLRecord: JSExport
 {
-	var fieldCount: JSValue { get }
-	var fieldNames: JSValue { get }
+	var fieldCount:		JSValue { get }
+	var fieldNames:		JSValue { get }
+	var filledFieldNames:	JSValue { get }
 
 	func value(_ name: JSValue) -> JSValue
 	func setValue(_ val: JSValue, _ name: JSValue) -> JSValue
@@ -80,6 +81,10 @@ public protocol KLRecordCore
 
 	public var fieldNames: JSValue { get {
 		return JSValue(object: mContact.fieldNames, in: mContext)
+	}}
+
+	public var filledFieldNames: JSValue { get {
+		return JSValue(object: mContact.filledFieldNames, in: mContext)
 	}}
 
 	private func value(ofField fld: CNContactField) -> JSValue {

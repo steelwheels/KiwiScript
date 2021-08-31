@@ -4,7 +4,7 @@
 
 /// <reference path="types/Builtin.d.ts"/>
 
-function _waitUntilExitOne(process: _Process): number
+function _waitUntilExitOne(process: ProcessIF): number
 {
 	while(!process.didFinished) {
 		/* wait until exit */
@@ -12,7 +12,7 @@ function _waitUntilExitOne(process: _Process): number
 	return process.exitCode ;
 }
 
-function _waitUntilExitAll(processes: _Process[]): number
+function _waitUntilExitAll(processes: ProcessIF[]): number
 {
 	let ecode = 0 ;
 	for(let process of processes) {
