@@ -66,6 +66,10 @@ import Foundation
 		return JSValue(bool: result, in: mContext)
 	}
 
+	public var isDirty: JSValue { get {
+		return JSValue(bool: mRecord.isDirty, in: mContext)
+	}}
+
 	public func save() {
 		NSLog("Not supported yet")
 	}

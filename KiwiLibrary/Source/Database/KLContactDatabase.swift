@@ -23,6 +23,7 @@ import Foundation
 	func append(_ rcd: JSValue)
 	func forEach(_ callback: JSValue)
 
+	var isDirty: JSValue { get }
 	func save()
 }
 
@@ -135,6 +136,11 @@ public protocol KLTableCore
 			}
 		})
 	}
+
+	public var isDirty: JSValue { get {
+		let db = CNContactDatabase.shared
+		return JSValue(bool: db.isDirty, in: mContext)
+	}}
 
 	public func save() {
 		let dc  = CNContactDatabase.shared

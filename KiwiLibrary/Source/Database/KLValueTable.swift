@@ -104,6 +104,10 @@ import Foundation
 		})
 	}
 
+	public var isDirty: JSValue { get {
+		return JSValue(bool: mTable.isDirty, in: mContext)
+	}}
+
 	public func save() {
 		NSLog("Not supported now")
 	}
