@@ -39,8 +39,18 @@ class _Readline
 			for(let i=0 ; i<items.length ; i++){
 				console.print(`${i}: ${items[i]}\n`) ;
 			}
+			console.print("q: Quit\n") ;
 			console.print("number> ") ;
 			let line = Readline.inputLine() ;
+			if(isString(line)){
+				let str = toString(line) ;
+				if(str == "q" || str == "Q"){
+					result  = -1 ;
+					decided = true ;
+                                        continue ;
+				}
+			}
+
 			let num  = parseInt(line) ;
 			if(!isNaN(num)){
 				if(0<=num && num<items.length){

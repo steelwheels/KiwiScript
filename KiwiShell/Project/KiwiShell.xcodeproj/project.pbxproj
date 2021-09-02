@@ -127,6 +127,9 @@
 		051AA9CC268211430089F4A7 /* CoconutDatabase.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutDatabase.xcframework; path = ../../../../Library/Frameworks/CoconutDatabase.xcframework; sourceTree = "<group>"; };
 		057B172B262290B9004035E6 /* KHShellCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KHShellCommand.swift; sourceTree = "<group>"; };
 		058B25FD262F125600203C4A /* Readline.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Readline.js; sourceTree = "<group>"; };
+		05991B2B26E0441D00ED7115 /* Readline.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readline.d.ts; sourceTree = "<group>"; };
+		05991B2D26E0767E00ED7115 /* Builtin.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Builtin.d.ts; sourceTree = "<group>"; };
+		05991B2E26E0768600ED7115 /* KiwiLibrary.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = KiwiLibrary.d.ts; sourceTree = "<group>"; };
 		05C412C02517583900F07DB2 /* KiwiShell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiShell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05C412C32517583900F07DB2 /* KiwiShell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiShell.h; sourceTree = "<group>"; };
 		05C412C42517583900F07DB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -257,6 +260,9 @@
 		05D9A896263E9E88006D0FA2 /* types */ = {
 			isa = PBXGroup;
 			children = (
+				05991B2E26E0768600ED7115 /* KiwiLibrary.d.ts */,
+				05991B2D26E0767E00ED7115 /* Builtin.d.ts */,
+				05991B2B26E0441D00ED7115 /* Readline.d.ts */,
 				05D9A89A263E9EDC006D0FA2 /* KiwiShell.d.ts */,
 			);
 			path = types;

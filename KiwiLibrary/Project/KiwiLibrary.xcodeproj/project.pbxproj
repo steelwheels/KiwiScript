@@ -77,6 +77,15 @@
 		056FBE52255A3B8B0069A0C2 /* UTCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FBE51255A3B8B0069A0C2 /* UTCommand.swift */; };
 		05763BEC2610AA89004D7B15 /* Graphics.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05763BEB2610AA89004D7B15 /* Graphics.js */; };
 		0577476225FE388A00ADC6E7 /* File.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0577476125FE388A00ADC6E7 /* File.js */; };
+		058E321F26DFC61100CDD628 /* Curses.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058E321D26DFC5E300CDD628 /* Curses.d.ts */; };
+		058E322026DFC61100CDD628 /* Contacts.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05D4FD25268F5BBF00780B83 /* Contacts.d.ts */; };
+		058E322526DFC62200CDD628 /* Curses.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058E321D26DFC5E300CDD628 /* Curses.d.ts */; };
+		058E322A26DFC64700CDD628 /* Curses.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05783D0726DBAC9400C573BB /* Curses.ts */; };
+		058E322C26DFC64700CDD628 /* Curses.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0516CC4526213502000B9796 /* Curses.js */; };
+		058E323126DFC66500CDD628 /* Contacts.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05D4FD1F268F5B2C00780B83 /* Contacts.ts */; };
+		058E323226DFC66500CDD628 /* Curses.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05783D0726DBAC9400C573BB /* Curses.ts */; };
+		058E323426DFC66500CDD628 /* Contacts.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05D4FD1E268F5B2C00780B83 /* Contacts.js */; };
+		058E323526DFC66500CDD628 /* Curses.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0516CC4526213502000B9796 /* Curses.js */; };
 		05950CA125C4304500D659A1 /* KLGraphicsContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05950CA025C4304500D659A1 /* KLGraphicsContext.swift */; };
 		05950CA225C4304500D659A1 /* KLGraphicsContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05950CA025C4304500D659A1 /* KLGraphicsContext.swift */; };
 		0598000525CB5F5F00499B6E /* KLBitmapContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0598000425CB5F5F00499B6E /* KLBitmapContext.swift */; };
@@ -246,6 +255,8 @@
 			dstPath = Library;
 			dstSubfolderSpec = 7;
 			files = (
+				058E322A26DFC64700CDD628 /* Curses.ts in CopyFiles */,
+				058E322C26DFC64700CDD628 /* Curses.js in CopyFiles */,
 				05C8362C26DBCA4300861C51 /* Object.js in CopyFiles */,
 				05C8362826DBCA3000861C51 /* Object.ts in CopyFiles */,
 				05D4FD20268F5B9800780B83 /* Contacts.ts in CopyFiles */,
@@ -275,6 +286,7 @@
 			dstPath = Library/types;
 			dstSubfolderSpec = 7;
 			files = (
+				058E322526DFC62200CDD628 /* Curses.d.ts in CopyFiles */,
 				05C8363026DBCA4E00861C51 /* Object.d.ts in CopyFiles */,
 				052927D0263D6ED700A8CD49 /* Data.d.ts in CopyFiles */,
 				052927D1263D6ED700A8CD49 /* KiwiLibrary.d.ts in CopyFiles */,
@@ -296,6 +308,10 @@
 			dstPath = Library;
 			dstSubfolderSpec = 7;
 			files = (
+				058E323126DFC66500CDD628 /* Contacts.ts in CopyFiles */,
+				058E323226DFC66500CDD628 /* Curses.ts in CopyFiles */,
+				058E323426DFC66500CDD628 /* Contacts.js in CopyFiles */,
+				058E323526DFC66500CDD628 /* Curses.js in CopyFiles */,
 				05C8363526DBCA7000861C51 /* Object.js in CopyFiles */,
 				05C8363426DBCA6800861C51 /* Object.ts in CopyFiles */,
 				052927EB263D6F3800A8CD49 /* Data.ts in CopyFiles */,
@@ -323,6 +339,8 @@
 			dstPath = Library/types;
 			dstSubfolderSpec = 7;
 			files = (
+				058E321F26DFC61100CDD628 /* Curses.d.ts in CopyFiles */,
+				058E322026DFC61100CDD628 /* Contacts.d.ts in CopyFiles */,
 				05C8363626DBCA7B00861C51 /* Object.d.ts in CopyFiles */,
 				05292800263D6F4C00A8CD49 /* Builtin.d.ts in CopyFiles */,
 				05292801263D6F4C00A8CD49 /* Data.d.ts in CopyFiles */,
@@ -391,6 +409,7 @@
 		0577476125FE388A00ADC6E7 /* File.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = File.js; sourceTree = "<group>"; };
 		05783D0726DBAC9400C573BB /* Curses.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Curses.ts; sourceTree = "<group>"; };
 		058C8D9925E4ACB2002B4273 /* Data.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Data.js; sourceTree = "<group>"; };
+		058E321D26DFC5E300CDD628 /* Curses.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Curses.d.ts; sourceTree = "<group>"; };
 		05950CA025C4304500D659A1 /* KLGraphicsContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLGraphicsContext.swift; sourceTree = "<group>"; };
 		0598000425CB5F5F00499B6E /* KLBitmapContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLBitmapContext.swift; sourceTree = "<group>"; };
 		05A1F44D253BBAD400D4789F /* UTEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTEnvironment.swift; sourceTree = "<group>"; };
@@ -502,6 +521,7 @@
 			isa = PBXGroup;
 			children = (
 				050A3E68263BF597008172E7 /* Builtin.d.ts */,
+				058E321D26DFC5E300CDD628 /* Curses.d.ts */,
 				05D4FD25268F5BBF00780B83 /* Contacts.d.ts */,
 				050A3E62263BF596008172E7 /* Data.d.ts */,
 				050A3E66263BF596008172E7 /* Debug.d.ts */,

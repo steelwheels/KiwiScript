@@ -7,7 +7,7 @@ Following global variables are defined.
 |:---       |:---       |:---                             |
 |Readline   |Readline   |Singleton object of Readline class   |
 
-## `inputLine` method
+## `input` method
 ````
 input(): string
 ````
@@ -23,6 +23,19 @@ The string which does *NOT* contains newline code.
 history(): string[]
 ````
 Return the list of previous commandline inputs
+
+## `menu` method
+````
+menu(items: string[]): number
+````
+Output the menu items and wait user input.
+
+### Parameters
+Array of labels of menu item.
+
+### Return value
+n >=  0 : Index of the selected element
+n == -1 : User did not select any item  
 
 # References
 * [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library
