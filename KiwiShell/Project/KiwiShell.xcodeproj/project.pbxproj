@@ -13,6 +13,12 @@
 		057B172D262290B9004035E6 /* KHShellCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B172B262290B9004035E6 /* KHShellCommand.swift */; };
 		058B25FF262F126600203C4A /* Readline.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058B25FD262F125600203C4A /* Readline.js */; };
 		058B2605262F127800203C4A /* Readline.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058B25FD262F125600203C4A /* Readline.js */; };
+		059134FA26E304CD001F593E /* ValueEditor.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 059DBA1426E26E8200FB5480 /* ValueEditor.js */; };
+		059134FB26E304CD001F593E /* ValueEditor.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 059DBA1526E26E8200FB5480 /* ValueEditor.ts */; };
+		059134FE26E304E2001F593E /* ValueEditor.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 059DBA1626E26E9300FB5480 /* ValueEditor.d.ts */; };
+		0591350126E304EC001F593E /* ValueEditor.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 059DBA1426E26E8200FB5480 /* ValueEditor.js */; };
+		0591350226E304EC001F593E /* ValueEditor.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 059DBA1526E26E8200FB5480 /* ValueEditor.ts */; };
+		0591350526E304F8001F593E /* ValueEditor.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 059DBA1626E26E9300FB5480 /* ValueEditor.d.ts */; };
 		05C412C52517583900F07DB2 /* KiwiShell.h in Headers */ = {isa = PBXBuildFile; fileRef = 05C412C32517583900F07DB2 /* KiwiShell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05C412D32517584F00F07DB2 /* KiwiShell.h in Headers */ = {isa = PBXBuildFile; fileRef = 05C412D12517584F00F07DB2 /* KiwiShell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05C412E52517590A00F07DB2 /* KHShellCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C412DA2517590900F07DB2 /* KHShellCompiler.swift */; };
@@ -85,6 +91,8 @@
 			dstPath = Library;
 			dstSubfolderSpec = 7;
 			files = (
+				059134FA26E304CD001F593E /* ValueEditor.js in CopyFiles */,
+				059134FB26E304CD001F593E /* ValueEditor.ts in CopyFiles */,
 				058B25FF262F126600203C4A /* Readline.js in CopyFiles */,
 				05D9A89F263E9F00006D0FA2 /* Readline.ts in CopyFiles */,
 			);
@@ -96,6 +104,8 @@
 			dstPath = Library;
 			dstSubfolderSpec = 7;
 			files = (
+				0591350126E304EC001F593E /* ValueEditor.js in CopyFiles */,
+				0591350226E304EC001F593E /* ValueEditor.ts in CopyFiles */,
 				05D9A897263E9EC4006D0FA2 /* Readline.ts in CopyFiles */,
 				058B2605262F127800203C4A /* Readline.js in CopyFiles */,
 			);
@@ -107,6 +117,7 @@
 			dstPath = Library/types;
 			dstSubfolderSpec = 7;
 			files = (
+				0591350526E304F8001F593E /* ValueEditor.d.ts in CopyFiles */,
 				05D9A89C263E9EEA006D0FA2 /* KiwiShell.d.ts in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -117,6 +128,7 @@
 			dstPath = Library/types;
 			dstSubfolderSpec = 7;
 			files = (
+				059134FE26E304E2001F593E /* ValueEditor.d.ts in CopyFiles */,
 				05D9A8A3263E9F0C006D0FA2 /* KiwiShell.d.ts in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -130,6 +142,9 @@
 		05991B2B26E0441D00ED7115 /* Readline.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readline.d.ts; sourceTree = "<group>"; };
 		05991B2D26E0767E00ED7115 /* Builtin.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Builtin.d.ts; sourceTree = "<group>"; };
 		05991B2E26E0768600ED7115 /* KiwiLibrary.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = KiwiLibrary.d.ts; sourceTree = "<group>"; };
+		059DBA1426E26E8200FB5480 /* ValueEditor.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ValueEditor.js; sourceTree = "<group>"; };
+		059DBA1526E26E8200FB5480 /* ValueEditor.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ValueEditor.ts; sourceTree = "<group>"; };
+		059DBA1626E26E9300FB5480 /* ValueEditor.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ValueEditor.d.ts; sourceTree = "<group>"; };
 		05C412C02517583900F07DB2 /* KiwiShell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiShell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05C412C32517583900F07DB2 /* KiwiShell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiShell.h; sourceTree = "<group>"; };
 		05C412C42517583900F07DB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -196,6 +211,8 @@
 				05D9A896263E9E88006D0FA2 /* types */,
 				05D9A895263E9E80006D0FA2 /* Readline.ts */,
 				058B25FD262F125600203C4A /* Readline.js */,
+				059DBA1426E26E8200FB5480 /* ValueEditor.js */,
+				059DBA1526E26E8200FB5480 /* ValueEditor.ts */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -260,6 +277,7 @@
 		05D9A896263E9E88006D0FA2 /* types */ = {
 			isa = PBXGroup;
 			children = (
+				059DBA1626E26E9300FB5480 /* ValueEditor.d.ts */,
 				05991B2E26E0768600ED7115 /* KiwiLibrary.d.ts */,
 				05991B2D26E0767E00ED7115 /* Builtin.d.ts */,
 				05991B2B26E0441D00ED7115 /* Readline.d.ts */,

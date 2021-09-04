@@ -31,14 +31,13 @@
 		050FDBF925FC87BE00331107 /* KLDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FDBF725FC87BE00331107 /* KLDictionary.swift */; };
 		051D09E82559914D0083336F /* KLCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D09E72559914D0083336F /* KLCommand.swift */; };
 		051D09E92559914D0083336F /* KLCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D09E72559914D0083336F /* KLCommand.swift */; };
-		052927C7263D6EC900A8CD49 /* Data.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E81263BF5C9008172E7 /* Data.ts */; };
+		052927C7263D6EC900A8CD49 /* Table.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E81263BF5C9008172E7 /* Table.ts */; };
 		052927C8263D6EC900A8CD49 /* File.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E88263BF5C9008172E7 /* File.ts */; };
 		052927C9263D6EC900A8CD49 /* Turtle.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E85263BF5C9008172E7 /* Turtle.ts */; };
-		052927CB263D6EC900A8CD49 /* Data.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058C8D9925E4ACB2002B4273 /* Data.js */; };
+		052927CB263D6EC900A8CD49 /* Table.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058C8D9925E4ACB2002B4273 /* Table.js */; };
 		052927CC263D6EC900A8CD49 /* Debug.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05C0378925186FF3002A9C41 /* Debug.js */; };
-		052927D0263D6ED700A8CD49 /* Data.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E62263BF596008172E7 /* Data.d.ts */; };
 		052927D1263D6ED700A8CD49 /* KiwiLibrary.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E64263BF596008172E7 /* KiwiLibrary.d.ts */; };
-		052927EB263D6F3800A8CD49 /* Data.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E81263BF5C9008172E7 /* Data.ts */; };
+		052927EB263D6F3800A8CD49 /* Table.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E81263BF5C9008172E7 /* Table.ts */; };
 		052927EC263D6F3800A8CD49 /* Debug.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E83263BF5C9008172E7 /* Debug.ts */; };
 		052927ED263D6F3800A8CD49 /* File.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E88263BF5C9008172E7 /* File.ts */; };
 		052927EE263D6F3800A8CD49 /* Graphics.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E80263BF5C9008172E7 /* Graphics.ts */; };
@@ -46,7 +45,7 @@
 		052927F0263D6F3800A8CD49 /* Process.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E87263BF5C9008172E7 /* Process.ts */; };
 		052927F1263D6F3800A8CD49 /* String.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E86263BF5C9008172E7 /* String.ts */; };
 		052927F2263D6F3800A8CD49 /* Turtle.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E85263BF5C9008172E7 /* Turtle.ts */; };
-		052927F4263D6F3800A8CD49 /* Data.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058C8D9925E4ACB2002B4273 /* Data.js */; };
+		052927F4263D6F3800A8CD49 /* Table.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058C8D9925E4ACB2002B4273 /* Table.js */; };
 		052927F5263D6F3800A8CD49 /* Debug.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05C0378925186FF3002A9C41 /* Debug.js */; };
 		052927F6263D6F3800A8CD49 /* File.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0577476125FE388A00ADC6E7 /* File.js */; };
 		052927F7263D6F3800A8CD49 /* Graphics.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05763BEB2610AA89004D7B15 /* Graphics.js */; };
@@ -55,7 +54,6 @@
 		052927FA263D6F3800A8CD49 /* String.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050C3CD8262C5CC00008ED97 /* String.js */; };
 		052927FB263D6F3800A8CD49 /* Turtle.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B12A5A25C6783900273421 /* Turtle.js */; };
 		05292800263D6F4C00A8CD49 /* Builtin.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E68263BF597008172E7 /* Builtin.d.ts */; };
-		05292801263D6F4C00A8CD49 /* Data.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E62263BF596008172E7 /* Data.d.ts */; };
 		05292802263D6F4C00A8CD49 /* Debug.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E66263BF596008172E7 /* Debug.d.ts */; };
 		05292803263D6F4C00A8CD49 /* File.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E63263BF596008172E7 /* File.d.ts */; };
 		05292804263D6F4C00A8CD49 /* Graphics.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E65263BF596008172E7 /* Graphics.d.ts */; };
@@ -90,6 +88,8 @@
 		05950CA225C4304500D659A1 /* KLGraphicsContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05950CA025C4304500D659A1 /* KLGraphicsContext.swift */; };
 		0598000525CB5F5F00499B6E /* KLBitmapContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0598000425CB5F5F00499B6E /* KLBitmapContext.swift */; };
 		0598000625CB5F5F00499B6E /* KLBitmapContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0598000425CB5F5F00499B6E /* KLBitmapContext.swift */; };
+		059DBA0C26E26A2D00FB5480 /* Table.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 059DBA0B26E26A1D00FB5480 /* Table.d.ts */; };
+		059DBA1026E26A3B00FB5480 /* Table.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 059DBA0B26E26A1D00FB5480 /* Table.d.ts */; };
 		05A1F44E253BBAD500D4789F /* UTEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A1F44D253BBAD400D4789F /* UTEnvironment.swift */; };
 		05A1F452253BBBD500D4789F /* UTFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A1F451253BBBD400D4789F /* UTFileManager.swift */; };
 		05A1F456253BC0F500D4789F /* UTFontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A1F455253BC0F500D4789F /* UTFontManager.swift */; };
@@ -261,10 +261,10 @@
 				05C8362826DBCA3000861C51 /* Object.ts in CopyFiles */,
 				05D4FD20268F5B9800780B83 /* Contacts.ts in CopyFiles */,
 				05D4FD21268F5B9800780B83 /* Contacts.js in CopyFiles */,
-				052927C7263D6EC900A8CD49 /* Data.ts in CopyFiles */,
+				052927C7263D6EC900A8CD49 /* Table.ts in CopyFiles */,
 				052927C8263D6EC900A8CD49 /* File.ts in CopyFiles */,
 				052927C9263D6EC900A8CD49 /* Turtle.ts in CopyFiles */,
-				052927CB263D6EC900A8CD49 /* Data.js in CopyFiles */,
+				052927CB263D6EC900A8CD49 /* Table.js in CopyFiles */,
 				052927CC263D6EC900A8CD49 /* Debug.js in CopyFiles */,
 				050A3E8D263BF5C9008172E7 /* Math.ts in CopyFiles */,
 				0577476225FE388A00ADC6E7 /* File.js in CopyFiles */,
@@ -286,9 +286,9 @@
 			dstPath = Library/types;
 			dstSubfolderSpec = 7;
 			files = (
+				059DBA1026E26A3B00FB5480 /* Table.d.ts in CopyFiles */,
 				058E322526DFC62200CDD628 /* Curses.d.ts in CopyFiles */,
 				05C8363026DBCA4E00861C51 /* Object.d.ts in CopyFiles */,
-				052927D0263D6ED700A8CD49 /* Data.d.ts in CopyFiles */,
 				052927D1263D6ED700A8CD49 /* KiwiLibrary.d.ts in CopyFiles */,
 				050A3E75263BF597008172E7 /* Graphics.d.ts in CopyFiles */,
 				05D4FD26268F5BD000780B83 /* Contacts.d.ts in CopyFiles */,
@@ -314,7 +314,7 @@
 				058E323526DFC66500CDD628 /* Curses.js in CopyFiles */,
 				05C8363526DBCA7000861C51 /* Object.js in CopyFiles */,
 				05C8363426DBCA6800861C51 /* Object.ts in CopyFiles */,
-				052927EB263D6F3800A8CD49 /* Data.ts in CopyFiles */,
+				052927EB263D6F3800A8CD49 /* Table.ts in CopyFiles */,
 				052927EC263D6F3800A8CD49 /* Debug.ts in CopyFiles */,
 				052927ED263D6F3800A8CD49 /* File.ts in CopyFiles */,
 				052927EE263D6F3800A8CD49 /* Graphics.ts in CopyFiles */,
@@ -322,7 +322,7 @@
 				052927F0263D6F3800A8CD49 /* Process.ts in CopyFiles */,
 				052927F1263D6F3800A8CD49 /* String.ts in CopyFiles */,
 				052927F2263D6F3800A8CD49 /* Turtle.ts in CopyFiles */,
-				052927F4263D6F3800A8CD49 /* Data.js in CopyFiles */,
+				052927F4263D6F3800A8CD49 /* Table.js in CopyFiles */,
 				052927F5263D6F3800A8CD49 /* Debug.js in CopyFiles */,
 				052927F6263D6F3800A8CD49 /* File.js in CopyFiles */,
 				052927F7263D6F3800A8CD49 /* Graphics.js in CopyFiles */,
@@ -339,11 +339,11 @@
 			dstPath = Library/types;
 			dstSubfolderSpec = 7;
 			files = (
+				059DBA0C26E26A2D00FB5480 /* Table.d.ts in CopyFiles */,
 				058E321F26DFC61100CDD628 /* Curses.d.ts in CopyFiles */,
 				058E322026DFC61100CDD628 /* Contacts.d.ts in CopyFiles */,
 				05C8363626DBCA7B00861C51 /* Object.d.ts in CopyFiles */,
 				05292800263D6F4C00A8CD49 /* Builtin.d.ts in CopyFiles */,
-				05292801263D6F4C00A8CD49 /* Data.d.ts in CopyFiles */,
 				05292802263D6F4C00A8CD49 /* Debug.d.ts in CopyFiles */,
 				05292803263D6F4C00A8CD49 /* File.d.ts in CopyFiles */,
 				05292804263D6F4C00A8CD49 /* Graphics.d.ts in CopyFiles */,
@@ -370,7 +370,6 @@
 		050A3E5F263BF596008172E7 /* Turtle.d.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = Turtle.d.ts; sourceTree = "<group>"; };
 		050A3E60263BF596008172E7 /* String.d.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = String.d.ts; sourceTree = "<group>"; };
 		050A3E61263BF596008172E7 /* Process.d.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = Process.d.ts; sourceTree = "<group>"; };
-		050A3E62263BF596008172E7 /* Data.d.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = Data.d.ts; sourceTree = "<group>"; };
 		050A3E63263BF596008172E7 /* File.d.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = File.d.ts; sourceTree = "<group>"; };
 		050A3E64263BF596008172E7 /* KiwiLibrary.d.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = KiwiLibrary.d.ts; sourceTree = "<group>"; };
 		050A3E65263BF596008172E7 /* Graphics.d.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = Graphics.d.ts; sourceTree = "<group>"; };
@@ -378,7 +377,7 @@
 		050A3E67263BF596008172E7 /* Math.d.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = Math.d.ts; sourceTree = "<group>"; };
 		050A3E68263BF597008172E7 /* Builtin.d.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = Builtin.d.ts; sourceTree = "<group>"; };
 		050A3E80263BF5C9008172E7 /* Graphics.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = Graphics.ts; sourceTree = "<group>"; };
-		050A3E81263BF5C9008172E7 /* Data.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = Data.ts; sourceTree = "<group>"; };
+		050A3E81263BF5C9008172E7 /* Table.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = Table.ts; sourceTree = "<group>"; };
 		050A3E82263BF5C9008172E7 /* Math.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = Math.ts; sourceTree = "<group>"; };
 		050A3E83263BF5C9008172E7 /* Debug.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = Debug.ts; sourceTree = "<group>"; };
 		050A3E85263BF5C9008172E7 /* Turtle.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = Turtle.ts; sourceTree = "<group>"; };
@@ -408,10 +407,11 @@
 		05763BEB2610AA89004D7B15 /* Graphics.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Graphics.js; sourceTree = "<group>"; };
 		0577476125FE388A00ADC6E7 /* File.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = File.js; sourceTree = "<group>"; };
 		05783D0726DBAC9400C573BB /* Curses.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Curses.ts; sourceTree = "<group>"; };
-		058C8D9925E4ACB2002B4273 /* Data.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Data.js; sourceTree = "<group>"; };
+		058C8D9925E4ACB2002B4273 /* Table.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Table.js; sourceTree = "<group>"; };
 		058E321D26DFC5E300CDD628 /* Curses.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Curses.d.ts; sourceTree = "<group>"; };
 		05950CA025C4304500D659A1 /* KLGraphicsContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLGraphicsContext.swift; sourceTree = "<group>"; };
 		0598000425CB5F5F00499B6E /* KLBitmapContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLBitmapContext.swift; sourceTree = "<group>"; };
+		059DBA0B26E26A1D00FB5480 /* Table.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Table.d.ts; sourceTree = "<group>"; };
 		05A1F44D253BBAD400D4789F /* UTEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTEnvironment.swift; sourceTree = "<group>"; };
 		05A1F451253BBBD400D4789F /* UTFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTFileManager.swift; sourceTree = "<group>"; };
 		05A1F455253BC0F500D4789F /* UTFontManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTFontManager.swift; sourceTree = "<group>"; };
@@ -520,10 +520,10 @@
 		050A3E5E263BF572008172E7 /* types */ = {
 			isa = PBXGroup;
 			children = (
+				059DBA0B26E26A1D00FB5480 /* Table.d.ts */,
 				050A3E68263BF597008172E7 /* Builtin.d.ts */,
 				058E321D26DFC5E300CDD628 /* Curses.d.ts */,
 				05D4FD25268F5BBF00780B83 /* Contacts.d.ts */,
-				050A3E62263BF596008172E7 /* Data.d.ts */,
 				050A3E66263BF596008172E7 /* Debug.d.ts */,
 				050A3E63263BF596008172E7 /* File.d.ts */,
 				050A3E65263BF596008172E7 /* Graphics.d.ts */,
@@ -776,7 +776,7 @@
 				050A3E5E263BF572008172E7 /* types */,
 				05D4FD1F268F5B2C00780B83 /* Contacts.ts */,
 				05783D0726DBAC9400C573BB /* Curses.ts */,
-				050A3E81263BF5C9008172E7 /* Data.ts */,
+				050A3E81263BF5C9008172E7 /* Table.ts */,
 				050A3E83263BF5C9008172E7 /* Debug.ts */,
 				050A3E88263BF5C9008172E7 /* File.ts */,
 				050A3E80263BF5C9008172E7 /* Graphics.ts */,
@@ -787,7 +787,7 @@
 				050A3E85263BF5C9008172E7 /* Turtle.ts */,
 				05D4FD1E268F5B2C00780B83 /* Contacts.js */,
 				0516CC4526213502000B9796 /* Curses.js */,
-				058C8D9925E4ACB2002B4273 /* Data.js */,
+				058C8D9925E4ACB2002B4273 /* Table.js */,
 				05C0378925186FF3002A9C41 /* Debug.js */,
 				0577476125FE388A00ADC6E7 /* File.js */,
 				05763BEB2610AA89004D7B15 /* Graphics.js */,

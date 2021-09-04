@@ -2,9 +2,7 @@
 /*
  * Readline.ts
  */
-/// <reference path="types/KiwiLibrary.d.ts"/>
-/// <reference path="types/Builtin.d.ts"/>
-class _Readline {
+class ReadlineObject {
     constructor() {
     }
     inputLine() {
@@ -32,34 +30,35 @@ class _Readline {
         let decided = false;
         while (!decided) {
             for (let i = 0; i < items.length; i++) {
-                console.print(`${i}: ${items[i]}\n`);
+                let item = items[i];
+                console.print(`${item.key}: ${item.label}\n`);
             }
-            console.print("q: Quit\n");
-            console.print("number> ");
+            console.print("item> ");
             let line = Readline.inputLine();
-            if (isString(line)) {
-                let str = toString(line);
-                if (str == "q" || str == "Q") {
-                    result = -1;
-                    decided = true;
-                    continue;
-                }
-            }
-            let num = parseInt(line);
-            if (!isNaN(num)) {
-                if (0 <= num && num < items.length) {
-                    result = num;
+            for (let i = 0; i < items.length; i++) {
+                let item = items[i];
+                if (isEqualTrimmedStrings(item.key, line)) {
+                    result = i;
                     decided = true;
                 }
-                else {
-                    console.error(`[Error] Unexpected value: ${num}\n`);
-                }
             }
-            else {
-                console.error(`[Error] Not number value: ${line}\n`);
+            if (!decided) {
+                console.print("Unacceptable input\n");
             }
         }
         return result;
     }
+    stringsToMenuItems(labels, doescape) {
+        let result = [];
+        for (let i = 0; i < labels.length; i++) {
+            let item = { key: `${i}`, label: labels[i] };
+            result.push(item);
+        }
+        if (doescape) {
+            let item = { key: "q", label: "Quit" };
+            result.push(item);
+        }
+        return result;
+    }
 }
-const Readline = new _Readline();
+const Readline = new ReadlineObject();

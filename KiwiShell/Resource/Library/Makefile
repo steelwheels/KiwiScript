@@ -2,7 +2,8 @@
 # Makefile
 #
 
-srcs	= Readline.ts
+srcs	= Readline.ts \
+	  ValueEditor.ts
 
 dsts	= $(srcs:.ts=.js)
 decls	= $(srcs:.ts=.d.ts)

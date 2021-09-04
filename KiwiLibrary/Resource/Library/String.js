@@ -65,3 +65,8 @@ function pasteStrings(src0, src1, space) {
         return [];
     }
 }
+function isEqualTrimmedStrings(str0, str1) {
+    let str0t = str0.trim().toUpperCase();
+    let str1t = str1.trim().toUpperCase();
+    return str0t == str1t;
+}

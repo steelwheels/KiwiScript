@@ -5,7 +5,12 @@
 /// <reference path="types/KiwiLibrary.d.ts"/>
 /// <reference path="types/Builtin.d.ts"/>
 
-class _Readline
+type MenuItem = {
+        key:            string ;
+        label:          string ;
+} ;
+
+class ReadlineObject
 {
 	constructor(){
 	}
@@ -32,40 +37,44 @@ class _Readline
 		return result ;
 	}
 
-	menu(items: string[]): number {
+	menu(items: MenuItem[]): number {
 		let result  = 0 ;
 		let decided = false ;
 		while(!decided){
 			for(let i=0 ; i<items.length ; i++){
-				console.print(`${i}: ${items[i]}\n`) ;
+                                let item = items[i]
+				console.print(`${item.key}: ${item.label}\n`) ;
 			}
-			console.print("q: Quit\n") ;
-			console.print("number> ") ;
+			console.print("item> ") ;
 			let line = Readline.inputLine() ;
-			if(isString(line)){
-				let str = toString(line) ;
-				if(str == "q" || str == "Q"){
-					result  = -1 ;
-					decided = true ;
-                                        continue ;
-				}
-			}
 
-			let num  = parseInt(line) ;
-			if(!isNaN(num)){
-				if(0<=num && num<items.length){
-					result  = num ;
-					decided = true; 
-				} else {
-					console.error(`[Error] Unexpected value: ${num}\n`) ;
-				}
-			} else {
-				console.error(`[Error] Not number value: ${line}\n`) ;
-			}
+                        for(let i=0 ; i<items.length ; i++){
+                                let item = items[i] ;
+                                if(isEqualTrimmedStrings(item.key, line)){
+                                        result  = i ;
+                                        decided = true ;
+                                }
+                        }
+                        if(!decided){
+                                console.print("Unacceptable input\n") ;
+                         }
 		}
 		return result ;
 	}
+
+        stringsToMenuItems(labels: string[], doescape: boolean): MenuItem[] {
+                let result: MenuItem[] = [] ;
+                for(let i=0 ; i<labels.length ; i++){
+                        let item: MenuItem = {key: `${i}`, label: labels[i]} ;
+                        result.push(item) ;
+                }
+                if(doescape){
+                        let item: MenuItem = {key: "q", label: "Quit"} ;
+                        result.push(item) ;
+                }
+                return result ;
+        }
 }
 
-const Readline = new _Readline() ;
+const Readline = new ReadlineObject() ;
 

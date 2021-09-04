@@ -3,7 +3,7 @@
 #
 
 srcs	= Object.ts \
-	  Data.ts \
+	  Table.ts \
 	  File.ts \
 	  Math.ts \
 	  Debug.ts \
