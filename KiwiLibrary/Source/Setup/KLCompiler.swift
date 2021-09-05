@@ -212,6 +212,31 @@ public class KLLibraryCompiler: KECompiler
 		}
 		ctxt.set(name: "toArray", function: toArrayFunc)
 
+		/* isDictionary */
+		let isDictFunc: @convention(block) (_ value: JSValue) -> JSValue = {
+			(_ value: JSValue) -> JSValue in
+			var result: Bool = false
+			if value.isObject {
+				if let _ = value.toObject() as? Dictionary<String, Any> {
+					result = true
+				}
+			}
+			return JSValue(bool: result, in: ctxt)
+		}
+		ctxt.set(name: "isDictionary", function: isDictFunc)
+
+		/* toDictionary */
+		let toDictFunc: @convention(block) (_ value: JSValue) -> JSValue = {
+			(_ value: JSValue) -> JSValue in
+			if value.isObject {
+				if let _ = value.toObject() as? Dictionary<String, Any> {
+					return value
+				}
+			}
+			return JSValue(nullIn: ctxt)
+		}
+		ctxt.set(name: "toDictionary", function: toDictFunc)
+
 		/* isDate */
 		let isDateFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in

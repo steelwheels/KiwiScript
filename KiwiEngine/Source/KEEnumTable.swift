@@ -47,8 +47,8 @@ public class KEEnumTable
 		])
 		mEnumTypes[logcode.typeName] = logcode
 
-		let type = KEEnumType(typeName: "ValueType")
-		type.add(members: [
+		let valtype = KEEnumType(typeName: "ValueType")
+		valtype.add(members: [
 			KEEnumType.Member(name: "nullType", 		value: Int32(CNValueType.nullType.rawValue)),
 			KEEnumType.Member(name: "boolType", 		value: Int32(CNValueType.boolType.rawValue)),
 			KEEnumType.Member(name: "numberType", 		value: Int32(CNValueType.numberType.rawValue)),
@@ -66,7 +66,7 @@ public class KEEnumTable
 			KEEnumType.Member(name: "imageType", 		value: Int32(CNValueType.imageType.rawValue)),
 			KEEnumType.Member(name: "objectType", 		value: Int32(CNValueType.objectType.rawValue)),
 		])
-		mEnumTypes[type.typeName] = type
+		mEnumTypes[valtype.typeName] = valtype
 
 		let filetype = KEEnumType(typeName: "FileType")
 		filetype.add(members: [
