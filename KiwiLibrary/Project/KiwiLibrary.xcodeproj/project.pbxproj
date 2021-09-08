@@ -178,6 +178,8 @@
 		05E08D7C25F904DB001E48EE /* UTProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E08D7B25F904DB001E48EE /* UTProcess.swift */; };
 		05EBD8B625E4982200CA1480 /* KLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EBD8B525E4982200CA1480 /* KLColor.swift */; };
 		05EBD8B725E4982200CA1480 /* KLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EBD8B525E4982200CA1480 /* KLColor.swift */; };
+		05EE5C8526E79316005026B3 /* KLText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE5C8426E79316005026B3 /* KLText.swift */; };
+		05EE5C8626E79316005026B3 /* KLText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE5C8426E79316005026B3 /* KLText.swift */; };
 		05F3DC3725D8C004003EBD1E /* KLBitmapData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F3DC3625D8C004003EBD1E /* KLBitmapData.swift */; };
 		05F3DC3825D8C004003EBD1E /* KLBitmapData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F3DC3625D8C004003EBD1E /* KLBitmapData.swift */; };
 		05F8571A2609BA61003D14FF /* UTColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F857192609BA61003D14FF /* UTColor.swift */; };
@@ -471,6 +473,7 @@
 		05DF53582609902300C7837C /* KLColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLColorManager.swift; sourceTree = "<group>"; };
 		05E08D7B25F904DB001E48EE /* UTProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTProcess.swift; sourceTree = "<group>"; };
 		05EBD8B525E4982200CA1480 /* KLColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLColor.swift; sourceTree = "<group>"; };
+		05EE5C8426E79316005026B3 /* KLText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLText.swift; sourceTree = "<group>"; };
 		05F3DC3625D8C004003EBD1E /* KLBitmapData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLBitmapData.swift; sourceTree = "<group>"; };
 		05F857192609BA61003D14FF /* UTColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -520,7 +523,6 @@
 		050A3E5E263BF572008172E7 /* types */ = {
 			isa = PBXGroup;
 			children = (
-				059DBA0B26E26A1D00FB5480 /* Table.d.ts */,
 				050A3E68263BF597008172E7 /* Builtin.d.ts */,
 				058E321D26DFC5E300CDD628 /* Curses.d.ts */,
 				05D4FD25268F5BBF00780B83 /* Contacts.d.ts */,
@@ -532,6 +534,7 @@
 				0515052226DB7D47007C29F0 /* Object.d.ts */,
 				050A3E61263BF596008172E7 /* Process.d.ts */,
 				050A3E60263BF596008172E7 /* String.d.ts */,
+				059DBA0B26E26A1D00FB5480 /* Table.d.ts */,
 				050A3E5F263BF596008172E7 /* Turtle.d.ts */,
 			);
 			path = types;
@@ -734,6 +737,7 @@
 				05A95B802516D06900775737 /* KLEnvironment.swift */,
 				05A95B7E2516D06900775737 /* KLEscapeCode.swift */,
 				05A95B7D2516D06900775737 /* KLImage.swift */,
+				05EE5C8426E79316005026B3 /* KLText.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1084,6 +1088,7 @@
 				05A95B812516D06900775737 /* KLImage.swift in Sources */,
 				05A95B832516D06900775737 /* KLEscapeCode.swift in Sources */,
 				05A95B9A2516D08500775737 /* KLStruct.swift in Sources */,
+				05EE5C8526E79316005026B3 /* KLText.swift in Sources */,
 				05A95B4E2516CFF300775737 /* KLProcess.swift in Sources */,
 				05BD118726C01AD200961535 /* KLValueTable.swift in Sources */,
 				05B4EF56267F898C00E5D08F /* KLContactRecord.swift in Sources */,
@@ -1126,6 +1131,7 @@
 				05A95B822516D06900775737 /* KLImage.swift in Sources */,
 				05A95B842516D06900775737 /* KLEscapeCode.swift in Sources */,
 				05A95B9B2516D08500775737 /* KLStruct.swift in Sources */,
+				05EE5C8626E79316005026B3 /* KLText.swift in Sources */,
 				05A95B4F2516CFF300775737 /* KLProcess.swift in Sources */,
 				05BD118826C01AD200961535 /* KLValueTable.swift in Sources */,
 				05B4EF57267F898C00E5D08F /* KLContactRecord.swift in Sources */,

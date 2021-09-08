@@ -725,6 +725,38 @@ public class KLLibraryCompiler: KECompiler
 			return JSValue(object: tblobj, in: ctxt)
 		}
 		ctxt.set(name: "ValueTable", function: allocTableFunc)
+
+		/* TextLine */
+		let textLineFunc: @convention(block) (_ str: JSValue) -> JSValue = {
+			(_ str: JSValue) -> JSValue in
+			let txt = CNTextLine(string: str.toString())
+			return JSValue(object: KLTextLine(text: txt, context: ctxt), in: ctxt)
+		}
+		ctxt.set(name: "TextLine", function: textLineFunc)
+
+		/* TextSection */
+		let textSectionFunc: @convention(block) () -> JSValue = {
+			() -> JSValue in
+			let txt = CNTextSection()
+			return JSValue(object: KLTextSection(text: txt, context: ctxt), in: ctxt)
+		}
+		ctxt.set(name: "TextSection", function: textSectionFunc)
+
+		/* TextRecord */
+		let textRecordFunc: @convention(block) () -> JSValue = {
+			() -> JSValue in
+			let txt = CNTextRecord()
+			return JSValue(object: KLTextRecord(text: txt, context: ctxt), in: ctxt)
+		}
+		ctxt.set(name: "TextRecord", function: textRecordFunc)
+
+		/* TextTable */
+		let textTableFunc: @convention(block) () -> JSValue = {
+			() -> JSValue in
+			let txt = CNTextTable()
+			return JSValue(object: KLTextTable(text: txt, context: ctxt), in: ctxt)
+		}
+		ctxt.set(name: "TextTable", function: textTableFunc)
 	}
 
 	private func importBuiltinLibrary(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig)
