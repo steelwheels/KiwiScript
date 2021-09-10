@@ -64,6 +64,17 @@ class ValueEditor
                 return null ;
         }
 
+        editString(val: string): string | null {
+                console.print("current value: \"" + val + "\"\n") ;
+                console.print("new value    : ") ;
+                let newval = Readline.inputLine() ;
+                if(this.check("Do replace current value ? [y/n] : ")){
+                        return newval ;
+                } else {
+                        return null ;
+                }
+        }
+
         editDictionary(val: {[name: string]: any}): {[name: string]: any} | null {
                 let newval = val ;
                 let dirty  = false ;
@@ -73,7 +84,8 @@ class ValueEditor
                         let keys = Object.keys(newval) ;
                         for(let i=0 ; i<keys.length ; i++){
                                 let key = keys[i] ;
-                                let item: MenuItem = {key:`${i}`, label: key + " : " + newval[key]} ;
+                                let val = toText(newval[key]).toStrings(0).join() ;
+                                let item: MenuItem = {key:`${i}`, label: key + " : " + val} ;
                                 items.push(item) ;
                         }
                         /* Add "add" menu */
@@ -129,7 +141,8 @@ class ValueEditor
                         /* Make menu items */
                         let items: MenuItem[] = [] ;
                         for(let i=0 ; i<newval.length ; i++){
-                                let item: MenuItem = {key:`${i}`, label: newval[i]} ;
+                                let val = toText(newval[i]).toStrings(0).join() ;
+                                let item: MenuItem = {key:`${i}`, label: val} ;
                                 items.push(item) ;
                         }
                         /* Add "add" menu */
@@ -179,17 +192,6 @@ class ValueEditor
                         }
                 }
                 return dirty ? newval : val ;
-        }
-
-        editString(val: string): string | null {
-                console.print("current value: \"" + val + "\"\n") ;
-                console.print("new value    : ") ;
-                let newval = Readline.inputLine() ;
-                if(this.check("Do replace current value ? [y/n] : ")){
-                        return newval ;
-                } else {
-                        return null ;
-                }
         }
 
         inputBool(msg: string): boolean | null {

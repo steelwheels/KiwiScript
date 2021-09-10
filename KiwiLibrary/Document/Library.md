@@ -78,6 +78,9 @@ Create and control processes and threads.
 * [Curses](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Curses.md): CUI management on the terminal.
 * [FontManager](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/FontManager.md): The singleton object to manage fonts.
 
+### Data
+* [Text](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Text.md): The data structure to present structured text. The cast function [toText](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/TypeCast.md) function is used to cast object to Text.
+
 ### Database
 * [Contacts](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Contacts.md): The contact database
 * [ContactRecord](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/ContactRecord.md): The contact database

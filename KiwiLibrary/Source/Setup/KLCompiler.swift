@@ -350,6 +350,25 @@ public class KLLibraryCompiler: KECompiler
 		}
 		ctxt.set(name: "toBitmap", function: toBitmapFunc)
 
+		/* toText */
+		let toTextFunc: @convention(block) (_ value: JSValue) -> JSValue = {
+			(_ value: JSValue) -> JSValue in
+			let result: KLTextProtocol
+			let txt = value.toText()
+			if let line = txt as? CNTextLine {
+				result = KLTextLine(text: line, context: ctxt)
+			} else if let sect = txt as? CNTextSection {
+				result = KLTextSection(text: sect, context: ctxt)
+			} else if let table = txt as? CNTextTable {
+				result = KLTextTable(text: table, context: ctxt)
+			} else {
+				let line = CNTextLine(string: "\(value)")
+				result = KLTextLine(text: line, context: ctxt)
+			}
+			return JSValue(object: result, in: ctxt)
+		}
+		ctxt.set(name: "toText", function: toTextFunc)
+
 		/* isEOF */
 		let isEofFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in

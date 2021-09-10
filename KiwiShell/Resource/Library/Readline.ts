@@ -41,10 +41,7 @@ class ReadlineObject
 		let result  = 0 ;
 		let decided = false ;
 		while(!decided){
-			for(let i=0 ; i<items.length ; i++){
-                                let item = items[i]
-				console.print(`${item.key}: ${item.label}\n`) ;
-			}
+			this.printMenu(items) ;
 			console.print("item> ") ;
 			let line = Readline.inputLine() ;
 
@@ -61,6 +58,20 @@ class ReadlineObject
 		}
 		return result ;
 	}
+
+        printMenu(items: MenuItem[]){
+                let table = TextTable() ;
+                for(let item of items){
+                        let record = TextRecord() ;
+                        record.append(item.key) ;
+                        record.append(item.label) ;
+                        table.add(record) ;
+                }
+                let lines = table.toStrings(0) ;
+                for(let line of lines){
+                        console.print(line + "\n") ;
+                }
+        }
 
         stringsToMenuItems(labels: string[], doescape: boolean): MenuItem[] {
                 let result: MenuItem[] = [] ;

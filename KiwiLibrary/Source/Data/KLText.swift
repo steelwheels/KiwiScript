@@ -30,7 +30,7 @@ import UIKit
 
 @objc public protocol KLTextSectionProtocol: KLTextProtocol, JSExport
 {
-	var count: JSValue { get }
+	var contentCount: JSValue { get }
 	func add(_ txt: JSValue)
 	func insert(_ txt: JSValue)
 	func append(_ str: JSValue)
@@ -39,7 +39,7 @@ import UIKit
 
 @objc public protocol KLTextRecordProtocol: KLTextProtocol, JSExport
 {
-	var count: JSValue { get }
+	var columnCount: JSValue { get }
 	var columns: JSValue { get }
 
 	func append(_ str: JSValue)
@@ -166,8 +166,8 @@ private func makeStrings(text txt: CNText, indent idt: JSValue, context ctxt: KE
 		return mTextSection
 	}
 
-	public var count: JSValue { get {
-		return JSValue(int32: Int32(mTextSection.count), in: mContext)
+	public var contentCount: JSValue { get {
+		return JSValue(int32: Int32(mTextSection.contentCount), in: mContext)
 	}}
 
 	public func add(_ txt: JSValue) {
@@ -222,8 +222,8 @@ private func makeStrings(text txt: CNText, indent idt: JSValue, context ctxt: KE
 		mContext	= ctxt
 	}
 
-	public var count: JSValue { get {
-		return JSValue(int32: Int32(mTextRecord.count), in: mContext)
+	public var columnCount: JSValue { get {
+		return JSValue(int32: Int32(mTextRecord.columnCount), in: mContext)
 	}}
 
 	public var columns: JSValue { get {

@@ -59,6 +59,17 @@ class ValueEditor {
         }
         return null;
     }
+    editString(val) {
+        console.print("current value: \"" + val + "\"\n");
+        console.print("new value    : ");
+        let newval = Readline.inputLine();
+        if (this.check("Do replace current value ? [y/n] : ")) {
+            return newval;
+        }
+        else {
+            return null;
+        }
+    }
     editDictionary(val) {
         let newval = val;
         let dirty = false;
@@ -68,7 +79,8 @@ class ValueEditor {
             let keys = Object.keys(newval);
             for (let i = 0; i < keys.length; i++) {
                 let key = keys[i];
-                let item = { key: `${i}`, label: key + " : " + newval[key] };
+                let val = toText(newval[key]).toStrings(0).join();
+                let item = { key: `${i}`, label: key + " : " + val };
                 items.push(item);
             }
             /* Add "add" menu */
@@ -126,7 +138,8 @@ class ValueEditor {
             /* Make menu items */
             let items = [];
             for (let i = 0; i < newval.length; i++) {
-                let item = { key: `${i}`, label: newval[i] };
+                let val = toText(newval[i]).toStrings(0).join();
+                let item = { key: `${i}`, label: val };
                 items.push(item);
             }
             /* Add "add" menu */
@@ -179,17 +192,6 @@ class ValueEditor {
             }
         }
         return dirty ? newval : val;
-    }
-    editString(val) {
-        console.print("current value: \"" + val + "\"\n");
-        console.print("new value    : ");
-        let newval = Readline.inputLine();
-        if (this.check("Do replace current value ? [y/n] : ")) {
-            return newval;
-        }
-        else {
-            return null;
-        }
     }
     inputBool(msg) {
         console.print(msg + " [t or f] : ");

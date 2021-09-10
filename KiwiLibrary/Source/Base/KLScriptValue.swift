@@ -43,6 +43,17 @@ extension JSValue
 		}
 	}
 
+	public var isDictionary: Bool {
+		get {
+			if self.isObject {
+				if let _ = self.toObject() as? Dictionary<String, Any> {
+					return true
+				}
+			}
+			return false
+		}
+	}
+
 	public var isPoint: Bool {
 		get {
 			return isSpecialDictionary(keys: ["x", "y"])
@@ -255,6 +266,8 @@ extension JSValue
 				result = .stringType
 			} else if self.isArray {
 				result = .arrayType
+			} else if self.isDictionary {
+				result = .dictionaryType
 			} else if self.isDate {
 				result = .dateType
 			} else if self.isRange {
