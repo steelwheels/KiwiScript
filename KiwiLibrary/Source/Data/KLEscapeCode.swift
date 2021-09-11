@@ -37,6 +37,8 @@ import Foundation
 	func scrollDown(_ lines: JSValue) -> JSValue
 
 	func color(_ type: JSValue, _ color: JSValue) -> JSValue
+	func bold(_ flag: JSValue) -> JSValue
+
 	func reset() -> JSValue
 }
 
@@ -194,6 +196,14 @@ import Foundation
 		}
 		if let resstr = result {
 			return JSValue(object: resstr, in: mContext)
+		} else {
+			return JSValue(nullIn: mContext)
+		}
+	}
+
+	public func bold(_ flag: JSValue) -> JSValue {
+		if flag.isBoolean {
+			return JSValue(bool: flag.toBool(), in: mContext)
 		} else {
 			return JSValue(nullIn: mContext)
 		}

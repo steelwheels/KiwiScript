@@ -125,6 +125,21 @@ let fgstr = EscapeCode.color(1, Curses.red ) ;  // for foreground color
 console.print(fgstr + bgstr + "red message on black\n") ;
 ````
 
+## `bold` method
+Activate or inactivate bold attribute.
+````
+let code = EscapeCode.bold(flag: boolean) -> String
+````
+
+### Parameters
+|Parameter    |Type    |Description                    |
+|:---         |:---    |:---                           |
+|flag         |boolean |True:Activate, False:Inactivate |
+
+### Return value
+Escape sequence string to set the color.
+If the parameter is not acceptable, the return value will be `null`.
+
 ## `reset` method
 Reset all attributes to initial default values.
 ````
