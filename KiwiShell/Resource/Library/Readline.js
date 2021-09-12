@@ -50,6 +50,7 @@ class ReadlineObject {
         for (let item of items) {
             let record = TextRecord();
             record.append(item.key);
+            record.append(":");
             record.append(item.label);
             table.add(record);
         }
