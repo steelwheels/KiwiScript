@@ -18,7 +18,7 @@ import UIKit
 @objc public protocol KLTextProtocol: JSExport
 {
 	func core() -> Any
-	func toStrings(_ idt: JSValue) -> JSValue
+	func toString() -> JSValue
 }
 
 @objc public protocol KLTextLineProtocol: KLTextProtocol, JSExport
@@ -87,16 +87,9 @@ private func valueToRecord(value val: JSValue) -> CNTextRecord? {
 	return nil
 }
 
-private func makeStrings(text txt: CNText, indent idt: JSValue, context ctxt: KEContext) -> JSValue {
-	let indent: Int
-	if let num = idt.toNumber() {
-		indent = num.intValue
-	} else {
-		CNLog(logLevel: .error, message: "Invalid parameter", atFunction: #function, inFile: #file)
-		indent = 0
-	}
-	let strs = txt.toStrings(indent: indent)
-	return JSValue(object: strs, in: ctxt)
+private func makeString(text txt: CNText, context ctxt: KEContext) -> JSValue {
+	let strs = txt.toStrings(indent: 0)
+	return JSValue(object: strs.joined(separator: "\n"), in: ctxt)
 }
 
 @objc public class KLTextLine: NSObject, KLTextLineProtocol
@@ -142,8 +135,8 @@ private func makeStrings(text txt: CNText, indent idt: JSValue, context ctxt: KE
 		}
 	}
 
-	public func toStrings(_ idt: JSValue) -> JSValue {
-		return makeStrings(text: mTextLine, indent: idt, context: mContext)
+	public func toString() -> JSValue {
+		return makeString(text: mTextLine, context: mContext)
 	}
 }
 
@@ -202,8 +195,8 @@ private func makeStrings(text txt: CNText, indent idt: JSValue, context ctxt: KE
 		}
 	}
 
-	public func toStrings(_ idt: JSValue) -> JSValue {
-		return makeStrings(text: mTextSection, indent: idt, context: mContext)
+	public func toString() -> JSValue {
+		return makeString(text: mTextSection, context: mContext)
 	}
 }
 
@@ -250,11 +243,10 @@ private func makeStrings(text txt: CNText, indent idt: JSValue, context ctxt: KE
 		return mTextRecord
 	}
 
-	public func toStrings(_ idt: JSValue) -> JSValue {
+	public func toString() -> JSValue {
 		CNLog(logLevel: .error, message: "Not supported", atFunction: #function, inFile: #file)
 		return JSValue(undefinedIn: mContext)
 	}
-
 }
 
 @objc public class KLTextTable: NSObject, KLTextTableProtocol
@@ -316,8 +308,8 @@ private func makeStrings(text txt: CNText, indent idt: JSValue, context ctxt: KE
 		return mTextTable
 	}
 
-	public func toStrings(_ idt: JSValue) -> JSValue {
-		return makeStrings(text: mTextTable, indent: idt, context: mContext)
+	public func toString() -> JSValue {
+		return makeString(text: mTextTable, context: mContext)
 	}
 }
 
