@@ -35,7 +35,7 @@ import Foundation
 		}
 	}
 
-	public func load(_ urlp: JSValue) -> JSValue {
+	public func store(_ urlp: JSValue) -> JSValue {
 		let url: URL?
 		if urlp.isURL {
 			url = urlp.toURL()
@@ -46,7 +46,7 @@ import Foundation
 			return JSValue(bool: false, in: mContext)
 		}
 		let result: Bool
-		switch mTable.load(URL: url) {
+		switch mTable.store(URL: url) {
 		case .ok:
 			result = true
 		case .error(let err):
