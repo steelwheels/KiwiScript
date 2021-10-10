@@ -6,7 +6,7 @@ The singleton object is defined for Curses class.
 
 |Variable    |Class             | Description                   |
 |:---        |:---              |:---                           |
-|`Color`        |Color            |Singleton object of the class  |
+|`Color`     |Color            |Singleton object of the class  |
 
 ## Properties
 ### Color code

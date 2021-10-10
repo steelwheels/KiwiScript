@@ -106,7 +106,7 @@ Generate escape sequence to set the foreground or background color.
 ````
 let code = EscapeCode.color(type: Int, color: Int) -> String
 ````
-The value of the color is defined as the property of [Curses class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Curses.md).
+The value of the color is defined as the property of [Color class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Color.md).
 
 ### Parameters
 |Parameter    |Type   |Description                    |
