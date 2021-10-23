@@ -2,10 +2,10 @@
 This document describes about `Color` class.
 
 ## Global variables
-The singleton object is defined for Curses class.
+The singleton object is defined for Color class.
 
-|Variable    |Class             | Description                   |
-|:---        |:---              |:---                           |
+|Variable    |Class            | Description                   |
+|:---        |:---             |:---                           |
 |`Color`     |Color            |Singleton object of the class  |
 
 ## Properties
@@ -15,4 +15,5 @@ Following properties have color object.
 `black`, `red`, `green`, `yellow`, `blue`, `maganta`, `cyan`, `white`, `clear`
 
 ## Related Links
-* [ncurses](https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man3/ncurses.3x.html): Curses library
+* [Kiwi Standard Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): The standard library which contains this class.
+

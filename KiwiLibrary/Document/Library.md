@@ -22,7 +22,6 @@ The built-in class, function, data types for JavaScript.
 * [Array1D](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Array1D.md): Functions  to operate 1D array data.
 * [Array2D](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Array2D.md): Functions  to operate 2D array data.
 * Contacts: Functions for contact database.   [setupContacts](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/SetupContacts.md)  and [setupContactTable](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/SetupContactTable.md)
-
 * [exit](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Exit.md): Exit the caller process with exit code
 * [Graphics](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Graphics.md): Data structures and functions for graphics.
 * [launch](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Run.md): Launch the macOS application with/without the documents.
@@ -37,23 +36,18 @@ The built-in class, function, data types for JavaScript.
 * [Objet checking](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/ObjectChecks.md): Functions to check object context such as `isEmptyString`, `isEmptyObject`, etc... 
 * [valueType](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/TypeGetter.md): Get the data type of given parameter.
 
-## Objects
+## Singleton Objects
 There are some pre-defined objects. They are instance of built-in classes:
-
-* [BitmapContext](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/BitmapContext.md): The class for 2D bitmap drawing
-* [Char class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Char.md): The character class
+* [Char](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Char.md): The character class
 * [Color](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/Color.md): Define and allocate color object
-* [Console class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Console.md): The object to print messages into the terminal.
-* [Curses class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Curses.md): The object to control terminal.
-* [Debug class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Debug.md): The class for debugging. This is used to print log into log window.
-* [EscapeCode class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/EscapeCode.md): The class to operate escape code
+* [console](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Console.md): The object to print messages into the terminal.
+* [Curses](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Curses.md): The object to control terminal.
+* [debug](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Debug.md): The class for debugging. This is used to print log into log window.
+* [EscapeCode](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/EscapeCode.md): The class to operate escape code
 Generate escape sequence string to be passed to terminal.
-* [GraphicsContext](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/GraphicsContext.md): The class for 2D graphics drawing
-* [Image class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Image.md): The class for image object.
 * [Math](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Math.md): The singleton object which has class methods for mathematical operation and such as `PI`, `sin()`, `cos()`.
 * [Readline](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Readline.md): The singleton object which manages the console input.
-* [String](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/String.md): Methods to operate/edit string. such as `maxLengthOfStrings()`.
-* [Table](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Table.md): NxM data table class.
+* [Symbol](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Symbol.md): The singleton object which manages the built-in symbol image.
 
 ## Classes
 ### Preference
@@ -78,8 +72,15 @@ Create and control processes and threads.
 * [Curses](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Curses.md): CUI management on the terminal.
 * [FontManager](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/FontManager.md): The singleton object to manage fonts.
 
+### Graphics
+* [BitmapContext](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/BitmapContext.md): The class for 2D bitmap drawing
+* [GraphicsContext](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/GraphicsContext.md): The class for 2D graphics drawing
+* [Image class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Image.md): The class for image object.
+
 ### Data
+* [Table](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Table.md): NxM data table class.
 * [Text](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Text.md): The data structure to present structured text. The cast function [toText](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/TypeCast.md) function is used to cast object to Text.
+* [String](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/String.md): Methods to operate/edit string. such as `maxLengthOfStrings()`.
 
 ### Database
 * [Contacts](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Contacts.md): The contact database
@@ -87,9 +88,6 @@ Create and control processes and threads.
 
 ### Built-in JavaScript class
 * [Turtle class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/BuiltIn/Turtle.md): Support [turtle graphics](https://en.wikipedia.org/wiki/Turtle_graphics). It uses [GraphicsContext](https://github.com/steelwheels/KiwiCompnents/blob/master/Document/Components/Graphics2D.md).
-
-## Data format
-* [Table](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Format/Table.md): The text file format to present the table data.　The [Table class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Table.md) is used to operate this data.
 
 ## Related links
 * [KiwiLibrary Framework](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/README.md): The framework contains this library.
