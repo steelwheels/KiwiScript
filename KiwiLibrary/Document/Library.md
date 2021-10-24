@@ -36,6 +36,9 @@ The built-in class, function, data types for JavaScript.
 * [Objet checking](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/ObjectChecks.md): Functions to check object context such as `isEmptyString`, `isEmptyObject`, etc... 
 * [valueType](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/TypeGetter.md): Get the data type of given parameter.
 
+## Constructor function
+* [URL](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md): Allocate URL object.
+
 ## Singleton Objects
 There are some pre-defined objects. They are instance of built-in classes:
 * [Char](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Char.md): The character class

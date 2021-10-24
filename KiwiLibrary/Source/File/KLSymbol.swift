@@ -12,13 +12,13 @@ import Foundation
 
 @objc public protocol KLSymbolProtocol: JSExport
 {
-	var characterA:		KLImage	{ get }
-	var chevronBackward:	KLImage { get }
-	var chevronForward:	KLImage { get }
-	var handRaised:		KLImage { get }
-	var paintbrush:		KLImage { get }
-	var pencil:		KLImage { get }
-	var questionmark:	KLImage { get }
+	var characterA:		KLURL	{ get }
+	var chevronBackward:	KLURL { get }
+	var chevronForward:	KLURL { get }
+	var handRaised:		KLURL { get }
+	var paintbrush:		KLURL { get }
+	var pencil:		KLURL { get }
+	var questionmark:	KLURL { get }
 }
 
 @objc public class KLSymbol: NSObject, KLSymbolProtocol
@@ -29,17 +29,17 @@ import Foundation
 		mContext = ctxt
 	}
 
-	public var characterA:      KLImage { get { return load(type: .characterA)	}}
-	public var chevronBackward: KLImage { get { return load(type: .chevronBackward)	}}
-	public var chevronForward:  KLImage { get { return load(type: .chevronForward)  }}
-	public var handRaised:      KLImage { get { return load(type: .handRaised)	}}
-	public var paintbrush:      KLImage { get { return load(type: .paintbrush)	}}
-	public var pencil:	    KLImage { get { return load(type: .pencil)		}}
-	public var questionmark:    KLImage { get { return load(type: .questionmark)	}}
+	public var characterA:      KLURL { get { return URLOfSymbol(type: .characterA)		}}
+	public var chevronBackward: KLURL { get { return URLOfSymbol(type: .chevronBackward)	}}
+	public var chevronForward:  KLURL { get { return URLOfSymbol(type: .chevronForward)  	}}
+	public var handRaised:      KLURL { get { return URLOfSymbol(type: .handRaised)		}}
+	public var paintbrush:      KLURL { get { return URLOfSymbol(type: .paintbrush)		}}
+	public var pencil:	    KLURL { get { return URLOfSymbol(type: .pencil)		}}
+	public var questionmark:    KLURL { get { return URLOfSymbol(type: .questionmark)	}}
 
-	private func load(type typ: CNSymbol.SymbolType) -> KLImage {
-		let img = CNSymbol.shared.load(symbol: typ)
-		return KLImage(image: img, context: mContext)
+	private func URLOfSymbol(type typ: CNSymbol.SymbolType) -> KLURL {
+		let url = CNSymbol.shared.URLOfSymbol(type: typ)
+		return KLURL(URL: url, context: mContext)
 	}
 }
 

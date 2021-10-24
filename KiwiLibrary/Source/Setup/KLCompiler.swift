@@ -780,6 +780,14 @@ public class KLLibraryCompiler: KECompiler
 			return JSValue(object: KLTextTable(text: txt, context: ctxt), in: ctxt)
 		}
 		ctxt.set(name: "TextTable", function: textTableFunc)
+
+		/* Collection */
+		let collectionFunc: @convention(block) () -> JSValue = {
+			() -> JSValue in
+			let newcol = CNCollection()
+			return JSValue(object: KLCollection(collection: newcol, context: ctxt), in: ctxt)
+		}
+		ctxt.set(name: "Collection", function: collectionFunc)
 	}
 
 	private func importBuiltinLibrary(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig)

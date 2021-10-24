@@ -6,10 +6,9 @@ The object of *URL* class presents the URL.
 ## Constructor function
 The following constructor function returns URL object:
 ````
-URL(filepath)
+declare function URL(path: string): URLIF | null ;
 ````
-If you pass empty string as `filepath` parameter,
-The instance will have invalid value.
+If the allocation of URL is failed, the return value will be `null`.
 
 ### Parameter(s)
 |variable | type | description|
