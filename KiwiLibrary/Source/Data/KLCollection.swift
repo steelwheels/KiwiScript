@@ -28,6 +28,8 @@ import Foundation
 	private var mCollection:	CNCollection
 	private var mContext:		KEContext
 
+	public var core: CNCollection { get { return mCollection }}
+
 	public init(collection col: CNCollection, context ctxt: KEContext){
 		mCollection	= col
 		mContext	= ctxt
