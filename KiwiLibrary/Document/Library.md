@@ -81,6 +81,7 @@ Create and control processes and threads.
 * [Image class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Image.md): The class for image object.
 
 ### Data
+* [Collection](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Collection.md): An ordered collection of data items
 * [Table](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Table.md): NxM data table class.
 * [Text](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Text.md): The data structure to present structured text. The cast function [toText](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/TypeCast.md) function is used to cast object to Text.
 * [String](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/String.md): Methods to operate/edit string. such as `maxLengthOfStrings()`.
