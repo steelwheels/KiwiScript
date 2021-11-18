@@ -22,11 +22,10 @@ import Foundation
 	var line8P:		KLURL { get }
 	var line16P:		KLURL { get }
 	var paintbrush:		KLURL { get }
-
-	func pencil(_ filled: JSValue) -> KLURL
-
 	var questionmark:	KLURL { get }
 
+	func oval(_ filled: JSValue) -> KLURL
+	func pencil(_ filled: JSValue) -> KLURL
 	func rectangle(_ fille: JSValue, _ rounded: JSValue) -> KLURL
 }
 
@@ -48,6 +47,16 @@ import Foundation
 	public var line8P: 	    KLURL { get { return URLOfSymbol(type: .line8P)		}}
 	public var line16P: 	    KLURL { get { return URLOfSymbol(type: .line16P)		}}
 	public var paintbrush:      KLURL { get { return URLOfSymbol(type: .paintbrush)		}}
+	public var questionmark:    KLURL { get { return URLOfSymbol(type: .questionmark)	}}
+
+	public func oval(_ filled: JSValue) -> KLURL {
+		if filled.isBoolean {
+			return URLOfSymbol(type: .oval(filled.toBool()))
+		} else {
+			CNLog(logLevel: .error, message: "Boolean parameter is required", atFunction: #function, inFile: #file)
+			return URLOfSymbol(type: .oval(false))
+		}
+	}
 
 	public func pencil(_ filled: JSValue) -> KLURL {
 		if filled.isBoolean {
@@ -57,8 +66,6 @@ import Foundation
 			return URLOfSymbol(type: .pencil(false))
 		}
 	}
-
-	public var questionmark:    KLURL { get { return URLOfSymbol(type: .questionmark)	}}
 
 	public func rectangle(_ filled: JSValue, _ rounded: JSValue) -> KLURL {
 		if filled.isBoolean && rounded.isBoolean {
