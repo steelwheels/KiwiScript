@@ -319,13 +319,8 @@ extension JSValue
 				result = .colorValue(self.toColor())
 			case .enumType:
 				let dict = self.toEnum()
-				if let name = dict["name"], let val = dict["value"] {
-					if let key = name.toString(), let num = val.toNumber() {
-						result = CNValue.enumValue(key, num.int32Value)
-					} else {
-						CNLog(logLevel: .error, message: "Failed to convert to Enum", atFunction: #function, inFile: #file)
-						result = .nullValue
-					}
+				if let eval = CNEnum(value: dict) {
+					result = CNValue.enumValue(eval)
 				} else {
 					CNLog(logLevel: .error, message: "Failed to convert to Enum", atFunction: #function, inFile: #file)
 					result = .nullValue

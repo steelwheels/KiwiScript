@@ -36,8 +36,8 @@ extension CNValue {
 		case .rectValue(let val):
 			let rect = rectToObject(point: val)
 			result = JSValue(object: rect, in: ctxt)
-		case .enumValue(_, let val):
-			result = JSValue(int32: val, in: ctxt)
+		case .enumValue(let val):
+			result = JSValue(int32: Int32(val.value), in: ctxt)
 		case .dictionaryValue(let dict):
 			var newdict: Dictionary<String, Any> = [:]
 			for (key, elm) in dict {
