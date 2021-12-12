@@ -14,7 +14,7 @@ open class KECompiler
 	public init(){
 
 	}
-	
+
 	open func compileBase(context ctxt: KEContext, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
 		/* Set strict */
 		setStrictMode(context: ctxt, console: cons, config: conf)
@@ -108,7 +108,7 @@ open class KECompiler
 		stmt += "\n};\n"
 		let _ = compile(context: ctxt, statement: stmt, console: cons, config: conf)
 	}
-	
+
 	private func message(fromError err: NSError?) -> String {
 		if let e = err {
 			return e.toString()

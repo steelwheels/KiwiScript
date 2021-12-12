@@ -179,7 +179,7 @@ import Foundation
 		}
 		return JSValue(nullIn: mContext)
 	}
-	
+
 	public func homeDirectory() -> JSValue {
 		let home = CNPreference.shared.userPreference.homeDirectory
 		let urlobj = KLURL(URL: home, context: mContext)

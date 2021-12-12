@@ -52,7 +52,7 @@ public class KEContext : JSContext
 	public func set(name n: String, object o: JSExport){
 		self.setObject(o, forKeyedSubscript: NSString(string: n))
 	}
-	
+
 	public func set(name n: String, value val: JSValue){
 		self.setObject(val, forKeyedSubscript: NSString(string: n))
 	}
@@ -67,7 +67,7 @@ public class KEContext : JSContext
 
 	public func getValue(name n:String) -> JSValue? {
 		if let obj = self.objectForKeyedSubscript(NSString(string: n)) {
-			return obj.isUndefined ? nil : obj 
+			return obj.isUndefined ? nil : obj
 		} else {
 			return nil
 		}

@@ -24,7 +24,7 @@ import Foundation
 {
 	private var mURL:	URL?
 	private var mContext:	KEContext
-	
+
 	public init(URL u: URL?, context ctxt: KEContext){
 		mURL	 	= u
 		mContext 	= ctxt

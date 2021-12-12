@@ -296,7 +296,7 @@ extension JSValue
 			return result
 		}
 	}
-	
+
 	public func toNativeValue() -> CNValue {
 		let result: CNValue
 		if let type = self.type {

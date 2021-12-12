@@ -20,7 +20,7 @@ public func UTNativeValue(context ctxt: KEContext, console cons: CNConsole) -> B
 
 	let desc = strct0.JSClassDefinition()
 	cons.print(string: "*** Class definition ***\n\(desc)")
-	
+
 	return true
 }
 

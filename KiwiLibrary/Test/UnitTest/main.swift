@@ -18,7 +18,7 @@ public func main()
 	let resource = KEResource(baseURL: Bundle.main.bundleURL)
 	let env      = CNEnvironment()
 	let config   = KEConfig(applicationType: .terminal, doStrict: true, logLevel: .warning)
-	
+
 	let context  = KEContext(virtualMachine: JSVirtualMachine())
 	context.exceptionCallback = {
 		(_ exception: KEException) -> Void in
@@ -77,7 +77,7 @@ public func main()
 	/* ScriptManager */
 	filecons.print(string: "/* Unit test for ScriptManager */\n")
 	let result10 = UTScriptManager(console: filecons)
-	
+
 	/* Thread */
 //	filecons.print(string: "/* Unit test for Thread */\n")
 //	let result11 = UTThread(context: context, processManager: pmanager, console: filecons, config: config)

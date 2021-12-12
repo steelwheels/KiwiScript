@@ -17,7 +17,7 @@ public func KHGenerateScript(from stmts: Array<KHStatement>) -> Array<String>
 	for stmt in stmts {
 		let _ = pidconv.accept(statement: stmt)
 	}
-	
+
 	let scrconv = KHCodeConverter()
 	for stmt in stmts {
 		let _ = scrconv.accept(statement: stmt)

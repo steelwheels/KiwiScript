@@ -67,7 +67,7 @@ public enum KLSource {
 	public var exitCode: JSValue {
 		return JSValue(int32: super.terminationStatus, in: mContext)
 	}
-	
+
 	private static func URLtoResource(fileURL url: URL, error efile: CNFile) -> KEResource {
 		let result: KEResource
 		switch url.pathExtension {
