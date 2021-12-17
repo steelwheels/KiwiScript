@@ -2,6 +2,8 @@
 /*
  * Readline.ts
  */
+/// <reference path="types/KiwiLibrary.d.ts"/>
+/// <reference path="types/Builtin.d.ts"/>
 class ReadlineObject {
     constructor() {
     }
@@ -54,7 +56,7 @@ class ReadlineObject {
             record.append(item.label);
             table.add(record);
         }
-        let lines = table.toStrings(0);
+        let lines = table.toString();
         for (let line of lines) {
             console.print(line + "\n");
         }

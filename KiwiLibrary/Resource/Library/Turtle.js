@@ -2,6 +2,7 @@
 /*
  * turtle.ts: Support Turtle Graphics
  */
+/// <reference path="types/Builtin.d.ts"/>
 class Turtle {
     constructor(ctxt) {
         this.mContext = ctxt;

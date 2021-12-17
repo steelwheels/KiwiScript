@@ -84,7 +84,7 @@ class ValueEditor
                         let keys = Object.keys(newval).sort() ;
                         for(let i=0 ; i<keys.length ; i++){
                                 let key = keys[i] ;
-                                let val = toText(newval[key]).toStrings(0).join("\n") ;
+                                let val = toText(newval[key]).toString() ;
                                 let item: MenuItem = {key:`${i}`, label: key + " : " + val} ;
                                 items.push(item) ;
                         }
@@ -141,7 +141,7 @@ class ValueEditor
                         /* Make menu items */
                         let items: MenuItem[] = [] ;
                         for(let i=0 ; i<newval.length ; i++){
-                                let val = toText(newval[i]).toStrings(0).join(",\n") ;
+                                let val = toText(newval[i]).toString() ;
                                 let item: MenuItem = {key:`${i}`, label: val} ;
                                 items.push(item) ;
                         }

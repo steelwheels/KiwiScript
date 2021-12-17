@@ -19,7 +19,8 @@ import Foundation
 	func setPenSize(_ val: JSValue)
 	func moveTo(_ xval: JSValue, _ yval: JSValue)
 	func lineTo(_ xval: JSValue, _ yval: JSValue)
-	func circle(_ xval: JSValue, _ yval: JSValue, _ radval: JSValue)
+	func rect(_ xval: JSValue, _ yval: JSValue, _ width: JSValue, _ height: JSValue, _ dofill: JSValue)
+	func circle(_ xval: JSValue, _ yval: JSValue, _ radval: JSValue, _ dofill: JSValue)
 }
 
 @objc public class KLGraphicsContext: NSObject, KLGraphicsContextProtocol
@@ -86,12 +87,26 @@ import Foundation
 		}
 	}
 
-	public func circle(_ xval: JSValue, _ yval: JSValue, _ radval: JSValue) {
-		if xval.isNumber && yval.isNumber && radval.isNumber {
-			let x   = xval.toDouble()
-			let y   = yval.toDouble()
-			let rad = radval.toDouble()
-			mGContext.circle(center: CGPoint(x: x, y: y), radius: CGFloat(rad))
+	public func rect(_ xval: JSValue, _ yval: JSValue, _ widval: JSValue, _ hgtval: JSValue, _ dofill: JSValue) {
+		if xval.isNumber && yval.isNumber && widval.isNumber && hgtval.isNumber && dofill.isBoolean {
+			let x      = xval.toDouble()
+			let y      = yval.toDouble()
+			let width  = widval.toDouble()
+			let height = hgtval.toDouble()
+			let fill   = dofill.toBool()
+			mGContext.rect(rect: CGRect(x: x, y: y, width: width, height: height), doFill: fill)
+		} else {
+			mConsole.error(string: "Invalid parameter at \(#function)\n")
+		}
+	}
+
+	public func circle(_ xval: JSValue, _ yval: JSValue, _ radval: JSValue, _ dofill: JSValue) {
+		if xval.isNumber && yval.isNumber && radval.isNumber && dofill.isBoolean {
+			let x    = xval.toDouble()
+			let y    = yval.toDouble()
+			let rad  = radval.toDouble()
+			let fill = dofill.toBool()
+			mGContext.circle(center: CGPoint(x: x, y: y), radius: CGFloat(rad), doFill: fill)
 		} else {
 			mConsole.error(string: "Invalid parameter at \(#function)\n")
 		}

@@ -37,12 +37,12 @@ none
 
 ## `setPenSize`
 ````
-context.setPenSize(width) ;
+context.setPenSize(width: number) ;
 ````
 ### Parameters
 |Parameter name |Type   |Description                    |
 |:---           |:---   |:---                           |
-|width          |Float  |The logical width/height of the pen to draw the line|
+|width          |number |The logical width/height of the pen to draw the line|
 
 ### Return value
 none
@@ -50,13 +50,13 @@ none
 ## `moveTo`
 Move the pen to given point.
 ````
-context.moveTo(x, y) ;
+context.moveTo(x:number, y:number) ;
 ````
 ### Parameters
 |Parameter name |Type   |Description                    |
 |:---           |:---   |:---                           |
-|x              |Float  |The logical X position                 |
-|y              |Float  |The logical Y position                 |
+|x              |number  |The logical X position                 |
+|y              |number  |The logical Y position                 |
 
 ### Return value
 none
@@ -64,28 +64,43 @@ none
 ## `lineTo`
 Draw the line from the current pen position to given position.
 ````
-context.lineTo(x, y) ;
+context.lineTo(x:number, y:number) ;
 ````
 ### Parameters
 |Parameter name |Type   |Description                    |
 |:---           |:---   |:---                           |
-|x              |Float  |The logical X position                 |
-|y              |Float  |The logical Y position                 |
+|x              |number  |The logical X position                 |
+|y              |number  |The logical Y position                 |
 
 ### Return value
 none
 
+## `rect`
+Draw the rectangle at given position and size.
+````
+context.rect(x:number, y:number, width:number, height:number, dofill:boolean)
+````
+### Parameters
+|Parameter name |Type   |Description                    |
+|:--            |:--    |:--                            |
+|x              |number |The logical X position         |
+|y              |number |The logical Y position         |
+|width          |number |The width of the rectangle     |
+|height         |number |The height of the rectangle    |
+|dofill         |boolean | *True*: Fill the contents, *False*: Does not fill|
+
 ## `circle`
 Draw the circle at given position and radius.
 ````
-context.circule(x, y, radius) ;
+context.circule(x:number, y:number, radius:number, dofill:boolean) ;
 ````
 ### Parameters
 |Parameter name |Type   |Description                    |
 |:---           |:---   |:---                           |
-|x              |Float  |The logical X position                 |
-|y              |Float  |The logical Y position                 |
-|radius         |Float  |The logical radius of the circle       |
+|x              |number  |The logical X position                 |
+|y              |number  |The logical Y position                 |
+|radius         |number  |The logical radius of the circle       |
+|dofill         |boolean | *True*: Fill the contents of the circle. *False*: Does not fill|
 
 ### Return value
 none
