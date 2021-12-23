@@ -568,7 +568,7 @@ public class KLLibraryCompiler: KECompiler
 			if xval.isNumber && yval.isNumber {
 				let x = xval.toDouble()
 				let y = yval.toDouble()
-				return JSValue(point: CGPoint(x: x, y: y), in: ctxt)
+				return CGPoint(x: x, y: y).toJSValue(context: ctxt)
 			}
 			cons.error(string: "Invalid parameter for Point constructor\n")
 			return JSValue(undefinedIn: ctxt)
@@ -581,7 +581,7 @@ public class KLLibraryCompiler: KECompiler
 			if wval.isNumber && hval.isNumber {
 				let width  = wval.toDouble()
 				let height = hval.toDouble()
-				return JSValue(size: CGSize(width: width, height: height), in: ctxt)
+				return CGSize(width: width, height: height).toJSValue(context: ctxt)
 			}
 			cons.error(string: "Invalid parameter for Size constructor\n")
 			return JSValue(undefinedIn: ctxt)
@@ -598,11 +598,11 @@ public class KLLibraryCompiler: KECompiler
 				let width  = widthval.toDouble()
 				let height = heightval.toDouble()
 				let rect   = CGRect(x: x, y: y, width: width, height: height)
-				return JSValue(rect: rect, in: ctxt)
+				return rect.toJSValue(context: ctxt)
 			} else if xval.isPoint && yval.isSize {
 				if let org = xval.toPoint(), let size = yval.toSize() {
 					let rect = CGRect(origin: org, size: size)
-					return JSValue(rect: rect, in: ctxt)
+					return rect.toJSValue(context: ctxt)
 				}
 			}
 			cons.error(string: "Invalid parameter for Rect constructor\n")

@@ -55,70 +55,35 @@ extension JSValue
 	}
 
 	public var isPoint: Bool {
-		get {
-			return isSpecialDictionary(keys: ["x", "y"])
-		}
+		get { CGPoint(scriptValue: self) != nil }
 	}
 
 	public func toPoint() -> CGPoint? {
-		if let dict = self.toObject() as? Dictionary<AnyHashable, Any> {
-			if let xval = anyToDouble(any: dict["x"]), let yval = anyToDouble(any: dict["y"]) {
-				return CGPoint(x: xval, y: yval)
-			}
-		}
-		return nil
+		return CGPoint(scriptValue: self)
 	}
 
 	public var isSize: Bool {
-		get {
-			return isSpecialDictionary(keys: ["width", "height"])
-		}
+		get { return CGSize(scriptValue: self) != nil }
 	}
 
 	public func toSize() -> CGSize? {
-		if let dict = self.toObject() as? Dictionary<AnyHashable, Any> {
-			if let wval = anyToDouble(any: dict["width"]), let hval = anyToDouble(any: dict["height"]) {
-				return CGSize(width: wval, height: hval)
-			}
-		}
-		return nil
+		return CGSize(scriptValue: self)
 	}
 
 	public var isRect: Bool {
-		get {
-			return isSpecialDictionary(keys: ["x", "y", "width", "height"])
-		}
+		get { return CGRect(scriptValue: self) != nil }
 	}
 
 	public func toRect() -> CGRect? {
-		if let dict = self.toObject() as? Dictionary<AnyHashable, Any> {
-			if let x = anyToDouble(any: dict["x"]), let y = anyToDouble(any: dict["y"]), let width = anyToDouble(any: dict["width"]), let height = anyToDouble(any: dict["height"]) {
-				return CGRect(x: x, y: y, width: width, height: height)
-			}
-		}
-		return nil
+		return CGRect(scriptValue: self)
 	}
 
 	public var isRange: Bool {
-		get {
-			let obj = self.toObject()
-			if let _ = obj as? NSRange {
-				return true
-			} else {
-				return isSpecialDictionary(keys: ["location", "length"])
-			}
-		}
+		get { return NSRange(scriptValue: self) != nil }
 	}
 
 	public func toRange() -> NSRange? {
-		if let range = self.toObject() as? NSRange {
-			return range
-		} else if let dict = self.toObject() as? Dictionary<AnyHashable, Any> {
-			if let locval = anyToInt(any: dict["location"]), let lenval = anyToInt(any: dict["length"]) {
-				return NSRange(location: locval, length: lenval)
-			}
-		}
-		return nil
+		return NSRange(scriptValue: self)
 	}
 
 	public var isEnum: Bool {
@@ -372,7 +337,11 @@ extension JSValue
 				} else {
 					CNLog(logLevel: .error, message: "Failed to convert to Dictionary", atFunction: #function, inFile: #file)
 				}
-				result = CNValue.dictionaryToValue(dictionary: dstdict)
+				if let scalar = CNValue.dictionaryToValue(dictionary: dstdict) {
+					result = scalar
+				} else {
+					result = .dictionaryValue(dstdict)
+				}
 			case .objectType:
 				CNLog(logLevel: .error, message: "Failed to convert to Object", atFunction: #function, inFile: #file)
 				result = .nullValue

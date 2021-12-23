@@ -25,17 +25,13 @@ extension CNValue {
 		case .dateValue(let val):
 			result = JSValue(object: val, in: ctxt)
 		case .rangeValue(let val):
-			let range = rangeToObject(range: val)
-			result = JSValue(object: range, in: ctxt)
+			result = val.toJSValue(context: ctxt)
 		case .pointValue(let val):
-			let dict = pointToObject(point: val)
-			result = JSValue(object: dict, in: ctxt)
+			result = val.toJSValue(context: ctxt)
 		case .sizeValue(let val):
-			let size = sizeToObject(size: val)
-			result = JSValue(object: size, in: ctxt)
+			result = val.toJSValue(context: ctxt)
 		case .rectValue(let val):
-			let rect = rectToObject(point: val)
-			result = JSValue(object: rect, in: ctxt)
+			result = val.toJSValue(context: ctxt)
 		case .enumValue(let val):
 			result = JSValue(int32: Int32(val.value), in: ctxt)
 		case .dictionaryValue(let dict):
@@ -62,40 +58,6 @@ extension CNValue {
 		@unknown default:
 			result = JSValue(nullIn: ctxt)
 		}
-		return result
-	}
-
-	private func rangeToObject(range val: NSRange) -> Dictionary<String, Any> {
-		let result: Dictionary<String, Any> = [
-			"location":	NSNumber(value: Int(val.location)),
-			"length":	NSNumber(value: Int(val.length))
-		]
-		return result
-	}
-
-	private func pointToObject(point val: CGPoint) -> Dictionary<String, Any> {
-		let result: Dictionary<String, Any> = [
-			"x":	NSNumber(value: Double(val.x)),
-			"y":	NSNumber(value: Double(val.y))
-		]
-		return result
-	}
-
-	private func sizeToObject(size val: CGSize) -> Dictionary<String, Any> {
-		let result: Dictionary<String, Any> = [
-			"width":	NSNumber(value: Double(val.width)),
-			"height":	NSNumber(value: Double(val.height))
-		]
-		return result
-	}
-
-	private func rectToObject(point val: CGRect) -> Dictionary<String, Any> {
-		let result: Dictionary<String, Any> = [
-			"x":		NSNumber(value: Double(val.origin.x)),
-			"y":		NSNumber(value: Double(val.origin.y)),
-			"width":	NSNumber(value: Double(val.size.width)),
-			"height":	NSNumber(value: Double(val.size.height))
-		]
 		return result
 	}
 }

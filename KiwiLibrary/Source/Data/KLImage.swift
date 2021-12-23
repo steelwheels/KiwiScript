@@ -42,11 +42,7 @@ import UIKit
 	}
 
 	public var size: JSValue {
-		get {
-			//let height = imageSize().height
-			//return JSValue(double: Double(height), in: mContext)
-			return JSValue(size: imageSize(), in: mContext)
-		}
+		get { return imageSize().toJSValue(context: mContext) }
 	}
 
 	public func imageSize() -> CGSize {

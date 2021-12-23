@@ -31,6 +31,14 @@
 		050FDBF925FC87BE00331107 /* KLDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FDBF725FC87BE00331107 /* KLDictionary.swift */; };
 		051D09E82559914D0083336F /* KLCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D09E72559914D0083336F /* KLCommand.swift */; };
 		051D09E92559914D0083336F /* KLCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D09E72559914D0083336F /* KLCommand.swift */; };
+		0520F46127742701004DDA28 /* KLPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0520F46027742701004DDA28 /* KLPoint.swift */; };
+		0520F46227742701004DDA28 /* KLPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0520F46027742701004DDA28 /* KLPoint.swift */; };
+		0520F46D277429FA004DDA28 /* KLRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0520F46C277429FA004DDA28 /* KLRect.swift */; };
+		0520F46E277429FA004DDA28 /* KLRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0520F46C277429FA004DDA28 /* KLRect.swift */; };
+		0520F47327744F23004DDA28 /* KLSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0520F47227744F22004DDA28 /* KLSize.swift */; };
+		0520F47427744F23004DDA28 /* KLSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0520F47227744F22004DDA28 /* KLSize.swift */; };
+		0520F479277450F7004DDA28 /* KLRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0520F478277450F7004DDA28 /* KLRange.swift */; };
+		0520F47A277450F7004DDA28 /* KLRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0520F478277450F7004DDA28 /* KLRange.swift */; };
 		052927C7263D6EC900A8CD49 /* Table.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E81263BF5C9008172E7 /* Table.ts */; };
 		052927C8263D6EC900A8CD49 /* File.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E88263BF5C9008172E7 /* File.ts */; };
 		052927C9263D6EC900A8CD49 /* Turtle.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E85263BF5C9008172E7 /* Turtle.ts */; };
@@ -400,6 +408,10 @@
 		0515052226DB7D47007C29F0 /* Object.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Object.d.ts; sourceTree = "<group>"; };
 		0516CC4526213502000B9796 /* Curses.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Curses.js; sourceTree = "<group>"; };
 		051D09E72559914D0083336F /* KLCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLCommand.swift; sourceTree = "<group>"; };
+		0520F46027742701004DDA28 /* KLPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLPoint.swift; sourceTree = "<group>"; };
+		0520F46C277429FA004DDA28 /* KLRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLRect.swift; sourceTree = "<group>"; };
+		0520F47227744F22004DDA28 /* KLSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLSize.swift; sourceTree = "<group>"; };
+		0520F478277450F7004DDA28 /* KLRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLRange.swift; sourceTree = "<group>"; };
 		053F2C48253BDDCE009CFCA1 /* UTType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTType.swift; sourceTree = "<group>"; };
 		053F2C4E253BDEA8009CFCA1 /* UTURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTURL.swift; sourceTree = "<group>"; };
 		0540D67C2516D4A100C5AE52 /* CoconutData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutData.xcframework; path = ../../../../Library/Frameworks/CoconutData.xcframework; sourceTree = "<group>"; };
@@ -598,6 +610,9 @@
 			children = (
 				0598000425CB5F5F00499B6E /* KLBitmapContext.swift */,
 				05950CA025C4304500D659A1 /* KLGraphicsContext.swift */,
+				0520F46027742701004DDA28 /* KLPoint.swift */,
+				0520F46C277429FA004DDA28 /* KLRect.swift */,
+				0520F47227744F22004DDA28 /* KLSize.swift */,
 			);
 			path = Graphics;
 			sourceTree = "<group>";
@@ -745,6 +760,7 @@
 				05A95B802516D06900775737 /* KLEnvironment.swift */,
 				05A95B7E2516D06900775737 /* KLEscapeCode.swift */,
 				05A95B7D2516D06900775737 /* KLImage.swift */,
+				0520F478277450F7004DDA28 /* KLRange.swift */,
 				05EE5C8426E79316005026B3 /* KLText.swift */,
 			);
 			path = Data;
@@ -1084,14 +1100,18 @@
 				05A95B3D2516CFD400775737 /* KLCompiler.swift in Sources */,
 				05EBD8B625E4982200CA1480 /* KLColor.swift in Sources */,
 				05A95B542516CFF300775737 /* KLThread.swift in Sources */,
+				0520F47327744F23004DDA28 /* KLSize.swift in Sources */,
 				05A95B682516D03300775737 /* KLConsole.swift in Sources */,
 				050FDBF825FC87BE00331107 /* KLDictionary.swift in Sources */,
+				0520F479277450F7004DDA28 /* KLRange.swift in Sources */,
 				05A95B702516D03300775737 /* KLNativeValueFile.swift in Sources */,
 				0598000525CB5F5F00499B6E /* KLBitmapContext.swift in Sources */,
 				05A95B342516CF9900775737 /* KLCurses.swift in Sources */,
 				05A95B962516D08500775737 /* KLNativeValue.swift in Sources */,
 				055D5170268CA8F700304205 /* KLContactDatabase.swift in Sources */,
 				05A95B6C2516D03300775737 /* KLPipe.swift in Sources */,
+				0520F46127742701004DDA28 /* KLPoint.swift in Sources */,
+				0520F46D277429FA004DDA28 /* KLRect.swift in Sources */,
 				05A95B5A2516D01700775737 /* KLPreference.swift in Sources */,
 				051D09E82559914D0083336F /* KLCommand.swift in Sources */,
 				05F3DC3725D8C004003EBD1E /* KLBitmapData.swift in Sources */,
@@ -1129,14 +1149,18 @@
 				05A95B3E2516CFD400775737 /* KLCompiler.swift in Sources */,
 				05EBD8B725E4982200CA1480 /* KLColor.swift in Sources */,
 				05A95B552516CFF300775737 /* KLThread.swift in Sources */,
+				0520F47427744F23004DDA28 /* KLSize.swift in Sources */,
 				05A95B692516D03300775737 /* KLConsole.swift in Sources */,
 				050FDBF925FC87BE00331107 /* KLDictionary.swift in Sources */,
+				0520F47A277450F7004DDA28 /* KLRange.swift in Sources */,
 				05A95B712516D03300775737 /* KLNativeValueFile.swift in Sources */,
 				0598000625CB5F5F00499B6E /* KLBitmapContext.swift in Sources */,
 				05A95B352516CF9900775737 /* KLCurses.swift in Sources */,
 				05A95B972516D08500775737 /* KLNativeValue.swift in Sources */,
 				055D5171268CA8F700304205 /* KLContactDatabase.swift in Sources */,
 				05A95B6D2516D03300775737 /* KLPipe.swift in Sources */,
+				0520F46227742701004DDA28 /* KLPoint.swift in Sources */,
+				0520F46E277429FA004DDA28 /* KLRect.swift in Sources */,
 				05A95B5B2516D01700775737 /* KLPreference.swift in Sources */,
 				051D09E92559914D0083336F /* KLCommand.swift in Sources */,
 				05F3DC3825D8C004003EBD1E /* KLBitmapData.swift in Sources */,

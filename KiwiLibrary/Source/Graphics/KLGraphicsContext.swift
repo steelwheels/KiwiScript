@@ -38,7 +38,7 @@ import Foundation
 
 	public var logicalFrame: JSValue {
 		get {
-			return JSValue(rect: mGContext.logicalFrame, in: mJContext)
+			return mGContext.logicalFrame.toJSValue(context: mJContext)
 		}
 	}
 
