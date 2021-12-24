@@ -331,11 +331,11 @@ extension JSValue
 						if let obj = elementToValue(any: value) {
 							dstdict[key] = obj
 						} else {
-							CNLog(logLevel: .error, message: "Failed to convert to Dictionary", atFunction: #function, inFile: #file)
+							CNLog(logLevel: .error, message: "Failed to convert to Dictionary: key=\(key), value=\(value)", atFunction: #function, inFile: #file)
 						}
 					}
 				} else {
-					CNLog(logLevel: .error, message: "Failed to convert to Dictionary", atFunction: #function, inFile: #file)
+					CNLog(logLevel: .error, message: "Failed to convert to Dictionary: \(String(describing: self.toDictionary()))", atFunction: #function, inFile: #file)
 				}
 				if let scalar = CNValue.dictionaryToValue(dictionary: dstdict) {
 					result = scalar
