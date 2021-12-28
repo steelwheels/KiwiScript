@@ -43,8 +43,8 @@ import Foundation
 
 	private func valueToString(value val: JSValue) -> String {
 		let result: String
-		if val.isURL {
-			result = val.toURL().path
+		if let url = val.toURL() {
+			result = url.path
 		} else {
 			result = val.toString()
 		}

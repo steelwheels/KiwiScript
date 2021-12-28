@@ -197,17 +197,12 @@ public extension CNPreferenceTable
 			return JSValue(URL: home, in: mContext)
 		}
 		set(newval) {
-			if newval.isURL {
-				let url  = newval.toURL()
+			if let url = newval.toURL() {
 				let pref = CNPreference.shared.userPreference
 				pref.homeDirectory = url
-			} else if newval.isString {
-				if let str = newval.toString() {
-					let pref = CNPreference.shared.userPreference
-					pref.homeDirectory = URL(fileURLWithPath: str)
-				} else {
-					CNLog(logLevel: .error, message: "Failed to set Preference.user.homeDirectory", atFunction: #function, inFile: #file)
-				}
+			} else if let str = newval.toString() {
+				let pref = CNPreference.shared.userPreference
+				pref.homeDirectory = URL(fileURLWithPath: str)
 			} else {
 				CNLog(logLevel: .error, message: "Failed to set Preference.user.homeDirectory", atFunction: #function, inFile: #file)
 			}

@@ -600,10 +600,10 @@ public class KLLibraryCompiler: KECompiler
 				let rect   = CGRect(x: x, y: y, width: width, height: height)
 				return rect.toJSValue(context: ctxt)
 			} else if xval.isPoint && yval.isSize {
-				if let org = xval.toPoint(), let size = yval.toSize() {
-					let rect = CGRect(origin: org, size: size)
-					return rect.toJSValue(context: ctxt)
-				}
+				let org  = xval.toPoint()
+				let size = yval.toSize()
+				let rect = CGRect(origin: org, size: size)
+				return rect.toJSValue(context: ctxt)
 			}
 			cons.error(string: "Invalid parameter for Rect constructor\n")
 			return JSValue(undefinedIn: ctxt)

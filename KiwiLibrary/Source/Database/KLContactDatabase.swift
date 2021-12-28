@@ -16,7 +16,7 @@ import Foundation
 	var recordCount: JSValue { get }
 
 	func authorize(_ callback: JSValue)
-	func store(_ url: JSValue) -> JSValue
+	func load(_ url: JSValue) -> JSValue
 
 	func newRecord() -> JSValue
 	func record(_ row: JSValue) -> JSValue
@@ -59,11 +59,11 @@ public protocol KLTableCore
 		})
 	}
 
-	public func store(_ urlp: JSValue) -> JSValue {
+	public func load(_ urlp: JSValue) -> JSValue {
 		var result = false
 		if urlp.isNull {
 			let dc = CNContactDatabase.shared
-			switch dc.store(URL: nil) {
+			switch dc.load(fromURL: nil) {
 			case .ok:
 				result = true
 			case .error(let err):
@@ -71,9 +71,9 @@ public protocol KLTableCore
 			@unknown default:
 				CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
 			}
-		} else if urlp.isURL {
+		} else if let url = urlp.toURL() {
 			let dc = CNContactDatabase.shared
-			switch dc.store(URL: urlp.toURL()) {
+			switch dc.load(fromURL: url) {
 			case .ok:
 				result = true
 			case .error(let err):

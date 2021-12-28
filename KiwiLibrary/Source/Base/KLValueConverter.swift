@@ -50,9 +50,9 @@ public class KLValueDuplicator
 			case .numberType:	dupval = JSValue(object: src.toNumber(), in: mTargetContext)
 			case .stringType:	dupval = JSValue(object: src.toString(), in: mTargetContext)
 			case .dateType:		dupval = JSValue(object: src.toDate(), in: mTargetContext)
-			case .enumType:		dupval = duplicate(dictionary: src.toEnum())
-			case .URLType:		dupval = JSValue(URL: src.toURL(), in: mTargetContext)
-			case .imageType:	dupval = JSValue(image: src.toImage(), in: mTargetContext)
+			case .enumType:		dupval = duplicate(enumValue: src.toEnum())
+			case .URLType:		dupval = duplicate(urlValue: src.toURL())
+			case .imageType:	dupval = duplicate(imageValue: src.toImage())
 			case .colorType:	dupval = JSValue(object: src.toColor(), in: mTargetContext)
 			case .arrayType:	dupval = duplicate(array: src.toArray())
 			case .dictionaryType:	dupval = duplicate(dictionary: src.toDictionary())
@@ -61,6 +61,7 @@ public class KLValueDuplicator
 			case .sizeType:		dupval = src.toSize().toJSValue(context: mTargetContext)
 			case .rectType:		dupval = src.toRect().toJSValue(context: mTargetContext)
 			case .objectType:	dupval = duplicate(object: src.toObject())
+			case .referenceType:	dupval = duplicate(valueReference: src.toReference())
 			@unknown default:
 				CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
 				dupval = JSValue(undefinedIn: mTargetContext)
@@ -91,6 +92,39 @@ public class KLValueDuplicator
 			}
 		}
 		return JSValue(object: result, in: mTargetContext)
+	}
+
+	private func duplicate(urlValue uval: URL?) -> JSValue {
+		if let val = uval {
+			let obj = KLURL(URL: val, context: mTargetContext)
+			return JSValue(object: obj, in: mTargetContext)
+		} else {
+			return JSValue(nullIn: mTargetContext)
+		}
+	}
+
+	private func duplicate(enumValue eval: CNEnum?) -> JSValue {
+		if let val = eval {
+			return val.toJSValue(context: mTargetContext)
+		} else {
+			return JSValue(nullIn: mTargetContext)
+		}
+	}
+
+	private func duplicate(imageValue img: CNImage?) -> JSValue {
+		if let val = img {
+			return JSValue(image: val, in: mTargetContext)
+		} else {
+			return JSValue(nullIn: mTargetContext)
+		}
+	}
+
+	private func duplicate(valueReference ref: CNValueReference?) -> JSValue {
+		if let val = ref {
+			return val.toJSValue(context: mTargetContext)
+		} else {
+			return JSValue(nullIn: mTargetContext)
+		}
 	}
 
 	private func duplicate(object obj: Any?) -> JSValue {

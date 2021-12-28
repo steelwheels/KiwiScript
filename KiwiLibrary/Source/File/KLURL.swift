@@ -77,8 +77,11 @@ import Foundation
 		if compval.isString {
 			compstr = compval.toString()
 		} else if compval.isURL {
-			let url = compval.toURL()
-			compstr = url.path
+			if let url = compval.toURL() {
+				compstr = url.path
+			} else {
+				compstr = nil
+			}
 		} else {
 			compstr = nil
 		}

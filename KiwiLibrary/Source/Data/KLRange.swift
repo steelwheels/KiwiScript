@@ -12,12 +12,14 @@ import Foundation
 
 public extension NSRange
 {
-	init?(scriptValue val: JSValue) {
-		if let dict = val.toDictionary() as? Dictionary<String, Any> {
+	static func fromJSValue(scriptValue val: JSValue) -> NSRange? {
+		if val.isRange {
+			let range = val.toRange()
+			return NSRange(location: range.location, length: range.length)
+		} else if let dict = val.toDictionary() as? Dictionary<String, Any> {
 			if let locnum = dict["location"] as? NSNumber,
 			   let lennum = dict["length"] as? NSNumber {
-				self.init(location: locnum.intValue, length: lennum.intValue)
-				return
+				return NSRange(location: locnum.intValue, length: lennum.intValue)
 			}
 		}
 		return nil

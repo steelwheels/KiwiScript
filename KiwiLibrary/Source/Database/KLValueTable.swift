@@ -35,18 +35,15 @@ import Foundation
 		}
 	}
 
-	public func store(_ urlp: JSValue) -> JSValue {
+	public func load(_ urlp: JSValue) -> JSValue {
 		let url: URL?
-		if urlp.isURL {
-			url = urlp.toURL()
-		} else if urlp.isNull {
+		if urlp.isNull {
 			url = nil
 		} else {
-			// Unexpected input URL, return false
-			return JSValue(bool: false, in: mContext)
+			url = urlp.toURL()
 		}
 		let result: Bool
-		switch mTable.store(URL: url) {
+		switch mTable.load(fromURL: url) {
 		case .ok:
 			result = true
 		case .error(let err):

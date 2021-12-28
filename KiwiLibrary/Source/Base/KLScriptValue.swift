@@ -55,60 +55,47 @@ extension JSValue
 	}
 
 	public var isPoint: Bool {
-		get { CGPoint(scriptValue: self) != nil }
+		get { return CGPoint.fromJSValue(scriptValue: self) != nil }
 	}
 
+	/* There is built-in method
 	public func toPoint() -> CGPoint? {
 		return CGPoint(scriptValue: self)
-	}
+	}*/
 
 	public var isSize: Bool {
-		get { return CGSize(scriptValue: self) != nil }
+		get { return CGSize.fromJSValue(scriptValue: self) != nil }
 	}
 
+	/* There is built-in method
 	public func toSize() -> CGSize? {
 		return CGSize(scriptValue: self)
-	}
+	}*/
 
 	public var isRect: Bool {
-		get { return CGRect(scriptValue: self) != nil }
+		get { return CGRect.fromJSValue(scriptValue: self) != nil }
 	}
 
+	/* There is built-in method
 	public func toRect() -> CGRect? {
 		return CGRect(scriptValue: self)
-	}
+	}*/
 
 	public var isRange: Bool {
-		get { return NSRange(scriptValue: self) != nil }
+		get { return NSRange.fromJSValue(scriptValue: self) != nil }
 	}
 
+	/* There is built-in method
 	public func toRange() -> NSRange? {
 		return NSRange(scriptValue: self)
-	}
+	}*/
 
 	public var isEnum: Bool {
-		get {
-			if let dict = self.toObject() as? Dictionary<AnyHashable, Any> {
-				if let _ = anyToString(any: dict["name"]), let _ = anyToInt(any: dict["value"]) {
-					return true
-				}
-			}
-			return false
-		}
+		get { return CNEnum.fromJSValue(scriptValue: self) != nil }
 	}
 
-	public func toEnum() -> Dictionary<String, CNValue> {
-		if let dict = self.toObject() as? Dictionary<AnyHashable, Any> {
-			if let name = anyToString(any: dict["name"]), let value = anyToInt(any: dict["value"]) {
-				let dict: Dictionary<String, CNValue> = [
-					"name":  CNValue.stringValue(name),
-					"value": CNValue.numberValue(NSNumber(integerLiteral: value))
-				]
-				return dict
-			}
-		}
-		CNLog(logLevel: .error, message: "Failed to convert to Enum", atFunction: #function, inFile: #file)
-		return [:]
+	public func toEnum() -> CNEnum? {
+		return CNEnum.fromJSValue(scriptValue: self)
 	}
 
 	public var isURL: Bool {
@@ -122,14 +109,13 @@ extension JSValue
 		}
 	}
 
-	public func toURL() -> URL {
+	public func toURL() -> URL? {
 		if let urlobj = self.toObject() as? KLURL {
 			if let url = urlobj.url {
 				return url
 			}
 		}
-		CNLog(logLevel: .error, message: "Failed to convert to URL", atFunction: #function, inFile: #file)
-		return URL(string: "file:/dev/null")!
+		return nil
 	}
 
 	public var isImage: Bool {
@@ -143,22 +129,28 @@ extension JSValue
 		}
 	}
 
-	public func toImage() -> CNImage {
+	public func toImage() -> CNImage? {
 		if let imgobj = self.toObject() as? KLImage {
 			if let img = imgobj.coreImage {
 				return img
 			}
 		}
-		CNLog(logLevel: .error, message: "Failed to convert to image", atFunction: #function, inFile: #file)
-		return CNImage(data: Data(capacity: 16))!
+		return nil
 	}
 
-	public func toColor() -> CNColor {
+	public func toColor() -> CNColor? {
 		if let colobj = self.toObject() as? KLColor {
 			return colobj.core
 		}
-		CNLog(logLevel: .error, message: "Failed to convert to color", atFunction: #function, inFile: #file)
-		return CNColor.black
+		return nil
+	}
+
+	public var isReference: Bool {
+		get { return CNValueReference.fromJSValue(scriptValue: self) != nil }
+	}
+
+	public func toReference() -> CNValueReference? {
+		return CNValueReference.fromJSValue(scriptValue: self)
 	}
 
 	private func isSpecialDictionary(keys dictkeys: Array<AnyHashable>) -> Bool {
@@ -247,6 +239,8 @@ extension JSValue
 				result = .URLType
 			} else if self.isImage {
 				result = .imageType
+			} else if self.isReference {
+				result = .referenceType
 			} else if self.isObject {
 				if let _ = self.toObject() as? Dictionary<AnyHashable, Any> {
 					result = .dictionaryType
@@ -277,42 +271,37 @@ extension JSValue
 			case .dateType:
 				result = .dateValue(self.toDate())
 			case .URLType:
-				result = .URLValue(self.toURL())
+				if let url = self.toURL() {
+					result = .URLValue(url)
+				} else {
+					result = .nullValue
+				}
 			case .imageType:
-				result = .imageValue(self.toImage())
+				if let img = self.toImage() {
+					result = .imageValue(img)
+				} else {
+					result = .nullValue
+				}
 			case .colorType:
-				result = .colorValue(self.toColor())
+				if let col = self.toColor() {
+					result = .colorValue(col)
+				} else {
+					result = .nullValue
+				}
 			case .enumType:
-				let dict = self.toEnum()
-				if let eval = CNEnum(value: dict) {
+				if let eval = self.toEnum() {
 					result = CNValue.enumValue(eval)
 				} else {
-					CNLog(logLevel: .error, message: "Failed to convert to Enum", atFunction: #function, inFile: #file)
 					result = .nullValue
 				}
 			case .rangeType:
 				result = .rangeValue(self.toRange())
 			case .pointType:
-				if let point = self.toPoint() {
-					result = .pointValue(point)
-				} else {
-					CNLog(logLevel: .error, message: "Failed to convert to Point", atFunction: #function, inFile: #file)
-					result = .nullValue
-				}
+				result = .pointValue(self.toPoint())
 			case .sizeType:
-				if let size = self.toSize() {
-					result = .sizeValue(size)
-				} else {
-					CNLog(logLevel: .error, message: "Failed to convert to Size", atFunction: #function, inFile: #file)
-					result = .nullValue
-				}
+				result = .sizeValue(self.toSize())
 			case .rectType:
-				if let rect = self.toRect() {
-					result = .rectValue(rect)
-				} else {
-					CNLog(logLevel: .error, message: "Failed to convert to Rect", atFunction: #function, inFile: #file)
-					result = .nullValue
-				}
+				result = .rectValue(self.toRect())
 			case .arrayType:
 				let srcarr = self.toArray()!
 				var dstarr: Array<CNValue> = []
@@ -345,6 +334,12 @@ extension JSValue
 			case .objectType:
 				CNLog(logLevel: .error, message: "Failed to convert to Object", atFunction: #function, inFile: #file)
 				result = .nullValue
+			case .referenceType:
+				if let refval = self.toReference() {
+					result = .reference(refval)
+				} else {
+					result = .nullValue
+				}
 			@unknown default:
 				CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
 				result = .nullValue

@@ -12,14 +12,16 @@ import Foundation
 
 public extension CGRect
 {
-	init?(scriptValue val: JSValue) {
-		if let dict = val.toDictionary() as? Dictionary<String, Any> {
+	static func fromJSValue(scriptValue val: JSValue) -> CGRect? {
+		if val.isRect {
+			let rect = val.toRect()
+			return CGRect(origin: rect.origin, size: rect.size)
+		} else if let dict = val.toDictionary() as? Dictionary<String, Any> {
 			if let xnum = dict["x"]      as? NSNumber,
 			   let ynum = dict["y"]      as? NSNumber,
 			   let wnum = dict["width"]  as? NSNumber,
 			   let hnum = dict["height"] as? NSNumber {
-				self.init(x: xnum.doubleValue, y: ynum.doubleValue, width: wnum.doubleValue, height: hnum.doubleValue)
-				return
+				return CGRect(x: xnum.doubleValue, y: ynum.doubleValue, width: wnum.doubleValue, height: hnum.doubleValue)
 			}
 		}
 		return nil

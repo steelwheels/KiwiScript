@@ -55,6 +55,8 @@ extension CNValue {
 		case .colorValue(let col):
 			let colval = col.escapeCode()
 			result = JSValue(int32: colval, in: ctxt)
+		case .reference(let val):
+			result = val.toJSValue(context: ctxt)
 		@unknown default:
 			result = JSValue(nullIn: ctxt)
 		}

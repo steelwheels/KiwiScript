@@ -69,19 +69,17 @@ open class KLThreadLauncher
 	}
 
 	private func pathToFullPath(path pathval: JSValue, environment env: CNEnvironment) -> URL? {
-		let pathstr: String
-		if pathval.isURL {
-			pathstr = pathval.toURL().path
-		} else if pathval.isString {
-			pathstr = pathval.toString()
+		if let url = pathval.toURL() {
+			return url
+		} else if let pathstr = pathval.toString() {
+			if FileManager.default.isAbsolutePath(pathString: pathstr) {
+				return URL(fileURLWithPath: pathstr)
+			} else {
+				let curdir = env.currentDirectory
+				return URL(fileURLWithPath: pathstr, relativeTo: curdir)
+			}
 		} else {
 			return nil
-		}
-		if FileManager.default.isAbsolutePath(pathString: pathstr) {
-			return URL(fileURLWithPath: pathstr)
-		} else {
-			let curdir = env.currentDirectory
-			return URL(fileURLWithPath: pathstr, relativeTo: curdir)
 		}
 	}
 }

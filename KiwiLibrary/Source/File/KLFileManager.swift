@@ -51,8 +51,7 @@ import Foundation
 		}
 
 		let fmanager = FileManager.default
-		if let pathstr = decodePathString(pathval) {
-			let pathurl = fmanager.fullPath(pathString: pathstr, baseURL: mEnvironment.currentDirectory)
+		if let pathurl = pathval.toURL() {
 			switch fmanager.openFile(URL: pathurl, accessType: acctype) {
 			case .ok(let file):
 				let fileobj = KLFile(file: file, context: mContext)
@@ -62,7 +61,8 @@ import Foundation
 			@unknown default:
 				mConsole.error(string: "Unknown error\n")
 			}
-		} else if let pathurl = decodePathURL(pathval) {
+		} else if let pathstr = pathval.toString() {
+			let pathurl = fmanager.fullPath(pathString: pathstr, baseURL: mEnvironment.currentDirectory)
 			switch fmanager.openFile(URL: pathurl, accessType: acctype) {
 			case .ok(let file):
 				let fileobj = KLFile(file: file, context: mContext)
@@ -88,20 +88,6 @@ import Foundation
 				}
 				return result
 			}
-		}
-		return nil
-	}
-
-	private func decodePathString(_ pathval: JSValue) -> String? {
-		if pathval.isString {
-			return pathval.toString()
-		}
-		return nil
-	}
-
-	private func decodePathURL(_ pathval: JSValue) -> URL? {
-		if pathval.isURL {
-			return pathval.toURL()
 		}
 		return nil
 	}
@@ -195,11 +181,10 @@ import Foundation
 	public func setCurrentDirectory(_ pathval: JSValue) -> JSValue {
 		let path: URL?
 		let fmanager = FileManager.default
-		if pathval.isURL {
-			path = pathval.toURL()
-		} else if pathval.isString {
-
-			path = fmanager.fullPath(pathString: pathval.toString(), baseURL: mEnvironment.currentDirectory)
+		if let url = pathval.toURL() {
+			path = url
+		} else if let str = pathval.toString() {
+			path = fmanager.fullPath(pathString: str, baseURL: mEnvironment.currentDirectory)
 		} else {
 			path = nil
 		}
@@ -269,7 +254,11 @@ import Foundation
 
 	private func valueToString(value val: JSValue) -> String? {
 		if val.isURL {
-			return val.toURL().path
+			if let url = val.toURL() {
+				return url.path
+			} else {
+				return nil
+			}
 		} else if val.isString {
 			return val.toString()
 		} else {

@@ -12,12 +12,14 @@ import Foundation
 
 public extension CGSize
 {
-	init?(scriptValue val: JSValue) {
-		if let dict = val.toDictionary() as? Dictionary<String, Any> {
+	static func fromJSValue(scriptValue val: JSValue) -> CGSize? {
+		if val.isSize {
+			let size = val.toSize()
+			return CGSize(width: size.width, height: size.height)
+		} else if let dict = val.toDictionary() as? Dictionary<String, Any> {
 			if let wnum = dict["width"] as? NSNumber,
 			   let hnum = dict["height"] as? NSNumber {
-				self.init(width: wnum.doubleValue, height: hnum.doubleValue)
-				return
+				return CGSize(width: wnum.doubleValue, height: hnum.doubleValue)
 			}
 		}
 		return nil
