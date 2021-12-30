@@ -22,9 +22,6 @@ import Foundation
 	func record(_ row: JSValue) -> JSValue
 	func append(_ rcd: JSValue)
 	func forEach(_ callback: JSValue)
-
-	var isDirty: JSValue { get }
-	func save()
 }
 
 public protocol KLTableCore
@@ -135,16 +132,6 @@ public protocol KLTableCore
 				CNLog(logLevel: .error, message: "Unexpected record object", atFunction: #function, inFile: #file)
 			}
 		})
-	}
-
-	public var isDirty: JSValue { get {
-		let db = CNContactDatabase.shared
-		return JSValue(bool: db.isDirty, in: mContext)
-	}}
-
-	public func save() {
-		let dc  = CNContactDatabase.shared
-		dc.save()
 	}
 }
 

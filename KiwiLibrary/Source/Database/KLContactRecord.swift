@@ -19,9 +19,6 @@ import Foundation
 
 	func value(_ name: JSValue) -> JSValue
 	func setValue(_ val: JSValue, _ name: JSValue) -> JSValue
-
-	var isDirty: JSValue { get }
-	func save()
 }
 
 public protocol KLRecordCore
@@ -128,10 +125,6 @@ public protocol KLRecordCore
 			return JSValue(bool: false, in: mContext)
 		}
 	}
-
-	public var isDirty: JSValue { get {
-		return JSValue(bool: mContact.isDirty, in: mContext)
-	}}
 
 	public func save() {
 		// not supported
