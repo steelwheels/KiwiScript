@@ -15,13 +15,16 @@ import Foundation
 {
 	var recordCount: JSValue { get }
 
-	func authorize(_ callback: JSValue)
-	func load(_ url: JSValue) -> JSValue
-
 	func newRecord() -> JSValue
 	func record(_ row: JSValue) -> JSValue
 	func append(_ rcd: JSValue)
 	func forEach(_ callback: JSValue)
+}
+
+@objc public protocol KLContactTable: KLTable
+{
+	func authorize(_ callback: JSValue)
+	func load(_ url: JSValue) -> JSValue
 }
 
 public protocol KLTableCore
@@ -29,7 +32,7 @@ public protocol KLTableCore
 	func core() -> CNTable
 }
 
-@objc public class KLContactDatabase: NSObject, KLTable, KLTableCore
+@objc public class KLContactDatabase: NSObject, KLContactTable, KLTableCore
 {
 	private var mContext: KEContext
 

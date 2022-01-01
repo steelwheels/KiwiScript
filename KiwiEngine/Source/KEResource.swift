@@ -16,6 +16,7 @@ open class KEResource: CNResource
 	public static let ThreadsCategory		= "threads"
 	public static let SubViewsCategory		= "subviews"
 	public static let DataCategory			= "data"
+	public static let StoragesCategory		= "storages"
 	public static let ImagesCategory		= "images"
 
 	public static let DefaultIdentifier		= "_default"
@@ -29,6 +30,7 @@ open class KEResource: CNResource
 
 	private var mFileLoader:	LoaderFunc
 	private var mImageLoader:	LoaderFunc
+	private var mValueCacheLoader:	LoaderFunc
 
 	public var fileLoader: LoaderFunc	{ get { return mFileLoader }}
 
@@ -37,6 +39,15 @@ open class KEResource: CNResource
 			(_ url: URL) -> Any? in
 			do {
 				return try String(contentsOf: url)
+			} catch {
+				return nil
+			}
+		}
+
+		mValueCacheLoader = {
+			(_ url: URL) -> Any? in
+			do {
+				return try KEResource.allocateValueCache(for: url, baseURL: url)
 			} catch {
 				return nil
 			}
@@ -60,6 +71,7 @@ open class KEResource: CNResource
 		addCategory(category: KEResource.ThreadsCategory,	loader: mFileLoader)
 		addCategory(category: KEResource.SubViewsCategory,	loader: mFileLoader)
 		addCategory(category: KEResource.DataCategory,		loader: mFileLoader)
+		addCategory(category: KEResource.StoragesCategory,	loader: mValueCacheLoader)
 		addCategory(category: KEResource.ImagesCategory, 	loader: mImageLoader)
 	}
 
@@ -274,6 +286,52 @@ open class KEResource: CNResource
 			return nil
 		}
 	}
+
+	/*
+	 * storage
+	 */
+	public func setStorage(identifier ident: String, path pathstr: String){
+		super.set(category: KEResource.StoragesCategory, identifier: ident, path: pathstr)
+	}
+
+	public func loadStorage(identifier ident: String) -> CNValueCache? {
+		if let cache: CNValueCache = super.load(category: KEResource.StoragesCategory, identifier: ident, index: 0) {
+			return cache
+		} else {
+			return nil
+		}
+	}
+
+	private static func allocateValueCache(for url: URL, baseURL baseurl: URL) throws -> CNValueCache {
+		/* Pickup file name */
+		let filename = url.lastPathComponent
+		guard !filename.isEmpty else {
+			throw NSError.parseError(message: "No value file name")
+		}
+		/* Pickup file path */
+		let pathurl = url.deletingLastPathComponent()
+
+		/* Root value  */
+		let root = CNValueCache(root: pathurl, parentCache: nil)
+		switch root.load(relativePath: filename) {
+		case .ok(_):
+			break
+		case .error(let err):
+			throw err
+		@unknown default:
+			throw NSError.parseError(message: "Unknown case")
+		}
+
+		/* Get cache file path */
+		let cachepath = url.deletingLastPathComponent()
+		let cacherel  = URL(fileURLWithPath: cachepath.path, relativeTo: baseurl)
+		let cacheurl  = CNFilePath.URLforUserLibraryDirectory().appendingPathComponent(cacherel.path, isDirectory: true)
+
+		/* Cache value */
+		let cache = CNValueCache(root: cacheurl, parentCache: root)
+		return cache
+	}
+
 
 	/*
 	 * images section

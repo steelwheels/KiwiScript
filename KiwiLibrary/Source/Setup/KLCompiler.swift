@@ -743,7 +743,7 @@ public class KLLibraryCompiler: KECompiler
 		/* ValueTable */
 		let allocTableFunc: @convention(block) () -> JSValue = {
 			() -> JSValue in
-			let tbldata = CNValueTable()
+			let tbldata = CNValueTable.allocateVolatileValueTable()
 			let tblobj  = KLValueTable(table: tbldata, context: ctxt)
 			return JSValue(object: tblobj, in: ctxt)
 		}

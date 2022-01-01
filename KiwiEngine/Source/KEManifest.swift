@@ -32,13 +32,18 @@ public class KEManifestLoader
 
 	private func readNativeValue(from url: URL) throws -> CNValue {
 		let fileurl = url.appendingPathComponent("manifest.json")
-		switch CNValueFile.read(URL: fileurl) {
-		case .ok(let value):
-			return value
-		case .error(let err):
-			throw err
-		@unknown default:
-			throw NSError.parseError(message: "Can not happen")
+		if let content = fileurl.loadContents() {
+			let parser = CNValueParser()
+			switch parser.parse(source: content as String) {
+			case .ok(let value):
+				return value
+			case .error(let err):
+				throw err
+			@unknown default:
+				throw NSError.parseError(message: "Undefined case")
+			}
+		} else {
+			throw NSError.parseError(message: "Failed to load manifest file")
 		}
 	}
 
@@ -101,6 +106,17 @@ public class KEManifestLoader
 				}
 			} else {
 				throw NSError.parseError(message: "data section must have data file name properties")
+			}
+		}
+		/* Decode: "storages" */
+		if let storageval = data[KEResource.StoragesCategory] {
+			if let storagedict = storageval.toDictionary() {
+				let fmap = try decodeFileMap(properties: storagedict)
+				for (ident, path) in fmap {
+					res.setStorage(identifier: ident, path: path)
+				}
+			} else {
+				throw NSError.parseError(message: "stoages section must have data file name properties")
 			}
 		}
 		/* Decode: "images" */

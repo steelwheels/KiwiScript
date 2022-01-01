@@ -28,34 +28,6 @@ import Foundation
 		return mTable
 	}
 
-	public func authorize(_ callback: JSValue) {
-		/* Do nothing and return true */
-		if let param = JSValue(bool: true, in: mContext) {
-			callback.call(withArguments: [param])
-		}
-	}
-
-	public func load(_ urlp: JSValue) -> JSValue {
-		let url: URL?
-		if urlp.isNull {
-			url = nil
-		} else {
-			url = urlp.toURL()
-		}
-		let result: Bool
-		switch mTable.load(fromURL: url) {
-		case .ok:
-			result = true
-		case .error(let err):
-			CNLog(logLevel: .error, message: "Failed to load table value: \(err.toString())")
-			result = false
-		@unknown default:
-			CNLog(logLevel: .error, message: "Unexpected result")
-			result = false
-		}
-		return JSValue(bool: result, in: mContext)
-	}
-
 	public func newRecord() -> JSValue {
 		if let rec = mTable.newRecord() as? CNValueRecord {
 			let newrec = allocateRecord(record: rec)
