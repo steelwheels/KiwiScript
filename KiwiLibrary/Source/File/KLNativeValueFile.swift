@@ -27,11 +27,15 @@ import Foundation
 	public func read(_ file: JSValue) -> JSValue {
 		if file.isObject {
 			if let fileobj = file.toObject() as? KLFile {
-				switch CNValueFile.read(file: fileobj.file) {
-				case .ok(let value):
-					return value.toJSValue(context: mContext)
-				default:
-					break
+				let text   = fileobj.file.getall()
+				let parser = CNValueParser()
+				switch parser.parse(source: text) {
+				case .ok(let val):
+					return val.toJSValue(context: mContext)
+				case .error(let err):
+					CNLog(logLevel: .error, message: "[Error] \(err.toString())", atFunction: #function, inFile: #file)
+				@unknown default:
+					CNLog(logLevel: .error, message: "[Error] Unknown case", atFunction: #function, inFile: #file)
 				}
 			}
 		}
@@ -40,15 +44,11 @@ import Foundation
 
 	public func write(_ file: JSValue, _ json: JSValue) -> JSValue {
 		var result = false
-		if file.isObject {
-			if let fileobj = file.toObject() as? KLFile {
-				let nval = json.toNativeValue()
-				let err  = CNValueFile.write(file: fileobj.file, nativeValue: nval)
-				if err == nil {
-					/* No error */
-					result = true
-				}
-			}
+		if let fileobj = file.toObject() as? KLFile {
+			let nval = json.toNativeValue()
+			let text = nval.toText().toStrings().joined(separator: "\n")
+			fileobj.file.put(string: text)
+			result = true
 		}
 		return JSValue(bool: result, in: mContext)
 	}

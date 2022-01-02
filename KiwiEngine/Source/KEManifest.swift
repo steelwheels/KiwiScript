@@ -16,7 +16,7 @@ public class KEManifestLoader
 
 	public func load(into resource: KEResource) -> NSError? {
 		do {
-			let nvalue = try readNativeValue(from: resource.baseURL)
+			let nvalue = try readNativeValue(from: resource.rootDirectoryURL)
 			if let dict = nvalue.toDictionary() {
 				try decode(resource: resource, properties: dict)
 				return nil
@@ -111,12 +111,12 @@ public class KEManifestLoader
 		/* Decode: "storages" */
 		if let storageval = data[KEResource.StoragesCategory] {
 			if let storagedict = storageval.toDictionary() {
-				let fmap = try decodeFileMap(properties: storagedict)
-				for (ident, path) in fmap {
+				let smap = try decodeFileMap(properties: storagedict)
+				for (ident, path) in smap {
 					res.setStorage(identifier: ident, path: path)
 				}
 			} else {
-				throw NSError.parseError(message: "stoages section must have data file name properties")
+				throw NSError.parseError(message: "storages section must have value cache file name properties")
 			}
 		}
 		/* Decode: "images" */
@@ -127,7 +127,7 @@ public class KEManifestLoader
 					res.setImage(identifier: ident, path: path)
 				}
 			} else {
-				throw NSError.parseError(message: "libraries section must have image file name properties")
+				throw NSError.parseError(message: "images section must have image file name properties")
 			}
 		}
 	}

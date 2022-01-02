@@ -72,7 +72,7 @@ public enum KLSource {
 		let result: KEResource
 		switch url.pathExtension {
 		case "jspkg":
-			let resource = KEResource(baseURL: url)
+			let resource = KEResource(directoryURL: url)
 			let loader = KEManifestLoader()
 			if let err = loader.load(into: resource) {
 				let msg = "[Error] Failed to load resource from \(url.path): \(err.toString())\n"

@@ -29,12 +29,12 @@ open class KEResource: CNResource
 	}
 
 	private var mFileLoader:	LoaderFunc
-	private var mImageLoader:	LoaderFunc
 	private var mValueCacheLoader:	LoaderFunc
+	private var mImageLoader:	LoaderFunc
 
 	public var fileLoader: LoaderFunc	{ get { return mFileLoader }}
 
-	public override init(baseURL url: URL){
+	public override init(directoryURL url: URL){
 		mFileLoader = {
 			(_ url: URL) -> Any? in
 			do {
@@ -47,7 +47,7 @@ open class KEResource: CNResource
 		mValueCacheLoader = {
 			(_ url: URL) -> Any? in
 			do {
-				return try KEResource.allocateValueCache(for: url, baseURL: url)
+				return try KEResource.allocateValueCache(sourceURL: url, rootDirectory: url)
 			} catch {
 				return nil
 			}
@@ -62,7 +62,7 @@ open class KEResource: CNResource
 			#endif
 		}
 
-		super.init(baseURL: url)
+		super.init(directoryURL: url)
 
 		/* Setup categories */
 		addCategory(category: KEResource.ApplicationCategory,	loader: mFileLoader)
@@ -71,14 +71,14 @@ open class KEResource: CNResource
 		addCategory(category: KEResource.ThreadsCategory,	loader: mFileLoader)
 		addCategory(category: KEResource.SubViewsCategory,	loader: mFileLoader)
 		addCategory(category: KEResource.DataCategory,		loader: mFileLoader)
-		addCategory(category: KEResource.StoragesCategory,	loader: mValueCacheLoader)
+		addCategory(category: KEResource.StoragesCategory,	loader: mFileLoader)
 		addCategory(category: KEResource.ImagesCategory, 	loader: mImageLoader)
 	}
 
 	public convenience init(singleFileURL url: URL) {
 		let base = url.deletingLastPathComponent()
 		let file = url.lastPathComponent
-		self.init(baseURL: base)
+		self.init(directoryURL: base)
 		setApprication(path: file)
 	}
 
@@ -87,7 +87,7 @@ open class KEResource: CNResource
 		let path = NSString(string: url.absoluteString)
 		switch path.pathExtension {
 		case "jspkg":
-			let resource = KEResource(baseURL: url)
+			let resource = KEResource(directoryURL: url)
 			let loader = KEManifestLoader()
 			if let err = loader.load(into: resource) {
 				result = .error(err)
@@ -99,6 +99,34 @@ open class KEResource: CNResource
 			result = .ok(resource)
 		}
 		return result
+	}
+
+	static public func allocateValueCache(sourceURL src: URL, rootDirectory rootdir: URL) throws -> CNValueCache? {
+		let file = src.lastPathComponent
+		let dir  = src.deletingLastPathComponent()
+
+		/* Allocate main cache in package directory */
+		let maincache = CNValueCache(root: dir, parentCache: nil)
+		switch maincache.load(relativePath: file) {
+		case .ok(_):
+			break
+		case .error(let err):
+			CNLog(logLevel: .error, message: "[Error] \(err.toString())", atFunction: #function, inFile: #file)
+			return nil
+		@unknown default:
+			CNLog(logLevel: .error, message: "[Error] Unknown case", atFunction: #function, inFile: #file)
+			return nil
+		}
+
+		/* Allocate sub cache under user application directory */
+		if let relurl = CNFilePath.relativePathUnderBaseURL(fullPath: src, basePath: rootdir) {
+			let dataurl  = URL(fileURLWithPath: relurl.path, isDirectory: false, relativeTo: CNFilePath.URLforUserLibraryDirectory())
+			let subcache = CNValueCache(root: dataurl, parentCache: maincache)
+			return subcache
+		} else {
+			CNLog(logLevel: .error, message: "[Error] Failed to get user data path", atFunction: #function, inFile: #file)
+			return nil
+		}
 	}
 
 	public func addCategory(category cname: String, loader ldr: @escaping LoaderFunc) {
@@ -288,10 +316,26 @@ open class KEResource: CNResource
 	}
 
 	/*
-	 * storage
+	 * storages section
 	 */
+	public func identifiersOfStorage() -> Array<String>? {
+		return super.identifiers(category: KEResource.StoragesCategory)
+	}
+
 	public func setStorage(identifier ident: String, path pathstr: String){
 		super.set(category: KEResource.StoragesCategory, identifier: ident, path: pathstr)
+	}
+
+	public func pathStringOfStorage(identifier ident: String) -> String? {
+		return super.pathString(category: KEResource.StoragesCategory, identifier: ident, index: 0)
+	}
+
+	public func URLOfStorage(identifier ident: String) -> URL? {
+		if let url = super.fullPathURL(category: KEResource.StoragesCategory, identifier: ident, index: 0) {
+			return url
+		} else {
+			return nil
+		}
 	}
 
 	public func loadStorage(identifier ident: String) -> CNValueCache? {
@@ -332,7 +376,6 @@ open class KEResource: CNResource
 		return cache
 	}
 
-
 	/*
 	 * images section
 	 */
@@ -344,7 +387,7 @@ open class KEResource: CNResource
 		super.set(category: KEResource.ImagesCategory, identifier: ident, path: pathstr)
 	}
 
-	public func pathStringOfImagae(identifier ident: String) -> String? {
+	public func pathStringOfImage(identifier ident: String) -> String? {
 		return super.pathString(category: KEResource.ImagesCategory, identifier: ident, index: 0)
 	}
 
