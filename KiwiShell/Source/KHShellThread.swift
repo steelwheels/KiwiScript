@@ -83,7 +83,7 @@ open class KHShellThread: CNShellThread
 		if FileManager.default.isReadableFile(atPath: rcfile.path) {
 			if let content = rcfile.loadContents() {
 				let compiler = KECompiler()
-				let _ = compiler.compile(context: mContext, statement: content as String, console: self.console, config: mConfig)
+				let _ = compiler.compileStatement(context: mContext, statement: content as String, console: self.console, config: mConfig)
 			}
 		}
 

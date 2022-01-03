@@ -142,7 +142,7 @@ public enum KLSource {
 
 		/* Execute the script */
 		let runner = KECompiler()
-		let _ = runner.compile(context: mContext, statement: newscript, console: console, config: conf)
+		let _ = runner.compileStatement(context: mContext, statement: newscript, console: console, config: conf)
 
 		return true
 	}

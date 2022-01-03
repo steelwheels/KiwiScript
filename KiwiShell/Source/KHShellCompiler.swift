@@ -80,7 +80,7 @@ public class KHShellCompiler: KECompiler
 			for libname in libnames {
 				if let url = CNFilePath.URLForResourceFile(fileName: libname, fileExtension: "js", subdirectory: "Library", forClass: KHShellCompiler.self) {
 					let script = try String(contentsOf: url, encoding: .utf8)
-					let _ = compile(context: ctxt, statement: script, console: cons, config: conf)
+					let _ = compileStatement(context: ctxt, statement: script, console: cons, config: conf)
 				} else {
 					cons.error(string: "Built-in script \"\(libname)\" is not found.")
 				}

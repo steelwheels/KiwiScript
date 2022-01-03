@@ -116,7 +116,7 @@ public class KEManifestLoader
 					res.setStorage(identifier: ident, path: path)
 				}
 			} else {
-				throw NSError.parseError(message: "storages section must have value cache file name properties")
+				throw NSError.parseError(message: "storages section must have value storage name properties")
 			}
 		}
 		/* Decode: "images" */

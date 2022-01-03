@@ -15,7 +15,7 @@ open class KECompiler
 
 	}
 
-	open func compileBase(context ctxt: KEContext, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
+	public func compileBase(context ctxt: KEContext, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
 		/* Set strict */
 		setStrictMode(context: ctxt, console: cons, config: conf)
 		/* Define Enum Types */
@@ -30,7 +30,7 @@ open class KECompiler
 
 	private func setStrictMode(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig){
 		if conf.doStrict {
-			let _ = compile(context: ctxt, statement: "'use strict' ;\n", console: cons, config: conf)
+			let _ = compileStatement(context: ctxt, statement: "'use strict' ;\n", console: cons, config: conf)
 		}
 	}
 
@@ -38,12 +38,12 @@ open class KECompiler
 		let etable = KEEnumTable.shared
 		for typename in etable.typeNames.sorted() {
 			if let etype = etable.search(by: typename) {
-				compile(context: ctxt, enumType: etype, console: cons, config: conf)
+				compileEnumType(context: ctxt, enumType: etype, console: cons, config: conf)
 			}
 		}
 	}
 
-	public func compile(context ctxt: KEContext, statement stmt: String, console cons: CNConsole, config conf: KEConfig) -> JSValue? {
+	public func compileStatement(context ctxt: KEContext, statement stmt: String, console cons: CNConsole, config conf: KEConfig) -> JSValue? {
 		switch conf.logLevel {
 		case .nolog, .error, .warning, .debug:
 			break
@@ -55,7 +55,7 @@ open class KECompiler
 		return ctxt.evaluateScript(stmt)
 	}
 
-	public func compile(context ctxt: KEContext, statements stmts: Array<String>, console cons: CNConsole, config conf: KEConfig) -> JSValue? {
+	public func compileStatements(context ctxt: KEContext, statements stmts: Array<String>, console cons: CNConsole, config conf: KEConfig) -> JSValue? {
 		let script = stmts.joined(separator: "\n")
 		switch conf.logLevel {
 		case .nolog, .error, .warning, .debug:
@@ -68,7 +68,7 @@ open class KECompiler
 		return ctxt.evaluateScript(script)
 	}
 
-	public func compile(context ctxt: KEContext, enumType etype: KEEnumType, console cons: CNConsole, config conf: KEConfig){
+	private func compileEnumType(context ctxt: KEContext, enumType etype: KEEnumType, console cons: CNConsole, config conf: KEConfig){
 		/* Compile */
 		let typename = etype.typeName
 		switch conf.logLevel {
@@ -91,10 +91,10 @@ open class KECompiler
 		}
 		enumstmt += "\n};\n"
 
-		let _ = compile(context: ctxt, statement: enumstmt, console: cons, config: conf)
+		let _ = compileStatement(context: ctxt, statement: enumstmt, console: cons, config: conf)
 	}
 
-	public func compile(context ctxt: KEContext, destination dst: String, dictionary dict: Dictionary<String, String>, console cons: CNConsole, config conf: KEConfig){
+	public func compileDictionaryVariable(context ctxt: KEContext, destination dst: String, dictionary dict: Dictionary<String, String>, console cons: CNConsole, config conf: KEConfig){
 		var stmt  = "\(dst) = {\n"
 		var is1st = true
 		for (key, value) in dict {
@@ -106,7 +106,7 @@ open class KECompiler
 			stmt += "\t\(key): \(value)"
 		}
 		stmt += "\n};\n"
-		let _ = compile(context: ctxt, statement: stmt, console: cons, config: conf)
+		let _ = compileStatement(context: ctxt, statement: stmt, console: cons, config: conf)
 	}
 
 	private func message(fromError err: NSError?) -> String {

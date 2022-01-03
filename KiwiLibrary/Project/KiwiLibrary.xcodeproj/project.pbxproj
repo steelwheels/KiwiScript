@@ -104,6 +104,8 @@
 		05950CA225C4304500D659A1 /* KLGraphicsContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05950CA025C4304500D659A1 /* KLGraphicsContext.swift */; };
 		0598000525CB5F5F00499B6E /* KLBitmapContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0598000425CB5F5F00499B6E /* KLBitmapContext.swift */; };
 		0598000625CB5F5F00499B6E /* KLBitmapContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0598000425CB5F5F00499B6E /* KLBitmapContext.swift */; };
+		059A152E2781E71200F4B24C /* KLValueStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059A152D2781E71200F4B24C /* KLValueStorage.swift */; };
+		059A152F2781E71200F4B24C /* KLValueStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059A152D2781E71200F4B24C /* KLValueStorage.swift */; };
 		059DBA0C26E26A2D00FB5480 /* Table.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 059DBA0B26E26A1D00FB5480 /* Table.d.ts */; };
 		059DBA1026E26A3B00FB5480 /* Table.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 059DBA0B26E26A1D00FB5480 /* Table.d.ts */; };
 		05A1F44E253BBAD500D4789F /* UTEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A1F44D253BBAD400D4789F /* UTEnvironment.swift */; };
@@ -437,6 +439,7 @@
 		059083B32723978700F10EEE /* KLSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLSymbol.swift; sourceTree = "<group>"; };
 		05950CA025C4304500D659A1 /* KLGraphicsContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLGraphicsContext.swift; sourceTree = "<group>"; };
 		0598000425CB5F5F00499B6E /* KLBitmapContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLBitmapContext.swift; sourceTree = "<group>"; };
+		059A152D2781E71200F4B24C /* KLValueStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLValueStorage.swift; sourceTree = "<group>"; };
 		059DBA0B26E26A1D00FB5480 /* Table.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Table.d.ts; sourceTree = "<group>"; };
 		05A1F44D253BBAD400D4789F /* UTEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTEnvironment.swift; sourceTree = "<group>"; };
 		05A1F451253BBBD400D4789F /* UTFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTFileManager.swift; sourceTree = "<group>"; };
@@ -770,6 +773,7 @@
 				0520F478277450F7004DDA28 /* KLRange.swift */,
 				05EE5C8426E79316005026B3 /* KLText.swift */,
 				053D2DAE277A81A0008B6DA2 /* KLValueReference.swift */,
+				059A152D2781E71200F4B24C /* KLValueStorage.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1106,6 +1110,7 @@
 				05A95B872516D06900775737 /* KLEnvironment.swift in Sources */,
 				05A95B322516CF9900775737 /* KLFontManager.swift in Sources */,
 				05A95B3D2516CFD400775737 /* KLCompiler.swift in Sources */,
+				059A152E2781E71200F4B24C /* KLValueStorage.swift in Sources */,
 				05EBD8B625E4982200CA1480 /* KLColor.swift in Sources */,
 				05A95B542516CFF300775737 /* KLThread.swift in Sources */,
 				0520F47327744F23004DDA28 /* KLSize.swift in Sources */,
@@ -1157,6 +1162,7 @@
 				05A95B882516D06900775737 /* KLEnvironment.swift in Sources */,
 				05A95B332516CF9900775737 /* KLFontManager.swift in Sources */,
 				05A95B3E2516CFD400775737 /* KLCompiler.swift in Sources */,
+				059A152F2781E71200F4B24C /* KLValueStorage.swift in Sources */,
 				05EBD8B725E4982200CA1480 /* KLColor.swift in Sources */,
 				05A95B552516CFF300775737 /* KLThread.swift in Sources */,
 				0520F47427744F23004DDA28 /* KLSize.swift in Sources */,

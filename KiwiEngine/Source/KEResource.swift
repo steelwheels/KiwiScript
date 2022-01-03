@@ -28,9 +28,9 @@ open class KEResource: CNResource
 		case error(NSError)
 	}
 
-	private var mFileLoader:	LoaderFunc
-	private var mValueCacheLoader:	LoaderFunc
-	private var mImageLoader:	LoaderFunc
+	private var mFileLoader:		LoaderFunc
+	private var mValueStorageLoader:	LoaderFunc
+	private var mImageLoader:		LoaderFunc
 
 	public var fileLoader: LoaderFunc	{ get { return mFileLoader }}
 
@@ -44,10 +44,10 @@ open class KEResource: CNResource
 			}
 		}
 
-		mValueCacheLoader = {
+		mValueStorageLoader = {
 			(_ url: URL) -> Any? in
 			do {
-				return try KEResource.allocateValueCache(sourceURL: url, rootDirectory: url)
+				return try KEResource.allocateValueStorage(sourceURL: url, rootDirectory: url)
 			} catch {
 				return nil
 			}
@@ -101,13 +101,13 @@ open class KEResource: CNResource
 		return result
 	}
 
-	static public func allocateValueCache(sourceURL src: URL, rootDirectory rootdir: URL) throws -> CNValueCache? {
+	static public func allocateValueStorage(sourceURL src: URL, rootDirectory rootdir: URL) throws -> CNValueStorage? {
 		let file = src.lastPathComponent
 		let dir  = src.deletingLastPathComponent()
 
-		/* Allocate main cache in package directory */
-		let maincache = CNValueCache(root: dir, parentCache: nil)
-		switch maincache.load(relativePath: file) {
+		/* Allocate main storage in package directory */
+		let mainstorage = CNValueStorage(root: dir, parentStorage: nil)
+		switch mainstorage.load(relativePath: file) {
 		case .ok(_):
 			break
 		case .error(let err):
@@ -118,11 +118,11 @@ open class KEResource: CNResource
 			return nil
 		}
 
-		/* Allocate sub cache under user application directory */
+		/* Allocate sub storage under user application directory */
 		if let relurl = CNFilePath.relativePathUnderBaseURL(fullPath: src, basePath: rootdir) {
 			let dataurl  = URL(fileURLWithPath: relurl.path, isDirectory: false, relativeTo: CNFilePath.URLforUserLibraryDirectory())
-			let subcache = CNValueCache(root: dataurl, parentCache: maincache)
-			return subcache
+			let substorage = CNValueStorage(root: dataurl, parentStorage: mainstorage)
+			return substorage
 		} else {
 			CNLog(logLevel: .error, message: "[Error] Failed to get user data path", atFunction: #function, inFile: #file)
 			return nil
@@ -338,15 +338,15 @@ open class KEResource: CNResource
 		}
 	}
 
-	public func loadStorage(identifier ident: String) -> CNValueCache? {
-		if let cache: CNValueCache = super.load(category: KEResource.StoragesCategory, identifier: ident, index: 0) {
-			return cache
+	public func loadStorage(identifier ident: String) -> CNValueStorage? {
+		if let storage: CNValueStorage = super.load(category: KEResource.StoragesCategory, identifier: ident, index: 0) {
+			return storage
 		} else {
 			return nil
 		}
 	}
 
-	private static func allocateValueCache(for url: URL, baseURL baseurl: URL) throws -> CNValueCache {
+	private static func allocateValueStorage(for url: URL, baseURL baseurl: URL) throws -> CNValueStorage {
 		/* Pickup file name */
 		let filename = url.lastPathComponent
 		guard !filename.isEmpty else {
@@ -356,7 +356,7 @@ open class KEResource: CNResource
 		let pathurl = url.deletingLastPathComponent()
 
 		/* Root value  */
-		let root = CNValueCache(root: pathurl, parentCache: nil)
+		let root = CNValueStorage(root: pathurl, parentStorage: nil)
 		switch root.load(relativePath: filename) {
 		case .ok(_):
 			break
@@ -366,14 +366,14 @@ open class KEResource: CNResource
 			throw NSError.parseError(message: "Unknown case")
 		}
 
-		/* Get cache file path */
-		let cachepath = url.deletingLastPathComponent()
-		let cacherel  = URL(fileURLWithPath: cachepath.path, relativeTo: baseurl)
-		let cacheurl  = CNFilePath.URLforUserLibraryDirectory().appendingPathComponent(cacherel.path, isDirectory: true)
+		/* Get storage file path */
+		let storagepath = url.deletingLastPathComponent()
+		let storagerel  = URL(fileURLWithPath: storagepath.path, relativeTo: baseurl)
+		let storageurl  = CNFilePath.URLforUserLibraryDirectory().appendingPathComponent(storagerel.path, isDirectory: true)
 
-		/* Cache value */
-		let cache = CNValueCache(root: cacheurl, parentCache: root)
-		return cache
+		/* Storage value */
+		let storage = CNValueStorage(root: storageurl, parentStorage: root)
+		return storage
 	}
 
 	/*

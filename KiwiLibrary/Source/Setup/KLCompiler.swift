@@ -20,26 +20,29 @@ public class KLLibraryCompiler: KECompiler
 {
 	public func compile(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
 		guard compileBase(context: ctxt, terminalInfo: terminfo, environment: env, console: cons, config: conf) else {
+			NSLog("[Error] Failed to compile: base")
+			return false
+		}
+		guard compileGeneralFunctions(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf) else {
+			NSLog("[Error] Failed to compile: general functions")
 			return false
 		}
 		guard compileThreadFunctions(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf) else {
+			NSLog("[Error] Failed to compile: thread functions")
 			return false
 		}
 		guard compileBuiltinScripts(context: ctxt, terminalInfo: terminfo, environment: env, console: cons, config: conf) else {
+			NSLog("[Error] Failed to compile: builtin scripts")
 			return false
 		}
 		guard compileUserScripts(context: ctxt, resource: res, processManager: procmgr, environment: env, console: cons, config: conf) else {
+			NSLog("[Error] Failed to compile: user scripts")
 			return false
 		}
 		return true
 	}
 
-	public override func compileBase(context ctxt: KEContext, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
-		guard super.compileBase(context: ctxt, terminalInfo: terminfo, environment: env, console: cons, config: conf) else {
-			cons.error(string: "Failed to compile")
-			return false
-		}
-
+	private func compileGeneralFunctions(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
 		defineConstants(context: ctxt)
 		defineFunctions(context: ctxt, console: cons, config: conf)
 		definePrimitiveObjects(context: ctxt, console: cons, config: conf)
@@ -47,11 +50,10 @@ public class KLLibraryCompiler: KECompiler
 		defineGlobalObjects(context: ctxt, console: cons, config: conf)
 		defineConstructors(context: ctxt, console: cons, config: conf)
 		defineDatabase(context: ctxt, console: cons, config: conf)
-
 		return true
 	}
 
-	open func compileThreadFunctions(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNConsole, config conf: KEConfig) -> Bool {
+	private func compileThreadFunctions(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNConsole, config conf: KEConfig) -> Bool {
 		if defineThreadFunction(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf) {
 			return (ctxt.errorCount == 0)
 		} else {
@@ -59,12 +61,12 @@ public class KLLibraryCompiler: KECompiler
 		}
 	}
 
-	public func compileBuiltinScripts(context ctxt: KEContext, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
+	private func compileBuiltinScripts(context ctxt: KEContext, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
 		importBuiltinLibrary(context: ctxt, console: cons, config: conf)
 		return (ctxt.errorCount == 0)
 	}
 
-	public func compileUserScripts(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, environment env: CNEnvironment, console cons: CNConsole, config conf: KEConfig) -> Bool {
+	private func compileUserScripts(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, environment env: CNEnvironment, console cons: CNConsole, config conf: KEConfig) -> Bool {
 		if compileLibraryFiles(context: ctxt, resource: res, processManager: procmgr, environment: env, console: cons, config: conf) {
 			return (ctxt.errorCount == 0)
 		} else {
@@ -78,7 +80,7 @@ public class KLLibraryCompiler: KECompiler
 		if let libnum = res.countOfLibraries() {
 			for i in 0..<libnum {
 				if let scr = res.loadLibrary(index: i) {
-					let _ = self.compile(context: ctxt, statement: scr, console: cons, config: conf)
+					let _ = self.compileStatement(context: ctxt, statement: scr, console: cons, config: conf)
 				} else {
 					if let fname = res.URLOfLibrary(index: i) {
 						cons.error(string: "Failed to load library: \(fname.absoluteString)\n")
@@ -798,7 +800,7 @@ public class KLLibraryCompiler: KECompiler
 			for libname in libnames {
 				if let url = CNFilePath.URLForResourceFile(fileName: libname, fileExtension: "js", subdirectory: "Library", forClass: KLLibraryCompiler.self) {
 					let script = try String(contentsOf: url, encoding: .utf8)
-					let _ = compile(context: ctxt, statement: script, console: cons, config: conf)
+					let _ = compileStatement(context: ctxt, statement: script, console: cons, config: conf)
 				} else {
 					cons.error(string: "Built-in script \"\(libname)\" is not found.")
 				}
