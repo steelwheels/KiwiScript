@@ -47,7 +47,7 @@ open class KEResource: CNResource
 		mValueStorageLoader = {
 			(_ url: URL) -> Any? in
 			do {
-				return try KEResource.allocateValueStorage(sourceURL: url, rootDirectory: url)
+				return try KEResource.allocateValueStorage(sourceURL: url, resourceFile: url)
 			} catch {
 				return nil
 			}
@@ -71,7 +71,7 @@ open class KEResource: CNResource
 		addCategory(category: KEResource.ThreadsCategory,	loader: mFileLoader)
 		addCategory(category: KEResource.SubViewsCategory,	loader: mFileLoader)
 		addCategory(category: KEResource.DataCategory,		loader: mFileLoader)
-		addCategory(category: KEResource.StoragesCategory,	loader: mFileLoader)
+		addCategory(category: KEResource.StoragesCategory,	loader: mValueStorageLoader)
 		addCategory(category: KEResource.ImagesCategory, 	loader: mImageLoader)
 	}
 
@@ -101,9 +101,9 @@ open class KEResource: CNResource
 		return result
 	}
 
-	static public func allocateValueStorage(sourceURL src: URL, rootDirectory rootdir: URL) throws -> CNValueStorage? {
-		let file = src.lastPathComponent
-		let dir  = src.deletingLastPathComponent()
+	static public func allocateValueStorage(sourceURL src: URL, resourceFile resfile: URL) throws -> CNValueStorage? {
+		let file   = src.lastPathComponent
+		let dir    = src.deletingLastPathComponent()	// remove manifest file name
 
 		/* Allocate main storage in package directory */
 		let mainstorage = CNValueStorage(root: dir, parentStorage: nil)
@@ -119,14 +119,31 @@ open class KEResource: CNResource
 		}
 
 		/* Allocate sub storage under user application directory */
-		if let relurl = CNFilePath.relativePathUnderBaseURL(fullPath: src, basePath: rootdir) {
-			let dataurl  = URL(fileURLWithPath: relurl.path, isDirectory: false, relativeTo: CNFilePath.URLforUserLibraryDirectory())
+		var basedir = resfile.deletingLastPathComponent()
+		if let trimdir = KEResource.trimUntilPackageName(baseDirectory: basedir) {
+			basedir = trimdir
+		}
+		if let relpath = CNFilePath.relativePathUnderBaseURL(fullPath: src, basePath: basedir) {
+			let appsup     = CNFilePath.URLforApplicationSupportDirectory()
+			let dataurl    = URL(fileURLWithPath: relpath, isDirectory: false, relativeTo: appsup)
 			let substorage = CNValueStorage(root: dataurl, parentStorage: mainstorage)
 			return substorage
 		} else {
 			CNLog(logLevel: .error, message: "[Error] Failed to get user data path", atFunction: #function, inFile: #file)
 			return nil
 		}
+	}
+
+	private static func trimUntilPackageName(baseDirectory base: URL) -> URL? {
+		var dir    = base
+		var docont = true
+		while docont && !dir.path.isEmpty {
+			if dir.pathExtension == "jspkg" {
+				docont = false
+			}
+			dir = dir.deletingLastPathComponent()
+		}
+		return docont ? nil : dir
 	}
 
 	public func addCategory(category cname: String, loader ldr: @escaping LoaderFunc) {
@@ -344,36 +361,6 @@ open class KEResource: CNResource
 		} else {
 			return nil
 		}
-	}
-
-	private static func allocateValueStorage(for url: URL, baseURL baseurl: URL) throws -> CNValueStorage {
-		/* Pickup file name */
-		let filename = url.lastPathComponent
-		guard !filename.isEmpty else {
-			throw NSError.parseError(message: "No value file name")
-		}
-		/* Pickup file path */
-		let pathurl = url.deletingLastPathComponent()
-
-		/* Root value  */
-		let root = CNValueStorage(root: pathurl, parentStorage: nil)
-		switch root.load(relativePath: filename) {
-		case .ok(_):
-			break
-		case .error(let err):
-			throw err
-		@unknown default:
-			throw NSError.parseError(message: "Unknown case")
-		}
-
-		/* Get storage file path */
-		let storagepath = url.deletingLastPathComponent()
-		let storagerel  = URL(fileURLWithPath: storagepath.path, relativeTo: baseurl)
-		let storageurl  = CNFilePath.URLforUserLibraryDirectory().appendingPathComponent(storagerel.path, isDirectory: true)
-
-		/* Storage value */
-		let storage = CNValueStorage(root: storageurl, parentStorage: root)
-		return storage
 	}
 
 	/*

@@ -48,7 +48,7 @@ public class KLLibraryCompiler: KECompiler
 		definePrimitiveObjects(context: ctxt, console: cons, config: conf)
 		defineClassObjects(context: ctxt, terminalInfo: terminfo, environment: env, console: cons, config: conf)
 		defineGlobalObjects(context: ctxt, console: cons, config: conf)
-		defineConstructors(context: ctxt, console: cons, config: conf)
+		defineConstructors(context: ctxt, resource: res, console: cons, config: conf)
 		defineDatabase(context: ctxt, console: cons, config: conf)
 		return true
 	}
@@ -686,7 +686,7 @@ public class KLLibraryCompiler: KECompiler
 		ctxt.set(name: "console", object: newcons)
 	}
 
-	private func defineConstructors(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
+	private func defineConstructors(context ctxt: KEContext, resource res: KEResource, console cons: CNConsole, config conf: KEConfig) {
 		/* URL */
 		let urlFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in
@@ -750,6 +750,25 @@ public class KLLibraryCompiler: KECompiler
 			return JSValue(object: tblobj, in: ctxt)
 		}
 		ctxt.set(name: "ValueTable", function: allocTableFunc)
+
+		/* ValueStorage */
+		let allocStorageFunc: @convention(block) (_ nameval: JSValue) -> JSValue = {
+			(_ nameval: JSValue) -> JSValue in
+			var result: KLValueStorage? = nil
+			if nameval.isString {
+				if let name = nameval.toString() {
+					if let storage = res.loadStorage(identifier: name) {
+						result = KLValueStorage(valueStorage: storage, context: ctxt)
+					}
+				}
+			}
+			if let obj = result {
+				return JSValue(object: obj, in: ctxt)
+			} else {
+				return JSValue(nullIn: ctxt)
+			}
+		}
+		ctxt.set(name: "ValueStorage", function: allocStorageFunc)
 
 		/* TextLine */
 		let textLineFunc: @convention(block) (_ str: JSValue) -> JSValue = {
