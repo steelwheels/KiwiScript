@@ -16,7 +16,7 @@ public class KEManifestLoader
 
 	public func load(into resource: KEResource) -> NSError? {
 		do {
-			let nvalue = try readNativeValue(from: resource.rootDirectoryURL)
+			let nvalue = try readNativeValue(from: resource.packageDirectory)
 			if let dict = nvalue.toDictionary() {
 				try decode(resource: resource, properties: dict)
 				return nil

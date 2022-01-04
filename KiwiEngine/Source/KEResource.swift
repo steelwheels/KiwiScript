@@ -34,35 +34,43 @@ open class KEResource: CNResource
 
 	public var fileLoader: LoaderFunc	{ get { return mFileLoader }}
 
-	public override init(directoryURL url: URL){
+	public override init(packageDirectory packdir: URL){
 		mFileLoader = {
-			(_ url: URL) -> Any? in
+			(_ fileurl: URL) -> Any? in
 			do {
-				return try String(contentsOf: url)
+				return try String(contentsOf: fileurl)
 			} catch {
 				return nil
 			}
 		}
 
 		mValueStorageLoader = {
-			(_ url: URL) -> Any? in
+			(_ fileurl: URL) -> Any? in
 			do {
-				return try KEResource.allocateValueStorage(sourceURL: url, resourceFile: url)
+				let filepath: String
+				if let relpath = CNFilePath.relativePathUnderBaseURL(fullPath: fileurl, basePath: packdir){
+					filepath = relpath
+				} else {
+					CNLog(logLevel: .error, message: "Failed to get file path: \(fileurl.path)", atFunction: #function, inFile: #file)
+					filepath = "error.json"
+				}
+				NSLog("loader: package=\(packdir.path) file=\(filepath)")
+				return try KEResource.allocateValueStorage(packageDirectory: packdir, filePath: filepath)
 			} catch {
 				return nil
 			}
 		}
 
 		mImageLoader = {
-			(_ url: URL) -> Any? in
+			(_ fileurl: URL) -> Any? in
 			#if os(OSX)
-				return CNImage(contentsOf: url)
+				return CNImage(contentsOf: fileurl)
 			#else
-				return CNImage(contentsOfFile: url.path)
+				return CNImage(contentsOfFile: fileurl.path)
 			#endif
 		}
 
-		super.init(directoryURL: url)
+		super.init(packageDirectory: packdir)
 
 		/* Setup categories */
 		addCategory(category: KEResource.ApplicationCategory,	loader: mFileLoader)
@@ -78,7 +86,7 @@ open class KEResource: CNResource
 	public convenience init(singleFileURL url: URL) {
 		let base = url.deletingLastPathComponent()
 		let file = url.lastPathComponent
-		self.init(directoryURL: base)
+		self.init(packageDirectory: base)
 		setApprication(path: file)
 	}
 
@@ -87,7 +95,7 @@ open class KEResource: CNResource
 		let path = NSString(string: url.absoluteString)
 		switch path.pathExtension {
 		case "jspkg":
-			let resource = KEResource(directoryURL: url)
+			let resource = KEResource(packageDirectory: url)
 			let loader = KEManifestLoader()
 			if let err = loader.load(into: resource) {
 				result = .error(err)
@@ -101,13 +109,12 @@ open class KEResource: CNResource
 		return result
 	}
 
-	static public func allocateValueStorage(sourceURL src: URL, resourceFile resfile: URL) throws -> CNValueStorage? {
-		let file   = src.lastPathComponent
-		let dir    = src.deletingLastPathComponent()	// remove manifest file name
-
+	static public func allocateValueStorage(packageDirectory packdir: URL, filePath fpath: String) throws -> CNValueStorage? {
 		/* Allocate main storage in package directory */
-		let mainstorage = CNValueStorage(root: dir, parentStorage: nil)
-		switch mainstorage.load(relativePath: file) {
+		NSLog("packdir   : \(packdir)")
+		NSLog("file path : \(fpath)")
+		let mainstorage = CNValueStorage(packageDirectory: packdir, filePath: fpath, parentStorage: nil)
+		switch mainstorage.load() {
 		case .ok(_):
 			break
 		case .error(let err):
@@ -118,22 +125,17 @@ open class KEResource: CNResource
 			return nil
 		}
 
-		/* Allocate sub storage under user application directory */
-		var basedir = resfile.deletingLastPathComponent()
-		if let trimdir = KEResource.trimUntilPackageName(baseDirectory: basedir) {
-			basedir = trimdir
-		}
-		if let relpath = CNFilePath.relativePathUnderBaseURL(fullPath: src, basePath: basedir) {
-			let appsup     = CNFilePath.URLforApplicationSupportDirectory()
-			let dataurl    = URL(fileURLWithPath: relpath, isDirectory: false, relativeTo: appsup)
-			let substorage = CNValueStorage(root: dataurl, parentStorage: mainstorage)
-			return substorage
-		} else {
-			CNLog(logLevel: .error, message: "[Error] Failed to get user data path", atFunction: #function, inFile: #file)
-			return nil
-		}
+		/* get package name */
+		let packname   = packdir.lastPathComponent
+		let supportdir = CNFilePath.URLforApplicationSupportDirectory()
+		let cachedir   = supportdir.appendingPathComponent(packname)
+		NSLog("cachedir : \(cachedir.path)")
+
+		let substorage = CNValueStorage(packageDirectory: cachedir, filePath: fpath, parentStorage: mainstorage)
+		return substorage
 	}
 
+	/*
 	private static func trimUntilPackageName(baseDirectory base: URL) -> URL? {
 		var dir    = base
 		var docont = true
@@ -144,7 +146,7 @@ open class KEResource: CNResource
 			dir = dir.deletingLastPathComponent()
 		}
 		return docont ? nil : dir
-	}
+	}*/
 
 	public func addCategory(category cname: String, loader ldr: @escaping LoaderFunc) {
 		super.allocate(category: cname, loader: ldr)

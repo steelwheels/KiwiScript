@@ -41,7 +41,7 @@ public enum KLSource {
 		mSourceFile		= src
 		switch src {
 		case .script(let url):
-			mResource = KLThread.URLtoResource(fileURL: url, error: efile)
+			mResource = KLThread.URLtoResource(packageDirectory: url, error: efile)
 		case .application(let res):
 			mResource = res
 		}
@@ -68,19 +68,19 @@ public enum KLSource {
 		return JSValue(int32: super.terminationStatus, in: mContext)
 	}
 
-	private static func URLtoResource(fileURL url: URL, error efile: CNFile) -> KEResource {
+	private static func URLtoResource(packageDirectory packdir: URL, error efile: CNFile) -> KEResource {
 		let result: KEResource
-		switch url.pathExtension {
+		switch packdir.pathExtension {
 		case "jspkg":
-			let resource = KEResource(directoryURL: url)
+			let resource = KEResource(packageDirectory: packdir)
 			let loader = KEManifestLoader()
 			if let err = loader.load(into: resource) {
-				let msg = "[Error] Failed to load resource from \(url.path): \(err.toString())\n"
+				let msg = "[Error] Failed to load resource from \(packdir.path): \(err.toString())\n"
 				efile.put(string: msg)
 			}
 			result = resource
 		default:
-			result = KEResource(singleFileURL: url)
+			result = KEResource(singleFileURL: packdir)
 		}
 		return result
 	}

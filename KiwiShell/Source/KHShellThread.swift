@@ -49,7 +49,7 @@ open class KHShellThread: CNShellThread
 			fatalError("Failed to allocate VM")
 		}
 		mContext		= KEContext(virtualMachine: vm)
-		mResource		= KEResource(directoryURL: Bundle.main.bundleURL)
+		mResource		= KEResource(packageDirectory: Bundle.main.bundleURL)
 		mConfig			= conf
 		mChildProcessManager	= CNProcessManager()
 		mInputMode		= .shellScript
