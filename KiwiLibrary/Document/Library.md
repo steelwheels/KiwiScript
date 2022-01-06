@@ -85,6 +85,7 @@ Create and control processes and threads.
 * [Table](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Table.md): NxM data table class.
 * [Text](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Text.md): The data structure to present structured text. The cast function [toText](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/TypeCast.md) function is used to cast object to Text.
 * [String](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/String.md): Methods to operate/edit string. such as `maxLengthOfStrings()`.
+* [ValueStorage](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/ValueStorage.md): Key-value storage which can be loaded from/stored into the file
 
 ### Database
 * [Contacts](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Contacts.md): The contact database
