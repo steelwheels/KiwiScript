@@ -18,6 +18,7 @@ import Foundation
 	// set(value: any, path: [string]): boolean
 	func set(_ value: JSValue, _ path: JSValue) -> JSValue
 
+	func store() -> JSValue
 }
 
 @objc public class KLValueStorage: NSObject, KLValueStorageProtocol
@@ -28,6 +29,10 @@ import Foundation
 	public init(valueStorage stoage: CNValueStorage, context ctxt: KEContext){
 		mValueStorage	= stoage
 		mContext	= ctxt
+	}
+
+	public func core() -> CNValueStorage {
+		return mValueStorage
 	}
 
 	public func value(_ pathval: JSValue) -> JSValue {
@@ -45,6 +50,11 @@ import Foundation
 		if let path = valueToArray(value: pathval) {
 			result = mValueStorage.set(value: src, forPath: path)
 		}
+		return JSValue(bool: result, in: mContext)
+	}
+
+	public func store() -> JSValue {
+		let result = mValueStorage.store()
 		return JSValue(bool: result, in: mContext)
 	}
 

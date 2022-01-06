@@ -118,10 +118,10 @@ open class KEResource: CNResource
 		case .ok(_):
 			break
 		case .error(let err):
-			CNLog(logLevel: .error, message: "[Error] \(err.toString())", atFunction: #function, inFile: #file)
+			CNLog(logLevel: .error, message: "[Error:main] \(err.toString())", atFunction: #function, inFile: #file)
 			return nil
 		@unknown default:
-			CNLog(logLevel: .error, message: "[Error] Unknown case", atFunction: #function, inFile: #file)
+			CNLog(logLevel: .error, message: "[Error:main] Unknown case", atFunction: #function, inFile: #file)
 			return nil
 		}
 
@@ -132,21 +132,22 @@ open class KEResource: CNResource
 		NSLog("cachedir : \(cachedir.path)")
 
 		let substorage = CNValueStorage(packageDirectory: cachedir, filePath: fpath, parentStorage: mainstorage)
+		if FileManager.default.fileExists(atPath: substorage.storageFile.path) {
+			NSLog("Load saved file")
+			switch substorage.load() {
+			case .ok(_):
+				break
+			case .error(let err):
+				CNLog(logLevel: .error, message: "[Error:sub] \(err.toString())", atFunction: #function, inFile: #file)
+			@unknown default:
+				CNLog(logLevel: .error, message: "[Error:sub] Unknown case", atFunction: #function, inFile: #file)
+			}
+		} else {
+			NSLog("No saved file")
+		}
+
 		return substorage
 	}
-
-	/*
-	private static func trimUntilPackageName(baseDirectory base: URL) -> URL? {
-		var dir    = base
-		var docont = true
-		while docont && !dir.path.isEmpty {
-			if dir.pathExtension == "jspkg" {
-				docont = false
-			}
-			dir = dir.deletingLastPathComponent()
-		}
-		return docont ? nil : dir
-	}*/
 
 	public func addCategory(category cname: String, loader ldr: @escaping LoaderFunc) {
 		super.allocate(category: cname, loader: ldr)

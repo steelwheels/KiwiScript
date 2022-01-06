@@ -20,23 +20,23 @@ public class KLLibraryCompiler: KECompiler
 {
 	public func compile(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
 		guard compileBase(context: ctxt, terminalInfo: terminfo, environment: env, console: cons, config: conf) else {
-			NSLog("[Error] Failed to compile: base")
+			CNLog(logLevel: .error, message: "[Error] Failed to compile: base", atFunction: #function, inFile: #file)
 			return false
 		}
 		guard compileGeneralFunctions(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf) else {
-			NSLog("[Error] Failed to compile: general functions")
+			CNLog(logLevel: .error, message: "[Error] Failed to compile: general functions", atFunction: #function, inFile: #file)
 			return false
 		}
 		guard compileThreadFunctions(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf) else {
-			NSLog("[Error] Failed to compile: thread functions")
+			CNLog(logLevel: .error, message: "[Error] Failed to compile: thread functions", atFunction: #function, inFile: #file)
 			return false
 		}
 		guard compileBuiltinScripts(context: ctxt, terminalInfo: terminfo, environment: env, console: cons, config: conf) else {
-			NSLog("[Error] Failed to compile: builtin scripts")
+			CNLog(logLevel: .error, message: "[Error] Failed to compile: built-in scripts", atFunction: #function, inFile: #file)
 			return false
 		}
 		guard compileUserScripts(context: ctxt, resource: res, processManager: procmgr, environment: env, console: cons, config: conf) else {
-			NSLog("[Error] Failed to compile: user scripts")
+			CNLog(logLevel: .error, message: "[Error] Failed to compile: user scripts", atFunction: #function, inFile: #file)
 			return false
 		}
 		return true
@@ -743,11 +743,17 @@ public class KLLibraryCompiler: KECompiler
 		ctxt.set(name: "Dictionary", function: allocDictFunc)
 
 		/* ValueTable */
-		let allocTableFunc: @convention(block) () -> JSValue = {
-			() -> JSValue in
-			let tbldata = CNValueTable.allocateVolatileValueTable()
-			let tblobj  = KLValueTable(table: tbldata, context: ctxt)
-			return JSValue(object: tblobj, in: ctxt)
+		let allocTableFunc: @convention(block) (_ pathval: JSValue, _ storageval: JSValue) -> JSValue = {
+			(_ pathval: JSValue, _ storageval: JSValue) -> JSValue in
+			if pathval.isArray && storageval.isObject {
+				if let patharr = pathval.toArray() as? Array<String>,
+				   let storage = storageval.toObject() as? KLValueStorage {
+					let table  = CNValueTable(path: patharr, valueStorage: storage.core())
+					let tblobj = KLValueTable(table: table, context: ctxt)
+					return JSValue(object: tblobj, in: ctxt)
+				}
+			}
+			return JSValue(nullIn: ctxt)
 		}
 		ctxt.set(name: "ValueTable", function: allocTableFunc)
 
