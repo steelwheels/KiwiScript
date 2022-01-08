@@ -14,6 +14,8 @@ import Foundation
 @objc public protocol KLTable: JSExport
 {
 	var recordCount: JSValue { get }
+	var allFieldNames: JSValue { get }
+	var activeFieldNames: JSValue { get set }
 
 	func newRecord() -> JSValue
 	func record(_ row: JSValue) -> JSValue
@@ -48,6 +50,26 @@ public protocol KLTableCore
 		let dc = CNContactDatabase.shared
 		return JSValue(int32: Int32(dc.recordCount), in: mContext)
 	}}
+
+	public var allFieldNames: JSValue { get {
+		let dc = CNContactDatabase.shared
+		return JSValue(object: dc.allFieldNames, in: mContext)
+	}}
+
+	public var activeFieldNames: JSValue {
+		get {
+			let dc = CNContactDatabase.shared
+			return JSValue(object: dc.activeFieldNames, in: mContext)
+		}
+		set(nameval){
+			if let names = nameval.toArray() as? Array<String> {
+				let dc = CNContactDatabase.shared
+				dc.activeFieldNames = names
+			} else {
+				CNLog(logLevel: .error, message: "Array of strings is required", atFunction: #function, inFile: #file)
+			}
+		}
+	}
 
 	public func authorize(_ callback: JSValue) {
 		let dc = CNContactDatabase.shared
