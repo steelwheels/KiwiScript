@@ -102,35 +102,23 @@ public func UTType(context ctxt: KEContext, console cons: CNConsole) -> Bool
 
 	cons.print(string: "* Test: JSValue(Range):\n")
 	let range0 = NSRange(location: 10, length: 3)
-	if let val = range0.toJSValue(context: ctxt) {
-		result = result && typeTest(value: val, context2: ctxt2, console: cons)
-	} else {
-		result = false
-	}
+	let val0 = range0.toJSValue(context: ctxt)
+	result = result && typeTest(value: val0, context2: ctxt2, console: cons)
 
 	cons.print(string: "* Test: JSValue(Point):\n")
 	let point0 = CGPoint(x: 1.0, y: 2.0)
-	if let val = point0.toJSValue(context: ctxt) {
-		result = result && typeTest(value: val, context2: ctxt2, console: cons)
-	} else {
-		result = false
-	}
+	let val1 = point0.toJSValue(context: ctxt)
+	result = result && typeTest(value: val1, context2: ctxt2, console: cons)
 
 	cons.print(string: "* Test: JSValue(Size):\n")
 	let size0 = CGSize(width: 3.0, height: 4.0)
-	if let val = size0.toJSValue(context: ctxt) {
-		result = result && typeTest(value: val, context2: ctxt2, console: cons)
-	} else {
-		result = false
-	}
+	let val2 = size0.toJSValue(context: ctxt)
+	result = result && typeTest(value: val2, context2: ctxt2, console: cons)
 
 	cons.print(string: "* Test: JSValue(Rect):\n")
 	let rect0 = CGRect(origin: CGPoint(x: 1.0, y: 2.0), size: CGSize(width: 3.0, height: 4.0))
-	if let val = rect0.toJSValue(context: ctxt) {
-		result = result && typeTest(value: val, context2: ctxt2, console: cons)
-	} else {
-		result = false
-	}
+	let val3  = rect0.toJSValue(context: ctxt)
+	result = result && typeTest(value: val3, context2: ctxt2, console: cons)
 
 	return result
 }

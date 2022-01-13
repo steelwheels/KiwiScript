@@ -36,9 +36,13 @@ import Foundation
 	}
 
 	public func value(_ pathval: JSValue) -> JSValue {
-		if let path = valueToArray(value: pathval) {
-			if let retval = mValueStorage.value(forPath: path) {
-				return retval.toJSValue(context: mContext)
+		if pathval.isString {
+			if let pathstr = pathval.toString() {
+				if let pathelms = CNValuePath.pathExpression(string: pathstr) {
+					if let retval = mValueStorage.value(forPath: CNValuePath(elements: pathelms)) {
+						return retval.toJSValue(context: mContext)
+					}
+				}
 			}
 		}
 		return JSValue(nullIn: mContext)
@@ -46,9 +50,13 @@ import Foundation
 
 	public func set(_ val: JSValue, _ pathval: JSValue) -> JSValue {
 		var result = false
-		let src    = val.toNativeValue()
-		if let path = valueToArray(value: pathval) {
-			result = mValueStorage.set(value: src, forPath: path)
+		if pathval.isString {
+			if let pathstr = pathval.toString() {
+				let src    = val.toNativeValue()
+				if let pathelms = CNValuePath.pathExpression(string: pathstr) {
+					result = mValueStorage.set(value: src, forPath: CNValuePath(elements: pathelms))
+				}
+			}
 		}
 		return JSValue(bool: result, in: mContext)
 	}

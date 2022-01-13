@@ -28,7 +28,7 @@ public func UTThread(context ctxt: KEContext, processManager procmgr: CNProcessM
 		return result
 	}
 
-	let resource = KEResource(baseURL: pkgurl)
+	let resource = KEResource(packageDirectory: pkgurl)
 	let loader   = KEManifestLoader()
 	if let err = loader.load(into: resource) {
 		cons.error(string: "[Error] \(err.toString())\n")

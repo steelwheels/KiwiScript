@@ -745,12 +745,14 @@ public class KLLibraryCompiler: KECompiler
 		/* ValueTable */
 		let allocTableFunc: @convention(block) (_ pathval: JSValue, _ storageval: JSValue) -> JSValue = {
 			(_ pathval: JSValue, _ storageval: JSValue) -> JSValue in
-			if pathval.isArray && storageval.isObject {
-				if let patharr = pathval.toArray() as? Array<String>,
+			if pathval.isString && storageval.isObject {
+				if let pathstr = pathval.toString(),
 				   let storage = storageval.toObject() as? KLValueStorage {
-					let table  = CNValueTable(path: patharr, valueStorage: storage.core())
-					let tblobj = KLValueTable(table: table, context: ctxt)
-					return JSValue(object: tblobj, in: ctxt)
+					if let pathelms = CNValuePath.pathExpression(string: pathstr) {
+						let table  = CNValueTable(path: CNValuePath(elements: pathelms), valueStorage: storage.core())
+						let tblobj = KLValueTable(table: table, context: ctxt)
+						return JSValue(object: tblobj, in: ctxt)
+					}
 				}
 			}
 			return JSValue(nullIn: ctxt)

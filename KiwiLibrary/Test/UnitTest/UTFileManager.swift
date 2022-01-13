@@ -88,8 +88,10 @@ private func normalizeTest(fileManager manager: KLFileManager, context ctxt: KEC
 	var result = false
 	if let val1 = JSValue(object: p1, in: ctxt), let val2 = JSValue(object: p2, in: ctxt) {
 		let res = manager.normalizePath(val1, val2)
-		cons.print(string: "normalize: \(p1) + \(p2) => \(res.toURL().path)\n")
-		result = true
+		if let url = res.toURL() {
+			cons.print(string: "normalize: \(p1) + \(p2) => \(url.path)\n")
+			result = true
+		}
 	} else {
 		cons.print(string: "[Error] can not allocate parameter")
 	}
@@ -121,9 +123,12 @@ private func printCurrentDirectory(fileManager manager: KLFileManager, console c
 	let result: Bool
 	let pathval = manager.currentDirectory()
 	if pathval.isURL {
-		let url = pathval.toURL()
-		cons.print(string: "current directory: \(url.absoluteString)\n")
-		result = true
+		if let url = pathval.toURL() {
+			cons.print(string: "current directory: \(url.absoluteString)\n")
+			result = true
+		} else {
+			result = false
+		}
 	} else {
 		cons.print(string: "Failed to get current director\n")
 		result = false

@@ -33,9 +33,10 @@ public func UTPreference(context ctxt: KEContext, console cons: CNFileConsole) -
 	let userval = pref.user
 	if let userobj = userval.toObject() as? KLUserPreference {
 		let homeval = userobj.homeDirectory
-		let homeurl = homeval.toURL()
-		cons.print(string: "preference.user.homeDirectory = \(homeurl.path)\n")
-		hashome = true
+		if let homeurl = homeval.toURL() {
+			cons.print(string: "preference.user.homeDirectory = \(homeurl.path)\n")
+			hashome = true
+		}
 	}
 	if !hashome {
 		cons.print(string: "[Error] Failed to get home directory\n")

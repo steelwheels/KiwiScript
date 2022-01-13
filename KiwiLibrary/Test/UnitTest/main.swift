@@ -15,7 +15,7 @@ public func main()
 {
 	let filecons = CNFileConsole()
 	let terminfo = CNTerminalInfo(width: 80, height: 25)
-	let resource = KEResource(baseURL: Bundle.main.bundleURL)
+	let resource = KEResource(packageDirectory: Bundle.main.bundleURL)
 	let env      = CNEnvironment()
 	let config   = KEConfig(applicationType: .terminal, doStrict: true, logLevel: .warning)
 
