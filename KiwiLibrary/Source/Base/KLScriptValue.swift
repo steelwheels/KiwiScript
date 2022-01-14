@@ -45,12 +45,11 @@ extension JSValue
 
 	public var isDictionary: Bool {
 		get {
-			if self.isObject {
-				if let _ = self.toObject() as? Dictionary<String, Any> {
-					return true
-				}
+			if let _ = self.toDictionary()	{
+				return true
+			} else {
+				return false
 			}
-			return false
 		}
 	}
 
