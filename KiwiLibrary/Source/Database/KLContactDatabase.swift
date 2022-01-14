@@ -11,27 +11,10 @@ import KiwiEngine
 import JavaScriptCore
 import Foundation
 
-@objc public protocol KLTable: JSExport
-{
-	var recordCount: JSValue { get }
-	var allFieldNames: JSValue { get }
-	var activeFieldNames: JSValue { get set }
-
-	func newRecord() -> JSValue
-	func record(_ row: JSValue) -> JSValue
-	func append(_ rcd: JSValue)
-	func forEach(_ callback: JSValue)
-}
-
 @objc public protocol KLContactTable: KLTable
 {
 	func authorize(_ callback: JSValue)
 	func load(_ url: JSValue) -> JSValue
-}
-
-public protocol KLTableCore
-{
-	func core() -> CNTable
 }
 
 @objc public class KLContactDatabase: NSObject, KLContactTable, KLTableCore

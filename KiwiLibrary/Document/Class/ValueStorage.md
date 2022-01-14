@@ -18,9 +18,9 @@ The idenfitier of the storage. It must be defined in `stoages` section in the [m
 ## Inferface
 ````
 interface ValueStorageIF {
-        value(path: [string]): any ;
-	set(value: any, path: [string]): boolean ;
-	store(): void ;
+  value(path: [string]): any ;
+  set(value: any, path: [string]): boolean ;
+  store(): void ;
 }
 ````
 ### Method: `value`

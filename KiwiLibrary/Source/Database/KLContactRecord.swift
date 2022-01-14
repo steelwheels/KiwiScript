@@ -11,21 +11,6 @@ import KiwiEngine
 import JavaScriptCore
 import Foundation
 
-@objc public protocol KLRecord: JSExport
-{
-	var fieldCount:		JSValue { get }
-	var fieldNames:		JSValue { get }
-	var filledFieldNames:	JSValue { get }
-
-	func value(_ name: JSValue) -> JSValue
-	func setValue(_ val: JSValue, _ name: JSValue) -> JSValue
-}
-
-public protocol KLRecordCore
-{
-	func core() -> CNRecord
-}
-
 @objc public protocol KLContactRecordProtocol: JSExport
 {
 	var identifier:			JSValue { get }
