@@ -14,7 +14,6 @@ import Foundation
 {
 	var recordCount: JSValue { get }
 	var allFieldNames: JSValue { get }
-	var activeFieldNames: JSValue { get set }
 
 	func newRecord() -> JSValue
 	func record(_ row: JSValue) -> JSValue

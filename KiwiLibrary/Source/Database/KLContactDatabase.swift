@@ -39,21 +39,6 @@ import Foundation
 		return JSValue(object: dc.allFieldNames, in: mContext)
 	}}
 
-	public var activeFieldNames: JSValue {
-		get {
-			let dc = CNContactDatabase.shared
-			return JSValue(object: dc.activeFieldNames, in: mContext)
-		}
-		set(nameval){
-			if let names = nameval.toArray() as? Array<String> {
-				let dc = CNContactDatabase.shared
-				dc.activeFieldNames = names
-			} else {
-				CNLog(logLevel: .error, message: "Array of strings is required", atFunction: #function, inFile: #file)
-			}
-		}
-	}
-
 	public func authorize(_ callback: JSValue) {
 		let dc = CNContactDatabase.shared
 		dc.authorize(callback: {

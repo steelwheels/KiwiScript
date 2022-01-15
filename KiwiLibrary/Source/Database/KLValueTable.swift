@@ -32,19 +32,6 @@ import Foundation
 		return JSValue(object: mTable.allFieldNames, in: mContext)
 	}}
 
-	public var activeFieldNames: JSValue {
-		get {
-			return JSValue(object: mTable.activeFieldNames, in: mContext)
-		}
-		set(nameval){
-			if let names = nameval.toArray() as? Array<String> {
-				mTable.activeFieldNames = names
-			} else {
-				CNLog(logLevel: .error, message: "Array of strings is required", atFunction: #function, inFile: #file)
-			}
-		}
-	}
-
 	public func newRecord() -> JSValue {
 		if let rec = mTable.newRecord() as? CNValueRecord {
 			let newrec = allocateRecord(record: rec)
