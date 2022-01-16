@@ -31,6 +31,7 @@ open class KEResource: CNResource
 	private var mFileLoader:		LoaderFunc
 	private var mValueStorageLoader:	LoaderFunc
 	private var mImageLoader:		LoaderFunc
+	private var mStorageTable:		Dictionary<String, CNValueStorage>
 
 	public var fileLoader: LoaderFunc	{ get { return mFileLoader }}
 
@@ -44,22 +45,8 @@ open class KEResource: CNResource
 			}
 		}
 
-		mValueStorageLoader = {
-			(_ fileurl: URL) -> Any? in
-			do {
-				let filepath: String
-				if let relpath = CNFilePath.relativePathUnderBaseURL(fullPath: fileurl, basePath: packdir){
-					filepath = relpath
-				} else {
-					CNLog(logLevel: .error, message: "Failed to get file path: \(fileurl.path)", atFunction: #function, inFile: #file)
-					filepath = "error.json"
-				}
-				NSLog("loader: package=\(packdir.path) file=\(filepath)")
-				return try KEResource.allocateValueStorage(packageDirectory: packdir, filePath: filepath)
-			} catch {
-				return nil
-			}
-		}
+		/* Assigne dummy loader (overwritten later) */
+		mValueStorageLoader = { (_ fileurl: URL) -> Any? in return nil }
 
 		mImageLoader = {
 			(_ fileurl: URL) -> Any? in
@@ -69,8 +56,14 @@ open class KEResource: CNResource
 				return CNImage(contentsOfFile: fileurl.path)
 			#endif
 		}
-
+		mStorageTable = [:]
 		super.init(packageDirectory: packdir)
+
+		/* Update loader */
+		mValueStorageLoader = {
+			(_ fileurl: URL) -> Any? in
+			return self.getValueStorage(packageDirectory: packdir, fileURL: fileurl)
+		}
 
 		/* Setup categories */
 		addCategory(category: KEResource.ApplicationCategory,	loader: mFileLoader)
@@ -109,10 +102,27 @@ open class KEResource: CNResource
 		return result
 	}
 
-	static public func allocateValueStorage(packageDirectory packdir: URL, filePath fpath: String) throws -> CNValueStorage? {
+	public func getValueStorage(packageDirectory packdir: URL, fileURL fileurl: URL) -> CNValueStorage? {
+		let filepath: String
+		if let relpath = CNFilePath.relativePathUnderBaseURL(fullPath: fileurl, basePath: packdir){
+			filepath = relpath
+		} else {
+			CNLog(logLevel: .error, message: "Failed to get file path: \(fileurl.path)", atFunction: #function, inFile: #file)
+			filepath = "error.json"
+		}
+		if let vstorage = mStorageTable[filepath] {
+			return vstorage
+		} else {
+			let newstorage = KEResource.allocateValueStorage(packageDirectory: packdir, filePath: filepath)
+			mStorageTable[filepath] = newstorage
+			return newstorage
+		}
+	}
+
+	static public func allocateValueStorage(packageDirectory packdir: URL, filePath fpath: String) -> CNValueStorage? {
 		/* Allocate main storage in package directory */
-		NSLog("packdir   : \(packdir)")
-		NSLog("file path : \(fpath)")
+		//NSLog("packdir   : \(packdir)")
+		//NSLog("file path : \(fpath)")
 		let mainstorage = CNValueStorage(packageDirectory: packdir, filePath: fpath, parentStorage: nil)
 		switch mainstorage.load() {
 		case .ok(_):
@@ -129,11 +139,11 @@ open class KEResource: CNResource
 		let packname   = packdir.lastPathComponent
 		let supportdir = CNFilePath.URLforApplicationSupportDirectory()
 		let cachedir   = supportdir.appendingPathComponent(packname)
-		NSLog("cachedir : \(cachedir.path)")
+		//NSLog("cachedir : \(cachedir.path)")
 
 		let substorage = CNValueStorage(packageDirectory: cachedir, filePath: fpath, parentStorage: mainstorage)
 		if FileManager.default.fileExists(atPath: substorage.storageFile.path) {
-			NSLog("Load saved file")
+			//NSLog("Load saved file")
 			switch substorage.load() {
 			case .ok(_):
 				break
@@ -143,7 +153,7 @@ open class KEResource: CNResource
 				CNLog(logLevel: .error, message: "[Error:sub] Unknown case", atFunction: #function, inFile: #file)
 			}
 		} else {
-			NSLog("No saved file")
+			//NSLog("No saved file")
 		}
 
 		return substorage
