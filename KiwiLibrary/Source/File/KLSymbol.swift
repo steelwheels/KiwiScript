@@ -12,9 +12,11 @@ import Foundation
 
 @objc public protocol KLSymbolProtocol: JSExport
 {
-	var characterA:		KLURL	{ get }
+	var characterA:		KLURL { get }
 	var chevronBackward:	KLURL { get }
+	var chevronDown:	KLURL { get }
 	var chevronForward:	KLURL { get }
+	var chevronUp:		KLURL { get }
 	var handRaised:		KLURL { get }
 	var line1P:		KLURL { get }
 	var line2P:		KLURL { get }
@@ -39,7 +41,9 @@ import Foundation
 
 	public var characterA:      KLURL { get { return URLOfSymbol(type: .characterA)		}}
 	public var chevronBackward: KLURL { get { return URLOfSymbol(type: .chevronBackward)	}}
+	public var chevronDown:     KLURL { get { return URLOfSymbol(type: .chevronDown)	}}
 	public var chevronForward:  KLURL { get { return URLOfSymbol(type: .chevronForward)  	}}
+	public var chevronUp:       KLURL { get { return URLOfSymbol(type: .chevronUp)	        }}
 	public var handRaised:      KLURL { get { return URLOfSymbol(type: .handRaised)		}}
 	public var line1P: 	    KLURL { get { return URLOfSymbol(type: .line1P)		}}
 	public var line2P: 	    KLURL { get { return URLOfSymbol(type: .line2P)		}}
