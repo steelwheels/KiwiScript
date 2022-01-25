@@ -6,7 +6,7 @@ The `ValueTable` has multiple [ValueRecord](https://github.com/steelwheels/KiwiS
 ## Constructor
 There is a constructor function to allocate the instance of this class:
 ````
-ValueTable(path: [string], storage: ValueStorageIF): ValueTableIF ;
+ValueTable(path: string, storage: ValueStorageIF): ValueTableIF ;
 ````
 
 The parameter `path` is used to select the sub-tree in the storage. It is an array of strings to point the node in the storage. The pointed not *must be array of dictionaries*.
@@ -24,7 +24,7 @@ See the following storage:
 ````
 
 
-When you want to access `records` section as value table, give `["section_a", "records"]` for `path` parameter.
+When you want to access `records` section as value table, give `"section_a.records"` for `path` parameter.
 
 ## Interface
 ````
@@ -66,7 +66,7 @@ This is sample script to allocate ValueTable.
 About allocation of ValueStorage, see [ValueStorage](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/ValueStorage.md).
 ````
   let storage = ValueStorage("storage") ;
-  let table = ValueTable(["data"], storage) ;
+  let table = ValueTable("path", storage) ;
 ````
 (These functions returns `null` when the allocation failed. You have to check them at the real implementation.)
 
