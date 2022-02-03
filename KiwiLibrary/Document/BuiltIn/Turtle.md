@@ -2,7 +2,7 @@
 The `Turtle` class is built-in JavaScript class. It uses [GraphicsContext](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/GraphicsContext.md) in it.
 
 ## Example
-![Turtle graphics](https://github.com/steelwheels/KiwiScript/tree/master/KiwiLibrary/Document/Images/turtle-graphics.png)
+![Turtle graphics](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Images/turtle-graphics.png)
 
 You can see the entire script at [turtle.jspkg](https://github.com/steelwheels/JSTerminal/tree/master/Resource/Sample/turtle.jspkg).
 
