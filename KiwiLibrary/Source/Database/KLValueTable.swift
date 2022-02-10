@@ -55,6 +55,25 @@ import Foundation
 		return JSValue(nullIn: mContext)
 	}
 
+	public func search(_ val: JSValue, _ field: JSValue) -> JSValue {
+		if field.isString {
+			if let fname = field.toString() {
+				let nval  = val.toNativeValue()
+				let recs  = mTable.search(value: nval, forField: fname)
+				var result: Array<KLValueRecord> = []
+				for rec in recs {
+					if let vrec = rec as? CNValueRecord {
+						result.append(allocateRecord(record: vrec))
+					} else {
+						CNLog(logLevel: .error, message: "Failed to convert", atFunction: #function, inFile: #file)
+					}
+				}
+				return JSValue(object: result, in: mContext)
+			}
+		}
+		return JSValue(nullIn: mContext)
+	}
+
 	public func append(_ rcd: JSValue) {
 		if rcd.isObject {
 			if let rec = rcd.toObject() as? KLValueRecord {

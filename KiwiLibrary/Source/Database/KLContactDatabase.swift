@@ -102,6 +102,27 @@ import Foundation
 		return JSValue(nullIn: mContext)
 	}
 
+	public func search(_ val: JSValue, _ field: JSValue) -> JSValue {
+		let db  = CNContactDatabase.shared
+		if field.isString {
+			if let fname = field.toString() {
+				var result: Array<KLContactRecord> = []
+				let nval = val.toNativeValue()
+				let recs = db.search(value: nval, forField: fname)
+				for rec in recs {
+					if let crec = rec as? CNContactRecord {
+						let newrec = KLContactRecord(contact: crec, context: mContext)
+						result.append(newrec)
+					} else {
+						CNLog(logLevel: .error, message: "Failed to convert", atFunction: #function, inFile: #file)
+					}
+				}
+				return JSValue(object: result, in: mContext)
+			}
+		}
+		return JSValue(nullIn: mContext)
+	}
+
 	public func append(_ rcdp: JSValue) {
 		if rcdp.isObject {
 			if let rec = rcdp.toObject() as? KLContactRecord {
