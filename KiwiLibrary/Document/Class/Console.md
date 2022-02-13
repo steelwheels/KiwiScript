@@ -69,5 +69,4 @@ The log window is shared by multiple windows. So the log message from multiple w
 none
 
 ## References
-* [Debug class](Console.md): The `Debug` class
 * [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library

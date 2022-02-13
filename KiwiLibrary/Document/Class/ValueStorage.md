@@ -65,18 +65,18 @@ Following JavaScript allocates the value storage which is defined in above manif
 ````
 let storage0 = ValueStorage("storage0") ;
 if(storage0 == null){
-	console.log("Failed to allocate") ;
+	console.print("Failed to allocate\n") ;
 	return -1 ;
 }
 ````
 Following script calls `value` and `setValue` methods:
 ````
 let vala = storage0.value(["a"]) ;
-console.log("a = " + vala) ;
+console.print("a = " + vala + "\n") ;
 
 storage0.set(1234, ["b"]) ;
 let valb = storage0.value(["b"]) ;
-console.log("b = " + valb) ;
+console.print("b = " + valb + "\n") ;
 ````
 Following script calls `store` method:
 ````

@@ -73,10 +73,10 @@ About allocation of ValueStorage, see [ValueStorage](https://github.com/steelwhe
 After the allocation, you can access properties of them:
 ````
 let count = table.recordCount ;
-console.log("recode-count = " + count) ;
+console.print("recode-count = " + count + "\n") ;
 
 let fnames = table.allFieldNames ;
-console.log("all-field-names = " + fnames) ;
+console.print("all-field-names = " + fnames + "\n") ;
 ````
 
 ## Reference
