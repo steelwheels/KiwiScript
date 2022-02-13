@@ -21,10 +21,10 @@ function main(args : string[]): number
 ````
 
 This is terminal to put standard output and standard error:
-![console.print](https://github.com/steelwheels/KiwiScript/tree/master/KiwiLibrary/Document/Images/console-print.png)
+![console.print](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Images/console-print.png)
 
 This is console to output the log:
-![console.log](https://github.com/steelwheels/KiwiScript/tree/master/KiwiLibrary/Document/Images/console-log.png)
+![console.log](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Images/console-log.png)
 
 ## `print` method
 Print message to standard output.
