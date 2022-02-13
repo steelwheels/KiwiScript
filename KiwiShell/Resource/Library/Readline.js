@@ -56,10 +56,8 @@ class ReadlineObject {
             record.append(item.label);
             table.add(record);
         }
-        let lines = table.toString();
-        for (let line of lines) {
-            console.print(line + "\n");
-        }
+        let line = table.toString();
+        console.print(line + "\n");
     }
     stringsToMenuItems(labels, doescape) {
         let result = [];

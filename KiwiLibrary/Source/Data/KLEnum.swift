@@ -12,10 +12,21 @@ import Foundation
 
 public extension CNEnum
 {
+	static func isEnum(scriptValue val: JSValue) -> Bool {
+		if let dict = val.toDictionary() as? Dictionary<String, Any> {
+			if let _ = dict["type"]  as? NSString,
+			   let _ = dict["value"] as? NSNumber {
+				return true
+			} else {
+				return false
+			}
+		} else {
+			return false
+		}
+	}
+
 	static func fromJSValue(scriptValue val: JSValue) -> CNEnum? {
-		if let eval = val.toEnum() {
-			return CNEnum(type: eval.type, value: eval.value)
-		} else if let dict = val.toDictionary() as? Dictionary<String, Any> {
+		if let dict = val.toDictionary() as? Dictionary<String, Any> {
 			if let typestr = dict["type"] as? NSString,
 			   let valnum  = dict["value"] as? NSNumber {
 				return CNEnum(type: typestr as String, value: valnum.intValue)

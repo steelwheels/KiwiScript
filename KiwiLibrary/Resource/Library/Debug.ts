@@ -9,10 +9,10 @@ function checkVariables(place: string, ...vars: any[]): boolean
 	let result: boolean = true ;
 	vars.forEach(function(value, index){
 		if(isUndefined(value)){
-			console.log("check at " + place + ": Undefined at index " + index) ;
+			console.print("check at " + place + ": Undefined at index " + index + "\n") ;
 			result = false ;
 		} else if(isNull(value)) {
-			console.log("check at " + place + ": Null at index " + index) ;
+			console.log("check at " + place + ": Null at index " + index + "\n") ;
 			result = false ;
 		}
 	}) ;

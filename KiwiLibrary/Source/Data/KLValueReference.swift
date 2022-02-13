@@ -12,10 +12,17 @@ import Foundation
 
 public extension CNValueReference
 {
+	static func isValueReference(scriptValue val: JSValue) -> Bool {
+		if let dict = val.toDictionary() as? Dictionary<String, Any> {
+			if let _ = dict[CNValueReference.RelativePathItem] as? NSString {
+				return true
+			}
+		}
+		return false
+	}
+
 	static func fromJSValue(scriptValue val: JSValue) -> CNValueReference? {
-		if let ref = val.toReference() {
-			return CNValueReference(relativePath: ref.relativePath)
-		} else if let dict = val.toDictionary() as? Dictionary<String, Any> {
+		if let dict = val.toDictionary() as? Dictionary<String, Any> {
 			if let pathstr = dict[CNValueReference.RelativePathItem] as? NSString {
 				return CNValueReference(relativePath: pathstr as String)
 			}

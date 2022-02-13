@@ -12,11 +12,21 @@ import Foundation
 
 public extension CGSize
 {
+	static func isSize(scriptValue val: JSValue) -> Bool {
+		if let dict = val.toDictionary() as? Dictionary<String, Any> {
+			if let _ = dict["width"]  as? NSNumber,
+			   let _ = dict["height"] as? NSNumber {
+				return true
+			} else {
+				return false
+			}
+		} else {
+			return false
+		}
+	}
+	
 	static func fromJSValue(scriptValue val: JSValue) -> CGSize? {
-		if val.isSize {
-			let size = val.toSize()
-			return CGSize(width: size.width, height: size.height)
-		} else if let dict = val.toDictionary() as? Dictionary<String, Any> {
+		if let dict = val.toDictionary() as? Dictionary<String, Any> {
 			if let wnum = dict["width"] as? NSNumber,
 			   let hnum = dict["height"] as? NSNumber {
 				return CGSize(width: wnum.doubleValue, height: hnum.doubleValue)

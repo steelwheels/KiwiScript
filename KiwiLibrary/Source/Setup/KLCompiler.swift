@@ -280,8 +280,7 @@ public class KLLibraryCompiler: KECompiler
 		/* isPoint */
 		let isPointFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in
-			let result: Bool = value.isPoint
-			return JSValue(bool: result, in: ctxt)
+			return JSValue(bool: value.isPoint, in: ctxt)
 		}
 		ctxt.set(name: "isPoint", function: isPointFunc)
 

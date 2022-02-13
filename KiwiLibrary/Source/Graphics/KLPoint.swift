@@ -12,11 +12,21 @@ import Foundation
 
 public extension CGPoint
 {
+	static func isPoint(scriptValue val: JSValue) -> Bool {
+		if let dict = val.toDictionary() as? Dictionary<String, Any> {
+			if let _ = dict["x"] as? NSNumber,
+			   let _ = dict["y"] as? NSNumber {
+				return true
+			} else {
+				return false
+			}
+		} else {
+			return false
+		}
+	}
+
 	static func fromJSValue(scriptValue val: JSValue) -> CGPoint? {
-		if val.isPoint {
-			let point = val.toPoint()
-			return CGPoint(x: point.x, y: point.y)
-		} else if let dict = val.toDictionary() as? Dictionary<String, Any> {
+		if let dict = val.toDictionary() as? Dictionary<String, Any> {
 			if let xnum = dict["x"] as? NSNumber,
 			   let ynum = dict["y"] as? NSNumber {
 				return CGPoint(x: xnum.doubleValue, y: ynum.doubleValue)

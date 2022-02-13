@@ -11,13 +11,13 @@ import KiwiEngine
 import JavaScriptCore
 import Foundation
 
-@objc public protocol KLContactTable: KLTable
+@objc public protocol KLContactTable: JSExport
 {
 	func authorize(_ callback: JSValue)
 	func load(_ url: JSValue) -> JSValue
 }
 
-@objc public class KLContactDatabase: NSObject, KLContactTable, KLTableCore
+@objc public class KLContactDatabase: NSObject, KLContactTable, KLTable, KLTableCore
 {
 	private var mContext: KEContext
 

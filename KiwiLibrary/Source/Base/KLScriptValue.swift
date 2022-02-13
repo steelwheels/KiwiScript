@@ -54,43 +54,23 @@ extension JSValue
 	}
 
 	public var isPoint: Bool {
-		get { return CGPoint.fromJSValue(scriptValue: self) != nil }
+		get { return CGPoint.isPoint(scriptValue: self) }
 	}
-
-	/* There is built-in method
-	public func toPoint() -> CGPoint? {
-		return CGPoint(scriptValue: self)
-	}*/
 
 	public var isSize: Bool {
-		get { return CGSize.fromJSValue(scriptValue: self) != nil }
+		get { return CGSize.isSize(scriptValue: self) }
 	}
-
-	/* There is built-in method
-	public func toSize() -> CGSize? {
-		return CGSize(scriptValue: self)
-	}*/
 
 	public var isRect: Bool {
-		get { return CGRect.fromJSValue(scriptValue: self) != nil }
+		get { return CGRect.isRect(scriptValue: self) }
 	}
-
-	/* There is built-in method
-	public func toRect() -> CGRect? {
-		return CGRect(scriptValue: self)
-	}*/
 
 	public var isRange: Bool {
-		get { return NSRange.fromJSValue(scriptValue: self) != nil }
+		get { return NSRange.isRange(scriptValue: self) }
 	}
 
-	/* There is built-in method
-	public func toRange() -> NSRange? {
-		return NSRange(scriptValue: self)
-	}*/
-
 	public var isEnum: Bool {
-		get { return CNEnum.fromJSValue(scriptValue: self) != nil }
+		get { return CNEnum.isEnum(scriptValue: self) }
 	}
 
 	public func toEnum() -> CNEnum? {
@@ -137,6 +117,15 @@ extension JSValue
 		return nil
 	}
 
+	public var isColor: Bool {
+		get {
+			if let _ = self.toObject() as? KLColor {
+				return true
+			}
+			return false
+		}
+	}
+
 	public func toColor() -> CNColor? {
 		if let colobj = self.toObject() as? KLColor {
 			return colobj.core
@@ -145,7 +134,7 @@ extension JSValue
 	}
 
 	public var isReference: Bool {
-		get { return CNValueReference.fromJSValue(scriptValue: self) != nil }
+		get { return CNValueReference.isValueReference(scriptValue: self) }
 	}
 
 	public func toReference() -> CNValueReference? {

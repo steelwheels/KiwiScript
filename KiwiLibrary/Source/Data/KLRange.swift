@@ -12,6 +12,19 @@ import Foundation
 
 public extension NSRange
 {
+	static func isRange(scriptValue val: JSValue) -> Bool {
+		if let dict = val.toDictionary() as? Dictionary<String, Any> {
+			if let _ = dict["location"]  as? NSNumber,
+			   let _ = dict["length"] as? NSNumber {
+				return true
+			} else {
+				return false
+			}
+		} else {
+			return false
+		}
+	}
+	
 	static func fromJSValue(scriptValue val: JSValue) -> NSRange? {
 		if val.isRange {
 			let range = val.toRange()
