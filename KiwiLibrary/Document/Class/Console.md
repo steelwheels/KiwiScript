@@ -8,6 +8,24 @@ The singleton object is defined for Console class.
 |:---       |:---     |:---                             |
 |console    |Console  |Singleton object of Console class  |
 
+
+## Sample
+````
+function main(args : string[]): number
+{
+	console.print("Hello to print\n") ;
+	console.error("Hello to error\n") ;
+	console.log("Hello to log\n") ;
+	return 0 ;
+}
+````
+
+This is terminal to put standard output and standard error:
+![console.print](https://github.com/steelwheels/KiwiScript/tree/master/KiwiLibrary/Document/Images/console-print.png)
+
+This is console to output the log:
+![console.log](https://github.com/steelwheels/KiwiScript/tree/master/KiwiLibrary/Document/Images/console-log.png)
+
 ## `print` method
 Print message to standard output.
 ````
