@@ -27,9 +27,9 @@ This is console to output the log:
 ![console.log](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Images/console-log.png)
 
 ## `print` method
-Print message to standard output.
+Print the message to standard output.
 ````
-console.print(<message>)
+console.print(message: string): void
 ````
 ### Parameter(s)
 |Parameter    |Type   |Description                    |
@@ -40,9 +40,9 @@ console.print(<message>)
 none
 
 ## `error` method
-Print error message. This method can be used by all modes.
+Print the message to standard error.
 ````
-console.error(<message>)
+console.error(message: string): void
 ````
 ### Parameter(s)
 |Parameter    |Type   |Description                    |
@@ -52,15 +52,18 @@ console.error(<message>)
 ### Return value
 none
 
-## `dump` method
-Print the context of the variable
+## `log` method
+Print the message to log window. If the window is not opened. This method will open it.
 ````
-console.dump(value)
+console.log(message: string): void
 ````
+
+The log window is shared by multiple windows. So the log message from multiple windows and terminals *will be mixed*.
+  
 #### Parameter(s)
 |Parameter    |Type   |Description                    |
 |:---         |:---   |:---                           |
-|value        |Any    |The value to dump it's context |
+|message      |String |Error message string           |
 
 ### Return value
 none
