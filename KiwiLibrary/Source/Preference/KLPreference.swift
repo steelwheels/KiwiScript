@@ -13,11 +13,11 @@ import Foundation
 public extension CNPreferenceTable
 {
 	func set(scriptValue val: JSValue, forKey key: String) {
-		set(anyValue: val, forKey: key)
+		set(objectValue: val, forKey: key)
 	}
 
 	func scriptValue(forKey key: String) -> JSValue? {
-		if let val = anyValue(forKey: key) as? JSValue {
+		if let val = objectValue(forKey: key) as? JSValue {
 			return val
 		} else {
 			return nil
