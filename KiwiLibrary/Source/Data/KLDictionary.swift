@@ -12,8 +12,11 @@ import Foundation
 
 @objc public protocol KLDictionaryProtocol: JSExport
 {
-	func set(_ name: JSValue, _ value: JSValue)
-	func get(_ name: JSValue) -> JSValue
+	func setNumber(_ name: JSValue, _ value: JSValue)
+	func setString(_ name: JSValue, _ value: JSValue)
+
+	func number(_ name: JSValue) -> JSValue
+	func string(_ name: JSValue) -> JSValue
 }
 
 @objc public class KLDictionary: NSObject, KLDictionaryProtocol
@@ -31,25 +34,52 @@ import Foundation
 		mContext	= ctxt
 	}
 
-	public func set(_ name: JSValue, _ value: JSValue) {
-		if name.isString {
-			mTable[name.toString()] = value.toNativeValue()
+	public func setNumber(_ name: JSValue, _ value: JSValue) {
+		if name.isString && value.isNumber {
+			mTable[name.toString()]  = .numberValue(value.toNumber())
 		} else {
-			CNLog(logLevel: .error, message: "Invalid key to set data at \(#function)", atFunction: #function, inFile: #file)
+			CNLog(logLevel: .error, message: "Invalid name:\(name) or value:\(value)", atFunction: #function, inFile: #file)
 		}
 	}
 
-	public func get(_ name: JSValue) -> JSValue {
+	public func setString(_ name: JSValue, _ value: JSValue) {
+		if name.isString && value.isString {
+			mTable[name.toString()]  = .stringValue(value.toString())
+		} else {
+			CNLog(logLevel: .error, message: "Invalid name:\(name) or value:\(value)", atFunction: #function, inFile: #file)
+		}
+	}
+
+	public func string(_ name: JSValue) -> JSValue {
 		if name.isString {
 			if let nval = mTable[name.toString()] {
-				return nval.toJSValue(context: mContext)
-			} else {
-				return JSValue(nullIn: mContext)
+				switch nval {
+				case .stringValue(let str):
+					return JSValue(object: str, in: mContext)
+				default:
+					break
+				}
 			}
 		} else {
 			CNLog(logLevel: .error, message: "Invalid key to set data", atFunction: #function, inFile: #file)
-			return JSValue(nullIn: mContext)
 		}
+		return JSValue(nullIn: mContext)
+	}
+
+	public func number(_ name: JSValue) -> JSValue {
+		if name.isString {
+			if let nval = mTable[name.toString()] {
+				switch nval {
+				case .numberValue(let num):
+					return JSValue(object: num, in: mContext)
+				default:
+					break
+				}
+			}
+		} else {
+			CNLog(logLevel: .error, message: "Invalid key to set data", atFunction: #function, inFile: #file)
+		}
+		return JSValue(nullIn: mContext)
 	}
 }
 

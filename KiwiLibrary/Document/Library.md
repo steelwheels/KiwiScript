@@ -33,7 +33,7 @@ The built-in class, function, data types for JavaScript.
 * [system](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/System.md): Execute shell command
 * [thread](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Thread.md): Generate thread to execute JavaScript.
 * [Type checking](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/TypeChecks.md): Functions to check object types such as `isNull`, `isBoolean`, `isNumber`, etc...
-* [Objet checking](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/ObjectChecks.md): Functions to check object context such as `isEmptyString`, `isEmptyObject`, etc... 
+* [Objet checking](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/ObjectChecks.md): Functions to check object context such as `isEmptyString`, `isEmptyObject`, etc...
 * [valueType](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/TypeGetter.md): Get the data type of given parameter.
 
 ## Constructor function
@@ -82,6 +82,7 @@ Create and control processes and threads.
 
 ### Data
 * [Collection](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Collection.md): An ordered collection of data items
+* [Dictionary](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Dictionary.md): Store multiple value with unique identifiers.
 * [Table](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Table.md): NxM data table class.
 * [Text](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Text.md): The data structure to present structured text. The cast function [toText](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/TypeCast.md) function is used to cast object to Text.
 * [String](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/String.md): Methods to operate/edit string. such as `maxLengthOfStrings()`.
