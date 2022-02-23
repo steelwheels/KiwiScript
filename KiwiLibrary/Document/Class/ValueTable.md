@@ -3,18 +3,19 @@ The `ValueTable` class supports record based access on the [ValueStorage](https:
 
 The `ValueTable` has multiple [ValueRecord](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/ValueRecord.md)s.
 
-## Constructor
-There is a constructor function to allocate the instance of this class:
-````
-ValueTable(path: string, storage: ValueStorageIF): ValueTableIF ;
-````
+## File format
+This is a sample JSON data for value table.
 
-The parameter `path` is used to select the sub-tree in the storage. It is an array of strings to point the node in the storage. The pointed not *must be array of dictionaries*.
+The format of the sub-tree is defined as `ValueTable` format.
 
-See the following storage:
+Filen ame: `sample.json`
 ````
 {
-        section_a: {
+        top: {
+                className: "ValueTable",
+                columnNames: [
+                        "a", "b"
+                ],
                 records: [
                         {field: "a", value 0},
                         {field: "a", value 0},
@@ -23,8 +24,21 @@ See the following storage:
 }
 ````
 
+|Property       |Type   |Description                    |
+|:--            |:--    |:--                            |
+|`className`    |string |Must be "`ValueTable`"         |
+|`columnNames`  |string[] |Name of columns             |
+|`records`      |object[] |Array of record objects      |
 
-When you want to access `records` section as value table, give `"section_a.records"` for `path` parameter.
+
+## Constructor
+There is a constructor function to allocate the instance of this class:
+````
+ValueTable(path: string, storage: ValueStorageIF): ValueTableIF ;
+````
+
+The parameter `path` is used to select the sub-tree in the storage. When you want to access value table in above `sample.json`,
+give "`top`" as a parameter for the `path`.
 
 ## Interface
 ````
