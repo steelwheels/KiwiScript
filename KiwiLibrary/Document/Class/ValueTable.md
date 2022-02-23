@@ -18,7 +18,7 @@ Filen ame: `sample.json`
                 ],
                 records: [
                         {field: "a", value 0},
-                        {field: "a", value 0},
+                        {field: "b", value 0},
                 ]
         }
 }
