@@ -1,6 +1,6 @@
 /**
- * @file	KLParameters.swift
- * @brief	Define KLParameters object
+ * @file	KLDictionary.swift
+ * @brief	Define KLDictionary object
  * @par Copyright
  *   Copyright (C) 2021-2022 Steel Wheels Project
  */
@@ -10,7 +10,7 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-@objc public protocol KLParametersProtocol: JSExport
+@objc public protocol KLDictionaryProtocol: JSExport
 {
 	var object: JSValue { get }
 
@@ -21,7 +21,7 @@ import Foundation
 	func string(_ name: JSValue) -> JSValue
 }
 
-@objc public class KLParameters: NSObject, KLParametersProtocol
+@objc public class KLDictionary: NSObject, KLDictionaryProtocol
 {
 	private var mTable:	Dictionary<String, NSObject>
 	private var mContext:	KEContext
@@ -32,7 +32,7 @@ import Foundation
 	}
 
 	public init(value val: Dictionary<String, Any>, context ctxt: KEContext) {
-		mTable		= KLParameters.makeDictionary(source: val)
+		mTable		= KLDictionary.makeDictionary(source: val)
 		mContext	= ctxt
 	}
 
