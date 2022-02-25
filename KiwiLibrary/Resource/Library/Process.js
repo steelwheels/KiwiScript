@@ -21,7 +21,7 @@ function _waitUntilExitAll(processes) {
 }
 class Semaphore {
     constructor(initval) {
-        this.mValue = Dictionary();
+        this.mValue = Parameters();
         this.mValue.setNumber("count", initval);
     }
     signal() {

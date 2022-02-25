@@ -40,7 +40,7 @@ import Foundation
 		case .none:
 			result = nil
 		@unknown default:
-			mConsole.error(string: "Can not happen")
+			CNLog(logLevel: .error, message: "Can not happen", atFunction: #function, inFile: #file)
 			result = nil
 		}
 		if let str = result {

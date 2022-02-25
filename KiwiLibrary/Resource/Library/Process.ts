@@ -26,10 +26,10 @@ function _waitUntilExitAll(processes: ProcessIF[]): number
 
 class Semaphore
 {
-	mValue: DictionaryIF ;
+	mValue: ParametersIF ;
 
 	constructor(initval: number) {
-		this.mValue = Dictionary() ;
+		this.mValue = Parameters() ;
 		this.mValue.setNumber("count", initval) ;
 	}
 

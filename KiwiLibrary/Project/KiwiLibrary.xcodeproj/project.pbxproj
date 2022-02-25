@@ -27,8 +27,8 @@
 		050D1DBD2581C6FF00D968ED /* KiwiEngine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050D1DBB2581C6FF00D968ED /* KiwiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		050D1DBF2581C71000D968ED /* KiwiLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050D1DBE2581C71000D968ED /* KiwiLibrary.framework */; };
 		050D1DC02581C71000D968ED /* KiwiLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050D1DBE2581C71000D968ED /* KiwiLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		050FDBF825FC87BE00331107 /* KLDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FDBF725FC87BE00331107 /* KLDictionary.swift */; };
-		050FDBF925FC87BE00331107 /* KLDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FDBF725FC87BE00331107 /* KLDictionary.swift */; };
+		050FDBF825FC87BE00331107 /* KLParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FDBF725FC87BE00331107 /* KLParameters.swift */; };
+		050FDBF925FC87BE00331107 /* KLParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FDBF725FC87BE00331107 /* KLParameters.swift */; };
 		051D09E82559914D0083336F /* KLCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D09E72559914D0083336F /* KLCommand.swift */; };
 		051D09E92559914D0083336F /* KLCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D09E72559914D0083336F /* KLCommand.swift */; };
 		0520F46127742701004DDA28 /* KLPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0520F46027742701004DDA28 /* KLPoint.swift */; };
@@ -412,7 +412,7 @@
 		050D1DB72581C64A00D968ED /* CoconutData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutData.framework; path = ../../../../local/Frameworks/macos/CoconutData.framework; sourceTree = "<group>"; };
 		050D1DBB2581C6FF00D968ED /* KiwiEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiEngine.framework; path = ../../../../local/Frameworks/macos/KiwiEngine.framework; sourceTree = "<group>"; };
 		050D1DBE2581C71000D968ED /* KiwiLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiLibrary.framework; path = ../../../../local/Frameworks/macos/KiwiLibrary.framework; sourceTree = "<group>"; };
-		050FDBF725FC87BE00331107 /* KLDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLDictionary.swift; sourceTree = "<group>"; };
+		050FDBF725FC87BE00331107 /* KLParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLParameters.swift; sourceTree = "<group>"; };
 		0515051D26DB7B14007C29F0 /* Object.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Object.ts; sourceTree = "<group>"; };
 		0515052126DB7B41007C29F0 /* Object.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Object.js; sourceTree = "<group>"; };
 		0515052226DB7D47007C29F0 /* Object.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Object.d.ts; sourceTree = "<group>"; };
@@ -771,11 +771,11 @@
 				05EBD8B525E4982200CA1480 /* KLColor.swift */,
 				05DF53582609902300C7837C /* KLColorManager.swift */,
 				05A95B7F2516D06900775737 /* KLChar.swift */,
-				050FDBF725FC87BE00331107 /* KLDictionary.swift */,
 				05A95B802516D06900775737 /* KLEnvironment.swift */,
 				053D2DB7277A8E42008B6DA2 /* KLEnum.swift */,
 				05A95B7E2516D06900775737 /* KLEscapeCode.swift */,
 				05A95B7D2516D06900775737 /* KLImage.swift */,
+				050FDBF725FC87BE00331107 /* KLParameters.swift */,
 				0520F478277450F7004DDA28 /* KLRange.swift */,
 				0527EA612791C6EF00921395 /* KLRecord.swift */,
 				0527EA582791C69400921395 /* KLTable.swift */,
@@ -831,6 +831,7 @@
 				050A3E82263BF5C9008172E7 /* Math.ts */,
 				0515051D26DB7B14007C29F0 /* Object.ts */,
 				050A3E87263BF5C9008172E7 /* Process.ts */,
+				054AF16825F78237001DB03B /* Process.js */,
 				050A3E86263BF5C9008172E7 /* String.ts */,
 				050A3E85263BF5C9008172E7 /* Turtle.ts */,
 				05D4FD1E268F5B2C00780B83 /* Contacts.js */,
@@ -841,7 +842,6 @@
 				05763BEB2610AA89004D7B15 /* Graphics.js */,
 				05C0378825186FF3002A9C41 /* Math.js */,
 				0515052126DB7B41007C29F0 /* Object.js */,
-				054AF16825F78237001DB03B /* Process.js */,
 				050C3CD8262C5CC00008ED97 /* String.js */,
 				05B12A5A25C6783900273421 /* Turtle.js */,
 			);
@@ -1125,7 +1125,7 @@
 				0520F47327744F23004DDA28 /* KLSize.swift in Sources */,
 				05A95B682516D03300775737 /* KLConsole.swift in Sources */,
 				053D2DAF277A81A0008B6DA2 /* KLValueReference.swift in Sources */,
-				050FDBF825FC87BE00331107 /* KLDictionary.swift in Sources */,
+				050FDBF825FC87BE00331107 /* KLParameters.swift in Sources */,
 				053D2DB8277A8E42008B6DA2 /* KLEnum.swift in Sources */,
 				0520F479277450F7004DDA28 /* KLRange.swift in Sources */,
 				05A95B702516D03300775737 /* KLNativeValueFile.swift in Sources */,
@@ -1179,7 +1179,7 @@
 				0520F47427744F23004DDA28 /* KLSize.swift in Sources */,
 				05A95B692516D03300775737 /* KLConsole.swift in Sources */,
 				053D2DB0277A81A0008B6DA2 /* KLValueReference.swift in Sources */,
-				050FDBF925FC87BE00331107 /* KLDictionary.swift in Sources */,
+				050FDBF925FC87BE00331107 /* KLParameters.swift in Sources */,
 				053D2DB9277A8E42008B6DA2 /* KLEnum.swift in Sources */,
 				0520F47A277450F7004DDA28 /* KLRange.swift in Sources */,
 				05A95B712516D03300775737 /* KLNativeValueFile.swift in Sources */,

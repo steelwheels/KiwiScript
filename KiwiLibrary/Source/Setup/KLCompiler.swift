@@ -734,12 +734,26 @@ public class KLLibraryCompiler: KECompiler
 		}
 		ctxt.set(name: "Lock", function: allocLockFunc)*/
 
-		/* Dictionary */
-		let allocDictFunc: @convention(block) () -> JSValue = {
-			() -> JSValue in
-			return JSValue(object: KLDictionary(context: ctxt), in: ctxt)
+		/* Parameters */
+		let allocParamFunc: @convention(block) (_ param: JSValue) -> JSValue = {
+			(_ param: JSValue) -> JSValue in
+			var result: KLParameters? = nil
+			if param.isDictionary {
+				if let dict = param.toDictionary() as? Dictionary<String, Any> {
+					result = KLParameters(value: dict, context: ctxt)
+				} else {
+					CNLog(logLevel: .error, message: "Failed to decode parameter", atFunction: #function, inFile: #file)
+				}
+			} else {
+				result = KLParameters(context: ctxt)
+			}
+			if let res = result {
+				return JSValue(object: res, in: ctxt)
+			} else {
+				return JSValue(nullIn: ctxt)
+			}
 		}
-		ctxt.set(name: "Dictionary", function: allocDictFunc)
+		ctxt.set(name: "Parameters", function: allocParamFunc)
 
 		/* ValueTable */
 		let allocTableFunc: @convention(block) (_ pathval: JSValue, _ storageval: JSValue) -> JSValue = {
