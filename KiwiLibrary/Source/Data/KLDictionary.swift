@@ -16,9 +16,11 @@ import Foundation
 
 	func setNumber(_ name: JSValue, _ value: JSValue)
 	func setString(_ name: JSValue, _ value: JSValue)
+	func setDictionary(_ name: JSValue, _ value: JSValue)
 
 	func number(_ name: JSValue) -> JSValue
 	func string(_ name: JSValue) -> JSValue
+	func dictionary(_ name: JSValue) -> JSValue
 }
 
 @objc public class KLDictionary: NSObject, KLDictionaryProtocol
@@ -79,6 +81,20 @@ import Foundation
 		}
 	}
 
+	public func setDictionary(_ name: JSValue, _ value: JSValue){
+		if value.isObject {
+			if let dict = value.toObject() as? Dictionary<String, NSObject> {
+				mTable[name.toString()] = dict as NSDictionary
+			} else if let dict = value.toObject() as? KLDictionary {
+				mTable[name.toString()] = dict.mTable as NSDictionary
+			} else {
+				CNLog(logLevel: .error, message: "Can not happen", atFunction: #function, inFile: #file)
+			}
+		} else {
+			CNLog(logLevel: .error, message: "Invalid name:\(name) or value:\(value)", atFunction: #function, inFile: #file)
+		}
+	}
+
 	public func string(_ name: JSValue) -> JSValue {
 		if name.isString {
 			if let nval = mTable[name.toString()] {
@@ -98,6 +114,18 @@ import Foundation
 				if let num = nval as? NSNumber {
 					return JSValue(object: num, in: mContext)
 				}
+			}
+		} else {
+			CNLog(logLevel: .error, message: "Invalid key to set data", atFunction: #function, inFile: #file)
+		}
+		return JSValue(nullIn: mContext)
+	}
+
+	public func dictionary(_ name: JSValue) -> JSValue {
+		if name.isString {
+			if let dict = mTable[name.toString()] as? Dictionary<String, NSObject> {
+				let newobj = KLDictionary(value: dict, context: mContext)
+				return JSValue(object: newobj, in: mContext)
 			}
 		} else {
 			CNLog(logLevel: .error, message: "Invalid key to set data", atFunction: #function, inFile: #file)
