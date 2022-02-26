@@ -22,12 +22,12 @@ function _waitUntilExitAll(processes) {
 class Semaphore {
     constructor(initval) {
         this.mValue = Dictionary();
-        this.mValue.setNumber("count", initval);
+        this.mValue.setNumber(initval, "count");
     }
     signal() {
         let val = this.mValue.number("count");
         if (val != null) {
-            this.mValue.setNumber("count", val - 1);
+            this.mValue.setNumber(val - 1, "count");
         }
         else {
             console.log("No count in Semaphore");

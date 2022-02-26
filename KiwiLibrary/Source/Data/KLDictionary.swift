@@ -14,9 +14,9 @@ import Foundation
 {
 	var object: JSValue { get }
 
-	func setNumber(_ name: JSValue, _ value: JSValue)
-	func setString(_ name: JSValue, _ value: JSValue)
-	func setDictionary(_ name: JSValue, _ value: JSValue)
+	func setNumber(_ value: JSValue, _ name: JSValue)
+	func setString(_ value: JSValue, _ name: JSValue)
+	func setDictionary(_ value: JSValue, _ name: JSValue)
 
 	func number(_ name: JSValue) -> JSValue
 	func string(_ name: JSValue) -> JSValue
@@ -61,7 +61,7 @@ import Foundation
 		return result
 	}
 
-	public func setNumber(_ name: JSValue, _ value: JSValue) {
+	public func setNumber(_ value: JSValue, _ name: JSValue) {
 		if name.isString && value.isNumber {
 			mTable[name.toString()]  = value.toNumber()
 		} else {
@@ -69,7 +69,7 @@ import Foundation
 		}
 	}
 
-	public func setString(_ name: JSValue, _ value: JSValue) {
+	public func setString(_ value: JSValue, _ name: JSValue) {
 		if name.isString && value.isString {
 			if let str = value.toString() {
 				mTable[name.toString()] = str as NSString
@@ -81,7 +81,7 @@ import Foundation
 		}
 	}
 
-	public func setDictionary(_ name: JSValue, _ value: JSValue){
+	public func setDictionary(_ value: JSValue, _ name: JSValue){
 		if value.isObject {
 			if let dict = value.toObject() as? Dictionary<String, NSObject> {
 				mTable[name.toString()] = dict as NSDictionary
