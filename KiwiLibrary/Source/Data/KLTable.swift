@@ -20,6 +20,8 @@ import Foundation
 	func search(_ val: JSValue, _ field: JSValue) -> JSValue
 	func append(_ rcd: JSValue)
 	func forEach(_ callback: JSValue)
+
+	func toString() -> JSValue
 }
 
 public protocol KLTableCore

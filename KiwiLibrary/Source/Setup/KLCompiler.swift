@@ -737,21 +737,20 @@ public class KLLibraryCompiler: KECompiler
 		/* Dictionary */
 		let allocDictFunc: @convention(block) (_ param: JSValue) -> JSValue = {
 			(_ param: JSValue) -> JSValue in
-			var result: KLDictionary? = nil
+			let result: JSValue
 			if param.isDictionary {
 				if let dict = param.toDictionary() as? Dictionary<String, Any> {
-					result = KLDictionary(value: dict, context: ctxt)
+					let dict = KLDictionary(value: dict, context: ctxt)
+					result = JSValue(object: dict, in: ctxt)
 				} else {
 					CNLog(logLevel: .error, message: "Failed to decode parameter", atFunction: #function, inFile: #file)
+					result = JSValue(nullIn: ctxt)
 				}
 			} else {
-				result = KLDictionary(context: ctxt)
+				let dict = KLDictionary(context: ctxt)
+				result = JSValue(object: dict, in: ctxt)
 			}
-			if let res = result {
-				return JSValue(object: res, in: ctxt)
-			} else {
-				return JSValue(nullIn: ctxt)
-			}
+			return result
 		}
 		ctxt.set(name: "Dictionary", function: allocDictFunc)
 

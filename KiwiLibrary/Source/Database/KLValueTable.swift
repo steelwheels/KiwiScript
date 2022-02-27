@@ -100,6 +100,9 @@ import Foundation
 		return KLValueRecord(record: rec, context: mContext)
 	}
 
-
+	public func toString() -> JSValue {
+		let str = mTable.toText().toStrings().joined(separator: "\n")
+		return JSValue(object: str, in: mContext)
+	}
 }
 

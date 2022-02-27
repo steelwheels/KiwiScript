@@ -147,6 +147,10 @@ import Foundation
 			}
 		})
 	}
+
+	public func toString() -> JSValue {
+		return JSValue(object: "{Not supported}", in: mContext)
+	}
 }
 
 

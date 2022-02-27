@@ -19,6 +19,9 @@ import Foundation
 	func set(_ value: JSValue, _ path: JSValue) -> JSValue
 
 	func store() -> JSValue
+
+	// For debugging
+	func toString() -> JSValue
 }
 
 @objc public class KLValueStorage: NSObject, KLValueStorageProtocol
@@ -64,6 +67,11 @@ import Foundation
 	public func store() -> JSValue {
 		let result = mValueStorage.store()
 		return JSValue(bool: result, in: mContext)
+	}
+
+	public func toString() -> JSValue {
+		let str = mValueStorage.toText().toStrings().joined(separator: "\n")
+		return JSValue(object: str, in: mContext)
 	}
 
 	private func valueToArray(value val: JSValue) -> Array<String>? {

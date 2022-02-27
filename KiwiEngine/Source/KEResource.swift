@@ -120,43 +120,27 @@ open class KEResource: CNResource
 	}
 
 	static public func allocateValueStorage(packageDirectory packdir: URL, filePath fpath: String) -> CNValueStorage? {
-		/* Allocate main storage in package directory */
-		//NSLog("packdir   : \(packdir)")
-		//NSLog("file path : \(fpath)")
-		let mainstorage = CNValueStorage(packageDirectory: packdir, filePath: fpath, parentStorage: nil)
-		switch mainstorage.load() {
+		/* Put the copy of source file into ApplicationSupport directory */
+		let srcurl   = packdir.appendingPathComponent(fpath)
+		let packname = packdir.lastPathComponent
+		let dstdir   = CNFilePath.URLforApplicationSupportDirectory(subDirectory: packname)
+		let dsturl   = dstdir.appendingPathComponent(fpath)
+		if !FileManager.default.copyFileIfItIsNotExist(sourceFile: srcurl, destinationFile: dsturl) {
+			CNLog(logLevel: .error, message: "Failed to file copy: \(srcurl.path) to \(dsturl.path)", atFunction: #function, inFile: #file)
+			return nil
+		}
+		let storage = CNValueStorage(packageDirectory: dstdir, filePath: fpath)
+		switch storage.load() {
 		case .ok(_):
 			break
 		case .error(let err):
-			CNLog(logLevel: .error, message: "[Error:main] \(err.toString())", atFunction: #function, inFile: #file)
+			CNLog(logLevel: .error, message: "[Error:sub] \(err.toString())", atFunction: #function, inFile: #file)
 			return nil
 		@unknown default:
-			CNLog(logLevel: .error, message: "[Error:main] Unknown case", atFunction: #function, inFile: #file)
+			CNLog(logLevel: .error, message: "[Error:sub] Unknown case", atFunction: #function, inFile: #file)
 			return nil
 		}
-
-		/* get package name */
-		let packname   = packdir.lastPathComponent
-		let supportdir = CNFilePath.URLforApplicationSupportDirectory()
-		let cachedir   = supportdir.appendingPathComponent(packname)
-		//NSLog("cachedir : \(cachedir.path)")
-
-		let substorage = CNValueStorage(packageDirectory: cachedir, filePath: fpath, parentStorage: mainstorage)
-		if FileManager.default.fileExists(atPath: substorage.storageFile.path) {
-			//NSLog("Load saved file")
-			switch substorage.load() {
-			case .ok(_):
-				break
-			case .error(let err):
-				CNLog(logLevel: .error, message: "[Error:sub] \(err.toString())", atFunction: #function, inFile: #file)
-			@unknown default:
-				CNLog(logLevel: .error, message: "[Error:sub] Unknown case", atFunction: #function, inFile: #file)
-			}
-		} else {
-			//NSLog("No saved file")
-		}
-
-		return substorage
+		return storage
 	}
 
 	public func addCategory(category cname: String, loader ldr: @escaping LoaderFunc) {
