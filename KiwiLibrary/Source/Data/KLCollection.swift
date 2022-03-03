@@ -117,8 +117,12 @@ import Foundation
 
 	private func convertItem(_ item: Any) -> CNCollection.Item? {
 		if let val = item as? JSValue {
-			if let obj = val.toObject() {
-				return convertItem(obj)
+			if val.isObject {
+				if let obj = val.toObject() {
+					return convertItem(obj)
+				}
+			} else if val.isNull {
+				return nil
 			}
 		} else if let urlobj = item as? KLURL {
 			if let url = urlobj.url {
@@ -126,8 +130,12 @@ import Foundation
 			}
 		} else if let url = item as? URL {
 			return .image(url)
+		} else if let dict = item as? Dictionary<String, Any> {
+			if dict.count == 0 {
+				return nil
+			}
 		}
-		CNLog(logLevel: .error, message: "Unsupoorted object", atFunction: #function, inFile: #file)
+		CNLog(logLevel: .error, message: "Unsupoorted object: \(item)", atFunction: #function, inFile: #file)
 		return nil
 	}
 
