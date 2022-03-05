@@ -21,6 +21,12 @@ import Foundation
 		super.init()
 	}
 
+	public init(context ctxt: KEContext){
+		mRecord		= CNValueRecord()
+		mContext	= ctxt
+		super.init()
+	}
+
 	public func core() -> CNRecord {
 		return mRecord
 	}

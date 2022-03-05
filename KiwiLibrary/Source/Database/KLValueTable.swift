@@ -32,16 +32,6 @@ import Foundation
 		return JSValue(object: mTable.allFieldNames, in: mContext)
 	}}
 
-	public func newRecord() -> JSValue {
-		if let rec = mTable.newRecord() as? CNValueRecord {
-			let newrec = allocateRecord(record: rec)
-			return JSValue(object: newrec, in: mContext)
-		} else {
-			CNLog(logLevel: .error, message: "Unexpected record type", atFunction: #function, inFile: #file)
-			return JSValue(nullIn: mContext)
-		}
-	}
-
 	public func record(_ row: JSValue) -> JSValue {
 		if row.isNumber {
 			let ridx = row.toInt32()

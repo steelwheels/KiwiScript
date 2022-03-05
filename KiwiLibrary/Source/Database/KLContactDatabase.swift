@@ -75,17 +75,6 @@ import Foundation
 		return JSValue(bool: result, in: mContext)
 	}
 
-	public func newRecord() -> JSValue {
-		let dc     = CNContactDatabase.shared
-		if let core   = dc.newRecord() as? CNContactRecord {
-			let newrec = KLContactRecord(contact: core, context: mContext)
-			return JSValue(object: newrec, in: mContext)
-		} else {
-			CNLog(logLevel: .error, message: "Unexpected record type", atFunction: #function, inFile: #file)
-			return JSValue(nullIn: mContext)
-		}
-	}
-
 	public func record(_ rowp: JSValue) -> JSValue {
 		if rowp.isNumber {
 			let dc  = CNContactDatabase.shared
