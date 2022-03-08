@@ -12,7 +12,6 @@ import Foundation
 
 extension JSValue
 {
-	public static let classPropertyName: String	= "className"
 	public static let instancePropertyName: String	= "instanceName"
 
 	public convenience init(URL url: URL, in context: KEContext) {
@@ -27,12 +26,11 @@ extension JSValue
 	}
 
 	public var classPropertyName: String? {
-		if let dict = self.toObject() as? Dictionary<AnyHashable, Any> {
-			if let name = dict[JSValue.classPropertyName] as? String {
-				return name
-			}
+		if let dict = self.toObject() as? Dictionary<String, Any> {
+			return dict["class"] as? String
+		} else {
+			return nil
 		}
-		return nil
 	}
 
 	public func isClass(name nm: String) -> Bool {
