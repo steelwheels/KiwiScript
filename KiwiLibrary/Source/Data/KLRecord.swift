@@ -18,6 +18,8 @@ import Foundation
 
 	func value(_ name: JSValue) -> JSValue
 	func setValue(_ val: JSValue, _ name: JSValue) -> JSValue
+
+	func toString() -> JSValue
 }
 
 public protocol KLRecordCore

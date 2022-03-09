@@ -7,6 +7,7 @@
 
 import KiwiEngine
 import CoconutData
+import CoconutDatabase
 import JavaScriptCore
 import Foundation
 
@@ -60,6 +61,7 @@ public class KLValueDuplicator
 			case .pointType:	dupval = src.toPoint().toJSValue(context: mTargetContext)
 			case .sizeType:		dupval = src.toSize().toJSValue(context: mTargetContext)
 			case .rectType:		dupval = src.toRect().toJSValue(context: mTargetContext)
+			case .recordType:	dupval = duplicate(recordValue: src.toRecord())
 			case .objectType:	dupval = duplicate(object: src.toObject())
 			case .referenceType:	dupval = duplicate(valueReference: src.toReference())
 			@unknown default:
@@ -117,6 +119,25 @@ public class KLValueDuplicator
 		} else {
 			return JSValue(nullIn: mTargetContext)
 		}
+	}
+
+	private func duplicate(recordValue recp: CNRecord?) -> JSValue {
+		let result: JSValue
+		if let rec = recp {
+			if let vrec = rec as? CNValueRecord {
+				let recobj = KLValueRecord(record: vrec, context: mTargetContext)
+				result = JSValue(object: recobj, in: mTargetContext)
+			} else if let crec = rec as? CNContactRecord {
+				let recobj = KLContactRecord(contact: crec, context: mTargetContext)
+				result = JSValue(object: recobj, in: mTargetContext)
+			} else {
+				CNLog(logLevel: .error, message: "Unnown record", atFunction: #function, inFile: #file)
+				result = JSValue(nullIn: mTargetContext)
+			}
+		} else {
+			result = JSValue(nullIn: mTargetContext)
+		}
+		return result
 	}
 
 	private func duplicate(valueReference ref: CNValueReference?) -> JSValue {

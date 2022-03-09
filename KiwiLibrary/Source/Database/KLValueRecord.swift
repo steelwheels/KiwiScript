@@ -21,12 +21,6 @@ import Foundation
 		super.init()
 	}
 
-	public init(context ctxt: KEContext){
-		mRecord		= CNValueRecord()
-		mContext	= ctxt
-		super.init()
-	}
-
 	public func core() -> CNRecord {
 		return mRecord
 	}
@@ -70,6 +64,11 @@ import Foundation
 			}
 		}
 		return JSValue(bool: result, in: mContext)
+	}
+
+	public func toString() -> JSValue {
+		let txt = mRecord.toText()
+		return JSValue(object: txt.toStrings().joined(separator: "\n"), in: mContext)
 	}
 }
 

@@ -95,16 +95,14 @@ extension JSValue
 		return nil
 	}
 
-	public var isImage: Bool {
-		get {
-			if let imgobj = self.toObject() as? KLImage {
-				if let _ = imgobj.coreImage {
-					return true
-				}
+	public var isImage: Bool { get {
+		if let imgobj = self.toObject() as? KLImage {
+			if let _ = imgobj.coreImage {
+				return true
 			}
-			return false
 		}
-	}
+		return false
+	}}
 
 	public func toImage() -> CNImage? {
 		if let imgobj = self.toObject() as? KLImage {
@@ -113,6 +111,22 @@ extension JSValue
 			}
 		}
 		return nil
+	}
+
+	public var isRecord: Bool { get {
+		if let _ = self.toObject() as? KLRecord {
+			return true
+		} else {
+			return false
+		}
+	}}
+
+	public func toRecord() -> CNRecord? {
+		if let recobj = self.toObject() as? KLRecordCore {
+			return recobj.core()
+		} else {
+			return nil
+		}
 	}
 
 	public var isColor: Bool {
@@ -207,10 +221,6 @@ extension JSValue
 				result = .numberType
 			} else if self.isString {
 				result = .stringType
-			} else if self.isArray {
-				result = .arrayType
-			} else if self.isDictionary {
-				result = .dictionaryType
 			} else if self.isDate {
 				result = .dateType
 			} else if self.isRange {
@@ -225,8 +235,14 @@ extension JSValue
 				result = .URLType
 			} else if self.isImage {
 				result = .imageType
+			} else if self.isRecord {
+				result = .recordType
 			} else if self.isReference {
 				result = .referenceType
+			} else if self.isArray {
+				result = .arrayType
+			} else if self.isDictionary {
+				result = .dictionaryType
 			} else if self.isObject {
 				if let _ = self.toObject() as? Dictionary<AnyHashable, Any> {
 					result = .dictionaryType
@@ -320,6 +336,13 @@ extension JSValue
 			case .objectType:
 				CNLog(logLevel: .error, message: "Failed to convert to Object", atFunction: #function, inFile: #file)
 				result = .nullValue
+			case .recordType:
+				if let rec = self.toRecord() {
+					result = .recordValue(rec)
+				} else {
+					CNLog(logLevel: .error, message: "Failed to convert to record", atFunction: #function, inFile: #file)
+					result = .nullValue
+				}
 			case .referenceType:
 				if let refval = self.toReference() {
 					result = .reference(refval)

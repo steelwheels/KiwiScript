@@ -239,6 +239,24 @@ public class KLLibraryCompiler: KECompiler
 		}
 		ctxt.set(name: "toDictionary", function: toDictFunc)
 
+		/* isRecord */
+		let isRecordFunc: @convention(block) (_ value: JSValue) -> JSValue = {
+			(_ value: JSValue) -> JSValue in
+			return JSValue(bool: value.isRecord, in: ctxt)
+		}
+		ctxt.set(name: "isRecord", function: isRecordFunc)
+
+		/* toRecord */
+		let toRecordFunc: @convention(block) (_ value: JSValue) -> JSValue = {
+			(_ value: JSValue) -> JSValue in
+			if value.isRecord {
+				return value
+			} else {
+				return JSValue(nullIn: ctxt)
+			}
+		}
+		ctxt.set(name: "toRecord", function: toRecordFunc)
+
 		/* isDate */
 		let isDateFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in
@@ -774,7 +792,7 @@ public class KLLibraryCompiler: KECompiler
 		/* ValueRecord */
 		let allocRecordFunc: @convention(block) () -> JSValue = {
 			() -> JSValue in
-			let newrec = KLValueRecord(context: ctxt)
+			let newrec = KLValueRecord(record: CNValueRecord(), context: ctxt)
 			return JSValue(object: newrec, in: ctxt)
 		}
 		ctxt.set(name: "ValueRecord", function: allocRecordFunc)

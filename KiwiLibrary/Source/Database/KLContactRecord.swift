@@ -259,5 +259,10 @@ import Foundation
 		get      { return value(ofField: .relations)}
 		set(val) { setValue(value: val, forField: .relations)}
 	}
+
+	public func toString() -> JSValue {
+		let txt = mContact.toText()
+		return JSValue(object: txt.toStrings().joined(separator: "\n"), in: mContext)
+	}
 }
 

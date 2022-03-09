@@ -7,6 +7,7 @@
 
 import KiwiEngine
 import CoconutData
+import CoconutDatabase
 import JavaScriptCore
 import Foundation
 
@@ -50,6 +51,17 @@ extension CNValue {
 			result = JSValue(URL: val, in: ctxt)
 		case .imageValue(let val):
 			result = JSValue(image: val, in: ctxt)
+		case .recordValue(let val):
+			if let vrec = val as? CNValueRecord {
+				let recobj = KLValueRecord(record: vrec, context: ctxt)
+				result = JSValue(object: recobj, in: ctxt)
+			} else if let crec = val as? CNContactRecord {
+				let recobj = KLContactRecord(contact: crec, context: ctxt)
+				result = JSValue(object: recobj, in: ctxt)
+			} else {
+				CNLog(logLevel: .error, message: "Unknown record", atFunction: #file, inFile: #file)
+				result = JSValue(nullIn: ctxt)
+			}
 		case .objectValue(let val):
 			result = JSValue(object: val, in: ctxt)
 		case .colorValue(let col):
