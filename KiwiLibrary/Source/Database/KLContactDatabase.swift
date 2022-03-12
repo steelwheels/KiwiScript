@@ -80,12 +80,8 @@ import Foundation
 			let dc  = CNContactDatabase.shared
 			let row = rowp.toInt32()
 			if let rec = dc.record(at: Int(row)) {
-				if let crec = rec as? CNContactRecord {
-					let newrec = KLContactRecord(contact: crec, context: mContext)
-					return JSValue(object: newrec, in: mContext)
-				} else {
-					CNLog(logLevel: .error, message: "Unexpected record object", atFunction: #function, inFile: #file)
-				}
+				let newrec = KLRecord(record: rec, context: mContext)
+				return JSValue(object: newrec, in: mContext)
 			}
 		}
 		return JSValue(nullIn: mContext)
@@ -95,16 +91,12 @@ import Foundation
 		let db  = CNContactDatabase.shared
 		if field.isString {
 			if let fname = field.toString() {
-				var result: Array<KLContactRecord> = []
+				var result: Array<KLRecord> = []
 				let nval = val.toNativeValue()
 				let recs = db.search(value: nval, forField: fname)
 				for rec in recs {
-					if let crec = rec as? CNContactRecord {
-						let newrec = KLContactRecord(contact: crec, context: mContext)
-						result.append(newrec)
-					} else {
-						CNLog(logLevel: .error, message: "Failed to convert", atFunction: #function, inFile: #file)
-					}
+					let newrec = KLRecord(record: rec, context: mContext)
+					result.append(newrec)
 				}
 				return JSValue(object: result, in: mContext)
 			}
@@ -114,7 +106,7 @@ import Foundation
 
 	public func append(_ rcdp: JSValue) {
 		if rcdp.isObject {
-			if let rec = rcdp.toObject() as? KLContactRecord {
+			if let rec = rcdp.toObject() as? KLRecord {
 				let dc  = CNContactDatabase.shared
 				dc.append(record: rec.core())
 				return
@@ -128,12 +120,8 @@ import Foundation
 		let db = CNContactDatabase.shared
 		db.forEach(callback: {
 			(_ record: CNRecord) -> Void in
-			if let crec = record as? CNContactRecord {
-				let recobj = KLContactRecord(contact: crec, context: mContext)
-				callback.call(withArguments: [recobj])
-			} else {
-				CNLog(logLevel: .error, message: "Unexpected record object", atFunction: #function, inFile: #file)
-			}
+			let recobj = KLRecord(record: record, context: mContext)
+			callback.call(withArguments: [recobj])
 		})
 	}
 

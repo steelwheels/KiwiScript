@@ -52,16 +52,8 @@ extension CNValue {
 		case .imageValue(let val):
 			result = JSValue(image: val, in: ctxt)
 		case .recordValue(let val):
-			if let vrec = val as? CNValueRecord {
-				let recobj = KLValueRecord(record: vrec, context: ctxt)
-				result = JSValue(object: recobj, in: ctxt)
-			} else if let crec = val as? CNContactRecord {
-				let recobj = KLContactRecord(contact: crec, context: ctxt)
-				result = JSValue(object: recobj, in: ctxt)
-			} else {
-				CNLog(logLevel: .error, message: "Unknown record", atFunction: #file, inFile: #file)
-				result = JSValue(nullIn: ctxt)
-			}
+			let recobj = KLRecord(record: val, context: ctxt)
+			result = JSValue(object: recobj, in: ctxt)
 		case .objectValue(let val):
 			result = JSValue(object: val, in: ctxt)
 		case .colorValue(let col):

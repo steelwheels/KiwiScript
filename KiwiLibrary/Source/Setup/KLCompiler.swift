@@ -789,13 +789,13 @@ public class KLLibraryCompiler: KECompiler
 		}
 		ctxt.set(name: "ValueTable", function: allocTableFunc)
 
-		/* ValueRecord */
+		/* Record */
 		let allocRecordFunc: @convention(block) () -> JSValue = {
 			() -> JSValue in
-			let newrec = KLValueRecord(record: CNValueRecord(), context: ctxt)
+			let newrec = KLRecord(record: CNRecord(), context: ctxt)
 			return JSValue(object: newrec, in: ctxt)
 		}
-		ctxt.set(name: "ValueRecord", function: allocRecordFunc)
+		ctxt.set(name: "Record", function: allocRecordFunc)
 
 		/* ValueStorage */
 		let allocStorageFunc: @convention(block) (_ nameval: JSValue) -> JSValue = {

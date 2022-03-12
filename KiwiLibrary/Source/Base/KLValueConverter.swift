@@ -124,16 +124,8 @@ public class KLValueDuplicator
 	private func duplicate(recordValue recp: CNRecord?) -> JSValue {
 		let result: JSValue
 		if let rec = recp {
-			if let vrec = rec as? CNValueRecord {
-				let recobj = KLValueRecord(record: vrec, context: mTargetContext)
-				result = JSValue(object: recobj, in: mTargetContext)
-			} else if let crec = rec as? CNContactRecord {
-				let recobj = KLContactRecord(contact: crec, context: mTargetContext)
-				result = JSValue(object: recobj, in: mTargetContext)
-			} else {
-				CNLog(logLevel: .error, message: "Unnown record", atFunction: #function, inFile: #file)
-				result = JSValue(nullIn: mTargetContext)
-			}
+			let recobj = KLRecord(record: rec, context: mTargetContext)
+			result = JSValue(object: recobj, in: mTargetContext)
 		} else {
 			result = JSValue(nullIn: mTargetContext)
 		}

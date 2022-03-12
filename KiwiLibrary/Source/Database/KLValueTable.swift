@@ -35,7 +35,7 @@ import Foundation
 	public func record(_ row: JSValue) -> JSValue {
 		if row.isNumber {
 			let ridx = row.toInt32()
-			if let rec = mTable.record(at: Int(ridx)) as? CNValueRecord {
+			if let rec = mTable.record(at: Int(ridx)) {
 				let newrec = allocateRecord(record: rec)
 				return JSValue(object: newrec, in: mContext)
 			} else {
@@ -50,13 +50,9 @@ import Foundation
 			if let fname = field.toString() {
 				let nval  = val.toNativeValue()
 				let recs  = mTable.search(value: nval, forField: fname)
-				var result: Array<KLValueRecord> = []
+				var result: Array<KLRecord> = []
 				for rec in recs {
-					if let vrec = rec as? CNValueRecord {
-						result.append(allocateRecord(record: vrec))
-					} else {
-						CNLog(logLevel: .error, message: "Failed to convert", atFunction: #function, inFile: #file)
-					}
+					result.append(allocateRecord(record: rec))
 				}
 				return JSValue(object: result, in: mContext)
 			}
@@ -66,7 +62,7 @@ import Foundation
 
 	public func append(_ rcd: JSValue) {
 		if rcd.isObject {
-			if let rec = rcd.toObject() as? KLValueRecord {
+			if let rec = rcd.toObject() as? KLRecord {
 				mTable.append(record: rec.core())
 			}
 		}
@@ -75,19 +71,15 @@ import Foundation
 	public func forEach(_ callback: JSValue) {
 		mTable.forEach(callback: {
 			(_ rec: CNRecord) -> Void in
-			if let nrec = rec as? CNValueRecord {
-				let vrec = allocateRecord(record: nrec)
-				if let vobj = JSValue(object: vrec, in: mContext) {
-					callback.call(withArguments: [vobj])
-				}
-			} else {
-				CNLog(logLevel: .error, message: "Unexpected record type")
+			let vrec = allocateRecord(record: rec)
+			if let vobj = JSValue(object: vrec, in: mContext) {
+				callback.call(withArguments: [vobj])
 			}
 		})
 	}
 
-	private func allocateRecord(record rec: CNValueRecord) -> KLValueRecord {
-		return KLValueRecord(record: rec, context: mContext)
+	private func allocateRecord(record rec: CNRecord) -> KLRecord {
+		return KLRecord(record: rec, context: mContext)
 	}
 
 	public func toString() -> JSValue {

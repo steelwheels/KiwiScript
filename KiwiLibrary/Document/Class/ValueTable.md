@@ -1,7 +1,7 @@
 # ValueTable
 The `ValueTable` class supports record based access on the [ValueStorage](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/ValueStorage.md) data.
 
-The `ValueTable` has multiple [ValueRecord](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/ValueRecord.md)s.
+The `ValueTable` has multiple [Record](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Record.md)s.
 
 ## File format
 This is a sample JSON data for value table.
@@ -48,9 +48,9 @@ interface ValueTableIF {
   readonly allFieldNames:       string[] ;
   activeFieldNames:             string[] ;
 
-  newRecord():		ValueRecordIF ;
-  record(row: number):	ValueRecordIF | null ;
-  append(record: ValueRecordIF): void ;
+  newRecord():		RecordIF ;
+  record(row: number):	RecordIF | null ;
+  append(record: RecordIF): void ;
 }
 ````
 
@@ -69,10 +69,10 @@ The initial value is `[]` (empty), in this case the value of `allFieldNames` is 
 ### Method: `newRecord()`
 Allocate new empty record. You have to append this record to the value table (which allocate the record). It is not alloed to append to the other table instance.
 
-### Method: `record(row: number): ValueRecordIF | null`
+### Method: `record(row: number): RecordIF | null`
 Get the record by index number. The valid value of parameter `row` is 0..<`recordCount`. If the invalid parameter is given, this method returns `null`.
 
-### Method: `append(record: ValueRecordIF): void`
+### Method: `append(record: RecordIF): void`
 Append the record to the table. The table will be updated by this method. The record must be allocate by `newRecord()`.
 
 ## Sample script
