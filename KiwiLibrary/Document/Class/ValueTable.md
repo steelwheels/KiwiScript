@@ -43,14 +43,15 @@ give "`top`" as a parameter for the `path`.
 ## Interface
 ````
 interface ValueTableIF {
-  recordCount:                  number ;
+        recordCount:		number ;
 
-  readonly allFieldNames:       string[] ;
-  activeFieldNames:             string[] ;
+	readonly allFieldNames:	string[] ;
 
-  newRecord():		RecordIF ;
-  record(row: number):	RecordIF | null ;
-  append(record: RecordIF): void ;
+	record(row: number):			RecordIF | null ;
+	search(value: any, name: string):	RecordIF[] | null ;
+	append(record: RecordIF): 		void ;
+
+	toString(): 		string
 }
 ````
 
@@ -66,14 +67,14 @@ You can choose visible fields against all fields.
 
 The initial value is `[]` (empty), in this case the value of `allFieldNames` is used as this value.
 
-### Method: `newRecord()`
-Allocate new empty record. You have to append this record to the value table (which allocate the record). It is not alloed to append to the other table instance.
-
 ### Method: `record(row: number): RecordIF | null`
 Get the record by index number. The valid value of parameter `row` is 0..<`recordCount`. If the invalid parameter is given, this method returns `null`.
 
 ### Method: `append(record: RecordIF): void`
 Append the record to the table. The table will be updated by this method. The record must be allocate by `newRecord()`.
+
+### Method: `toString(): string`
+Return the string which presents the entire of table data.
 
 ## Sample script
 This is sample script to allocate ValueTable.
