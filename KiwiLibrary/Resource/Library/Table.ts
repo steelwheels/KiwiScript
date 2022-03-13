@@ -4,7 +4,7 @@
 
 /// <reference path="types/Builtin.d.ts"/>
 
-function valueTableInStorage(storage: string, path: string): ValueTableIF | null
+function valueTableInStorage(storage: string, path: string): TableIF | null
 {
         let strg = ValueStorage(storage) ;
         if(strg == null) {

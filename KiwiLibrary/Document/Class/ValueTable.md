@@ -34,7 +34,7 @@ Filen ame: `sample.json`
 ## Constructor
 There is a constructor function to allocate the instance of this class:
 ````
-ValueTable(path: string, storage: ValueStorageIF): ValueTableIF ;
+ValueTable(path: string, storage: ValueStorageIF): TableIF ;
 ````
 
 The parameter `path` is used to select the sub-tree in the storage. When you want to access value table in above `sample.json`,
@@ -42,7 +42,7 @@ give "`top`" as a parameter for the `path`.
 
 ## Interface
 ````
-interface ValueTableIF {
+interface TableIF {
         recordCount:		number ;
 
 	readonly allFieldNames:	string[] ;

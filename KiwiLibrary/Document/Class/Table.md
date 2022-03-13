@@ -1,5 +1,5 @@
-# Table class
-Table class has 2D array of immediate values.
+# Table view class
+Table view class has 2D array of immediate values.
 This class support load/save operation from/to the file. The file format is defined by [table format](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Format/Table.md).
 
 ## Constructor

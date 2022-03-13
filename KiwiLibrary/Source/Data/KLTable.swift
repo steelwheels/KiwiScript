@@ -18,6 +18,7 @@ import Foundation
 	func record(_ row: JSValue) -> JSValue
 	func search(_ val: JSValue, _ field: JSValue) -> JSValue
 	func append(_ rcd: JSValue)
+	func remove(_ rcd: JSValue) -> JSValue
 	func forEach(_ callback: JSValue)
 
 	func toString() -> JSValue

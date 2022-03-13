@@ -68,6 +68,17 @@ import Foundation
 		}
 	}
 
+	public func remove(_ idxval: JSValue) -> JSValue {
+		var result = false
+		if idxval.isNumber {
+			if let idxnum = idxval.toNumber() {
+				let idx = idxnum.intValue
+				result = mTable.remove(at: idx)
+			}
+		}
+		return JSValue(bool: result, in: mContext)
+	}
+
 	public func forEach(_ callback: JSValue) {
 		mTable.forEach(callback: {
 			(_ rec: CNRecord) -> Void in

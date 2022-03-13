@@ -113,7 +113,11 @@ import Foundation
 			}
 		}
 		CNLog(logLevel: .error, message: "Unexpected record object", atFunction: #function, inFile: #file)
+	}
 
+	public func remove(_ rcd: JSValue) -> JSValue {
+		CNLog(logLevel: .error, message: "Not supported yet", atFunction: #function, inFile: #file)
+		return JSValue(bool: false, in: mContext)
 	}
 
 	public func forEach(_ callback: JSValue) {
