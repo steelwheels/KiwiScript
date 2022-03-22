@@ -18,7 +18,7 @@ import Foundation
 	// set(value: any, path: [string]): boolean
 	func set(_ value: JSValue, _ path: JSValue) -> JSValue
 
-	func store() -> JSValue
+	func save() -> JSValue
 
 	// For debugging
 	func toString() -> JSValue
@@ -64,13 +64,13 @@ import Foundation
 		return JSValue(bool: result, in: mContext)
 	}
 
-	public func store() -> JSValue {
-		let result = mValueStorage.store()
+	public func save() -> JSValue {
+		let result = mValueStorage.save()
 		return JSValue(bool: result, in: mContext)
 	}
 
 	public func toString() -> JSValue {
-		let str = mValueStorage.toText().toStrings().joined(separator: "\n")
+		let str = mValueStorage.toValue().toText().toStrings().joined(separator: "\n")
 		return JSValue(object: str, in: mContext)
 	}
 

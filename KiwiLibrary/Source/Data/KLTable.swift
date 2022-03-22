@@ -14,11 +14,14 @@ import Foundation
 {
 	var recordCount: JSValue { get }
 	var allFieldNames: JSValue { get }
+	var isDirty: JSValue { get }
 
 	func record(_ row: JSValue) -> JSValue
 	func search(_ val: JSValue, _ field: JSValue) -> JSValue
 	func append(_ rcd: JSValue)
 	func remove(_ rcd: JSValue) -> JSValue
+	func save() -> JSValue
+
 	func forEach(_ callback: JSValue)
 
 	func toString() -> JSValue

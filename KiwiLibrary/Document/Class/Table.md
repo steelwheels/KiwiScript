@@ -1,39 +1,58 @@
-# Table view class
-Table view class has 2D array of immediate values.
-This class support load/save operation from/to the file. The file format is defined by [table format](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Format/Table.md).
+# Table class
+The table contains mutiple records.
+
+
+## Interface
+````
+interface TableIF {
+	recordCount:		                number ;
+
+	readonly allFieldNames:	                string[] ;
+	readonly isDirty:                       boolean ;
+
+	record(row: number):			RecordIF | null ;
+	search(value: any, name: string):	RecordIF[] | null ;
+	append(record: RecordIF): 		void ;
+	remove(index: number):			boolean ;
+
+	toString(): 		                string
+}
+````
 
 ## Constructor
-The instance of this class is allocated as a property of [Data table component](https://github.com/steelwheels/KiwiCompnents/blob/master/Document/Components/Table.md).
+There is built-in function to allocate value table.
+````
+ValueTable(path: string, storage: ValueStorageIF): TableIF | null ;
+````
+
+|name   |Type   |Description    |
+|:--    |:--    |:--            |
+|`path`    |string |Location in the storage |
+|`storage` |[ValueStorage](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/ValueStorage.md) |On memory file storage |
+
+The `path` is multiple strings joined by period(`.`).
+For example, the path for `table_a` in the next storage
+is presented as `tables.table_a`.
+````
+{
+  tables: {
+        table_a: {
+                class: "ValueTable",
+                columnNames: ["c0", "c1", "c2"],
+                records: [
+                        ...
+                ]
+        }
+  }
+}
+````
 
 ## Properties
-### `columnCount`: Number
-The integer value to present number of columns.
-
-### `rowCount`: Number
-The integer value to present number of rows.
-
-## Methods
-### `title(index: Int): String`
-Get title of the column.
-
-### `setTitle(index: Int, title: String): Void`
-Set the title of the column.
-
-### `value(columnIndex: Int, rowIndex: Int): Any`
-Get the value on the table. If the value is NOT set, the return value is `null`.
-
-### `setValue(columnIndex: Int, rowIndex: Int, value: Any)`
-Set the value to the table.
-
-### `load(url: URL) -> Bool`
-Load the table data from given [URL](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md).
-The text format of the URL is defined in [table format](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Format/Table.md).
-If the loading is succeeded, the return value will be `true`.
-
-### `save(url: URL) -> Bool`
-Save the content of the table into the file pointed by [URL](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md). 
-The text format of the URL is defined in [table format](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Format/Table.md).
-If the saving is succeeded, the return value will be `true`.
+### `recordCount`
+````
+recordCount: number
+````
+Number of records in the table.
 
 ## Related Links
 * [Kiwi Standard Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): The built-in JavaScript library.

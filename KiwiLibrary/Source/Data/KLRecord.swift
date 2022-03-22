@@ -84,8 +84,8 @@ public protocol KLRecordCore
 	}
 
 	public func toString() -> JSValue {
-		let txt = mRecord.toText()
-		return JSValue(object: txt.toStrings().joined(separator: "\n"), in: mContext)
+		let val: CNValue = .dictionaryValue(mRecord.toValue())
+		return JSValue(object: val.toText().toStrings().joined(separator: "\n"), in: mContext)
 	}
 }
 

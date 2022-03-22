@@ -32,6 +32,10 @@ import Foundation
 		return JSValue(object: mTable.allFieldNames, in: mContext)
 	}}
 
+	public var isDirty: JSValue { get {
+		return JSValue(bool: mTable.isDirty, in: mContext)
+	}}
+
 	public func record(_ row: JSValue) -> JSValue {
 		if row.isNumber {
 			let ridx = row.toInt32()
@@ -79,6 +83,10 @@ import Foundation
 		return JSValue(bool: result, in: mContext)
 	}
 
+	public func save() -> JSValue {
+		return JSValue(bool: mTable.save(), in: mContext)
+	}
+
 	public func forEach(_ callback: JSValue) {
 		mTable.forEach(callback: {
 			(_ rec: CNRecord) -> Void in
@@ -94,7 +102,7 @@ import Foundation
 	}
 
 	public func toString() -> JSValue {
-		let str = mTable.toText().toStrings().joined(separator: "\n")
+		let str = mTable.toValue().toText().toStrings().joined(separator: "\n")
 		return JSValue(object: str, in: mContext)
 	}
 }

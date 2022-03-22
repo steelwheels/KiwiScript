@@ -39,6 +39,10 @@ import Foundation
 		return JSValue(object: dc.allFieldNames, in: mContext)
 	}}
 
+	public var isDirty: JSValue { get {
+		return JSValue(bool: false, in: mContext)
+	}}
+
 	public func authorize(_ callback: JSValue) {
 		let dc = CNContactDatabase.shared
 		dc.authorize(callback: {
@@ -116,6 +120,11 @@ import Foundation
 	}
 
 	public func remove(_ rcd: JSValue) -> JSValue {
+		CNLog(logLevel: .error, message: "Not supported yet", atFunction: #function, inFile: #file)
+		return JSValue(bool: false, in: mContext)
+	}
+
+	public func save() -> JSValue {
 		CNLog(logLevel: .error, message: "Not supported yet", atFunction: #function, inFile: #file)
 		return JSValue(bool: false, in: mContext)
 	}
