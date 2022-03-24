@@ -32,10 +32,6 @@ import Foundation
 		return JSValue(object: mTable.allFieldNames, in: mContext)
 	}}
 
-	public var isDirty: JSValue { get {
-		return JSValue(bool: mTable.isDirty, in: mContext)
-	}}
-
 	public func record(_ row: JSValue) -> JSValue {
 		if row.isNumber {
 			let ridx = row.toInt32()

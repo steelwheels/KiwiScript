@@ -39,10 +39,6 @@ import Foundation
 		return JSValue(object: dc.allFieldNames, in: mContext)
 	}}
 
-	public var isDirty: JSValue { get {
-		return JSValue(bool: false, in: mContext)
-	}}
-
 	public func authorize(_ callback: JSValue) {
 		let dc = CNContactDatabase.shared
 		dc.authorize(callback: {

@@ -132,6 +132,12 @@ public class KLLibraryCompiler: KECompiler
 			(_ value: JSValue) -> JSValue in
 			if value.isBoolean {
 				return value
+			} else if value.isNumber {
+				if let num = value.toNumber() {
+					return JSValue(bool: num.intValue != 0, in: ctxt)
+				} else {
+					return JSValue(nullIn: ctxt)
+				}
 			} else {
 				return JSValue(nullIn: ctxt)
 			}
