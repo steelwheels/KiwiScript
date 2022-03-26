@@ -68,7 +68,7 @@ open class KECompiler
 		return ctxt.evaluateScript(script)
 	}
 
-	private func compileEnumType(context ctxt: KEContext, enumType etype: KEEnumType, console cons: CNConsole, config conf: KEConfig){
+	private func compileEnumType(context ctxt: KEContext, enumType etype: CNEnumType, console cons: CNConsole, config conf: KEConfig){
 		/* Compile */
 		let typename = etype.typeName
 		switch conf.logLevel {

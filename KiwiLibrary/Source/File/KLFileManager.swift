@@ -237,9 +237,9 @@ import Foundation
 		if let pathstr = valueToString(value: pathval) {
 			let fmanager = FileManager.default
 			let ftype    = fmanager.checkFileType(pathString: pathstr)
-			return JSValue(int32: ftype.rawValue, in: self.mContext)
+			return JSValue(int32: Int32(ftype.rawValue), in: self.mContext)
 		}
-		return JSValue(int32: CNFileType.NotExist.rawValue, in: self.mContext)
+		return JSValue(int32: Int32(CNFileType.NotExist.rawValue), in: self.mContext)
 	}
 
 	private func valueToURL(value val: JSValue) -> URL? {
@@ -266,9 +266,9 @@ import Foundation
 		}
 	}
 
-	private func valueToInt(value val: JSValue) -> Int32? {
+	private func valueToInt(value val: JSValue) -> Int? {
 		if val.isNumber {
-			return val.toInt32()
+			return Int(val.toInt32())
 		} else {
 			return nil
 		}

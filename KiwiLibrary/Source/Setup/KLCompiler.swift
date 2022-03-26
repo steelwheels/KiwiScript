@@ -958,7 +958,7 @@ public class KLLibraryCompiler: KECompiler
 
 	private class func valueToFileType(type tval: JSValue) -> CNFileType? {
 		if let num = tval.toNumber() {
-			if let sel = CNFileType(rawValue: num.int32Value) {
+			if let sel = CNFileType(rawValue: num.intValue) {
 				return sel
 			}
 		}

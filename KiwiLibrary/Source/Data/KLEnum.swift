@@ -27,20 +27,20 @@ public extension CNEnum
 
 	static func fromJSValue(scriptValue val: JSValue) -> CNEnum? {
 		if let dict = val.toDictionary() as? Dictionary<String, Any> {
-			if let typestr = dict["type"] as? NSString,
+			if let namestr = dict["name"]  as? NSString,
 			   let valnum  = dict["value"] as? NSNumber {
-				return CNEnum(type: typestr as String, value: valnum.intValue)
+				return CNEnum(name: namestr as String, value: valnum.intValue)
 			}
 		}
 		return nil
 	}
 
 	func toJSValue(context ctxt: KEContext) -> JSValue {
-		let typestr = NSString(string: self.type)
+		let namestr = NSString(string: self.name)
 		let valnum  = NSNumber(integerLiteral: self.value)
 		let result: Dictionary<String, NSObject> = [
 			"class"   : NSString(string: CNEnum.ClassName),
-			"type"    : typestr,
+			"name"    : namestr,
 			"value"   : valnum
 		]
 		return JSValue(object: result, in: ctxt)

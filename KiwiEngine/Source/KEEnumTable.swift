@@ -17,7 +17,7 @@ public class KEEnumTable
 {
 	public static let shared = KEEnumTable()
 
-	private var mEnumTypes:	Dictionary<String, KEEnumType>
+	private var mEnumTypes:	Dictionary<String, CNEnumType>
 
 	public var typeNames: Array<String> { get { return Array(mEnumTypes.keys) }}
 
@@ -27,128 +27,130 @@ public class KEEnumTable
 	}
 
 	private func setup(){
-		let exitcode = KEEnumType(typeName: "ExitCode")
+		let exitcode = CNEnumType(typeName: "ExitCode")
 		exitcode.add(members: [
-			KEEnumType.Member(name: "noError",		value: CNExitCode.NoError.rawValue),
-			KEEnumType.Member(name: "internalError",	value: CNExitCode.InternalError.rawValue),
-			KEEnumType.Member(name: "commaneLineError",	value: CNExitCode.CommandLineError.rawValue),
-			KEEnumType.Member(name: "syntaxError",		value: CNExitCode.SyntaxError.rawValue),
-			KEEnumType.Member(name: "exception",		value: CNExitCode.Exception.rawValue)
-			])
+			"noError": 		CNExitCode.NoError.rawValue,
+			"internalError":	CNExitCode.InternalError.rawValue,
+			"commaneLineError":	CNExitCode.CommandLineError.rawValue,
+			"syntaxError":		CNExitCode.SyntaxError.rawValue,
+			"exception":		CNExitCode.Exception.rawValue
+		])
 		mEnumTypes[exitcode.typeName] = exitcode
 
-		let logcode = KEEnumType(typeName: "LogLevel")
+		let logcode = CNEnumType(typeName: "LogLevel")
 		logcode.add(members: [
-			KEEnumType.Member(name: "nolog",		value: Int32(CNConfig.LogLevel.nolog.rawValue)),
-			KEEnumType.Member(name: "error",		value: Int32(CNConfig.LogLevel.error.rawValue)),
-			KEEnumType.Member(name: "warning",		value: Int32(CNConfig.LogLevel.warning.rawValue)),
-			KEEnumType.Member(name: "debug",		value: Int32(CNConfig.LogLevel.debug.rawValue)),
-			KEEnumType.Member(name: "detail",		value: Int32(CNConfig.LogLevel.detail.rawValue))
+			"nolog":		CNConfig.LogLevel.nolog.rawValue,
+			"error":		CNConfig.LogLevel.error.rawValue,
+			"warning":		CNConfig.LogLevel.warning.rawValue,
+			"debug":		CNConfig.LogLevel.debug.rawValue,
+			"detail":		CNConfig.LogLevel.detail.rawValue
 		])
 		mEnumTypes[logcode.typeName] = logcode
 
-		let valtype = KEEnumType(typeName: "ValueType")
+		let valtype = CNEnumType(typeName: "ValueType")
 		valtype.add(members: [
-			KEEnumType.Member(name: "nullType", 		value: Int32(CNValueType.nullType.rawValue)),
-			KEEnumType.Member(name: "boolType", 		value: Int32(CNValueType.boolType.rawValue)),
-			KEEnumType.Member(name: "numberType", 		value: Int32(CNValueType.numberType.rawValue)),
-			KEEnumType.Member(name: "stringType", 		value: Int32(CNValueType.stringType.rawValue)),
-			KEEnumType.Member(name: "dateType", 		value: Int32(CNValueType.dateType.rawValue)),
-			KEEnumType.Member(name: "rangeType", 		value: Int32(CNValueType.rangeType.rawValue)),
-			KEEnumType.Member(name: "pointType", 		value: Int32(CNValueType.pointType.rawValue)),
-			KEEnumType.Member(name: "sizeType", 		value: Int32(CNValueType.sizeType.rawValue)),
-			KEEnumType.Member(name: "rectType", 		value: Int32(CNValueType.rectType.rawValue)),
-			KEEnumType.Member(name: "enumType", 		value: Int32(CNValueType.enumType.rawValue)),
-			KEEnumType.Member(name: "dictionaryType", 	value: Int32(CNValueType.dictionaryType.rawValue)),
-			KEEnumType.Member(name: "arrayType", 		value: Int32(CNValueType.arrayType.rawValue)),
-			KEEnumType.Member(name: "URLType", 		value: Int32(CNValueType.URLType.rawValue)),
-			KEEnumType.Member(name: "colorType", 		value: Int32(CNValueType.colorType.rawValue)),
-			KEEnumType.Member(name: "imageType", 		value: Int32(CNValueType.imageType.rawValue)),
-			KEEnumType.Member(name: "objectType", 		value: Int32(CNValueType.objectType.rawValue)),
+			"nullType":		CNValueType.nullType.rawValue,
+			"boolType":		CNValueType.boolType.rawValue,
+			"numberType":		CNValueType.numberType.rawValue,
+			"stringType":		CNValueType.stringType.rawValue,
+			"dateType":		CNValueType.dateType.rawValue,
+			"rangeType":		CNValueType.rangeType.rawValue,
+			"pointType":		CNValueType.pointType.rawValue,
+			"sizeType":		CNValueType.sizeType.rawValue,
+			"rectType":		CNValueType.rectType.rawValue,
+			"enumType":		CNValueType.enumType.rawValue,
+			"dictionaryType":	CNValueType.dictionaryType.rawValue,
+			"arrayType":		CNValueType.arrayType.rawValue,
+			"URLType":		CNValueType.URLType.rawValue,
+			"colorType":		CNValueType.colorType.rawValue,
+			"imageType":		CNValueType.imageType.rawValue,
+			"recordType":		CNValueType.recordType.rawValue,
+			"referenceType":	CNValueType.referenceType.rawValue,
+			"objectType":		CNValueType.objectType.rawValue
 		])
 		mEnumTypes[valtype.typeName] = valtype
 
-		let filetype = KEEnumType(typeName: "FileType")
+		let filetype = CNEnumType(typeName: "FileType")
 		filetype.add(members: [
-			KEEnumType.Member(name: "notExist", 		value: CNFileType.NotExist.rawValue),
-			KEEnumType.Member(name: "file", 		value: CNFileType.File.rawValue),
-			KEEnumType.Member(name: "directory", 		value: CNFileType.Directory.rawValue),
+			"notExist":		CNFileType.NotExist.rawValue,
+			"file":			CNFileType.File.rawValue,
+			"directory":		CNFileType.Directory.rawValue
 		])
 		mEnumTypes[filetype.typeName] = filetype
 
-		let acctype = KEEnumType(typeName: "AccessType")
+		let acctype = CNEnumType(typeName: "AccessType")
 		acctype.add(members: [
-			KEEnumType.Member(name: "read", 		value: CNFileAccessType.ReadAccess.rawValue),
-			KEEnumType.Member(name: "write", 		value: CNFileAccessType.WriteAccess.rawValue),
-			KEEnumType.Member(name: "append", 		value: CNFileAccessType.AppendAccess.rawValue),
+			"read":			CNFileAccessType.ReadAccess.rawValue,
+			"write": 		CNFileAccessType.WriteAccess.rawValue,
+			"append": 		CNFileAccessType.AppendAccess.rawValue
 		])
 		mEnumTypes[acctype.typeName] = acctype
 
-		let axis = KEEnumType(typeName: CNAxis.typeName)
+		let axis = CNEnumType(typeName: CNAxis.typeName)
 		axis.add(members: [
-			KEEnumType.Member(name: "horizontal",	value: CNAxis.horizontal.rawValue),
-			KEEnumType.Member(name: "vertical",	value: CNAxis.vertical.rawValue)
+			"horizontal":		CNAxis.horizontal.rawValue,
+			"vertical":		CNAxis.vertical.rawValue
 		])
 		mEnumTypes[axis.typeName] = axis
 
-		let alignment = KEEnumType(typeName: CNAlignment.typeName)
+		let alignment = CNEnumType(typeName: CNAlignment.typeName)
 		alignment.add(members: [
-			KEEnumType.Member(name: "leading",	value: CNAlignment.leading.rawValue),
-			KEEnumType.Member(name: "trailing",	value: CNAlignment.trailing.rawValue),
-			KEEnumType.Member(name: "fill",		value: CNAlignment.fill.rawValue),
-			KEEnumType.Member(name: "center",	value: CNAlignment.center.rawValue)
+			"leading": 		CNAlignment.leading.rawValue,
+			"trailing": 		CNAlignment.trailing.rawValue,
+			"fill": 		CNAlignment.fill.rawValue,
+			"center": 		CNAlignment.center.rawValue
 		])
 		mEnumTypes[alignment.typeName] = alignment
 
-		let distribution = KEEnumType(typeName: CNDistribution.typeName)
+		let distribution = CNEnumType(typeName: CNDistribution.typeName)
 		distribution.add(members: [
-			KEEnumType.Member(name: "fill",			value: CNDistribution.fill.rawValue),
-			KEEnumType.Member(name: "fillProportinally",	value: CNDistribution.fillProportinally.rawValue),
-			KEEnumType.Member(name: "fillEqually",		value: CNDistribution.fillEqually.rawValue),
-			KEEnumType.Member(name: "equalSpacing",		value: CNDistribution.equalSpacing.rawValue),
+			"fill":			CNDistribution.fill.rawValue,
+			"fillProportinally":	CNDistribution.fillProportinally.rawValue,
+			"fillEqually":		CNDistribution.fillEqually.rawValue,
+			"equalSpacing":		CNDistribution.equalSpacing.rawValue
 		])
 		mEnumTypes[distribution.typeName] = distribution
 
-		let fontsize = KEEnumType(typeName: "FontSize")
+		let fontsize = CNEnumType(typeName: "FontSize")
 		fontsize.add(members: [
-			KEEnumType.Member(name: "small",	value: Int32(CNFont.smallSystemFontSize)),
-			KEEnumType.Member(name: "regular",	value: Int32(CNFont.systemFontSize)),
-			KEEnumType.Member(name: "large",	value: Int32(CNFont.systemFontSize * 1.5))
+			"small":		Int(CNFont.smallSystemFontSize),
+			"regular":		Int(CNFont.systemFontSize),
+			"large": 		Int(CNFont.systemFontSize * 1.5)
 		])
 		mEnumTypes[fontsize.typeName] = fontsize
 
-		let textalign = KEEnumType(typeName: "TextAlign")
+		let textalign = CNEnumType(typeName: "TextAlign")
 		textalign.add(members: [
-			KEEnumType.Member(name: "left",		value: Int32(NSTextAlignment.left.rawValue)),
-			KEEnumType.Member(name: "center",	value: Int32(NSTextAlignment.center.rawValue)),
-			KEEnumType.Member(name: "right",	value: Int32(NSTextAlignment.right.rawValue)),
-			KEEnumType.Member(name: "justfied",	value: Int32(NSTextAlignment.justified.rawValue)),
-			KEEnumType.Member(name: "normal",	value: Int32(NSTextAlignment.natural.rawValue))
+			"left":			NSTextAlignment.left.rawValue,
+			"center":		NSTextAlignment.center.rawValue,
+			"right":		NSTextAlignment.right.rawValue,
+			"justfied":		NSTextAlignment.justified.rawValue,
+			"normal":		NSTextAlignment.natural.rawValue
 		])
 		mEnumTypes[textalign.typeName] = textalign
 
-		let authorize = KEEnumType(typeName: "Authorize")
+		let authorize = CNEnumType(typeName: "Authorize")
 		authorize.add(members: [
-			KEEnumType.Member(name: "undetermined",	value: CNAuthorizeState.Undetermined.rawValue),
-			KEEnumType.Member(name: "denied",	value: CNAuthorizeState.Denied.rawValue),
-			KEEnumType.Member(name: "authorized",	value: CNAuthorizeState.Authorized.rawValue)
+			"undetermined":		CNAuthorizeState.Undetermined.rawValue,
+			"denied":		CNAuthorizeState.Denied.rawValue,
+			"authorized":		CNAuthorizeState.Authorized.rawValue
 		])
 		mEnumTypes[authorize.typeName] = authorize
 
-		let animstate = KEEnumType(typeName: "AnimationState")
+		let animstate = CNEnumType(typeName: "AnimationState")
 		animstate.add(members: [
-			KEEnumType.Member(name: "idle",		value: CNAnimationState.idle.rawValue),
-			KEEnumType.Member(name: "run",		value: CNAnimationState.run.rawValue),
-			KEEnumType.Member(name: "pause",	value: CNAnimationState.pause.rawValue)
+			"idle":			CNAnimationState.idle.rawValue,
+			"run":			CNAnimationState.run.rawValue,
+			"pause":		CNAnimationState.pause.rawValue
 		])
 		mEnumTypes[animstate.typeName] = animstate
 	}
 
-	public func search(by typename: String) -> KEEnumType? {
+	public func search(by typename: String) -> CNEnumType? {
 		return mEnumTypes[typename]
 	}
 
-	public func add(typeName name: String, enumType etype: KEEnumType) {
+	public func add(typeName name: String, enumType etype: CNEnumType) {
 		mEnumTypes[name] = etype
 	}
 }
