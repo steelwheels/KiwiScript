@@ -66,6 +66,8 @@ public protocol KLRecordCore
 			if let nstr = name.toString() {
 				result = mRecord.setValue(value: val.toNativeValue(), forField: nstr)
 			}
+		} else {
+			CNLog(logLevel: .error, message: "Invalid type of name", atFunction: #function, inFile: #file)
 		}
 		return JSValue(bool: result, in: mContext)
 	}
