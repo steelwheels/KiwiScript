@@ -122,13 +122,8 @@ open class KEResource: CNResource
 	static public func allocateValueStorage(packageDirectory packdir: URL, filePath fpath: String) -> CNValueStorage? {
 		/* Put the copy of source file into ApplicationSupport directory */
 		let packname = packdir.lastPathComponent
-		let srcfile  = packdir.appendingPathComponent(fpath)
 		let dstdir   = CNFilePath.URLforApplicationSupportDirectory(subDirectory: packname)
-		let dstfile  = dstdir.appendingPathComponent(fpath)
-		if !FileManager.default.copyFileIfItIsNotExist(sourceFile: srcfile, destinationFile: dstfile) {
-			CNLog(logLevel: .error, message: "Failed to file copy: \(srcfile.path) to \(dstfile.path)", atFunction: #function, inFile: #file)
-			return nil
-		}
+
 		let storage = CNValueStorage(sourceDirectory: packdir, cacheDirectory: dstdir, filePath: fpath)
 		switch storage.load() {
 		case .ok(_):
