@@ -65,7 +65,7 @@ public class KEEnumTable
 			"colorType":		CNValueType.colorType.rawValue,
 			"imageType":		CNValueType.imageType.rawValue,
 			"recordType":		CNValueType.recordType.rawValue,
-			"referenceType":	CNValueType.referenceType.rawValue,
+			"segmentType":		CNValueType.segmentType.rawValue,
 			"objectType":		CNValueType.objectType.rawValue
 		])
 		mEnumTypes[valtype.typeName] = valtype

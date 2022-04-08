@@ -1,5 +1,5 @@
 /**
- * @file	KLValueReference.swift
+ * @file	KLValueSegment.swift
  * @brief	Extend CNValueReference class
  * @par Copyright
  *   Copyright (C) 2021 Steel Wheels Project
@@ -10,21 +10,21 @@ import KiwiEngine
 import JavaScriptCore
 import Foundation
 
-public extension CNValueReference
+public extension CNValueSegment
 {
-	static func isValueReference(scriptValue val: JSValue) -> Bool {
+	static func isValueSegment(scriptValue val: JSValue) -> Bool {
 		if let dict = val.toDictionary() as? Dictionary<String, Any> {
-			if let _ = dict[CNValueReference.RelativePathItem] as? NSString {
+			if let _ = dict[CNValueSegment.RelativePathItem] as? NSString {
 				return true
 			}
 		}
 		return false
 	}
 
-	static func fromJSValue(scriptValue val: JSValue) -> CNValueReference? {
+	static func fromJSValue(scriptValue val: JSValue) -> CNValueSegment? {
 		if let dict = val.toDictionary() as? Dictionary<String, Any> {
-			if let pathstr = dict[CNValueReference.RelativePathItem] as? NSString {
-				return CNValueReference(relativePath: pathstr as String)
+			if let pathstr = dict[CNValueSegment.RelativePathItem] as? NSString {
+				return CNValueSegment(relativePath: pathstr as String)
 			}
 		}
 		return nil
@@ -33,8 +33,8 @@ public extension CNValueReference
 	func toJSValue(context ctxt: KEContext) -> JSValue {
 		let pathstr = NSString(string: self.relativePath)
 		let result: Dictionary<String, NSObject> = [
-			"class"                           : NSString(string: CNValueReference.ClassName),
-			CNValueReference.RelativePathItem : pathstr
+			"class"				: NSString(string: CNValueSegment.ClassName),
+			CNValueSegment.RelativePathItem	: pathstr
 		]
 		return JSValue(object: result, in: ctxt)
 	}

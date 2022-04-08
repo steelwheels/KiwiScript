@@ -145,12 +145,12 @@ extension JSValue
 		return nil
 	}
 
-	public var isReference: Bool {
-		get { return CNValueReference.isValueReference(scriptValue: self) }
+	public var isSegment: Bool {
+		get { return CNValueSegment.isValueSegment(scriptValue: self) }
 	}
 
-	public func toReference() -> CNValueReference? {
-		return CNValueReference.fromJSValue(scriptValue: self)
+	public func toSegment() -> CNValueSegment? {
+		return CNValueSegment.fromJSValue(scriptValue: self)
 	}
 
 	private func isSpecialDictionary(keys dictkeys: Array<AnyHashable>) -> Bool {
@@ -237,8 +237,8 @@ extension JSValue
 				result = .imageType
 			} else if self.isRecord {
 				result = .recordType
-			} else if self.isReference {
-				result = .referenceType
+			} else if self.isSegment {
+				result = .segmentType
 			} else if self.isArray {
 				result = .arrayType
 			} else if self.isDictionary {
@@ -343,9 +343,9 @@ extension JSValue
 					CNLog(logLevel: .error, message: "Failed to convert to record", atFunction: #function, inFile: #file)
 					result = .nullValue
 				}
-			case .referenceType:
-				if let refval = self.toReference() {
-					result = .reference(refval)
+			case .segmentType:
+				if let refval = self.toSegment() {
+					result = .segmentValue(refval)
 				} else {
 					result = .nullValue
 				}

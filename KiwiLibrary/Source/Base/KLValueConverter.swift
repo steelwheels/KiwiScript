@@ -63,7 +63,7 @@ public class KLValueDuplicator
 			case .rectType:		dupval = src.toRect().toJSValue(context: mTargetContext)
 			case .recordType:	dupval = duplicate(recordValue: src.toRecord())
 			case .objectType:	dupval = duplicate(object: src.toObject())
-			case .referenceType:	dupval = duplicate(valueReference: src.toReference())
+			case .segmentType:	dupval = duplicate(valueSegment: src.toSegment())
 			@unknown default:
 				CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
 				dupval = JSValue(undefinedIn: mTargetContext)
@@ -132,7 +132,7 @@ public class KLValueDuplicator
 		return result
 	}
 
-	private func duplicate(valueReference ref: CNValueReference?) -> JSValue {
+	private func duplicate(valueSegment ref: CNValueSegment?) -> JSValue {
 		if let val = ref {
 			return val.toJSValue(context: mTargetContext)
 		} else {

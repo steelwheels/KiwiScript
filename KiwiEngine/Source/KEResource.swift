@@ -102,7 +102,7 @@ open class KEResource: CNResource
 		return result
 	}
 
-	public func getValueStorage(packageDirectory packdir: URL, fileURL fileurl: URL) -> CNValueStorage? {
+	private func getValueStorage(packageDirectory packdir: URL, fileURL fileurl: URL) -> CNValueStorage? {
 		let filepath: String
 		if let relpath = CNFilePath.relativePathUnderBaseURL(fullPath: fileurl, basePath: packdir){
 			filepath = relpath
