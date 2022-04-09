@@ -409,17 +409,6 @@ public class KLLibraryCompiler: KECompiler
 		}
 		ctxt.set(name: "isEOF", function: isEofFunc)
 
-		/* className */
-		let classNameFunc: @convention(block) (_ value: JSValue) -> JSValue = {
-			(_ value: JSValue) -> JSValue in
-			if let name = value.classPropertyName {
-				return JSValue(object: name, in: ctxt)
-			} else {
-				return JSValue(nullIn: ctxt)
-			}
-		}
-		ctxt.set(name: "className", function: classNameFunc)
-
 		/* typeID */
 		let valtypeFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in

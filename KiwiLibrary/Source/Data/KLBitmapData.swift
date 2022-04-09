@@ -16,7 +16,7 @@ extension JSValue
 {
 	public var isBitmap: Bool {
 		get {
-			return self.isClass(name: BitmapValueClassName)
+			return JSValue.hasClassName(value: self, className: BitmapValueClassName)
 		}
 	}
 

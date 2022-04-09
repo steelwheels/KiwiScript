@@ -25,20 +25,13 @@ extension JSValue
 		self.init(object: imgobj, in: context)
 	}
 
-	public var classPropertyName: String? {
-		if let dict = self.toObject() as? Dictionary<String, Any> {
-			return dict["class"] as? String
-		} else {
-			return nil
+	public static func hasClassName(value val: JSValue, className name: String) -> Bool {
+		if let dict = val.toObject() as? Dictionary<String, Any> {
+			if let str = dict["class"] as? String {
+				return str == name
+			}
 		}
-	}
-
-	public func isClass(name nm: String) -> Bool {
-		if let thisname = classPropertyName {
-			return (thisname == nm)
-		} else {
-			return false
-		}
+		return false
 	}
 
 	public var isDictionary: Bool {

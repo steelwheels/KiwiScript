@@ -13,9 +13,11 @@ import Foundation
 public extension CNValueSegment
 {
 	static func isValueSegment(scriptValue val: JSValue) -> Bool {
-		if let dict = val.toDictionary() as? Dictionary<String, Any> {
-			if let _ = dict[CNValueSegment.FileItem] as? NSString {
-				return true
+		if JSValue.hasClassName(value: val, className: CNValueSegment.ClassName) {
+			if let dict = val.toDictionary() as? Dictionary<String, Any> {
+				if let _ = dict[CNValueSegment.FileItem] as? NSString {
+					return true
+				}
 			}
 		}
 		return false
