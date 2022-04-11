@@ -61,6 +61,8 @@ extension CNValue {
 			result = JSValue(int32: colval, in: ctxt)
 		case .segmentValue(let val):
 			result = val.toJSValue(context: ctxt)
+		case .pointerValue(let val):
+			result = val.toJSValue(context: ctxt)
 		@unknown default:
 			result = JSValue(nullIn: ctxt)
 		}

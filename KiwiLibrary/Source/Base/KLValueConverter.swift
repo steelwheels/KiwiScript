@@ -64,6 +64,7 @@ public class KLValueDuplicator
 			case .recordType:	dupval = duplicate(recordValue: src.toRecord())
 			case .objectType:	dupval = duplicate(object: src.toObject())
 			case .segmentType:	dupval = duplicate(valueSegment: src.toSegment())
+			case .pointerType:	dupval = duplicate(pointerValue: src.toPointer())
 			@unknown default:
 				CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
 				dupval = JSValue(undefinedIn: mTargetContext)
@@ -134,6 +135,14 @@ public class KLValueDuplicator
 
 	private func duplicate(valueSegment ref: CNValueSegment?) -> JSValue {
 		if let val = ref {
+			return val.toJSValue(context: mTargetContext)
+		} else {
+			return JSValue(nullIn: mTargetContext)
+		}
+	}
+
+	private func duplicate(pointerValue ptr: CNPointerValue?) -> JSValue {
+		if let val = ptr {
 			return val.toJSValue(context: mTargetContext)
 		} else {
 			return JSValue(nullIn: mTargetContext)

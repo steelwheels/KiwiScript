@@ -146,29 +146,12 @@ extension JSValue
 		return CNValueSegment.fromJSValue(scriptValue: self)
 	}
 
-	private func isSpecialDictionary(keys dictkeys: Array<AnyHashable>) -> Bool {
-		if let obj = self.toObject() {
-			if let dict = obj as? Dictionary<AnyHashable, Any> {
-				return isSpecialDictionary(keys: dictkeys, in: dict)
-			}
-		}
-		return false
+	public var isPointer: Bool {
+		get { return CNPointerValue.isPointer(scriptValue: self) }
 	}
 
-	private func isSpecialDictionary(keys dictkeys: Array<AnyHashable>, in dict: Dictionary<AnyHashable, Any>) -> Bool {
-		if dict.count == dictkeys.count {
-			var haskey = true
-			for key in dictkeys {
-				if dict[key] == nil {
-					haskey = false
-					break
-				}
-			}
-			if haskey {
-				return true
-			}
-		}
-		return false
+	public func toPointer() -> CNPointerValue? {
+		return CNPointerValue.fromJSValue(scriptValue: self)
 	}
 
 	private func anyToDouble(any aval: Any?) -> CGFloat? {
@@ -232,6 +215,8 @@ extension JSValue
 				result = .recordType
 			} else if self.isSegment {
 				result = .segmentType
+			} else if self.isPointer {
+				result = .pointerType
 			} else if self.isArray {
 				result = .arrayType
 			} else if self.isDictionary {
@@ -339,6 +324,12 @@ extension JSValue
 			case .segmentType:
 				if let refval = self.toSegment() {
 					result = .segmentValue(refval)
+				} else {
+					result = .nullValue
+				}
+			case .pointerType:
+				if let ptrval = self.toPointer() {
+					result = .pointerValue(ptrval)
 				} else {
 					result = .nullValue
 				}
