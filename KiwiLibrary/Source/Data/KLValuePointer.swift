@@ -26,8 +26,8 @@ public extension CNPointerValue
 	static func fromJSValue(scriptValue val: JSValue) -> CNPointerValue? {
 		if let dict = val.toDictionary() as? Dictionary<String, Any> {
 			if let pathstr = dict[CNPointerValue.PathItem] as? String {
-				if let pathelms = CNValuePath.pathExpression(string: pathstr) {
-					let pathobj = CNValuePath(elements: pathelms)
+				if let (ident, pathelms) = CNValuePath.pathExpression(string: pathstr) {
+					let pathobj = CNValuePath(identifier: ident, elements: pathelms)
 					return CNPointerValue(path: pathobj)
 				}
 			}

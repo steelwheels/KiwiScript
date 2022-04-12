@@ -41,8 +41,8 @@ import Foundation
 	public func value(_ pathval: JSValue) -> JSValue {
 		if pathval.isString {
 			if let pathstr = pathval.toString() {
-				if let pathelms = CNValuePath.pathExpression(string: pathstr) {
-					if let retval = mValueStorage.value(forPath: CNValuePath(elements: pathelms)) {
+				if let (ident, pathelms) = CNValuePath.pathExpression(string: pathstr) {
+					if let retval = mValueStorage.value(forPath: CNValuePath(identifier: ident, elements: pathelms)) {
 						return retval.toJSValue(context: mContext)
 					}
 				}
@@ -56,8 +56,8 @@ import Foundation
 		if pathval.isString {
 			if let pathstr = pathval.toString() {
 				let src    = val.toNativeValue()
-				if let pathelms = CNValuePath.pathExpression(string: pathstr) {
-					result = mValueStorage.set(value: src, forPath: CNValuePath(elements: pathelms))
+				if let (ident, pathelms) = CNValuePath.pathExpression(string: pathstr) {
+					result = mValueStorage.set(value: src, forPath: CNValuePath(identifier: ident, elements: pathelms))
 				}
 			}
 		}
