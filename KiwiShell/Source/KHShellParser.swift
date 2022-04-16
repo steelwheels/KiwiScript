@@ -31,8 +31,8 @@ public class KHShellParser
 		do {
 			let stmts = try parseMain(lines: lns, environment: env)
 			return .ok(stmts)
-		} catch let err {
-			return .error(err)
+		} catch {
+			return .error(error as NSError)
 		}
 	}
 

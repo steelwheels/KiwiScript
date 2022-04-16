@@ -23,10 +23,8 @@ public class KEManifestLoader
 			} else {
 				throw NSError.parseError(message: "Not manifest data")
 			}
-		} catch let err as NSError {
-			return err
 		} catch {
-			return NSError.parseError(message: "Unknow error")
+			return error as NSError
 		}
 	}
 
