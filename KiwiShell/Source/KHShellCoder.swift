@@ -63,6 +63,12 @@ private class KHProcessIdConverter: KHShellStatementVisitor
 		return nil
 	}
 
+	open override func visit(cleanCommandStatement stmt: KHCleanCommandStatement) -> KHSingleStatement? {
+		stmt.processId = processId
+		processId += 1
+		return nil
+	}
+
 	open override func visit(installCommandStatement stmt: KHInstallCommandStatement) -> KHSingleStatement? {
 		stmt.processId = processId
 		processId += 1
@@ -194,6 +200,20 @@ private class KHCodeConverter: KHShellStatementVisitor
 		let proc  = processName(stmt)
 		let stmt0 = "let \(proc) = run(\(path), \(stmt.inputNameString), \(stmt.outputNameString), \(stmt.errorNameString)) ;"
 		let stmt1 = "\(proc).start(\(arg)) ;"
+		add(statements: [stmt0, stmt1])
+		return nil
+	}
+
+	open override func visit(cleanCommandStatement stmt: KHCleanCommandStatement) -> KHSingleStatement? {
+		let file: String
+		if let f = stmt.scriptFile {
+			file = "\"\(f)\""
+		} else {
+			file = "null"
+		}
+		let proc  = processName(stmt)
+		let stmt0 = "let \(proc) = clean() ;"
+		let stmt1 = "\(proc).start(\(file)) ;"
 		add(statements: [stmt0, stmt1])
 		return nil
 	}

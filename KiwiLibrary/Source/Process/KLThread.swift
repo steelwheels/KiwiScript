@@ -110,7 +110,7 @@ public enum KLSource {
 
 		/* Compile */
 		guard self.compile(context: mContext, resource: mResource, processManager: mChildProcessManager, terminalInfo: mTerminalInfo, environment: self.environment, console: self.console, config: mConfig) else {
-			console.error(string: "Compile error")
+			console.error(string: "Compile error\n")
 			return false
 		}
 

@@ -21,6 +21,8 @@ open class KHShellStatementVisitor
 			result = visit(historyCommandStatement: nstmt)
 		} else if let nstmt = stmt as? KHRunCommandStatement {
 			result = visit(runCommandStatement: nstmt)
+		} else if let nstmt = stmt as? KHCleanCommandStatement {
+			result = visit(cleanCommandStatement: nstmt)
 		} else if let nstmt = stmt as? KHInstallCommandStatement {
 			result = visit(installCommandStatement: nstmt)
 		} else if let nstmt = stmt as? KHBuiltinCommandStatement {
@@ -41,6 +43,7 @@ open class KHShellStatementVisitor
 	open func visit(cdCommandStatement stmt: KHCdCommandStatement) -> KHSingleStatement? { return nil }
 	open func visit(historyCommandStatement stmt: KHHistoryCommandStatement) -> KHSingleStatement? { return nil }
 	open func visit(runCommandStatement stmt: KHRunCommandStatement) -> KHSingleStatement? { return nil }
+	open func visit(cleanCommandStatement stmt: KHCleanCommandStatement) -> KHSingleStatement? { return nil }
 	open func visit(installCommandStatement stmt: KHInstallCommandStatement) -> KHSingleStatement? { return nil }
 	open func visit(builtinCommandStatement stmt: KHBuiltinCommandStatement) -> KHSingleStatement? { return nil }
 	open func visit(pipelineStatement stmt: KHPipelineStatement) -> KHPipelineStatement? { return nil }
@@ -66,6 +69,10 @@ open class KHShellStatementConverter: KHShellStatementVisitor
 	}
 
 	open override func visit(runCommandStatement stmt: KHRunCommandStatement) -> KHSingleStatement? {
+		return nil
+	}
+
+	open override func visit(cleanCommandStatement stmt: KHCleanCommandStatement) -> KHSingleStatement? {
 		return nil
 	}
 

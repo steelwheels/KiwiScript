@@ -31,6 +31,7 @@ open class KEResource: CNResource
 	private var mFileLoader:		LoaderFunc
 	private var mValueStorageLoader:	LoaderFunc
 	private var mImageLoader:		LoaderFunc
+	private var mEmptyReset:		ResetFunc
 	private var mStorageTable:		Dictionary<String, CNValueStorage>
 
 	public var fileLoader: LoaderFunc	{ get { return mFileLoader }}
@@ -56,6 +57,11 @@ open class KEResource: CNResource
 				return CNImage(contentsOfFile: fileurl.path)
 			#endif
 		}
+
+		mEmptyReset = {
+			(_ fileurl: URL, _ contents: Any) -> Bool in return false
+		}
+
 		mStorageTable = [:]
 		super.init(packageDirectory: packdir)
 
@@ -66,14 +72,14 @@ open class KEResource: CNResource
 		}
 
 		/* Setup categories */
-		addCategory(category: KEResource.ApplicationCategory,	loader: mFileLoader)
-		addCategory(category: KEResource.ViewCategory, 		loader: mFileLoader)
-		addCategory(category: KEResource.LibrariesCategory,	loader: mFileLoader)
-		addCategory(category: KEResource.ThreadsCategory,	loader: mFileLoader)
-		addCategory(category: KEResource.SubViewsCategory,	loader: mFileLoader)
-		addCategory(category: KEResource.DataCategory,		loader: mFileLoader)
-		addCategory(category: KEResource.StoragesCategory,	loader: mValueStorageLoader)
-		addCategory(category: KEResource.ImagesCategory, 	loader: mImageLoader)
+		addCategory(category: KEResource.ApplicationCategory,	loader: mFileLoader, reset: mEmptyReset)
+		addCategory(category: KEResource.ViewCategory, 		loader: mFileLoader, reset: mEmptyReset)
+		addCategory(category: KEResource.LibrariesCategory,	loader: mFileLoader, reset: mEmptyReset)
+		addCategory(category: KEResource.ThreadsCategory,	loader: mFileLoader, reset: mEmptyReset)
+		addCategory(category: KEResource.SubViewsCategory,	loader: mFileLoader, reset: mEmptyReset)
+		addCategory(category: KEResource.DataCategory,		loader: mFileLoader, reset: mEmptyReset)
+		addCategory(category: KEResource.StoragesCategory,	loader: mValueStorageLoader, reset: mEmptyReset)
+		addCategory(category: KEResource.ImagesCategory, 	loader: mImageLoader, reset: mEmptyReset)
 	}
 
 	public convenience init(singleFileURL url: URL) {
@@ -138,8 +144,8 @@ open class KEResource: CNResource
 		return storage
 	}
 
-	public func addCategory(category cname: String, loader ldr: @escaping LoaderFunc) {
-		super.allocate(category: cname, loader: ldr)
+	public func addCategory(category cname: String, loader ldr: @escaping LoaderFunc, reset rst: @escaping ResetFunc) {
+		super.allocate(category: cname, loader: ldr, reset: rst)
 	}
 
 	/*

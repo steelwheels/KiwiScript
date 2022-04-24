@@ -75,17 +75,80 @@ import Foundation
 					env.currentDirectory = newpath
 					result = 0 // No error
 				default:
-					console.error(string: "Error: not directory")
+					console.error(string: "Error: not directory\n")
 				}
 			} else {
-				console.error(string: "Error: Failed to convert to string")
+				console.error(string: "Error: Failed to convert to string\n")
 			}
 		} else if arg.isNull {
 			let home = CNPreference.shared.userPreference.homeDirectory
 			env.currentDirectory = home
 			result = 0
 		} else {
-			console.error(string: "Error: Invalid parameter for path")
+			console.error(string: "Error: Invalid parameter for path\n")
+		}
+		return result
+	}
+}
+
+@objc open class KLCleanCommand: KLCommand
+{
+	static public let builtinFunctionName = "clean"
+
+	public init(context ctxt: KEContext, console cons: CNConsole, environment env: CNEnvironment) {
+		super.init(function: {
+			(_ arg: JSValue, _ ctxt: KEContext, _ env: CNEnvironment) -> Int32 in
+			return KLCleanCommand.execute(arg, ctxt, cons, env)
+		}, context: ctxt, console: cons, environment: env)
+	}
+
+	private static func execute(_ arg: JSValue, _ context: KEContext, _ console: CNConsole, _ env: CNEnvironment) -> Int32 {
+		/* get target script name */
+		let scrname: String
+		if arg.isString{
+			scrname = arg.toString()
+		} else if arg.isNull {
+			#if os(OSX)
+				let semaphore = DispatchSemaphore(value: 0)
+				var name: String? = nil
+				URL.openPanel(title: "Select script for clean", type: .File, extensions: ["jspkg"], callback: {
+					(_ url: URL?) -> Void in
+					if let u = url { name = u.lastPathComponent }
+					semaphore.signal()
+				})
+				semaphore.wait()
+				if let n = name {
+					scrname = n
+				} else {
+					console.error(string: "Error: The target script name is required\n")
+					return -1 // No argument
+				}
+			#else
+				console.error(string: "Error: The target script name is required\n")
+				return -1 // No argument
+			#endif
+		} else {
+			console.error(string: "Error: The target script name is required\n")
+			return -1
+		}
+
+		var result: Int32 = -1
+		let fmanager = FileManager.default
+		let targurl  = CNFilePath.URLforApplicationSupportDirectory(subDirectory: scrname)
+		if fmanager.fileExists(atURL: targurl) {
+			if fmanager.isDeletableFile(atURL: targurl) {
+				switch fmanager.removeFile(atURL: targurl) {
+				case .ok:
+					result = 0	// done
+				case .error(let err):
+					console.error(string: "Error: \(err.toString())\n")
+				@unknown default:
+					console.error(string: "Error: Unexpected result\n")
+				}
+				result = 0
+			} else {
+				console.error(string: "The file is not deletable: \(targurl.path)\n")
+			}
 		}
 		return result
 	}

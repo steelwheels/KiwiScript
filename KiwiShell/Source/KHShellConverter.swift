@@ -76,6 +76,14 @@ private class KHBuiltinCommandConverter: KHShellStatementConverter
 				let newstmt = KHInstallCommandStatement(scriptPath: path, argument: arg)
 				newstmt.importProperties(source: stmt)
 				return newstmt
+			case "clean":
+				var file: String? = nil
+				if let rest = restp {
+					(file, _) = CNStringUtil.cutFirstWord(string: rest)
+				}
+				let newstmt = KHCleanCommandStatement(scriptFile: file)
+				newstmt.importProperties(source: stmt)
+				return newstmt
 			default:
 				break
 			}

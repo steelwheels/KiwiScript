@@ -8,7 +8,7 @@ function valueTableInStorage(storage: string, path: string): TableIF | null
 {
         let strg = ValueStorage(storage) ;
         if(strg == null) {
-                console.error("[Error] Storage " + storage + " is Not Exist") ;
+                console.error("[Error] Storage " + storage + " is Not Exist\n") ;
                 return null ;
         }
         return ValueTable(path, strg!) ;

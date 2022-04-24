@@ -117,6 +117,17 @@ public class KHRunCommandStatement: KHSingleStatement
 	}
 }
 
+public class KHCleanCommandStatement: KHSingleStatement
+{
+	private var mScriptFile:	String?
+
+	public var scriptFile: String? { get { return mScriptFile }}
+
+	public init(scriptFile file: String?) {
+		mScriptFile = file
+	}
+}
+
 public class KHInstallCommandStatement: KHSingleStatement
 {
 	private var mScriptPath:	String?

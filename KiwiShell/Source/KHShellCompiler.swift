@@ -37,6 +37,7 @@ public class KHShellCompiler: KECompiler
 
 	private func defineBuiltinFunctions(context ctxt: KEContext, console cons: CNConsole, processManager procmgr: CNProcessManager, environment env: CNEnvironment) {
 		defineCdFunction(context: ctxt, console: cons, environment: env)
+		defineCleanFunction(context: ctxt, console: cons, environment: env)
 		defineHistoryFunction(context: ctxt, console: cons, environment: env)
 		defineSetupFunction(context: ctxt, console: cons, environment: env)
 		#if os(OSX)
@@ -52,6 +53,16 @@ public class KHShellCompiler: KECompiler
 			return JSValue(object: cdcmd, in: ctxt)
 		}
 		ctxt.set(name: "cdcmd", function: cdfunc)
+	}
+
+	private func defineCleanFunction(context ctxt: KEContext, console cons: CNConsole, environment env: CNEnvironment) {
+		/* clean command */
+		let cdfunc: @convention(block) () -> JSValue = {
+			() -> JSValue in
+			let cdcmd = KLCleanCommand(context: ctxt, console: cons, environment: env)
+			return JSValue(object: cdcmd, in: ctxt)
+		}
+		ctxt.set(name: KLCleanCommand.builtinFunctionName, function: cdfunc)
 	}
 
 	private func defineHistoryFunction(context ctxt: KEContext, console cons: CNConsole, environment env: CNEnvironment) {
