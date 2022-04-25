@@ -9,7 +9,7 @@ It means the class instance can not be kept by this storage.
 ## Constructor
 There is a constructor function to allocate the instance of this class:
 ````
-ValueStorage(ident: string): ValueStorageIF ;
+Storage(ident: string): ValueStorageIF ;
 ````
 
 ### Parameter: `ident`
@@ -63,7 +63,7 @@ The load/store file for the value storage named `storage0` is placed at `*.jspkg
 ## Example
 Following JavaScript allocates the value storage which is defined in above manifest file.
 ````
-let storage0 = ValueStorage("storage0") ;
+let storage0 = Storage("storage0") ;
 if(storage0 == null){
 	console.print("Failed to allocate\n") ;
 	return -1 ;

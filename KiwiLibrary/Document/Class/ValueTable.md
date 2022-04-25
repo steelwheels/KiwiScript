@@ -1,18 +1,18 @@
-# ValueTable
-The `ValueTable` class supports record based access on the [ValueStorage](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/ValueStorage.md) data.
+# Table
+The `Table` class supports record based access on the [ValueStorage](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/ValueStorage.md) data.
 
-The `ValueTable` has multiple [Record](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Record.md)s.
+The `Table` has multiple [Record](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Record.md)s.
 
 ## File format
 This is a sample JSON data for value table.
 
-The format of the sub-tree is defined as `ValueTable` format.
+The format of the sub-tree is defined as `Table` format.
 
 Filen ame: `sample.json`
 ````
 {
         top: {
-                className: "ValueTable",
+                className: "Table",
                 columnNames: [
                         "a", "b"
                 ],
@@ -26,7 +26,7 @@ Filen ame: `sample.json`
 
 |Property       |Type   |Description                    |
 |:--            |:--    |:--                            |
-|`className`    |string |Must be "`ValueTable`"         |
+|`className`    |string |Must be "`Table`"         |
 |`columnNames`  |string[] |Name of columns             |
 |`records`      |object[] |Array of record objects      |
 
@@ -34,7 +34,7 @@ Filen ame: `sample.json`
 ## Constructor
 There is a constructor function to allocate the instance of this class:
 ````
-ValueTable(path: string, storage: ValueStorageIF): TableIF ;
+Table(path: string, storage: ValueStorageIF): TableIF ;
 ````
 
 The parameter `path` is used to select the sub-tree in the storage. When you want to access value table in above `sample.json`,
@@ -77,11 +77,11 @@ Append the record to the table. The table will be updated by this method. The re
 Return the string which presents the entire of table data.
 
 ## Sample script
-This is sample script to allocate ValueTable.
+This is sample script to allocate Table.
 About allocation of ValueStorage, see [ValueStorage](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/ValueStorage.md).
 ````
-  let storage = ValueStorage("storage") ;
-  let table = ValueTable("path", storage) ;
+  let storage = Storage("storage") ;
+  let table = Table("path", storage) ;
 ````
 (These functions returns `null` when the allocation failed. You have to check them at the real implementation.)
 

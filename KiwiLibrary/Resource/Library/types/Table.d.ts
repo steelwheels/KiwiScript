@@ -1,2 +1,2 @@
 /// <reference path="Builtin.d.ts" />
-declare function valueTableInStorage(storage: string, path: string): TableIF | null;
+declare function tableInStorage(storage: string, path: string): TableIF | null;

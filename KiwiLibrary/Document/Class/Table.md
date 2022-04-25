@@ -22,7 +22,7 @@ interface TableIF {
 ## Constructor
 There is built-in function to allocate value table.
 ````
-ValueTable(path: string, storage: ValueStorageIF): TableIF | null ;
+Table(path: string, storage: ValueStorageIF): TableIF | null ;
 ````
 
 |name   |Type   |Description    |
@@ -37,7 +37,7 @@ is presented as `tables.table_a`.
 {
   tables: {
         table_a: {
-                class: "ValueTable",
+                class: "Table",
                 columnNames: ["c0", "c1", "c2"],
                 records: [
                         ...

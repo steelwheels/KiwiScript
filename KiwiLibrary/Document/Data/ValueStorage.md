@@ -10,7 +10,7 @@ This is a sample file of the value storage:
 ````
 {
   id:             "sample_table",       // *1
-  class:          "ValueTable",
+  class:          "Table",
   columnNames:    ["c0", "c1", "c2"],
   records: [
     {

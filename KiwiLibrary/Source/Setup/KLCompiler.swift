@@ -767,7 +767,7 @@ public class KLLibraryCompiler: KECompiler
 		}
 		ctxt.set(name: "Dictionary", function: allocDictFunc)
 
-		/* ValueTable */
+		/* Table */
 		let allocTableFunc: @convention(block) (_ pathval: JSValue, _ storageval: JSValue) -> JSValue = {
 			(_ pathval: JSValue, _ storageval: JSValue) -> JSValue in
 			if pathval.isString && storageval.isObject {
@@ -782,7 +782,7 @@ public class KLLibraryCompiler: KECompiler
 			}
 			return JSValue(nullIn: ctxt)
 		}
-		ctxt.set(name: "ValueTable", function: allocTableFunc)
+		ctxt.set(name: "Table", function: allocTableFunc)
 
 		/* Record */
 		let allocRecordFunc: @convention(block) () -> JSValue = {
@@ -792,7 +792,7 @@ public class KLLibraryCompiler: KECompiler
 		}
 		ctxt.set(name: "Record", function: allocRecordFunc)
 
-		/* ValueStorage */
+		/* Storage */
 		let allocStorageFunc: @convention(block) (_ nameval: JSValue) -> JSValue = {
 			(_ nameval: JSValue) -> JSValue in
 			var result: KLValueStorage? = nil
@@ -809,7 +809,7 @@ public class KLLibraryCompiler: KECompiler
 				return JSValue(nullIn: ctxt)
 			}
 		}
-		ctxt.set(name: "ValueStorage", function: allocStorageFunc)
+		ctxt.set(name: "Storage", function: allocStorageFunc)
 
 		/* TextLine */
 		let textLineFunc: @convention(block) (_ str: JSValue) -> JSValue = {
