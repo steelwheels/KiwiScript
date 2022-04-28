@@ -45,6 +45,18 @@ import Foundation
 		return JSValue(nullIn: mContext)
 	}
 
+	public func pointer(_ val: JSValue, _ field: JSValue) -> JSValue {
+		if field.isString {
+			if let fldstr  = field.toString() {
+				let propval = val.toNativeValue()
+				if let ptr = mTable.pointer(value: propval, forField:fldstr) {
+					return ptr.toJSValue(context: mContext)
+				}
+			}
+		}
+		return JSValue(nullIn: mContext)
+	}
+
 	public func search(_ val: JSValue, _ field: JSValue) -> JSValue {
 		if field.isString {
 			if let fname = field.toString() {
@@ -65,6 +77,17 @@ import Foundation
 			if let rec = rcd.toObject() as? KLRecord {
 				mTable.append(record: rec.core())
 			}
+		}
+	}
+
+	public func appendPointer(_ ptr: JSValue) {
+		let val = ptr.toNativeValue()
+		switch val {
+		case .pointerValue(let ptval):
+			mTable.append(pointer: ptval)
+		default:
+			let txt = ptr.toText().toStrings().joined(separator: "\n")
+			CNLog(logLevel: .error, message: "Invalid parameter type: \(txt)", atFunction: #function, inFile: #file)
 		}
 	}
 

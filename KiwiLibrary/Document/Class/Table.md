@@ -10,7 +10,10 @@ interface TableIF {
 	readonly allFieldNames:	                string[] ;
 	readonly isDirty:                       boolean ;
 
-	record(row: number):			RecordIF | null ;
+	recordAt(row: number):				RecordIF | null ;
+	recordOf(value: number, key: string):		RecordIF | null ;
+	pointerOfRecord(value: number, key: string):	RecordIF | null ;
+
 	search(value: any, name: string):	RecordIF[] | null ;
 	append(record: RecordIF): 		void ;
 	remove(index: number):			boolean ;

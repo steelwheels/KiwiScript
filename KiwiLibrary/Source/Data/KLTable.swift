@@ -16,8 +16,11 @@ import Foundation
 	var allFieldNames: JSValue { get }
 
 	func record(_ row: JSValue) -> JSValue
+	func pointer(_ val: JSValue, _ field: JSValue) -> JSValue
+
 	func search(_ val: JSValue, _ field: JSValue) -> JSValue
 	func append(_ rcd: JSValue)
+	func appendPointer(_ ptr: JSValue)
 	func remove(_ rcd: JSValue) -> JSValue
 	func save() -> JSValue
 

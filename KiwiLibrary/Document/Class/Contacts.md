@@ -29,7 +29,9 @@ Get the number of records in contacts database.
 ### record
 Get contact record by the index. If the record is NOT found, the return value will be `null`.
 ````
-record(index: number): ContactRecordIf | null
+recordAt(index: number): ContactRecordIf | null
+recordOf(value: number, key: string):		RecordIF | null ;
+pointerOfRecord(value: number, key: string):	RecordIF | null ;
 ````
 
 ### append 

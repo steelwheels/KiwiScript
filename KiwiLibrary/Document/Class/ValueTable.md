@@ -47,7 +47,10 @@ interface TableIF {
 
 	readonly allFieldNames:	string[] ;
 
-	record(row: number):			RecordIF | null ;
+	recordAt(row: number):				RecordIF | null ;
+	recordOf(value: number, key: string):		RecordIF | null ;
+	pointerOfRecord(value: number, key: string):	RecordIF | null ;
+
 	search(value: any, name: string):	RecordIF[] | null ;
 	append(record: RecordIF): 		void ;
 
@@ -67,8 +70,12 @@ You can choose visible fields against all fields.
 
 The initial value is `[]` (empty), in this case the value of `allFieldNames` is used as this value.
 
-### Method: `record(row: number): RecordIF | null`
+### Method: `recordAt(row: number): RecordIF | null`
 Get the record by index number. The valid value of parameter `row` is 0..<`recordCount`. If the invalid parameter is given, this method returns `null`.
+
+### Method: `recordOf(value: number, key: string): RecordIF | null`
+
+### Method: `pointerOfRecord(value: number, key: string): RecordIF | null`
 
 ### Method: `append(record: RecordIF): void`
 Append the record to the table. The table will be updated by this method. The record must be allocate by `newRecord()`.

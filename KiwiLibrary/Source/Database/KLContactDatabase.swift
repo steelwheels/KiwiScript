@@ -87,6 +87,11 @@ import Foundation
 		return JSValue(nullIn: mContext)
 	}
 
+	public func pointer(_ val: JSValue, _ field: JSValue) -> JSValue {
+		CNLog(logLevel: .error, message: "Not supported", atFunction: #function, inFile: #file)
+		return JSValue(nullIn: mContext)
+	}
+
 	public func search(_ val: JSValue, _ field: JSValue) -> JSValue {
 		let db  = CNContactDatabase.shared
 		if field.isString {
@@ -113,6 +118,10 @@ import Foundation
 			}
 		}
 		CNLog(logLevel: .error, message: "Unexpected record object", atFunction: #function, inFile: #file)
+	}
+
+	public func appendPointer(_ ptr: JSValue) {
+		CNLog(logLevel: .error, message: "Not supported", atFunction: #function, inFile: #file)
 	}
 
 	public func remove(_ rcd: JSValue) -> JSValue {
