@@ -1,5 +1,5 @@
 # Table
-The `Table` class supports record based access on the [ValueStorage](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/ValueStorage.md) data.
+The `Table` class supports record based access on the [Storage](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Storage.md) data.
 
 The `Table` has multiple [Record](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Record.md)s.
 
@@ -85,7 +85,7 @@ Return the string which presents the entire of table data.
 
 ## Sample script
 This is sample script to allocate Table.
-About allocation of ValueStorage, see [ValueStorage](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/ValueStorage.md).
+About allocation of Storage, see [Storage](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Storage.md).
 ````
   let storage = Storage("storage") ;
   let table = Table("path", storage) ;

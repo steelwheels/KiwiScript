@@ -71,6 +71,11 @@ Create and control processes and threads.
 * [JSON](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/JSON.md): The object to operate JSON file.
 * [URL](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md): Data representation of URL
 
+### Storage
+* [Record](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Record.md): The record data in [ValueTable](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/ValueTable.md).
+* [Storage](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Storage.md): The object storage which can be loaded from/stored into the file
+* [ValueTable](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/ValueTable.md): The database interface to access the [Storage](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Storage.md).
+
 ### Terminal
 * [Curses](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Curses.md): CUI management on the terminal.
 * [FontManager](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/FontManager.md): The singleton object to manage fonts.
@@ -86,9 +91,6 @@ Create and control processes and threads.
 * [Table](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Table.md): NxM data table class.
 * [Text](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Text.md): The data structure to present structured text. The cast function [toText](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/TypeCast.md) function is used to cast object to Text.
 * [String](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/String.md): Methods to operate/edit string. such as `maxLengthOfStrings()`.
-* [Record](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Record.md): The record data in [ValueTable](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/ValueTable.md).
-* [ValueStorage](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/ValueStorage.md): The object storage which can be loaded from/stored into the file
-* [ValueTable](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/ValueTable.md): The database interface to access the [ValueStorage](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/ValueStorage.md).
 
 ### Database
 

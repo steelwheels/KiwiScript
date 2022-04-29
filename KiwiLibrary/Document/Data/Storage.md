@@ -1,4 +1,4 @@
-# ValueStorage
+# Storage
 
 ## Value storage
 The value storage is used for persistent data for the application. In usually, they are loaded and stored by the application automatically.
@@ -36,7 +36,7 @@ The `id` property will have special meaning.
 The value of the `id` property must have *string type* and they must be unique in a storage.
 Because the `id` is used to identify the node in storage (See the section *ValuePath*).
 
-The API to access value storage is defined in [ValueStorage class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/ValueStorage.md).
+The API to access value storage is defined in [Storage class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Storage.md).
 
 ## ValuePath
 The value path is used to point the node in the value storage.
@@ -103,5 +103,5 @@ In the next example, the value path `@id0.c[0].d` has the value 20.
 ````
 
 # References
-* [ValueStorage class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/ValueStorage.md): The API definition to access value storage.
+* [Storage class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Storage.md): The API definition to access value storage.
 * [Kiwi standard library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): The value storage is defined in this library.
