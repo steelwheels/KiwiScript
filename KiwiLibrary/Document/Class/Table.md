@@ -5,20 +5,21 @@ The table contains mutiple records.
 ## Interface
 ````
 interface TableIF {
-	recordCount:		                number ;
+  recordCount:		                number ;
 
-	readonly allFieldNames:	                string[] ;
-	readonly isDirty:                       boolean ;
+  readonly allFieldNames:	string[] ;
 
-	recordAt(row: number):				RecordIF | null ;
-	recordOf(value: number, key: string):		RecordIF | null ;
-	pointerOfRecord(value: number, key: string):	RecordIF | null ;
+  record(row: number):			RecordIF | null ;
+  pointer(value: any, key: string):	any | null ;
 
-	search(value: any, name: string):	RecordIF[] | null ;
-	append(record: RecordIF): 		void ;
-	remove(index: number):			boolean ;
+  search(value: any, name: string):	RecordIF[] | null ;
+  append(record: RecordIF): 		void ;
+  appendPointer(pointer: any):		void ;
 
-	toString(): 		                string
+  remove(index: number):			boolean ;
+  save():					boolean ;
+
+  toString(): 		string ;
 }
 ````
 
