@@ -9,7 +9,7 @@ It means the class instance can not be kept by this storage.
 ## Constructor
 There is a constructor function to allocate the instance of this class:
 ````
-Storage(ident: string): ValueStorageIF ;
+Storage(ident: string): StorageIF ;
 ````
 
 ### Parameter: `ident`
@@ -17,7 +17,7 @@ The idenfitier of the storage. It must be defined in `stoages` section in the [m
 
 ## Inferface
 ````
-interface ValueStorageIF {
+interface StorageIF {
   value(path: [string]): any ;
   set(value: any, path: [string]): boolean ;
   store(): void ;

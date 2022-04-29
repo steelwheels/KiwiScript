@@ -25,7 +25,7 @@ interface TableIF {
 ## Constructor
 There is built-in function to allocate value table.
 ````
-Table(path: string, storage: ValueStorageIF): TableIF | null ;
+Table(path: string, storage: StorageIF): TableIF | null ;
 ````
 
 |name   |Type   |Description    |

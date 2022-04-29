@@ -34,7 +34,7 @@ Filen ame: `sample.json`
 ## Constructor
 There is a constructor function to allocate the instance of this class:
 ````
-Table(path: string, storage: ValueStorageIF): TableIF ;
+Table(path: string, storage: StorageIF): TableIF ;
 ````
 
 The parameter `path` is used to select the sub-tree in the storage. When you want to access value table in above `sample.json`,
