@@ -26,7 +26,7 @@ public extension CGRect
 			return false
 		}
 	}
-	
+
 	static func fromJSValue(scriptValue val: JSValue) -> CGRect? {
 		if let dict = val.toDictionary() as? Dictionary<String, Any> {
 			if let xnum = dict["x"]      as? NSNumber,

@@ -24,7 +24,7 @@ public extension NSRange
 			return false
 		}
 	}
-	
+
 	static func fromJSValue(scriptValue val: JSValue) -> NSRange? {
 		if val.isRange {
 			let range = val.toRange()

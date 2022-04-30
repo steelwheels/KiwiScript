@@ -24,7 +24,7 @@ public extension CGSize
 			return false
 		}
 	}
-	
+
 	static func fromJSValue(scriptValue val: JSValue) -> CGSize? {
 		if let dict = val.toDictionary() as? Dictionary<String, Any> {
 			if let wnum = dict["width"] as? NSNumber,

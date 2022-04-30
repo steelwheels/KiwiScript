@@ -97,7 +97,7 @@ function savePanel(title: string): URLIF | null {
 function run(path: URLIF | string | null,
 				input: FileIF, output: FileIF, error: FileIF) {
 	if(path == null) {
-		let newpath = openPanel("Select script file to execute", 
+		let newpath = openPanel("Select script file to execute",
 					FileType.file, ["js", "jsh", "jspkg"]) ;
 		if(newpath != null) {
 			path = newpath ;
