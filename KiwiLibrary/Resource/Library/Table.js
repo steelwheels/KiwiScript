@@ -11,3 +11,11 @@ function tableInStorage(storage, path) {
     }
     return Table(path, strg);
 }
+function makeRecordProperties(record) {
+    for (let name of record.fieldNames) {
+        Object.defineProperty(record, name, {
+            get() { return this.value(name); },
+            set(val) { this.setValue(name, val); }
+        });
+    }
+}
