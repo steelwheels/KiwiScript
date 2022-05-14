@@ -28,6 +28,9 @@ public protocol KLRecordCore
 
 @objc public class KLRecord: NSObject, KLRecordIF, KLRecordCore
 {
+	private static let TEMPORARY_VARIABLE_NAME = "_kiwilibrary_record_temp_var"
+	private static var temporary_variable_id   = 0
+
 	private var mRecord:	CNRecord
 	private var mContext:	KEContext
 
@@ -35,6 +38,43 @@ public protocol KLRecordCore
 		mRecord		= rcd
 		mContext	= ctxt
 		super.init()
+	}
+
+	public static func allocate(record rcd: KLRecord, atFunction atfunc: String, inFile infile: String) -> JSValue {
+		let context = rcd.mContext
+		guard let rcdval = JSValue(object: rcd, in: context) else {
+			CNLog(logLevel: .error, message: "allocate method failed", atFunction: atfunc, inFile: infile)
+			return JSValue(nullIn: context)
+		}
+		let rcdname = temporaryVariableName()
+		context.set(name: rcdname, value: rcdval)
+		for prop in rcd.core().fieldNames {
+			let script =   "Object.defineProperty(\(rcdname), \"\(prop)\", {\n"
+				     + "  get()    { return this.value(\"\(prop)\") ;   },\n"
+				     + "  set(val) { this.setValue(\"\(prop)\", val) ;  }\n"
+				     + "})\n"
+			context.evaluateScript(script)
+			if context.errorCount != 0 {
+				context.resetErrorCount()
+				CNLog(logLevel: .error, message: "allocate method failed: \(script)", atFunction: atfunc, inFile: infile)
+				return JSValue(nullIn: context)
+			}
+		}
+		return rcdval
+	}
+
+	public static func allocate(records rcds: Array<KLRecord>, atFunction atfunc: String, inFile infile: String) -> Array<JSValue> {
+		var result: Array<JSValue> = []
+		for rcd in rcds {
+			result.append(KLRecord.allocate(record: rcd, atFunction: atfunc, inFile: infile))
+		}
+		return result
+	}
+
+	private static func temporaryVariableName() -> String {
+		let result = "\(KLRecord.TEMPORARY_VARIABLE_NAME)_\(KLRecord.temporary_variable_id)"
+		KLRecord.temporary_variable_id += 1
+		return result
 	}
 
 	public func core() -> CNRecord {

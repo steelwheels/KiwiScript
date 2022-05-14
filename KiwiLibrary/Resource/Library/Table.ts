@@ -14,13 +14,3 @@ function tableInStorage(storage: string, path: string): TableIF | null
         return Table(path, strg!) ;
 
 }
-
-function makeRecordProperties(record: RecordIF): void
-{
-        for(let name of record.fieldNames) {
-                Object.defineProperty(record, name, {
-                        get()    { return this.value(name) ; },
-                        set(val) { this.setValue(name, val) ;   }
-                }) ;
-        }
-}

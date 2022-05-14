@@ -788,7 +788,7 @@ public class KLLibraryCompiler: KECompiler
 		let allocRecordFunc: @convention(block) () -> JSValue = {
 			() -> JSValue in
 			let newrec = KLRecord(record: CNValueRecord(), context: ctxt)
-			return JSValue(object: newrec, in: ctxt)
+			return KLRecord.allocate(record: newrec, atFunction: #function, inFile: #file)
 		}
 		ctxt.set(name: "Record", function: allocRecordFunc)
 

@@ -10,6 +10,8 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
+private var temp_record_id: UInt = 0
+
 extension JSValue
 {
 	public static let instancePropertyName: String	= "instanceName"

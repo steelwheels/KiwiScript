@@ -126,7 +126,7 @@ public class KLValueDuplicator
 		let result: JSValue
 		if let rec = recp {
 			let recobj = KLRecord(record: rec, context: mTargetContext)
-			result = JSValue(object: recobj, in: mTargetContext)
+			result = KLRecord.allocate(record: recobj, atFunction: #function, inFile: #file)
 		} else {
 			result = JSValue(nullIn: mTargetContext)
 		}

@@ -36,8 +36,7 @@ import Foundation
 		if row.isNumber {
 			let ridx = row.toInt32()
 			if let rec = mTable.record(at: Int(ridx)) {
-				let newrec = allocateRecord(record: rec)
-				return JSValue(object: newrec, in: mContext)
+				return allocateRecord(record: rec)
 			} else {
 				CNLog(logLevel: .error, message: "Unexpected record type")
 			}
@@ -62,9 +61,11 @@ import Foundation
 			if let fname = field.toString() {
 				let nval  = val.toNativeValue()
 				let recs  = mTable.search(value: nval, forField: fname)
-				var result: Array<KLRecord> = []
+				var result: Array<JSValue> = []
 				for rec in recs {
-					result.append(allocateRecord(record: rec))
+					let newrec = KLRecord(record: rec, context: mContext)
+					let newval = KLRecord.allocate(record: newrec, atFunction: #function, inFile: #file)
+					result.append(newval)
 				}
 				return JSValue(object: result, in: mContext)
 			}
@@ -109,15 +110,14 @@ import Foundation
 	public func forEach(_ callback: JSValue) {
 		mTable.forEach(callback: {
 			(_ rec: CNRecord) -> Void in
-			let vrec = allocateRecord(record: rec)
-			if let vobj = JSValue(object: vrec, in: mContext) {
-				callback.call(withArguments: [vobj])
-			}
+			let vobj = allocateRecord(record: rec)
+			callback.call(withArguments: [vobj])
 		})
 	}
 
-	private func allocateRecord(record rec: CNRecord) -> KLRecord {
-		return KLRecord(record: rec, context: mContext)
+	private func allocateRecord(record rec: CNRecord) -> JSValue {
+		let rec = KLRecord(record: rec, context: mContext)
+		return KLRecord.allocate(record: rec, atFunction: #function, inFile: #file)
 	}
 
 	public func toString() -> JSValue {

@@ -53,7 +53,7 @@ extension CNValue {
 			result = JSValue(image: val, in: ctxt)
 		case .recordValue(let val):
 			let recobj = KLRecord(record: val, context: ctxt)
-			result = JSValue(object: recobj, in: ctxt)
+			result = KLRecord.allocate(record: recobj, atFunction: #function, inFile: #file)
 		case .objectValue(let val):
 			result = JSValue(object: val, in: ctxt)
 		case .colorValue(let col):

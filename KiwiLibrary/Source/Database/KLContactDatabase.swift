@@ -81,7 +81,7 @@ import Foundation
 			let row = rowp.toInt32()
 			if let rec = dc.record(at: Int(row)) {
 				let newrec = KLRecord(record: rec, context: mContext)
-				return JSValue(object: newrec, in: mContext)
+				return KLRecord.allocate(record: newrec, atFunction: #function, inFile: #file)
 			}
 		}
 		return JSValue(nullIn: mContext)
@@ -96,14 +96,11 @@ import Foundation
 		let db  = CNContactDatabase.shared
 		if field.isString {
 			if let fname = field.toString() {
-				var result: Array<KLRecord> = []
 				let nval = val.toNativeValue()
 				let recs = db.search(value: nval, forField: fname)
-				for rec in recs {
-					let newrec = KLRecord(record: rec, context: mContext)
-					result.append(newrec)
-				}
-				return JSValue(object: result, in: mContext)
+				let objs = recs.map({(_ rec: CNRecord) -> KLRecord in return KLRecord(record: rec, context: mContext)})
+				let vals = KLRecord.allocate(records: objs, atFunction: #function, inFile: #file)
+				return JSValue(object: vals, in: mContext)
 			}
 		}
 		return JSValue(nullIn: mContext)
@@ -139,7 +136,8 @@ import Foundation
 		db.forEach(callback: {
 			(_ record: CNRecord) -> Void in
 			let recobj = KLRecord(record: record, context: mContext)
-			callback.call(withArguments: [recobj])
+			let recval = KLRecord.allocate(record: recobj, atFunction: #function, inFile: #file)
+			callback.call(withArguments: [recval])
 		})
 	}
 
