@@ -19,7 +19,11 @@ Filen ame: `sample.json`
                 records: [
                         {field: "a", value 0},
                         {field: "b", value 0},
-                ]
+                ],
+                default: {
+                        a:      0,
+                        b:      0
+                }
         }
 }
 ````
@@ -29,7 +33,7 @@ Filen ame: `sample.json`
 |`className`    |string |Must be "`Table`"         |
 |`columnNames`  |string[] |Name of columns             |
 |`records`      |object[] |Array of record objects      |
-
+|`default`      |dictionary |Dictionary which contains default values of the record |
 
 ## Constructor
 There is a constructor function to allocate the instance of this class:
@@ -47,14 +51,17 @@ interface TableIF {
 
 	readonly allFieldNames:	string[] ;
 
-	recordAt(row: number):				RecordIF | null ;
-	recordOf(value: number, key: string):		RecordIF | null ;
-	pointerOfRecord(value: number, key: string):	RecordIF | null ;
+	record(row: number):			RecordIF | null ;
+	pointer(value: any, key: string):	any | null ;
 
 	search(value: any, name: string):	RecordIF[] | null ;
 	append(record: RecordIF): 		void ;
+        appendPointer(pointer: any):		void ;
 
-	toString(): 		string
+        remove(index: number):			boolean ;
+	save():					boolean ;
+
+	toString(): 		                string ;
 }
 ````
 
@@ -70,15 +77,31 @@ You can choose visible fields against all fields.
 
 The initial value is `[]` (empty), in this case the value of `allFieldNames` is used as this value.
 
-### Method: `recordAt(row: number): RecordIF | null`
+### Method: `record(row: number): RecordIF | null`
 Get the record by index number. The valid value of parameter `row` is 0..<`recordCount`. If the invalid parameter is given, this method returns `null`.
 
-### Method: `recordOf(value: number, key: string): RecordIF | null`
+### Method: `pointer(value: any, key: string):	any | null`
+Get the pointer of the record in the table. The field name `key` and value of it is used to select the record in the table.
+````
+pointer(value: any, key: string):	any | null ;
+````
 
-### Method: `pointerOfRecord(value: number, key: string): RecordIF | null`
+### Method: `search(value: any, name: string):	RecordIF[] | null ;`
+Get the record in the table. The field name `key` and value of it is used to select the record in the table.
 
 ### Method: `append(record: RecordIF): void`
-Append the record to the table. The table will be updated by this method. The record must be allocate by `newRecord()`.
+Append the record to the table.
+The table will be updated by this method.
+
+### Method: `appendPointer(pointer: any): void ;`
+Append the pointer as the record in the table.
+The table will be updated by this method.
+
+### Method: `remove(index: number): boolean ;`
+Remove the record in the table which is indexed by `index`.
+
+### Method: `save(): boolean`
+Save the storage which contains this table.
 
 ### Method: `toString(): string`
 Return the string which presents the entire of table data.
