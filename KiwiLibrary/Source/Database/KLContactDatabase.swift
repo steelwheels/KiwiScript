@@ -81,7 +81,11 @@ import Foundation
 			let row = rowp.toInt32()
 			if let rec = dc.record(at: Int(row)) {
 				let newrec = KLRecord(record: rec, context: mContext)
-				return KLRecord.allocate(record: newrec, atFunction: #function, inFile: #file)
+				if let newval = KLRecord.allocate(record: newrec) {
+					return newval
+				} else {
+					CNLog(logLevel: .error, message: "Failed to allocate", atFunction: #function, inFile: #file)
+				}
 			}
 		}
 		return JSValue(nullIn: mContext)
@@ -99,8 +103,11 @@ import Foundation
 				let nval = val.toNativeValue()
 				let recs = db.search(value: nval, forField: fname)
 				let objs = recs.map({(_ rec: CNRecord) -> KLRecord in return KLRecord(record: rec, context: mContext)})
-				let vals = KLRecord.allocate(records: objs, atFunction: #function, inFile: #file)
-				return JSValue(object: vals, in: mContext)
+				if let res = KLRecord.allocate(records: objs, context: mContext) {
+					return res
+				} else {
+					CNLog(logLevel: .error, message: "Failed to allocate", atFunction: #function, inFile: #file)
+				}
 			}
 		}
 		return JSValue(nullIn: mContext)
@@ -136,8 +143,11 @@ import Foundation
 		db.forEach(callback: {
 			(_ record: CNRecord) -> Void in
 			let recobj = KLRecord(record: record, context: mContext)
-			let recval = KLRecord.allocate(record: recobj, atFunction: #function, inFile: #file)
-			callback.call(withArguments: [recval])
+			if let recval = KLRecord.allocate(record: recobj) {
+				callback.call(withArguments: [recval])
+			} else {
+				CNLog(logLevel: .error, message: "Failed to allocate", atFunction: #function, inFile: #file)
+			}
 		})
 	}
 

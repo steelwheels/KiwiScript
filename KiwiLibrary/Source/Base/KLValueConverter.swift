@@ -126,7 +126,12 @@ public class KLValueDuplicator
 		let result: JSValue
 		if let rec = recp {
 			let recobj = KLRecord(record: rec, context: mTargetContext)
-			result = KLRecord.allocate(record: recobj, atFunction: #function, inFile: #file)
+			if let res = KLRecord.allocate(record: recobj) {
+				result = res
+			} else {
+				CNLog(logLevel: .error, message: "Failed to allocate", atFunction: #function, inFile: #file)
+				result = JSValue(nullIn: mTargetContext)
+			}
 		} else {
 			result = JSValue(nullIn: mTargetContext)
 		}

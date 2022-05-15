@@ -40,33 +40,51 @@ public protocol KLRecordCore
 		super.init()
 	}
 
-	public static func allocate(record rcd: KLRecord, atFunction atfunc: String, inFile infile: String) -> JSValue {
+	public static func allocate(record rcd: KLRecord) -> JSValue? {
 		let context = rcd.mContext
 		guard let rcdval = JSValue(object: rcd, in: context) else {
-			CNLog(logLevel: .error, message: "allocate method failed", atFunction: atfunc, inFile: infile)
-			return JSValue(nullIn: context)
+			CNLog(logLevel: .error, message: "allocate method failed", atFunction: #function, inFile: #file)
+			return nil
 		}
 		let rcdname = temporaryVariableName()
 		context.set(name: rcdname, value: rcdval)
 		for prop in rcd.core().fieldNames {
 			let script =   "Object.defineProperty(\(rcdname), \"\(prop)\", {\n"
 				     + "  get()    { return this.value(\"\(prop)\") ;   },\n"
-				     + "  set(val) { this.setValue(\"\(prop)\", val) ;  }\n"
+				     + "  set(val) { this.setValue(val, \"\(prop)\") ;  }\n"
 				     + "})\n"
 			context.evaluateScript(script)
 			if context.errorCount != 0 {
 				context.resetErrorCount()
-				CNLog(logLevel: .error, message: "allocate method failed: \(script)", atFunction: atfunc, inFile: infile)
-				return JSValue(nullIn: context)
+				CNLog(logLevel: .error, message: "allocate method failed: \(script)", atFunction: #function, inFile: #file)
+				return nil
 			}
 		}
 		return rcdval
 	}
 
-	public static func allocate(records rcds: Array<KLRecord>, atFunction atfunc: String, inFile infile: String) -> Array<JSValue> {
-		var result: Array<JSValue> = []
-		for rcd in rcds {
-			result.append(KLRecord.allocate(record: rcd, atFunction: atfunc, inFile: infile))
+	public static func allocate(records rcds: Array<KLRecord>, context ctxt: KEContext) -> JSValue? {
+		guard let result = JSValue(newArrayIn: ctxt) else {
+			CNLog(logLevel: .error, message: "Failed to allocate array", atFunction: #function, inFile: #file)
+			return nil
+		}
+		let resname = temporaryVariableName()
+		ctxt.set(name: resname, value: result)
+		for rec in rcds {
+			if let elmval = allocate(record: rec) {
+				let elmname = temporaryVariableName()
+				ctxt.set(name: elmname, value: elmval)
+				let script = "\(resname).push(\(elmname)) ;"
+				ctxt.evaluateScript(script)
+				if ctxt.errorCount != 0 {
+					ctxt.resetErrorCount()
+					CNLog(logLevel: .error, message: "push method failed: \(script)", atFunction: #function, inFile: #file)
+					return JSValue(nullIn: ctxt)
+				}
+			} else {
+				CNLog(logLevel: .error, message: "Failed to allocation", atFunction: #function, inFile: #file)
+				return nil
+			}
 		}
 		return result
 	}

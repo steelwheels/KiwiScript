@@ -36,9 +36,13 @@ import Foundation
 		if row.isNumber {
 			let ridx = row.toInt32()
 			if let rec = mTable.record(at: Int(ridx)) {
-				return allocateRecord(record: rec)
+				if let val = allocateRecord(record: rec) {
+					return val
+				} else {
+					CNLog(logLevel: .error, message: "Failed to allocate", atFunction: #function, inFile: #file)
+				}
 			} else {
-				CNLog(logLevel: .error, message: "Unexpected record type")
+				CNLog(logLevel: .error, message: "Unexpected record type", atFunction: #function, inFile: #file)
 			}
 		}
 		return JSValue(nullIn: mContext)
@@ -61,13 +65,12 @@ import Foundation
 			if let fname = field.toString() {
 				let nval  = val.toNativeValue()
 				let recs  = mTable.search(value: nval, forField: fname)
-				var result: Array<JSValue> = []
-				for rec in recs {
-					let newrec = KLRecord(record: rec, context: mContext)
-					let newval = KLRecord.allocate(record: newrec, atFunction: #function, inFile: #file)
-					result.append(newval)
+				let objs  = recs.map({ (_ rec: CNRecord) -> KLRecord in return KLRecord(record: rec, context: mContext)})
+				if let res = KLRecord.allocate(records: objs, context: mContext) {
+					return res
+				} else {
+					CNLog(logLevel: .error, message: "Failed to allocate", atFunction: #function, inFile: #file)
 				}
-				return JSValue(object: result, in: mContext)
 			}
 		}
 		return JSValue(nullIn: mContext)
@@ -110,14 +113,21 @@ import Foundation
 	public func forEach(_ callback: JSValue) {
 		mTable.forEach(callback: {
 			(_ rec: CNRecord) -> Void in
-			let vobj = allocateRecord(record: rec)
-			callback.call(withArguments: [vobj])
+			if let vobj = allocateRecord(record: rec) {
+				callback.call(withArguments: [vobj])
+			} else {
+				CNLog(logLevel: .error, message: "Failed to allocate", atFunction: #function, inFile: #file)
+			}
 		})
 	}
 
-	private func allocateRecord(record rec: CNRecord) -> JSValue {
+	private func allocateRecord(record rec: CNRecord) -> JSValue? {
 		let rec = KLRecord(record: rec, context: mContext)
-		return KLRecord.allocate(record: rec, atFunction: #function, inFile: #file)
+		if let val = KLRecord.allocate(record: rec) {
+			return val
+		} else {
+			return nil
+		}
 	}
 
 	public func toString() -> JSValue {
