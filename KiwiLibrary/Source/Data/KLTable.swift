@@ -13,7 +13,7 @@ import Foundation
 @objc public protocol KLTable: JSExport
 {
 	var recordCount: JSValue { get }
-	var allFieldNames: JSValue { get }
+	var defaultFields: JSValue { get }
 
 	func record(_ row: JSValue) -> JSValue
 	func pointer(_ val: JSValue, _ field: JSValue) -> JSValue

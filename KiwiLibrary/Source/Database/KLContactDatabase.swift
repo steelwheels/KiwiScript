@@ -34,9 +34,13 @@ import Foundation
 		return JSValue(int32: Int32(dc.recordCount), in: mContext)
 	}}
 
-	public var allFieldNames: JSValue { get {
+	public var defaultFields: JSValue { get {
+		var result: Dictionary<String, Any> = [:]
 		let dc = CNContactDatabase.shared
-		return JSValue(object: dc.allFieldNames, in: mContext)
+		for (key, val) in dc.defaultFields {
+			result[key] = val.toAny()
+		}
+		return JSValue(object: result, in: mContext)
 	}}
 
 	public func authorize(_ callback: JSValue) {

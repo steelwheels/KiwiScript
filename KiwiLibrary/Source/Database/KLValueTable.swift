@@ -28,8 +28,12 @@ import Foundation
 		return mTable
 	}
 
-	public var allFieldNames: JSValue { get {
-		return JSValue(object: mTable.allFieldNames, in: mContext)
+	public var defaultFields: JSValue { get {
+		var result: Dictionary<String, Any> = [:]
+		for (key, val) in mTable.defaultFields {
+			result[key] = val.toAny()
+		}
+		return JSValue(object: result, in: mContext)
 	}}
 
 	public func record(_ row: JSValue) -> JSValue {
