@@ -103,7 +103,7 @@ Return the string which presents the entire of table data.
 
 ## Sample script
 This is sample script to allocate Table.
-About allocation of Storage, see [Storage](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Storage.md).
+About allocation of Storage, see [Storage](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/ValueStorage.md).
 ````
   let storage = Storage("storage") ;
   let table = Table("path", storage) ;

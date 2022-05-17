@@ -32,7 +32,7 @@ Table(path: string, storage: StorageIF): TableIF | null ;
 |name   |Type   |Description    |
 |:--    |:--    |:--            |
 |`path`    |string |Location in the storage |
-|`storage` |[Storage](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Storage.md) |On memory file storage |
+|`storage` |[Storage](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/ValueStorage.md) |On memory file storage |
 
 The `path` is multiple strings joined by period(`.`).
 For example, the path for `table_a` in the next storage
