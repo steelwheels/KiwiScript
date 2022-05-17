@@ -1,42 +1,38 @@
 # Table
-The `Table` class supports record based access on the [Storage](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Storage.md) data.
+The `Table` class manages the multiple [Record](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Record.md) data and infomation for rows and columns.
+The data is placed as a part of [Storage](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/ValueStorage.md).
 
-The `Table` has multiple [Record](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Record.md)s.
+The `Table` has multiple .
 
 ## File format
 This is a sample JSON data for value table.
 
 The format of the sub-tree is defined as `Table` format.
 
-Filen ame: `sample.json`
 ````
 {
         top: {
                 className: "Table",
-                columnNames: [
-                        "a", "b"
+                defaultFields: [
+                        "a":    0,
+                        "b":    0
                 ],
                 records: [
                         {field: "a", value 0},
                         {field: "b", value 0},
-                ],
-                default: {
-                        a:      0,
-                        b:      0
-                }
+                ]
         }
 }
 ````
 
-|Property       |Type   |Description                    |
+|Element        |Type   |Description                    |
 |:--            |:--    |:--                            |
 |`className`    |string |Must be "`Table`"         |
-|`columnNames`  |string[] |Name of columns             |
+|`defaultFields` |[string:any][] |array of {field-name, initial-value}             |
 |`records`      |object[] |Array of record objects      |
-|`default`      |dictionary |Dictionary which contains default values of the record |
 
 ## Constructor
-There is a constructor function to allocate the instance of this class:
+There is a constructor function to allocate the instance of `Table` class:
 ````
 Table(path: string, storage: StorageIF): TableIF ;
 ````
@@ -47,29 +43,28 @@ give "`top`" as a parameter for the `path`.
 ## Interface
 ````
 interface TableIF {
-        recordCount:		number ;
+  recordCount:		        number ;
+  readonly defaultFields:	{[name:string]: any} ;
 
-	readonly allFieldNames:	string[] ;
+  record(row: number):			RecordIF | null ;
+  pointer(value: any, key: string):	any | null ;
 
-	record(row: number):			RecordIF | null ;
-	pointer(value: any, key: string):	any | null ;
+  search(value: any, name: string):	RecordIF[] | null ;
+  append(record: RecordIF): 		void ;
+  appendPointer(pointer: any):		void ;
 
-	search(value: any, name: string):	RecordIF[] | null ;
-	append(record: RecordIF): 		void ;
-        appendPointer(pointer: any):		void ;
+  remove(index: number):                boolean ;
+  save():                               boolean ;
 
-        remove(index: number):			boolean ;
-	save():					boolean ;
-
-	toString(): 		                string ;
+  toString(): 		                string ;
 }
 ````
 
 ### Property: `recordCount`
 Number of the records in the table. The values is zero or positive integer.
 
-### Property: `allFieldNames`
-Collect field names from all records in the table.
+### Property: `defaultFields`
+Array of fieds. Field contains the field name and initial value.
 
 ### Property: `activeFieldNames`
 The [TableView](https://github.com/steelwheels/KiwiCompnents/blob/master/Document/Components/Table.md) displays fields which defined by this property.
