@@ -102,8 +102,10 @@ Create and control processes and threads.
 * [Turtle class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/BuiltIn/Turtle.md): Support [turtle graphics](https://en.wikipedia.org/wiki/Turtle_graphics). It uses [GraphicsContext](https://github.com/steelwheels/KiwiCompnents/blob/master/Document/Components/Graphics2D.md).
 
 ## Data format
-There are definitions of formats of data objects:
-* [Primite values](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Format/primitive-values.md)
+There are definitions of formats of data objects. All of them are described by [eJSON format](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Format/StorageFormat.md):
+* [Primite Values](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Format/primitive-values.md)
+* [Storage](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Format/StorageFormat.md)
+* [Enum type](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Format/EnumFormat.md)
 
 ## Related links
 * [KiwiLibrary Framework](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/README.md): The framework contains this library.

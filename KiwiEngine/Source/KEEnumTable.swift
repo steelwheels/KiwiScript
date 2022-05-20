@@ -13,6 +13,7 @@ import UIKit
 #endif
 import Foundation
 
+/*
 public class KEEnumTable
 {
 	public static let shared = KEEnumTable()
@@ -154,3 +155,5 @@ public class KEEnumTable
 		mEnumTypes[name] = etype
 	}
 }
+*/
+

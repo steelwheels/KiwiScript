@@ -35,9 +35,9 @@ open class KECompiler
 	}
 
 	private func defineEnumTypes(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig){
-		let etable = KEEnumTable.shared
+		let etable = CNEnumTable.defaultTable()
 		for typename in etable.typeNames.sorted() {
-			if let etype = etable.search(by: typename) {
+			if let etype = etable.search(byTypeName: typename) {
 				compileEnumType(context: ctxt, enumType: etype, console: cons, config: conf)
 			}
 		}
