@@ -95,15 +95,15 @@ public class KEManifestLoader
 				throw NSError.parseError(message: "subviews section must have subview script file name properties")
 			}
 		}
-		/* Decode: "data" */
-		if let dataval = data[KEResource.DataCategory] {
-			if let datadict = dataval.toDictionary() {
-				let fmap = try decodeFileMap(properties: datadict)
-				for (ident, path) in fmap {
-					res.setData(identifier: ident, path: path)
+		/* Decode: "definitions" */
+		if let defval = data[KEResource.DefinitionsCategory] {
+			if let defarr = defval.toArray() {
+				let patharr = try decodeFileArray(arrayValue: defarr)
+				for path in patharr {
+					res.addDefinition(path: path)
 				}
 			} else {
-				throw NSError.parseError(message: "data section must have data file name properties")
+				throw NSError.parseError(message: "definitions section must have array of file names")
 			}
 		}
 		/* Decode: "storages" */

@@ -19,7 +19,7 @@ open class KECompiler
 		/* Set strict */
 		setStrictMode(context: ctxt, console: cons, config: conf)
 		/* Define Enum Types */
-		defineEnumTypes(context: ctxt, console: cons, config: conf)
+		compileEnumTable(enumTable: CNEnumTable.defaultTable(), context: ctxt, console: cons, config: conf)
 		/* Set exception */
 		ctxt.exceptionCallback = {
 			(_ exception: KEException) -> Void in
@@ -34,8 +34,7 @@ open class KECompiler
 		}
 	}
 
-	private func defineEnumTypes(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig){
-		let etable = CNEnumTable.defaultTable()
+	public func compileEnumTable(enumTable etable: CNEnumTable, context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
 		for typename in etable.typeNames.sorted() {
 			if let etype = etable.search(byTypeName: typename) {
 				compileEnumType(context: ctxt, enumType: etype, console: cons, config: conf)

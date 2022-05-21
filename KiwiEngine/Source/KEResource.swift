@@ -15,7 +15,7 @@ open class KEResource: CNResource
 	public static let LibrariesCategory		= "libraries"
 	public static let ThreadsCategory		= "threads"
 	public static let SubViewsCategory		= "subviews"
-	public static let DataCategory			= "data"
+	public static let DefinitionsCategory		= "definitions"
 	public static let StoragesCategory		= "storages"
 	public static let ImagesCategory		= "images"
 
@@ -77,7 +77,7 @@ open class KEResource: CNResource
 		addCategory(category: KEResource.LibrariesCategory,	loader: mFileLoader, reset: mEmptyReset)
 		addCategory(category: KEResource.ThreadsCategory,	loader: mFileLoader, reset: mEmptyReset)
 		addCategory(category: KEResource.SubViewsCategory,	loader: mFileLoader, reset: mEmptyReset)
-		addCategory(category: KEResource.DataCategory,		loader: mFileLoader, reset: mEmptyReset)
+		addCategory(category: KEResource.DefinitionsCategory,	loader: mFileLoader, reset: mEmptyReset)
 		addCategory(category: KEResource.StoragesCategory,	loader: mValueStorageLoader, reset: mEmptyReset)
 		addCategory(category: KEResource.ImagesCategory, 	loader: mImageLoader, reset: mEmptyReset)
 	}
@@ -300,30 +300,30 @@ open class KEResource: CNResource
 	}
 
 	/*
-	 * data
+	 * definition section
 	 */
-	public func identifiersOfData() -> Array<String>? {
-		return super.identifiers(category: KEResource.DataCategory)
+	public func addDefinition(path pathstr: String){
+		super.add(category: KEResource.DefinitionsCategory, identifier: KEResource.DefaultIdentifier, path: pathstr)
 	}
 
-	public func setData(identifier ident: String, path pathstr: String){
-		super.set(category: KEResource.DataCategory, identifier: ident, path: pathstr)
+	public func countOfDefinitions() -> Int? {
+		return super.count(category: KEResource.DefinitionsCategory, identifier: KEResource.DefaultIdentifier)
 	}
 
-	public func pathStringOfData(identifier ident: String) -> String? {
-		return super.pathString(category: KEResource.DataCategory, identifier: ident, index: 0)
+	public func pathStringOfDefinition(index idx: Int) -> String? {
+		return super.pathString(category: KEResource.DefinitionsCategory, identifier: KEResource.DefaultIdentifier, index: idx)
 	}
 
-	public func URLOfData(identifier ident: String) -> URL? {
-		if let url = super.fullPathURL(category: KEResource.DataCategory, identifier: ident, index: 0) {
+	public func URLOfDefinition(index idx: Int) -> URL? {
+		if let url = super.fullPathURL(category: KEResource.DefinitionsCategory, identifier: KEResource.DefaultIdentifier, index: idx) {
 			return url
 		} else {
 			return nil
 		}
 	}
 
-	public func loadData(identifier ident: String) -> String? {
-		if let script:String = super.load(category: KEResource.DataCategory, identifier: ident, index: 0) {
+	public func loadDefinition(index idx: Int) -> String? {
+		if let script:String = super.load(category: KEResource.DefinitionsCategory, identifier: KEResource.DefaultIdentifier, index: idx) {
 			return script
 		} else {
 			return nil

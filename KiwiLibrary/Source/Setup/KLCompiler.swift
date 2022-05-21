@@ -27,6 +27,10 @@ public class KLLibraryCompiler: KECompiler
 			CNLog(logLevel: .error, message: "[Error] Failed to compile: general functions", atFunction: #function, inFile: #file)
 			return false
 		}
+		guard compileEnumTables(context: ctxt, resource: res, console: cons, config: conf) else {
+			CNLog(logLevel: .error, message: "[Error] Failed to compile: enum table", atFunction: #function, inFile: #file)
+			return false
+		}
 		guard compileThreadFunctions(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf) else {
 			CNLog(logLevel: .error, message: "[Error] Failed to compile: thread functions", atFunction: #function, inFile: #file)
 			return false
@@ -51,6 +55,35 @@ public class KLLibraryCompiler: KECompiler
 		defineConstructors(context: ctxt, resource: res, console: cons, config: conf)
 		defineDatabase(context: ctxt, console: cons, config: conf)
 		return true
+	}
+
+	private func compileEnumTables(context ctxt: KEContext, resource res: KEResource, console cons: CNConsole, config conf: KEConfig) -> Bool {
+		var result = true
+		if let count = res.countOfDefinitions() {
+			let parser = CNValueParser()
+			for i in 0..<count {
+				let url = res.URLOfDefinition(index: i)
+				if let txt = res.loadDefinition(index: i) {
+					switch parser.parse(source: txt) {
+					case .ok(let val):
+						switch CNEnumTable.fromValue(value: val){
+						case .success(let etable):
+							compileEnumTable(enumTable: etable, context: ctxt, console: cons, config: conf)
+						case .failure(let err):
+							cons.error(string: "\(err.toString()): file=\(String(describing: url?.path))")
+						}
+					case .error(let err):
+						cons.error(string: "\(err.toString()): file=\(String(describing: url?.path))")
+					@unknown default:
+						cons.error(string: "Unknown error: file=\(String(describing: url?.path))")
+						result = false
+					}
+				} else {
+					cons.error(string: "Failed to load enum table from resource: file=\(String(describing: url?.path))")
+				}
+			}
+		}
+		return result
 	}
 
 	private func compileThreadFunctions(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNConsole, config conf: KEConfig) -> Bool {
