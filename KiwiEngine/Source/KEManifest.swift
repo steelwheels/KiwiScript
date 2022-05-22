@@ -33,12 +33,10 @@ public class KEManifestLoader
 		if let content = fileurl.loadContents() {
 			let parser = CNValueParser()
 			switch parser.parse(source: content as String) {
-			case .ok(let value):
+			case .success(let value):
 				return value
-			case .error(let err):
+			case .failure(let err):
 				throw err
-			@unknown default:
-				throw NSError.parseError(message: "Undefined case")
 			}
 		} else {
 			throw NSError.parseError(message: "Failed to load manifest file")

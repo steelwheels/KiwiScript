@@ -132,13 +132,10 @@ open class KEResource: CNResource
 
 		let storage = CNValueStorage(sourceDirectory: packdir, cacheDirectory: dstdir, filePath: fpath)
 		switch storage.load() {
-		case .ok(_):
+		case .success(_):
 			break
-		case .error(let err):
+		case .failure(let err):
 			CNLog(logLevel: .error, message: "[Error:sub] \(err.toString())", atFunction: #function, inFile: #file)
-			return nil
-		@unknown default:
-			CNLog(logLevel: .error, message: "[Error:sub] Unknown case", atFunction: #function, inFile: #file)
 			return nil
 		}
 		return storage

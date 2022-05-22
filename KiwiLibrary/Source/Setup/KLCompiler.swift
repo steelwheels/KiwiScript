@@ -65,17 +65,15 @@ public class KLLibraryCompiler: KECompiler
 				let url = res.URLOfDefinition(index: i)
 				if let txt = res.loadDefinition(index: i) {
 					switch parser.parse(source: txt) {
-					case .ok(let val):
+					case .success(let val):
 						switch CNEnumTable.fromValue(value: val){
 						case .success(let etable):
 							compileEnumTable(enumTable: etable, context: ctxt, console: cons, config: conf)
 						case .failure(let err):
 							cons.error(string: "\(err.toString()): file=\(String(describing: url?.path))")
 						}
-					case .error(let err):
+					case .failure(let err):
 						cons.error(string: "\(err.toString()): file=\(String(describing: url?.path))")
-					@unknown default:
-						cons.error(string: "Unknown error: file=\(String(describing: url?.path))")
 						result = false
 					}
 				} else {

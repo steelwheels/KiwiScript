@@ -30,12 +30,10 @@ import Foundation
 				let text   = fileobj.file.getall()
 				let parser = CNValueParser()
 				switch parser.parse(source: text) {
-				case .ok(let val):
+				case .success(let val):
 					return val.toJSValue(context: mContext)
-				case .error(let err):
+				case .failure(let err):
 					CNLog(logLevel: .error, message: "[Error] \(err.toString())", atFunction: #function, inFile: #file)
-				@unknown default:
-					CNLog(logLevel: .error, message: "[Error] Unknown case", atFunction: #function, inFile: #file)
 				}
 			}
 		}

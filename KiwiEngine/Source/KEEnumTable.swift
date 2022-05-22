@@ -16,17 +16,15 @@ extension CNEnumTable
 			for i in 0..<count {
 				if let script = res.loadDefinition(index: i) {
 					switch parser.parse(source: script) {
-					case .ok(let val):
+					case .success(let val):
 						switch CNEnumTable.fromValue(value: val) {
 						case .success(let tbl):
 							table.merge(enumTable: tbl)
 						case .failure(let err):
 							return .failure(err)
 						}
-					case .error(let err):
+					case .failure(let err):
 						return .failure(err)
-					@unknown default:
-						return .failure(NSError.unknownError())
 					}
 				}
 			}
