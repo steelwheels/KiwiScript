@@ -19,7 +19,7 @@ open class KECompiler
 		/* Set strict */
 		setStrictMode(context: ctxt, console: cons, config: conf)
 		/* Define Enum Types */
-		compileEnumTable(enumTable: CNEnumTable.defaultTable(), context: ctxt, console: cons, config: conf)
+		compileEnumTable(enumTable: CNEnumTable.currentEnumTable(), context: ctxt, console: cons, config: conf)
 		/* Set exception */
 		ctxt.exceptionCallback = {
 			(_ exception: KEException) -> Void in
