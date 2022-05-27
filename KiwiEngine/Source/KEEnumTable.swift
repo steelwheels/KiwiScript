@@ -9,7 +9,7 @@ import CoconutData
 
 extension CNEnumTable
 {
-	public static func loadResource(resource res: KEResource) -> Result<CNEnumTable, NSError> {
+	public static func loadFromResource(resource res: KEResource) -> Result<CNEnumTable?, NSError> {
 		let table = CNEnumTable()
 		if let count = res.countOfDefinitions() {
 			let parser = CNValueParser()
@@ -18,8 +18,10 @@ extension CNEnumTable
 					switch parser.parse(source: script) {
 					case .success(let val):
 						switch CNEnumTable.fromValue(value: val) {
-						case .success(let tbl):
-							table.merge(enumTable: tbl)
+						case .success(let tblp):
+							if let tbl = tblp {
+								table.merge(enumTable: tbl)
+							}
 						case .failure(let err):
 							return .failure(err)
 						}
@@ -29,7 +31,6 @@ extension CNEnumTable
 				}
 			}
 		}
-
-		return .success(table)
+		return .success(table.count > 0 ? table : nil)
 	}
 }

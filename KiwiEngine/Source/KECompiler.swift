@@ -19,7 +19,7 @@ open class KECompiler
 		/* Set strict */
 		setStrictMode(context: ctxt, console: cons, config: conf)
 		/* Define Enum Types */
-		compileEnumTable(enumTable: CNEnumTable.currentEnumTable(), context: ctxt, console: cons, config: conf)
+		compileEnumTables(context: ctxt, console: cons, config: conf)
 		/* Set exception */
 		ctxt.exceptionCallback = {
 			(_ exception: KEException) -> Void in
@@ -34,10 +34,12 @@ open class KECompiler
 		}
 	}
 
-	public func compileEnumTable(enumTable etable: CNEnumTable, context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
-		for typename in etable.typeNames.sorted() {
-			if let etype = etable.search(byTypeName: typename) {
-				compileEnumType(context: ctxt, enumType: etype, console: cons, config: conf)
+	private func compileEnumTables(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
+		for etable in CNEnumTable.allEnumTables() {
+			for typename in etable.typeNames.sorted() {
+				if let etype = etable.search(byTypeName: typename) {
+					compileEnumType(context: ctxt, enumType: etype, console: cons, config: conf)
+				}
 			}
 		}
 	}
@@ -89,7 +91,6 @@ open class KECompiler
 			enumstmt += "\t\(member.name) : \(member.value)"
 		}
 		enumstmt += "\n};\n"
-
 		let _ = compileStatement(context: ctxt, statement: enumstmt, console: cons, config: conf)
 	}
 

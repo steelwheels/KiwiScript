@@ -32,6 +32,7 @@ public enum KLSource {
 	private var mTerminalInfo:		CNTerminalInfo
 	private var mConfig:			KEConfig
 	private var mExceptionCount:		Int
+	private var mHasEnumTable:		Bool
 
 	public var context: KEContext { get { return mContext }}
 
@@ -51,6 +52,7 @@ public enum KLSource {
 						   doStrict: conf.doStrict,
 						   logLevel: conf.logLevel)
 		mExceptionCount		= 0
+		mHasEnumTable		= false
 		super.init(processManager: procmgr, input: ifile, output: ofile, error: efile, environment: env)
 		/* Add to parent manager */
 		procmgr.addChildManager(childManager: mChildProcessManager)
@@ -107,6 +109,9 @@ public enum KLSource {
 				myself.mExceptionCount += 1
 			}
 		}
+
+		/* Allocate enum table */
+		mHasEnumTable = allocateEnumTable(resource: mResource)
 
 		/* Compile */
 		guard self.compile(context: mContext, resource: mResource, processManager: mChildProcessManager, terminalInfo: mTerminalInfo, environment: self.environment, console: self.console, config: mConfig) else {
@@ -187,10 +192,34 @@ public enum KLSource {
 		} else {
 			self.console.error(string: "main function is NOT defined\n")
 		}
+		/* Release enum table resource */
+		if mHasEnumTable {
+			releaseEnumTable()
+		}
 		return result
 	}
 
 	open override func terminate() {
 		super.terminate()
+	}
+
+	private func allocateEnumTable(resource res: KEResource) -> Bool {
+		let result: Bool
+		switch CNEnumTable.loadFromResource(resource: res) {
+		case .success(let etablep):
+			if let etable = etablep {
+				CNEnumTable.pushEnumTable(enumTable: etable)
+				result = true
+			} else {
+				result = false
+			}
+		case .failure(_):
+			result = false	// No enum definition in resource file
+		}
+		return result
+	}
+
+	private func releaseEnumTable() {
+		CNEnumTable.popEnumTable()
 	}
 }
