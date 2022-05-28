@@ -2,6 +2,8 @@
 The built-in class, function, data types for JavaScript.
 
 ## Enum types
+This is a list of built-in enum types. User can define [custom enum by eJSON format](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Format/EnumFormat.md). For mode details, see [enum specification](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/Enum.md).
+
 * [AccessType](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/AccessType.md) : Type of the file access.
 * [Alignment](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/Alignment.md): Kind of alignment of components.
 * [AnumationState](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/AnimationState.md): State of animation
