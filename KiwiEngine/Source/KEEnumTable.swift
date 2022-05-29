@@ -7,9 +7,9 @@
 
 import CoconutData
 
-extension CNEnumTable
+public extension CNEnumTable
 {
-	public static func loadFromResource(resource res: KEResource) -> Result<CNEnumTable?, NSError> {
+	static func loadFromResource(resource res: KEResource) -> Result<CNEnumTable?, NSError> {
 		let table = CNEnumTable()
 		if let count = res.countOfDefinitions() {
 			let parser = CNValueParser()
@@ -33,4 +33,49 @@ extension CNEnumTable
 		}
 		return .success(table.count > 0 ? table : nil)
 	}
+
+	/*
+	 * declare enum Weekday {
+	 *   sun = 0,
+	 *   mon = 1,
+	 *   tue = 2
+	 * }
+	 * declare namespace Weekday {
+	 *    function description(day: Weekday): string;
+	 * }
+	 */
+	func toDeclaration() -> CNTextSection {
+		let result: CNTextSection = CNTextSection()
+		guard self.count > 0 else {
+			return result
+		}
+		for (ename, etype) in self.allTypes {
+			/* Member definition */
+			let sect = CNTextSection()
+			sect.header = "declare enum \(ename) {"
+			sect.footer = "}"
+
+			let list = CNTextList()
+			list.separator = ","
+			for memb in etype.members {
+				let line = CNTextLine(string: "\(memb.name) = \(memb.value)")
+				list.add(text: line)
+			}
+			sect.add(text: list)
+
+			/* Static methods definition */
+			let decls = CNTextSection()
+			decls.header = "declare namespace \(ename) {"
+			decls.footer = "}"
+
+			let dscfunc = CNTextLine(string: "function description(param: \(ename)): string ;")
+			decls.add(text: dscfunc)
+
+			result.add(text: sect)
+			result.add(text: decls)
+		}
+
+		return result
+	}
+
 }
