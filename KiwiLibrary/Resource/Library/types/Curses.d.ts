@@ -1,4 +1,5 @@
 /// <reference path="Builtin.d.ts" />
+/// <reference path="Enum.d.ts" />
 declare class CFrame {
     mFrame: RectIF;
     mCursorX: number;

@@ -36,11 +36,9 @@ open class KECompiler
 
 	private func compileEnumTables(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
 		for etable in CNEnumTable.allEnumTables() {
-			for typename in etable.typeNames.sorted() {
-				if let etype = etable.search(byTypeName: typename) {
-					compileEnumType(context: ctxt, enumType: etype, console: cons, config: conf)
-				}
-			}
+			let scr = etable.toScript().toStrings().joined(separator: "\n")
+			//NSLog("enum-table: \(scr)")
+			let _ = compileStatement(context: ctxt, statement: scr, console: cons, config: conf)
 		}
 	}
 

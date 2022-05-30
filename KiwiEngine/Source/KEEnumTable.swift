@@ -78,4 +78,55 @@ public extension CNEnumTable
 		return result
 	}
 
+	/*
+	 * // member definition
+	 * const Position = {
+	 *  Top: 0,
+	 *  Right: 1,
+	 *  Bottom: 2,
+	 *  Left: 3,
+	 * } ;
+	 */
+	func toScript() -> CNTextSection {
+		let result: CNTextSection = CNTextSection()
+		guard self.count > 0 else {
+			return result
+		}
+		for (ename, etype) in self.allTypes {
+			/* Member definition */
+			let defsect = CNTextSection()
+			defsect.header = "const \(ename) = {"
+			defsect.footer = "} ;"
+
+			let list = CNTextList()
+			list.separator = ","
+			for memb in etype.members {
+				let line = CNTextLine(string: "\(memb.name): \(memb.value)")
+				list.add(text: line)
+			}
+
+			/* static method definition */
+			if etype.search(byName: "description") == nil {
+				let descfunc = CNTextSection()
+				descfunc.header = "description: function(val) {"
+				descfunc.footer = "}"
+
+				let switchfunc = CNTextSection()
+				switchfunc.header = "let result = \"?\" ; switch(val){"
+				switchfunc.footer = "} ; return result ;"
+				for memb in etype.members {
+					let stmt = "   case \(memb.value): result=\"\(memb.name)\" ; break ;"
+					switchfunc.add(text: CNTextLine(string: stmt))
+				}
+				descfunc.add(text: switchfunc)
+				list.add(text: descfunc)
+			}
+			defsect.add(text: list)
+			result.add(text: defsect)
+		}
+
+		
+		return result
+	}
+
 }

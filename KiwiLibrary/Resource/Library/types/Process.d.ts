@@ -1,4 +1,5 @@
 /// <reference path="Builtin.d.ts" />
+/// <reference path="Enum.d.ts" />
 declare function _waitUntilExitOne(process: ProcessIF): number;
 declare function _waitUntilExitAll(processes: ProcessIF[]): number;
 declare class Semaphore {

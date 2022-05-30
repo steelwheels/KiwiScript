@@ -2,25 +2,6 @@
  * Builtin.d.ts
  */
 
-interface ValueTypeIF {
-	nullType:		number ;
-	boolType:		number ;
-	numberType:		number ;
-	stringType:		number ;
-	dateType:		number ;
-	rangeType:		number ;
-	pointType:		number ;
-	sizeType:		number ;
-	rectType:		number ;
-	enumType:		number ;
-	dictionaryType:		number ;
-	arrayType:		number ;
-	URLType:		number ;
-	colorType:		number ;
-	imageType:		number ;
-	objectType:		number ;
-}
-
 interface ColorIF {
 	red:			number ;
 	green:			number ;
@@ -118,25 +99,11 @@ interface EscapeCodeIF {
 	reset(): string
 }
 
-interface ExitCodeIF {
-	noError:		number ;
-	internalError:		number ;
-	commaneLineError:	number ;
-	syntaxError:		number ;
-	exception:		number ;
-}
-
 interface FileIF {
 	getc(): string ;
 	getl(): string ;
 	put(str: string): void ;
 	close(): void ;
-}
-
-interface FileTypeIF {
-	notExist:	number ;
-	file:		number ;
-	directory:	number ;
 }
 
 interface PipeIF {
@@ -325,16 +292,11 @@ interface CollectionIF {
 	toStrings(): string[] ;
 }
 
-/* Enum */
-declare var ValueType:		ValueTypeIF ;
-
 /* Singleton object*/
 declare var console:		ConsoleIF ;
 declare var Color:      	ColorManagerIF ;
 declare var Curses:     	CursesIF ;
 declare var EscapeCode: 	EscapeCodeIF ;
-declare var ExitCode:		ExitCodeIF ;
-declare var FileType:		FileTypeIF ;
 declare var Contacts:	        ContactDatabaseIF ;
 declare var Symbols:		SymbolsIF ;
 

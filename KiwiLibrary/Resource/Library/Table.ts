@@ -3,6 +3,7 @@
  */
 
 /// <reference path="types/Builtin.d.ts"/>
+/// <reference path="types/Enum.d.ts"/>
 
 function tableInStorage(storage: string, path: string): TableIF | null
 {

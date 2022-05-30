@@ -1,6 +1,7 @@
 "use strict";
 /* File.js */
 /// <reference path="types/Builtin.d.ts"/>
+/// <reference path="types/Enum.d.ts"/>
 class File {
     constructor(core) {
         this.mCore = core;

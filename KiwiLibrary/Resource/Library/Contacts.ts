@@ -2,6 +2,7 @@
 
 /// <reference path="types/Builtin.d.ts"/>
 /// <reference path="types/Process.d.ts"/>
+/// <reference path="types/Enum.d.ts"/>
 
 function requestContactAccess(): boolean
 {

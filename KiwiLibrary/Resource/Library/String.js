@@ -3,6 +3,7 @@
  * String.ts
  */
 /// <reference path="types/Builtin.d.ts"/>
+/// <reference path="types/Enum.d.ts"/>
 function maxLengthOfStrings(strs) {
     let result = 0;
     for (let str of strs) {

@@ -3,6 +3,7 @@
  * Process.ts
  */
 /// <reference path="types/Builtin.d.ts"/>
+/// <reference path="types/Enum.d.ts"/>
 function _waitUntilExitOne(process) {
     while (!process.didFinished) {
         /* wait until exit */

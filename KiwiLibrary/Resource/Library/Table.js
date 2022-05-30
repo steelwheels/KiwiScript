@@ -3,6 +3,7 @@
  * Primitive data structures
  */
 /// <reference path="types/Builtin.d.ts"/>
+/// <reference path="types/Enum.d.ts"/>
 function tableInStorage(storage, path) {
     let strg = Storage(storage);
     if (strg == null) {

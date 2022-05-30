@@ -1,4 +1,5 @@
 /// <reference path="Builtin.d.ts" />
+/// <reference path="Enum.d.ts" />
 declare type TurtleStatus = {
     x: number;
     y: number;

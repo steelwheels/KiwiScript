@@ -1,5 +1,8 @@
 /* Math.ts */
 
+/// <reference path="types/Builtin.d.ts"/>
+/// <reference path="types/Enum.d.ts"/>
+
 interface Math {
 	randomInt(min: number, max: number): number ;
 	clamp(src: number, min: number, max: number): number ;

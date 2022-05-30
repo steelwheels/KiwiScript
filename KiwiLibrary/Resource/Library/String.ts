@@ -3,6 +3,7 @@
  */
 
 /// <reference path="types/Builtin.d.ts"/>
+/// <reference path="types/Enum.d.ts"/>
 
 function maxLengthOfStrings(strs: string[]): number {
         let result: number = 0 ;

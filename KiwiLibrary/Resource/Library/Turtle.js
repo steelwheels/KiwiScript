@@ -3,6 +3,7 @@
  * turtle.ts: Support Turtle Graphics
  */
 /// <reference path="types/Builtin.d.ts"/>
+/// <reference path="types/Enum.d.ts"/>
 class Turtle {
     constructor(ctxt) {
         this.mContext = ctxt;

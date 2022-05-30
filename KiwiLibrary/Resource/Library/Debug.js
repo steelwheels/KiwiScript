@@ -3,6 +3,7 @@
  * Debug.ts
  */
 /// <reference path="types/Builtin.d.ts"/>
+/// <reference path="types/Enum.d.ts"/>
 function checkVariables(place, ...vars) {
     let result = true;
     vars.forEach(function (value, index) {

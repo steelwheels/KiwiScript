@@ -1,5 +1,7 @@
 "use strict";
 /* Math.ts */
+/// <reference path="types/Builtin.d.ts"/>
+/// <reference path="types/Enum.d.ts"/>
 ;
 /* Convert value to integer */
 function int(value) {

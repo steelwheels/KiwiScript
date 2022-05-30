@@ -3,6 +3,7 @@
  * Curses.js
  */
 /// <reference path="types/Builtin.d.ts"/>
+/// <reference path="types/Enum.d.ts"/>
 class CFrame {
     constructor(frame) {
         this.mFrame = frame;
