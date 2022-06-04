@@ -73,6 +73,9 @@ public extension CNEnumTable
 				let dscfunc = CNTextLine(string: "function description(param: \(ename)): string ;")
 				decls.add(text: dscfunc)
 
+				let keysvar = CNTextLine(string: "const keys: string[] ;")
+				decls.add(text: keysvar)
+
 				result.add(text: sect)
 				result.add(text: decls)
 			} else {
@@ -103,6 +106,7 @@ public extension CNEnumTable
 				let defsect = CNTextSection()
 				defsect.header = "const \(ename) = {"
 				defsect.footer = "} ;"
+				result.add(text: defsect)
 
 				let list = CNTextList()
 				list.separator = ","
@@ -110,8 +114,10 @@ public extension CNEnumTable
 					let line = CNTextLine(string: "\(memb.name): \(memb.value)")
 					list.add(text: line)
 				}
+				defsect.add(text: list)
 
 				/* static method definition */
+				/* "description" function */
 				if etype.search(byName: "description") == nil {
 					let descfunc = CNTextSection()
 					descfunc.header = "description: function(val) {"
@@ -127,8 +133,16 @@ public extension CNEnumTable
 					descfunc.add(text: switchfunc)
 					list.add(text: descfunc)
 				}
-				defsect.add(text: list)
-				result.add(text: defsect)
+
+				/* "keys" variable */
+				if etype.search(byName: "keys") == nil {
+					let keys     = etype.members.map{ "\"\($0.name)\"" }
+					let keystr   = keys.joined(separator: ", ")
+					let keysline = CNTextLine(string: "keys: [\(keystr)]")
+					list.add(text: keysline)
+				}
+				//let dump = defsect.toStrings().joined(separator: "\n")
+				//NSLog("enum = " + dump)
 			} else {
 				CNLog(logLevel: .error, message: "Can not happen", atFunction: #function, inFile: #file)
 			}
