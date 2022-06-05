@@ -79,6 +79,17 @@ import Foundation
 		return JSValue(bool: result, in: mContext)
 	}
 
+	public func newRecord() -> JSValue {
+		let recobj = CNContactDatabase.shared.newRecord()
+		let newrec = KLRecord(record: recobj, context: mContext)
+		if let newval = KLRecord.allocate(record: newrec) {
+			return newval
+		} else {
+			CNLog(logLevel: .error, message: "Failed to allocate", atFunction: #function, inFile: #file)
+			return JSValue(nullIn: mContext)
+		}
+	}
+
 	public func record(_ rowp: JSValue) -> JSValue {
 		if rowp.isNumber {
 			let dc  = CNContactDatabase.shared

@@ -15,6 +15,7 @@ import Foundation
 	var recordCount: JSValue { get }
 	var defaultFields: JSValue { get }
 
+	func newRecord() -> JSValue
 	func record(_ row: JSValue) -> JSValue
 	func pointer(_ val: JSValue, _ field: JSValue) -> JSValue
 

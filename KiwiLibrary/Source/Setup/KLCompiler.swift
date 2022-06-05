@@ -784,19 +784,6 @@ public class KLLibraryCompiler: KECompiler
 		}
 		ctxt.set(name: "Table", function: allocTableFunc)
 
-		/* Record */
-		let allocRecordFunc: @convention(block) () -> JSValue = {
-			() -> JSValue in
-			let newrec = KLRecord(record: CNValueRecord(), context: ctxt)
-			if let val = KLRecord.allocate(record: newrec) {
-				return val
-			} else {
-				CNLog(logLevel: .error, message: "Failed to allocate", atFunction: #function, inFile: #file)
-				return JSValue(nullIn: ctxt)
-			}
-		}
-		ctxt.set(name: "Record", function: allocRecordFunc)
-
 		/* Storage */
 		let allocStorageFunc: @convention(block) (_ nameval: JSValue) -> JSValue = {
 			(_ nameval: JSValue) -> JSValue in

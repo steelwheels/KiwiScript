@@ -43,7 +43,7 @@ public protocol KLRecordCore
 	public static func allocate(record rcd: KLRecord) -> JSValue? {
 		let context = rcd.mContext
 		guard let rcdval = JSValue(object: rcd, in: context) else {
-			CNLog(logLevel: .error, message: "allocate method failed", atFunction: #function, inFile: #file)
+			CNLog(logLevel: .error, message: "allocate object failed", atFunction: #function, inFile: #file)
 			return nil
 		}
 		let rcdname = temporaryVariableName()
@@ -52,11 +52,11 @@ public protocol KLRecordCore
 			let script =   "Object.defineProperty(\(rcdname), \"\(prop)\", {\n"
 				     + "  get()    { return this.value(\"\(prop)\") ;   },\n"
 				     + "  set(val) { this.setValue(val, \"\(prop)\") ;  }\n"
-				     + "})\n"
+				     + "}) ;\n"
 			context.evaluateScript(script)
 			if context.errorCount != 0 {
 				context.resetErrorCount()
-				CNLog(logLevel: .error, message: "allocate method failed: \(script)", atFunction: #function, inFile: #file)
+				CNLog(logLevel: .error, message: "execute method failed: \(script)", atFunction: #function, inFile: #file)
 				return nil
 			}
 		}
@@ -74,7 +74,7 @@ public protocol KLRecordCore
 			if let elmval = allocate(record: rec) {
 				let elmname = temporaryVariableName()
 				ctxt.set(name: elmname, value: elmval)
-				let script = "\(resname).push(\(elmname)) ;"
+				let script = "\(resname).push(\(elmname)) ;\n"
 				ctxt.evaluateScript(script)
 				if ctxt.errorCount != 0 {
 					ctxt.resetErrorCount()

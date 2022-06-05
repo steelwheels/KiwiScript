@@ -36,6 +36,16 @@ import Foundation
 		return JSValue(object: result, in: mContext)
 	}}
 
+	public func newRecord() -> JSValue {
+		let recobj = mTable.newRecord()
+		if let val = allocateRecord(record: recobj) {
+			return val
+		} else {
+			CNLog(logLevel: .error, message: "Failed to allocate", atFunction: #function, inFile: #file)
+			return JSValue(nullIn: mContext)
+		}
+	}
+
 	public func record(_ row: JSValue) -> JSValue {
 		if row.isNumber {
 			let ridx = row.toInt32()
@@ -69,11 +79,15 @@ import Foundation
 			if let fname = field.toString() {
 				let nval  = val.toNativeValue()
 				let recs  = mTable.search(value: nval, forField: fname)
-				let objs  = recs.map({ (_ rec: CNRecord) -> KLRecord in return KLRecord(record: rec, context: mContext)})
-				if let res = KLRecord.allocate(records: objs, context: mContext) {
-					return res
-				} else {
-					CNLog(logLevel: .error, message: "Failed to allocate", atFunction: #function, inFile: #file)
+				if recs.count > 0 {
+					let objs  = recs.map({ (_ rec: CNRecord) -> KLRecord in
+						return KLRecord(record: rec, context: mContext)
+					})
+					if let res = KLRecord.allocate(records: objs, context: mContext) {
+						return res
+					} else {
+						CNLog(logLevel: .error, message: "Failed to allocate", atFunction: #function, inFile: #file)
+					}
 				}
 			}
 		}
