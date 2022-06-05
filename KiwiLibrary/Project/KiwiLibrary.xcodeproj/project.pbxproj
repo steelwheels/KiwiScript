@@ -110,6 +110,8 @@
 		0598000625CB5F5F00499B6E /* KLBitmapContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0598000425CB5F5F00499B6E /* KLBitmapContext.swift */; };
 		059A152E2781E71200F4B24C /* KLValueStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059A152D2781E71200F4B24C /* KLValueStorage.swift */; };
 		059A152F2781E71200F4B24C /* KLValueStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059A152D2781E71200F4B24C /* KLValueStorage.swift */; };
+		059A5714284CB54700F19BC9 /* Array.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 059A5710284CB22D00F19BC9 /* Array.js */; };
+		059A5718284CB55900F19BC9 /* Array.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 059A5710284CB22D00F19BC9 /* Array.js */; };
 		059DBA0C26E26A2D00FB5480 /* Table.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 059DBA0B26E26A1D00FB5480 /* Table.d.ts */; };
 		059DBA1026E26A3B00FB5480 /* Table.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 059DBA0B26E26A1D00FB5480 /* Table.d.ts */; };
 		05A1F44E253BBAD500D4789F /* UTEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A1F44D253BBAD400D4789F /* UTEnvironment.swift */; };
@@ -277,6 +279,7 @@
 			dstPath = Library;
 			dstSubfolderSpec = 7;
 			files = (
+				059A5714284CB54700F19BC9 /* Array.js in CopyFiles */,
 				058E322A26DFC64700CDD628 /* Curses.ts in CopyFiles */,
 				058E322C26DFC64700CDD628 /* Curses.js in CopyFiles */,
 				05C8362C26DBCA4300861C51 /* Object.js in CopyFiles */,
@@ -330,6 +333,7 @@
 			dstPath = Library;
 			dstSubfolderSpec = 7;
 			files = (
+				059A5718284CB55900F19BC9 /* Array.js in CopyFiles */,
 				058E323126DFC66500CDD628 /* Contacts.ts in CopyFiles */,
 				058E323226DFC66500CDD628 /* Curses.ts in CopyFiles */,
 				058E323426DFC66500CDD628 /* Contacts.js in CopyFiles */,
@@ -444,6 +448,8 @@
 		05950CA025C4304500D659A1 /* KLGraphicsContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLGraphicsContext.swift; sourceTree = "<group>"; };
 		0598000425CB5F5F00499B6E /* KLBitmapContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLBitmapContext.swift; sourceTree = "<group>"; };
 		059A152D2781E71200F4B24C /* KLValueStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLValueStorage.swift; sourceTree = "<group>"; };
+		059A570F284CB16C00F19BC9 /* Array.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Array.ts; sourceTree = "<group>"; };
+		059A5710284CB22D00F19BC9 /* Array.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Array.js; sourceTree = "<group>"; };
 		059DBA0B26E26A1D00FB5480 /* Table.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Table.d.ts; sourceTree = "<group>"; };
 		05A1F44D253BBAD400D4789F /* UTEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTEnvironment.swift; sourceTree = "<group>"; };
 		05A1F451253BBBD400D4789F /* UTFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTFileManager.swift; sourceTree = "<group>"; };
@@ -820,6 +826,7 @@
 			isa = PBXGroup;
 			children = (
 				050A3E5E263BF572008172E7 /* types */,
+				059A570F284CB16C00F19BC9 /* Array.ts */,
 				05D4FD1F268F5B2C00780B83 /* Contacts.ts */,
 				05783D0726DBAC9400C573BB /* Curses.ts */,
 				050A3E81263BF5C9008172E7 /* Table.ts */,
@@ -829,6 +836,7 @@
 				050A3E82263BF5C9008172E7 /* Math.ts */,
 				0515051D26DB7B14007C29F0 /* Object.ts */,
 				050A3E87263BF5C9008172E7 /* Process.ts */,
+				059A5710284CB22D00F19BC9 /* Array.js */,
 				054AF16825F78237001DB03B /* Process.js */,
 				050A3E86263BF5C9008172E7 /* String.ts */,
 				050A3E85263BF5C9008172E7 /* Turtle.ts */,
