@@ -1,6 +1,6 @@
 # The file format for `Storage`
 
-The value storage is used to load (or store) persistent data for the application. In usually, they are loaded and stored by the application automatically.
+The value storage is used to load (or store) persistent data for the application. In usually, the path of storage file is declared in [manifest file](https://github.com/steelwheels/JSTools/blob/master/Document/jspkg.md). The file is loaded when the storage access is detected.
 
 The [extended JSON](
 https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Format/eJSONFormat.md) format is used to store the context of the value storage.
@@ -38,27 +38,36 @@ Because the `id` is used to identify the node in storage (See the section *Value
 The API to access value storage is defined in [Storage class](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/ValueStorage.md).
 
 ## ValuePath
-The value path is used to point the node in the value storage.
 
-### Normal value path
-In the next example, The value path `a.b.c` has the value 10.
+The value path is defined in the pointer class. It is used to point the nocde in the value storage:
+````
+{
+        pointer: {
+                class: "pointer",
+                path:  "<path>"
+        }
+}
+````
+
+### Normal path
+In the next example, The value path `"a.b.c"` points the property `"c"` which has value 10.
 ````
 {
   a: {
     b: {
-      c: 10             // Pointed by 'a.b.c'
+      c: 10             // Pointed by "a.b.c"
     }
   }
 }
 ````
 
-### Select the array element
+### Array element path
 You can use indexed path `[n]` to select the element in array. The `n` is positive integer (0, 1, ...).
-In the next example, the value path `a.b[1].c` has the value 20.
+In the next example, the value path `a.b[1].c` points the property `"c"` which has value 20.
 ````
 {
   a: {
-    b[
+    b: [
       { c: 10 },
       { c: 20 },        // Pointed by 'a.b[1].c'
       { c: 30 }
@@ -67,17 +76,17 @@ In the next example, the value path `a.b[1].c` has the value 20.
 }
 ````
 
-### Select the dictionary element
-You can use the indexed path `[k:v]` to select the element in dictionary. The `k` is the property name and the `v` is the value of it.
-In the next example, the value path `a.b[c:20]` points the `{ c: 20 }`.
+### Select by key and value
+You can use the indexed path `[k=v]` to select the array element. The `k` is the property name and the `v` is the value of it.
+In the next example, the value path `a.b[c1=20]` points the 2nd element in `b` array.
 
 ````
 {
   a: {
-    b[
-      { c: 10 },
-      { c: 20 },        // Pointed by 'a.b[1].c'
-      { c: 30 }
+    b: [
+      {c0: 10, d0:"v0"},
+      {c1: 20, d1:"v1"},  // Pointed by "a.b[c1=20]"
+      {c2: 40, d2:"v2"}   // Pointer by "a.b[d2:\"v2\"]"
     ]
   }
 }

@@ -773,10 +773,13 @@ public class KLLibraryCompiler: KECompiler
 			if pathval.isString && storageval.isObject {
 				if let pathstr = pathval.toString(),
 				   let storage = storageval.toObject() as? KLValueStorage {
-					if let (ident, pathelms) = CNValuePath.pathExpression(string: pathstr) {
-						let table  = CNValueTable(path: CNValuePath(identifier: ident, elements: pathelms), valueStorage: storage.core())
+					switch CNValuePath.pathExpression(string: pathstr) {
+					case .success(let path):
+						let table  = CNValueTable(path: path, valueStorage: storage.core())
 						let tblobj = KLValueTable(table: table, context: ctxt)
 						return JSValue(object: tblobj, in: ctxt)
+					case .failure(let err):
+						CNLog(logLevel: .error, message: err.toString(), atFunction: #function, inFile: #file)
 					}
 				}
 			}

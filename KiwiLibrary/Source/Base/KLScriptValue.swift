@@ -153,7 +153,13 @@ extension JSValue
 	}
 
 	public func toPointer() -> CNPointerValue? {
-		return CNPointerValue.fromJSValue(scriptValue: self)
+		switch CNPointerValue.fromJSValue(scriptValue: self) {
+		case .success(let val):
+			return val
+		case .failure(let err):
+			CNLog(logLevel: .error, message: err.toString(), atFunction: #function, inFile: #file)
+			return nil
+		}
 	}
 
 	private func anyToDouble(any aval: Any?) -> CGFloat? {

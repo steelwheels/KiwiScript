@@ -47,10 +47,13 @@ import Foundation
 	public func value(_ pathval: JSValue) -> JSValue {
 		if pathval.isString {
 			if let pathstr = pathval.toString() {
-				if let (ident, pathelms) = CNValuePath.pathExpression(string: pathstr) {
-					if let retval = mValueStorage.value(forPath: CNValuePath(identifier: ident, elements: pathelms)) {
+				switch CNValuePath.pathExpression(string: pathstr) {
+				case .success(let path):
+					if let retval = mValueStorage.value(forPath: path) {
 						return retval.toJSValue(context: mContext)
 					}
+				case .failure(let err):
+					CNLog(logLevel: .error, message: err.toString(), atFunction: #function, inFile: #file)
 				}
 			}
 		}
@@ -90,8 +93,11 @@ import Foundation
 	private func valueToPath(_ val: JSValue) -> CNValuePath? {
 		if val.isString {
 			if let str = val.toString() {
-				if let (ident, elms) = CNValuePath.pathExpression(string: str) {
-					return CNValuePath(identifier: ident, elements: elms)
+				switch CNValuePath.pathExpression(string: str) {
+				case .success(let path):
+					return path
+				case .failure(let err):
+					CNLog(logLevel: .error, message: err.toString(), atFunction: #function, inFile: #file)
 				}
 			}
 		}

@@ -23,16 +23,18 @@ public extension CNPointerValue
 		return false
 	}
 
-	static func fromJSValue(scriptValue val: JSValue) -> CNPointerValue? {
+	static func fromJSValue(scriptValue val: JSValue) -> Result<CNPointerValue, NSError> {
 		if let dict = val.toDictionary() as? Dictionary<String, Any> {
 			if let pathstr = dict[CNPointerValue.PathItem] as? String {
-				if let (ident, pathelms) = CNValuePath.pathExpression(string: pathstr) {
-					let pathobj = CNValuePath(identifier: ident, elements: pathelms)
-					return CNPointerValue(path: pathobj)
+				switch CNValuePath.pathExpression(string: pathstr) {
+				case .success(let path):
+					return .success(CNPointerValue(path: path))
+				case .failure(let err):
+					return .failure(err)
 				}
 			}
 		}
-		return nil
+		return .failure(NSError.parseError(message: "Incorrect format for pointer class"))
 	}
 
 	func toJSValue(context ctxt: KEContext) -> JSValue {
