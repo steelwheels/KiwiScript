@@ -1,25 +1,25 @@
 # Table class
 The table contains mutiple records.
 
-
 ## Interface
 ````
 interface TableIF {
-  recordCount:		                number ;
+	recordCount:		number ;
 
-  readonly allFieldNames:	string[] ;
+	readonly defaultFields:	{[name:string]: any} ;
 
-  record(row: number):			RecordIF | null ;
-  pointer(value: any, key: string):	any | null ;
+	newRecord():				RecordIF ;
+	record(row: number):			RecordIF | null ;
+	pointer(value: any, key: string):	any | null ;
 
-  search(value: any, name: string):	RecordIF[] | null ;
-  append(record: RecordIF): 		void ;
-  appendPointer(pointer: any):		void ;
+	search(value: any, name: string):	RecordIF[] | null ;
+	append(record: RecordIF): 		void ;
+	appendPointer(pointer: any):		void ;
 
-  remove(index: number):			boolean ;
-  save():					boolean ;
+	remove(index: number):			boolean ;
+	save():					boolean ;
 
-  toString(): 		string ;
+	toString(): 		string
 }
 ````
 
@@ -57,6 +57,14 @@ is presented as `tables.table_a`.
 recordCount: number
 ````
 Number of records in the table.
+
+### `defaultFields`
+````
+readonly defaultFields:	{[name:string]: any} ;
+````
+This value defines the all field names in the record and these initial values.
+
+This must be defined in value storage before allocating table. And they can not be modified (readonly).
 
 ## Related Links
 * [Kiwi Standard Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): The built-in JavaScript library.
