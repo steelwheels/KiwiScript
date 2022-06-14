@@ -47,6 +47,8 @@ extension CNValue {
 				newarr.append(elm.toAny())
 			}
 			result = JSValue(object: newarr, in: ctxt)
+		case .setValue(let sval):
+			result = sval.toJSValue(context: ctxt)
 		case .URLValue(let val):
 			result = JSValue(URL: val, in: ctxt)
 		case .imageValue(let val):

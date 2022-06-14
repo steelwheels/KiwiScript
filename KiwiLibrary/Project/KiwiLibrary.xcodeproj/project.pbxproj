@@ -182,6 +182,8 @@
 		05BD118726C01AD200961535 /* KLValueTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BD118626C01AD200961535 /* KLValueTable.swift */; };
 		05BD118826C01AD200961535 /* KLValueTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BD118626C01AD200961535 /* KLValueTable.swift */; };
 		05C0378E25187007002A9C41 /* Math.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05C0378825186FF3002A9C41 /* Math.js */; };
+		05C14F5B28577CE7009C05D4 /* KLValueSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C14F5A28577CE7009C05D4 /* KLValueSet.swift */; };
+		05C14F5C28577CE7009C05D4 /* KLValueSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C14F5A28577CE7009C05D4 /* KLValueSet.swift */; };
 		05C3B2A025A2087F005256E1 /* KLReadline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C3B29F25A2087F005256E1 /* KLReadline.swift */; };
 		05C3B2A125A2087F005256E1 /* KLReadline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C3B29F25A2087F005256E1 /* KLReadline.swift */; };
 		05C8362826DBCA3000861C51 /* Object.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0515051D26DB7B14007C29F0 /* Object.ts */; };
@@ -501,6 +503,7 @@
 		05BD118626C01AD200961535 /* KLValueTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLValueTable.swift; sourceTree = "<group>"; };
 		05C0378825186FF3002A9C41 /* Math.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Math.js; sourceTree = "<group>"; };
 		05C0378925186FF3002A9C41 /* Debug.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Debug.js; sourceTree = "<group>"; };
+		05C14F5A28577CE7009C05D4 /* KLValueSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLValueSet.swift; sourceTree = "<group>"; };
 		05C3B29F25A2087F005256E1 /* KLReadline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLReadline.swift; sourceTree = "<group>"; };
 		05CFDFE1254505E50089C1AE /* KLThreadLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLThreadLauncher.swift; sourceTree = "<group>"; };
 		05D1FC2C2844FC1B0092BF40 /* Enum.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Enum.d.ts; sourceTree = "<group>"; };
@@ -787,6 +790,7 @@
 				05EE5C8426E79316005026B3 /* KLText.swift */,
 				0564FD2B2801A120000B8C22 /* KLValuePointer.swift */,
 				053D2DAE277A81A0008B6DA2 /* KLValueSegment.swift */,
+				05C14F5A28577CE7009C05D4 /* KLValueSet.swift */,
 				059A152D2781E71200F4B24C /* KLValueStorage.swift */,
 			);
 			path = Data;
@@ -1118,6 +1122,7 @@
 				05950CA125C4304500D659A1 /* KLGraphicsContext.swift in Sources */,
 				05C3B2A025A2087F005256E1 /* KLReadline.swift in Sources */,
 				05A95B6A2516D03300775737 /* KLFile.swift in Sources */,
+				05C14F5B28577CE7009C05D4 /* KLValueSet.swift in Sources */,
 				05A95B982516D08500775737 /* KLScriptValue.swift in Sources */,
 				05A95B662516D03300775737 /* KLBuiltinScripts.swift in Sources */,
 				059083B42723978700F10EEE /* KLSymbol.swift in Sources */,
@@ -1171,6 +1176,7 @@
 				05950CA225C4304500D659A1 /* KLGraphicsContext.swift in Sources */,
 				05C3B2A125A2087F005256E1 /* KLReadline.swift in Sources */,
 				05A95B6B2516D03300775737 /* KLFile.swift in Sources */,
+				05C14F5C28577CE7009C05D4 /* KLValueSet.swift in Sources */,
 				05A95B992516D08500775737 /* KLScriptValue.swift in Sources */,
 				05A95B672516D03300775737 /* KLBuiltinScripts.swift in Sources */,
 				059083B52723978700F10EEE /* KLSymbol.swift in Sources */,

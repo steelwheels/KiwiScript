@@ -56,6 +56,7 @@ public class KLValueDuplicator
 			case .imageType:	dupval = duplicate(imageValue: src.toImage())
 			case .colorType:	dupval = JSValue(object: src.toColor(), in: mTargetContext)
 			case .arrayType:	dupval = duplicate(array: src.toArray())
+			case .setType:		dupval = duplicate(set: src.toSet())
 			case .dictionaryType:	dupval = duplicate(dictionary: src.toDictionary())
 			case .rangeType:	dupval = src.toRange().toJSValue(context: mTargetContext)
 			case .pointType:	dupval = src.toPoint().toJSValue(context: mTargetContext)
@@ -84,6 +85,14 @@ public class KLValueDuplicator
 			}
 		}
 		return JSValue(object: result, in: mTargetContext)
+	}
+
+	private func duplicate(set svalp: CNValueSet?) -> JSValue {
+		if let sval = svalp {
+			return sval.toJSValue(context: mTargetContext)
+		} else {
+			return JSValue(nullIn: mTargetContext)
+		}
 	}
 
 	private func duplicate(dictionary dictp: Dictionary<AnyHashable, Any>?) -> JSValue {

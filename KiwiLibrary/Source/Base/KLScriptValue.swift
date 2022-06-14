@@ -46,6 +46,14 @@ extension JSValue
 		}
 	}
 
+	public var isSet: Bool { get {
+		return CNValueSet.isValueSet(scriptValue: self)
+	}}
+
+	public func toSet() -> CNValueSet? {
+		return CNValueSet.fromJSValue(scriptValue: self)
+	}
+
 	public var isPoint: Bool {
 		get { return CGPoint.isPoint(scriptValue: self) }
 	}
@@ -227,6 +235,8 @@ extension JSValue
 				result = .pointerType
 			} else if self.isArray {
 				result = .arrayType
+			} else if self.isSet {
+				result = .setType
 			} else if self.isDictionary {
 				result = .dictionaryType
 			} else if self.isObject {
@@ -301,6 +311,13 @@ extension JSValue
 					}
 				}
 				result = .arrayValue(dstarr)
+			case .setType:
+				if let sval = CNValueSet.fromJSValue(scriptValue: self) {
+					result = .setValue(sval)
+				} else {
+					CNLog(logLevel: .error, message: "Failed to convert to set", atFunction: #function, inFile: #file)
+					result = .nullValue
+				}
 			case .dictionaryType:
 				var dstdict: Dictionary<String, CNValue> = [:]
 				if let srcdict = self.toDictionary() as? Dictionary<String, Any> {
