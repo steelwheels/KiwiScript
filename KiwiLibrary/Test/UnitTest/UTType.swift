@@ -143,11 +143,12 @@ private func typeTest(value val: JSValue, context2 ctxt2: KEContext, console con
 	let jtxt = jval.toText().toStrings().joined(separator: "\n")
 	cons.print(string: jtxt + "\n")
 
+	/*
 	cons.print(string: "duplicate: ")
 	let duplicator = KLValueDuplicator(targetContext: ctxt2)
 	let dval = duplicator.duplicate(value: val)
 	let dtxt = dval.toText().toStrings().joined(separator: "\n")
-	cons.print(string: dtxt + "\n")
+	cons.print(string: dtxt + "\n")*/
 
 	return true
 }

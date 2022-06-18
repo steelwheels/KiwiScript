@@ -12,6 +12,47 @@ import Foundation
 
 public extension CNValueSet
 {
+	static func isSet(scriptValue val: JSValue) -> Bool {
+		if let dict = val.toDictionary() {
+			if let str = dict["class"] as? String {
+				return str == CNValueSet.ClassName
+			}
+		}
+		return false
+	}
+
+	static func valueToJSValue(source src: Array<CNValue>, context ctxt: KEContext) -> JSValue {
+		var values: Array<Any> = []
+		for elm in src {
+			values.append(elm.toAny())
+		}
+		let dict: Dictionary<String, Any> = [
+			"class":	CNValueSet.ClassName,
+			"values":	values
+		]
+		return JSValue(object: dict, in: ctxt)
+	}
+
+	static func fromJSValue(scriptValue val: JSValue) -> CNValue? {
+		if let dict = val.toDictionary() as? Dictionary<String, Any> {
+			var newdict: Dictionary<String, CNValue> = [:]
+			for (key, aval) in dict {
+				if let val = CNValue.anyToValue(object: aval) {
+					newdict[key] = val
+				} else {
+					CNLog(logLevel: .error, message: "Failed to convert", atFunction: #function, inFile: #file)
+				}
+			}
+			return CNValueSet.fromValue(value: newdict)
+		} else {
+			return nil
+		}
+	}
+}
+
+/*
+public extension CNValueSet
+{
 	static func isValueSet(scriptValue val: JSValue) -> Bool {
 		if let dict = val.toDictionary() as? Dictionary<String, Any> {
 			if let name = dict["class"] as? String {
@@ -48,4 +89,4 @@ public extension CNValueSet
 		return val.toJSValue(context: ctxt)
 	}
 }
-
+*/

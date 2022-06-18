@@ -48,7 +48,7 @@ extension CNValue {
 			}
 			result = JSValue(object: newarr, in: ctxt)
 		case .setValue(let sval):
-			result = sval.toJSValue(context: ctxt)
+			result = CNValueSet.valueToJSValue(source: sval, context: ctxt)
 		case .URLValue(let val):
 			result = JSValue(URL: val, in: ctxt)
 		case .imageValue(let val):

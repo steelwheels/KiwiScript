@@ -47,10 +47,10 @@ extension JSValue
 	}
 
 	public var isSet: Bool { get {
-		return CNValueSet.isValueSet(scriptValue: self)
+		return CNValueSet.isSet(scriptValue: self)
 	}}
 
-	public func toSet() -> CNValueSet? {
+	public func toSet() -> CNValue? {
 		return CNValueSet.fromJSValue(scriptValue: self)
 	}
 
@@ -312,8 +312,8 @@ extension JSValue
 				}
 				result = .arrayValue(dstarr)
 			case .setType:
-				if let sval = CNValueSet.fromJSValue(scriptValue: self) {
-					result = .setValue(sval)
+				if let val = CNValueSet.fromJSValue(scriptValue: self) {
+					result = val
 				} else {
 					CNLog(logLevel: .error, message: "Failed to convert to set", atFunction: #function, inFile: #file)
 					result = .nullValue

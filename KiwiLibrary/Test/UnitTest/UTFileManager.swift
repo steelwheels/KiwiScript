@@ -45,7 +45,7 @@ private func printURL(URLValue val: JSValue, fileManager manager: KLFileManager,
 
 	let typeval = manager.checkFileType(val)
 	if typeval.isNumber {
-		switch typeval.toInt32() {
+		switch Int(typeval.toInt32()) {
 		case CNFileType.File.rawValue:
 			cons.print(string: "FileType: File\n")
 		case CNFileType.Directory.rawValue:
@@ -101,7 +101,7 @@ private func normalizeTest(fileManager manager: KLFileManager, context ctxt: KEC
 private func accessibilityTest(fileManager manager: KLFileManager, context ctxt: KEContext, console cons: CNConsole) -> Bool
 {
 	if let pathval = JSValue(object: FileManager.default.currentDirectoryPath + "/UnitTest", in: ctxt),
-	   let accval  = JSValue(int32: CNFileAccessType.ReadAccess.rawValue, in: ctxt) {
+	   let accval  = JSValue(int32: Int32(CNFileAccessType.ReadAccess.rawValue), in: ctxt) {
 		let retval  = manager.isAccessible(pathval, accval)
 		if retval.isBoolean {
 			if retval.toBool() {
