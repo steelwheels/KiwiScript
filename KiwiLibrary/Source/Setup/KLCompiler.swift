@@ -772,10 +772,10 @@ public class KLLibraryCompiler: KECompiler
 			(_ pathval: JSValue, _ storageval: JSValue) -> JSValue in
 			if pathval.isString && storageval.isObject {
 				if let pathstr = pathval.toString(),
-				   let storage = storageval.toObject() as? KLValueStorage {
+				   let storage = storageval.toObject() as? KLStorage {
 					switch CNValuePath.pathExpression(string: pathstr) {
 					case .success(let path):
-						let table  = CNValueTable(path: path, valueStorage: storage.core())
+						let table  = CNValueTable(path: path, storage: storage.core())
 						let tblobj = KLValueTable(table: table, context: ctxt)
 						return JSValue(object: tblobj, in: ctxt)
 					case .failure(let err):
@@ -790,11 +790,11 @@ public class KLLibraryCompiler: KECompiler
 		/* Storage */
 		let allocStorageFunc: @convention(block) (_ nameval: JSValue) -> JSValue = {
 			(_ nameval: JSValue) -> JSValue in
-			var result: KLValueStorage? = nil
+			var result: KLStorage? = nil
 			if nameval.isString {
 				if let name = nameval.toString() {
 					if let storage = res.loadStorage(identifier: name) {
-						result = KLValueStorage(valueStorage: storage, context: ctxt)
+						result = KLStorage(storage: storage, context: ctxt)
 					}
 				}
 			}

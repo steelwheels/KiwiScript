@@ -29,10 +29,10 @@ open class KEResource: CNResource
 	}
 
 	private var mFileLoader:		LoaderFunc
-	private var mValueStorageLoader:	LoaderFunc
+	private var mStorageLoader:		LoaderFunc
 	private var mImageLoader:		LoaderFunc
 	private var mEmptyReset:		ResetFunc
-	private var mStorageTable:		Dictionary<String, CNValueStorage>
+	private var mStorageTable:		Dictionary<String, CNStorage>
 
 	public var fileLoader: LoaderFunc	{ get { return mFileLoader }}
 
@@ -47,7 +47,7 @@ open class KEResource: CNResource
 		}
 
 		/* Assigne dummy loader (overwritten later) */
-		mValueStorageLoader = { (_ fileurl: URL) -> Any? in return nil }
+		mStorageLoader = { (_ fileurl: URL) -> Any? in return nil }
 
 		mImageLoader = {
 			(_ fileurl: URL) -> Any? in
@@ -66,9 +66,9 @@ open class KEResource: CNResource
 		super.init(packageDirectory: packdir)
 
 		/* Update loader */
-		mValueStorageLoader = {
+		mStorageLoader = {
 			(_ fileurl: URL) -> Any? in
-			return self.getValueStorage(packageDirectory: packdir, fileURL: fileurl)
+			return self.getStorage(packageDirectory: packdir, fileURL: fileurl)
 		}
 
 		/* Setup categories */
@@ -78,7 +78,7 @@ open class KEResource: CNResource
 		addCategory(category: KEResource.ThreadsCategory,	loader: mFileLoader, reset: mEmptyReset)
 		addCategory(category: KEResource.SubViewsCategory,	loader: mFileLoader, reset: mEmptyReset)
 		addCategory(category: KEResource.DefinitionsCategory,	loader: mFileLoader, reset: mEmptyReset)
-		addCategory(category: KEResource.StoragesCategory,	loader: mValueStorageLoader, reset: mEmptyReset)
+		addCategory(category: KEResource.StoragesCategory,	loader: mStorageLoader, reset: mEmptyReset)
 		addCategory(category: KEResource.ImagesCategory, 	loader: mImageLoader, reset: mEmptyReset)
 	}
 
@@ -108,7 +108,7 @@ open class KEResource: CNResource
 		return result
 	}
 
-	private func getValueStorage(packageDirectory packdir: URL, fileURL fileurl: URL) -> CNValueStorage? {
+	private func getStorage(packageDirectory packdir: URL, fileURL fileurl: URL) -> CNStorage? {
 		let filepath: String
 		if let relpath = CNFilePath.relativePathUnderBaseURL(fullPath: fileurl, basePath: packdir){
 			filepath = relpath
@@ -119,18 +119,18 @@ open class KEResource: CNResource
 		if let vstorage = mStorageTable[filepath] {
 			return vstorage
 		} else {
-			let newstorage = KEResource.allocateValueStorage(packageDirectory: packdir, filePath: filepath)
+			let newstorage = KEResource.allocateStorage(packageDirectory: packdir, filePath: filepath)
 			mStorageTable[filepath] = newstorage
 			return newstorage
 		}
 	}
 
-	static public func allocateValueStorage(packageDirectory packdir: URL, filePath fpath: String) -> CNValueStorage? {
+	static public func allocateStorage(packageDirectory packdir: URL, filePath fpath: String) -> CNStorage? {
 		/* Put the copy of source file into ApplicationSupport directory */
 		let packname = packdir.lastPathComponent
 		let dstdir   = CNFilePath.URLforApplicationSupportDirectory(subDirectory: packname)
 
-		let storage = CNValueStorage(sourceDirectory: packdir, cacheDirectory: dstdir, filePath: fpath)
+		let storage = CNStorage(sourceDirectory: packdir, cacheDirectory: dstdir, filePath: fpath)
 		switch storage.load() {
 		case .success(_):
 			break
@@ -350,8 +350,8 @@ open class KEResource: CNResource
 		}
 	}
 
-	public func loadStorage(identifier ident: String) -> CNValueStorage? {
-		if let storage: CNValueStorage = super.load(category: KEResource.StoragesCategory, identifier: ident, index: 0) {
+	public func loadStorage(identifier ident: String) -> CNStorage? {
+		if let storage: CNStorage = super.load(category: KEResource.StoragesCategory, identifier: ident, index: 0) {
 			return storage
 		} else {
 			return nil

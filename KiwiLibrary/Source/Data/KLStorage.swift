@@ -1,6 +1,6 @@
 /**
- * @file	KLValueStorage.swift
- * @brief	Extend CNValueStorage class
+ * @file	KLStorage.swift
+ * @brief	Extend CNStorage class
  * @par Copyright
  *   Copyright (C) 2021 Steel Wheels Project
  */
@@ -10,7 +10,7 @@ import KiwiEngine
 import JavaScriptCore
 import Foundation
 
-@objc public protocol KLValueStorageProtocol: JSExport
+@objc public protocol KLStorageProtocol: JSExport
 {
 	// value(path: [string]): value
 	func value(_ path: JSValue) -> JSValue
@@ -30,18 +30,18 @@ import Foundation
 	func toString() -> JSValue
 }
 
-@objc public class KLValueStorage: NSObject, KLValueStorageProtocol
+@objc public class KLStorage: NSObject, KLStorageProtocol
 {
-	private var mValueStorage:	CNValueStorage
+	private var mStorage:	CNStorage
 	private var mContext:		KEContext
 
-	public init(valueStorage stoage: CNValueStorage, context ctxt: KEContext){
-		mValueStorage	= stoage
+	public init(storage strg: CNStorage, context ctxt: KEContext){
+		mStorage	= strg
 		mContext	= ctxt
 	}
 
-	public func core() -> CNValueStorage {
-		return mValueStorage
+	public func core() -> CNStorage {
+		return mStorage
 	}
 
 	public func value(_ pathval: JSValue) -> JSValue {
@@ -49,7 +49,7 @@ import Foundation
 			if let pathstr = pathval.toString() {
 				switch CNValuePath.pathExpression(string: pathstr) {
 				case .success(let path):
-					if let retval = mValueStorage.value(forPath: path) {
+					if let retval = mStorage.value(forPath: path) {
 						return retval.toJSValue(context: mContext)
 					}
 				case .failure(let err):
@@ -63,7 +63,7 @@ import Foundation
 	public func set(_ val: JSValue, _ pathval: JSValue) -> JSValue {
 		let result: Bool
 		if let path = valueToPath(pathval) {
-			result = mValueStorage.set(value: val.toNativeValue(), forPath: path)
+			result = mStorage.set(value: val.toNativeValue(), forPath: path)
 		} else {
 			result = false
 		}
@@ -73,7 +73,7 @@ import Foundation
 	public func append(_ val: JSValue, _ pathval: JSValue) -> JSValue {
 		let result: Bool
 		if let path = valueToPath(pathval) {
-			result = mValueStorage.append(value: val.toNativeValue(), forPath: path)
+			result = mStorage.append(value: val.toNativeValue(), forPath: path)
 		} else {
 			result = false
 		}
@@ -83,7 +83,7 @@ import Foundation
 	public func delete(_ pathval: JSValue) -> JSValue {
 		let result: Bool
 		if let path = valueToPath(pathval) {
-			result = mValueStorage.delete(forPath: path)
+			result = mStorage.delete(forPath: path)
 		} else {
 			result = false
 		}
@@ -105,12 +105,12 @@ import Foundation
 	}
 
 	public func save() -> JSValue {
-		let result = mValueStorage.save()
+		let result = mStorage.save()
 		return JSValue(bool: result, in: mContext)
 	}
 
 	public func toString() -> JSValue {
-		let str = mValueStorage.toValue().toText().toStrings().joined(separator: "\n")
+		let str = mStorage.toValue().toText().toStrings().joined(separator: "\n")
 		return JSValue(object: str, in: mContext)
 	}
 
