@@ -125,7 +125,7 @@ extension JSValue
 	}}
 
 	public func toRecord() -> CNRecord? {
-		if let recobj = self.toObject() as? KLRecordCore {
+		if let recobj = self.toObject() as? KLRecordCoreProtocol {
 			return recobj.core()
 		} else {
 			return nil

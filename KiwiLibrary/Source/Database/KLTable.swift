@@ -1,8 +1,8 @@
 /**
- * @file	KLValueTable.swift
- * @brief	Define KLValueTable class
+ * @file	KLTable.swift
+ * @brief	Define KLTable class
  * @par Copyright
- *   Copyright (C) 2021 Steel Wheels Project
+ *   Copyright (C) 2021-2022 Steel Wheels Project
  */
 
 import KiwiEngine
@@ -10,7 +10,32 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-@objc public class KLValueTable: NSObject, KLTable, KLTableCore
+@objc public protocol KLTableProtocol: JSExport
+{
+	var recordCount: JSValue { get }
+	var defaultFields: JSValue { get }
+
+	func newRecord() -> JSValue
+	func record(_ row: JSValue) -> JSValue
+	func pointer(_ val: JSValue, _ field: JSValue) -> JSValue
+
+	func search(_ val: JSValue, _ field: JSValue) -> JSValue
+	func append(_ rcd: JSValue)
+	func appendPointer(_ ptr: JSValue)
+	func remove(_ rcd: JSValue) -> JSValue
+	func save() -> JSValue
+
+	func forEach(_ callback: JSValue)
+
+	func toString() -> JSValue
+}
+
+public protocol KLTableCoreProtocol
+{
+	func core() -> CNTable
+}
+
+@objc public class KLTable: NSObject, KLTableProtocol, KLTableCoreProtocol
 {
 	private var mTable: 	CNTable
 	private var mContext:	KEContext

@@ -17,7 +17,7 @@ import Foundation
 	func load(_ url: JSValue) -> JSValue
 }
 
-@objc public class KLContactDatabase: NSObject, KLContactTable, KLTable, KLTableCore
+@objc public class KLContactDatabase: NSObject, KLContactTable, KLTableProtocol, KLTableCoreProtocol
 {
 	private var mContext: KEContext
 

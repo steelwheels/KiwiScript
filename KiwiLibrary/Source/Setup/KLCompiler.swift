@@ -775,8 +775,8 @@ public class KLLibraryCompiler: KECompiler
 				   let storage = storageval.toObject() as? KLStorage {
 					switch CNValuePath.pathExpression(string: pathstr) {
 					case .success(let path):
-						let table  = CNValueTable(path: path, storage: storage.core())
-						let tblobj = KLValueTable(table: table, context: ctxt)
+						let table  = CNStorageTable(path: path, storage: storage.core())
+						let tblobj = KLTable(table: table, context: ctxt)
 						return JSValue(object: tblobj, in: ctxt)
 					case .failure(let err):
 						CNLog(logLevel: .error, message: err.toString(), atFunction: #function, inFile: #file)

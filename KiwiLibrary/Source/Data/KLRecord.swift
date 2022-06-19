@@ -10,7 +10,7 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-@objc public protocol KLRecordIF: JSExport
+@objc public protocol KLRecordProtocol: JSExport
 {
 	var fieldCount:		JSValue { get }
 	var fieldNames:		JSValue { get }
@@ -21,12 +21,12 @@ import Foundation
 	func toString() -> JSValue
 }
 
-public protocol KLRecordCore
+public protocol KLRecordCoreProtocol
 {
 	func core() -> CNRecord
 }
 
-@objc public class KLRecord: NSObject, KLRecordIF, KLRecordCore
+@objc public class KLRecord: NSObject, KLRecordProtocol, KLRecordCoreProtocol
 {
 	private static let TEMPORARY_VARIABLE_NAME = "_kiwilibrary_record_temp_var"
 	private static var temporary_variable_id   = 0
