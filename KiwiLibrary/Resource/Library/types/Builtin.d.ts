@@ -61,8 +61,8 @@ interface ArrayIF {
 	values:	[any] ;
 
 	value(index: number): any | null ;
-	set(value: any, index: number) ;
-	append(value: any) ;
+	set(value: any, index: number): void ;
+	append(value: any): void ;
 }
 
 interface SetIF {
@@ -70,7 +70,7 @@ interface SetIF {
 	values:	[any] ;
 
 	value(index: number): any | null ;
-	append(value: any) ;
+	insert(value: any): void ;
 }
 
 interface DictionaryIF {

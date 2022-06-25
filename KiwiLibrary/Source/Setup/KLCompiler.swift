@@ -822,7 +822,7 @@ public class KLLibraryCompiler: KECompiler
 	private func importBuiltinLibrary(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig)
 	{
 		/* Contacts.js depends on the Process.js */
-		let libnames = ["Object", "Array", "Table", "Debug", "File", "Graphics", "Curses", "Math", "Process", "String", "Turtle", "Contacts"]
+		let libnames = ["Object", "Array", "Debug", "File", "Graphics", "Curses", "Math", "Process", "String", "Turtle", "Contacts"]
 		do {
 			for libname in libnames {
 				if let url = CNFilePath.URLForResourceFile(fileName: libname, fileExtension: "js", subdirectory: "Library", forClass: KLLibraryCompiler.self) {

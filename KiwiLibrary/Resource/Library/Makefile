@@ -4,7 +4,6 @@
 
 srcs	= Object.ts \
 	  Array.ts \
-	  Table.ts \
 	  File.ts \
 	  Math.ts \
 	  Debug.ts \
