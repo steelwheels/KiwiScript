@@ -56,16 +56,30 @@ interface CursesIF {
 	fill(x: number, y: number, width: number, height: number, c: string): void ;
 }
 
+interface ArrayIF {
+	count:	number ;
+	values:	[any] ;
+
+	value(index: number): any | null ;
+	set(value: any, index: number) ;
+	append(value: any) ;
+}
+
+interface SetIF {
+	count:	number ;
+	values:	[any] ;
+
+	value(index: number): any | null ;
+	append(value: any) ;
+}
+
 interface DictionaryIF {
-	object:		{[name: string]: any} ;
+	count:	number ;
+	keys:   [any] ;
+	values: [any] ;
 
-	setNumber(value: number, name: string): void ;
-	setString(value: string, name: string): void ;
-	setDictionary(value: DictionaryIF, name: string): void ;
-
-	number(name: string): number | null ;
-	string(name: string): string | null ;
-	dictionary(name: string): DictionaryIF | null ;
+	set(value: any, name: string): void ;
+	value(name: string): any | null ;
 }
 
 interface EscapeCodeIF {

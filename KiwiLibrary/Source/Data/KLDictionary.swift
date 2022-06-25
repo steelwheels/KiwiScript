@@ -12,125 +12,63 @@ import Foundation
 
 @objc public protocol KLDictionaryProtocol: JSExport
 {
-	var object: JSValue { get }
+	var count:  JSValue { get }	// Int
+	var values: JSValue { get }	// Array(Value)
+	var keys:   JSValue { get }	// Array(String)
 
-	func setNumber(_ value: JSValue, _ name: JSValue)
-	func setString(_ value: JSValue, _ name: JSValue)
-	func setDictionary(_ value: JSValue, _ name: JSValue)
-
-	func number(_ name: JSValue) -> JSValue
-	func string(_ name: JSValue) -> JSValue
-	func dictionary(_ name: JSValue) -> JSValue
+	func set(_ value: JSValue, _ name: JSValue)	// (Value, string)
+	func value(_ name: JSValue) -> JSValue		// (string) -> Value?
 }
 
 @objc public class KLDictionary: NSObject, KLDictionaryProtocol
 {
-	private var mTable:	Dictionary<String, NSObject>
-	private var mContext:	KEContext
+	private var mDictionary:	CNDictionary
+	private var mContext:		KEContext
 
-	public init(context ctxt: KEContext) {
-		mTable		= [:]
+	public init(dictionary dict: CNDictionary, context ctxt: KEContext) {
+		mDictionary	= dict
 		mContext	= ctxt
 	}
 
-	public init(value val: Dictionary<String, Any>, context ctxt: KEContext) {
-		mTable		= KLDictionary.makeDictionary(source: val)
-		mContext	= ctxt
-	}
+	public var count: JSValue { get {
+		return JSValue(int32: Int32(mDictionary.count), in: mContext)
+	}}
 
-	public var object: JSValue {
-		get { return JSValue(object: mTable, in: mContext) }
-	}
-
-	private static func makeDictionary(source src: Dictionary<String, Any>) -> Dictionary<String, NSObject> {
-		var result: Dictionary<String, NSObject> = [:]
-		for key in src.keys {
-			if let val = src[key] {
-				if let str = val as? NSString {
-					result[key] = str
-				} else if let num = val as? NSNumber {
-					result[key] = num
-				} else if let obj = val as? NSObject {
-					CNLog(logLevel: .error, message: "Unknown object: \(val)", atFunction: #function, inFile: #file)
-					result[key] = obj
-				} else {
-					CNLog(logLevel: .error, message: "Unknown any value: \(val)", atFunction: #function, inFile: #file)
-				}
-			}
+	public var values: JSValue { get {
+		var result: Array<Any> = []
+		for val in mDictionary.values {
+			result.append(val.toAny())
 		}
-		return result
-	}
+		return JSValue(object: result, in: mContext)
+	}}
 
-	public func setNumber(_ value: JSValue, _ name: JSValue) {
-		if name.isString && value.isNumber {
-			mTable[name.toString()]  = value.toNumber()
-		} else {
-			CNLog(logLevel: .error, message: "Invalid name:\(name) or value:\(value)", atFunction: #function, inFile: #file)
+	public var keys: JSValue { get {
+		return JSValue(object: mDictionary.keys, in: mContext)
+	}}
+
+	public func set(_ value: JSValue, _ name: JSValue) {
+		if let key = toKey(value: name) {
+			let _ = mDictionary.set(value: value.toNativeValue(), forKey: key)
 		}
 	}
 
-	public func setString(_ value: JSValue, _ name: JSValue) {
-		if name.isString && value.isString {
-			if let str = value.toString() {
-				mTable[name.toString()] = str as NSString
-			} else {
-				CNLog(logLevel: .error, message: "Can not happen", atFunction: #function, inFile: #file)
+	public func value(_ name: JSValue) -> JSValue {
+		if let key = toKey(value: name) {
+			if let val = mDictionary.value(forKey: key) {
+				return val.toJSValue(context: mContext)
 			}
-		} else {
-			CNLog(logLevel: .error, message: "Invalid name:\(name) or value:\(value)", atFunction: #function, inFile: #file)
-		}
-	}
-
-	public func setDictionary(_ value: JSValue, _ name: JSValue){
-		if value.isObject {
-			if let dict = value.toObject() as? Dictionary<String, NSObject> {
-				mTable[name.toString()] = dict as NSDictionary
-			} else if let dict = value.toObject() as? KLDictionary {
-				mTable[name.toString()] = dict.mTable as NSDictionary
-			} else {
-				CNLog(logLevel: .error, message: "Can not happen", atFunction: #function, inFile: #file)
-			}
-		} else {
-			CNLog(logLevel: .error, message: "Invalid name:\(name) or value:\(value)", atFunction: #function, inFile: #file)
-		}
-	}
-
-	public func string(_ name: JSValue) -> JSValue {
-		if name.isString {
-			if let nval = mTable[name.toString()] {
-				if let str = nval as? NSString {
-					return JSValue(object: str, in: mContext)
-				}
-			}
-		} else {
-			CNLog(logLevel: .error, message: "Invalid key to set data", atFunction: #function, inFile: #file)
 		}
 		return JSValue(nullIn: mContext)
 	}
 
-	public func number(_ name: JSValue) -> JSValue {
-		if name.isString {
-			if let nval = mTable[name.toString()] {
-				if let num = nval as? NSNumber {
-					return JSValue(object: num, in: mContext)
-				}
-			}
+	private func toKey(value val: JSValue) -> String? {
+		if val.isString {
+			return val.toString()
 		} else {
-			CNLog(logLevel: .error, message: "Invalid key to set data", atFunction: #function, inFile: #file)
+			CNLog(logLevel: .error, message: "Invalid parameter type. the string is required for key to access dictionary.")
+			return nil
 		}
-		return JSValue(nullIn: mContext)
-	}
-
-	public func dictionary(_ name: JSValue) -> JSValue {
-		if name.isString {
-			if let dict = mTable[name.toString()] as? Dictionary<String, NSObject> {
-				let newobj = KLDictionary(value: dict, context: mContext)
-				return JSValue(object: newobj, in: mContext)
-			}
-		} else {
-			CNLog(logLevel: .error, message: "Invalid key to set data", atFunction: #function, inFile: #file)
-		}
-		return JSValue(nullIn: mContext)
 	}
 }
+
 
