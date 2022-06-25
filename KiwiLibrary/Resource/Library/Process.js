@@ -22,13 +22,13 @@ function _waitUntilExitAll(processes) {
 }
 class Semaphore {
     constructor(initval) {
-        this.mValue = Dictionary();
-        this.mValue.setNumber(initval, "count");
+        this.mValue = {};
+        this.mValue["count"] = initval;
     }
     signal() {
-        let val = this.mValue.number("count");
+        let val = this.mValue["count"];
         if (val != null) {
-            this.mValue.setNumber(val - 1, "count");
+            this.mValue["count"] = val - 1;
         }
         else {
             console.log("No count in Semaphore");
@@ -36,7 +36,7 @@ class Semaphore {
     }
     wait() {
         while (true) {
-            let count = this.mValue.number("count");
+            let count = this.mValue["count"];
             if (count != null) {
                 if (count >= 0) {
                     sleep(0.1);
