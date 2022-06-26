@@ -739,7 +739,67 @@ public class KLLibraryCompiler: KECompiler
 		}
 		ctxt.set(name: "Bitmap", function: allocBitmapFunc)
 
-		/* Table */
+		/* ArrayInStorage */
+		let allocArrayFunc: @convention(block) (_ pathval: JSValue, _ storageval: JSValue) -> JSValue = {
+			(_ pathval: JSValue, _ storageval: JSValue) -> JSValue in
+			if pathval.isString && storageval.isObject {
+				if let pathstr = pathval.toString(),
+				   let storage = storageval.toObject() as? KLStorage {
+					switch CNValuePath.pathExpression(string: pathstr) {
+					case .success(let path):
+						let arr    = CNStorageArray(path: path, storage: storage.core())
+						let arrobj = KLArray(array: arr, context: ctxt)
+						return JSValue(object: arrobj, in: ctxt)
+					case .failure(let err):
+						CNLog(logLevel: .error, message: err.toString(), atFunction: #function, inFile: #file)
+					}
+				}
+			}
+			return JSValue(nullIn: ctxt)
+		}
+		ctxt.set(name: "ArrayInStorage", function: allocArrayFunc)
+
+		/* SetInStorage */
+		let allocSetFunc: @convention(block) (_ pathval: JSValue, _ storageval: JSValue) -> JSValue = {
+			(_ pathval: JSValue, _ storageval: JSValue) -> JSValue in
+			if pathval.isString && storageval.isObject {
+				if let pathstr = pathval.toString(),
+				   let storage = storageval.toObject() as? KLStorage {
+					switch CNValuePath.pathExpression(string: pathstr) {
+					case .success(let path):
+						let set    = CNStorageSet(path: path, storage: storage.core())
+						let setobj = KLSet(set: set, context: ctxt)
+						return JSValue(object: setobj, in: ctxt)
+					case .failure(let err):
+						CNLog(logLevel: .error, message: err.toString(), atFunction: #function, inFile: #file)
+					}
+				}
+			}
+			return JSValue(nullIn: ctxt)
+		}
+		ctxt.set(name: "SetInStorage", function: allocSetFunc)
+
+		/* DictionaryInStorage */
+		let allocDictSFunc: @convention(block) (_ pathval: JSValue, _ storageval: JSValue) -> JSValue = {
+			(_ pathval: JSValue, _ storageval: JSValue) -> JSValue in
+			if pathval.isString && storageval.isObject {
+				if let pathstr = pathval.toString(),
+				   let storage = storageval.toObject() as? KLStorage {
+					switch CNValuePath.pathExpression(string: pathstr) {
+					case .success(let path):
+						let dict    = CNStorageDictionary(path: path, storage: storage.core())
+						let dictobj = KLDictionary(dictionary: dict, context: ctxt)
+						return JSValue(object: dictobj, in: ctxt)
+					case .failure(let err):
+						CNLog(logLevel: .error, message: err.toString(), atFunction: #function, inFile: #file)
+					}
+				}
+			}
+			return JSValue(nullIn: ctxt)
+		}
+		ctxt.set(name: "DictionaryInStorage", function: allocDictSFunc)
+
+		/* TableInStorage */
 		let allocTableFunc: @convention(block) (_ pathval: JSValue, _ storageval: JSValue) -> JSValue = {
 			(_ pathval: JSValue, _ storageval: JSValue) -> JSValue in
 			if pathval.isString && storageval.isObject {
@@ -757,7 +817,7 @@ public class KLLibraryCompiler: KECompiler
 			}
 			return JSValue(nullIn: ctxt)
 		}
-		ctxt.set(name: "Table", function: allocTableFunc)
+		ctxt.set(name: "TableInStorage", function: allocTableFunc)
 
 		/* Storage */
 		let allocStorageFunc: @convention(block) (_ nameval: JSValue) -> JSValue = {

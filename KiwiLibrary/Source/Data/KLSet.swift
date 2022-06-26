@@ -16,6 +16,8 @@ import Foundation
 	var values: JSValue { get }	// Array(Value)
 
 	func value(_ index: JSValue) -> JSValue		// Int -> Value?
+	func contains(_ value: JSValue) -> JSValue	// (value) -> Bool
+
 	func insert(_ value: JSValue)			// (Value)
 }
 
@@ -48,6 +50,11 @@ import Foundation
 			}
 		}
 		return JSValue(nullIn: mContext)
+	}
+
+	public func contains(_ value: JSValue) -> JSValue {
+		let res = mSet.contains(value: value.toNativeValue())
+		return JSValue(bool: res, in: mContext)
 	}
 
 	public func insert(_ value: JSValue) {

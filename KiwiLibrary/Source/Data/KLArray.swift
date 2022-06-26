@@ -15,7 +15,9 @@ import Foundation
 	var count:  JSValue { get }	// Int
 	var values: JSValue { get }	// Array<Value>
 
-	func value(_ index: JSValue) -> JSValue			// Int -> Value?
+	func value(_ index: JSValue) -> JSValue		// Int -> Value?
+	func contains(_ value: JSValue) -> JSValue	// (value) -> Bool
+
 	func set(_ value: JSValue, _ index: JSValue)		// (Value, Int)
 	func append(_ value: JSValue)				// (Value)
 }
@@ -49,6 +51,11 @@ import Foundation
 			}
 		}
 		return JSValue(nullIn: mContext)
+	}
+
+	public func contains(_ value: JSValue) -> JSValue {
+		let res = mArray.contains(value: value.toNativeValue())
+		return JSValue(bool: res, in: mContext)
 	}
 
 	public func set(_ value: JSValue, _ index: JSValue) {
