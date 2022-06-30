@@ -277,6 +277,15 @@ interface TableIF {
 	toString(): 		string
 }
 
+interface MappingTableIF extends TableIF {
+
+	setFilterFunction(filter: (rec: RecordIF) => boolean): void ;
+	addVirtualField(field: string, callback: (rec: RecordIF) => any): void
+
+	sortOrder: 		SortOrder | null ;
+	setCompareFunction(compare: (rec0: RecordIF, rec1: RecordIF) => ComparisonResult): void
+}
+
 interface SymbolsIF {
 	characterA:		URLIF ;
 	chevronBackward:	URLIF ;
@@ -342,6 +351,7 @@ declare function ArrayInStorage(path: string, storage: StorageIF): ArrayIF | nul
 declare function SetInStorage(path: string, storage: StorageIF): SetIF | null ;
 declare function DictionaryInStorage(path: string, storage: StorageIF): DictionaryIF | null ;
 declare function TableInStorage(path: string, storage: StorageIF): TableIF | null ;
+declare function MappingTableInStorage(path: string, storage: StorageIF): MappingTableIF | null ;
 
 declare function isArray(value: any): boolean ;
 declare function isBitmap(value: any): boolean ;

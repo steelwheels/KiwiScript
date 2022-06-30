@@ -88,6 +88,8 @@
 		0564FD2D2801A120000B8C22 /* KLValuePointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0564FD2B2801A120000B8C22 /* KLValuePointer.swift */; };
 		05657B5C272452990035235D /* KLCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05657B5B272452990035235D /* KLCollection.swift */; };
 		05657B5D272452990035235D /* KLCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05657B5B272452990035235D /* KLCollection.swift */; };
+		05692FD5286AA448006F85F2 /* KLMappingTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05692FD4286AA448006F85F2 /* KLMappingTable.swift */; };
+		05692FD6286AA448006F85F2 /* KLMappingTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05692FD4286AA448006F85F2 /* KLMappingTable.swift */; };
 		056FBE52255A3B8B0069A0C2 /* UTCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FBE51255A3B8B0069A0C2 /* UTCommand.swift */; };
 		05763BEC2610AA89004D7B15 /* Graphics.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05763BEB2610AA89004D7B15 /* Graphics.js */; };
 		0577476225FE388A00ADC6E7 /* File.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0577476125FE388A00ADC6E7 /* File.js */; };
@@ -428,6 +430,7 @@
 		055D516F268CA8F700304205 /* KLContactDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLContactDatabase.swift; sourceTree = "<group>"; };
 		0564FD2B2801A120000B8C22 /* KLValuePointer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLValuePointer.swift; sourceTree = "<group>"; };
 		05657B5B272452990035235D /* KLCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLCollection.swift; sourceTree = "<group>"; };
+		05692FD4286AA448006F85F2 /* KLMappingTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMappingTable.swift; sourceTree = "<group>"; };
 		056FBE51255A3B8B0069A0C2 /* UTCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTCommand.swift; sourceTree = "<group>"; };
 		05763BEB2610AA89004D7B15 /* Graphics.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Graphics.js; sourceTree = "<group>"; };
 		0577476125FE388A00ADC6E7 /* File.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = File.js; sourceTree = "<group>"; };
@@ -773,6 +776,7 @@
 				05BD118026C0179B00961535 /* KLRecord.swift */,
 				054007F42866E29C00235240 /* KLSet.swift */,
 				059A152D2781E71200F4B24C /* KLStorage.swift */,
+				05692FD4286AA448006F85F2 /* KLMappingTable.swift */,
 				05BD118626C01AD200961535 /* KLTable.swift */,
 				05EE5C8426E79316005026B3 /* KLText.swift */,
 				0564FD2B2801A120000B8C22 /* KLValuePointer.swift */,
@@ -1135,6 +1139,7 @@
 				05F3DC3725D8C004003EBD1E /* KLBitmapData.swift in Sources */,
 				05A95B812516D06900775737 /* KLImage.swift in Sources */,
 				05A95B832516D06900775737 /* KLEscapeCode.swift in Sources */,
+				05692FD5286AA448006F85F2 /* KLMappingTable.swift in Sources */,
 				05A95B9A2516D08500775737 /* KLStruct.swift in Sources */,
 				05EE5C8526E79316005026B3 /* KLText.swift in Sources */,
 				05A95B4E2516CFF300775737 /* KLProcess.swift in Sources */,
@@ -1189,6 +1194,7 @@
 				05F3DC3825D8C004003EBD1E /* KLBitmapData.swift in Sources */,
 				05A95B822516D06900775737 /* KLImage.swift in Sources */,
 				05A95B842516D06900775737 /* KLEscapeCode.swift in Sources */,
+				05692FD6286AA448006F85F2 /* KLMappingTable.swift in Sources */,
 				05A95B9B2516D08500775737 /* KLStruct.swift in Sources */,
 				05EE5C8626E79316005026B3 /* KLText.swift in Sources */,
 				05A95B4F2516CFF300775737 /* KLProcess.swift in Sources */,

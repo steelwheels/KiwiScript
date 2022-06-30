@@ -25,3 +25,14 @@ Math.clamp = function (src, min, max) {
         return src;
     }
 };
+function compareNumbers(n0, n1) {
+    if (n0 < n1) {
+        return ComparisonResult.ascending;
+    }
+    else if (n0 == n1) {
+        return ComparisonResult.same;
+    }
+    else {
+        return ComparisonResult.descending;
+    }
+}

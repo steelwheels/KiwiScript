@@ -15,8 +15,7 @@ srcs	= Object.ts \
 	  Contacts.ts
 
 dsts	= $(srcs:.ts=.js)
-decls	= $(srcs:.ts=.d.ts) \
-		  Enum.d.ts
+decls	= $(srcs:.ts=.d.ts)
 
 dstdecl	= ./types/KiwiLibrary.d.ts
 
@@ -32,7 +31,7 @@ tsc_opt	= -t ES2017 --lib "es2017" --declaration --declarationDir types \
 all: $(dsts) $(dstdecl)
 
 $(dstdecl): types/Enum.d.ts
-	(cd types && cat Builtin.d.ts $(decls)) > $@
+	(cd types && cat Enum.d.ts Builtin.d.ts $(decls)) > $@
 
 types/Enum.d.ts: dummy
 	if [ -x ~/tools/bin/jsdecl ] ; then \

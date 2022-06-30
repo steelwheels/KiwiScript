@@ -43,6 +43,15 @@ declare namespace Axis {
   function description(param: Axis): string ;
   const keys: string[] ;
 }
+declare enum ComparisonResult {
+  ascending = -1,
+  descending = 1,
+  same = 0
+}
+declare namespace ComparisonResult {
+  function description(param: ComparisonResult): string ;
+  const keys: string[] ;
+}
 declare enum Distribution {
   equalSpacing = 3,
   fill = 0,
@@ -91,6 +100,14 @@ declare enum LogLevel {
 }
 declare namespace LogLevel {
   function description(param: LogLevel): string ;
+  const keys: string[] ;
+}
+declare enum SortOrder {
+  decreasing = 1,
+  increasing = 0
+}
+declare namespace SortOrder {
+  function description(param: SortOrder): string ;
   const keys: string[] ;
 }
 declare enum TextAlign {

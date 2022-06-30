@@ -35,7 +35,7 @@ public protocol KLTableCoreProtocol
 	func core() -> CNTable
 }
 
-@objc public class KLTable: NSObject, KLTableProtocol, KLTableCoreProtocol
+@objc open class KLTable: NSObject, KLTableProtocol, KLTableCoreProtocol
 {
 	private var mTable: 	CNTable
 	private var mContext:	KEContext
@@ -47,6 +47,10 @@ public protocol KLTableCoreProtocol
 
 	public var recordCount: JSValue { get {
 		return JSValue(int32: Int32(mTable.recordCount), in: mContext)
+	}}
+
+	public var context: KEContext { get {
+		return mContext
 	}}
 
 	public func core() -> CNTable {

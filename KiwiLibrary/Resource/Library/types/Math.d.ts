@@ -5,3 +5,4 @@ interface Math {
     clamp(src: number, min: number, max: number): number;
 }
 declare function int(value: number): number;
+declare function compareNumbers(n0: number, n1: number): ComparisonResult;

@@ -30,3 +30,15 @@ Math.clamp = function(src: number, min: number, max: number): number {
 		return src ;
 	}
 } ;
+
+function compareNumbers(n0:number, n1:number): ComparisonResult
+{
+	if(n0 < n1){
+		return ComparisonResult.ascending ;
+	} else if(n0 == n1) {
+		return ComparisonResult.same ;
+	} else {
+		return ComparisonResult.descending ;
+	}
+}
+

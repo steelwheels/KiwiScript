@@ -819,6 +819,27 @@ public class KLLibraryCompiler: KECompiler
 		}
 		ctxt.set(name: "TableInStorage", function: allocTableFunc)
 
+		/* MappingTableInStorage */
+		let allocMapTableFunc: @convention(block) (_ pathval: JSValue, _ storageval: JSValue) -> JSValue = {
+			(_ pathval: JSValue, _ storageval: JSValue) -> JSValue in
+			if pathval.isString && storageval.isObject {
+				if let pathstr = pathval.toString(),
+				   let storage = storageval.toObject() as? KLStorage {
+					switch CNValuePath.pathExpression(string: pathstr) {
+					case .success(let path):
+						let table  = CNStorageTable(path: path, storage: storage.core())
+						let maptbl = CNMappingTable(sourceTable: table)
+						let tblobj = KLMappingTable(mappingTable: maptbl, context: ctxt)
+						return JSValue(object: tblobj, in: ctxt)
+					case .failure(let err):
+						CNLog(logLevel: .error, message: err.toString(), atFunction: #function, inFile: #file)
+					}
+				}
+			}
+			return JSValue(nullIn: ctxt)
+		}
+		ctxt.set(name: "MappingTableInStorage", function: allocMapTableFunc)
+
 		/* Storage */
 		let allocStorageFunc: @convention(block) (_ nameval: JSValue) -> JSValue = {
 			(_ nameval: JSValue) -> JSValue in
