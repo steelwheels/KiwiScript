@@ -36,3 +36,14 @@ function compareNumbers(n0, n1) {
         return ComparisonResult.descending;
     }
 }
+function compareStrings(s0, s1) {
+    if (s0 < s1) {
+        return ComparisonResult.ascending;
+    }
+    else if (s0 == s1) {
+        return ComparisonResult.same;
+    }
+    else {
+        return ComparisonResult.descending;
+    }
+}

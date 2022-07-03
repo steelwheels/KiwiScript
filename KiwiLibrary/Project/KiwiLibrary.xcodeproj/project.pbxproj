@@ -169,6 +169,8 @@
 		05A95B9B2516D08500775737 /* KLStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B902516D08500775737 /* KLStruct.swift */; };
 		05A95B9C2516D08500775737 /* KLType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B912516D08500775737 /* KLType.swift */; };
 		05A95B9D2516D08500775737 /* KLType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A95B912516D08500775737 /* KLType.swift */; };
+		05AEC61A286FCFE900A1ED09 /* KLComparisonResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AEC619286FCFE900A1ED09 /* KLComparisonResult.swift */; };
+		05AEC61B286FCFE900A1ED09 /* KLComparisonResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AEC619286FCFE900A1ED09 /* KLComparisonResult.swift */; };
 		05B12A5B25C6783900273421 /* Turtle.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B12A5A25C6783900273421 /* Turtle.js */; };
 		05B4EF47267F886A00E5D08F /* CoconutDatabase.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05B4EF46267F886A00E5D08F /* CoconutDatabase.xcframework */; };
 		05B4EF4B267F888100E5D08F /* CoconutDatabase.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05B4EF46267F886A00E5D08F /* CoconutDatabase.xcframework */; };
@@ -484,6 +486,7 @@
 		05A95B8F2516D08500775737 /* KLScriptValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLScriptValue.swift; sourceTree = "<group>"; };
 		05A95B902516D08500775737 /* KLStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLStruct.swift; sourceTree = "<group>"; };
 		05A95B912516D08500775737 /* KLType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLType.swift; sourceTree = "<group>"; };
+		05AEC619286FCFE900A1ED09 /* KLComparisonResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLComparisonResult.swift; sourceTree = "<group>"; };
 		05B12A5A25C6783900273421 /* Turtle.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Turtle.js; sourceTree = "<group>"; };
 		05B4EF46267F886A00E5D08F /* CoconutDatabase.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutDatabase.xcframework; path = ../../../../Library/Frameworks/CoconutDatabase.xcframework; sourceTree = "<group>"; };
 		05B4EF4F267F88F300E5D08F /* CoconutDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutDatabase.framework; path = "../../../../Library/Frameworks/CoconutDatabase.xcframework/macos-arm64_x86_64/CoconutDatabase.framework"; sourceTree = "<group>"; };
@@ -766,17 +769,18 @@
 				05657B5B272452990035235D /* KLCollection.swift */,
 				05EBD8B525E4982200CA1480 /* KLColor.swift */,
 				05DF53582609902300C7837C /* KLColorManager.swift */,
+				05AEC619286FCFE900A1ED09 /* KLComparisonResult.swift */,
 				05A95B7F2516D06900775737 /* KLChar.swift */,
 				05A95B802516D06900775737 /* KLEnvironment.swift */,
 				053D2DB7277A8E42008B6DA2 /* KLEnum.swift */,
 				05A95B7E2516D06900775737 /* KLEscapeCode.swift */,
 				05A95B7D2516D06900775737 /* KLImage.swift */,
+				05692FD4286AA448006F85F2 /* KLMappingTable.swift */,
 				050FDBF725FC87BE00331107 /* KLDictionary.swift */,
 				0520F478277450F7004DDA28 /* KLRange.swift */,
 				05BD118026C0179B00961535 /* KLRecord.swift */,
 				054007F42866E29C00235240 /* KLSet.swift */,
 				059A152D2781E71200F4B24C /* KLStorage.swift */,
-				05692FD4286AA448006F85F2 /* KLMappingTable.swift */,
 				05BD118626C01AD200961535 /* KLTable.swift */,
 				05EE5C8426E79316005026B3 /* KLText.swift */,
 				0564FD2B2801A120000B8C22 /* KLValuePointer.swift */,
@@ -1111,6 +1115,7 @@
 				05A95B662516D03300775737 /* KLBuiltinScripts.swift in Sources */,
 				059083B42723978700F10EEE /* KLSymbol.swift in Sources */,
 				05BD118126C0179B00961535 /* KLRecord.swift in Sources */,
+				05AEC61A286FCFE900A1ED09 /* KLComparisonResult.swift in Sources */,
 				05A95B872516D06900775737 /* KLEnvironment.swift in Sources */,
 				05A95B322516CF9900775737 /* KLFontManager.swift in Sources */,
 				054007EF2866E28D00235240 /* KLArray.swift in Sources */,
@@ -1166,6 +1171,7 @@
 				05A95B672516D03300775737 /* KLBuiltinScripts.swift in Sources */,
 				059083B52723978700F10EEE /* KLSymbol.swift in Sources */,
 				05BD118226C0179B00961535 /* KLRecord.swift in Sources */,
+				05AEC61B286FCFE900A1ED09 /* KLComparisonResult.swift in Sources */,
 				05A95B882516D06900775737 /* KLEnvironment.swift in Sources */,
 				05A95B332516CF9900775737 /* KLFontManager.swift in Sources */,
 				054007F02866E28D00235240 /* KLArray.swift in Sources */,

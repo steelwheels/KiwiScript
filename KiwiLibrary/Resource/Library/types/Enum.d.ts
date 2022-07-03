@@ -104,7 +104,8 @@ declare namespace LogLevel {
 }
 declare enum SortOrder {
   decreasing = 1,
-  increasing = 0
+  increasing = -1,
+  none = 0
 }
 declare namespace SortOrder {
   function description(param: SortOrder): string ;

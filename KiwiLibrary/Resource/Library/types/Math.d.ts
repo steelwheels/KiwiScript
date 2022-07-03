@@ -6,3 +6,4 @@ interface Math {
 }
 declare function int(value: number): number;
 declare function compareNumbers(n0: number, n1: number): ComparisonResult;
+declare function compareStrings(s0: string, s1: string): ComparisonResult;

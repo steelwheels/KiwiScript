@@ -42,3 +42,14 @@ function compareNumbers(n0:number, n1:number): ComparisonResult
 	}
 }
 
+function compareStrings(s0:string, s1:string): ComparisonResult
+{
+	if(s0 < s1){
+		return ComparisonResult.ascending ;
+	} else if(s0 == s1) {
+		return ComparisonResult.same ;
+	} else {
+		return ComparisonResult.descending ;
+	}
+}
+

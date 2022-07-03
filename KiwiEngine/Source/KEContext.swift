@@ -19,7 +19,7 @@ public class KEContext : JSContext
 	public override init(virtualMachine vm: JSVirtualMachine) {
 		exceptionCallback = {
 			(_ exception: KEException) -> Void in
-			CNLog(logLevel: .error, message: "JavaScriptCore exception: \(exception.description)", atFunction: #function, inFile: #file)
+			CNLog(logLevel: .error, message: "[Exception] \(exception.description)", atFunction: #function, inFile: #file)
 		}
 		mErrorCount		= 0
 		super.init(virtualMachine: vm)
@@ -35,12 +35,6 @@ public class KEContext : JSContext
 				CNLog(logLevel: .error, message: "No context", atFunction: #function, inFile: #file)
 			}
 		}
-	}
-
-	public func callFunction(functionName funcname: String, arguments args: Array<Any>) -> JSValue {
-		/* Call function */
-		let jsfunc : JSValue = self.objectForKeyedSubscript(funcname)
-		return jsfunc.call(withArguments: args)
 	}
 
 	public var errorCount: Int { get { return mErrorCount }}

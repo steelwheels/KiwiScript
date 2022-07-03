@@ -4,8 +4,9 @@ The table contains mutiple records.
 ## Interface
 ````
 interface TableIF {
-	recordCount:		                number ;
-	readonly defaultFields:	                {[name:string]: any} ;
+	recordCount:		number ;
+
+	readonly defaultFields:	{[name:string]: any} ;
 
 	newRecord():				RecordIF ;
 	record(row: number):			RecordIF | null ;
@@ -18,7 +19,7 @@ interface TableIF {
 	remove(index: number):			boolean ;
 	save():					boolean ;
 
-	toString(): 		                string
+	toString(): 		string
 }
 ````
 

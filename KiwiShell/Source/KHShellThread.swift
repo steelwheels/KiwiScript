@@ -90,9 +90,10 @@ open class KHShellThread: CNShellThread
 		/* Set exception handler */
 		mContext.exceptionCallback = {
 			[weak self]  (_ excep: KEException) -> Void in
-			if let myself = self {
-				let desc = excep.description
-				myself.console.error(string: "[Exception] \(desc)\n")
+			if let _ = self {
+				CNLog(logLevel: .error, message: "[JavaScriptCore Exception] \(excep.description)")
+			} else {
+				NSLog("JavaScriptCore Exception")
 			}
 		}
 

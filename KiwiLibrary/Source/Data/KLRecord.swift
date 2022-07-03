@@ -48,19 +48,22 @@ public protocol KLRecordCoreProtocol
 		}
 		let rcdname = temporaryVariableName()
 		context.set(name: rcdname, value: rcdval)
+
+		var script = ""
 		for prop in rcd.core().fieldNames {
-			let script =   "Object.defineProperty(\(rcdname), \"\(prop)\", {\n"
-				     + "  get()    { return this.value(\"\(prop)\") ;   },\n"
-				     + "  set(val) { this.setValue(val, \"\(prop)\") ;  }\n"
-				     + "}) ;\n"
-			context.evaluateScript(script)
-			if context.errorCount != 0 {
-				context.resetErrorCount()
-				CNLog(logLevel: .error, message: "execute method failed: \(script)", atFunction: #function, inFile: #file)
-				return nil
-			}
+			script +=   "Object.defineProperty(\(rcdname), \"\(prop)\", {\n"
+				  + "  get()    { return this.value(\"\(prop)\") ;   },\n"
+				  + "  set(val) { this.setValue(val, \"\(prop)\") ;  }\n"
+				  + "}) ;\n"
 		}
-		return rcdval
+		context.evaluateScript(script)
+		if context.errorCount == 0 {
+			return rcdval
+		} else {
+			context.resetErrorCount()
+			CNLog(logLevel: .error, message: "execute method failed: \(script)", atFunction: #function, inFile: #file)
+			return nil
+		}
 	}
 
 	public static func allocate(records rcds: Array<KLRecord>, context ctxt: KEContext) -> JSValue? {
