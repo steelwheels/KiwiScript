@@ -74,7 +74,8 @@ open class KHScriptThread: KLThread
 
 	open override func terminate() {
 		if super.status.isRunning {
-			self.context.evaluateScript("_cancel() ;")
+			let srcfile = URL(fileURLWithPath: #file)
+			self.context.evaluateScript("_cancel() ;", withSourceURL: srcfile)
 			super.terminate()
 		}
 	}

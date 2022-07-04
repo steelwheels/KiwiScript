@@ -25,19 +25,20 @@ open class KECompiler
 
 	private func setStrictMode(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig){
 		if conf.doStrict {
-			let _ = compileStatement(context: ctxt, statement: "'use strict' ;\n", console: cons, config: conf)
+			let srcfile = URL(fileURLWithPath: #file)
+			let _ = compileStatement(context: ctxt, statement: "'use strict' ;\n", sourceFile: srcfile, console: cons, config: conf)
 		}
 	}
 
 	private func compileEnumTables(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig) {
 		for etable in CNEnumTable.allEnumTables() {
-			let scr = etable.toScript().toStrings().joined(separator: "\n")
-			//NSLog("enum-table: \(scr)")
-			let _ = compileStatement(context: ctxt, statement: scr, console: cons, config: conf)
+			let scr     = etable.toScript().toStrings().joined(separator: "\n")
+			let srcfile = URL(fileURLWithPath: #file)
+			let _ = compileStatement(context: ctxt, statement: scr, sourceFile: srcfile, console: cons, config: conf)
 		}
 	}
 
-	public func compileStatement(context ctxt: KEContext, statement stmt: String, console cons: CNConsole, config conf: KEConfig) -> JSValue? {
+	public func compileStatement(context ctxt: KEContext, statement stmt: String, sourceFile srcfile: URL?, console cons: CNConsole, config conf: KEConfig) -> JSValue? {
 		switch conf.logLevel {
 		case .nolog, .error, .warning, .debug:
 			break
@@ -46,10 +47,10 @@ open class KECompiler
 		@unknown default:
 			break
 		}
-		return ctxt.evaluateScript(stmt)
+		return ctxt.evaluateScript(script: stmt, sourceFile: srcfile)
 	}
 
-	public func compileStatements(context ctxt: KEContext, statements stmts: Array<String>, console cons: CNConsole, config conf: KEConfig) -> JSValue? {
+	public func compileStatements(context ctxt: KEContext, statements stmts: Array<String>, sourceFile srcfile: URL?, console cons: CNConsole, config conf: KEConfig) -> JSValue? {
 		let script = stmts.joined(separator: "\n")
 		switch conf.logLevel {
 		case .nolog, .error, .warning, .debug:
@@ -59,7 +60,7 @@ open class KECompiler
 		@unknown default:
 			break
 		}
-		return ctxt.evaluateScript(script)
+		return ctxt.evaluateScript(script: script, sourceFile: srcfile)
 	}
 
 	private func compileEnumType(context ctxt: KEContext, enumType etype: CNEnumType, console cons: CNConsole, config conf: KEConfig){
@@ -84,7 +85,8 @@ open class KECompiler
 			enumstmt += "\t\(member.name) : \(member.value)"
 		}
 		enumstmt += "\n};\n"
-		let _ = compileStatement(context: ctxt, statement: enumstmt, console: cons, config: conf)
+		let srcfile = URL(fileURLWithPath: #file)
+		let _ = compileStatement(context: ctxt, statement: enumstmt, sourceFile: srcfile, console: cons, config: conf)
 	}
 
 	public func compileDictionaryVariable(context ctxt: KEContext, destination dst: String, dictionary dict: Dictionary<String, String>, console cons: CNConsole, config conf: KEConfig){
@@ -99,7 +101,8 @@ open class KECompiler
 			stmt += "\t\(key): \(value)"
 		}
 		stmt += "\n};\n"
-		let _ = compileStatement(context: ctxt, statement: stmt, console: cons, config: conf)
+		let srcfile = URL(fileURLWithPath: #file)
+		let _ = compileStatement(context: ctxt, statement: stmt, sourceFile: srcfile, console: cons, config: conf)
 	}
 
 	private func message(fromError err: NSError?) -> String {

@@ -120,15 +120,19 @@ public enum KLSource {
 		}
 
 		/* Load main script */
-		let script: String
+		let script:  String
+		let srcfile: URL?
 		if let scr = mResource.loadApplication() {
-			script = scr
+			script  = scr
+			srcfile = mResource.URLOfApplication()
 		} else {
 			let path: String
 			if let p = mResource.pathStringOfApplication() {
-				path = ": \(p)"
+				srcfile = URL(fileURLWithPath: p)
+				path    = p
 			} else {
-				path = ""
+				srcfile = URL(fileURLWithPath: #file)
+				path    = #file
 			}
 			console.error(string: "Failed to load application sctipt: \(path)\n")
 			return false
@@ -147,7 +151,7 @@ public enum KLSource {
 
 		/* Execute the script */
 		let runner = KECompiler()
-		let _ = runner.compileStatement(context: mContext, statement: newscript, console: console, config: conf)
+		let _ = runner.compileStatement(context: mContext, statement: newscript, sourceFile: srcfile, console: console, config: conf)
 
 		return true
 	}
@@ -177,7 +181,7 @@ public enum KLSource {
 	private func execOperation(argument arg: CNValue) -> Int32 {
 		/* Search main function */
 		var result: Int32 = -1
-		if let funcval = mContext.getValue(name: "main") {
+		if let funcval = mContext.get(name: "main") {
 			/* Allocate argument */
 			let jsarg = arg.toJSValue(context: mContext)
 			/* Call main function */

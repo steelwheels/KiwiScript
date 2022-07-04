@@ -15,7 +15,7 @@ public func UTEnvironment(context ctxt: KEContext, console cons: CNFileConsole) 
 
 	/* Set and get */
 	ctxt.evaluateScript("Environment.set(\"MSG\", \"hello\") ; env0 = Environment.get(\"MSG\") ;")
-	if let val = ctxt.getValue(name: "env0") {
+	if let val = ctxt.get(name: "env0") {
 		cons.print(string: "Environment(\"MSG\") = " + val.toString() + "\n")
 	} else {
 		cons.print(string: "[Error] No environment value\n")

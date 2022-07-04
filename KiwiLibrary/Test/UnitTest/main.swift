@@ -105,7 +105,7 @@ public func main()
 }
 
 private func getFileManager(from context: KEContext) -> KLFileManager? {
-	if let value = context.getValue(name: "FileManager") {
+	if let value = context.get(name: "FileManager") {
 		if value.isObject {
 			return value.toObject() as? KLFileManager
 		}

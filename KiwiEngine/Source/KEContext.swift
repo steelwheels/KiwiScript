@@ -59,11 +59,19 @@ public class KEContext : JSContext
 		}
 	}
 
-	public func getValue(name n:String) -> JSValue? {
+	public func get(name n: String) -> JSValue? {
 		if let obj = self.objectForKeyedSubscript(NSString(string: n)) {
 			return obj.isUndefined ? nil : obj
 		} else {
 			return nil
+		}
+	}
+
+	public func evaluateScript(script scr: String, sourceFile srcfile: URL?) -> JSValue {
+		if let url = srcfile {
+			return self.evaluateScript(scr, withSourceURL: url)
+		} else {
+			return self.evaluateScript(scr)
 		}
 	}
 }

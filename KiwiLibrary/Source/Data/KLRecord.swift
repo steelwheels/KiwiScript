@@ -56,7 +56,7 @@ public protocol KLRecordCoreProtocol
 				  + "  set(val) { this.setValue(val, \"\(prop)\") ;  }\n"
 				  + "}) ;\n"
 		}
-		context.evaluateScript(script)
+		let _ = context.evaluateScript(script: script, sourceFile: URL(fileURLWithPath: #file))
 		if context.errorCount == 0 {
 			return rcdval
 		} else {
@@ -78,7 +78,7 @@ public protocol KLRecordCoreProtocol
 				let elmname = temporaryVariableName()
 				ctxt.set(name: elmname, value: elmval)
 				let script = "\(resname).push(\(elmname)) ;\n"
-				ctxt.evaluateScript(script)
+				let _ = ctxt.evaluateScript(script: script, sourceFile: URL(fileURLWithPath: #file))
 				if ctxt.errorCount != 0 {
 					ctxt.resetErrorCount()
 					CNLog(logLevel: .error, message: "push method failed: \(script)", atFunction: #function, inFile: #file)

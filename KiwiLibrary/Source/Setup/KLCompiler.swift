@@ -80,7 +80,8 @@ public class KLLibraryCompiler: KECompiler
 		if let libnum = res.countOfLibraries() {
 			for i in 0..<libnum {
 				if let scr = res.loadLibrary(index: i) {
-					let _ = self.compileStatement(context: ctxt, statement: scr, console: cons, config: conf)
+					let srcfile = res.URLOfLibrary(index: i)
+					let _       = self.compileStatement(context: ctxt, statement: scr, sourceFile: srcfile, console: cons, config: conf)
 				} else {
 					if let fname = res.URLOfLibrary(index: i) {
 						cons.error(string: "Failed to load library: \(fname.absoluteString)\n")
@@ -908,7 +909,7 @@ public class KLLibraryCompiler: KECompiler
 			for libname in libnames {
 				if let url = CNFilePath.URLForResourceFile(fileName: libname, fileExtension: "js", subdirectory: "Library", forClass: KLLibraryCompiler.self) {
 					let script = try String(contentsOf: url, encoding: .utf8)
-					let _ = compileStatement(context: ctxt, statement: script, console: cons, config: conf)
+					let _ = compileStatement(context: ctxt, statement: script, sourceFile: url, console: cons, config: conf)
 				} else {
 					cons.error(string: "Built-in script \"\(libname)\" is not found.")
 				}

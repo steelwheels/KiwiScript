@@ -30,7 +30,8 @@ public class KHHistoryCommand: KLCommand
 			     + "    idx += 1 ;\n"
 			     + "  }\n"
 			     + "} while(false) ;\n"
-		if let _ = ctxt.evaluateScript(script) {
+		let srcfile = URL(fileURLWithPath: #file)
+		if let _ = ctxt.evaluateScript(script, withSourceURL: srcfile) {
 			return 0
 		} else {
 			return -1

@@ -9,10 +9,12 @@ This is a list of built-in enum types. User can define [custom enum by eJSON for
 * [AnumationState](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/AnimationState.md): State of animation
 * [Authorize](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/Authorize.md): Kind of authorization for access security.
 * [Axis](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/Axis.md): Kind of direction to place GUI components.
+* [Comparison result](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/ComparisonResult.md): Result of comparison: ascending, same or descending.
 * [Distribution](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/Distribution.md) : Kind of the distribution of objects
 * [FileType](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/FileType.md) : Type of the file. File, directory, ...
 * [FontSize](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/FontSize.md) : Size of font
 * [LogLevel](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/LogLevel.md) : Level to filtering the log messages.
+* [SortOrder](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/SortOrder.md) : Sort order.
 
 ## Primitive Types
 * [Point](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Primitive/Point.md): 2D point data presented as (x, y).

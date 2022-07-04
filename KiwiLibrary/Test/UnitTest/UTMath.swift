@@ -15,7 +15,7 @@ public func UTMath(context ctxt: KEContext, console cons: CNConsole) -> Bool
 
 	/* sin */
 	ctxt.evaluateScript("eval0 = Math.sin(PI/2.0) ;")
-	if let resval = ctxt.getValue(name: "eval0") {
+	if let resval = ctxt.get(name: "eval0") {
 		cons.print(string: "Math.sin(PI/2.0) = \(resval.toDouble())\n")
 	} else {
 		cons.error(string: "Failed to execute Math.sin\n")
@@ -24,7 +24,7 @@ public func UTMath(context ctxt: KEContext, console cons: CNConsole) -> Bool
 
 	/* cos */
 	ctxt.evaluateScript("eval1 = Math.cos(PI/2.0) ;")
-	if let resval = ctxt.getValue(name: "eval1") {
+	if let resval = ctxt.get(name: "eval1") {
 		cons.print(string: "Math.cos(PI/2.0) = \(resval.toDouble())\n")
 	} else {
 		cons.error(string: "Failed to execute Math.cos\n")
@@ -33,7 +33,7 @@ public func UTMath(context ctxt: KEContext, console cons: CNConsole) -> Bool
 
 	/* tan */
 	ctxt.evaluateScript("eval2 = Math.tan(PI/4.0) ;")
-	if let resval = ctxt.getValue(name: "eval2") {
+	if let resval = ctxt.get(name: "eval2") {
 		cons.print(string: "Math.tan(PI/4.0) = \(resval.toDouble())\n")
 	} else {
 		cons.error(string: "Failed to execute Math.tan\n")
@@ -42,7 +42,7 @@ public func UTMath(context ctxt: KEContext, console cons: CNConsole) -> Bool
 
 	/* asin */
 	ctxt.evaluateScript("eval3 = Math.asin(1.0/1.41421) ;")
-	if let resval = ctxt.getValue(name: "eval3") {
+	if let resval = ctxt.get(name: "eval3") {
 		let res = resval.toDouble() / Double.pi
 		let rnd = round(res * 100.0) / 100.0
 		cons.print(string: "Math.asin(1.0/1.41421) = \(rnd)PI\n")
@@ -53,7 +53,7 @@ public func UTMath(context ctxt: KEContext, console cons: CNConsole) -> Bool
 
 	/* acos */
 	ctxt.evaluateScript("eval4 = Math.acos(1.41421/2.0) ;")
-	if let resval = ctxt.getValue(name: "eval4") {
+	if let resval = ctxt.get(name: "eval4") {
 		let res = resval.toDouble() / Double.pi
 		let rnd = round(res * 100.0) / 100.0
 		cons.print(string: "acos(1.41421/2.0) = \(rnd)PI\n")
@@ -64,7 +64,7 @@ public func UTMath(context ctxt: KEContext, console cons: CNConsole) -> Bool
 
 	/* sqrt */
 	ctxt.evaluateScript("eval2 = Math.sqrt(4.0) ;")
-	if let resval = ctxt.getValue(name: "eval2") {
+	if let resval = ctxt.get(name: "eval2") {
 		cons.print(string: "Math.sqrt(4.0) = \(resval.toDouble())\n")
 	} else {
 		cons.error(string: "Failed to execute sqrt\n")

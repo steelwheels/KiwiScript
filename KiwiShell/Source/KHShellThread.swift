@@ -83,7 +83,7 @@ open class KHShellThread: CNShellThread
 		if FileManager.default.isReadableFile(atPath: rcfile.path) {
 			if let content = rcfile.loadContents() {
 				let compiler = KECompiler()
-				let _ = compiler.compileStatement(context: mContext, statement: content as String, console: self.console, config: mConfig)
+				let _ = compiler.compileStatement(context: mContext, statement: content as String, sourceFile: rcfile, console: self.console, config: mConfig)
 			}
 		}
 
@@ -125,7 +125,8 @@ open class KHShellThread: CNShellThread
 				let stmts1  = KHCompileShellStatement(statements: stmts0)
 				let script0 = KHGenerateScript(from: stmts1)
 				let script1 = script0.joined(separator: "\n")
-				if let _ = self.mContext.evaluateScript(script1) {
+				let srcfile = URL(fileURLWithPath: #file)
+				if let _ = self.mContext.evaluateScript(script1, withSourceURL: srcfile) {
 					//self.printResult(returnValue: retval)
 				}
 			case .error(let err):
