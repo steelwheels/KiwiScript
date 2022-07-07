@@ -800,46 +800,52 @@ public class KLLibraryCompiler: KECompiler
 		}
 		ctxt.set(name: "DictionaryInStorage", function: allocDictSFunc)
 
-		/* TableInStorage */
-		let allocTableFunc: @convention(block) (_ pathval: JSValue, _ storageval: JSValue) -> JSValue = {
-			(_ pathval: JSValue, _ storageval: JSValue) -> JSValue in
-			if pathval.isString && storageval.isObject {
-				if let pathstr = pathval.toString(),
-				   let storage = storageval.toObject() as? KLStorage {
-					switch CNValuePath.pathExpression(string: pathstr) {
-					case .success(let path):
-						let table  = CNStorageTable(path: path, storage: storage.core())
-						let tblobj = KLTable(table: table, context: ctxt)
-						return JSValue(object: tblobj, in: ctxt)
-					case .failure(let err):
-						CNLog(logLevel: .error, message: err.toString(), atFunction: #function, inFile: #file)
-					}
-				}
+		/* Table */
+		let allocTableFunc: @convention(block) (_ storageval: JSValue, _ pathval: JSValue) -> JSValue = {
+			(_ storageval: JSValue, _ pathval: JSValue) -> JSValue in
+			guard let path = KLLibraryCompiler.valueToString(value: pathval) else {
+				CNLog(logLevel: .error, message: "Unexpected path expression: \(String(describing: pathval.toString))")
+				return JSValue(nullIn: ctxt)
 			}
-			return JSValue(nullIn: ctxt)
+			guard let storage = self.allocateStorage(name: storageval, resource: res) else {
+				CNLog(logLevel: .error, message: "Failed to get storage named: \(String(describing: storageval.toString))")
+				return JSValue(nullIn: ctxt)
+			}
+			switch CNValuePath.pathExpression(string: path) {
+			case .success(let path):
+				let table  = CNStorageTable(path: path, storage: storage)
+				let tblobj = KLTable(table: table, context: ctxt)
+				return JSValue(object: tblobj, in: ctxt)
+			case .failure(let err):
+				CNLog(logLevel: .error, message: err.toString())
+				return JSValue(nullIn: ctxt)
+			}
 		}
-		ctxt.set(name: "TableInStorage", function: allocTableFunc)
+		ctxt.set(name: "Table", function: allocTableFunc)
 
-		/* MappingTableInStorage */
-		let allocMapTableFunc: @convention(block) (_ pathval: JSValue, _ storageval: JSValue) -> JSValue = {
-			(_ pathval: JSValue, _ storageval: JSValue) -> JSValue in
-			if pathval.isString && storageval.isObject {
-				if let pathstr = pathval.toString(),
-				   let storage = storageval.toObject() as? KLStorage {
-					switch CNValuePath.pathExpression(string: pathstr) {
-					case .success(let path):
-						let table  = CNStorageTable(path: path, storage: storage.core())
-						let maptbl = CNMappingTable(sourceTable: table)
-						let tblobj = KLMappingTable(mappingTable: maptbl, context: ctxt)
-						return JSValue(object: tblobj, in: ctxt)
-					case .failure(let err):
-						CNLog(logLevel: .error, message: err.toString(), atFunction: #function, inFile: #file)
-					}
-				}
+		/* MappingTable */
+		let allocMapTableFunc: @convention(block) (_ storageval: JSValue, _ pathval: JSValue) -> JSValue = {
+			(_ storageval: JSValue, _ pathval: JSValue) -> JSValue in
+			guard let path = KLLibraryCompiler.valueToString(value: pathval) else {
+				CNLog(logLevel: .error, message: "Unexpected path expression: \(String(describing: pathval.toString))")
+				return JSValue(nullIn: ctxt)
 			}
-			return JSValue(nullIn: ctxt)
+			guard let storage = self.allocateStorage(name: storageval, resource: res) else {
+				CNLog(logLevel: .error, message: "Failed to get storage named: \(String(describing: storageval.toString))")
+				return JSValue(nullIn: ctxt)
+			}
+			switch CNValuePath.pathExpression(string: path) {
+			case .success(let path):
+				let table  = CNStorageTable(path: path, storage: storage)
+				let maptbl = CNMappingTable(sourceTable: table)
+				let tblobj = KLMappingTable(mappingTable: maptbl, context: ctxt)
+				return JSValue(object: tblobj, in: ctxt)
+			case .failure(let err):
+				CNLog(logLevel: .error, message: err.toString())
+				return JSValue(nullIn: ctxt)
+			}
 		}
-		ctxt.set(name: "MappingTableInStorage", function: allocMapTableFunc)
+		ctxt.set(name: "MappingTable", function: allocMapTableFunc)
 
 		/* Storage */
 		let allocStorageFunc: @convention(block) (_ nameval: JSValue) -> JSValue = {
@@ -917,6 +923,15 @@ public class KLLibraryCompiler: KECompiler
 		} catch {
 			cons.error(string: "Failed to read built-in script in KiwiLibrary")
 		}
+	}
+
+	private func allocateStorage(name nameval: JSValue, resource res: KEResource) -> CNStorage? {
+		if let name = KLLibraryCompiler.valueToString(value: nameval) {
+			if let storage = res.loadStorage(identifier: name) {
+				return storage
+			}
+		}
+		return nil
 	}
 
 	private func defineThreadFunction(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNConsole, config conf: KEConfig) -> Bool {
