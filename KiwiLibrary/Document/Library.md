@@ -76,9 +76,7 @@ Create and control processes and threads.
 * [URL](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/URL.md): Data representation of URL
 
 ### Storage
-* [Record](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Record.md): The record data in [ValueTable](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/ValueTable.md)
-* [ValueStorage](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/ValueStorage.md): The object storage which can be loaded from/stored into the file. The file format is defined in [Storage](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Format/StorageFormat.md).
-* [ValueTable](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/ValueTable.md): The database interface to access the [ValueStorage](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/ValueStorage.md).
+* [Storage](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Storage/Storage.md): Management of persistent data.
 
 ### Terminal
 * [Curses](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Curses.md): CUI management on the terminal.
