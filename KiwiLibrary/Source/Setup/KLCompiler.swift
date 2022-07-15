@@ -809,7 +809,7 @@ public class KLLibraryCompiler: KECompiler
 		}
 		ctxt.set(name: "DictionaryStorage", function: allocDictSFunc)
 
-		/* Table */
+		/* TableStorage */
 		let allocTableFunc: @convention(block) (_ storageval: JSValue, _ pathval: JSValue) -> JSValue = {
 			(_ storageval: JSValue, _ pathval: JSValue) -> JSValue in
 			guard let path = KLLibraryCompiler.valueToString(value: pathval) else {
