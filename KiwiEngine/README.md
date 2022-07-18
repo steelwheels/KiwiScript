@@ -3,20 +3,11 @@ The *KiwiEngine Framework* is a part of [KiwiScript repository](https://github.c
 This framework contains primitive data class definitions to support JavaScript execution in JavaScriptCore.
 
 # Copyright
-Copyright (C) 2015-2017 [Steel Wheels Project](https://steelwheels.github.io).
+Copyright (C) 2015-2021 [Steel Wheels Project](https://steelwheels.github.io).
 This software is distributed under [GNU LESSER GENERAL PUBLIC LICENSE Version 2.1](https://www.gnu.org/licenses/lgpl-2.1-standalone.html).
 
-# Target
-* OS: Mac OS X 10.13 or later
-* Development Tool: Xcode9 or later
-
-# Specification and Implementation
-## `KEContext` class
-The *KEContext class* is a subclass of JSContext. It is extended to keep runtime errors while execution.
-
-## `KEPropertyTable` class
-The storage to store property values.
-The property value (implemented by `KEPropertyValue` class) is independent from JavaScript Context.
+# Document
+* [Thread](./Document/Thread.md): The implementation of thread management
 
 ## Related link
 * [Steel Wheels Project](http://steelwheels.github.io): Web site of developer.

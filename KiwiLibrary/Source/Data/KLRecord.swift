@@ -122,15 +122,19 @@ public protocol KLRecordCoreProtocol
 	}
 
 	public func setValue(_ val: JSValue, _ name: JSValue) -> JSValue {
-		var result = false
 		if name.isString {
 			if let nstr = name.toString() {
-				result = mRecord.setValue(value: val.toNativeValue(), forField: nstr)
+				CNExecuteInMainThread(doSync: false, execute: {
+					() -> Void in
+					if !self.mRecord.setValue(value: val.toNativeValue(), forField: nstr) {
+						CNLog(logLevel: .error, message: "Failed to set value", atFunction: #function, inFile: #file)
+					}
+				})
 			}
 		} else {
 			CNLog(logLevel: .error, message: "Invalid type of name", atFunction: #function, inFile: #file)
 		}
-		return JSValue(bool: result, in: mContext)
+		return JSValue(nullIn: mContext)
 	}
 
 	public func toString() -> JSValue {
