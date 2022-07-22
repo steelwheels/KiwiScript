@@ -77,7 +77,7 @@ pop(): void;
 ````
 
 ### `exec`
-Execute the control commands. Each command is presented as a character: 
+Execute the control commands. Each command is presented as a character:
 ````
 exec(commands: string): void;
 ````

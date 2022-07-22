@@ -9,7 +9,7 @@ The singleton object is defined for Symbol class.
 |`Symbol`    |Symbol            |Singleton object of the class  |
 
 ## Properties
-All properties are instance of [Image](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Image.md) class. 
+All properties are instance of [Image](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Image.md) class.
 * characterA: ![Symbol: A](https://github.com/steelwheels/Coconut/blob/master/CoconutData/Resource/Image/character-a.png)
 * chevronBackward: ![Symbol: <](https://github.com/steelwheels/Coconut/blob/master/CoconutData/Resource/Image/chevron-backward.png)
 * chevronForward: ![Symbol: >](https://github.com/steelwheels/Coconut/blob/master/CoconutData/Resource/Image/chevron-forward.png)

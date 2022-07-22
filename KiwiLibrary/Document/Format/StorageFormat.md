@@ -100,7 +100,7 @@ In the next example, the value path `@id0.c[0].d` has the value 20.
   a: {
     b: {
       id: "id0",
-      c: [ 
+      c: [
         { d: 10 },
         { d: 20 },        // Pointed by '@id0.c[0].d'
         { d: 30 }

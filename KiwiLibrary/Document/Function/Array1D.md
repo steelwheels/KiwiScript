@@ -24,4 +24,4 @@ let newarray = removeFromArray1D(src, value) ;
 |value          |Any           |The value will be not-contained in result |
 
 # Related links
-* [Kiwi Standard Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): The standard library 
+* [Kiwi Standard Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): The standard library

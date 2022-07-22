@@ -5,7 +5,7 @@ Semaphore object
 The `Semaphore` class is used to synchronize multi threaded operations.
 ````
 let semaphore = new Semaphore(0) ;
-```` 
+````
 The integer parameter has initial counter value.
 
 ## Methods

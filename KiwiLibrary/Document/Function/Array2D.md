@@ -14,4 +14,4 @@ let array = Array2D(width, height, initval) ;
 |initval        |Any    |Initial value of all elements  |
 
 # Related links
-* [Kiwi Standard Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): The standard library 
+* [Kiwi Standard Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): The standard library

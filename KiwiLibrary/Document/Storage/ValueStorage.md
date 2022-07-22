@@ -1,7 +1,7 @@
 # ValueStorage class
 The `ValueStorage` class is used as the key-value storage.
 The content of the storage can be loaded from the file
-and stored into the file. 
+and stored into the file.
 
 It accepts only scalar, array and dictionary value (which can be reperesented by JSON format).
 It means the class instance can not be kept by this storage.
@@ -36,7 +36,7 @@ And "c" is the property in the "b" dictionary.
 The value is `null` when there is no value at the given path.
 
 ### Method: `set`
-Set the value to the storage. 
+Set the value to the storage.
 
 #### Parameter: `path`
 See above.

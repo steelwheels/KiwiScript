@@ -11,8 +11,8 @@ There are modified points:
 
 Here is the example of JSONe data:
 ````
-{   
-        // This is object of Point class   
+{
+        // This is object of Point class 
         class:  "Point",
         x:      10,
         y:      20,

@@ -14,7 +14,7 @@ The [File](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Doc
 ### Parameter(s)
 |Name           |Type   |Description                    |
 |:---           |:----  |:----                          |
-|command        |String |Shell command to execute       |      
+|command        |String |Shell command to execute       |
 |input          |[File](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/File.md) or [Pipe](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Pipe.md) |Input file stream |
 |output         |[File](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/File.md) or [Pipe](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Pipe.md) |Output file stream |
 |error          |[File](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/File.md) or [Pipe](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Class/Pipe.md) |Output error stream |

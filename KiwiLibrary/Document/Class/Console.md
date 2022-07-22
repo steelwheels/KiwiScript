@@ -59,7 +59,7 @@ console.log(message: string): void
 ````
 
 The log window is shared by multiple windows. So the log message from multiple windows and terminals *will be mixed*.
-  
+
 #### Parameter(s)
 |Parameter    |Type   |Description                    |
 |:---         |:---   |:---                           |

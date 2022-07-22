@@ -35,7 +35,7 @@ Array of labels of menu item.
 
 ### Return value
 n >=  0 : Index of the selected element
-n == -1 : User did not select any item  
+n == -1 : User did not select any item 
 
 # References
 * [Kiwi Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): Document for this library

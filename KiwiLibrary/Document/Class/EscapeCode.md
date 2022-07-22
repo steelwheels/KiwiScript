@@ -1,5 +1,5 @@
 # EscapeCode class
-This class is used to generate [escape sequence](https://www.xfree86.org/current/ctlseqs.html) string. 
+This class is used to generate [escape sequence](https://www.xfree86.org/current/ctlseqs.html) string.
 
 
 ## Global variable

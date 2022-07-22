@@ -24,7 +24,7 @@ interface TextLineIF extends TextIF
 interface TextSectionIF extends TextIF
 {
         contentCount: number ;
-	
+
         add(text: TextIF): void ;
         insert(text: TextIF): void ;
         append(str: string): void ;

@@ -34,7 +34,7 @@ recordOf(value: number, key: string):		RecordIF | null ;
 pointerOfRecord(value: number, key: string):	RecordIF | null ;
 ````
 
-### append 
+### append
 ````
 append(record: ContactRecordIF): void
 ````
