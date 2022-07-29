@@ -18,9 +18,9 @@ The instance of ContactTable class. It is singleton object.
 columnCount:		number ;
 ````
 
-### rowCount
+### recordCount
 ````
-rowCount:		number ;
+recordCount:		number ;
 ````
 
 ## Methods
