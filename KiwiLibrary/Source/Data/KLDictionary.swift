@@ -22,6 +22,9 @@ import Foundation
 
 @objc public class KLDictionary: NSObject, KLDictionaryProtocol
 {
+	private static let TEMPORARY_VARIABLE_NAME = "_kiwilibrary_dictionary_temp_var"
+	private static var temporary_variable_id   = 0
+
 	private var mDictionary:	CNDictionary
 	private var mContext:		KEContext
 
@@ -68,6 +71,42 @@ import Foundation
 			CNLog(logLevel: .error, message: "Invalid parameter type. the string is required for key to access dictionary.")
 			return nil
 		}
+	}
+
+	private func core() -> CNDictionary {
+		return mDictionary
+	}
+
+	public static func allocate(dictionary dict: KLDictionary) -> JSValue? {
+		let context = dict.mContext
+		guard let dictval = JSValue(object: dict, in: context) else {
+			CNLog(logLevel: .error, message: "allocate object failed", atFunction: #function, inFile: #file)
+			return nil
+		}
+		let dictname = temporaryVariableName()
+		context.set(name: dictname, value: dictval)
+
+		var script = ""
+		for key in dict.core().keys {
+			script +=   "Object.defineProperty(\(dictname), \"\(key)\", {\n"
+				  + "  get()    { return this.value(\"\(key)\") ; },\n"
+				  + "  set(val) { this.set(val, \"\(key)\") ;     }\n"
+				  + "}) ;\n"
+		}
+		let _ = context.evaluateScript(script: script, sourceFile: URL(fileURLWithPath: #file))
+		if context.errorCount == 0 {
+			return dictval
+		} else {
+			context.resetErrorCount()
+			CNLog(logLevel: .error, message: "execute method failed: \(script)", atFunction: #function, inFile: #file)
+			return nil
+		}
+	}
+
+	private static func temporaryVariableName() -> String {
+		let result = "\(KLDictionary.TEMPORARY_VARIABLE_NAME)_\(KLDictionary.temporary_variable_id)"
+		KLDictionary.temporary_variable_id += 1
+		return result
 	}
 }
 
