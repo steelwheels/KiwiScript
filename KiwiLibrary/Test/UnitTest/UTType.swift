@@ -135,12 +135,12 @@ private func typeTest(value val: JSValue, context2 ctxt2: KEContext, console con
 	let nval = val.toNativeValue()
 
 	cons.print(string: "native: ")
-	let ntxt = nval.toText().toStrings().joined(separator: "\n")
+	let ntxt = nval.toScript().toStrings().joined(separator: "\n")
 	cons.print(string: ntxt + "\n")
 
 	cons.print(string: "native -> js: ")
 	let jval = nval.toJSValue(context: ctxt2)
-	let jtxt = jval.toText().toStrings().joined(separator: "\n")
+	let jtxt = jval.toScript().toStrings().joined(separator: "\n")
 	cons.print(string: jtxt + "\n")
 
 	/*

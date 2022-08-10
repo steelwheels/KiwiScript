@@ -22,13 +22,14 @@
 		050A3E97263BF5C9008172E7 /* Process.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E87263BF5C9008172E7 /* Process.ts */; };
 		050C3CD9262C5CC00008ED97 /* String.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050C3CD8262C5CC00008ED97 /* String.js */; };
 		050D1DB82581C64A00D968ED /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050D1DB72581C64A00D968ED /* CoconutData.framework */; };
-		050D1DB92581C64A00D968ED /* CoconutData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050D1DB72581C64A00D968ED /* CoconutData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		050D1DBC2581C6FF00D968ED /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050D1DBB2581C6FF00D968ED /* KiwiEngine.framework */; };
-		050D1DBD2581C6FF00D968ED /* KiwiEngine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050D1DBB2581C6FF00D968ED /* KiwiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		050D1DBF2581C71000D968ED /* KiwiLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050D1DBE2581C71000D968ED /* KiwiLibrary.framework */; };
-		050D1DC02581C71000D968ED /* KiwiLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050D1DBE2581C71000D968ED /* KiwiLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		050FDBF825FC87BE00331107 /* KLDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FDBF725FC87BE00331107 /* KLDictionary.swift */; };
 		050FDBF925FC87BE00331107 /* KLDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FDBF725FC87BE00331107 /* KLDictionary.swift */; };
+		0514C5EF28A2907000CD3B18 /* KiwiLibrary.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0543B058253B3A9F00A9BAA1 /* KiwiLibrary.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0514C5F328A2907300CD3B18 /* CoconutDatabase.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05B4EF46267F886A00E5D08F /* CoconutDatabase.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0514C5F728A2907800CD3B18 /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0540D67C2516D4A100C5AE52 /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0514C5FB28A2907C00CD3B18 /* KiwiEngine.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0540D6812516D4B300C5AE52 /* KiwiEngine.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		051D09E82559914D0083336F /* KLCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D09E72559914D0083336F /* KLCommand.swift */; };
 		051D09E92559914D0083336F /* KLCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D09E72559914D0083336F /* KLCommand.swift */; };
 		0520F46127742701004DDA28 /* KLPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0520F46027742701004DDA28 /* KLPoint.swift */; };
@@ -208,6 +209,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0543305228A326DE0096642B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05A95B0A2516CD0300775737 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0543B04D253B3A5D00A9BAA1;
+			remoteInfo = UnitTest;
+		};
 		056068012517597D0034F8BD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 05A95B0A2516CD0300775737 /* Project object */;
@@ -250,13 +258,6 @@
 			remoteGlobalIDString = 056067FD251759740034F8BD;
 			remoteInfo = Install;
 		};
-		05AAF7782581D14200FBB726 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 05A95B0A2516CD0300775737 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0543B04D253B3A5D00A9BAA1;
-			remoteInfo = UnitTest;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -266,9 +267,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				050D1DBD2581C6FF00D968ED /* KiwiEngine.framework in Embed Frameworks */,
-				050D1DC02581C71000D968ED /* KiwiLibrary.framework in Embed Frameworks */,
-				050D1DB92581C64A00D968ED /* CoconutData.framework in Embed Frameworks */,
+				0514C5EF28A2907000CD3B18 /* KiwiLibrary.xcframework in Embed Frameworks */,
+				0514C5FB28A2907C00CD3B18 /* KiwiEngine.xcframework in Embed Frameworks */,
+				0514C5F328A2907300CD3B18 /* CoconutDatabase.xcframework in Embed Frameworks */,
+				0514C5F728A2907800CD3B18 /* CoconutData.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -575,10 +577,10 @@
 			isa = PBXGroup;
 			children = (
 				05B4EF4F267F88F300E5D08F /* CoconutDatabase.framework */,
-				05B4EF46267F886A00E5D08F /* CoconutDatabase.xcframework */,
 				050D1DBE2581C71000D968ED /* KiwiLibrary.framework */,
 				050D1DBB2581C6FF00D968ED /* KiwiEngine.framework */,
 				050D1DB72581C64A00D968ED /* CoconutData.framework */,
+				05B4EF46267F886A00E5D08F /* CoconutDatabase.xcframework */,
 				0543B058253B3A9F00A9BAA1 /* KiwiLibrary.xcframework */,
 				0540D6812516D4B300C5AE52 /* KiwiEngine.xcframework */,
 				0540D67C2516D4A100C5AE52 /* CoconutData.xcframework */,
@@ -771,12 +773,12 @@
 				05DF53582609902300C7837C /* KLColorManager.swift */,
 				05AEC619286FCFE900A1ED09 /* KLComparisonResult.swift */,
 				05A95B7F2516D06900775737 /* KLChar.swift */,
+				050FDBF725FC87BE00331107 /* KLDictionary.swift */,
 				05A95B802516D06900775737 /* KLEnvironment.swift */,
 				053D2DB7277A8E42008B6DA2 /* KLEnum.swift */,
 				05A95B7E2516D06900775737 /* KLEscapeCode.swift */,
 				05A95B7D2516D06900775737 /* KLImage.swift */,
 				05692FD4286AA448006F85F2 /* KLMappingTable.swift */,
-				050FDBF725FC87BE00331107 /* KLDictionary.swift */,
 				0520F478277450F7004DDA28 /* KLRange.swift */,
 				05BD118026C0179B00961535 /* KLRecord.swift */,
 				054007F42866E29C00235240 /* KLSet.swift */,
@@ -884,6 +886,21 @@
 			passBuildSettingsInEnvironment = 1;
 			productName = Transpile;
 		};
+		0543304B28A326CC0096642B /* Check */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f ../../Script/unit_test.mk";
+			buildConfigurationList = 0543304C28A326CC0096642B /* Build configuration list for PBXLegacyTarget "Check" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+				0543305328A326DE0096642B /* PBXTargetDependency */,
+			);
+			name = Check;
+			passBuildSettingsInEnvironment = 1;
+			productName = Check;
+		};
 		056067FD251759740034F8BD /* Install */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = "-f ../../Script/install_xc.mk";
@@ -899,21 +916,6 @@
 			name = Install;
 			passBuildSettingsInEnvironment = 1;
 			productName = Install;
-		};
-		05AAF7712581D13900FBB726 /* Check */ = {
-			isa = PBXLegacyTarget;
-			buildArgumentsString = "-f ../../Script/unit_test.mk";
-			buildConfigurationList = 05AAF7722581D13900FBB726 /* Build configuration list for PBXLegacyTarget "Check" */;
-			buildPhases = (
-			);
-			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = "";
-			dependencies = (
-				05AAF7792581D14200FBB726 /* PBXTargetDependency */,
-			);
-			name = Check;
-			passBuildSettingsInEnvironment = 1;
-			productName = Check;
 		};
 /* End PBXLegacyTarget section */
 
@@ -1007,6 +1009,9 @@
 					050A3E48263BED72008172E7 = {
 						CreatedOnToolsVersion = 12.4;
 					};
+					0543304B28A326CC0096642B = {
+						CreatedOnToolsVersion = 12.4;
+					};
 					0543B04D253B3A5D00A9BAA1 = {
 						CreatedOnToolsVersion = 12.0.1;
 					};
@@ -1023,9 +1028,6 @@
 					05A95B232516CF4500775737 = {
 						CreatedOnToolsVersion = 12.0;
 						LastSwiftMigration = 1200;
-					};
-					05AAF7712581D13900FBB726 = {
-						CreatedOnToolsVersion = 12.2;
 					};
 				};
 			};
@@ -1048,7 +1050,7 @@
 				056067FD251759740034F8BD /* Install */,
 				05A1F468253BC6E100D4789F /* UnitTestBundle */,
 				0543B04D253B3A5D00A9BAA1 /* UnitTest */,
-				05AAF7712581D13900FBB726 /* Check */,
+				0543304B28A326CC0096642B /* Check */,
 			);
 		};
 /* End PBXProject section */
@@ -1212,6 +1214,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		0543305328A326DE0096642B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0543B04D253B3A5D00A9BAA1 /* UnitTest */;
+			targetProxy = 0543305228A326DE0096642B /* PBXContainerItemProxy */;
+		};
 		056068022517597D0034F8BD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 05A95B142516CD2800775737 /* KiwiLibrary_macOS */;
@@ -1241,11 +1248,6 @@
 			isa = PBXTargetDependency;
 			target = 056067FD251759740034F8BD /* Install */;
 			targetProxy = 05A1F475253BC6FC00D4789F /* PBXContainerItemProxy */;
-		};
-		05AAF7792581D14200FBB726 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0543B04D253B3A5D00A9BAA1 /* UnitTest */;
-			targetProxy = 05AAF7782581D14200FBB726 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1289,6 +1291,75 @@
 			name = Debug;
 		};
 		050A3E4A263BED72008172E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		0543304D28A326CC0096642B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		0543304E28A326CC0096642B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1381,10 +1452,12 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UnitTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 			};
@@ -1446,10 +1519,11 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UnitTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
-				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 			};
@@ -2110,75 +2184,6 @@
 			};
 			name = Release;
 		};
-		05AAF7732581D13900FBB726 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = NO;
-				DEBUGGING_SYMBOLS = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = TR2DNF3P93;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		05AAF7742581D13900FBB726 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = TR2DNF3P93;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2187,6 +2192,15 @@
 			buildConfigurations = (
 				050A3E49263BED72008172E7 /* Debug */,
 				050A3E4A263BED72008172E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0543304C28A326CC0096642B /* Build configuration list for PBXLegacyTarget "Check" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0543304D28A326CC0096642B /* Debug */,
+				0543304E28A326CC0096642B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2241,15 +2255,6 @@
 			buildConfigurations = (
 				05A95B2A2516CF4500775737 /* Debug */,
 				05A95B2B2516CF4500775737 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		05AAF7722581D13900FBB726 /* Build configuration list for PBXLegacyTarget "Check" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				05AAF7732581D13900FBB726 /* Debug */,
-				05AAF7742581D13900FBB726 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

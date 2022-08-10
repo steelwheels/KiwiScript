@@ -44,7 +44,7 @@ import Foundation
 		var result = false
 		if let fileobj = file.toObject() as? KLFile {
 			let nval = json.toNativeValue()
-			let text = nval.toText().toStrings().joined(separator: "\n")
+			let text = nval.toScript().toStrings().joined(separator: "\n")
 			fileobj.file.put(string: text)
 			result = true
 		}

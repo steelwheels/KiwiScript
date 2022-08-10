@@ -390,9 +390,9 @@ extension JSValue
 		}
 	}
 
-	public func toText() -> CNText {
+	public func toScript() -> CNText {
 		let native = self.toNativeValue()
-		return native.toText()
+		return native.toScript()
 	}
 }
 

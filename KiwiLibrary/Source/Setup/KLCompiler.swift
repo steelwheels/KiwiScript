@@ -380,7 +380,7 @@ public class KLLibraryCompiler: KECompiler
 		let toTextFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in
 			let result: KLTextProtocol
-			let txt = value.toText()
+			let txt = value.toScript()
 			if let line = txt as? CNTextLine {
 				result = KLTextLine(text: line, context: ctxt)
 			} else if let sect = txt as? CNTextSection {

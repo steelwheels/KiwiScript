@@ -110,7 +110,7 @@ import Foundation
 	}
 
 	public func toString() -> JSValue {
-		let str = mStorage.toValue().toText().toStrings().joined(separator: "\n")
+		let str = mStorage.toValue().toScript().toStrings().joined(separator: "\n")
 		return JSValue(object: str, in: mContext)
 	}
 

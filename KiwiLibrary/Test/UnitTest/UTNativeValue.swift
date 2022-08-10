@@ -41,7 +41,7 @@ private func UTSetValue(context ctxt: KEContext, console cons: CNConsole) -> Boo
 	let num2: CNValue = .numberValue(NSNumber(integerLiteral: 2))
 	let num3: CNValue = .numberValue(NSNumber(integerLiteral: 4))
 	let sval: CNValue = .setValue([num1, num2, num3])
-	cons.print(string: "source native set: \(sval.toText().toStrings().joined(separator: "\n"))\n")
+	cons.print(string: "source native set: \(sval.toScript().toStrings().joined(separator: "\n"))\n")
 
 	// convert to script value
 	let jval = sval.toJSValue(context: ctxt)
@@ -55,7 +55,7 @@ private func UTSetValue(context ctxt: KEContext, console cons: CNConsole) -> Boo
 	// convert from script value
 	if let rval = CNValueSet.fromJSValue(scriptValue: jval) {
 		cons.print(string: "fromJSValue ... OK\n")
-		cons.print(string: "reverted native set: \(rval.toText().toStrings().joined(separator: "\n"))\n")
+		cons.print(string: "reverted native set: \(rval.toScript().toStrings().joined(separator: "\n"))\n")
 	} else {
 		cons.print(string: "fromJSValue ... Error\n")
 		result = false

@@ -137,8 +137,7 @@ public protocol KLTableCoreProtocol
 		case .pointerValue(let ptval):
 			mTable.append(pointer: ptval)
 		default:
-			let txt = ptr.toText().toStrings().joined(separator: "\n")
-			CNLog(logLevel: .error, message: "Invalid parameter type: \(txt)", atFunction: #function, inFile: #file)
+			CNLog(logLevel: .error, message: "Invalid parameter type: \(ptr.description)", atFunction: #function, inFile: #file)
 		}
 	}
 
@@ -178,7 +177,7 @@ public protocol KLTableCoreProtocol
 	}
 
 	public func toString() -> JSValue {
-		let str = mTable.toValue().toText().toStrings().joined(separator: "\n")
+		let str = mTable.toValue().toScript().toStrings().joined(separator: "\n")
 		return JSValue(object: str, in: mContext)
 	}
 }
