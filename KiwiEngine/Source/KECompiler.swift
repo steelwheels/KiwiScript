@@ -77,12 +77,16 @@ open class KECompiler
 
 		var enumstmt = "let \(typename) = {\n"
 		var is1st = true
-		for member in etype.members {
-			if !is1st {
-				enumstmt += ",\n"
+		for name in etype.names {
+			if let value = etype.value(forMember: name) {
+				if !is1st {
+					enumstmt += ",\n"
+				}
+				is1st = false
+				enumstmt += "\t\(name) : \(value)"
+			} else {
+				CNLog(logLevel: .error, message: "Can not happen", atFunction: #function, inFile: #file)
 			}
-			is1st = false
-			enumstmt += "\t\(member.name) : \(member.value)"
 		}
 		enumstmt += "\n};\n"
 		let srcfile = URL(fileURLWithPath: #file)

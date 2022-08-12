@@ -114,7 +114,8 @@ public protocol KLRecordCoreProtocol
 		if name.isString {
 			if let nstr = name.toString() {
 				if let val = mRecord.value(ofField: nstr) {
-					return val.toJSValue(context: mContext)
+					let result = val.toJSValue(context: mContext)
+					return result
 				}
 			}
 		}

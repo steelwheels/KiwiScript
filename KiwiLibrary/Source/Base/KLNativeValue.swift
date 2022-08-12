@@ -34,7 +34,7 @@ extension CNValue {
 		case .rectValue(let val):
 			result = val.toJSValue(context: ctxt)
 		case .enumValue(let val):
-			result = JSValue(int32: Int32(val.value), in: ctxt)
+			result = val.toJSValue(context: ctxt)
 		case .dictionaryValue(let dict):
 			var newdict: Dictionary<String, Any> = [:]
 			for (key, elm) in dict {

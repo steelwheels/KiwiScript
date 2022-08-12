@@ -59,9 +59,13 @@ public extension CNEnumTable
 
 				let list = CNTextList()
 				list.separator = ","
-				for memb in etype.members {
-					let line = CNTextLine(string: "\(memb.name) = \(memb.value)")
-					list.add(text: line)
+				for name in etype.names {
+					if let value = etype.value(forMember: name) {
+						let line = CNTextLine(string: "\(name) = \(value)")
+						list.add(text: line)
+					} else {
+						CNLog(logLevel: .error, message: "Can not happen", atFunction: #function, inFile: #file)
+					}
 				}
 				sect.add(text: list)
 
@@ -110,15 +114,19 @@ public extension CNEnumTable
 
 				let list = CNTextList()
 				list.separator = ","
-				for memb in etype.members {
-					let line = CNTextLine(string: "\(memb.name): \(memb.value)")
-					list.add(text: line)
+				for name in etype.names {
+					if let value = etype.value(forMember: name) {
+						let line = CNTextLine(string: "\(name): \(value)")
+						list.add(text: line)
+					} else {
+						CNLog(logLevel: .error, message: "Can not happen", atFunction: #function, inFile: #file)
+					}
 				}
 				defsect.add(text: list)
 
 				/* static method definition */
 				/* "description" function */
-				if etype.search(byName: "description") == nil {
+				if etype.value(forMember: "description") == nil {
 					let descfunc = CNTextSection()
 					descfunc.header = "description: function(val) {"
 					descfunc.footer = "}"
@@ -126,17 +134,21 @@ public extension CNEnumTable
 					let switchfunc = CNTextSection()
 					switchfunc.header = "let result = \"?\" ; switch(val){"
 					switchfunc.footer = "} ; return result ;"
-					for memb in etype.members {
-						let stmt = "   case \(memb.value): result=\"\(memb.name)\" ; break ;"
-						switchfunc.add(text: CNTextLine(string: stmt))
+					for name in etype.names {
+						if let value = etype.value(forMember: name) {
+							let stmt = "   case \(value): result=\"\(name)\" ; break ;"
+							switchfunc.add(text: CNTextLine(string: stmt))
+						} else {
+							CNLog(logLevel: .error, message: "Can not happen", atFunction: #function, inFile: #file)
+						}
 					}
 					descfunc.add(text: switchfunc)
 					list.add(text: descfunc)
 				}
 
 				/* "keys" variable */
-				if etype.search(byName: "keys") == nil {
-					let keys     = etype.members.map{ "\"\($0.name)\"" }
+				if etype.value(forMember: "keys") == nil {
+					let keys     = etype.names.map{ "\"" + $0 + "\"" }
 					let keystr   = keys.joined(separator: ", ")
 					let keysline = CNTextLine(string: "keys: [\(keystr)]")
 					list.add(text: keysline)
