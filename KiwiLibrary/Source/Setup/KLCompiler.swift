@@ -410,17 +410,6 @@ public class KLLibraryCompiler: KECompiler
 		}
 		ctxt.set(name: "isEOF", function: isEofFunc)
 
-		/* typeID */
-		let valtypeFunc: @convention(block) (_ value: JSValue) -> JSValue = {
-			(_ value: JSValue) -> JSValue in
-			if let type = value.type {
-				return JSValue(int32: Int32(type.rawValue), in: ctxt)
-			} else {
-				return JSValue(undefinedIn: ctxt)
-			}
-		}
-		ctxt.set(name: "valueType", function: valtypeFunc)
-
 		/* asciiCodeName */
 		let asciiNameFunc: @convention(block) (_ value: JSValue) -> JSValue = {
 			(_ value: JSValue) -> JSValue in

@@ -18,6 +18,8 @@ import Foundation
 
 	func set(_ value: JSValue, _ name: JSValue)	// (Value, string)
 	func value(_ name: JSValue) -> JSValue		// (string) -> Value?
+
+	func save() -> JSValue // -> boolean
 }
 
 @objc public class KLDictionary: NSObject, KLDictionaryProtocol
@@ -71,6 +73,11 @@ import Foundation
 			CNLog(logLevel: .error, message: "Invalid parameter type. the string is required for key to access dictionary.")
 			return nil
 		}
+	}
+
+	public func save() -> JSValue {
+		let result = mDictionary.save()
+		return JSValue(bool: result, in: mContext)
 	}
 
 	private func core() -> CNDictionary {

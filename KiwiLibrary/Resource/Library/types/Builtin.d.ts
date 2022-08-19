@@ -337,8 +337,6 @@ declare var EscapeCode: 	EscapeCodeIF ;
 declare var Contacts:	        ContactDatabaseIF ;
 declare var Symbols:		SymbolsIF ;
 
-declare function valueType(val: any): number ; // the result defined as enum ValueType
-
 declare function Pipe(): PipeIF ;
 declare function Point(x: number, y: number): PointIF ;
 declare function Rect(x: number, y: number, width: number, height: number): RectIF ;
