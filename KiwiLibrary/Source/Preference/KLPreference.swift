@@ -27,9 +27,9 @@ public extension CNPreferenceTable
 
 @objc public protocol KLPreferenceProtocol: JSExport
 {
-	var system:	JSValue { get }
-	var terminal:	JSValue { get }
-	var user:	JSValue { get }
+	var system:		JSValue { get }
+	var terminal:		JSValue { get }
+	var user:		JSValue { get }
 }
 
 @objc open class KLPreference: NSObject, KLPreferenceProtocol
