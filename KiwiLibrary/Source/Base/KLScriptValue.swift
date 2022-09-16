@@ -206,7 +206,7 @@ extension JSValue
 			if self.isUndefined {
 				result = nil
 			} else if self.isNull {
-				result = .nullType
+				result = .objectType
 			} else if self.isBoolean {
 				result = .boolType
 			} else if self.isNumber {
@@ -258,8 +258,6 @@ extension JSValue
 		let result: CNValue
 		if let type = self.type {
 			switch type {
-			case .nullType:
-				result = .nullValue
 			case .boolType:
 				result = .boolValue(self.toBool())
 			case .numberType:
@@ -272,25 +270,25 @@ extension JSValue
 				if let url = self.toURL() {
 					result = .URLValue(url)
 				} else {
-					result = .nullValue
+					result = CNValue.null
 				}
 			case .imageType:
 				if let img = self.toImage() {
 					result = .imageValue(img)
 				} else {
-					result = .nullValue
+					result = CNValue.null
 				}
 			case .colorType:
 				if let col = self.toColor() {
 					result = .colorValue(col)
 				} else {
-					result = .nullValue
+					result = CNValue.null
 				}
 			case .enumType:
 				if let eval = self.toEnum() {
 					result = CNValue.enumValue(eval)
 				} else {
-					result = .nullValue
+					result = CNValue.null
 				}
 			case .rangeType:
 				result = .rangeValue(self.toRange())
@@ -316,7 +314,7 @@ extension JSValue
 					result = val
 				} else {
 					CNLog(logLevel: .error, message: "Failed to convert to set", atFunction: #function, inFile: #file)
-					result = .nullValue
+					result = CNValue.null
 				}
 			case .dictionaryType:
 				var dstdict: Dictionary<String, CNValue> = [:]
@@ -338,32 +336,32 @@ extension JSValue
 				}
 			case .objectType:
 				CNLog(logLevel: .error, message: "Failed to convert to Object", atFunction: #function, inFile: #file)
-				result = .nullValue
+				result = CNValue.null
 			case .recordType:
 				if let rec = self.toRecord() {
 					result = .recordValue(rec)
 				} else {
 					CNLog(logLevel: .error, message: "Failed to convert to record", atFunction: #function, inFile: #file)
-					result = .nullValue
+					result = CNValue.null
 				}
 			case .segmentType:
 				if let refval = self.toSegment() {
 					result = .segmentValue(refval)
 				} else {
-					result = .nullValue
+					result = CNValue.null
 				}
 			case .pointerType:
 				if let ptrval = self.toPointer() {
 					result = .pointerValue(ptrval)
 				} else {
-					result = .nullValue
+					result = CNValue.null
 				}
 			@unknown default:
 				CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
-				result = .nullValue
+				result = CNValue.null
 			}
 		} else {
-			result = .nullValue
+			result = CNValue.null
 		}
 		return result
 	}
@@ -376,14 +374,14 @@ extension JSValue
 				return CNValue.anyToValue(object: url)
 			} else {
 				CNLog(logLevel: .error, message: "Null URL", atFunction: #function, inFile: #file)
-				return .nullValue
+				return CNValue.null
 			}
 		} else if let val = value as? KLImage {
 			if let image = val.coreImage {
 				return CNValue.anyToValue(object: image)
 			} else {
 				CNLog(logLevel: .error, message: "Null Image", atFunction: #function, inFile: #file)
-				return .nullValue
+				return CNValue.null
 			}
 		} else {
 			return CNValue.anyToValue(object: value)

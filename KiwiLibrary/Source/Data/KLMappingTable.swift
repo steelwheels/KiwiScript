@@ -63,7 +63,7 @@ import Foundation
 						return retval.toNativeValue()
 					} else {
 						CNLog(logLevel: .error, message: "Failed to execute callback set by addVirtualField (for field \(fname))")
-						return .nullValue
+						return CNValue.null
 					}
 				}
 				mTable.addVirtualField(name: fname, callbackFunction: cbfunc)

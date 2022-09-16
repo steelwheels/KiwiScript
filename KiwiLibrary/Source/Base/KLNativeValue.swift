@@ -15,8 +15,6 @@ extension CNValue {
 	public func toJSValue(context ctxt: KEContext) -> JSValue {
 		let result: JSValue
 		switch self {
-		case .nullValue:
-			result = JSValue(nullIn: ctxt)
 		case .boolValue(let val):
 			result = JSValue(bool: val, in: ctxt)
 		case .numberValue(let val):
@@ -62,7 +60,11 @@ extension CNValue {
 				result = JSValue(nullIn: ctxt)
 			}
 		case .objectValue(let val):
-			result = JSValue(object: val, in: ctxt)
+			if let obj = val {
+				result = JSValue(object: obj, in: ctxt)
+			} else {
+				result = JSValue(nullIn: ctxt)
+			}
 		case .colorValue(let col):
 			let colval = col.escapeCode()
 			result = JSValue(int32: colval, in: ctxt)
