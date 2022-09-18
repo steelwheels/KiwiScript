@@ -41,11 +41,8 @@ public class KHShellParser
 		var envdict: Dictionary<String, String> = [:]
 		for name in env.variableNames {
 			if let val = env.get(name: name) {
-				if let str = environmentValueToString(value: val) {
-					envdict["${" + name + "}"] = str
-				} else {
-					CNLog(logLevel: .error, message: "Failed to get environment value: \(name)", atFunction: #function, inFile: #file)
-				}
+				let str = val.toScript().toStrings().joined(separator: "\n")
+				envdict["${" + name + "}"] = str
 			}
 		}
 
@@ -121,35 +118,6 @@ public class KHShellParser
 			idx = ln.index(after: idx)
 		}
 		return false
-	}
-
-	private func environmentValueToString(value val: CNValue) -> String? {
-		var result: String? = nil
-		switch val {
-		case .stringValue(let str):
-			result = str
-		case .URLValue(let url):
-			result = url.path
-		case .numberValue(let num):
-			result = num.description
-		case .arrayValue(let arr):
-			var is1st = true
-			var str   = ""
-			for elm in arr {
-				if is1st {
-					is1st = false
-				} else {
-					str += ":"
-				}
-				if let estr = environmentValueToString(value: elm) {
-					str += estr
-				}
-			}
-			result = str
-		default:
-			CNLog(logLevel: .error, message: "Unsupported environment value type: \(val.valueType.description)", atFunction: #function, inFile: #file)
-		}
-		return result
 	}
 
 	private func replaceEnvironmentVariable(line ln: String, dictionary dict: Dictionary<String, String>) -> String {

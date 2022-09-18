@@ -221,8 +221,6 @@ extension JSValue
 				result = .sizeType
 			} else if self.isRect {
 				result = .rectType
-			} else if self.isURL {
-				result = .URLType
 			} else if self.isImage {
 				result = .imageType
 			} else if self.isRecord {
@@ -262,12 +260,6 @@ extension JSValue
 				result = .numberValue(self.toNumber())
 			case .stringType:
 				result = .stringValue(self.toString())
-			case .URLType:
-				if let url = self.toURL() {
-					result = .URLValue(url)
-				} else {
-					result = CNValue.null
-				}
 			case .imageType:
 				if let img = self.toImage() {
 					result = .imageValue(img)
@@ -331,8 +323,14 @@ extension JSValue
 					result = .dictionaryValue(dstdict)
 				}
 			case .objectType:
-				CNLog(logLevel: .error, message: "Failed to convert to Object", atFunction: #function, inFile: #file)
-				result = CNValue.null
+				if let _ = self.toObject() as? NSNull {
+					result = .objectValue(nil)
+				} else if let obj = self.toObject() as? NSObject {
+					result = .objectValue(obj)
+				} else {
+					CNLog(logLevel: .error, message: "Failed to convert to Object", atFunction: #function, inFile: #file)
+					result = CNValue.null
+				}
 			case .recordType:
 				if let rec = self.toRecord() {
 					result = .recordValue(rec)
