@@ -21,8 +21,6 @@ extension CNValue {
 			result = JSValue(object: val, in: ctxt)
 		case .stringValue(let val):
 			result = JSValue(object: val, in: ctxt)
-		case .dateValue(let val):
-			result = JSValue(object: val, in: ctxt)
 		case .rangeValue(let val):
 			result = val.toJSValue(context: ctxt)
 		case .pointValue(let val):

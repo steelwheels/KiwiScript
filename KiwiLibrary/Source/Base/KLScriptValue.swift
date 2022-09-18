@@ -213,8 +213,6 @@ extension JSValue
 				result = .numberType
 			} else if self.isString {
 				result = .stringType
-			} else if self.isDate {
-				result = .dateType
 			} else if self.isRange {
 				result = .rangeType
 			} else if self.isPoint {
@@ -264,8 +262,6 @@ extension JSValue
 				result = .numberValue(self.toNumber())
 			case .stringType:
 				result = .stringValue(self.toString())
-			case .dateType:
-				result = .dateValue(self.toDate())
 			case .URLType:
 				if let url = self.toURL() {
 					result = .URLValue(url)
