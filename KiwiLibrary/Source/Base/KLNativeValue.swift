@@ -11,7 +11,8 @@ import CoconutDatabase
 import JavaScriptCore
 import Foundation
 
-extension CNValue {
+extension CNValue
+{
 	public func toJSValue(context ctxt: KEContext) -> JSValue {
 		let result: JSValue
 		switch self {
@@ -21,12 +22,6 @@ extension CNValue {
 			result = JSValue(object: val, in: ctxt)
 		case .stringValue(let val):
 			result = JSValue(object: val, in: ctxt)
-		case .pointValue(let val):
-			result = val.toJSValue(context: ctxt)
-		case .sizeValue(let val):
-			result = val.toJSValue(context: ctxt)
-		case .rectValue(let val):
-			result = val.toJSValue(context: ctxt)
 		case .enumValue(let val):
 			result = val.toJSValue(context: ctxt)
 		case .dictionaryValue(let dict):

@@ -213,12 +213,6 @@ extension JSValue
 				result = .numberType
 			} else if self.isString {
 				result = .stringType
-			} else if self.isPoint {
-				result = .pointType
-			} else if self.isSize {
-				result = .sizeType
-			} else if self.isRect {
-				result = .rectType
 			} else if self.isRecord {
 				result = .recordType
 			} else if self.isSegment {
@@ -260,12 +254,6 @@ extension JSValue
 				} else {
 					result = CNValue.null
 				}
-			case .pointType:
-				result = .pointValue(self.toPoint())
-			case .sizeType:
-				result = .sizeValue(self.toSize())
-			case .rectType:
-				result = .rectValue(self.toRect())
 			case .arrayType:
 				let srcarr = self.toArray()!
 				var dstarr: Array<CNValue> = []
