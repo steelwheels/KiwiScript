@@ -266,12 +266,6 @@ extension JSValue
 				} else {
 					result = CNValue.null
 				}
-			case .colorType:
-				if let col = self.toColor() {
-					result = .colorValue(col)
-				} else {
-					result = CNValue.null
-				}
 			case .enumType:
 				if let eval = self.toEnum() {
 					result = CNValue.enumValue(eval)

@@ -61,9 +61,6 @@ extension CNValue {
 			} else {
 				result = JSValue(nullIn: ctxt)
 			}
-		case .colorValue(let col):
-			let colval = col.escapeCode()
-			result = JSValue(int32: colval, in: ctxt)
 		case .segmentValue(let val):
 			result = val.toJSValue(context: ctxt)
 		case .pointerValue(let val):
