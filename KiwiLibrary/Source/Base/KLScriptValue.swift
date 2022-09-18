@@ -213,16 +213,12 @@ extension JSValue
 				result = .numberType
 			} else if self.isString {
 				result = .stringType
-			} else if self.isRange {
-				result = .rangeType
 			} else if self.isPoint {
 				result = .pointType
 			} else if self.isSize {
 				result = .sizeType
 			} else if self.isRect {
 				result = .rectType
-			} else if self.isImage {
-				result = .imageType
 			} else if self.isRecord {
 				result = .recordType
 			} else if self.isSegment {
@@ -238,8 +234,6 @@ extension JSValue
 			} else if self.isObject {
 				if let _ = self.toObject() as? Dictionary<AnyHashable, Any> {
 					result = .dictionaryType
-				} else if let _ = self.toObject() as? NSRange {
-					result = .rangeType
 				} else {
 					result = .objectType
 				}
@@ -260,20 +254,12 @@ extension JSValue
 				result = .numberValue(self.toNumber())
 			case .stringType:
 				result = .stringValue(self.toString())
-			case .imageType:
-				if let img = self.toImage() {
-					result = .imageValue(img)
-				} else {
-					result = CNValue.null
-				}
 			case .enumType:
 				if let eval = self.toEnum() {
 					result = CNValue.enumValue(eval)
 				} else {
 					result = CNValue.null
 				}
-			case .rangeType:
-				result = .rangeValue(self.toRange())
 			case .pointType:
 				result = .pointValue(self.toPoint())
 			case .sizeType:

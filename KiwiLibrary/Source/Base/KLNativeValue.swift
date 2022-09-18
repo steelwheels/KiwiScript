@@ -21,8 +21,6 @@ extension CNValue {
 			result = JSValue(object: val, in: ctxt)
 		case .stringValue(let val):
 			result = JSValue(object: val, in: ctxt)
-		case .rangeValue(let val):
-			result = val.toJSValue(context: ctxt)
 		case .pointValue(let val):
 			result = val.toJSValue(context: ctxt)
 		case .sizeValue(let val):
@@ -45,8 +43,6 @@ extension CNValue {
 			result = JSValue(object: newarr, in: ctxt)
 		case .setValue(let sval):
 			result = CNValueSet.valueToJSValue(source: sval, context: ctxt)
-		case .imageValue(let val):
-			result = JSValue(image: val, in: ctxt)
 		case .recordValue(let val):
 			let recobj = KLRecord(record: val, context: ctxt)
 			if let recval = KLRecord.allocate(record: recobj){
