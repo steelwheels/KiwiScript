@@ -213,12 +213,6 @@ extension JSValue
 				result = .numberType
 			} else if self.isString {
 				result = .stringType
-			} else if self.isRecord {
-				result = .recordType
-			} else if self.isSegment {
-				result = .segmentType
-			} else if self.isPointer {
-				result = .pointerType
 			} else if self.isArray {
 				result = .arrayType
 			} else if self.isSet {
@@ -297,25 +291,6 @@ extension JSValue
 					result = .objectValue(obj)
 				} else {
 					CNLog(logLevel: .error, message: "Failed to convert to Object", atFunction: #function, inFile: #file)
-					result = CNValue.null
-				}
-			case .recordType:
-				if let rec = self.toRecord() {
-					result = .recordValue(rec)
-				} else {
-					CNLog(logLevel: .error, message: "Failed to convert to record", atFunction: #function, inFile: #file)
-					result = CNValue.null
-				}
-			case .segmentType:
-				if let refval = self.toSegment() {
-					result = .segmentValue(refval)
-				} else {
-					result = CNValue.null
-				}
-			case .pointerType:
-				if let ptrval = self.toPointer() {
-					result = .pointerValue(ptrval)
-				} else {
 					result = CNValue.null
 				}
 			@unknown default:

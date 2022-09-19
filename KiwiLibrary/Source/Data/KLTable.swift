@@ -134,8 +134,12 @@ public protocol KLTableCoreProtocol
 	public func appendPointer(_ ptr: JSValue) {
 		let val = ptr.toNativeValue()
 		switch val {
-		case .pointerValue(let ptval):
-			mTable.append(pointer: ptval)
+		case .dictionaryValue(let dict):
+			if let ptr = CNPointerValue.fromValue(value: dict) {
+				mTable.append(pointer: ptr)
+			} else {
+				CNLog(logLevel: .error, message: "Invalid parameter type: \(ptr.description)", atFunction: #function, inFile: #file)
+			}
 		default:
 			CNLog(logLevel: .error, message: "Invalid parameter type: \(ptr.description)", atFunction: #function, inFile: #file)
 		}
