@@ -214,14 +214,14 @@ extension JSValue
 			} else if self.isString {
 				result = .stringType
 			} else if self.isArray {
-				result = .arrayType
+				result = .arrayType(.anyType)
 			} else if self.isSet {
-				result = .setType
+				result = .setType(.anyType)
 			} else if self.isDictionary {
-				result = .dictionaryType
+				result = .dictionaryType(.anyType)
 			} else if self.isObject {
 				if let _ = self.toObject() as? Dictionary<AnyHashable, Any> {
-					result = .dictionaryType
+					result = .dictionaryType(.anyType)
 				} else {
 					result = .objectType
 				}
@@ -236,6 +236,9 @@ extension JSValue
 		let result: CNValue
 		if let type = self.type {
 			switch type {
+			case .anyType:
+				CNLog(logLevel: .error, message: "Can not assign native value", atFunction: #function, inFile: #file)
+				result = CNValue.null
 			case .boolType:
 				result = .boolValue(self.toBool())
 			case .numberType:
