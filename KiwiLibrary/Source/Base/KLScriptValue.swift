@@ -296,6 +296,9 @@ extension JSValue
 					CNLog(logLevel: .error, message: "Failed to convert to Object", atFunction: #function, inFile: #file)
 					result = CNValue.null
 				}
+			case .instanceType(let clsname):
+				CNLog(logLevel: .error, message: "Unsupported type: \(clsname)", atFunction: #function, inFile: #file)
+				result = CNValue.null
 			@unknown default:
 				CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
 				result = CNValue.null
