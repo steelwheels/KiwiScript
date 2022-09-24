@@ -206,7 +206,7 @@ extension JSValue
 			if self.isUndefined {
 				result = nil
 			} else if self.isNull {
-				result = .objectType
+				result = .objectType(nil)
 			} else if self.isBoolean {
 				result = .boolType
 			} else if self.isNumber {
@@ -223,7 +223,7 @@ extension JSValue
 				if let _ = self.toObject() as? Dictionary<AnyHashable, Any> {
 					result = .dictionaryType(.anyType)
 				} else {
-					result = .objectType
+					result = .objectType(nil)
 				}
 			} else {
 				fatalError("Unknown type: \"\(self.description)\"")
@@ -288,17 +288,12 @@ extension JSValue
 					result = .dictionaryValue(dstdict)
 				}
 			case .objectType:
-				if let _ = self.toObject() as? NSNull {
-					result = .objectValue(nil)
-				} else if let obj = self.toObject() as? NSObject {
-					result = .objectValue(obj)
+				if let obj = self.toObject() {
+					result = .objectValue(obj as AnyObject)
 				} else {
 					CNLog(logLevel: .error, message: "Failed to convert to Object", atFunction: #function, inFile: #file)
 					result = CNValue.null
 				}
-			case .instanceType(let clsname):
-				CNLog(logLevel: .error, message: "Unsupported type: \(clsname)", atFunction: #function, inFile: #file)
-				result = CNValue.null
 			@unknown default:
 				CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
 				result = CNValue.null

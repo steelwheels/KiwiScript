@@ -39,10 +39,10 @@ extension CNValue
 		case .setValue(let sval):
 			result = CNValueSet.valueToJSValue(source: sval, context: ctxt)
 		case .objectValue(let val):
-			if let obj = val {
-				result = JSValue(object: obj, in: ctxt)
-			} else {
+			if let _ = val as? NSNull {
 				result = JSValue(nullIn: ctxt)
+			} else {
+				result = JSValue(object: val, in: ctxt)
 			}
 		@unknown default:
 			result = JSValue(nullIn: ctxt)
