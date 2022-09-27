@@ -28,6 +28,8 @@ public protocol KLRecordCoreProtocol
 
 @objc public class KLRecord: NSObject, KLRecordProtocol, KLRecordCoreProtocol
 {
+	public static let ScriptInterfaceName = "RecordIF"
+
 	private static let TEMPORARY_VARIABLE_NAME = "_kiwilibrary_record_temp_var"
 	private static var temporary_variable_id   = 0
 
