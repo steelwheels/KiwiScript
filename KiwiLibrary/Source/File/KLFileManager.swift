@@ -53,24 +53,20 @@ import Foundation
 		let fmanager = FileManager.default
 		if let pathurl = pathval.toURL() {
 			switch fmanager.openFile(URL: pathurl, accessType: acctype) {
-			case .ok(let file):
+			case .success(let file):
 				let fileobj = KLFile(file: file, context: mContext)
 				return JSValue(object: fileobj, in: mContext)
-			case .error(_):
+			case .failure(_):
 				mConsole.error(string: "Failed to write \(pathval)\n")
-			@unknown default:
-				mConsole.error(string: "Unknown error\n")
 			}
 		} else if let pathstr = pathval.toString() {
 			let pathurl = fmanager.fullPath(pathString: pathstr, baseURL: mEnvironment.currentDirectory)
 			switch fmanager.openFile(URL: pathurl, accessType: acctype) {
-			case .ok(let file):
+			case .success(let file):
 				let fileobj = KLFile(file: file, context: mContext)
 				return JSValue(object: fileobj, in: mContext)
-			case .error(_):
+			case .failure(_):
 				mConsole.error(string: "Failed to write \(pathval)\n")
-			@unknown default:
-				mConsole.error(string: "Unknown error\n")
 			}
 		}
 		return JSValue(nullIn: mContext)

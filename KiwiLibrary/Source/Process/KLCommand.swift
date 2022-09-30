@@ -137,13 +137,8 @@ import Foundation
 		let targurl  = CNFilePath.URLforApplicationSupportDirectory(subDirectory: scrname)
 		if fmanager.fileExists(atURL: targurl) {
 			if fmanager.isDeletableFile(atURL: targurl) {
-				switch fmanager.removeFile(atURL: targurl) {
-				case .ok:
-					result = 0	// done
-				case .error(let err):
+				if let err = fmanager.removeFile(atURL: targurl) {
 					console.error(string: "Error: \(err.toString())\n")
-				@unknown default:
-					console.error(string: "Error: Unexpected result\n")
 				}
 				result = 0
 			} else {

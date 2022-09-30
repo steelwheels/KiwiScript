@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		050662F628E5D740008DBA32 /* KLValueType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050662F528E5D740008DBA32 /* KLValueType.swift */; };
+		050662F728E5D740008DBA32 /* KLValueType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050662F528E5D740008DBA32 /* KLValueType.swift */; };
 		050A3E69263BF597008172E7 /* Turtle.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E5F263BF596008172E7 /* Turtle.d.ts */; };
 		050A3E6B263BF597008172E7 /* String.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E60263BF596008172E7 /* String.d.ts */; };
 		050A3E6D263BF597008172E7 /* Process.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E61263BF596008172E7 /* Process.d.ts */; };
@@ -389,6 +391,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		050662F528E5D740008DBA32 /* KLValueType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLValueType.swift; sourceTree = "<group>"; };
 		050A3E5F263BF596008172E7 /* Turtle.d.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = Turtle.d.ts; sourceTree = "<group>"; };
 		050A3E60263BF596008172E7 /* String.d.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = String.d.ts; sourceTree = "<group>"; };
 		050A3E61263BF596008172E7 /* Process.d.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = Process.d.ts; sourceTree = "<group>"; };
@@ -798,6 +801,7 @@
 				05A95B902516D08500775737 /* KLStruct.swift */,
 				05A95B8E2516D08500775737 /* KLNativeValue.swift */,
 				05A95B8F2516D08500775737 /* KLScriptValue.swift */,
+				050662F528E5D740008DBA32 /* KLValueType.swift */,
 				05A95B912516D08500775737 /* KLType.swift */,
 			);
 			path = Base;
@@ -1141,6 +1145,7 @@
 				05A95B6C2516D03300775737 /* KLPipe.swift in Sources */,
 				0520F46127742701004DDA28 /* KLPoint.swift in Sources */,
 				0520F46D277429FA004DDA28 /* KLRect.swift in Sources */,
+				050662F628E5D740008DBA32 /* KLValueType.swift in Sources */,
 				05A95B5A2516D01700775737 /* KLPreference.swift in Sources */,
 				051D09E82559914D0083336F /* KLCommand.swift in Sources */,
 				05F3DC3725D8C004003EBD1E /* KLBitmapData.swift in Sources */,
@@ -1197,6 +1202,7 @@
 				05A95B6D2516D03300775737 /* KLPipe.swift in Sources */,
 				0520F46227742701004DDA28 /* KLPoint.swift in Sources */,
 				0520F46E277429FA004DDA28 /* KLRect.swift in Sources */,
+				050662F728E5D740008DBA32 /* KLValueType.swift in Sources */,
 				05A95B5B2516D01700775737 /* KLPreference.swift in Sources */,
 				051D09E92559914D0083336F /* KLCommand.swift in Sources */,
 				05F3DC3825D8C004003EBD1E /* KLBitmapData.swift in Sources */,

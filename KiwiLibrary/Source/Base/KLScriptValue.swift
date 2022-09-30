@@ -236,7 +236,7 @@ extension JSValue
 		let result: CNValue
 		if let type = self.type {
 			switch type {
-			case .anyType:
+			case .anyType, .voidType, .functionType(_, _):
 				CNLog(logLevel: .error, message: "Can not assign native value", atFunction: #function, inFile: #file)
 				result = CNValue.null
 			case .boolType:
