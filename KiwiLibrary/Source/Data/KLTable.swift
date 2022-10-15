@@ -26,8 +26,6 @@ import Foundation
 	func save() -> JSValue
 
 	func forEach(_ callback: JSValue)
-
-	func toString() -> JSValue
 }
 
 public protocol KLTableCoreProtocol
@@ -178,11 +176,6 @@ public protocol KLTableCoreProtocol
 		} else {
 			return nil
 		}
-	}
-
-	public func toString() -> JSValue {
-		let str = mTable.toValue().toScript().toStrings().joined(separator: "\n")
-		return JSValue(object: str, in: mContext)
 	}
 }
 

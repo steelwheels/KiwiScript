@@ -17,8 +17,6 @@ import Foundation
 
 	func value(_ name: JSValue) -> JSValue
 	func setValue(_ val: JSValue, _ name: JSValue) -> JSValue
-
-	func toString() -> JSValue
 }
 
 public protocol KLRecordCoreProtocol
@@ -138,11 +136,6 @@ public protocol KLRecordCoreProtocol
 			CNLog(logLevel: .error, message: "Invalid type of name", atFunction: #function, inFile: #file)
 		}
 		return JSValue(nullIn: mContext)
-	}
-
-	public func toString() -> JSValue {
-		let val: CNValue = .dictionaryValue(mRecord.toValue())
-		return JSValue(object: val.toScript().toStrings().joined(separator: "\n"), in: mContext)
 	}
 }
 

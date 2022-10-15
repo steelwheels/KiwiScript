@@ -287,6 +287,13 @@ extension JSValue
 				} else {
 					result = .dictionaryValue(dstdict)
 				}
+			case .recordType(_):
+				if let obj = self.toObject() as? KLRecord {
+					result = .recordValue(obj.core())
+				} else {
+					CNLog(logLevel: .error, message: "Failed to convert to Record", atFunction: #function, inFile: #file)
+					result = CNValue.null
+				}
 			case .objectType:
 				if let obj = self.toObject() {
 					result = .objectValue(obj as AnyObject)

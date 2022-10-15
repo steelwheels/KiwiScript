@@ -17,6 +17,10 @@ public extension CNValueType
 	}
 
 	static func convertToTypeDeclaration(valueType vtype: CNValueType) -> String {
+		return convertToTypeDeclarationWithRecv(valueType: vtype, isInside: false)
+	}
+
+	static func convertToTypeDeclarationWithRecv(valueType vtype: CNValueType, isInside isin: Bool) -> String {
 		let result: String
 		switch vtype {
 		case .anyType:
@@ -32,11 +36,20 @@ public extension CNValueType
 		case .enumType(let etype):
 			result = etype.typeName
 		case .dictionaryType(let elmtype):
-			result = "[key: string]:" + convertToTypeDeclaration(valueType: elmtype)
+			result = "{[key: string]: " + convertToTypeDeclarationWithRecv(valueType: elmtype, isInside: true) + "}"
 		case .arrayType(let elmtype):
-			result = convertToTypeDeclaration(valueType: elmtype) + "[]"
+			result = convertToTypeDeclarationWithRecv(valueType: elmtype, isInside: true) + "[]"
 		case .setType(let elmtype):
-			result = convertToTypeDeclaration(valueType: elmtype) + "[]"
+			result = convertToTypeDeclarationWithRecv(valueType: elmtype, isInside: true) + "[]"
+		case .recordType(let dict):
+			var decl = "{ "
+			for name in dict.keys.sorted() {
+				if let elmtype = dict[name] {
+					decl += name + ":" + convertToTypeDeclarationWithRecv(valueType: elmtype, isInside: true) + ";\n"
+				}
+			}
+			decl  += " }"
+			result = decl
 		case .objectType(let clsname):
 			if let name = clsname {
 				result = name
@@ -47,9 +60,10 @@ public extension CNValueType
 			var str: String = "("
 			for i in 0..<paramtypes.count {
 				if i > 0 { str += ", " }
-				str += "p\(i) : " + convertToTypeDeclaration(valueType: paramtypes[i])
+				str += "p\(i): " + convertToTypeDeclarationWithRecv(valueType: paramtypes[i], isInside: true)
 			}
-			str += "): " + convertToTypeDeclaration(valueType: rettype)
+			let arrow = isin ? " =>" : ":"
+			str += ")\(arrow) " + convertToTypeDeclarationWithRecv(valueType: rettype, isInside: true)
 			result = str
 		@unknown default:
 			result = "any /* unknown */"

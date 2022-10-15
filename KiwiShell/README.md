@@ -2,7 +2,7 @@
 The KiwiShell is a macOS framework to support JavaScript based shell script program.
 
 # Copyright
-Copyright (C) 2015-2018 [Steel Wheels Project](https://steelwheels.github.io).
+Copyright (C) 2018-2022 [Steel Wheels Project](https://github.com/steelwheels).
 This software is distributed under [GNU LESSER GENERAL PUBLIC LICENSE Version 2.1](https://www.gnu.org/licenses/lgpl-2.1-standalone.html).
 
 # Related links

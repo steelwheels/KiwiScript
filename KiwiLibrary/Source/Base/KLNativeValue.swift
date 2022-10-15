@@ -38,6 +38,9 @@ extension CNValue
 			result = JSValue(object: newarr, in: ctxt)
 		case .setValue(let sval):
 			result = CNValueSet.valueToJSValue(source: sval, context: ctxt)
+		case .recordValue(let rec):
+			let recobj = KLRecord(record: rec, context: ctxt)
+			result = JSValue(object: recobj, in: ctxt)
 		case .objectValue(let val):
 			if let _ = val as? NSNull {
 				result = JSValue(nullIn: ctxt)
