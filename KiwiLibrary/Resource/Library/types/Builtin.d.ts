@@ -193,7 +193,7 @@ interface TextTableIF extends TextIF
         prepend(str: string): void ;
 }
 
-interface ImageIF {
+interface ImageDataIF {
 	size: SizeIF ;
 }
 
@@ -316,7 +316,7 @@ interface ContactDatabaseIF {
 	forEach(callback: (record: RecordIF) => void): void ;
 }
 
-interface CollectionIF {
+interface CollectionCoreIF {
 	sectionCount:			number ;
 	itemCount(section: number):	number ;
 
@@ -364,7 +364,7 @@ declare function Pipe(): PipeIF ;
 declare function Point(x: number, y: number): PointIF ;
 declare function Rect(x: number, y: number, width: number, height: number): RectIF ;
 declare function Size(width: number, height: number): SizeIF ;
-declare function Collection(): CollectionIF ;
+declare function CollectionCore(): CollectionCoreIF ;
 declare function URL(path: string): URLIF | null ;
 
 declare function Storage(path: string): StorageIF | null ;

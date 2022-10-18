@@ -902,7 +902,7 @@ open class KLLibraryCompiler: KECompiler
 			let newcol = CNCollection()
 			return JSValue(object: KLCollection(collection: newcol, context: ctxt), in: ctxt)
 		}
-		ctxt.set(name: "Collection", function: collectionFunc)
+		ctxt.set(name: "CollectionData", function: collectionFunc)
 	}
 
 	private func importBuiltinLibrary(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig)
