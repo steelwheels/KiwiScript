@@ -4,14 +4,14 @@ This document describes about panel functions.
 # Functions
 ## `openPanel` function
 ````
-var url = openPanel(title, type, [extensions]) ;
+var url = openPanel(title: string, type: FileType, extensions: string[]): URLIF | null ;
 ````
 ### Parameters
 |Name     |Type     |Description              |
 |:---     |:---     |:---                     |
 |title    |string   |Title of the panel       |
 |type     |[FileType](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/FileType.md) |File type: directory or file |
-|extensions |Array of string | Array of file extensions |
+|extensions |string[] | Array of file extensions |
 
 ### Return value
 |Type     |Description              |
@@ -21,7 +21,7 @@ var url = openPanel(title, type, [extensions]) ;
 
 ## `savePanel` function
 ````
-var url = savePanel(title) ;
+savePanel(title: string): URLIF | null ;
 ````
 ### Parameters
 |Name     |Type     |Description              |

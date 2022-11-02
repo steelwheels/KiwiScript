@@ -526,11 +526,15 @@ open class KLLibraryCompiler: KECompiler
 				exitFunc = {
 					[weak self] (_ value: JSValue) -> JSValue in
 					if let myself = self {
-						NSApplication.shared.terminate(myself)
+						CNExecuteInMainThread(doSync: true, execute: {
+							() -> Void in
+							NSApplication.shared.terminate(myself)
+						})
 					}
 					return JSValue(undefinedIn: ctxt)
 				}
 			#else
+				/* The method to quit iOS application is NOT defined */
 				exitFunc = {
 					(_ value: JSValue) -> JSValue in
 					return JSValue(undefinedIn: ctxt)

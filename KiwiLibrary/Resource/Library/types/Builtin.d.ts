@@ -129,6 +129,22 @@ interface PipeIF {
         writing:        FileIF ;
 }
 
+interface FileManagerIF {
+	open(path: URLIF | string, access: string): FileIF ;
+
+	isReadable(file: URLIF | string): boolean ;
+	isWritable(file: URLIF | string): boolean ;
+	isExecutable(file: URLIF | string): boolean ;
+	isAccessible(file: URLIF | string): boolean ;
+
+	fullPath(path: string, base: URLIF): URLIF | null ;
+
+	homeDirectory(): URLIF ;
+	currentDirectory(): URLIF ;
+	temporaryDirectory(): URLIF ;
+
+}
+
 interface PointIF {
 	x : number ;
 	y : number ;
@@ -228,8 +244,8 @@ interface ProcessIF {
 
 interface URLIF {
 	isNull:			boolean ;
-	absoluteString:		string ;
-	path:			string ;
+	absoluteString:		string | null ;
+	path:			string | null ;
 	appendingPathComponent(comp: string): URLIF | null ;
 	loadText():		string | null ;
 }
@@ -359,6 +375,7 @@ declare var EscapeCode: 	EscapeCodeIF ;
 declare var Contacts:	        ContactDatabaseIF ;
 declare var Symbols:		SymbolsIF ;
 declare var Preference:		PreferenceIF ;
+declare var FileManager:	FileManagerIF ;
 
 declare function Pipe(): PipeIF ;
 declare function Point(x: number, y: number): PointIF ;
@@ -416,8 +433,7 @@ declare function TextSection(): TextSectionIF ;
 declare function TextRecord(): TextRecordIF ;
 declare function TextTable(): TextTableIF ;
 
-declare function _openPanel(title: string, type: number,
-					exts: string[], cbfunc: any): void ;
+declare function _openPanel(title: string, type: FileType, exts: string[], cbfunc: any): void ;
 declare function _savePanel(title: string, cbfunc: any): void ;
 declare function _run(path: URLIF | string, input: FileIF, output: FileIF, error: FileIF): object | null ;
 

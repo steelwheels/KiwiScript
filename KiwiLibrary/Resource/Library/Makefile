@@ -39,7 +39,7 @@ types/Enum.d.ts: dummy
 	fi
 
 clean:
-	rm -f $(dsts)
+	rm -f $(dsts) $(dstdecl)
 
 dummy:
 

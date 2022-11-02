@@ -71,7 +71,7 @@ function _cancel() {
 	throw new CancelException(ExitCode.exception) ;
 }
 
-function openPanel(title: string, type: number, exts: string[]): URLIF | null {
+function openPanel(title: string, type: FileType, exts: string[]): URLIF | null {
 	let result = null ;
 	let sem    = new Semaphore(0) ;
 	let cbfunc = function(url: URLIF) {
@@ -109,3 +109,12 @@ function run(path: URLIF | string | null,
 	return _run(path, input, output, error) ;
 }
 
+/* Global variables */
+declare var _stdin:  FileIF ;
+declare var _stdout: FileIF ;
+declare var _stderr: FileIF ;
+
+function launch(path: URLIF | string | null)
+{
+	return run(path, _stdin, _stdout, _stderr) ;
+}

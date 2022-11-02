@@ -91,3 +91,6 @@ function run(path, input, output, error) {
     }
     return _run(path, input, output, error);
 }
+function launch(path) {
+    return run(path, _stdin, _stdout, _stderr);
+}
