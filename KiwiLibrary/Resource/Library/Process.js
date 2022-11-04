@@ -79,7 +79,7 @@ function savePanel(title) {
     sem.wait(); // Wait finish operation
     return result;
 }
-function run(path, input, output, error) {
+function allocateThread(path, input, output, error) {
     if (path == null) {
         let newpath = openPanel("Select script file to execute", FileType.file, ["js", "jsh", "jspkg"]);
         if (newpath != null) {
@@ -89,8 +89,19 @@ function run(path, input, output, error) {
             return null;
         }
     }
-    return _run(path, input, output, error);
+    return _allocateThread(path, input, output, error);
 }
-function launch(path) {
-    return run(path, _stdin, _stdout, _stderr);
+function run(path, args, input, output, error) {
+    let thread = allocateThread(path, input, output, error);
+    if (thread != null) {
+        thread.start(args);
+        /* wait until finish process*/
+        while (!thread.didFinished) {
+            sleep(0.1);
+        }
+        return thread.exitCode;
+    }
+    else {
+        return -1;
+    }
 }

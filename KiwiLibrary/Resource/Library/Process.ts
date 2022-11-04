@@ -95,8 +95,7 @@ function savePanel(title: string): URLIF | null {
 	return result ;
 }
 
-function run(path: URLIF | string | null,
-				input: FileIF, output: FileIF, error: FileIF) {
+function allocateThread(path: URLIF | string | null, input: FileIF, output: FileIF, error: FileIF): ThreadIF | null {
 	if(path == null) {
 		let newpath = openPanel("Select script file to execute",
 					FileType.file, ["js", "jsh", "jspkg"]) ;
@@ -106,15 +105,22 @@ function run(path: URLIF | string | null,
 			return null ;
 		}
 	}
-	return _run(path, input, output, error) ;
+	return _allocateThread(path, input, output, error) ;
 }
 
-/* Global variables */
-declare var _stdin:  FileIF ;
-declare var _stdout: FileIF ;
-declare var _stderr: FileIF ;
+function run(path: URLIF | string | null, args: string[], input: FileIF, output: FileIF, error: FileIF): number {
 
-function launch(path: URLIF | string | null)
-{
-	return run(path, _stdin, _stdout, _stderr) ;
+	let thread = allocateThread(path, input, output, error) ;
+	if(thread != null){
+		thread.start(args) ;
+
+		/* wait until finish process*/
+		while(!thread.didFinished) {
+			sleep(0.1) ;
+		}
+		return thread.exitCode ;
+	} else {
+		return -1 ;
+	}
 }
+

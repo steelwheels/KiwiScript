@@ -367,6 +367,14 @@ interface PreferenceIF {
 	user:			UserPreferenceIF ;
 }
 
+interface ThreadIF {
+	isRunning:		boolean ;
+	didFinished:		boolean ;
+	exitCode:		number ;
+	start(args: string[]):	void ;
+	terminate():		void ;
+}
+
 /* Singleton object*/
 declare var console:		ConsoleIF ;
 declare var Color:      	ColorManagerIF ;
@@ -435,5 +443,5 @@ declare function TextTable(): TextTableIF ;
 
 declare function _openPanel(title: string, type: FileType, exts: string[], cbfunc: any): void ;
 declare function _savePanel(title: string, cbfunc: any): void ;
-declare function _run(path: URLIF | string, input: FileIF, output: FileIF, error: FileIF): object | null ;
+declare function _allocateThread(path: URLIF | string, input: FileIF, output: FileIF, error: FileIF): ThreadIF | null ;
 

@@ -28,9 +28,9 @@ This is a list of built-in enum types. User can define [custom enum by eJSON for
 * Contacts: Functions for contact database.   [setupContacts](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/SetupContacts.md)  and [setupContactTable](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/SetupContactTable.md)
 * [exit](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Exit.md): Exit the caller process with exit code
 * [Graphics](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Graphics.md): Data structures and functions for graphics.
-* [launch](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Run.md): Launch the macOS application with/without the documents.
+* [launch](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/run.md): Launch the macOS application with/without the documents.
 * [openPanel, savePabel](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Panel.md): *For macOS only.* Function to display panel to open/close the file.
-* [run](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Run.md): Load user script and execute on the thread
+* [run](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/run.md): Load user script and execute on the thread
 * [sleep](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Sleep.md): Suspend execution for an interval of time (seconds)
 * [String](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/String.md): String operation
 * [Suspend](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Suspend.md): Suspend to wait the signal from the other process.

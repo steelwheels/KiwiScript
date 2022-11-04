@@ -945,13 +945,13 @@ open class KLLibraryCompiler: KECompiler
 		}
 		ctxt.set(name: "Thread", function: thfunc)
 
-		/* Run */
+		/* _allocateThread */
 		let runfunc: @convention(block) (_ pathval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue = {
 			(_ pathval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue in
 			let launcher = KLThreadLauncher(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, config: conf)
 			return launcher.run(path: pathval, input: inval, output: outval, error: errval)
 		}
-		ctxt.set(name: "_run", function: runfunc)
+		ctxt.set(name: "_allocateThread", function: runfunc)
 		return true
 	}
 

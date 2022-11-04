@@ -30,7 +30,7 @@ tsc_opt	= -t ES2017 --lib "es2017" --declaration --declarationDir types \
 
 all: $(dsts) $(dstdecl)
 
-$(dstdecl): types/Enum.d.ts
+$(dstdecl): types/Enum.d.ts types/Builtin.d.ts
 	(cd types && cat Enum.d.ts Builtin.d.ts $(decls)) > $@
 
 types/Enum.d.ts: dummy

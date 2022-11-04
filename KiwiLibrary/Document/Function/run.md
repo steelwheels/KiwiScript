@@ -1,4 +1,4 @@
-# Run function
+# Run and launch function
 
 ## `run` function
 Load or select JavaScript file and execute on the new thread.
@@ -8,6 +8,7 @@ The return value is an instance of [Thread class](https://github.com/steelwheels
 ### Prototype
 ````
 run(path: String, input: File, output: File, error: File) -> Thread
+launch(path: String) -> Thread
 ````
 
 ### Description
