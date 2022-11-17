@@ -236,7 +236,7 @@ extension JSValue
 		let result: CNValue
 		if let type = self.type {
 			switch type {
-			case .anyType, .voidType, .functionType(_, _):
+			case .anyType, .voidType, .functionType(_, _), .interfaceType(_):
 				CNLog(logLevel: .error, message: "Can not assign native value", atFunction: #function, inFile: #file)
 				result = CNValue.null
 			case .boolType:
@@ -286,13 +286,6 @@ extension JSValue
 					result = scalar
 				} else {
 					result = .dictionaryValue(dstdict)
-				}
-			case .recordType(_):
-				if let obj = self.toObject() as? KLRecord {
-					result = .recordValue(obj.core())
-				} else {
-					CNLog(logLevel: .error, message: "Failed to convert to Record", atFunction: #function, inFile: #file)
-					result = CNValue.null
 				}
 			case .objectType:
 				if let obj = self.toObject() {

@@ -41,21 +41,14 @@ public extension CNValueType
 			result = convertToTypeDeclarationWithRecv(valueType: elmtype, isInside: true) + "[]"
 		case .setType(let elmtype):
 			result = convertToTypeDeclarationWithRecv(valueType: elmtype, isInside: true) + "[]"
-		case .recordType(let dict):
-			var decl = "{ "
-			for name in dict.keys.sorted() {
-				if let elmtype = dict[name] {
-					decl += name + ":" + convertToTypeDeclarationWithRecv(valueType: elmtype, isInside: true) + ";\n"
-				}
-			}
-			decl  += " }"
-			result = decl
 		case .objectType(let clsname):
 			if let name = clsname {
 				result = name
 			} else {
 				result = "any /* anyobject */"
 			}
+		case .interfaceType(let ifname):
+			result = ifname
 		case .functionType(let rettype, let paramtypes):
 			var str: String = "("
 			for i in 0..<paramtypes.count {
