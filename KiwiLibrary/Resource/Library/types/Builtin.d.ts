@@ -62,7 +62,7 @@ interface ArrayIF {
 
 	value(index: number): any | null ;
 	contains(value: any): boolean ;
-	
+
 	set(value: any, index: number): void ;
 	append(value: any): void ;
 }
@@ -305,19 +305,27 @@ interface MappingTableIF extends TableIF {
 interface SymbolsIF {
 	characterA:		URLIF ;
 	chevronBackward:	URLIF ;
+	chevronDown:		URLIF ;
 	chevronForward:		URLIF ;
+	chevronUp:		URLIF ;
 	handRaised:		URLIF ;
 	line1P:			URLIF ;
 	line2P:			URLIF ;
 	line4P:			URLIF ;
 	line8P:			URLIF ;
 	line16P:		URLIF ;
+	moonStars:		URLIF ;
 	paintbrush:		URLIF ;
 	questionmark:		URLIF ;
-
-	oval(filled: boolean):   URLIF ;
-	pencil(filled: boolean): URLIF ;
-	rectangle(filled: boolean, rounded: boolean): URLIF ;
+	pencil:			URLIF ;
+	pencilCircle:		URLIF ;
+	rectangleFilled:	URLIF ;
+	rectangleFilledRounded:	URLIF ;
+	rectangleLine:		URLIF ;
+	rectangleLineRounded:	URLIF ;
+	sunMax:			URLIF ;
+	sunMin:			URLIF ;
+	sunMoon:		URLIF ;
 }
 
 interface ContactDatabaseIF {
