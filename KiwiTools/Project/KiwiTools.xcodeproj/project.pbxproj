@@ -18,10 +18,8 @@
 		056F214829291B570056186C /* CoconutShell.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 056F212B29291B230056186C /* CoconutShell.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		056F214929291B570056186C /* KiwiEngine.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056F213529291B410056186C /* KiwiEngine.xcframework */; };
 		056F214A29291B570056186C /* KiwiEngine.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 056F213529291B410056186C /* KiwiEngine.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		056F214B29291B570056186C /* KiwiLibrary.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056F213729291B410056186C /* KiwiLibrary.xcframework */; };
-		056F214C29291B570056186C /* KiwiLibrary.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 056F213729291B410056186C /* KiwiLibrary.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		056F214D29291B570056186C /* KiwiShell.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056F213629291B410056186C /* KiwiShell.xcframework */; };
-		056F214E29291B570056186C /* KiwiShell.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 056F213629291B410056186C /* KiwiShell.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05959257292A21CC00F431D3 /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05959256292A21CC00F431D3 /* config.swift */; };
+		05959260292A2FED00F431D3 /* generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0595925F292A2FED00F431D3 /* generator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +36,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 056F211A29291ACA0056186C;
 			remoteInfo = KiwiToolsBundle;
+		};
+		0595927B292A51C600F431D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 050005972929196B00813E82 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0500059E2929196B00813E82;
+			remoteInfo = edecl;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -60,10 +65,8 @@
 				056F214A29291B570056186C /* KiwiEngine.xcframework in Embed Frameworks */,
 				056F214629291B570056186C /* CoconutDatabase.xcframework in Embed Frameworks */,
 				056F214229291B570056186C /* Cobalt.xcframework in Embed Frameworks */,
-				056F214C29291B570056186C /* KiwiLibrary.xcframework in Embed Frameworks */,
 				056F214829291B570056186C /* CoconutShell.xcframework in Embed Frameworks */,
 				056F214429291B570056186C /* CoconutData.xcframework in Embed Frameworks */,
-				056F214E29291B570056186C /* KiwiShell.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -73,15 +76,15 @@
 /* Begin PBXFileReference section */
 		0500059F2929196B00813E82 /* edecl */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = edecl; sourceTree = BUILT_PRODUCTS_DIR; };
 		050005A22929196B00813E82 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		056F211B29291ACA0056186C /* KiwiToolsBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KiwiToolsBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		056F211B29291ACA0056186C /* KiwiTools.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KiwiTools.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		056F211D29291ACA0056186C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		056F212629291AF90056186C /* Cobalt.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Cobalt.xcframework; path = ../../../../Library/Frameworks/Cobalt.xcframework; sourceTree = "<group>"; };
 		056F212B29291B230056186C /* CoconutShell.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutShell.xcframework; path = ../../../../Library/Frameworks/CoconutShell.xcframework; sourceTree = "<group>"; };
 		056F212C29291B230056186C /* CoconutData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutData.xcframework; path = ../../../../Library/Frameworks/CoconutData.xcframework; sourceTree = "<group>"; };
 		056F212D29291B230056186C /* CoconutDatabase.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutDatabase.xcframework; path = ../../../../Library/Frameworks/CoconutDatabase.xcframework; sourceTree = "<group>"; };
 		056F213529291B410056186C /* KiwiEngine.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiEngine.xcframework; path = ../../../../Library/Frameworks/KiwiEngine.xcframework; sourceTree = "<group>"; };
-		056F213629291B410056186C /* KiwiShell.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiShell.xcframework; path = ../../../../Library/Frameworks/KiwiShell.xcframework; sourceTree = "<group>"; };
-		056F213729291B410056186C /* KiwiLibrary.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiLibrary.xcframework; path = ../../../../Library/Frameworks/KiwiLibrary.xcframework; sourceTree = "<group>"; };
+		05959256292A21CC00F431D3 /* config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
+		0595925F292A2FED00F431D3 /* generator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = generator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,10 +102,8 @@
 				056F214929291B570056186C /* KiwiEngine.xcframework in Frameworks */,
 				056F214529291B570056186C /* CoconutDatabase.xcframework in Frameworks */,
 				056F214129291B570056186C /* Cobalt.xcframework in Frameworks */,
-				056F214B29291B570056186C /* KiwiLibrary.xcframework in Frameworks */,
 				056F214729291B570056186C /* CoconutShell.xcframework in Frameworks */,
 				056F214329291B570056186C /* CoconutData.xcframework in Frameworks */,
-				056F214D29291B570056186C /* KiwiShell.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,7 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				0500059F2929196B00813E82 /* edecl */,
-				056F211B29291ACA0056186C /* KiwiToolsBundle.bundle */,
+				056F211B29291ACA0056186C /* KiwiTools.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -149,6 +150,8 @@
 			isa = PBXGroup;
 			children = (
 				050005A22929196B00813E82 /* main.swift */,
+				05959256292A21CC00F431D3 /* config.swift */,
+				0595925F292A2FED00F431D3 /* generator.swift */,
 			);
 			path = edecl;
 			sourceTree = "<group>";
@@ -165,8 +168,6 @@
 			isa = PBXGroup;
 			children = (
 				056F213529291B410056186C /* KiwiEngine.xcframework */,
-				056F213729291B410056186C /* KiwiLibrary.xcframework */,
-				056F213629291B410056186C /* KiwiShell.xcframework */,
 				056F212C29291B230056186C /* CoconutData.xcframework */,
 				056F212D29291B230056186C /* CoconutDatabase.xcframework */,
 				056F212B29291B230056186C /* CoconutShell.xcframework */,
@@ -192,6 +193,21 @@
 			name = install_Bundle;
 			passBuildSettingsInEnvironment = 1;
 			productName = install_Bundle;
+		};
+		05959263292A314E00F431D3 /* install_Tools */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f ../../Script/install_tool.mk install_tools";
+			buildConfigurationList = 05959264292A314E00F431D3 /* Build configuration list for PBXLegacyTarget "install_Tools" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+				0595927C292A51C600F431D3 /* PBXTargetDependency */,
+			);
+			name = install_Tools;
+			passBuildSettingsInEnvironment = 1;
+			productName = install_Tools;
 		};
 /* End PBXLegacyTarget section */
 
@@ -229,7 +245,7 @@
 			);
 			name = KiwiToolsBundle;
 			productName = KiwiToolsBundle;
-			productReference = 056F211B29291ACA0056186C /* KiwiToolsBundle.bundle */;
+			productReference = 056F211B29291ACA0056186C /* KiwiTools.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -250,6 +266,9 @@
 					056F215129291B750056186C = {
 						CreatedOnToolsVersion = 12.4;
 					};
+					05959263292A314E00F431D3 = {
+						CreatedOnToolsVersion = 12.4;
+					};
 				};
 			};
 			buildConfigurationList = 0500059A2929196B00813E82 /* Build configuration list for PBXProject "KiwiTools" */;
@@ -268,6 +287,7 @@
 				056F211A29291ACA0056186C /* KiwiToolsBundle */,
 				056F215129291B750056186C /* install_Bundle */,
 				0500059E2929196B00813E82 /* edecl */,
+				05959263292A314E00F431D3 /* install_Tools */,
 			);
 		};
 /* End PBXProject section */
@@ -288,6 +308,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				050005A32929196B00813E82 /* main.swift in Sources */,
+				05959260292A2FED00F431D3 /* generator.swift in Sources */,
+				05959257292A21CC00F431D3 /* config.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +332,11 @@
 			isa = PBXTargetDependency;
 			target = 056F211A29291ACA0056186C /* KiwiToolsBundle */;
 			targetProxy = 056F215929291B870056186C /* PBXContainerItemProxy */;
+		};
+		0595927C292A51C600F431D3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0500059E2929196B00813E82 /* edecl */;
+			targetProxy = 0595927B292A51C600F431D3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -435,7 +462,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(HOME)/tools/bundles/KiwiTools.bundle/Contents/Frameworks";
 				GCC_OPTIMIZATION_LEVEL = 2;
+				INSTALL_PATH = "$(HOME)/tools/bin";
+				LD_RUNPATH_SEARCH_PATHS = "$(HOME)/tools/bundles/KiwiTools.bundle/Contents/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -448,7 +478,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(HOME)/tools/bundles/KiwiTools.bundle/Contents/Frameworks";
 				GCC_OPTIMIZATION_LEVEL = 2;
+				INSTALL_PATH = "$(HOME)/tools/bin";
+				LD_RUNPATH_SEARCH_PATHS = "$(HOME)/tools/bundles/KiwiTools.bundle/Contents/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -464,7 +497,7 @@
 				INFOPLIST_FILE = KiwiToolsBundle/Info.plist;
 				INSTALL_PATH = "$(HOME)/tools/bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.KiwiToolsBundle;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = KiwiTools;
 				SKIP_INSTALL = NO;
 				WRAPPER_EXTENSION = bundle;
 			};
@@ -479,7 +512,7 @@
 				INFOPLIST_FILE = KiwiToolsBundle/Info.plist;
 				INSTALL_PATH = "$(HOME)/tools/bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.KiwiToolsBundle;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = KiwiTools;
 				SKIP_INSTALL = NO;
 				WRAPPER_EXTENSION = bundle;
 			};
@@ -501,6 +534,33 @@
 			name = Debug;
 		};
 		056F215429291B750056186C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		05959265292A314E00F431D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		05959266292A314E00F431D3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -547,6 +607,15 @@
 			buildConfigurations = (
 				056F215329291B750056186C /* Debug */,
 				056F215429291B750056186C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05959264292A314E00F431D3 /* Build configuration list for PBXLegacyTarget "install_Tools" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05959265292A314E00F431D3 /* Debug */,
+				05959266292A314E00F431D3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

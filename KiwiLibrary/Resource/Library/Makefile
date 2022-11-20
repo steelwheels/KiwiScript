@@ -28,18 +28,18 @@ tsc_opt	= -t ES2017 --lib "es2017" --declaration --declarationDir types \
 %.js: %.ts
 	$(tsc) $(tsc_opt) $<
 
-all: $(dsts) $(dstdecl)
+all: types/Enum.d.ts $(dsts) $(dstdecl)
 
 $(dstdecl): types/Enum.d.ts types/Builtin.d.ts
 	(cd types && cat Enum.d.ts Builtin.d.ts $(decls)) > $@
 
 types/Enum.d.ts: dummy
-	if [ -x ~/tools/bin/jsdecl ] ; then \
-		~/tools/bin/jsdecl -b > $@ ; \
-	fi
+	(cd types && rm -f ./enum-*.d.ts && ~/tools/bin/edecl)
+	cat types/enum-*.d.ts > $@
 
 clean:
 	rm -f $(dsts) $(dstdecl)
+	rm -f types/enum-*.d.ts
 
 dummy:
 
