@@ -505,6 +505,27 @@ open class KLLibraryCompiler: KECompiler
 		}
 		ctxt.set(name: "_savePanel", function: savePanelFunc)
 
+		/* openURL */
+		let openURLFunc: @convention(block) (_ urlval: JSValue,  _ cbfunc: JSValue) -> JSValue = {
+			(_ urlval: JSValue,  _ cbfunc: JSValue) -> JSValue in
+			if let url = KLLibraryCompiler.valueToURL(value: urlval) {
+				CNExecuteInMainThread(doSync: false, execute: {
+					() -> Void in
+					CNWorkspace.open(URL: url, callback: {
+						(_ result: Bool) -> Void in
+						if let param = JSValue(bool: result, in: ctxt) {
+							if !cbfunc.isNull {
+								cbfunc.call(withArguments: [param])
+							}
+						}
+
+					})
+				})
+			}
+			return JSValue(nullIn: ctxt)
+		}
+		ctxt.set(name: "_openURL", function: openURLFunc)
+
 		/* exit */
 		let exitFunc: @convention(block) (_ value: JSValue) -> JSValue
 		switch conf.applicationType {
@@ -991,6 +1012,19 @@ open class KLLibraryCompiler: KECompiler
 		} else {
 			return nil
 		}
+	}
+
+	private class func valueToURL(value val: JSValue) -> URL? {
+		if val.isString {
+			if let str = val.toString() {
+				return URL(string: str)
+			}
+		} else if val.isObject {
+			if let obj = val.toObject() as? KLURL {
+				return obj.url
+			}
+		}
+		return nil
 	}
 
 	private class func valueToURLs(URLvalues urlval: JSValue, console cons: CNConsole) -> Array<URL>? {

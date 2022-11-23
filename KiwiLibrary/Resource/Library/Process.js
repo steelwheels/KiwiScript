@@ -79,6 +79,17 @@ function savePanel(title) {
     sem.wait(); // Wait finish operation
     return result;
 }
+function openURL(url) {
+    let result = false;
+    let sem = new Semaphore(0);
+    let cbfunc = function (res) {
+        result = res;
+        sem.signal(); // Tell finish operation
+    };
+    _openURL(url, cbfunc);
+    sem.wait(); // Wait finish operation
+    return result;
+}
 function allocateThread(path, input, output, error) {
     if (path == null) {
         let newpath = openPanel("Select script file to execute", FileType.file, ["js", "jsh", "jspkg"]);

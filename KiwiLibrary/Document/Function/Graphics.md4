@@ -8,3 +8,6 @@ They are implemented as class methods of `Graphics` class.
 m4_include(Graphics.js)
 ````
 
+## References
+m4_include(footer.md)
+

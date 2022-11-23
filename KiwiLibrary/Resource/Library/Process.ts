@@ -95,6 +95,18 @@ function savePanel(title: string): URLIF | null {
 	return result ;
 }
 
+function openURL(url: URLIF | string): boolean {
+	let result = false ;
+	let sem    = new Semaphore(0) ;
+	let cbfunc = function(res: boolean) {
+		result = res ;
+		sem.signal() ;  // Tell finish operation
+	} ;
+	_openURL(url, cbfunc) ;
+	sem.wait() ; // Wait finish operation
+	return result ;
+}
+
 function allocateThread(path: URLIF | string | null, input: FileIF, output: FileIF, error: FileIF): ThreadIF | null {
 	if(path == null) {
 		let newpath = openPanel("Select script file to execute",

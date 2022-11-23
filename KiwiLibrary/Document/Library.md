@@ -30,6 +30,7 @@ This is a list of built-in enum types. User can define [custom enum by eJSON for
 * [Graphics](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Graphics.md): Data structures and functions for graphics.
 * [launch](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/run.md): Launch the macOS application with/without the documents.
 * [openPanel, savePabel](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Panel.md): *For macOS only.* Function to display panel to open/close the file.
+* [openURL](./Function/Network.md): Functions for networking
 * [run](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/run.md): Load user script and execute on the thread
 * [sleep](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/Sleep.md): Suspend execution for an interval of time (seconds)
 * [String](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Function/String.md): String operation
