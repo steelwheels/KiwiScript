@@ -36,7 +36,15 @@ public extension CNEnum
 	}
 
 	func toJSValue(context ctxt: KEContext) -> JSValue {
-		return JSValue(int32: Int32(self.value), in: ctxt)
+		switch self.value {
+		case .intValue(let ival):
+			return JSValue(int32: Int32(ival), in: ctxt)
+		case .stringValue(let sval):
+			return JSValue(object: sval, in: ctxt)
+		@unknown default:
+			CNLog(logLevel: .error, message: "Undefined type", atFunction: #function, inFile: #file)
+			return JSValue(int32: 0, in: ctxt)
+		}
 	}
 }
 

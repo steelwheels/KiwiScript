@@ -103,7 +103,7 @@ public extension CNEnumType
 		list.separator = ","
 		for name in self.names {
 			if let value = self.value(forMember: name) {
-				let line = CNTextLine(string: "\(name) = \(value)")
+				let line = CNTextLine(string: "\(name) = \(value.toScript())")
 				list.add(text: line)
 			} else {
 				CNLog(logLevel: .error, message: "Can not happen", atFunction: #function, inFile: #file)
@@ -142,7 +142,7 @@ public extension CNEnumType
 		list.separator = ","
 		for name in self.names {
 			if let value = self.value(forMember: name) {
-				let line = CNTextLine(string: "\(name): \(value)")
+				let line = CNTextLine(string: "\(name): \(value.toScript())")
 				list.add(text: line)
 			} else {
 				CNLog(logLevel: .error, message: "Can not happen", atFunction: #function, inFile: #file)
@@ -162,7 +162,7 @@ public extension CNEnumType
 			switchfunc.footer = "} ; return result ;"
 			for name in self.names {
 				if let value = self.value(forMember: name) {
-					let stmt = "   case \(value): result=\"\(name)\" ; break ;"
+					let stmt = "   case \(value.toScript()): result=\"\(name)\" ; break ;"
 					switchfunc.add(text: CNTextLine(string: stmt))
 				} else {
 					CNLog(logLevel: .error, message: "Can not happen", atFunction: #function, inFile: #file)

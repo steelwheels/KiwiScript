@@ -83,7 +83,7 @@ open class KECompiler
 					enumstmt += ",\n"
 				}
 				is1st = false
-				enumstmt += "\t\(name) : \(value)"
+				enumstmt += "\t\(name) : \(value.toScript())"
 			} else {
 				CNLog(logLevel: .error, message: "Can not happen", atFunction: #function, inFile: #file)
 			}
