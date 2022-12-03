@@ -105,8 +105,6 @@
 		058E323226DFC66500CDD628 /* Curses.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05783D0726DBAC9400C573BB /* Curses.ts */; };
 		058E323426DFC66500CDD628 /* Contacts.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05D4FD1E268F5B2C00780B83 /* Contacts.js */; };
 		058E323526DFC66500CDD628 /* Curses.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0516CC4526213502000B9796 /* Curses.js */; };
-		059083B42723978700F10EEE /* KLSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059083B32723978700F10EEE /* KLSymbol.swift */; };
-		059083B52723978700F10EEE /* KLSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059083B32723978700F10EEE /* KLSymbol.swift */; };
 		05950CA125C4304500D659A1 /* KLGraphicsContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05950CA025C4304500D659A1 /* KLGraphicsContext.swift */; };
 		05950CA225C4304500D659A1 /* KLGraphicsContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05950CA025C4304500D659A1 /* KLGraphicsContext.swift */; };
 		0598000525CB5F5F00499B6E /* KLBitmapContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0598000425CB5F5F00499B6E /* KLBitmapContext.swift */; };
@@ -441,7 +439,6 @@
 		0577476125FE388A00ADC6E7 /* File.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = File.js; sourceTree = "<group>"; };
 		05783D0726DBAC9400C573BB /* Curses.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Curses.ts; sourceTree = "<group>"; };
 		058E321D26DFC5E300CDD628 /* Curses.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Curses.d.ts; sourceTree = "<group>"; };
-		059083B32723978700F10EEE /* KLSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLSymbol.swift; sourceTree = "<group>"; };
 		05950CA025C4304500D659A1 /* KLGraphicsContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLGraphicsContext.swift; sourceTree = "<group>"; };
 		0598000425CB5F5F00499B6E /* KLBitmapContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLBitmapContext.swift; sourceTree = "<group>"; };
 		059A152D2781E71200F4B24C /* KLStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLStorage.swift; sourceTree = "<group>"; };
@@ -757,7 +754,6 @@
 				05A95B642516D03300775737 /* KLNativeValueFile.swift */,
 				05A95B622516D03300775737 /* KLPipe.swift */,
 				05C3B29F25A2087F005256E1 /* KLReadline.swift */,
-				059083B32723978700F10EEE /* KLSymbol.swift */,
 				05A95B652516D03300775737 /* KLURL.swift */,
 			);
 			path = File;
@@ -1115,7 +1111,6 @@
 				05C14F5B28577CE7009C05D4 /* KLValueSet.swift in Sources */,
 				05A95B982516D08500775737 /* KLScriptValue.swift in Sources */,
 				05A95B662516D03300775737 /* KLBuiltinScripts.swift in Sources */,
-				059083B42723978700F10EEE /* KLSymbol.swift in Sources */,
 				05BD118126C0179B00961535 /* KLRecord.swift in Sources */,
 				05AEC61A286FCFE900A1ED09 /* KLComparisonResult.swift in Sources */,
 				05A95B872516D06900775737 /* KLEnvironment.swift in Sources */,
@@ -1171,7 +1166,6 @@
 				05C14F5C28577CE7009C05D4 /* KLValueSet.swift in Sources */,
 				05A95B992516D08500775737 /* KLScriptValue.swift in Sources */,
 				05A95B672516D03300775737 /* KLBuiltinScripts.swift in Sources */,
-				059083B52723978700F10EEE /* KLSymbol.swift in Sources */,
 				05BD118226C0179B00961535 /* KLRecord.swift in Sources */,
 				05AEC61B286FCFE900A1ED09 /* KLComparisonResult.swift in Sources */,
 				05A95B882516D06900775737 /* KLEnvironment.swift in Sources */,

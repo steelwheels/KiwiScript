@@ -701,10 +701,6 @@ open class KLLibraryCompiler: KECompiler
 		/* Built-in script manager */
 		let scrmgr = KLBuiltinScriptManager(context: ctxt)
 		ctxt.set(name: "ScriptManager", object: scrmgr)
-
-		/* Symbols */
-		let symbol = KLSymbol(context: ctxt)
-		ctxt.set(name: "Symbols", object: symbol)
 	}
 
 	private func defineGlobalObjects(context ctxt: KEContext, console cons: CNFileConsole, config conf: KEConfig) {

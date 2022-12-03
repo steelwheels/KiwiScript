@@ -49,7 +49,7 @@ import Foundation
 
 	public func header(_ sec: JSValue) -> JSValue {
 		if let secno = sectionNumber(sec) {
-			let hdr = mCollection.header(ofSection: secno)
+			let hdr: String = mCollection.header(ofSection: secno)
 			return JSValue(object: hdr, in: mContext)
 		} else {
 			return JSValue(nullIn: mContext)
@@ -58,7 +58,7 @@ import Foundation
 
 	public func footer(_ sec: JSValue) -> JSValue {
 		if let secno = sectionNumber(sec) {
-			let ftr = mCollection.footer(ofSection: secno)
+			let ftr: String = mCollection.footer(ofSection: secno)
 			return JSValue(object: ftr, in: mContext)
 		} else {
 			return JSValue(nullIn: mContext)
@@ -67,17 +67,8 @@ import Foundation
 
 	public func value(_ sec: JSValue, _ item: JSValue) -> JSValue {
 		if let (secno, itemno) = itemNumber(sec, item) {
-			if let val = mCollection.value(section: secno, item: itemno) {
-				let result: JSValue
-				switch val {
-				case .image(let url):
-					let urlobj = KLURL(URL: url, context: mContext)
-					result = JSValue(object: urlobj, in: mContext)
-				@unknown default:
-					CNLog(logLevel: .error, message: "Can not happen", atFunction: #function, inFile: #file)
-					result = JSValue(nullIn: mContext)
-				}
-				return result
+			if let sym = mCollection.value(section: secno, item: itemno) {
+				return JSValue(object: sym.name, in: mContext)
 			} else {
 				CNLog(logLevel: .error, message: "Invalid section/item number", atFunction: #function, inFile: #file)
 			}
@@ -98,12 +89,12 @@ import Foundation
 		return JSValue(object: strs, in: mContext)
 	}
 
-	private func convertItems(_ items: JSValue) -> Array<CNCollection.Item>? {
+	private func convertItems(_ items: JSValue) -> Array<CNSymbol>? {
 		guard items.isArray else {
 			return nil
 		}
 		if let arr = items.toArray() {
-			var result: Array<CNCollection.Item> = []
+			var result: Array<CNSymbol> = []
 			arr.forEach({
 				(_ elm: Any) in
 				if let item = convertItem(elm) {
@@ -115,28 +106,29 @@ import Foundation
 		return nil
 	}
 
-	private func convertItem(_ item: Any) -> CNCollection.Item? {
+	private func convertItem(_ item: Any) -> CNSymbol? {
 		if let val = item as? JSValue {
-			if val.isObject {
-				if let obj = val.toObject() {
-					return convertItem(obj)
+			if val.isString {
+				if let str = val.toString() {
+					return convertItem(name: str)
 				}
 			} else if val.isNull {
 				return nil
 			}
-		} else if let urlobj = item as? KLURL {
-			if let url = urlobj.url {
-				return .image(url)
-			}
-		} else if let url = item as? URL {
-			return .image(url)
-		} else if let dict = item as? Dictionary<String, Any> {
-			if dict.count == 0 {
-				return nil
-			}
+		} else if let str = item as? String {
+			return convertItem(name: str)
 		}
 		CNLog(logLevel: .error, message: "Unsupoorted object: \(item)", atFunction: #function, inFile: #file)
 		return nil
+	}
+
+	private func convertItem(name nm: String) -> CNSymbol? {
+		if let sym = CNSymbol.decode(fromName: nm) {
+			return sym
+		} else {
+			CNLog(logLevel: .error, message: "Unknown symbol name: \(nm)")
+			return nil
+		}
 	}
 
 	private func sectionNumber(_ sec: JSValue) -> Int? {

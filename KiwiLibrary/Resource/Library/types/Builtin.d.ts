@@ -302,32 +302,6 @@ interface MappingTableIF extends TableIF {
 	setCompareFunction(compare: (rec0: RecordIF, rec1: RecordIF) => ComparisonResult): void
 }
 
-interface SymbolsIF {
-	characterA:		URLIF ;
-	chevronBackward:	URLIF ;
-	chevronDown:		URLIF ;
-	chevronForward:		URLIF ;
-	chevronUp:		URLIF ;
-	handRaised:		URLIF ;
-	line1P:			URLIF ;
-	line2P:			URLIF ;
-	line4P:			URLIF ;
-	line8P:			URLIF ;
-	line16P:		URLIF ;
-	moonStars:		URLIF ;
-	paintbrush:		URLIF ;
-	questionmark:		URLIF ;
-	pencil:			URLIF ;
-	pencilCircle:		URLIF ;
-	rectangleFilled:	URLIF ;
-	rectangleFilledRounded:	URLIF ;
-	rectangleLine:		URLIF ;
-	rectangleLineRounded:	URLIF ;
-	sunMax:			URLIF ;
-	sunMin:			URLIF ;
-	sunMoon:		URLIF ;
-}
-
 interface ContactDatabaseIF {
 	recordCount:		number ;
 
@@ -340,15 +314,15 @@ interface ContactDatabaseIF {
 	forEach(callback: (record: RecordIF) => void): void ;
 }
 
-interface CollectionCoreIF {
+interface CollectionDataIF {
 	sectionCount:			number ;
 	itemCount(section: number):	number ;
 
-	header(section: number): string | null ;
-	footer(section: number): string | null ;
+	header(section: number): string ;
+	footer(section: number): string ;
 
-	value(section: number, item: number): URLIF | null ;
-	add(header: string, footer: string, item: URLIF[]): void ;
+	value(section: number, item: number): string ; // -> symbol-name
+	add(header: string, footer: string, symbols: string[]): void ;
 
 	toStrings(): string[] ;
 }
@@ -389,7 +363,6 @@ declare var Color:      	ColorManagerIF ;
 declare var Curses:     	CursesIF ;
 declare var EscapeCode: 	EscapeCodeIF ;
 declare var Contacts:	        ContactDatabaseIF ;
-declare var Symbols:		SymbolsIF ;
 declare var Preference:		PreferenceIF ;
 declare var FileManager:	FileManagerIF ;
 
@@ -397,7 +370,7 @@ declare function Pipe(): PipeIF ;
 declare function Point(x: number, y: number): PointIF ;
 declare function Rect(x: number, y: number, width: number, height: number): RectIF ;
 declare function Size(width: number, height: number): SizeIF ;
-declare function CollectionCore(): CollectionCoreIF ;
+declare function CollectionData(): CollectionDataIF ;
 declare function URL(path: string): URLIF | null ;
 
 declare function Storage(path: string): StorageIF | null ;

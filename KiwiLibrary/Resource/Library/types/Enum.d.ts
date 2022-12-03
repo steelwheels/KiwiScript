@@ -74,12 +74,6 @@ declare enum FontSize {
   regular = 13,
   small = 11
 }
-/* Enum declaration: IconSize */
-declare enum IconSize {
-  large = 2,
-  regular = 1,
-  small = 0
-}
 /* Enum declaration: LogLevel */
 declare enum LogLevel {
   debug = 3,
@@ -94,34 +88,41 @@ declare enum SortOrder {
   increasing = -1,
   none = 0
 }
+/* Enum declaration: SymbolSize */
+declare enum SymbolSize {
+  large = 2,
+  regular = 1,
+  small = 0
+}
 /* Enum declaration: SymbolType */
 declare enum SymbolType {
-  character_a = 0,
-  chevron_backward = 1,
-  chevron_down = 2,
-  chevron_forward = 3,
-  chevron_up = 4,
-  hand_point_up = 5,
-  hand_raised = 6,
-  line_16p = 11,
-  line_1p = 7,
-  line_2p = 8,
-  line_4p = 9,
-  line_8p = 10,
-  moon_stars = 12,
-  oval_filled = 14,
-  oval_line = 13,
-  paintbrush = 15,
-  pencil = 16,
-  pencil_circule = 17,
-  questionmark = 18,
-  rectangle_filled = 19,
-  rectangle_filled_rounded = 20,
-  rectangle_line = 21,
-  rectangle_line_rounded = 22,
-  sun_max = 23,
-  sun_min = 24,
-  sun_moon = 25
+  character = 0,
+  chevronBackward = 1,
+  chevronDown = 2,
+  chevronForward = 3,
+  chevronUp = 4,
+  gearshape = 5,
+  handPointUp = 6,
+  handRaised = 7,
+  line16p = 13,
+  line1p = 9,
+  line2p = 10,
+  line4p = 11,
+  line8p = 12,
+  lineDiagonal = 8,
+  moonStars = 14,
+  oval = 15,
+  ovalFill = 16,
+  paintbrush = 17,
+  pencil = 18,
+  pencilCircle = 19,
+  pencilCircleFill = 20,
+  play = 21,
+  questionmark = 22,
+  rectangle = 23,
+  rectangleFill = 24,
+  sunMax = 25,
+  sunMin = 26
 }
 /* Enum declaration: TextAlign */
 declare enum TextAlign {
