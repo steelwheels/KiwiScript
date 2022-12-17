@@ -56,9 +56,9 @@ public protocol KLTableCoreProtocol
 	}
 
 	public var defaultFields: JSValue { get {
-		var result: Dictionary<String, Any> = [:]
+		var result: Dictionary<String, AnyObject> = [:]
 		for (key, val) in mTable.defaultFields {
-			result[key] = val.toAny()
+			result[key] = val.toAnyObject()
 		}
 		return JSValue(object: result, in: mContext)
 	}}

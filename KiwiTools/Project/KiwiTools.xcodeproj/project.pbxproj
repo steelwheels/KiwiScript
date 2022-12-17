@@ -465,7 +465,9 @@
 				FRAMEWORK_SEARCH_PATHS = "$(HOME)/tools/bundles/KiwiTools.bundle/Contents/Frameworks";
 				GCC_OPTIMIZATION_LEVEL = 2;
 				INSTALL_PATH = "$(HOME)/tools/bin";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(HOME)/tools/bundles/KiwiTools.bundle/Contents/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -481,7 +483,9 @@
 				FRAMEWORK_SEARCH_PATHS = "$(HOME)/tools/bundles/KiwiTools.bundle/Contents/Frameworks";
 				GCC_OPTIMIZATION_LEVEL = 2;
 				INSTALL_PATH = "$(HOME)/tools/bin";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(HOME)/tools/bundles/KiwiTools.bundle/Contents/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -496,6 +500,8 @@
 				DEVELOPMENT_TEAM = TR2DNF3P93;
 				INFOPLIST_FILE = KiwiToolsBundle/Info.plist;
 				INSTALL_PATH = "$(HOME)/tools/bundles";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.KiwiToolsBundle;
 				PRODUCT_NAME = KiwiTools;
 				SKIP_INSTALL = NO;
@@ -511,6 +517,8 @@
 				DEVELOPMENT_TEAM = TR2DNF3P93;
 				INFOPLIST_FILE = KiwiToolsBundle/Info.plist;
 				INSTALL_PATH = "$(HOME)/tools/bundles";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.KiwiToolsBundle;
 				PRODUCT_NAME = KiwiTools;
 				SKIP_INSTALL = NO;

@@ -309,20 +309,20 @@ extension JSValue
 			return val.toNativeValue()
 		} else if let val = value as? KLURL {
 			if let url = val.url {
-				return CNValue.anyToValue(object: url)
+				return CNValue.anyObjectToValue(object: url as NSURL)
 			} else {
 				CNLog(logLevel: .error, message: "Null URL", atFunction: #function, inFile: #file)
 				return CNValue.null
 			}
 		} else if let val = value as? KLImage {
 			if let image = val.coreImage {
-				return CNValue.anyToValue(object: image)
+				return CNValue.anyObjectToValue(object: image)
 			} else {
 				CNLog(logLevel: .error, message: "Null Image", atFunction: #function, inFile: #file)
 				return CNValue.null
 			}
 		} else {
-			return CNValue.anyToValue(object: value)
+			return CNValue.anyObjectToValue(object: value as AnyObject)
 		}
 	}
 

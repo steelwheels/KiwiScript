@@ -25,15 +25,15 @@ extension CNValue
 		case .enumValue(let val):
 			result = val.toJSValue(context: ctxt)
 		case .dictionaryValue(let dict):
-			var newdict: Dictionary<String, Any> = [:]
+			var newdict: Dictionary<String, AnyObject> = [:]
 			for (key, elm) in dict {
-				newdict[key] = elm.toAny()
+				newdict[key] = elm.toAnyObject()
 			}
 			result = JSValue(object: newdict, in: ctxt)
 		case .arrayValue(let arr):
 			var newarr: Array<Any> = []
 			for elm in arr {
-				newarr.append(elm.toAny())
+				newarr.append(elm.toAnyObject())
 			}
 			result = JSValue(object: newarr, in: ctxt)
 		case .setValue(let sval):

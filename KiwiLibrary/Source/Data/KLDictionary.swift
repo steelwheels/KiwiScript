@@ -42,7 +42,7 @@ import Foundation
 	public var values: JSValue { get {
 		var result: Array<Any> = []
 		for val in mDictionary.values {
-			result.append(val.toAny())
+			result.append(val.toAnyObject())
 		}
 		return JSValue(object: result, in: mContext)
 	}}

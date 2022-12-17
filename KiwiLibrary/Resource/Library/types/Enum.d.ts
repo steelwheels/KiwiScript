@@ -126,9 +126,9 @@ declare enum Symbols {
 }
 /* Enum declaration: TextAlign */
 declare enum TextAlign {
-  center = 2,
+  center = 1,
   justfied = 3,
   left = 0,
   normal = 4,
-  right = 1
+  right = 2
 }
