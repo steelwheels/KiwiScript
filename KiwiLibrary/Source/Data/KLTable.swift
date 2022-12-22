@@ -57,8 +57,9 @@ public protocol KLTableCoreProtocol
 
 	public var defaultFields: JSValue { get {
 		var result: Dictionary<String, AnyObject> = [:]
+		let conv = CNValueToAnyObject()
 		for (key, val) in mTable.defaultFields {
-			result[key] = val.toAnyObject()
+			result[key] = conv.convert(value: val)
 		}
 		return JSValue(object: result, in: mContext)
 	}}
@@ -92,7 +93,8 @@ public protocol KLTableCoreProtocol
 	public func pointer(_ val: JSValue, _ field: JSValue) -> JSValue {
 		if field.isString {
 			if let fldstr  = field.toString() {
-				let propval = val.toNativeValue()
+				let conv    = KLScriptValueToNativeValue()
+				let propval = conv.convert(scriptValue: val)
 				if let ptr = mTable.pointer(value: propval, forField:fldstr) {
 					return ptr.toJSValue(context: mContext)
 				}
@@ -104,7 +106,8 @@ public protocol KLTableCoreProtocol
 	public func search(_ val: JSValue, _ field: JSValue) -> JSValue {
 		if field.isString {
 			if let fname = field.toString() {
-				let nval  = val.toNativeValue()
+				let conv  = KLScriptValueToNativeValue()
+				let nval  = conv.convert(scriptValue: val)
 				let recs  = mTable.search(value: nval, forField: fname)
 				if recs.count > 0 {
 					let objs  = recs.map({ (_ rec: CNRecord) -> KLRecord in
@@ -130,7 +133,8 @@ public protocol KLTableCoreProtocol
 	}
 
 	public func appendPointer(_ ptr: JSValue) {
-		let val = ptr.toNativeValue()
+		let conv = KLScriptValueToNativeValue()
+		let val  = conv.convert(scriptValue: ptr)
 		switch val {
 		case .dictionaryValue(let dict):
 			if let ptr = CNPointerValue.fromValue(value: dict) {

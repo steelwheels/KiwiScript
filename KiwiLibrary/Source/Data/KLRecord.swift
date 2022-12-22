@@ -114,7 +114,8 @@ public protocol KLRecordCoreProtocol
 		if name.isString {
 			if let nstr = name.toString() {
 				if let val = mRecord.value(ofField: nstr) {
-					let result = val.toJSValue(context: mContext)
+					let conv   = KLNativeValueToScriptValue(context: mContext)
+					let result = conv.convert(value: val)
 					return result
 				}
 			}
@@ -125,9 +126,10 @@ public protocol KLRecordCoreProtocol
 	public func setValue(_ val: JSValue, _ name: JSValue) -> JSValue {
 		if name.isString {
 			if let nstr = name.toString() {
+				let conv = KLScriptValueToNativeValue()
 				CNExecuteInMainThread(doSync: false, execute: {
 					() -> Void in
-					if !self.mRecord.setValue(value: val.toNativeValue(), forField: nstr) {
+					if !self.mRecord.setValue(value: conv.convert(scriptValue: val), forField: nstr) {
 						CNLog(logLevel: .error, message: "Failed to set value", atFunction: #function, inFile: #file)
 					}
 				})

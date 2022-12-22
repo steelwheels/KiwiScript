@@ -41,8 +41,9 @@ import Foundation
 
 	public var values: JSValue { get {
 		var result: Array<Any> = []
+		let conv = CNValueToAnyObject()
 		for val in mDictionary.values {
-			result.append(val.toAnyObject())
+			result.append(conv.convert(value: val))
 		}
 		return JSValue(object: result, in: mContext)
 	}}
@@ -53,14 +54,16 @@ import Foundation
 
 	public func set(_ value: JSValue, _ name: JSValue) {
 		if let key = toKey(value: name) {
-			let _ = mDictionary.set(value: value.toNativeValue(), forKey: key)
+			let conv = KLScriptValueToNativeValue()
+			let _ = mDictionary.set(value: conv.convert(scriptValue: value), forKey: key)
 		}
 	}
 
 	public func value(_ name: JSValue) -> JSValue {
 		if let key = toKey(value: name) {
 			if let val = mDictionary.value(forKey: key) {
-				return val.toJSValue(context: mContext)
+				let conv = KLNativeValueToScriptValue(context: mContext)
+				return conv.convert(value: val)
 			}
 		}
 		return JSValue(nullIn: mContext)

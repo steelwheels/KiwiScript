@@ -88,7 +88,8 @@ public enum KLSource {
 	}
 
 	public func start(_ args: JSValue) {
-		let nargs = args.toNativeValue()
+		let conv  = KLScriptValueToNativeValue()
+		let nargs = conv.convert(scriptValue: args)
 		super.start(argument: nargs)
 	}
 
@@ -183,7 +184,8 @@ public enum KLSource {
 		var result: Int32 = -1
 		if let funcval = mContext.get(name: "main") {
 			/* Allocate argument */
-			let jsarg = arg.toJSValue(context: mContext)
+			let conv  = KLNativeValueToScriptValue(context: mContext)
+			let jsarg = conv.convert(value: arg)
 			/* Call main function */
 			if let retval = funcval.call(withArguments: [jsarg]) {
 				let retval = retval.toInt32()

@@ -30,12 +30,14 @@ import Foundation
 	}
 
 	public func set(_ name: JSValue, _ value: JSValue) {
-		mEnvironment.set(name: name.toString(), value: value.toNativeValue())
+		let conv = KLScriptValueToNativeValue()
+		mEnvironment.set(name: name.toString(), value: conv.convert(scriptValue: value))
 	}
 
 	public func get(_ name: JSValue) -> JSValue {
+		let conv = KLNativeValueToScriptValue(context: mContext)
 		if let val = mEnvironment.get(name: name.toString()) {
-			return val.toJSValue(context: mContext)
+			return conv.convert(value: val)
 		} else {
 			return JSValue(nullIn: mContext)
 		}

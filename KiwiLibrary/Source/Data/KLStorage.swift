@@ -50,7 +50,8 @@ import Foundation
 				switch CNValuePath.pathExpression(string: pathstr) {
 				case .success(let path):
 					if let retval = mStorage.value(forPath: path) {
-						return retval.toJSValue(context: mContext)
+						let conv = KLNativeValueToScriptValue(context: mContext)
+						return conv.convert(value: retval)
 					}
 				case .failure(let err):
 					CNLog(logLevel: .error, message: err.toString(), atFunction: #function, inFile: #file)
@@ -63,7 +64,8 @@ import Foundation
 	public func set(_ val: JSValue, _ pathval: JSValue) -> JSValue {
 		let result: Bool
 		if let path = valueToPath(pathval) {
-			result = mStorage.set(value: val.toNativeValue(), forPath: path)
+			let conv = KLScriptValueToNativeValue()
+			result = mStorage.set(value: conv.convert(scriptValue: val), forPath: path)
 		} else {
 			result = false
 		}
@@ -73,7 +75,8 @@ import Foundation
 	public func append(_ val: JSValue, _ pathval: JSValue) -> JSValue {
 		let result: Bool
 		if let path = valueToPath(pathval) {
-			result = mStorage.append(value: val.toNativeValue(), forPath: path)
+			let conv = KLScriptValueToNativeValue()
+			result = mStorage.append(value: conv.convert(scriptValue: val), forPath: path)
 		} else {
 			result = false
 		}

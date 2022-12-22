@@ -23,15 +23,8 @@
 		050A3E95263BF5C9008172E7 /* String.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E86263BF5C9008172E7 /* String.ts */; };
 		050A3E97263BF5C9008172E7 /* Process.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050A3E87263BF5C9008172E7 /* Process.ts */; };
 		050C3CD9262C5CC00008ED97 /* String.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050C3CD8262C5CC00008ED97 /* String.js */; };
-		050D1DB82581C64A00D968ED /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050D1DB72581C64A00D968ED /* CoconutData.framework */; };
-		050D1DBC2581C6FF00D968ED /* KiwiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050D1DBB2581C6FF00D968ED /* KiwiEngine.framework */; };
-		050D1DBF2581C71000D968ED /* KiwiLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050D1DBE2581C71000D968ED /* KiwiLibrary.framework */; };
 		050FDBF825FC87BE00331107 /* KLDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FDBF725FC87BE00331107 /* KLDictionary.swift */; };
 		050FDBF925FC87BE00331107 /* KLDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FDBF725FC87BE00331107 /* KLDictionary.swift */; };
-		0514C5EF28A2907000CD3B18 /* KiwiLibrary.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0543B058253B3A9F00A9BAA1 /* KiwiLibrary.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0514C5F328A2907300CD3B18 /* CoconutDatabase.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05B4EF46267F886A00E5D08F /* CoconutDatabase.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0514C5F728A2907800CD3B18 /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0540D67C2516D4A100C5AE52 /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0514C5FB28A2907C00CD3B18 /* KiwiEngine.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0540D6812516D4B300C5AE52 /* KiwiEngine.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		051D09E82559914D0083336F /* KLCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D09E72559914D0083336F /* KLCommand.swift */; };
 		051D09E92559914D0083336F /* KLCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D09E72559914D0083336F /* KLCommand.swift */; };
 		0520F46127742701004DDA28 /* KLPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0520F46027742701004DDA28 /* KLPoint.swift */; };
@@ -107,6 +100,9 @@
 		058E323526DFC66500CDD628 /* Curses.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0516CC4526213502000B9796 /* Curses.js */; };
 		05950CA125C4304500D659A1 /* KLGraphicsContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05950CA025C4304500D659A1 /* KLGraphicsContext.swift */; };
 		05950CA225C4304500D659A1 /* KLGraphicsContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05950CA025C4304500D659A1 /* KLGraphicsContext.swift */; };
+		05974202295359880024EC5A /* CoconutData.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050D1DB72581C64A00D968ED /* CoconutData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05974203295359900024EC5A /* KiwiLibrary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050D1DBE2581C71000D968ED /* KiwiLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05974204295359960024EC5A /* KiwiEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 050D1DBB2581C6FF00D968ED /* KiwiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0598000525CB5F5F00499B6E /* KLBitmapContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0598000425CB5F5F00499B6E /* KLBitmapContext.swift */; };
 		0598000625CB5F5F00499B6E /* KLBitmapContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0598000425CB5F5F00499B6E /* KLBitmapContext.swift */; };
 		059A152E2781E71200F4B24C /* KLStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059A152D2781E71200F4B24C /* KLStorage.swift */; };
@@ -173,7 +169,6 @@
 		05B12A5B25C6783900273421 /* Turtle.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B12A5A25C6783900273421 /* Turtle.js */; };
 		05B4EF47267F886A00E5D08F /* CoconutDatabase.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05B4EF46267F886A00E5D08F /* CoconutDatabase.xcframework */; };
 		05B4EF4B267F888100E5D08F /* CoconutDatabase.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05B4EF46267F886A00E5D08F /* CoconutDatabase.xcframework */; };
-		05B4EF50267F88F300E5D08F /* CoconutDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05B4EF4F267F88F300E5D08F /* CoconutDatabase.framework */; };
 		05BD118126C0179B00961535 /* KLRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BD118026C0179B00961535 /* KLRecord.swift */; };
 		05BD118226C0179B00961535 /* KLRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BD118026C0179B00961535 /* KLRecord.swift */; };
 		05BD118726C01AD200961535 /* KLTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BD118626C01AD200961535 /* KLTable.swift */; };
@@ -259,20 +254,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		050D1DBA2581C64A00D968ED /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				0514C5EF28A2907000CD3B18 /* KiwiLibrary.xcframework in Embed Frameworks */,
-				0514C5FB28A2907C00CD3B18 /* KiwiEngine.xcframework in Embed Frameworks */,
-				0514C5F328A2907300CD3B18 /* CoconutDatabase.xcframework in Embed Frameworks */,
-				0514C5F728A2907800CD3B18 /* CoconutData.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		05292786263D6DF600A8CD49 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -375,14 +356,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0543B04C253B3A5D00A9BAA1 /* CopyFiles */ = {
+		059741F92953584B0024EC5A /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			dstPath = "";
+			dstSubfolderSpec = 10;
 			files = (
+				05974204295359960024EC5A /* KiwiEngine.framework in CopyFiles */,
+				05974203295359900024EC5A /* KiwiLibrary.framework in CopyFiles */,
+				05974202295359880024EC5A /* CoconutData.framework in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -520,10 +504,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05B4EF50267F88F300E5D08F /* CoconutDatabase.framework in Frameworks */,
-				050D1DBC2581C6FF00D968ED /* KiwiEngine.framework in Frameworks */,
-				050D1DBF2581C71000D968ED /* KiwiLibrary.framework in Frameworks */,
-				050D1DB82581C64A00D968ED /* CoconutData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -922,7 +902,6 @@
 			buildPhases = (
 				0543B04A253B3A5D00A9BAA1 /* Sources */,
 				0543B04B253B3A5D00A9BAA1 /* Frameworks */,
-				0543B04C253B3A5D00A9BAA1 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -941,7 +920,7 @@
 				05A1F465253BC6E100D4789F /* Sources */,
 				05A1F466253BC6E100D4789F /* Frameworks */,
 				05A1F467253BC6E100D4789F /* Resources */,
-				050D1DBA2581C64A00D968ED /* Embed Frameworks */,
+				059741F92953584B0024EC5A /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1422,6 +1401,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
@@ -1430,6 +1410,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=*]" = x86_64;
 				FRAMEWORK_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/$(PRODUCT_NAME).bundle/Contents/Frameworks";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1446,8 +1427,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/$(PRODUCT_NAME).bundle/Contents/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/UnitTest.bundle/Contents/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1496,6 +1478,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
@@ -1504,6 +1487,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=*]" = x86_64;
 				FRAMEWORK_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/$(PRODUCT_NAME).bundle/Contents/Frameworks";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1515,10 +1499,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/$(PRODUCT_NAME).bundle/Contents/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/UnitTest.bundle/Contents/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UnitTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1694,7 +1680,7 @@
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Frameworks/CoconutDatabase.xcframework/macos-arm64_x86_64",
+					"$(USER_LIBRARY_DIR)/Frameworks/",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1712,7 +1698,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = ../Test/UnitTestBundle/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1769,7 +1756,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Frameworks/CoconutDatabase.xcframework/macos-arm64_x86_64",
+					"$(USER_LIBRARY_DIR)/Frameworks/",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1782,7 +1769,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = ../Test/UnitTestBundle/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UnitTestBundle;

@@ -11,43 +11,70 @@ import CoconutDatabase
 import JavaScriptCore
 import Foundation
 
-extension CNValue
+public class KLNativeValueToScriptValue
 {
-	public func toJSValue(context ctxt: KEContext) -> JSValue {
+	private var mContext: KEContext
+
+	public init(context ctxt: KEContext){
+		mContext = ctxt
+	}
+
+	public func convert(value val: CNValue) -> JSValue {
 		let result: JSValue
-		switch self {
+		switch val {
 		case .boolValue(let val):
-			result = JSValue(bool: val, in: ctxt)
+			result = JSValue(bool: val, in: mContext)
 		case .numberValue(let val):
-			result = JSValue(object: val, in: ctxt)
+			result = JSValue(object: val, in: mContext)
 		case .stringValue(let val):
-			result = JSValue(object: val, in: ctxt)
+			result = JSValue(object: val, in: mContext)
 		case .enumValue(let val):
-			result = val.toJSValue(context: ctxt)
-		case .dictionaryValue(let dict):
-			var newdict: Dictionary<String, AnyObject> = [:]
-			for (key, elm) in dict {
-				newdict[key] = elm.toAnyObject()
-			}
-			result = JSValue(object: newdict, in: ctxt)
-		case .arrayValue(let arr):
-			var newarr: Array<Any> = []
-			for elm in arr {
-				newarr.append(elm.toAnyObject())
-			}
-			result = JSValue(object: newarr, in: ctxt)
-		case .setValue(let sval):
-			result = CNValueSet.valueToJSValue(source: sval, context: ctxt)
+			result = convert(enumValue: val)
+		case .arrayValue(let val):
+			result = convert(arrayValue: val)
+		case .setValue(let val):
+			result = convert(setValue: val)
+		case .dictionaryValue(let val):
+			result = convert(dictionaryValue: val)
 		case .objectValue(let val):
-			if let _ = val as? NSNull {
-				result = JSValue(nullIn: ctxt)
-			} else {
-				result = JSValue(object: val, in: ctxt)
-			}
+			result = JSValue(object: val, in: mContext)
 		@unknown default:
-			result = JSValue(nullIn: ctxt)
+			CNLog(logLevel: .error, message: "Undefine type value", atFunction: #function, inFile: #file)
+			result = JSValue(nullIn: mContext)
 		}
 		return result
 	}
+
+	public func convert(enumValue val: CNEnum) -> JSValue {
+		return val.toJSValue(context: mContext)
+	}
+
+	public func convert(arrayValue val: Array<CNValue>) -> JSValue {
+		let conv = CNValueToAnyObject()
+		var result: Array<AnyObject> = []
+		for elm in val {
+			result.append(conv.convert(value: elm))
+		}
+		return JSValue(object: result, in: mContext)
+	}
+
+	public func convert(setValue val: Array<CNValue>) -> JSValue {
+		let conv = CNValueToAnyObject()
+		var result: Array<AnyObject> = []
+		for elm in val {
+			result.append(conv.convert(value: elm))
+		}
+		return JSValue(object: result, in: mContext)
+	}
+
+	public func convert(dictionaryValue val: Dictionary<String, CNValue>) -> JSValue {
+		let conv = CNValueToAnyObject()
+		var newdict: Dictionary<String, AnyObject> = [:]
+		for (key, elm) in val {
+			newdict[key] = conv.convert(value: elm)
+		}
+		return JSValue(object: newdict, in: mContext)
+	}
+
 }
 

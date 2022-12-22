@@ -38,8 +38,9 @@ import Foundation
 
 	public var values: JSValue { get {
 		var result: Array<Any> = []
+		let conv = CNValueToAnyObject()
 		for val in mArray.values {
-			result.append(val.toAnyObject())
+			result.append(conv.convert(value: val))
 		}
 		return JSValue(object: result, in: mContext)
 	}}
@@ -47,26 +48,30 @@ import Foundation
 	public func value(_ index: JSValue) -> JSValue	{
 		if let idx = toInt(value: index) {
 			if let val = mArray.value(at: idx) {
-				return val.toJSValue(context: mContext)
+				let conv = KLNativeValueToScriptValue(context: mContext)
+				return conv.convert(value: val)
 			}
 		}
 		return JSValue(nullIn: mContext)
 	}
 
 	public func contains(_ value: JSValue) -> JSValue {
-		let res = mArray.contains(value: value.toNativeValue())
+		let conv = KLScriptValueToNativeValue()
+		let res  = mArray.contains(value: conv.convert(scriptValue: value))
 		return JSValue(bool: res, in: mContext)
 	}
 
 	public func set(_ value: JSValue, _ index: JSValue) {
 		if let idx = toInt(value: index) {
-			let nval = value.toNativeValue()
+			let conv = KLScriptValueToNativeValue()
+			let nval = conv.convert(scriptValue: value)
 			let _    = mArray.set(value: nval, at: idx)
 		}
 	}
 
 	public func append(_ value: JSValue) {
-		let nval = value.toNativeValue()
+		let conv = KLScriptValueToNativeValue()
+		let nval = conv.convert(scriptValue: value)
 		let _    = mArray.append(value: nval)
 	}
 

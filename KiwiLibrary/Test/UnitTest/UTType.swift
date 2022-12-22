@@ -127,19 +127,21 @@ private func typeTest(value val: JSValue, context2 ctxt2: KEContext, console con
 {
 	let typename: String
 	if let type = val.type {
-		typename = type.description
+		typename = type.toTypeDeclaration()
 	} else {
 		typename = "<none>"
 	}
 	cons.print(string: "type = " + typename + "\n")
-	let nval = val.toNativeValue()
+	let conv = KLScriptValueToNativeValue()
+	let nval = conv.convert(scriptValue: val)
 
 	cons.print(string: "native: ")
 	let ntxt = nval.toScript().toStrings().joined(separator: "\n")
 	cons.print(string: ntxt + "\n")
 
 	cons.print(string: "native -> js: ")
-	let jval = nval.toJSValue(context: ctxt2)
+	let sconv = KLNativeValueToScriptValue(context: ctxt2)
+	let jval  = sconv.convert(value: nval)
 	let jtxt = jval.toScript().toStrings().joined(separator: "\n")
 	cons.print(string: jtxt + "\n")
 

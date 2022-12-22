@@ -21,6 +21,7 @@ public extension CNValueSet
 		return false
 	}
 
+	/*
 	static func valueToJSValue(source src: Array<CNValue>, context ctxt: KEContext) -> JSValue {
 		var values: Array<Any> = []
 		for elm in src {
@@ -31,14 +32,14 @@ public extension CNValueSet
 			"values":	values
 		]
 		return JSValue(object: dict, in: ctxt)
-	}
+	}*/
 
 	static func fromJSValue(scriptValue val: JSValue) -> CNValue? {
 		if let dict = val.toDictionary() as? Dictionary<String, AnyObject> {
+			let converter = CNAnyObjecToValue()
 			var newdict: Dictionary<String, CNValue> = [:]
 			for (key, aval) in dict {
-				let val = CNValue.anyObjectToValue(object: aval)
-				newdict[key] = val
+				newdict[key] = converter.convert(anyObject: aval)
 			}
 			return CNValueSet.fromValue(value: newdict)
 		} else {

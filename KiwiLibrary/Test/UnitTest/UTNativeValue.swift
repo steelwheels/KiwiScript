@@ -12,11 +12,12 @@ import Foundation
 
 public func UTNativeValue(context ctxt: KEContext, console cons: CNConsole) -> Bool
 {
-	let res0 = UTStructValue(console: cons)
+	//let res0 = UTStructValue(console: cons)
 	let res1 = UTSetValue(context: ctxt, console: cons)
-	return res0 && res1
+	return res1 // && res1
 }
 
+/*
 private func UTStructValue(console cons: CNConsole) -> Bool
 {
 	let strct0 = CNStruct(name: "UTStruct")
@@ -30,6 +31,7 @@ private func UTStructValue(console cons: CNConsole) -> Bool
 
 	return true
 }
+*/
 
 private func UTSetValue(context ctxt: KEContext, console cons: CNConsole) -> Bool
 {
@@ -44,7 +46,8 @@ private func UTSetValue(context ctxt: KEContext, console cons: CNConsole) -> Boo
 	cons.print(string: "source native set: \(sval.toScript().toStrings().joined(separator: "\n"))\n")
 
 	// convert to script value
-	let jval = sval.toJSValue(context: ctxt)
+	let sconv = KLNativeValueToScriptValue(context: ctxt)
+	let jval  = sconv.convert(value: sval)
 	if jval.isSet {
 		cons.print(string: "isSet ... OK\n")
 	} else {

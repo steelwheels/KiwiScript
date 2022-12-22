@@ -200,95 +200,71 @@ extension JSValue
 		}
 	}
 
-	public var type: CNValueType? {
-		get {
-			var result: CNValueType?
-			if self.isUndefined {
-				result = nil
-			} else if self.isNull {
-				result = .objectType(nil)
-			} else if self.isBoolean {
-				result = .boolType
-			} else if self.isNumber {
-				result = .numberType
-			} else if self.isString {
-				result = .stringType
-			} else if self.isArray {
-				result = .arrayType(.anyType)
-			} else if self.isSet {
-				result = .setType(.anyType)
-			} else if self.isDictionary {
+	public var type: CNValueType? { get {
+		var result: CNValueType?
+		if self.isUndefined {
+			result = nil
+		} else if self.isNull {
+			result = .objectType(nil)
+		} else if self.isBoolean {
+			result = .boolType
+		} else if self.isNumber {
+			result = .numberType
+		} else if self.isString {
+			result = .stringType
+		} else if self.isArray {
+			result = .arrayType(.anyType)
+		} else if self.isSet {
+			result = .setType(.anyType)
+		} else if self.isDictionary {
+			result = .dictionaryType(.anyType)
+		} else if self.isObject {
+			if let _ = self.toObject() as? Dictionary<AnyHashable, Any> {
 				result = .dictionaryType(.anyType)
-			} else if self.isObject {
-				if let _ = self.toObject() as? Dictionary<AnyHashable, Any> {
-					result = .dictionaryType(.anyType)
-				} else {
-					result = .objectType(nil)
-				}
 			} else {
-				fatalError("Unknown type: \"\(self.description)\"")
+				result = .objectType(nil)
 			}
-			return result
+		} else {
+			fatalError("Unknown type: \"\(self.description)\"")
 		}
+		return result
+	}}
+
+	public func toScript() -> CNText {
+		let converter = KLScriptValueToNativeValue()
+		let native    = converter.convert(scriptValue: self)
+		return native.toScript()
+	}
+}
+
+public class KLScriptValueToNativeValue
+{
+	public init() {
 	}
 
-	public func toNativeValue() -> CNValue {
+	public func convert(scriptValue src: JSValue) -> CNValue {
 		let result: CNValue
-		if let type = self.type {
+		if let type = src.type {
 			switch type {
 			case .anyType, .voidType, .functionType(_, _), .interfaceType(_):
 				CNLog(logLevel: .error, message: "Can not assign native value", atFunction: #function, inFile: #file)
 				result = CNValue.null
 			case .boolType:
-				result = .boolValue(self.toBool())
+				result = .boolValue(src.toBool())
 			case .numberType:
-				result = .numberValue(self.toNumber())
+				result = .numberValue(src.toNumber())
 			case .stringType:
-				result = .stringValue(self.toString())
+				result = .stringValue(src.toString())
 			case .enumType:
-				if let eval = self.toEnum() {
-					result = CNValue.enumValue(eval)
-				} else {
-					result = CNValue.null
-				}
+				result = convert(enumValue: src.toEnum())
 			case .arrayType:
-				let srcarr = self.toArray()!
-				var dstarr: Array<CNValue> = []
-				for elm in srcarr {
-					if let object = elementToValue(any: elm) {
-						dstarr.append(object)
-					} else {
-						CNLog(logLevel: .error, message: "Failed to convert to Array", atFunction: #function, inFile: #file)
-					}
-				}
-				result = .arrayValue(dstarr)
+				result = convert(arrayValue: src.toArray())
 			case .setType:
-				if let val = CNValueSet.fromJSValue(scriptValue: self) {
-					result = val
-				} else {
-					CNLog(logLevel: .error, message: "Failed to convert to set", atFunction: #function, inFile: #file)
-					result = CNValue.null
-				}
+				result = convert(setValue: src)
 			case .dictionaryType:
-				var dstdict: Dictionary<String, CNValue> = [:]
-				if let srcdict = self.toDictionary() as? Dictionary<String, Any> {
-					for (key, value) in srcdict {
-						if let obj = elementToValue(any: value) {
-							dstdict[key] = obj
-						} else {
-							CNLog(logLevel: .error, message: "Failed to convert to Dictionary: key=\(key), value=\(value)", atFunction: #function, inFile: #file)
-						}
-					}
-				} else {
-					CNLog(logLevel: .error, message: "Failed to convert to Dictionary: \(String(describing: self.toDictionary()))", atFunction: #function, inFile: #file)
-				}
-				if let scalar = CNValue.dictionaryToValue(dictionary: dstdict) {
-					result = scalar
-				} else {
-					result = .dictionaryValue(dstdict)
-				}
+				result = convert(dictionaryValue: src.toDictionary())
 			case .objectType:
-				if let obj = self.toObject() {
+				if let obj = src.toObject() {
 					result = .objectValue(obj as AnyObject)
 				} else {
 					CNLog(logLevel: .error, message: "Failed to convert to Object", atFunction: #function, inFile: #file)
@@ -304,31 +280,53 @@ extension JSValue
 		return result
 	}
 
-	private func elementToValue(any value: Any) -> CNValue? {
-		if let val = value as? JSValue {
-			return val.toNativeValue()
-		} else if let val = value as? KLURL {
-			if let url = val.url {
-				return CNValue.anyObjectToValue(object: url as NSURL)
-			} else {
-				CNLog(logLevel: .error, message: "Null URL", atFunction: #function, inFile: #file)
-				return CNValue.null
-			}
-		} else if let val = value as? KLImage {
-			if let image = val.coreImage {
-				return CNValue.anyObjectToValue(object: image)
-			} else {
-				CNLog(logLevel: .error, message: "Null Image", atFunction: #function, inFile: #file)
-				return CNValue.null
-			}
-		} else {
-			return CNValue.anyObjectToValue(object: value as AnyObject)
+	public func convert(arrayValue src: Array<Any>) -> CNValue {
+		var result: Array<CNValue> = []
+		let converter = CNAnyObjecToValue()
+		for elm in src {
+			let nval = converter.convert(anyObject: elm as AnyObject)
+			result.append(nval)
 		}
+		return .arrayValue(result)
 	}
 
-	public func toScript() -> CNText {
-		let native = self.toNativeValue()
-		return native.toScript()
+	public func convert(dictionaryValue src: Dictionary<AnyHashable, Any>) -> CNValue {
+		let converter = CNAnyObjecToValue()
+		var newdict: Dictionary<String, CNValue> = [:]
+		for (hash, val) in src {
+			if let key = hash as? String  {
+				newdict[key] = converter.convert(anyObject: val as AnyObject)
+			} else {
+				CNLog(logLevel: .error, message: "Unexpected dictionary item: key=\(hash), value=\(val)", atFunction: #function, inFile: #file)
+			}
+		}
+		let result: CNValue
+		if let scalar = CNDictionaryToValue(dictionary: newdict) {
+			result = scalar
+		} else {
+			result = .dictionaryValue(newdict)
+		}
+		return result
+	}
+
+	public func convert(setValue src: JSValue) -> CNValue {
+		let result: CNValue
+		if let val = CNValueSet.fromJSValue(scriptValue: src) {
+			result = val
+		} else {
+			CNLog(logLevel: .error, message: "Failed to convert to set", atFunction: #function, inFile: #file)
+			result = CNValue.null
+		}
+		return result
+	}
+
+	public func convert(enumValue src: CNEnum?) -> CNValue {
+		let result: CNValue
+		if let eval = src {
+			result = CNValue.enumValue(eval)
+		} else {
+			result = CNValue.null
+		}
+		return result
 	}
 }
-

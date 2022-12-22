@@ -31,7 +31,8 @@ import Foundation
 				let parser = CNValueParser()
 				switch parser.parse(source: text) {
 				case .success(let val):
-					return val.toJSValue(context: mContext)
+					let conv = KLNativeValueToScriptValue(context: mContext)
+					return conv.convert(value: val)
 				case .failure(let err):
 					CNLog(logLevel: .error, message: "[Error] \(err.toString())", atFunction: #function, inFile: #file)
 				}
@@ -43,7 +44,8 @@ import Foundation
 	public func write(_ file: JSValue, _ json: JSValue) -> JSValue {
 		var result = false
 		if let fileobj = file.toObject() as? KLFile {
-			let nval = json.toNativeValue()
+			let conv = KLScriptValueToNativeValue()
+			let nval = conv.convert(scriptValue: json)
 			let text = nval.toScript().toStrings().joined(separator: "\n")
 			fileobj.file.put(string: text)
 			result = true

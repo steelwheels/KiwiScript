@@ -60,7 +60,8 @@ import Foundation
 					(_ rec: CNRecord) -> CNValue in
 					let recobj = KLRecord(record: rec, context: self.context)
 					if let retval = cbfunc.call(withArguments: [recobj]) {
-						return retval.toNativeValue()
+						let conv = KLScriptValueToNativeValue()
+						return conv.convert(scriptValue: retval)
 					} else {
 						CNLog(logLevel: .error, message: "Failed to execute callback set by addVirtualField (for field \(fname))")
 						return CNValue.null

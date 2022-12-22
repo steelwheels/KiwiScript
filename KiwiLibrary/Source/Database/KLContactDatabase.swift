@@ -36,9 +36,10 @@ import Foundation
 
 	public var defaultFields: JSValue { get {
 		var result: Dictionary<String, AnyObject> = [:]
-		let dc = CNContactDatabase.shared
+		let dc   = CNContactDatabase.shared
+		let conv = CNValueToAnyObject()
 		for (key, val) in dc.defaultFields {
-			result[key] = val.toAnyObject()
+			result[key] = conv.convert(value: val)
 		}
 		return JSValue(object: result, in: mContext)
 	}}
@@ -115,7 +116,8 @@ import Foundation
 		let db  = CNContactDatabase.shared
 		if field.isString {
 			if let fname = field.toString() {
-				let nval = val.toNativeValue()
+				let conv = KLScriptValueToNativeValue()
+				let nval = conv.convert(scriptValue: val)
 				let recs = db.search(value: nval, forField: fname)
 				let objs = recs.map({(_ rec: CNRecord) -> KLRecord in return KLRecord(record: rec, context: mContext)})
 				if let res = KLRecord.allocate(records: objs, context: mContext) {
