@@ -71,30 +71,6 @@ function _cancel() {
 	throw new CancelException(ExitCode.exception) ;
 }
 
-function openPanel(title: string, type: FileType, exts: string[]): URLIF | null {
-	let result = null ;
-	let sem    = new Semaphore(0) ;
-	let cbfunc = function(url: URLIF) {
-		result = url ;
-		sem.signal() ;  // Tell finish operation
-	} ;
-	_openPanel(title, type, exts, cbfunc) ;
-	sem.wait() ; // Wait finish operation
-	return result ;
-}
-
-function savePanel(title: string): URLIF | null {
-	let result = null ;
-	let sem    = new Semaphore(0) ;
-	let cbfunc = function(url: URLIF) {
-		result = url ;
-		sem.signal() ;  // Tell finish operation
-	} ;
-	_savePanel(title, cbfunc) ;
-	sem.wait() ; // Wait finish operation
-	return result ;
-}
-
 function openURL(url: URLIF | string): boolean {
 	let result = false ;
 	let sem    = new Semaphore(0) ;
@@ -107,6 +83,7 @@ function openURL(url: URLIF | string): boolean {
 	return result ;
 }
 
+/*
 function allocateThread(path: URLIF | string | null, input: FileIF, output: FileIF, error: FileIF): ThreadIF | null {
 	if(path == null) {
 		let newpath = openPanel("Select script file to execute",
@@ -118,11 +95,11 @@ function allocateThread(path: URLIF | string | null, input: FileIF, output: File
 		}
 	}
 	return _allocateThread(path, input, output, error) ;
-}
+}*/
 
-function run(path: URLIF | string | null, args: string[], input: FileIF, output: FileIF, error: FileIF): number {
+function run(path: URLIF | string, args: string[], input: FileIF, output: FileIF, error: FileIF): number {
 
-	let thread = allocateThread(path, input, output, error) ;
+	let thread = _allocateThread(path, input, output, error) ;
 	if(thread != null){
 		thread.start(args) ;
 

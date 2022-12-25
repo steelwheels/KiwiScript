@@ -422,8 +422,6 @@ declare function TextSection(): TextSectionIF ;
 declare function TextRecord(): TextRecordIF ;
 declare function TextTable(): TextTableIF ;
 
-declare function _openPanel(title: string, type: FileType, exts: string[], cbfunc: any): void ;
-declare function _savePanel(title: string, cbfunc: any): void ;
 declare function _openURL(title: URLIF | string, cbfunc: any): void ;
 declare function _allocateThread(path: URLIF | string, input: FileIF, output: FileIF, error: FileIF): ThreadIF | null ;
 

@@ -437,74 +437,6 @@ open class KLLibraryCompiler: KECompiler
 		}
 		ctxt.set(name: "sleep", function: sleepFunc)
 
-		/* _openPanel */
-
-		let openPanelFunc: @convention(block) (_ titleval: JSValue, _ typeval: JSValue, _ extsval: JSValue, _ cbfunc: JSValue) -> Void = {
-			(_ titleval: JSValue, _ typeval: JSValue, _ extsval: JSValue, _ cbfunc: JSValue) -> Void in
-			#if os(OSX)
-			if let title = KLLibraryCompiler.valueToString(value: titleval),
-			   let type  = KLLibraryCompiler.valueToFileType(type: typeval),
-			   let exts  = KLLibraryCompiler.valueToExtensions(extensions: extsval) {
-				URL.openPanel(title: title, type: type, extensions: exts, callback: {
-					(_ urlp: URL?) -> Void in
-					let param: JSValue
-					if let url = urlp {
-						param = JSValue(URL: url, in: ctxt)
-					} else {
-						param = JSValue(nullIn: ctxt)
-					}
-					CNExecuteInUserThread(level: .event, execute: {
-						cbfunc.call(withArguments: [param])
-					})
-				})
-			} else {
-				if let param = JSValue(nullIn: ctxt) {
-					cbfunc.call(withArguments: [param])
-				} else {
-					CNLog(logLevel: .error, message: "Failed to allocate return value", atFunction: #function, inFile: #file)
-				}
-			}
-			#else
-			if let param = JSValue(nullIn: ctxt) {
-				cbfunc.call(withArguments: [param])
-			} else {
-				CNLog(logLevel: .error, message: "Failed to allocate return value", atFunction: #function, inFile: #file)
-			}
-			#endif
-		}
-		ctxt.set(name: "_openPanel", function: openPanelFunc)
-
-		let savePanelFunc: @convention(block) (_ titleval: JSValue, _ cbfunc: JSValue) -> Void = {
-			(_ titleval: JSValue, _ cbfunc: JSValue) -> Void in
-			#if os(OSX)
-			if let title = KLLibraryCompiler.valueToString(value: titleval) {
-				URL.savePanel(title: title, outputDirectory: nil, callback: {
-					(_ urlp: URL?) -> Void in
-					let param: JSValue
-					if let url = urlp {
-						param = JSValue(URL: url, in: ctxt)
-					} else {
-						param = JSValue(nullIn: ctxt)
-					}
-					cbfunc.call(withArguments: [param])
-				})
-			} else {
-				if let param = JSValue(nullIn: ctxt) {
-					cbfunc.call(withArguments: [param])
-				} else {
-					CNLog(logLevel: .error, message: "Failed to allocate return value", atFunction: #function, inFile: #file)
-				}
-			}
-			#else
-			if let param = JSValue(nullIn: ctxt) {
-				cbfunc.call(withArguments: [param])
-			} else {
-				CNLog(logLevel: .error, message: "Failed to allocate return value", atFunction: #function, inFile: #file)
-			}
-			#endif
-		}
-		ctxt.set(name: "_savePanel", function: savePanelFunc)
-
 		/* openURL */
 		let openURLFunc: @convention(block) (_ urlval: JSValue,  _ cbfunc: JSValue) -> JSValue = {
 			(_ urlval: JSValue,  _ cbfunc: JSValue) -> JSValue in
@@ -1038,32 +970,6 @@ open class KLLibraryCompiler: KECompiler
 			return result
 		}
 		cons.error(string: "Invalid URL parameters\n")
-		return nil
-	}
-
-	private class func valueToFileType(type tval: JSValue) -> CNFileType? {
-		if let num = tval.toNumber() {
-			if let sel = CNFileType(rawValue: num.intValue) {
-				return sel
-			}
-		}
-		return nil
-	}
-
-	private static func valueToExtensions(extensions tval: JSValue) -> Array<String>? {
-		if tval.isArray {
-			var types: Array<String> = []
-			if let vals = tval.toArray() {
-				for elm in vals {
-					if let str = elm as? String {
-						types.append(str)
-					} else {
-						return nil
-					}
-				}
-			}
-			return types
-		}
 		return nil
 	}
 

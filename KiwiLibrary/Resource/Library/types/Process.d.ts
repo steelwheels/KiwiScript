@@ -15,8 +15,5 @@ declare class CancelException extends Error {
     constructor(code: number);
 }
 declare function _cancel(): void;
-declare function openPanel(title: string, type: FileType, exts: string[]): URLIF | null;
-declare function savePanel(title: string): URLIF | null;
 declare function openURL(url: URLIF | string): boolean;
-declare function allocateThread(path: URLIF | string | null, input: FileIF, output: FileIF, error: FileIF): ThreadIF | null;
-declare function run(path: URLIF | string | null, args: string[], input: FileIF, output: FileIF, error: FileIF): number;
+declare function run(path: URLIF | string, args: string[], input: FileIF, output: FileIF, error: FileIF): number;
