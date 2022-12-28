@@ -139,7 +139,8 @@ interface FileManagerIF {
 
 	fullPath(path: string, base: URLIF): URLIF | null ;
 
-	homeDirectory(): URLIF ;
+	documentDirectory(): URLIF ;
+	libraryDirectory(): URLIF ;
 	currentDirectory(): URLIF ;
 	temporaryDirectory(): URLIF ;
 

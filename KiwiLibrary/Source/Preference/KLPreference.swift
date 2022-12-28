@@ -179,7 +179,7 @@ public extension CNPreferenceTable
 
 @objc public protocol KLUserPreferenceProtocol: JSExport
 {
-	var homeDirectory: JSValue { get set }
+	var documentDirectory: JSValue { get set }
 }
 
 @objc public class KLUserPreference: NSObject, KLUserPreferenceProtocol
@@ -190,19 +190,19 @@ public extension CNPreferenceTable
 		mContext = ctxt
 	}
 
-	public var homeDirectory: JSValue {
+	public var documentDirectory: JSValue {
 		get {
-			let pref = CNPreference.shared.userPreference
-			let home = pref.homeDirectory
-			return JSValue(URL: home, in: mContext)
+			let pref   = CNPreference.shared.userPreference
+			let docurl = pref.documentDirectory
+			return JSValue(URL: docurl, in: mContext)
 		}
 		set(newval) {
 			if let url = newval.toURL() {
 				let pref = CNPreference.shared.userPreference
-				pref.homeDirectory = url
+				pref.documentDirectory = url
 			} else if let str = newval.toString() {
 				let pref = CNPreference.shared.userPreference
-				pref.homeDirectory = URL(fileURLWithPath: str)
+				pref.documentDirectory = URL(fileURLWithPath: str)
 			} else {
 				CNLog(logLevel: .error, message: "Failed to set Preference.user.homeDirectory", atFunction: #function, inFile: #file)
 			}

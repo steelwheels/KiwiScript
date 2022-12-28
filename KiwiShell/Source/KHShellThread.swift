@@ -56,7 +56,7 @@ open class KHShellThread: CNShellThread
 		super.init(processManager: procmgr, input: ifile, output: ofile, error: efile, terminalInfo: terminfo, environment: env)
 
 		/* Update current directory to home */
-		let curdir = CNPreference.shared.userPreference.homeDirectory
+		let curdir = CNPreference.shared.userPreference.documentDirectory
 		if !curdir.isNull {
 			FileManager.default.changeCurrentDirectoryPath(curdir.path)
 		}
@@ -78,7 +78,7 @@ open class KHShellThread: CNShellThread
 		}
 
 		/* Compile the .jshrc file */
-		let rcdir  = CNPreference.shared.userPreference.homeDirectory
+		let rcdir  = CNPreference.shared.userPreference.documentDirectory
 		let rcfile = URL(fileURLWithPath: ".jshrc", relativeTo: rcdir)
 		if FileManager.default.isReadableFile(atPath: rcfile.path) {
 			if let content = rcfile.loadContents() {

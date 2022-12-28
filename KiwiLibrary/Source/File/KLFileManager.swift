@@ -22,7 +22,8 @@ import Foundation
 
 	func fullPath(_ path: JSValue, _ base: JSValue) -> JSValue
 
-	func homeDirectory() -> JSValue
+	func documentDirectory() -> JSValue
+	func libraryDirectory() -> JSValue
 	func temporaryDirectory() -> JSValue
 
 	func currentDirectory() -> JSValue
@@ -162,9 +163,15 @@ import Foundation
 		return JSValue(nullIn: mContext)
 	}
 
-	public func homeDirectory() -> JSValue {
-		let home = CNPreference.shared.userPreference.homeDirectory
-		let urlobj = KLURL(URL: home, context: mContext)
+	public func documentDirectory() -> JSValue {
+		let docurl = CNPreference.shared.userPreference.documentDirectory
+		let urlobj = KLURL(URL: docurl, context: mContext)
+		return JSValue(object: urlobj, in: mContext)
+	}
+
+	public func libraryDirectory() -> JSValue {
+		let liburl = CNPreference.shared.userPreference.libraryDirectory
+		let urlobj = KLURL(URL: liburl, context: mContext)
 		return JSValue(object: urlobj, in: mContext)
 	}
 
