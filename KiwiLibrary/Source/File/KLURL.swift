@@ -22,10 +22,10 @@ import Foundation
 
 @objc public class KLURL: NSObject, KLURLProtocol, KLEmbeddedObject
 {
-	private var mURL:	URL?
+	private var mURL:	URL
 	private var mContext:	KEContext
 
-	public init(URL u: URL?, context ctxt: KEContext){
+	public init(URL u: URL, context ctxt: KEContext){
 		mURL	 	= u
 		mContext 	= ctxt
 	}
@@ -36,43 +36,19 @@ import Foundation
 
 	public var url: URL? { get { return mURL }}
 
-	public var isNull: JSValue {
-		get {
-			let result: Bool
-			if let url = mURL {
-				result = url.isNull
-			} else {
-				result = true
-			}
-			return JSValue(bool: result, in: mContext)
-		}
-	}
+	public var isNull: JSValue { get {
+		return JSValue(bool: mURL.isNull, in: mContext)
+	}}
 
-	public var absoluteString: JSValue {
-		get {
-			if let url = mURL {
-				return JSValue(object: url.absoluteString, in: mContext)
-			} else {
-				return JSValue(nullIn: mContext)
-			}
-		}
-	}
+	public var absoluteString: JSValue { get {
+		return JSValue(object: mURL.absoluteString, in: mContext)
+	}}
 
-	public var path: JSValue {
-		get {
-			if let url = mURL {
-				return JSValue(object: url.path, in: mContext)
-			} else {
-				return JSValue(nullIn: mContext)
-			}
-		}
-	}
+	public var path: JSValue { get {
+		return JSValue(object: mURL.path, in: mContext)
+	}}
 
 	public func appendingPathComponent(_ compval: JSValue) -> JSValue {
-		guard let cururl = mURL else {
-			return JSValue(nullIn: mContext)
-		}
-
 		let compstr: String?
 		if compval.isString {
 			compstr = compval.toString()
@@ -86,7 +62,7 @@ import Foundation
 			compstr = nil
 		}
 		if let component = compstr {
-			let newurl = cururl.appendingPathComponent(component)
+			let newurl = mURL.appendingPathComponent(component)
 			let newobj = KLURL(URL: newurl, context: mContext)
 			return JSValue(object: newobj, in: mContext)
 		} else {
@@ -95,14 +71,12 @@ import Foundation
 	}
 
 	public func loadText() -> JSValue {
-		if let url = mURL {
-			if let text = url.loadContents() {
-				return JSValue(object: text, in: mContext)
-			} else {
-				CNLog(logLevel: .error, message: "Failed to load text at \(url.absoluteString)", atFunction: #function, inFile: #file)
-			}
+		if let text = mURL.loadContents() {
+			return JSValue(object: text, in: mContext)
+		} else {
+			CNLog(logLevel: .error, message: "Failed to load text at \(mURL.absoluteString)", atFunction: #function, inFile: #file)
+			return JSValue(nullIn: mContext)
 		}
-		return JSValue(nullIn: mContext)
 	}
 }
 

@@ -22,11 +22,11 @@ import Foundation
 
 	func fullPath(_ path: JSValue, _ base: JSValue) -> JSValue
 
-	func documentDirectory() -> JSValue
-	func libraryDirectory() -> JSValue
-	func temporaryDirectory() -> JSValue
+	var documentDirectory:  JSValue { get }
+	var libraryDirectory:   JSValue { get }
+	var temporaryDirectory: JSValue { get }
+	var currentDirectory:   JSValue { get }
 
-	func currentDirectory() -> JSValue
 	func setCurrentDirectory(_ path: JSValue) -> JSValue
 
 	func checkFileType(_ pathstr: JSValue) -> JSValue
@@ -163,23 +163,29 @@ import Foundation
 		return JSValue(nullIn: mContext)
 	}
 
-	public func documentDirectory() -> JSValue {
+	public var documentDirectory: JSValue { get {
 		let docurl = CNPreference.shared.userPreference.documentDirectory
 		let urlobj = KLURL(URL: docurl, context: mContext)
 		return JSValue(object: urlobj, in: mContext)
-	}
+	}}
 
-	public func libraryDirectory() -> JSValue {
+	public var libraryDirectory: JSValue { get {
 		let liburl = CNPreference.shared.userPreference.libraryDirectory
 		let urlobj = KLURL(URL: liburl, context: mContext)
 		return JSValue(object: urlobj, in: mContext)
-	}
+	}}
 
-	public func currentDirectory() -> JSValue {
+	public var currentDirectory: JSValue { get {
 		let dir    = mEnvironment.currentDirectory
 		let urlobj = KLURL(URL: dir, context: mContext)
 		return JSValue(object: urlobj, in: mContext)
-	}
+	}}
+
+	public var temporaryDirectory: JSValue { get {
+		let tmpurl = FileManager.default.temporaryDirectory
+		let urlobj = KLURL(URL: tmpurl, context: mContext)
+		return JSValue(object: urlobj, in: mContext)
+	}}
 
 	public func setCurrentDirectory(_ pathval: JSValue) -> JSValue {
 		let path: URL?
@@ -203,12 +209,6 @@ import Foundation
 			}
 		}
 		return JSValue(bool: false, in: mContext)
-	}
-
-	public func temporaryDirectory() -> JSValue {
-		let tmpurl = FileManager.default.temporaryDirectory
-		let urlobj = KLURL(URL: tmpurl, context: mContext)
-		return JSValue(object: urlobj, in: mContext)
 	}
 
 	private func pathString(in val: JSValue) -> String? {
