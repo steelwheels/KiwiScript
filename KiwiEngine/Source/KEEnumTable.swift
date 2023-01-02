@@ -131,7 +131,7 @@ public extension CNEnumType
 
 	func toScript() -> CNTextSection {
 		let result: CNTextSection = CNTextSection()
-		
+
 		/* Member definition */
 		let defsect = CNTextSection()
 		defsect.header = "const \(self.typeName) = {"

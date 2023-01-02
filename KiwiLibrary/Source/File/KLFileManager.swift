@@ -25,11 +25,15 @@ import Foundation
 	var documentDirectory:  JSValue { get }
 	var libraryDirectory:   JSValue { get }
 	var temporaryDirectory: JSValue { get }
+	var resourceDirectory:  JSValue { get }
 	var currentDirectory:   JSValue { get }
 
 	func setCurrentDirectory(_ path: JSValue) -> JSValue
 
 	func checkFileType(_ pathstr: JSValue) -> JSValue
+
+	func copy(_ fromfile: JSValue, _ tofile: JSValue) -> JSValue
+
 	func uti(_ pathstr: JSValue) -> JSValue
 }
 
@@ -181,6 +185,15 @@ import Foundation
 		return JSValue(object: urlobj, in: mContext)
 	}}
 
+	public var resourceDirectory: JSValue { get {
+		if let url = FileManager.default.resourceDirectory {
+			let urlobj = KLURL(URL: url, context: mContext)
+			return JSValue(object: urlobj, in: mContext)
+		} else {
+			return JSValue(nullIn: mContext)
+		}
+	}}
+
 	public var temporaryDirectory: JSValue { get {
 		let tmpurl = FileManager.default.temporaryDirectory
 		let urlobj = KLURL(URL: tmpurl, context: mContext)
@@ -209,6 +222,23 @@ import Foundation
 			}
 		}
 		return JSValue(bool: false, in: mContext)
+	}
+
+	public func copy(_ fromfile: JSValue, _ tofile: JSValue) -> JSValue {
+		guard let fromurl = fromfile.toURL(), let tourl = tofile.toURL() else {
+			CNLog(logLevel: .error, message: "Invalid parameter type", atFunction: #function, inFile: #file)
+			return JSValue(bool: false, in: mContext)
+		}
+		let result: Bool
+		do {
+			try FileManager.default.copyItem(at: fromurl, to: tourl)
+			result = true
+		} catch {
+			let err = error as NSError
+			CNLog(logLevel: .error, message: "[Error] \(err.toString())", atFunction: #function, inFile: #file)
+			result = false
+		}
+		return JSValue(bool: result, in: mContext)
 	}
 
 	private func pathString(in val: JSValue) -> String? {
