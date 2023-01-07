@@ -60,6 +60,7 @@ public extension CNPreferenceTable
 
 @objc public protocol KLSystemPreferenceProtocol: JSExport
 {
+	var device	: JSValue { get }
 	var version	: JSValue { get }
 	var logLevel	: JSValue { get set }
 }
@@ -72,6 +73,12 @@ public extension CNPreferenceTable
 		mContext = ctxt
 	}
 
+	public var device: JSValue { get {
+		let syspref = CNPreference.shared.systemPreference
+		let devnum  = syspref.device.rawValue
+		return JSValue(object: NSNumber(integerLiteral: devnum), in: mContext)
+	}}
+		
 	public var version: JSValue { get {
 		let syspref = CNPreference.shared.systemPreference
 		let verstr  = syspref.version
@@ -192,17 +199,15 @@ public extension CNPreferenceTable
 
 	public var documentDirectory: JSValue {
 		get {
-			let pref   = CNPreference.shared.userPreference
-			let docurl = pref.documentDirectory
-			return JSValue(URL: docurl, in: mContext)
+			let homeurl = FileManager.default.documentDirectory
+			return JSValue(URL: homeurl, in: mContext)
 		}
 		set(newval) {
+			let pref = CNPreference.shared.userPreference
 			if let url = newval.toURL() {
-				let pref = CNPreference.shared.userPreference
-				pref.documentDirectory = url
+				pref.homeDirectory = url
 			} else if let str = newval.toString() {
-				let pref = CNPreference.shared.userPreference
-				pref.documentDirectory = URL(fileURLWithPath: str)
+				pref.homeDirectory = URL(fileURLWithPath: str)
 			} else {
 				CNLog(logLevel: .error, message: "Failed to set Preference.user.homeDirectory", atFunction: #function, inFile: #file)
 			}

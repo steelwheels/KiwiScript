@@ -14,6 +14,8 @@ import Foundation
 {
 	func open(_ pathstr: JSValue, _ acctype: JSValue) -> JSValue
 
+	func fileExists(_ pathstr: JSValue) -> JSValue
+	
 	func isReadable(_ pathstr: JSValue) -> JSValue
 	func isWritable(_ pathstr: JSValue) -> JSValue
 	func isExecutable(_ pathstr: JSValue) -> JSValue
@@ -33,7 +35,8 @@ import Foundation
 	func checkFileType(_ pathstr: JSValue) -> JSValue
 
 	func copy(_ fromfile: JSValue, _ tofile: JSValue) -> JSValue
-
+	func remove(_ file: JSValue) -> JSValue
+	
 	func uti(_ pathstr: JSValue) -> JSValue
 }
 
@@ -93,6 +96,14 @@ import Foundation
 		return nil
 	}
 
+	public func fileExists(_ pathval: JSValue) -> JSValue {
+		var result = false
+		if let url = valueToURL(value: pathval) {
+			result = FileManager.default.fileExists(atPath: url.path)
+		}
+		return JSValue(bool: result, in: mContext)
+	}
+	
 	public func isReadable(_ pathval: JSValue) -> JSValue {
 		var result = false
 		if let url = valueToURL(value: pathval) {
@@ -168,13 +179,13 @@ import Foundation
 	}
 
 	public var documentDirectory: JSValue { get {
-		let docurl = CNPreference.shared.userPreference.documentDirectory
+		let docurl = FileManager.default.documentDirectory
 		let urlobj = KLURL(URL: docurl, context: mContext)
 		return JSValue(object: urlobj, in: mContext)
 	}}
 
 	public var libraryDirectory: JSValue { get {
-		let liburl = CNPreference.shared.userPreference.libraryDirectory
+		let liburl = FileManager.default.libraryDirectory
 		let urlobj = KLURL(URL: liburl, context: mContext)
 		return JSValue(object: urlobj, in: mContext)
 	}}
@@ -241,6 +252,23 @@ import Foundation
 		return JSValue(bool: result, in: mContext)
 	}
 
+	public func remove(_ file: JSValue) -> JSValue {
+		let result: Bool
+		if let url = file.toURL() {
+			if let err = FileManager.default.removeFile(atURL: url) {
+				CNLog(logLevel: .error, message: "[Error] \(err.toString()): \(url.path)",
+				      atFunction: #function, inFile: #file)
+				result = false
+			} else {
+				// no error
+				result = true
+			}
+		} else {
+			result = false
+		}
+		return JSValue(bool: result, in: mContext)
+	}
+	
 	private func pathString(in val: JSValue) -> String? {
 		if let str = val.toString() {
 			return str

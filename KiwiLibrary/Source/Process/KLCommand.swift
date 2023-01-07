@@ -81,7 +81,7 @@ import Foundation
 				console.error(string: "Error: Failed to convert to string\n")
 			}
 		} else if arg.isNull {
-			let doc = CNPreference.shared.userPreference.documentDirectory
+			let doc = CNPreference.shared.userPreference.homeDirectory
 			env.currentDirectory = doc
 			result = 0
 		} else {
@@ -163,7 +163,7 @@ import Foundation
 	private static func execute(_ arg: JSValue, _ context: KEContext, _ console: CNConsole, _ env: CNEnvironment) -> Int32 {
 		let result: Int32
 
-		let dstdir = CNPreference.shared.userPreference.documentDirectory
+		let dstdir = FileManager.default.documentDirectory
 
 		let installer = CNResourceInstaller(console: console)
 		if installer.install(destinationDirectory: dstdir, sourceDirectoryNames: ["Library", "Game", "Sample", "Utility"]) {
