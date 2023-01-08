@@ -47,8 +47,8 @@ public extension CNValueType
 			} else {
 				result = "any /* anyobject */"
 			}
-		case .interfaceType(let ifname):
-			result = ifname
+		case .interfaceType(let iftype):
+			result = iftype.name
 		case .functionType(let rettype, let paramtypes):
 			var str: String = "("
 			for i in 0..<paramtypes.count {

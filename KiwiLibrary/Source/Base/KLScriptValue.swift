@@ -78,6 +78,27 @@ extension JSValue
 		return CNEnum.fromJSValue(scriptValue: self)
 	}
 
+	public func isInterface() -> Bool {
+		return CNInterfaceValue.isInterface(scriptValue: self)
+	}
+
+	public func toIntergacve() -> CNInterfaceValue? {
+		if CNInterfaceValue.isInterface(scriptValue: self) {
+			let result: CNInterfaceValue?
+			switch CNInterfaceValue.fromJSValue(scriptValue: self) {
+			case .success(let ifval):
+				result = ifval
+			case .failure(let err):
+				CNLog(logLevel: .error, message: "[Error] \(err.toString())",
+				      atFunction: #function, inFile: #file)
+				result = nil
+			}
+			return result
+		} else {
+			return nil
+		}
+	}
+
 	public var isURL: Bool {
 		get {
 			if let urlobj = self.toObject() as? KLURL {
@@ -216,6 +237,14 @@ extension JSValue
 			result = .arrayType(.anyType)
 		} else if self.isSet {
 			result = .setType(.anyType)
+		} else if let ifname = CNInterfaceValue.interfaceName(scriptValue: self) {
+			if let iftype = CNInterfaceTable.currentInterfaceTable().search(byTypeName: ifname) {
+				result = .interfaceType(iftype)
+			} else {
+				CNLog(logLevel: .error, message: "Unknown interface name: \(ifname)",
+				      atFunction: #function, inFile: #file)
+				result = .dictionaryType(.anyType)
+			}
 		} else if self.isDictionary {
 			result = .dictionaryType(.anyType)
 		} else if self.isObject {
@@ -246,7 +275,7 @@ public class KLScriptValueToNativeValue
 		let result: CNValue
 		if let type = src.type {
 			switch type {
-			case .anyType, .voidType, .functionType(_, _), .interfaceType(_):
+			case .anyType, .voidType, .functionType(_, _):
 				CNLog(logLevel: .error, message: "Can not assign native value", atFunction: #function, inFile: #file)
 				result = CNValue.null
 			case .boolType:
@@ -263,6 +292,21 @@ public class KLScriptValueToNativeValue
 				result = convert(setValue: src)
 			case .dictionaryType:
 				result = convert(dictionaryValue: src.toDictionary())
+			case .interfaceType(let iftype):
+				if let dict = src.toDictionary() as? Dictionary<String, AnyObject> {
+					switch CNInterfaceValue.fromJSValue(interfaceType: iftype, values: dict) {
+					case .success(let ifval):
+						result = .interfaceValue(ifval)
+					case .failure(let err):
+						CNLog(logLevel: .error, message: "[Error] \(err.toString())",
+						      atFunction: #function, inFile: #file)
+						result = CNValue.null
+					}
+				} else {
+					CNLog(logLevel: .error, message: "Failed to convert to Interface",
+					      atFunction: #function, inFile: #file)
+					result = CNValue.null
+				}
 			case .objectType:
 				if let obj = src.toObject() {
 					result = .objectValue(obj as AnyObject)

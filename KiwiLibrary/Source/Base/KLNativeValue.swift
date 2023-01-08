@@ -36,6 +36,8 @@ public class KLNativeValueToScriptValue
 			result = convert(setValue: val)
 		case .dictionaryValue(let val):
 			result = convert(dictionaryValue: val)
+		case .interfaceValue(let val):
+			result = val.toJSValue(context: mContext)
 		case .objectValue(let val):
 			result = JSValue(object: val, in: mContext)
 		@unknown default:

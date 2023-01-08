@@ -189,6 +189,8 @@
 		05D4FD20268F5B9800780B83 /* Contacts.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05D4FD1F268F5B2C00780B83 /* Contacts.ts */; };
 		05D4FD21268F5B9800780B83 /* Contacts.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05D4FD1E268F5B2C00780B83 /* Contacts.js */; };
 		05D4FD26268F5BD000780B83 /* Contacts.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05D4FD25268F5BBF00780B83 /* Contacts.d.ts */; };
+		05DE577B2969B56600C87A31 /* KLValueInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DE577A2969B56600C87A31 /* KLValueInterface.swift */; };
+		05DE577C2969B56600C87A31 /* KLValueInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DE577A2969B56600C87A31 /* KLValueInterface.swift */; };
 		05DF53592609902300C7837C /* KLColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DF53582609902300C7837C /* KLColorManager.swift */; };
 		05DF535A2609902300C7837C /* KLColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DF53582609902300C7837C /* KLColorManager.swift */; };
 		05E08D7C25F904DB001E48EE /* UTProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E08D7B25F904DB001E48EE /* UTProcess.swift */; };
@@ -484,6 +486,7 @@
 		05D4FD1E268F5B2C00780B83 /* Contacts.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Contacts.js; sourceTree = "<group>"; };
 		05D4FD1F268F5B2C00780B83 /* Contacts.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = Contacts.ts; sourceTree = "<group>"; };
 		05D4FD25268F5BBF00780B83 /* Contacts.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Contacts.d.ts; sourceTree = "<group>"; };
+		05DE577A2969B56600C87A31 /* KLValueInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLValueInterface.swift; sourceTree = "<group>"; };
 		05DF53582609902300C7837C /* KLColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLColorManager.swift; sourceTree = "<group>"; };
 		05E08D7B25F904DB001E48EE /* UTProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTProcess.swift; sourceTree = "<group>"; };
 		05EBD8B525E4982200CA1480 /* KLColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLColor.swift; sourceTree = "<group>"; };
@@ -761,6 +764,7 @@
 				059A152D2781E71200F4B24C /* KLStorage.swift */,
 				05BD118626C01AD200961535 /* KLTable.swift */,
 				05EE5C8426E79316005026B3 /* KLText.swift */,
+				05DE577A2969B56600C87A31 /* KLValueInterface.swift */,
 				0564FD2B2801A120000B8C22 /* KLValuePointer.swift */,
 				053D2DAE277A81A0008B6DA2 /* KLValueSegment.swift */,
 				05C14F5A28577CE7009C05D4 /* KLValueSet.swift */,
@@ -1114,6 +1118,7 @@
 				055D5170268CA8F700304205 /* KLContactDatabase.swift in Sources */,
 				05A95B6C2516D03300775737 /* KLPipe.swift in Sources */,
 				0520F46127742701004DDA28 /* KLPoint.swift in Sources */,
+				05DE577B2969B56600C87A31 /* KLValueInterface.swift in Sources */,
 				0520F46D277429FA004DDA28 /* KLRect.swift in Sources */,
 				050662F628E5D740008DBA32 /* KLValueType.swift in Sources */,
 				05A95B5A2516D01700775737 /* KLPreference.swift in Sources */,
@@ -1169,6 +1174,7 @@
 				055D5171268CA8F700304205 /* KLContactDatabase.swift in Sources */,
 				05A95B6D2516D03300775737 /* KLPipe.swift in Sources */,
 				0520F46227742701004DDA28 /* KLPoint.swift in Sources */,
+				05DE577C2969B56600C87A31 /* KLValueInterface.swift in Sources */,
 				0520F46E277429FA004DDA28 /* KLRect.swift in Sources */,
 				050662F728E5D740008DBA32 /* KLValueType.swift in Sources */,
 				05A95B5B2516D01700775737 /* KLPreference.swift in Sources */,
