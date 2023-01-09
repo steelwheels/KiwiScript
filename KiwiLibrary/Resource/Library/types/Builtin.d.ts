@@ -136,11 +136,6 @@ interface RectIF {
 	height:		number ;
 }
 
-interface SizeIF {
-	width:		number ;
-	height:		number ;
-}
-
 interface RangeIF {
 	location:	number ;
 	length:		number ;

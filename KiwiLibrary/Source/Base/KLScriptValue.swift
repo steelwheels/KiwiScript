@@ -78,25 +78,30 @@ extension JSValue
 		return CNEnum.fromJSValue(scriptValue: self)
 	}
 
-	public func isInterface() -> Bool {
-		return CNInterfaceValue.isInterface(scriptValue: self)
+	public func isInterface(named name: String) -> Bool {
+		if let ifname = CNInterfaceValue.interfaceName(scriptValue: self) {
+			return (ifname == name)
+		} else {
+			return false
+		}
 	}
 
-	public func toIntergacve() -> CNInterfaceValue? {
-		if CNInterfaceValue.isInterface(scriptValue: self) {
-			let result: CNInterfaceValue?
-			switch CNInterfaceValue.fromJSValue(scriptValue: self) {
-			case .success(let ifval):
-				result = ifval
-			case .failure(let err):
-				CNLog(logLevel: .error, message: "[Error] \(err.toString())",
-				      atFunction: #function, inFile: #file)
-				result = nil
+	public func toInterface(named name: String) -> CNInterfaceValue? {
+		if let ifname = CNInterfaceValue.interfaceName(scriptValue: self) {
+			if ifname == name {
+				let result: CNInterfaceValue?
+				switch CNInterfaceValue.fromJSValue(scriptValue: self) {
+				case .success(let ifval):
+					result = ifval
+				case .failure(let err):
+					CNLog(logLevel: .error, message: "[Error] \(err.toString())",
+					      atFunction: #function, inFile: #file)
+					result = nil
+				}
+				return result
 			}
-			return result
-		} else {
-			return nil
 		}
+		return nil
 	}
 
 	public var isURL: Bool {
