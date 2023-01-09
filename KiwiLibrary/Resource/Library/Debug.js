@@ -2,8 +2,9 @@
 /**
  * Debug.ts
  */
-/// <reference path="types/Builtin.d.ts"/>
 /// <reference path="types/Enum.d.ts"/>
+/// <reference path="types/Intf.d.ts"/>
+/// <reference path="types/Builtin.d.ts"/>
 function checkVariables(place, ...vars) {
     let result = true;
     vars.forEach(function (value, index) {

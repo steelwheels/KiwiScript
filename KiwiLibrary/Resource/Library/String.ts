@@ -2,8 +2,9 @@
  * String.ts
  */
 
-/// <reference path="types/Builtin.d.ts"/>
 /// <reference path="types/Enum.d.ts"/>
+/// <reference path="types/Intf.d.ts"/>
+/// <reference path="types/Builtin.d.ts"/>
 
 function maxLengthOfStrings(strs: string[]): number {
         let result: number = 0 ;

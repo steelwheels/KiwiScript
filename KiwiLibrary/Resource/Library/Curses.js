@@ -2,8 +2,9 @@
 /*
  * Curses.js
  */
-/// <reference path="types/Builtin.d.ts"/>
 /// <reference path="types/Enum.d.ts"/>
+/// <reference path="types/Intf.d.ts"/>
+/// <reference path="types/Builtin.d.ts"/>
 class CFrame {
     constructor(frame) {
         this.mFrame = frame;

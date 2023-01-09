@@ -1,5 +1,6 @@
-/// <reference path="Builtin.d.ts" />
 /// <reference path="Enum.d.ts" />
+/// <reference path="Intf.d.ts" />
+/// <reference path="Builtin.d.ts" />
 type TurtleStatus = {
     x: number;
     y: number;

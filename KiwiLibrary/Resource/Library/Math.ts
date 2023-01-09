@@ -1,7 +1,8 @@
 /* Math.ts */
 
-/// <reference path="types/Builtin.d.ts"/>
 /// <reference path="types/Enum.d.ts"/>
+/// <reference path="types/Intf.d.ts"/>
+/// <reference path="types/Builtin.d.ts"/>
 
 interface Math {
 	randomInt(min: number, max: number): number ;

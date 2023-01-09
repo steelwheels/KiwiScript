@@ -14,8 +14,8 @@ srcs	= Object.ts \
 	  Turtle.ts \
 	  Contacts.ts
 
-intf_files	= intf-PointIF.d.ts \
-		  intf-SizeIF.d.ts
+intf_files	= types/intf-PointIF.d.ts \
+		  types/intf-SizeIF.d.ts
 
 dsts	= $(srcs:.ts=.js)
 decls	= $(srcs:.ts=.d.ts)
@@ -36,19 +36,24 @@ all:
 		make transpile ; \
 	fi
 
-transpile: types/Enum.d.ts $(dsts) $(dstdecl)
+transpile: exec_tool types/Enum.d.ts types/Intf.d.ts $(dsts) $(dstdecl) 
 
-$(dstdecl): types/Enum.d.ts types/Builtin.d.ts
-	(cd types && cat Enum.d.ts $(intf_files) Builtin.d.ts $(decls)) > $@
+exec_tool: dummy
+	(cd types && rm -f ./enum-*.d.ts ./intf-*.d.ts && ~/tools/bin/edecl)
 
 types/Enum.d.ts: dummy
-	(cd types && rm -f ./enum-*.d.ts ./intf-*.d.ts && ~/tools/bin/edecl)
 	cat types/enum-*.d.ts > $@
+
+types/Intf.d.ts: $(intf_files)
+	cat $(intf_files) > $@
+
+$(dstdecl): types/Builtin.d.ts
+	(cd types && cat Enum.d.ts Intf.d.ts Builtin.d.ts $(decls)) > $@
 
 clean:
 	rm -f $(dsts) $(dstdecl)
 	rm -f types/enum-*.d.ts types/Enum.d.ts
-	rm -f types/intf-*.d.ts 
+	rm -f types/intf-*.d.ts types/Intf.d.ts
 
 dummy:
 

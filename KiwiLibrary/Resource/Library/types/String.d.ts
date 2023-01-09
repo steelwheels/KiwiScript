@@ -1,5 +1,6 @@
-/// <reference path="Builtin.d.ts" />
 /// <reference path="Enum.d.ts" />
+/// <reference path="Intf.d.ts" />
+/// <reference path="Builtin.d.ts" />
 declare function maxLengthOfStrings(strs: string[]): number;
 declare function adjustLengthOfStrings(strs: string[]): string[];
 declare function pasteStrings(src0: string[], src1: string[], space: string): string[];

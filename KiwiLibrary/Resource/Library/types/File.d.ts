@@ -1,5 +1,4 @@
 /// <reference path="Builtin.d.ts" />
-/// <reference path="Enum.d.ts" />
 declare class File {
     mCore: FileIF;
     constructor(core: FileIF);
