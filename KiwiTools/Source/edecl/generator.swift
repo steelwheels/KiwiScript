@@ -50,10 +50,12 @@ private func declarationOf(interfaceType iftype: CNInterfaceType) -> CNText
 	}
 	result.add(text: CNTextLine(string: "interface \(iftype.name) \(extends){"))
 
-	for (name, type) in iftype.types {
-		let typestr = convertToTypeDeclarationWithRecv(valueType: type, isInside: false)
-		let line: String = "\t\(name): \(typestr) ;"
-		result.add(text: CNTextLine(string: line))
+	for name in iftype.types.keys.sorted() {
+		if let type = iftype.types[name] {
+			let typestr = convertToTypeDeclarationWithRecv(valueType: type, isInside: false)
+			let line: String = "\t\(name): \(typestr) ;"
+			result.add(text: CNTextLine(string: line))
+		}
 	}
 
 	result.add(text: CNTextLine(string: "}"))

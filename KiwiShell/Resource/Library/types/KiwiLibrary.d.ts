@@ -149,8 +149,8 @@ interface PointIF {
 }
 /* Interface declaration: SizeIF */
 interface SizeIF {
-	width: number ;
 	height: number ;
+	width: number ;
 }
 /**
  * Builtin.d.ts
