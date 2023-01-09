@@ -159,6 +159,11 @@ interface RectIF {
 	x: number ;
 	y: number ;
 }
+/* Interface declaration: RangeIF */
+interface RangeIF {
+	length: number ;
+	location: number ;
+}
 /**
  * Builtin.d.ts
  */
@@ -217,36 +222,6 @@ interface CursesIF {
 	fill(x: number, y: number, width: number, height: number, c: string): void ;
 }
 
-interface ArrayIF {
-	count:	number ;
-	values:	[any] ;
-
-	value(index: number): any | null ;
-	contains(value: any): boolean ;
-
-	set(value: any, index: number): void ;
-	append(value: any): void ;
-}
-
-interface SetIF {
-	count:	number ;
-	values:	[any] ;
-
-	value(index: number): any | null ;
-	contains(value: any): boolean ;
-
-	insert(value: any): void ;
-}
-
-interface DictionaryIF {
-	count:	number ;
-	keys:   [any] ;
-	values: [any] ;
-
-	set(value: any, name: string): void ;
-	value(name: string): any | null ;
-}
-
 interface EscapeCodeIF {
         backspace():                    string ;
 	delete():                       string ;
@@ -288,11 +263,6 @@ interface FileIF {
 interface PipeIF {
         reading:        FileIF ;
         writing:        FileIF ;
-}
-
-interface RangeIF {
-	location:	number ;
-	length:		number ;
 }
 
 interface TextIF
@@ -525,9 +495,6 @@ declare function CollectionData(): CollectionDataIF ;
 declare function URL(path: string): URLIF | null ;
 
 declare function Storage(path: string): StorageIF | null ;
-declare function ArrayStorage(sotrage: string, path: string): ArrayIF | null ;
-declare function SetStorage(storage: string, path: string): SetIF | null ;
-declare function DictionaryStorage(storage: string, path: string): DictionaryIF | null ;
 declare function TableStorage(storage: string, path: string): TableIF | null ;
 declare function MappingTableStorage(storage: string, path: string): MappingTableIF | null ;
 

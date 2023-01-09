@@ -15,3 +15,8 @@ interface RectIF {
 	x: number ;
 	y: number ;
 }
+/* Interface declaration: RangeIF */
+interface RangeIF {
+	length: number ;
+	location: number ;
+}

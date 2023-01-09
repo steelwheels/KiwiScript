@@ -70,6 +70,14 @@ extension JSValue
 		get { return NSRange.isRange(scriptValue: self) }
 	}
 
+	public var toRange: NSRange? { get {
+		if let ifval = self.toInterface(named: NSRange.InterfaceName) {
+			return NSRange.fromValue(value: ifval)
+		} else {
+			return nil
+		}
+	}}
+
 	public var isEnum: Bool {
 		get { return CNEnum.isEnum(scriptValue: self) }
 	}

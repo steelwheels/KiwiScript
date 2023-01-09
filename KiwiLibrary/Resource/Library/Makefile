@@ -16,7 +16,8 @@ srcs	= Object.ts \
 
 intf_files	= types/intf-PointIF.d.ts \
 		  types/intf-SizeIF.d.ts \
-		  types/intf-RectIF.d.ts
+		  types/intf-RectIF.d.ts \
+		  types/intf-RangeIF.d.ts
 
 dsts	= $(srcs:.ts=.js)
 decls	= $(srcs:.ts=.d.ts)
