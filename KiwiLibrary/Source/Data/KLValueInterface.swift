@@ -68,7 +68,7 @@ public extension CNInterfaceValue
 
 	func toJSValue(context ctxt: KEContext) -> JSValue {
 		var src = self.values
-		src[CNInterfaceValue.ClassProperty] = .stringValue(self.toType().name)
+		src[CNInterfaceValue.ClassProperty] = .stringValue(self.type.name)
 
 		let converter = CNValueToAnyObject()
 		let obj       = converter.convert(dictionaryValue: src)
