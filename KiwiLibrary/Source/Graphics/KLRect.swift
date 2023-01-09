@@ -13,45 +13,23 @@ import Foundation
 public extension CGRect
 {
 	static func isRect(scriptValue val: JSValue) -> Bool {
-		if let dict = val.toDictionary() as? Dictionary<String, Any> {
-			if let _ = dict["x"]      as? NSNumber,
-			   let _ = dict["y"]      as? NSNumber,
-			   let _ = dict["width"]  as? NSNumber,
-			   let _ = dict["height"] as? NSNumber {
-				return true
-			} else {
-				return false
-			}
-		} else {
-			return false
-		}
+		return val.isInterface(named: CGRect.InterfaceName)
 	}
 
 	static func fromJSValue(scriptValue val: JSValue) -> CGRect? {
-		if let dict = val.toDictionary() as? Dictionary<String, Any> {
-			if let xnum = dict["x"]      as? NSNumber,
-			   let ynum = dict["y"]      as? NSNumber,
-			   let wnum = dict["width"]  as? NSNumber,
-			   let hnum = dict["height"] as? NSNumber {
-				return CGRect(x: xnum.doubleValue, y: ynum.doubleValue, width: wnum.doubleValue, height: hnum.doubleValue)
+		if let ifval = val.toInterface(named: CGRect.InterfaceName) {
+			if let xval = ifval.get(name: "x"),     let yval = ifval.get(name: "y"),
+			   let wval = ifval.get(name: "width"), let hval = ifval.get(name: "height") {
+				if let xnum = xval.toNumber(), let ynum = yval.toNumber(), let wnum = wval.toNumber(), let hnum = hval.toNumber() {
+					return CGRect(x: xnum.doubleValue, y: ynum.doubleValue, width: wnum.doubleValue, height: hnum.doubleValue)
+				}
 			}
 		}
 		return nil
 	}
 
 	func toJSValue(context ctxt: KEContext) -> JSValue {
-		let xnum = NSNumber(floatLiteral: Double(self.origin.x))
-		let ynum = NSNumber(floatLiteral: Double(self.origin.y))
-		let wnum = NSNumber(floatLiteral: Double(self.size.width))
-		let hnum = NSNumber(floatLiteral: Double(self.size.height))
-		let result: Dictionary<String, NSObject> = [
-			"class"  : NSString(string: CGRect.ClassName),
-			"x"      : xnum,
-			"y"      : ynum,
-			"width"	 : wnum,
-			"height" : hnum
-		]
-		return JSValue(object: result, in: ctxt)
+		return self.toValue().toJSValue(context: ctxt)
 	}
 }
 

@@ -152,6 +152,13 @@ interface SizeIF {
 	height: number ;
 	width: number ;
 }
+/* Interface declaration: RectIF */
+interface RectIF {
+	height: number ;
+	width: number ;
+	x: number ;
+	y: number ;
+}
 /**
  * Builtin.d.ts
  */
@@ -281,13 +288,6 @@ interface FileIF {
 interface PipeIF {
         reading:        FileIF ;
         writing:        FileIF ;
-}
-
-interface RectIF {
-	x:		number ;
-	y: 		number ;
-	width:		number ;
-	height:		number ;
 }
 
 interface RangeIF {
@@ -576,12 +576,17 @@ declare function TextTable(): TextTableIF ;
 declare function _openURL(title: URLIF | string, cbfunc: any): void ;
 declare function _allocateThread(path: URLIF | string, input: FileIF, output: FileIF, error: FileIF): ThreadIF | null ;
 
+/// <reference path="Enum.d.ts" />
+/// <reference path="Intf.d.ts" />
 /// <reference path="Builtin.d.ts" />
 declare function isEmptyString(str: string): boolean;
 declare function isEmptyObject(obj: object): boolean;
 /// <reference path="Builtin.d.ts" />
 /// <reference path="Process.d.ts" />
+/// <reference path="Enum.d.ts" />
 declare function first<T>(arr: T[] | null): T | null;
+/// <reference path="Enum.d.ts" />
+/// <reference path="Intf.d.ts" />
 /// <reference path="Builtin.d.ts" />
 declare class File {
     mCore: FileIF;

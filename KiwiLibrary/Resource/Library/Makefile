@@ -15,7 +15,8 @@ srcs	= Object.ts \
 	  Contacts.ts
 
 intf_files	= types/intf-PointIF.d.ts \
-		  types/intf-SizeIF.d.ts
+		  types/intf-SizeIF.d.ts \
+		  types/intf-RectIF.d.ts
 
 dsts	= $(srcs:.ts=.js)
 decls	= $(srcs:.ts=.d.ts)

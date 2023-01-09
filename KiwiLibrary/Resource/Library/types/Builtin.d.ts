@@ -129,13 +129,6 @@ interface PipeIF {
         writing:        FileIF ;
 }
 
-interface RectIF {
-	x:		number ;
-	y: 		number ;
-	width:		number ;
-	height:		number ;
-}
-
 interface RangeIF {
 	location:	number ;
 	length:		number ;
