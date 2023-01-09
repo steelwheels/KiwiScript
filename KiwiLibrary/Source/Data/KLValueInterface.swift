@@ -1,8 +1,8 @@
 /**
- * @file	KLValuePointer.swift
- * @brief	Extend CNValuePointer class
+ * @file	KLValueInterface.swift
+ * @brief	Extend CNValueInterface class
  * @par Copyright
- *   Copyright (C) 2022 Steel Wheels Project
+ *   Copyright (C) 2022-2023 Steel Wheels Project
  */
 
 import CoconutData
@@ -12,11 +12,11 @@ import Foundation
 
 public extension CNInterfaceValue
 {
-	private static let InterfaceName	= "_ifName"
+	private static let ClassProperty	= "class"
 
 	static func interfaceName(scriptValue val: JSValue) -> String? {
 		if let dict = val.toDictionary() as? Dictionary<String, AnyObject> {
-			if let ifname = dict[InterfaceName] as? String {
+			if let ifname = dict[ClassProperty] as? String {
 				return ifname
 			}
 		}
@@ -45,7 +45,7 @@ public extension CNInterfaceValue
 			}
 			return result
 		} else {
-			return .failure(NSError.parseError(message: "No \(InterfaceName) property"))
+			return .failure(NSError.parseError(message: "No \(ClassProperty) property"))
 		}
 	}
 
@@ -53,7 +53,7 @@ public extension CNInterfaceValue
 		var values: Dictionary<String, CNValue> = [:]
 		let converter = CNAnyObjecToValue()
 		for (key, elm) in vals {
-			if key != InterfaceName {
+			if key != ClassProperty {
 				values[key] = converter.convert(anyObject: elm)
 			}
 		}
@@ -68,7 +68,7 @@ public extension CNInterfaceValue
 
 	func toJSValue(context ctxt: KEContext) -> JSValue {
 		var src = self.values
-		src[CNInterfaceValue.InterfaceName] = .stringValue(self.toType().name)
+		src[CNInterfaceValue.ClassProperty] = .stringValue(self.toType().name)
 
 		let converter = CNValueToAnyObject()
 		let obj       = converter.convert(dictionaryValue: src)

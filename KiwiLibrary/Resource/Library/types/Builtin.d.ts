@@ -129,11 +129,6 @@ interface PipeIF {
         writing:        FileIF ;
 }
 
-interface PointIF {
-	x : number ;
-	y : number ;
-}
-
 interface RectIF {
 	x:		number ;
 	y: 		number ;

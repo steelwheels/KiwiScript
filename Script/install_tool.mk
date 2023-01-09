@@ -20,7 +20,7 @@ install_bundle: dummy
 	  DSTROOT=/ \
 	  ONLY_ACTIVE_ARCH=NO
 
-install_tools: install_edecl 
+install_tools: install_edecl
 
 install_edecl: dummy
 	xcodebuild install \

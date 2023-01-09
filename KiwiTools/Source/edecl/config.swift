@@ -104,43 +104,6 @@ public class CommandLineParser
 		return config
 	}
 
-	private func parseTarget(values vals: Array<CBValue>) -> KEApplicationType? {
-		let result: KEApplicationType?
-		switch vals.count {
-		case 1:
-			if let form = parseTarget(value: vals[0]) {
-				result = form
-			} else {
-				mConsole.print(string: "[Error] Give parameter \"JavaScript\" or \"TypeScript\" for language option")
-				result = nil
-			}
-		case 0:
-			mConsole.print(string: "[Error] Give parameter \"JavaScript\" or \"TypeScript\" for language option")
-			result = nil
-		default:
-			mConsole.print(string: "[Error] Too many parameter for language option")
-			result = nil
-		}
-		return result
-	}
-
-	private func parseTarget(value val: CBValue) -> KEApplicationType? {
-		let result: KEApplicationType?
-		switch val {
-		case .stringValue(let str):
-			switch str {
-			case "terminal":	result = .terminal
-			case "window":		result = .window
-			default:
-				mConsole.error(string: "[Error] Unexpected target: \(str)")
-				result = nil
-			}
-		default:
-			result = nil
-		}
-		return result
-	}
-
 	private func printVersionMessage() {
 		let plist = CNPropertyList(bundleDirectoryName: "ArisiaTools.bundle")
 		let version: String
