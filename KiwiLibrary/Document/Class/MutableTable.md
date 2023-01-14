@@ -3,7 +3,7 @@ The table contains mutiple records.
 
 ## Interface
 ````
-interface TableIF {
+interface TableDataIF {
 	recordCount:		number ;
 
 	readonly defaultFields:	{[name:string]: any} ;

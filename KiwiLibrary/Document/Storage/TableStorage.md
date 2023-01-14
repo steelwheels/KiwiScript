@@ -34,7 +34,7 @@ The format of the sub-tree is defined as `Table` format.
 ## Constructor
 There is a constructor function to allocate the instance of `Table` class:
 ````
-Table(path: string, storage: StorageIF): TableIF ;
+Table(path: string, storage: StorageIF): TableDataIF ;
 ````
 
 The parameter `path` is used to select the sub-tree in the storage. When you want to access value table in above `sample.json`,
@@ -42,7 +42,7 @@ give "`top`" as a parameter for the `path`.
 
 ## Interface
 ````
-interface TableIF {
+interface TableDataIF {
   recordCount:		        number ;
   readonly defaultFields:	{[name:string]: any} ;
 

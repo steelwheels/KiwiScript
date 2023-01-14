@@ -215,39 +215,11 @@ interface StorageIF {
 	toString(): string ;
 }
 
-interface RecordIF {
-	fieldNames:		string[] ;
-
-	value(name: string):			any ;
-	setValue(value: any, name: string):	void ;
-
-	toString(): 		string ;
-}
-
 interface PointerValueIF {
 	path:			string ;
 }
 
-interface TableIF {
-	recordCount:		number ;
-
-	readonly defaultFields:	{[name:string]: any} ;
-
-	newRecord():				RecordIF ;
-	record(row: number):			RecordIF | null ;
-	pointer(value: any, key: string):	PointerValueIF | null ;
-
-	search(value: any, name: string):	RecordIF[] | null ;
-	append(record: RecordIF): 		void ;
-	appendPointer(pointer: PointerValueIF):	void ;
-
-	remove(index: number):			boolean ;
-	save():					boolean ;
-
-	toString(): 		string
-}
-
-interface MappingTableIF extends TableIF {
+interface MappingTableIF extends TableDataIF {
 
 	setFilterFunction(filter: (rec: RecordIF) => boolean): void ;
 	addVirtualField(field: string, callback: (rec: RecordIF) => any): void
@@ -329,7 +301,7 @@ declare function CollectionData(): CollectionDataIF ;
 declare function URL(path: string): URLIF | null ;
 
 declare function Storage(path: string): StorageIF | null ;
-declare function TableStorage(storage: string, path: string): TableIF | null ;
+declare function TableStorage(storage: string, path: string): TableDataIF | null ;
 declare function MappingTableStorage(storage: string, path: string): MappingTableIF | null ;
 
 declare function isArray(value: any): boolean ;

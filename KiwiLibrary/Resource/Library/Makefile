@@ -14,10 +14,13 @@ srcs	= Object.ts \
 	  Turtle.ts \
 	  Contacts.ts
 
-intf_files	= types/intf-PointIF.d.ts \
+intf_files	= types/Frame.d.ts \
+		  types/intf-PointIF.d.ts \
 		  types/intf-SizeIF.d.ts \
+		  types/intf-RecordIF.d.ts \
 		  types/intf-RectIF.d.ts \
-		  types/intf-RangeIF.d.ts
+		  types/intf-RangeIF.d.ts \
+		  types/intf-TableDataIF.d.ts
 
 dsts	= $(srcs:.ts=.js)
 decls	= $(srcs:.ts=.d.ts)

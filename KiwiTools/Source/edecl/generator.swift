@@ -53,7 +53,13 @@ private func declarationOf(interfaceType iftype: CNInterfaceType) -> CNText
 	for name in iftype.types.keys.sorted() {
 		if let type = iftype.types[name] {
 			let typestr = convertToTypeDeclarationWithRecv(valueType: type, isInside: false)
-			let line: String = "\t\(name): \(typestr) ;"
+			let line: String
+			switch type {
+			case .functionType(_, _):
+				line = "\t\(name)\(typestr) ;"
+			default:
+				line = "\t\(name): \(typestr) ;"
+			}
 			result.add(text: CNTextLine(string: line))
 		}
 	}

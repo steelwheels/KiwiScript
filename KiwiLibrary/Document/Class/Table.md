@@ -3,7 +3,7 @@ The table contains mutiple records.
 
 ## Interface
 ````
-interface TableIF {
+interface TableDataIF {
 	recordCount:		                number ;
 	readonly defaultFields:	                {[name:string]: any} ;
 
@@ -25,7 +25,7 @@ interface TableIF {
 ## Constructor
 There is built-in function to allocate value table.
 ````
-Table(path: string, storage: StorageIF): TableIF | null ;
+Table(path: string, storage: StorageIF): TableDataIF | null ;
 ````
 
 |name   |Type   |Description    |
